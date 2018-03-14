@@ -860,7 +860,6 @@
 		5BF1A2061EC45263004A0DA5 /* ShopBaseTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF1A2051EC45263004A0DA5 /* ShopBaseTabController.swift */; };
 		5BF1A2081EC452BA004A0DA5 /* ShopBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF1A2071EC452BA004A0DA5 /* ShopBaseViewController.swift */; };
 		5BF1A20D1EC45C80004A0DA5 /* ShopHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF1A20C1EC45C80004A0DA5 /* ShopHomeCell.swift */; };
-		5BF4CF5F1EEA883800E6EFA8 /* SLFirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4CF5E1EEA883800E6EFA8 /* SLFirstView.swift */; };
 		5BF6B7401F95E7110004D63C /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF6B73F1F95E7110004D63C /* ActivityModel.swift */; };
 		5BF6B7421F95EBA00004D63C /* ShopActivityDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF6B7411F95EBA00004D63C /* ShopActivityDetailController.swift */; };
 		5BF6B7441F95EC150004D63C /* ActivityDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF6B7431F95EC150004D63C /* ActivityDetailModel.swift */; };
@@ -2395,7 +2394,6 @@
 		5BF1A2051EC45263004A0DA5 /* ShopBaseTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopBaseTabController.swift; sourceTree = "<group>"; };
 		5BF1A2071EC452BA004A0DA5 /* ShopBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopBaseViewController.swift; sourceTree = "<group>"; };
 		5BF1A20C1EC45C80004A0DA5 /* ShopHomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopHomeCell.swift; sourceTree = "<group>"; };
-		5BF4CF5E1EEA883800E6EFA8 /* SLFirstView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLFirstView.swift; sourceTree = "<group>"; };
 		5BF6B73F1F95E7110004D63C /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		5BF6B7411F95EBA00004D63C /* ShopActivityDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopActivityDetailController.swift; sourceTree = "<group>"; };
 		5BF6B7431F95EC150004D63C /* ActivityDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailModel.swift; sourceTree = "<group>"; };
@@ -6061,7 +6059,6 @@
 				5BE1F2F91EC94A3200717E20 /* YCLoadMoreCollectionCell.swift */,
 				5BE1F2FA1EC94A3200717E20 /* YCLoadMoreCollectionCell.xib */,
 				5B76BB791E00CD5800F1F30B /* YCBranchView.swift */,
-				5BF4CF5E1EEA883800E6EFA8 /* SLFirstView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6815,7 +6812,6 @@
 				5BE654301E6EA3A0003CC59F /* UITabBarItem+WZLBadge.m in Sources */,
 				5B5989D61E9F662300F70125 /* PlayDelegate.swift in Sources */,
 				26CFF65320046AD400A10F91 /* RSSpecialGoodsMedicineView.m in Sources */,
-				5BF4CF5F1EEA883800E6EFA8 /* SLFirstView.swift in Sources */,
 				1B5B9AA31E320EB2004F4CB1 /* UIView+Extension.m in Sources */,
 				5BE654361E6EB4BD003CC59F /* OrderFormCanUseController.swift in Sources */,
 				1B12C7901E7FA31E00D89DBB /* RefundListData.m in Sources */,
