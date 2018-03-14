@@ -18,10 +18,10 @@ fileprivate let callShare = "shareAsMessenger"
 
 class YCWebViewController: UIViewController {
     
-    var YCWebView:WKWebView!
-    var url:URL!
-    var progressView:UIProgressView!
-    lazy var shareView:SocailView = SocailView()
+    var webView: WKWebView!
+    var url: URL!
+    var progressView: UIProgressView!
+    lazy var shareView: SocailView = SocailView()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -41,29 +41,29 @@ class YCWebViewController: UIViewController {
         super.viewDidLoad()
         
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow,
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow?.withRenderingMode(.alwaysOriginal),
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(yc_back))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.darkText
+       
 
         let config = WKWebViewConfiguration()
-        YCWebView = WKWebView(frame:.zero, configuration: config)
-        YCWebView.navigationDelegate = self
-        YCWebView.uiDelegate = self
-        YCWebView.translatesAutoresizingMaskIntoConstraints = false
-        YCWebView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
-        view.addSubview(YCWebView)
-        YCWebView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        YCWebView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        webView = WKWebView(frame:.zero, configuration: config)
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
+        view.addSubview(webView)
+        webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         if #available(iOS 11.0, *) {
-            YCWebView.scrollView.contentInsetAdjustmentBehavior = .never
-            YCWebView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-            YCWebView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+            webView.scrollView.contentInsetAdjustmentBehavior = .never
+            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+            webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         } else {
             automaticallyAdjustsScrollViewInsets = false
-            YCWebView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
-            YCWebView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
+            webView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
+            webView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
         }
         
         progressView = UIProgressView()
@@ -85,15 +85,15 @@ class YCWebViewController: UIViewController {
     }
     
     func refresh(){
-        self.YCWebView.load(URLRequest(url: url))
+        webView.load(URLRequest(url: url))
     }
 
     
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
-        progressView.progress = Float(YCWebView.estimatedProgress)
-        if keyPath == "estimatedProgress" && YCWebView.estimatedProgress == 1.0 {
+        progressView.progress = Float(webView.estimatedProgress)
+        if keyPath == "estimatedProgress" && webView.estimatedProgress == 1.0 {
                 UIView.animate(withDuration: 0.25, animations: {
                     self.progressView.isHidden = true
                 })
@@ -106,8 +106,8 @@ class YCWebViewController: UIViewController {
             return
         }
         
-        let completion:(Any?,Error?)->Void = { result,error in
-            if  error != nil {
+        let completion:(Any?,  Error?)-> Void = { result, error in
+            if error != nil {
                 self.showMessage(error!.localizedDescription)
             }
         }
@@ -169,7 +169,7 @@ class YCWebViewController: UIViewController {
     }
     
     deinit {
-        YCWebView.removeObserver(self, forKeyPath: "estimatedProgress")
+        webView.removeObserver(self, forKeyPath: "estimatedProgress")
     }
 }
 

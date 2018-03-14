@@ -13,11 +13,15 @@ fileprivate let CellviewMargin:CGFloat = 10.0
 fileprivate let collectionviweMargin:CGFloat = Ruler.iPhoneHorizontal(10, 10, 20).value
 fileprivate let minimumLineSpacing:CGFloat = 10.0
 
+protocol SelectItemDelegate: class {
+    func tapItem(type: YCHomeBusinessHeader.BusinessType)
+}
+
 
 public class YCHomeBusinessHeader: UITableViewHeaderFooterView {
     
     
-    public enum BusinessType:Int {
+    public enum BusinessType: Int {
         case main
         case superMarket
         case ordermanage
@@ -27,12 +31,15 @@ public class YCHomeBusinessHeader: UITableViewHeaderFooterView {
         case chat
         case addressmanage
         
-       
+        init(indexPath: IndexPath) {
+            self.init(rawValue: indexPath.row)!
+        }
     }
 
-    var didselectItem:((BusinessType) -> Void)?
-    var dataSourceArray:[(UIImage?,String)] = []
-    var collectionView:UICollectionView!
+  
+    var dataSourceArray:  [(UIImage?,String)] = []
+    var collectionView: UICollectionView!
+    weak var delegate: SelectItemDelegate?
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -75,7 +82,7 @@ public class YCHomeBusinessHeader: UITableViewHeaderFooterView {
     
     
     
-    class func GetHeight(_ ver:String?,_ state:String?) -> CGFloat {
+    class func GetHeight(_ ver: String?,_ state: String?) -> CGFloat {
         let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
         if ver == appVersion && state == "1" {
             return (screenWidth - 2 * CellviewMargin - 2 * collectionviweMargin)/4  +  collectionviweMargin * 2 + CellviewMargin * 2
@@ -95,41 +102,40 @@ public class YCHomeBusinessHeader: UITableViewHeaderFooterView {
 
 }
 
-extension YCHomeBusinessHeader:UICollectionViewDelegate{
+extension YCHomeBusinessHeader: UICollectionViewDelegate{
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let index = BusinessType(rawValue:indexPath.row) else { return }
+        let index = BusinessType(indexPath: indexPath)
         switch index {
-
         case .main:
-            didselectItem!(.main)
+            delegate?.tapItem(type: .main)
         case .superMarket:
-            didselectItem!(.superMarket)
+            delegate?.tapItem(type: .superMarket)
         case .ordermanage:
-            didselectItem!(.ordermanage)
+            delegate?.tapItem(type: .ordermanage)
         case .customerservice:
-            didselectItem!(.customerservice)
+            delegate?.tapItem(type: .customerservice)
         case .wallet:
-            didselectItem!(.wallet)
+            delegate?.tapItem(type: .wallet)
         case .agency:
-            didselectItem!(.agency)
+            delegate?.tapItem(type: .agency)
         case .chat:
-            didselectItem!(.chat)
+            delegate?.tapItem(type: .chat)
         case .addressmanage:
-            didselectItem!(.addressmanage)
+            delegate?.tapItem(type: .addressmanage)
         }
     }
    
 }
 
-extension YCHomeBusinessHeader:UICollectionViewDataSource{
+extension YCHomeBusinessHeader: UICollectionViewDataSource{
    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataSourceArray.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell:YCHomeBusinessCollectionCell = collectionView.dequeueReusableCell(indexpath: indexPath)
+        let cell: YCHomeBusinessCollectionCell = collectionView.dequeueReusableCell(indexpath: indexPath)
         return cell
     }
     

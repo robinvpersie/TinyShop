@@ -11,51 +11,12 @@ import SwiftyJSON
 import FMDB
 
 
-public struct HomeModel {
-    let category:Int?
-    let id:String?
-    let imageUrl:String?
-    let isFree:Int?
-    let price:Float?
-    let ranking:Int?
-    let start_time:String?
-    let status:Int?
-    let text:String?
-    let title:String?
-    let type:String?
-    let ver:String?
-    let videourl:String?
-    let vip:String?
-    
-    init?(json:[String:JSON]) {
-        self.category = json["category"]?.int
-        self.id = json["id"]?.string
-        self.imageUrl = json["imgUrl"]?.string
-        self.isFree = json["isFree"]?.int
-        self.price = json["price"]?.float
-        self.ranking = json["ranking"]?.int
-        self.start_time = json["start_time"]?.string
-        self.status = json["status"]?.int
-        self.text = json["text"]?.string
-        self.title = json["title"]?.string
-        self.type = json["type"]?.string
-        self.ver = json["ver"]?.string
-        self.videourl = json["video_url"]?.string
-        self.vip = json["vip"]?.string
-    }
-}
-
-
-
-
-
-
 struct Bannerdat {
     let imgUrl: String
     let url: String
     let ver: String
     
-    init(imgUrl:String,url:String,ver:String){
+    init(imgUrl: String, url: String, ver: String){
         self.imgUrl = imgUrl
         self.url = url
         self.ver = ver
@@ -70,7 +31,7 @@ struct Bannerdat {
         self.ver = ver
     }
     
-    static func getFromCache() -> [Bannerdat]{
+    static func getFromCache() -> [Bannerdat] {
         var banerArray = [Bannerdat]()
         let manager = YCDataManager.shareManager
         manager.open()
@@ -280,7 +241,6 @@ struct MainModel {
         do {
            return try MainModel(json: json)
         }catch {
-           print("MainModel fail to Generate")
            return nil
         }
         
@@ -292,7 +252,7 @@ struct MainModel {
             let model = MainModel.createWithJson(Data)
             return model
         }
-        let requestParameters:JSONDictionary = [
+        let requestParameters: JSONDictionary = [
             "place":place,
             "bannerType":bannerType,
             "CurrentPage":currentPage

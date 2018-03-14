@@ -13,18 +13,18 @@ class YCLoadMoreCollectionCell: UICollectionViewCell {
     @IBOutlet weak var infolb: UILabel!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     
-    var info:String? {
+    var info: String? {
         didSet{
-            if let info = info {
-                infolb.text = info
-            }
+           infolb.text = info
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         contentView.backgroundColor = UIColor.clear
         backgroundColor = UIColor.clear
+        
         activity.hidesWhenStopped = true
 
     }

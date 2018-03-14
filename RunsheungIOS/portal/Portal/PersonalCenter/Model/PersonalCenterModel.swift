@@ -25,11 +25,11 @@ public struct RecommanddatPersonalCenter {
     var NickName: String
     var ReplySeq: Int
     var Title: String
-    var recommandCount:Int
-    var isStar:Bool?
-    var imgUrl:String?
-    var url:String?
-    var date:String?
+    var recommandCount: Int
+    var isStar: Bool?
+    var imgUrl: String?
+    var url: String?
+    var date: String?
     init?(json info: [String: Any]) {
         guard let BannerSeq = info["bannerSeq"] as? Int else { return nil }
         guard let Content = info["content"] as? String else { return nil }
@@ -273,7 +273,7 @@ public struct PersonalGetProfileModel{
 
 extension PersonalGetProfileModel {
     
-    static func Get(memberID:String,token:String,completion:@escaping (NetWorkResult<PersonalGetProfileModel>) -> Void){
+    static func Get(memberID: String, token: String, completion:@escaping (NetWorkResult<PersonalGetProfileModel>) -> Void){
         
         let parse:(JSONDictionary) -> PersonalGetProfileModel? = { jsondic in
                 let json = JSON(jsondic)
@@ -281,7 +281,7 @@ extension PersonalGetProfileModel {
                 let returnjson = PersonalGetProfileModel.createWithJson(json)
                 return returnjson
            }
-           let requestParameters:[String:Any] = [
+           let requestParameters: [String:Any] = [
               "MemberID":memberID,
               "token":token
            ]

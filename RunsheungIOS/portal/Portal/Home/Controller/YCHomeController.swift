@@ -28,19 +28,18 @@ class YCHomeController: UIViewController {
         case TopRefresh
         case LoadMore
     }
-    var itemHeight:Ruler = .iPhoneVertical(140, 140, 150, 160)
+    var itemHeight: Ruler = .iPhoneVertical(140, 140, 150, 160)
     var BannerData = [Bannerdat]()
     var newsData = [Newsdat]()
-    var currentPageIndex:Int = 1
-    var nextPageIndex:Int?
+    var currentPageIndex: Int = 1
+    var nextPageIndex: Int?
     var isFetching = false
-    var currentVersion:String?
-    var currentState:String?
-    var divCode:String = "2"
-    var needLoadMore:Bool? = true
-    var divName:String = "威海市"
-    
-    var tableview:UITableView!
+    var currentVersion: String?
+    var currentState: String?
+    var divCode: String = "2"
+    var needLoadMore: Bool? = true
+    var divName: String = "威海市"
+    var tableview: UITableView!
 
     lazy var tableViewHeaderView:YCInfiniteScrollView = {
         let infiniteView = YCInfiniteScrollView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: CGFloat(self.itemHeight.value)))
@@ -133,6 +132,7 @@ class YCHomeController: UIViewController {
             tableview.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
             tableview.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
         }
+        
         let items:[YCInfiniteItem] = BannerData.map({
             YCInfiniteItem(imageUrl: URL(string:$0.imgUrl)!, imageVer: $0.ver)
         })
@@ -145,8 +145,9 @@ class YCHomeController: UIViewController {
 
         tableview.mj_header.beginRefreshing()
     }
-    
-    func combineWith(_ address:String?) -> NSMutableAttributedString {
+
+
+    func combineWith(_ address: String?) -> NSMutableAttributedString {
         let attritbuteString = NSMutableAttributedString()
         let imageAttachment = NSTextAttachment()
         let originalImage = UIImage(named: "icon_topbar_location")?.withRenderingMode(.alwaysOriginal)
@@ -160,6 +161,46 @@ class YCHomeController: UIViewController {
         }
         return attritbuteString
     }
+    
+    func pushToAppWithSchem(_ schem: String){
+            let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+            showLoading()
+            CheckToken.chekcTokenAPI { (result) in
+                self.hideLoading()
+                switch result {
+                case .success(let check):
+                    if check.status == "1"{
+                        let urlstr = "ycapp://\(schem)$\(check.custom_code)$$\(check.newtoken)"
+                        let utf8Str = urlstr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                        guard let utf8 = utf8Str,
+                            let url = URL(string: utf8),UIApplication.shared.canOpenURL(url)
+                        else {
+                            if self.currentVersion == appVersion && self.currentState == "0" {
+                                return
+                            } else {
+                                 YCAlert.confirmOrCancel(title: "提示",
+                                                         message: "龙聊暂未安装，是否前往AppStore下载？",
+                                                         confirmTitle: "确定",
+                                                         cancelTitle: "取消",
+                                                         inViewController: self,
+                                                         withConfirmAction:
+                                    {
+                                        let url : URL = URL(string: "itms-apps://itunes.apple.com/us/app/%E9%BE%99%E8%81%8A/id1225896079?l=zh&ls=1&mt=8")!
+                                        UIApplication.shared.openURL(url)
+                                    })
+                                return
+                              }
+                            }
+                       UIApplication.shared.openURL(url)
+                    }else {
+                      self.goToLogin()
+                    }
+                case .failure(let error):
+                    self.showMessage(error.localizedDescription)
+                }
+            }
+        }
+    
     
     func showBranch(){
         let orderLocation = OrderLocationController()
@@ -188,7 +229,7 @@ class YCHomeController: UIViewController {
             nextPageIndex = 1
         }
         isFetching = true 
-        MainModel.mainHome(place:divCode,bannerType: 1,currentPage: currentPageIndex){ [weak self] result in
+        MainModel.mainHome(place: divCode, bannerType: 1, currentPage: currentPageIndex) { [weak self] result in
             guard let strongself = self else { return }
             strongself.isFetching = false
             switch result {
@@ -342,89 +383,13 @@ extension YCHomeController:UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        func pushToAppWithSchem(_ schem:String){
-            let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-            showLoading()
-            CheckToken.chekcTokenAPI { (result) in
-                self.hideLoading()
-                switch result {
-                case .success(let check):
-                    if check.status == "1"{
-                        let urlstr = "ycapp://\(schem)$\(check.custom_code)$$\(check.newtoken)"
-                        let utf8Str = urlstr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-                        guard let utf8 = utf8Str,
-                            let url = URL(string: utf8),UIApplication.shared.canOpenURL(url) else {
-                                if self.currentVersion == appVersion && self.currentState == "0" { return } else {
-                                 YCAlert.confirmOrCancel(title: "提示",
-                                                         message: "龙聊暂未安装，是否前往AppStore下载？",
-                                                         confirmTitle: "确定",
-                                                         cancelTitle: "取消",
-                                                         inViewController: self,
-                                                         withConfirmAction:
-                                    {
-                                        let url : URL = URL(string: "itms-apps://itunes.apple.com/us/app/%E9%BE%99%E8%81%8A/id1225896079?l=zh&ls=1&mt=8")!
-                                        UIApplication.shared.openURL(url)
-                                    })
-                                return
-                              }
-                            }
-                       UIApplication.shared.openURL(url)
-                    }else {
-                      self.goToLogin()
-                    }
-                case .failure(let error):
-                    self.showMessage(error.localizedDescription)
-                }
-            }
-        }
-
         let section = Section(section: section)
         switch section {
         case .news:
-            let header:YCHomeBusinessHeader = tableview.dequeueReusableHeaderFooter()
+            let header: YCHomeBusinessHeader = tableview.dequeueReusableHeaderFooter()
             header.updateWithVer(currentVersion, and: currentState)
-            header.didselectItem = { [weak self] type in
-            guard let strongself = self else { return }
-                 switch type {
-                     case .main:
-                        let mainVC:CustomerServiceController = CustomerServiceController()
-                        mainVC.flag = 1
-                        let navi:UINavigationController = UINavigationController(rootViewController: mainVC)
-                        strongself.present(navi, animated: true, completion: nil)
-
-                    case .superMarket:
-                        let supermarket = SupermarketMainController()
-                        supermarket.version = strongself.currentVersion
-                        supermarket.state = strongself.currentState
-                        supermarket.divCode = strongself.divCode
-                        supermarket.divName = strongself.divName
-                        strongself.present(supermarket, animated: true, completion: nil)
-                    case .ordermanage:
-                        let myOrder = SupermarketMyOrderController()
-                        let navi:UINavigationController = UINavigationController(rootViewController: myOrder)
-                        strongself.present(navi, animated: true, completion: nil)
-
-                    case .customerservice:
-                        let customerVC:RSCustomerService = RSCustomerService()
-                        let navi:UINavigationController = UINavigationController(rootViewController: customerVC)
-                        strongself.present(navi, animated: true, completion: nil)
-                    case .wallet:
-                        pushToAppWithSchem("rswallet")
-                    case .agency:
-                        let vc:RSAgencyViewController = RSAgencyViewController()
-                        let navi:UINavigationController = UINavigationController(rootViewController: vc)
-                        strongself.present(navi, animated: true, completion: nil)
-                    case .chat:
-                        pushToAppWithSchem("rsmain")
-                    case .addressmanage:
-                        let supermarketMyaddress = SupermarketMyAddressViewController()
-                        let navi:UINavigationController = UINavigationController(rootViewController: supermarketMyaddress)
-                        strongself.present(navi, animated: true, completion: nil)
-                
-                     }
-                }
-                return header
+            header.delegate = self
+            return header
         }
     }
     
@@ -459,9 +424,9 @@ extension YCHomeController:UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-           let section = Section(indexPath: indexPath)
-           switch section {
-            case .news:
+        let section = Section(indexPath: indexPath)
+        switch section {
+        case .news:
                let cell:YCHomeNewsCell = tableView.dequeueReusableCell()
                return cell
           }
@@ -471,6 +436,47 @@ extension YCHomeController:UITableViewDataSource{
         let cell = cell as! YCHomeNewsCell
         cell.updateWithModel(model: newsData[indexPath.row])
     }
+}
+
+
+extension YCHomeController: SelectItemDelegate {
+
+    func tapItem(type: YCHomeBusinessHeader.BusinessType) {
+        switch type {
+            case .main:
+               let mainVC:CustomerServiceController = CustomerServiceController()
+               mainVC.flag = 1
+               let navi:UINavigationController = UINavigationController(rootViewController: mainVC)
+               present(navi, animated: true, completion: nil)
+            case .superMarket:
+               let supermarket = SupermarketMainController()
+               supermarket.version = currentVersion
+               supermarket.state = currentState
+               supermarket.divCode = divCode
+               supermarket.divName = divName
+               present(supermarket, animated: true, completion: nil)
+            case .ordermanage:
+               let myOrder = SupermarketMyOrderController()
+               let navi:UINavigationController = UINavigationController(rootViewController: myOrder)
+               present(navi, animated: true, completion: nil)
+            case .customerservice:
+               let customerVC = RSCustomerService()
+               let navi = UINavigationController(rootViewController: customerVC)
+               present(navi, animated: true, completion: nil)
+            case .wallet:
+               pushToAppWithSchem("rswallet")
+            case .agency:
+               let vc = RSAgencyViewController()
+               let navi = UINavigationController(rootViewController: vc)
+               present(navi, animated: true, completion: nil)
+            case .chat:
+               pushToAppWithSchem("rsmain")
+            case .addressmanage:
+               let supermarketMyaddress = SupermarketMyAddressViewController()
+               let navi = UINavigationController(rootViewController: supermarketMyaddress)
+               present(navi, animated: true, completion: nil)
+        }
+     }
 }
 
 

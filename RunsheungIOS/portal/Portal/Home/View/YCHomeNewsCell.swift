@@ -10,10 +10,10 @@ import UIKit
 import Kingfisher
 import SnapKit
 
-let toCellleftMargin:CGFloat = Ruler.iPhoneHorizontal(5.0, 10.0, 10.0).value
-let toCellTopMargin:CGFloat = Ruler.iPhoneVertical(5.0, 5.0, 8.0, 8.0).value
-let toCellImgTopMargin:CGFloat = Ruler.iPhoneVertical(0.0, 0.0, 0.0, 0.0).value
-let labelMargin:CGFloat = Ruler.iPhoneVertical(8.0, 8.0, 10.0, 12.0).value
+let toCellleftMargin: CGFloat = Ruler.iPhoneHorizontal(5.0, 10.0, 10.0).value
+let toCellTopMargin: CGFloat = Ruler.iPhoneVertical(5.0, 5.0, 8.0, 8.0).value
+let toCellImgTopMargin: CGFloat = Ruler.iPhoneVertical(0.0, 0.0, 0.0, 0.0).value
+let labelMargin: CGFloat = Ruler.iPhoneVertical(8.0, 8.0, 10.0, 12.0).value
 
 
 class YCHomeNewsCell: UITableViewCell {
@@ -118,8 +118,8 @@ class YCHomeNewsCell: UITableViewCell {
         let newsImagex = self.frame.size.width - toCellleftMargin - newsImageWidth
         self.NewsImageView.frame = CGRect(x: newsImagex, y: newsImagey, width: newsImageWidth, height: newsImageHeight)
         
-        let options:KingfisherOptionsInfo = [.transition(.fade(0.6))]
-        NewsImageView.kf.setImage(with: URL(string:model.imgUrl), placeholder: UIImage.YCPlaceHolder, options: options)
+        let options: KingfisherOptionsInfo = [.transition(.fade(0.6))]
+        NewsImageView.kf.setImage(with: URL(string: model.imgUrl), placeholder: UIImage.YCPlaceHolder, options: options)
         
         let newsNamex = toCellleftMargin
         let newsNameY = toCellTopMargin
