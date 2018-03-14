@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="KLHomeCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="224" height="87"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="224" height="87"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oaa-UF-WHS">
+                        <rect key="frame" x="5" y="10" width="214" height="67"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="oaa-UF-WHS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="4oF-bN-oha"/>
+                <constraint firstAttribute="trailing" secondItem="oaa-UF-WHS" secondAttribute="trailing" constant="5" id="FyW-2Y-wPT"/>
+                <constraint firstAttribute="bottom" secondItem="oaa-UF-WHS" secondAttribute="bottom" constant="10" id="Wno-ao-OMa"/>
+                <constraint firstItem="oaa-UF-WHS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="vqL-1j-Elr"/>
+            </constraints>
+            <size key="customSize" width="224" height="87"/>
+            <connections>
+                <outlet property="imageView" destination="oaa-UF-WHS" id="Yj0-P4-92W"/>
+            </connections>
+            <point key="canvasLocation" x="8" y="72.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

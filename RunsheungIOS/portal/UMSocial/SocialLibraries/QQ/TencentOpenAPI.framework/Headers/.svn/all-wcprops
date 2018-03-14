@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/ioswp/!svn/ver/432/WP-TT%E7%89%88/Libs/SocialLibraries/QQ/TencentOpenAPI.framework/Headers
+END
+TencentApiInterface.h
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/ioswp/!svn/ver/432/WP-TT%E7%89%88/Libs/SocialLibraries/QQ/TencentOpenAPI.framework/Headers/TencentApiInterface.h
+END
+QQApiInterface.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/ioswp/!svn/ver/432/WP-TT%E7%89%88/Libs/SocialLibraries/QQ/TencentOpenAPI.framework/Headers/QQApiInterface.h
+END
+TencentMessageObject.h
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/ioswp/!svn/ver/432/WP-TT%E7%89%88/Libs/SocialLibraries/QQ/TencentOpenAPI.framework/Headers/TencentMessageObject.h
+END
+sdkdef.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/ioswp/!svn/ver/432/WP-TT%E7%89%88/Libs/SocialLibraries/QQ/TencentOpenAPI.framework/Headers/sdkdef.h
+END
+TencentOAuth.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/ioswp/!svn/ver/432/WP-TT%E7%89%88/Libs/SocialLibraries/QQ/TencentOpenAPI.framework/Headers/TencentOAuth.h
+END
+QQApiInterfaceObject.h
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/ioswp/!svn/ver/432/WP-TT%E7%89%88/Libs/SocialLibraries/QQ/TencentOpenAPI.framework/Headers/QQApiInterfaceObject.h
+END
+TencentOAuthObject.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/ioswp/!svn/ver/432/WP-TT%E7%89%88/Libs/SocialLibraries/QQ/TencentOpenAPI.framework/Headers/TencentOAuthObject.h
+END

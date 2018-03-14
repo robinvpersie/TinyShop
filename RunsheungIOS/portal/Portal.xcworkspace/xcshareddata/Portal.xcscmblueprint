@@ -1,0 +1,42 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "bf0979f3-158d-b649-a022-fac704035f73++5910",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "bf0979f3-158d-b649-a022-fac704035f73++5910" : {
+
+    },
+    "bf0979f3-158d-b649-a022-fac704035f73++4534" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "bf0979f3-158d-b649-a022-fac704035f73++5910" : 9223372036854775807,
+    "bf0979f3-158d-b649-a022-fac704035f73++4534" : 9223372036854775807,
+    "E1679FC111225C1A98EA0394D0D0D5A7DEF963BC" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "612E0604-5982-4BD0-9EDD-0C6B9D7E6B4D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "bf0979f3-158d-b649-a022-fac704035f73++5910" : "portal\/",
+    "bf0979f3-158d-b649-a022-fac704035f73++4534" : "Portal%206\/",
+    "E1679FC111225C1A98EA0394D0D0D5A7DEF963BC" : "ijkplayer-ios\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Portal",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Portal.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Bilibili\/ijkplayer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E1679FC111225C1A98EA0394D0D0D5A7DEF963BC"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn:\/\/192.168.2.74",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "bf0979f3-158d-b649-a022-fac704035f73++4534"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn:\/\/192.168.2.74",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "bf0979f3-158d-b649-a022-fac704035f73++5910"
+    }
+  ]
+}

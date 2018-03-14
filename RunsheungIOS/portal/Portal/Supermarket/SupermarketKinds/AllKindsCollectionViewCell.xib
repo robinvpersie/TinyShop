@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AllKindsCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WiC-fP-cXx">
+                        <rect key="frame" x="0.5" y="0.0" width="99" height="100"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uoA-eA-pqq">
+                                <rect key="frame" x="20" y="15" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="GQC-sl-Heb"/>
+                                    <constraint firstAttribute="height" constant="60" id="HcP-V1-Yrk"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exR-EJ-KyP">
+                                <rect key="frame" x="50" y="76" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="exR-EJ-KyP" firstAttribute="top" secondItem="uoA-eA-pqq" secondAttribute="bottom" constant="1" id="1rx-fo-k7L"/>
+                            <constraint firstItem="exR-EJ-KyP" firstAttribute="centerX" secondItem="WiC-fP-cXx" secondAttribute="centerX" id="2yf-18-6e9"/>
+                            <constraint firstItem="uoA-eA-pqq" firstAttribute="centerX" secondItem="WiC-fP-cXx" secondAttribute="centerX" id="6QD-hG-8UH"/>
+                            <constraint firstItem="uoA-eA-pqq" firstAttribute="centerX" secondItem="WiC-fP-cXx" secondAttribute="centerX" id="D5V-Yu-iNI"/>
+                            <constraint firstItem="uoA-eA-pqq" firstAttribute="top" secondItem="WiC-fP-cXx" secondAttribute="top" constant="15" id="hX0-L5-K8D"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="WiC-fP-cXx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="0.5" id="3DM-j1-Qnc"/>
+                <constraint firstAttribute="bottom" secondItem="WiC-fP-cXx" secondAttribute="bottom" constant="0.5" id="4NV-0g-TYj"/>
+                <constraint firstItem="WiC-fP-cXx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="0.5" id="H8f-19-Ve9"/>
+                <constraint firstAttribute="trailing" secondItem="WiC-fP-cXx" secondAttribute="trailing" constant="0.5" id="mSv-CR-gyc"/>
+            </constraints>
+            <size key="customSize" width="117" height="123"/>
+            <connections>
+                <outlet property="iconImageView" destination="uoA-eA-pqq" id="rI8-7s-RO7"/>
+                <outlet property="titleLabel" destination="exR-EJ-KyP" id="3rS-9K-r3b"/>
+            </connections>
+            <point key="canvasLocation" x="-380" y="205"/>
+        </collectionViewCell>
+    </objects>
+</document>
