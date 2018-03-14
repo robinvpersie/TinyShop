@@ -19,24 +19,24 @@ class YCCanteenHomeController: UIViewController {
        case loadMore
     }
     
-    enum sectionType:Int{
+    enum sectionType: Int{
        case header
        case shop
        case loadMore
     }
     
-    var divCode:String!
-    var divName:String?
-    var isFetching:Bool = false
+    var divCode: String!
+    var divName: String?
+    var isFetching: Bool = false
     var currentPage = 0
     var nextPage = 1
-    var tableView:UITableView!
-    var mainPageModel:OrderMainPageModel?
+    var tableView: UITableView!
+    var mainPageModel: OrderMainPageModel?
     var advertiseArray = [Advertiselis]()
     var foodCodeArray = [Foodcodelis]()
     var foodCodeContainerArray = [MenulTypeEnum]()
     var restaurantArray = [Restaurantlis]()
-    var activity:UIActivityIndicatorView!
+    var activity: UIActivityIndicatorView!
     let dispag = DisposeBag()
     
     lazy var refreshController:UIRefreshControl = {
