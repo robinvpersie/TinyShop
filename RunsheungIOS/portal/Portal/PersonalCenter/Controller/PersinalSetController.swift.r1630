@@ -1,0 +1,382 @@
+//
+//  PersinalSetController.swift
+//  Portal
+//
+//  Created by PENG LIN on 2016/12/22.
+//  Copyright © 2016年 linpeng. All rights reserved.
+//
+
+import UIKit
+import MBProgressHUD
+import SwiftyJSON
+import Proposer
+import SwiftDate
+import Alamofire
+import Kingfisher
+
+
+class PersinalSetController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+
+    
+    fileprivate lazy var imagePicker:UIImagePickerController = {
+          let imagePicker = UIImagePickerController()
+          imagePicker.delegate = self
+          imagePicker.allowsEditing = true
+          return imagePicker
+    }()
+    
+    fileprivate var NickName:String?
+    fileprivate var Sex:String?
+    fileprivate var avatarString:String?
+    var operationQue = OperationQueue()
+    
+    fileprivate func getAccountAvatarString() -> String? {
+        if let account = YCAccountModel.getAccount(){
+            if let avatarpath = account.avatarPath {
+               return avatarpath
+            }else {  return nil }
+        }else { return nil }
+    }
+    
+    fileprivate func getAccountNickName() -> String{
+        if let account = YCAccountModel.getAccount(){
+            if let userName = account.userName {
+               return userName
+            }else {  return "您还没有设置昵称" }
+        }else {
+          return "您还没有设置昵称"
+        }
+    }
+    
+    fileprivate func getAccountSex() -> String{
+        if let account = YCAccountModel.getAccount() {
+            if let sex = account.usersex {
+                switch sex {
+                case .boy:
+                    return "男"
+                case .girl:
+                    return "女"
+                }
+            }
+        }
+        return "您还没有设置性别"
+    }
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "设置"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow, style: .plain, target: self, action: #selector(clickBack))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+        view.backgroundColor = UIColor.BaseControllerBackgroundColor
+        tableView.tableFooterView = UIView()
+        tableView.registerNibOf(PersonalHeaderCell.self)
+        tableView.registerClassOf(UITableViewCell.self)
+        tableView.registerNibOf(PersonalSexCell.self)
+        tableView.registerNibOf(PersonalCleanCell.self)
+        tableView.backgroundColor = UIColor.BaseControllerBackgroundColor
+        Sex = getAccountSex()
+        NickName = getAccountNickName()
+        avatarString = getAccountAvatarString()
+    }
+
+    func clickBack(){
+          navigationController!.popViewController(animated: true)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+         return 4
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+          return 1
+        }else if section == 1 {
+          return 2
+        }else {
+          return 1
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+           return 75
+        }else {
+           return 40
+        }
+    }
+
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 0 {
+            let cell:PersonalHeaderCell = tableView.dequeueReusableCell()
+            let avatarSize =  PersonalCenterAvatarSize
+            let avatarStyle:AvatarStyle = .roundedRectangle(size: CGSize(width:avatarSize,height:avatarSize), cornerRadius: avatarSize * 0.5, borderWidth: 0)
+            let plainAvatar = PlainAvatar(avatarURLString: avatarString ?? "", avatarStyle: avatarStyle)
+            cell.avatarImageView.navi_setAvatar(plainAvatar)
+            cell.clickImage = { [weak self] in
+                guard let strongself = self else { return }
+                strongself.choosePhoto(cell: cell)
+             }
+            return cell
+            
+        }else if indexPath.section == 1{
+            
+            let cell:PersonalSexCell = tableView.dequeueReusableCell()
+            if indexPath.row == 0{
+               cell.sex.text = "性别"
+               cell.detail.text = Sex
+            }else if indexPath.row == 1 {
+               cell.sex.text = "昵称"
+               cell.detail.text = NickName
+            }
+            return cell
+        }else if indexPath.section == 2{
+            
+            let cell:PersonalCleanCell = tableView.dequeueReusableCell()
+            KingfisherManager.shared.cache.calculateDiskCacheSize(completion: { size in
+                let floatSize = CGFloat(size/1024/1024)
+                let cacheSize = String(format: "%.1f", floatSize)
+                cell.cachesize.text = "\(cacheSize)MB"
+          })
+            return cell
+            
+        }else{
+            let cell:UITableViewCell = tableView.dequeueReusableCell()
+            cell.textLabel?.textColor = UIColor.navigationbarColor
+            cell.textLabel?.text = "退出账号"
+            cell.textLabel?.textAlignment = .center
+            return cell
+         }
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 10))
+        view.backgroundColor = UIColor.clear
+        return view
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+           return 0.01
+        }else {
+           return 10
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+         if indexPath.section == 3 {
+          logout()
+          return
+        }
+        if indexPath.section == 1 && indexPath.row == 0 {
+            let cell = tableView.cellForRow(at: indexPath) as? PersonalSexCell
+            let alertController = UIAlertController(title: "选择性别", message: nil, preferredStyle: .actionSheet)
+           let cancelAction: UIAlertAction = UIAlertAction(title: "取消", style: .cancel) { action in
+                
+            }
+            alertController.addAction(cancelAction)
+            let boyAction: UIAlertAction = UIAlertAction(title: "男", style: .default) { action in
+                cell?.detail.text = "男"
+                self.Sex = "男"
+                self.setUserAccount(nickname: self.NickName, gender: "M",imagePath:self.avatarString)
+                
+            }
+            alertController.addAction(boyAction)
+            let girlAction: UIAlertAction = UIAlertAction(title: "女", style: .default, handler: { (action) in
+                cell?.detail.text = "女"
+                self.Sex = "女"
+                self.setUserAccount(nickname: self.NickName, gender: "F",imagePath:self.avatarString)
+            })
+            alertController.addAction(girlAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
+        if indexPath.section == 1 && indexPath.row == 1 {
+            let cell = tableView.cellForRow(at: indexPath) as? PersonalSexCell
+            
+               YCAlert.textInput(title:"更改昵称", placeholder: "输入昵称", oldText: nil, dismissTitle: "确定", inViewController: self, withFinishedAction: { str in
+                
+                if str.characters.count <= 0 {
+                    YCAlert.alert(title: "昵称不能为空", message: nil, dismissTitle: "确定", inViewController: self, withDismissAction: nil)
+                    return 
+                }
+                
+                cell?.detail.text = str
+                var genderString:String?
+                if self.Sex == "男" {
+                  genderString = "M"
+                }else if self.Sex == "女" {
+                  genderString = "F"
+                }else {
+                  genderString = nil
+                }
+                self.setUserAccount(nickname: str, gender: genderString,imagePath:self.avatarString)
+            })
+        }
+        
+        if indexPath.section == 2 {
+            let cell = tableView.cellForRow(at: indexPath) as? PersonalCleanCell
+            KingfisherManager.shared.cache.clearDiskCache()
+            cell?.cachesize.text = "0MB"
+            MBProgressHUD.hideAfterDelay(view: view, interval: 1.5, text: "删除缓存成功")
+        }
+    }
+    
+    fileprivate func setUserAccount(nickname:String?,gender:String?,imagePath:String? = nil){
+        
+        MBProgressHUD.show(view: view)
+        
+        NetWorkManager.manager.PersonalSetMemberProfile(nickName: nickname, imagePath: imagePath, gender: gender, failureHandler: { [weak self] reason , errormessage in
+            
+            guard let strongself = self else { return }
+            MBProgressHUD.hide(for: strongself.view, animated: true)
+            
+        }, completion: {[weak self] json in
+            
+            guard let strongself = self else { return }
+            MBProgressHUD.hide(for: strongself.view, animated: true)
+        })
+    }
+    
+    
+    func choosePhoto(cell:PersonalHeaderCell){
+        
+        let alertController = UIAlertController(title: "选择照片", message: nil, preferredStyle: .actionSheet)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "取消", style: .cancel) {_ in}
+        alertController.addAction(cancelAction)
+        let CameroAction: UIAlertAction = UIAlertAction(title: "拍照", style: .default) { action in
+            proposeToAccess(.camera, agreed: { [weak self] in
+                guard  UIImagePickerController.isSourceTypeAvailable(.camera) else {
+                       return
+                }
+                if let strongself = self {
+                   strongself.imagePicker.sourceType = .camera
+                   strongself.present(strongself.imagePicker, animated: true, completion: nil)
+                }
+            }, rejected: {})
+        }
+        
+        alertController.addAction(CameroAction)
+        
+        let AlbumAction: UIAlertAction = UIAlertAction(title: "相册", style: .default, handler: { (action) in
+            proposeToAccess(.photos, agreed: { [weak self] in
+                guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+                    return
+                }
+                if let strongself = self {
+                    strongself.imagePicker.sourceType = .photoLibrary
+                    strongself.present(strongself.imagePicker, animated: true, completion: nil)
+                }
+            }, rejected: {})
+
+        
+        })
+        alertController.addAction(AlbumAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    fileprivate func logout(){
+        
+      MBProgressHUD.show(view: view)
+      NetWorkManager.manager.logOut(failureHandler: {[weak self] (error,errormessage) in
+           self?.hideLoading()
+           self?.showMessage(errormessage)
+        
+          }, completion: { [weak self] responseData in
+            guard let strongself = self else { return }
+            strongself.hideLoading()
+            let json = JSON(responseData)
+            if let flag = json["flag"].string {
+            if flag == "success" {
+                strongself.showMessage("退出成功")
+                strongself.cleanToken()
+                YCUserDefaults.accountModel.value = nil
+                for x in strongself.navigationController!.viewControllers {
+                    if x is YCHomeController {
+                        strongself.navigationController!.popToViewController(x, animated: true)
+                    }
+                }
+               }
+            }
+        })
+    }
+    
+    
+    /// 手动清楚token
+    func cleanToken(){
+        let account = YCAccountModel.getAccount()
+        let parameters = [
+            "action":account?.token ?? "",
+            "username":account?.memid ?? "",
+        ]
+        Alamofire.request("http://192.168.2.201/appapi/userapi", method: .post, parameters: parameters).responseJSON { (response) in
+            switch response.result {
+            case .success(let value):
+                 let json = JSON(value)
+                
+            case .failure(let error):
+                self.showMessage(error.localizedDescription)
+            }
+        }
+    
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        defer {
+            dismiss(animated: true, completion: nil)
+        }
+        
+    if let Image = info[UIImagePickerControllerEditedImage] as? UIImage {
+        
+        let imageData = UIImageJPEGRepresentation(Image, 1)!
+        let account = YCAccountModel.getAccount()
+        let currentDateStr = "WPortal" + account!.memid! + ".jpg"
+        let uploadAttachment = UploadAttachment(attType: .avatar, source: .data(imageData), fileExtension: .jpeg, fileName: currentDateStr)
+        MBProgressHUD.show(view: view)
+     let uploadOperation = UploadAttachmentOperation(uploadAttachment: uploadAttachment, completion: {  [weak self] (result) in
+                guard let strongself = self else { return }
+                MBProgressHUD.hide(for: strongself.view, animated: true)
+        switch result {
+            case .success(_):
+                var genderString:String? = nil
+                var imagepath:String? = nil
+                if strongself.Sex == "男" {
+                    genderString = "M"
+                }else if strongself.Sex == "女" {
+                    genderString = "F"
+                }else {
+                    genderString = nil
+                }
+                imagepath = BaseType.PortalBase.baseURL + "/" + "file" + "/" + currentDateStr
+                KingfisherManager.shared.cache.store(Image, original: imageData, forKey: imagepath!, toDisk: true, completionHandler: nil)
+                strongself.setUserAccount(nickname: strongself.NickName, gender: genderString, imagePath: imagepath)
+            case .failed(errorMessage: let errormessage):
+                MBProgressHUD.hideAfterDelay(view: strongself.view, text: errormessage)
+                }
+            })
+            operationQue.addOperation(uploadOperation)
+            let  EditedImage = Image.yc.resizeToTargetSize(targetSize: CGSize(width: 45, height: 45))
+            let indexpath = IndexPath(row: 0, section: 0)
+            let cell = tableView.cellForRow(at: indexpath) as? PersonalHeaderCell
+                cell?.avatarImageView.image = EditedImage
+        } else {
+           print("image has no CGImageRef or invalid bitmap format")
+        }
+    }
+    
+    
+    
+}

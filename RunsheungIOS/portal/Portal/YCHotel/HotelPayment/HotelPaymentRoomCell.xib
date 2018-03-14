@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="120" id="KGk-i7-Jjw" customClass="HotelPaymentRoomCell">
+            <rect key="frame" x="0.0" y="0.0" width="396" height="120"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="396" height="119.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P7e-ub-cq2">
+                        <rect key="frame" x="18" y="18" width="83.5" height="83.5"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="P7e-ub-cq2" secondAttribute="height" multiplier="1:1" id="ddb-v8-mSE"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长沙宇成国际酒店" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5K-82-Vvu">
+                        <rect key="frame" x="109" y="18" width="205" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="Tl1-Se-l0M"/>
+                            <constraint firstAttribute="width" constant="205" id="nmO-xe-3H5"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="高级大床房" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCQ-6O-Fj1">
+                        <rect key="frame" x="109" y="48" width="76" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="76" id="1F2-4K-Xtr"/>
+                            <constraint firstAttribute="height" constant="20" id="hQ4-Ma-exr"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-03-20至2017-03-21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OjL-FY-oDD">
+                        <rect key="frame" x="109" y="78" width="185" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="RC3-dG-7nB"/>
+                            <constraint firstAttribute="width" constant="185" id="nQg-ZB-uxU"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥320" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8db-wr-GmL">
+                        <rect key="frame" x="298" y="61.5" width="80" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="dho-XE-eOK"/>
+                            <constraint firstAttribute="width" constant="80" id="yGw-Nj-4bp"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="P7e-ub-cq2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="8GW-NV-jKR"/>
+                    <constraint firstItem="P7e-ub-cq2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="Bh6-R5-UGo"/>
+                    <constraint firstItem="qCQ-6O-Fj1" firstAttribute="top" secondItem="e5K-82-Vvu" secondAttribute="bottom" id="CKc-Pc-cho"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="P7e-ub-cq2" secondAttribute="bottom" constant="10" id="D4t-Gm-Ujg"/>
+                    <constraint firstItem="qCQ-6O-Fj1" firstAttribute="leading" secondItem="P7e-ub-cq2" secondAttribute="trailing" constant="8" id="SOv-Ug-3Ag"/>
+                    <constraint firstItem="8db-wr-GmL" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-10" id="XA6-1Q-Uya"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="8db-wr-GmL" secondAttribute="bottom" constant="20" id="axs-Ow-xnE"/>
+                    <constraint firstItem="e5K-82-Vvu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="bTA-OW-GIi"/>
+                    <constraint firstItem="OjL-FY-oDD" firstAttribute="top" secondItem="qCQ-6O-Fj1" secondAttribute="bottom" constant="10" id="eFF-XC-MZj"/>
+                    <constraint firstItem="e5K-82-Vvu" firstAttribute="leading" secondItem="P7e-ub-cq2" secondAttribute="trailing" constant="8" id="mXd-Sm-8NZ"/>
+                    <constraint firstItem="OjL-FY-oDD" firstAttribute="leading" secondItem="P7e-ub-cq2" secondAttribute="trailing" constant="8" id="tHJ-bV-KFn"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="hotelNameLabel" destination="e5K-82-Vvu" id="Rkd-N8-2eN"/>
+                <outlet property="priceLabel" destination="8db-wr-GmL" id="h0a-Qo-PDt"/>
+                <outlet property="roomIcon" destination="P7e-ub-cq2" id="yM7-ZU-JiS"/>
+                <outlet property="roomTypeName" destination="qCQ-6O-Fj1" id="CEg-FQ-U4h"/>
+                <outlet property="timeLabel" destination="OjL-FY-oDD" id="6Nn-vE-9ER"/>
+            </connections>
+            <point key="canvasLocation" x="72" y="95"/>
+        </tableViewCell>
+    </objects>
+</document>

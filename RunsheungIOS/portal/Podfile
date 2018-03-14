@@ -1,0 +1,44 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Portal' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Portal
+  pod 'Kingfisher', '~> 3.1.4'
+  pod 'SnapKit', '~> 3.0.2'
+  pod 'SwiftyJSON'
+  pod 'MBProgressHUD', '~> 1.0.0'
+  pod 'Proposer', '~> 1.1.0'
+  pod 'AFNetworking', '~> 3.0'
+  pod 'SDWebImage', '~>3.8'
+  pod 'SwiftDate', '~> 4.0.10'
+  pod 'DZNEmptyDataSet', '~> 1.8.1'
+  pod 'KeyboardMan', '~> 1.0.0'
+  pod 'RxSwift',    '~> 3.0'
+  pod 'RxCocoa',    '~> 3.0'
+  pod 'CryptoSwift', '~> 0.7.2'
+  pod 'SwiftLocation', '~> 2.0.7'
+  pod 'Moya'
+  pod 'Hero’
+  pod 'FMDB'
+  
+
+
+
+    
+  
+target 'PortalTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'PortalUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+
