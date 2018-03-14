@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		018AE84B20594CC60018F854 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84A20594CC60018F854 /* Resource.swift */; };
+		018AE84D20594D210018F854 /* NetWorkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84C20594D210018F854 /* NetWorkResult.swift */; };
+		018AE84F20594DC90018F854 /* NetIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84E20594DC90018F854 /* NetIndicator.swift */; };
 		1B022D611F21A20400129849 /* ZoomingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B022D601F21A20400129849 /* ZoomingImageView.m */; };
 		1B0CD2BD1E8B5B6A008AF162 /* YCHotelMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CD2BC1E8B5B6A008AF162 /* YCHotelMainController.m */; };
 		1B0CD2C01E8B5B8D008AF162 /* YCHoltelBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CD2BF1E8B5B8D008AF162 /* YCHoltelBaseViewController.m */; };
@@ -536,8 +539,6 @@
 		269248E5200C8FAB0071900E /* RSJudgeIsX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269248E4200C8FAB0071900E /* RSJudgeIsX.swift */; };
 		269CA6E92001D90C009E6C54 /* WJSetLineColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 269CA6E82001D90C009E6C54 /* WJSetLineColor.m */; };
 		269CA6EB2002005E009E6C54 /* YCHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269CA6EA2002005E009E6C54 /* YCHomeController.swift */; };
-		269CA6EE200202AF009E6C54 /* YCHomeNavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 269CA6EC200202AE009E6C54 /* YCHomeNavigationView.xib */; };
-		269CA6EF200202AF009E6C54 /* YCHomeNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269CA6ED200202AE009E6C54 /* YCHomeNavigationView.swift */; };
 		269CA6F120020555009E6C54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269CA6F020020555009E6C54 /* AppDelegate.swift */; };
 		269CA6F420021B79009E6C54 /* SupermarketHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 269CA6F320021B79009E6C54 /* SupermarketHomeViewController.m */; };
 		26B5EDE41FF2317F0001E40B /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B5EDC71FF2317F0001E40B /* libSocialQQ.a */; };
@@ -930,6 +931,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		018AE84A20594CC60018F854 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		018AE84C20594D210018F854 /* NetWorkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkResult.swift; sourceTree = "<group>"; };
+		018AE84E20594DC90018F854 /* NetIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetIndicator.swift; sourceTree = "<group>"; };
 		1B022D5F1F21A20400129849 /* ZoomingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomingImageView.h; sourceTree = "<group>"; };
 		1B022D601F21A20400129849 /* ZoomingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomingImageView.m; sourceTree = "<group>"; };
 		1B0CD2BB1E8B5B6A008AF162 /* YCHotelMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHotelMainController.h; sourceTree = "<group>"; };
@@ -2004,8 +2008,6 @@
 		269CA6E72001D90C009E6C54 /* WJSetLineColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJSetLineColor.h; sourceTree = "<group>"; };
 		269CA6E82001D90C009E6C54 /* WJSetLineColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJSetLineColor.m; sourceTree = "<group>"; };
 		269CA6EA2002005E009E6C54 /* YCHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCHomeController.swift; sourceTree = "<group>"; };
-		269CA6EC200202AE009E6C54 /* YCHomeNavigationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YCHomeNavigationView.xib; sourceTree = "<group>"; };
-		269CA6ED200202AE009E6C54 /* YCHomeNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCHomeNavigationView.swift; sourceTree = "<group>"; };
 		269CA6F020020555009E6C54 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		269CA6F220021B78009E6C54 /* SupermarketHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupermarketHomeViewController.h; sourceTree = "<group>"; };
 		269CA6F320021B79009E6C54 /* SupermarketHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupermarketHomeViewController.m; sourceTree = "<group>"; };
@@ -5872,6 +5874,9 @@
 				6272BE621DDC6AD60075EA1C /* NetWorking.swift */,
 				5BEBB6761DFAB73400367D77 /* AlamofireNetWork.swift */,
 				5BECA2371F2ADBBF00729382 /* MoyaNetWork.swift */,
+				018AE84A20594CC60018F854 /* Resource.swift */,
+				018AE84C20594D210018F854 /* NetWorkResult.swift */,
+				018AE84E20594DC90018F854 /* NetIndicator.swift */,
 			);
 			name = NetWork;
 			path = Portal/NetWork;
@@ -6047,8 +6052,6 @@
 		62ADFAF31DE3F1FE005FDE1D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				269CA6ED200202AE009E6C54 /* YCHomeNavigationView.swift */,
-				269CA6EC200202AE009E6C54 /* YCHomeNavigationView.xib */,
 				62ADFAF41DE3F248005FDE1D /* YCHomeHeaderCell.swift */,
 				62ADFAF61DE3F632005FDE1D /* YCHomeBusinessCell.swift */,
 				5BFB700A1DEBD51D0004ED83 /* YCHomeNewsCell.swift */,
@@ -6233,7 +6236,6 @@
 				1B392F0B1E28D14E00F70981 /* SupermarketOnSaleCell.xib in Resources */,
 				1B392D641E28D0E500F70981 /* BEEP.mp3 in Resources */,
 				267DAAA31EA214DD00299E74 /* hotelintroduce.jpg in Resources */,
-				269CA6EE200202AF009E6C54 /* YCHomeNavigationView.xib in Resources */,
 				1B392F5D1E28D14E00F70981 /* cart_addBtn_nomal@2x.png in Resources */,
 				5B002A821E0BCE5E002D0A05 /* PersonalCleanCell.xib in Resources */,
 				1B9547001F1DF147006DCB6C /* ScanQR2@2x.png in Resources */,
@@ -6706,6 +6708,7 @@
 				5B5C0EB41EC54E08004F8C5D /* ShopHomeController.swift in Sources */,
 				1B392D951E28D0E500F70981 /* YYTextWeakProxy.m in Sources */,
 				1B392F2C1E28D14E00F70981 /* SLAreaPickerView.m in Sources */,
+				018AE84F20594DC90018F854 /* NetIndicator.swift in Sources */,
 				1BEF69431E947D6400CE3434 /* HotelSearchResultController.m in Sources */,
 				5BEF65A91F208C0500817141 /* CosmosSettings.swift in Sources */,
 				267DAA981EA213EE00299E74 /* HotelDateView.m in Sources */,
@@ -6744,6 +6747,7 @@
 				1BDDA0E11EB96AE1005E8409 /* HotelImageCommentViewController.m in Sources */,
 				1B1971BB1E20803300E54D95 /* KLRecommendCollectionViewCell.m in Sources */,
 				5B95EA901DF4F5CE006E74C4 /* UIView + YC.swift in Sources */,
+				018AE84B20594CC60018F854 /* Resource.swift in Sources */,
 				1B5B6BA81E9B17E7009D5C75 /* HotelFacilityPicsController.m in Sources */,
 				1B392F351E28D14E00F70981 /* CouponUsedController.m in Sources */,
 				1B392D6A1E28D0E500F70981 /* SDBrowserImageView.m in Sources */,
@@ -6828,6 +6832,7 @@
 				621DB37B2006342A00EE3F63 /* ProfileModel.swift in Sources */,
 				1B392D601E28D0E500F70981 /* STUI.m in Sources */,
 				1B61569D1E9B15A900B16877 /* HotelOutLookController.m in Sources */,
+				018AE84D20594D210018F854 /* NetWorkResult.swift in Sources */,
 				1B4C103A1EB3195F005EAAE5 /* TQStarRatingView.m in Sources */,
 				1BDDA0DB1EB96A63005E8409 /* HotelCommentViewController.m in Sources */,
 				1B0CD2C31E8B5BE1008AF162 /* YCHotelHomeViewController.m in Sources */,
@@ -7070,7 +7075,6 @@
 				261E5C2E20108B4A00E106EF /* RSWebProgressLayer.m in Sources */,
 				1B510E6D1EA0C52800B77F14 /* HotelProgressView.m in Sources */,
 				1B392F0A1E28D14E00F70981 /* SupermarketOnSaleCell.m in Sources */,
-				269CA6EF200202AF009E6C54 /* YCHomeNavigationView.swift in Sources */,
 				1B9DD4521E2EFF9600931DAD /* MJRefreshComponent.m in Sources */,
 				1B392F141E28D14E00F70981 /* SupermarketTasteNewController.m in Sources */,
 				1BC876771E973AA300BB38D7 /* DataVerifier.m in Sources */,

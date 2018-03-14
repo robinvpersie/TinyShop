@@ -26,18 +26,6 @@ let offURI = "http://editapi.dxbhtm.com:8866"
 let pointURI = "http://api.dxbhtm.com:8083"
 let recommendURI = "http://api1.dxbhtm.com:7778"
 
-
-//let portalBaseURL = "http://192.168.2.29:8488"
-//let mediaBaseURL = "http://192.168.2.220:81"
-//let MediaPlayVideoURL = "http://192.168.2.220:89"
-//let PortalAddressURL = "http://192.168.2.29:8488"
-//let canteenURL = "http://192.168.2.183"
-//let superMarketURL = "http://192.168.2.230:81"
-//let shopURL = "http://192.168.2.179:82"
-//let shopbURL = "http://192.168.2.230:81"
-//let cancleURI = "http://192.168.2.179:8080"
-//let offURI = "http://192.168.2.152:8866"
-//let pointURI = "http://192.168.2.201"
 #else
 
 let portalBaseURL = "http://portal.dxbhtm.com:8488"
@@ -108,29 +96,6 @@ public enum BaseType {
 }
 
 
-class NetActivityIndicator {
-    static let share = NetActivityIndicator()
-    let lock = NSLock()
-    var activityCount :Int = 0 {
-        didSet {
-            if activityCount > 0 {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            }else {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            }
-        }
-    }
-    
-    func increment() {
-        lock.lock(); defer { lock.unlock() }
-        activityCount += 1
-    }
-    
-    func decrement() {
-        lock.lock(); defer { lock.unlock() }
-        activityCount -= 1
-    }
-}
 
 
 
@@ -156,20 +121,20 @@ private func JSONResponseDataFormatter(_ data:Data) -> Data {
 let loggerPlugin = NetworkLoggerPlugin(verbose: true, responseDataFormatter: JSONResponseDataFormatter)
 
 #if !DEBUG
-let pluginTypeArray:[PluginType] = [loggerPlugin,activityPlugin]
+let pluginTypeArray:[PluginType] = [activityPlugin]
 #else
-let pluginTypeArray:[PluginType] = [activityPlugin,loggerPlugin]
+let pluginTypeArray:[PluginType] = [activityPlugin, loggerPlugin]
 #endif
 
 public typealias JSONDictionary = [String:Any]
 
-protocol DecodableTargetType:Moya.TargetType {
+protocol DecodableTargetType: Moya.TargetType {
     associatedtype resultType
     var parse:(_ object:JSONDictionary) -> resultType? {get}
 }
 
 
-protocol mapTargetType: Moya.TargetType {
+protocol MapTargetType: Moya.TargetType {
     associatedtype resultType
     var map:(_ object:JSONDictionary) throws -> resultType { get }
 }
@@ -196,20 +161,26 @@ final class MultiMoyaProvider:MoyaProvider<MultiTarget> {
                 plugins: [PluginType] = pluginTypeArray,
                 trackInflights: Bool = false) {
         
-        super.init(endpointClosure: endpointClosure, requestClosure: requestClosure, stubClosure: stubClosure, manager: manager, plugins: plugins, trackInflights: trackInflights)
+        super.init(endpointClosure: endpointClosure,
+                   requestClosure: requestClosure,
+                   stubClosure: stubClosure,
+                   manager: manager,
+                   plugins: plugins,
+                   trackInflights: trackInflights)
         
     }
     
     @discardableResult
-    func requestDecoded<T:DecodableTargetType>(
-                        _ target:T,
-                        queue:DispatchQueue? = nil,
-                        completion:@escaping (_ result:NetWorkResult<T.resultType>) -> Void) -> Cancellable
+    func requestDecoded<T: DecodableTargetType>(
+                        _ target: T,
+                        queue: DispatchQueue? = nil,
+                        completion: @escaping (_ result:NetWorkResult<T.resultType>) -> Void)
+                         -> Cancellable
     {
         let cancellable = request(MultiTarget(target), queue: queue) { result in
                 switch result {
                 case .success(let response):
-                    if let json:JSONDictionary = try? response.mapJSON() as! JSONDictionary,
+                    if let json: JSONDictionary = try? response.mapJSON() as! JSONDictionary,
                         let parsed = target.parse(json) {
                         DispatchQueue.main.async(execute: {
                              completion(.success(parsed))
@@ -229,14 +200,15 @@ final class MultiMoyaProvider:MoyaProvider<MultiTarget> {
       }
     
     @discardableResult
-    func requestTarget<T:mapTargetType>(target:T,
-                                        queue:DispatchQueue? = nil,
-                                        completion:@escaping (_ result:NetWorkResult<T.resultType>) -> Void) -> Cancellable
+    func requestTarget<T: MapTargetType>(target:T,
+                                         queue: DispatchQueue? = nil,
+                                         completion: @escaping (_ result:NetWorkResult<T.resultType>) -> Void)
+                                         -> Cancellable
     {
         let cancellable = request(MultiTarget(target), queue: queue) { result in
             switch result {
             case .success(let response):
-                if let json:[String:Any] = try? response.mapJSON() as! [String:Any] {
+                if let json: [String:Any] = try? response.mapJSON() as! JSONDictionary {
                     do {
                         let parse = try target.map(json)
                         DispatchQueue.main.async(execute: {
@@ -266,37 +238,6 @@ final class MultiMoyaProvider:MoyaProvider<MultiTarget> {
 let YCProvider = MultiMoyaProvider()
 
 
-struct TargetResource<T>:mapTargetType {
-    typealias resultType = T
-    var baseURL: URL
-    var path: String
-    var method:Moya.Method
-    var parameters: [String : Any]?
-    var parameterEncoding: ParameterEncoding
-    var sampleData: Data
-    var task: Task
-    var map: (JSONDictionary) throws -> T
-    
-    init(baseURL:URL = BaseType.PortalBase.URI,
-         path:String,
-         method:Moya.Method,
-         parameters: [String:Any]?,
-         parameterEncoding: ParameterEncoding = URLEncoding.default,
-         sampleData:Data = Data(),
-         task:Task = .request,
-         map:@escaping (JSONDictionary) throws -> T
-        )
-    {
-        self.baseURL = baseURL
-        self.path = path
-        self.method = method
-        self.parameters = parameters
-        self.parameterEncoding = parameterEncoding
-        self.sampleData = sampleData
-        self.task = task
-        self.map = map
-    }
-}
 
 
 struct NetResource<T>:DecodableTargetType {
@@ -311,14 +252,14 @@ struct NetResource<T>:DecodableTargetType {
     var task: Task
     var parse: (JSONDictionary) -> T?
 
-    init(baseURL:URL = BaseType.PortalBase.URI,
-         path:String,
-         method:Moya.Method,
-         parameters:[String:Any]?,
-         parameterEncoding:ParameterEncoding = URLEncoding.default,
-         sampleData:Data = Data(),
-         task:Task = .request,
-         parse:@escaping (JSONDictionary) -> T?
+    init(baseURL: URL = BaseType.PortalBase.URI,
+         path: String,
+         method: Moya.Method,
+         parameters: [String:Any]?,
+         parameterEncoding: ParameterEncoding = URLEncoding.default,
+         sampleData: Data = Data(),
+         task: Task = .request,
+         parse :@escaping (JSONDictionary) -> T?
         )
     {
         self.baseURL = baseURL
@@ -369,10 +310,7 @@ struct RSEditProfileResource<T>:DecodableTargetType {
 
 
 
-public enum NetWorkResult<T>{
-    case success(T)
-    case failure(MoyaError)
-}
+
 
 
 
