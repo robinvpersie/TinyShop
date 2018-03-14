@@ -17,9 +17,7 @@ protocol SelectItemDelegate: class {
     func tapItem(type: YCHomeBusinessHeader.BusinessType)
 }
 
-
-public class YCHomeBusinessHeader: UITableViewHeaderFooterView {
-    
+class YCHomeBusinessHeader: UITableViewHeaderFooterView {
     
     public enum BusinessType: Int {
         case main
@@ -105,8 +103,6 @@ public class YCHomeBusinessHeader: UITableViewHeaderFooterView {
         super.awakeFromNib()
         // Initialization code
     }
-
-
 }
 
 extension YCHomeBusinessHeader: UICollectionViewDelegate{
