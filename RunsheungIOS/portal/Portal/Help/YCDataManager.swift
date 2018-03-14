@@ -22,7 +22,10 @@ class YCDataManager:NSObject{
         super.init()
         lockQueue.sync { [weak self] in
             let fileManager = FileManager.default
-            let library:URL? = try? fileManager.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            let library: URL? = try? fileManager.url(for: .libraryDirectory,
+                                                     in: .userDomainMask,
+                                                     appropriateFor: nil,
+                                                     create: false)
             if let library = library {
                 let dburl = library.appendingPathComponent("library.sqlite")
                 self?.fileName = dburl.absoluteString

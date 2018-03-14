@@ -94,31 +94,6 @@ public class NetWorkManager{
 
 extension NetWorkManager {
     
-    func Recommendlist(failureHandler:FailureHandler?,
-                       completion:@escaping ([HomeModel]?) -> Void)
-    {
-        
-        let parse:(JSONDictionary) -> [HomeModel]? = { Data in
-            var DataArray = [HomeModel]()
-            let json = JSON(Data)
-            let bannerData = json["mediaData"].arrayValue
-            bannerData.forEach({
-                let model = HomeModel(json: $0.dictionary!)
-                DataArray.append(model!)
-            })
-            return DataArray
-        }
-        
-        let resource = AlmofireResource(Type: .PortalBase,
-                                        path: recommendlistAPI,
-                                        method: .get,
-                                        requestParameters: nil,
-                                        parse: parse)
-        AlamofireRequest(resource: resource,
-                         failure: failureHandler,
-                         completion: completion)
-}
-    
     
     
     

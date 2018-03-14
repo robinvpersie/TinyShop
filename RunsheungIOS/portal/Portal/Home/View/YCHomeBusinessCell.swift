@@ -31,7 +31,7 @@ public class YCHomeBusinessHeader: UITableViewHeaderFooterView {
     }
 
     var didselectItem:((BusinessType) -> Void)?
-    var dataSourceArray:[(UIImage?,String)] = []
+    var dataSourceArray:  [(UIImage?,String)] = []
     var collectionView:UICollectionView!
     
     override init(reuseIdentifier: String?) {

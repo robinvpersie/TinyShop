@@ -28,19 +28,18 @@ class YCHomeController: UIViewController {
         case TopRefresh
         case LoadMore
     }
-    var itemHeight:Ruler = .iPhoneVertical(140, 140, 150, 160)
+    var itemHeight: Ruler = .iPhoneVertical(140, 140, 150, 160)
     var BannerData = [Bannerdat]()
     var newsData = [Newsdat]()
-    var currentPageIndex:Int = 1
-    var nextPageIndex:Int?
+    var currentPageIndex: Int = 1
+    var nextPageIndex: Int?
     var isFetching = false
-    var currentVersion:String?
-    var currentState:String?
-    var divCode:String = "2"
-    var needLoadMore:Bool? = true
-    var divName:String = "威海市"
-    
-    var tableview:UITableView!
+    var currentVersion: String?
+    var currentState: String?
+    var divCode: String = "2"
+    var needLoadMore: Bool? = true
+    var divName: String = "威海市"
+    var tableview: UITableView!
 
     lazy var tableViewHeaderView:YCInfiniteScrollView = {
         let infiniteView = YCInfiniteScrollView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: CGFloat(self.itemHeight.value)))
@@ -133,6 +132,7 @@ class YCHomeController: UIViewController {
             tableview.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
             tableview.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
         }
+        
         let items:[YCInfiniteItem] = BannerData.map({
             YCInfiniteItem(imageUrl: URL(string:$0.imgUrl)!, imageVer: $0.ver)
         })
@@ -145,8 +145,9 @@ class YCHomeController: UIViewController {
 
         tableview.mj_header.beginRefreshing()
     }
-    
-    func combineWith(_ address:String?) -> NSMutableAttributedString {
+
+
+    func combineWith(_ address: String?) -> NSMutableAttributedString {
         let attritbuteString = NSMutableAttributedString()
         let imageAttachment = NSTextAttachment()
         let originalImage = UIImage(named: "icon_topbar_location")?.withRenderingMode(.alwaysOriginal)
@@ -382,7 +383,7 @@ extension YCHomeController:UITableViewDataSource{
         let section = Section(section: section)
         switch section {
         case .news:
-            let header:YCHomeBusinessHeader = tableview.dequeueReusableHeaderFooter()
+            let header: YCHomeBusinessHeader = tableview.dequeueReusableHeaderFooter()
             header.updateWithVer(currentVersion, and: currentState)
             header.didselectItem = { [weak self] type in
             guard let strongself = self else { return }
