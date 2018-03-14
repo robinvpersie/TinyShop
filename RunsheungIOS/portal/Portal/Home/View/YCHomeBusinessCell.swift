@@ -37,7 +37,7 @@ public class YCHomeBusinessHeader: UITableViewHeaderFooterView {
     }
 
   
-    var dataSourceArray:  [(UIImage?,String)] = []
+    var dataSourceArray:  [(UIImage?, String)] = []
     var collectionView: UICollectionView!
     weak var delegate: SelectItemDelegate?
     
@@ -47,7 +47,8 @@ public class YCHomeBusinessHeader: UITableViewHeaderFooterView {
         backgroundColor = UIColor(hex:0xf2f2f2)
         
         let flowlayout = UICollectionViewFlowLayout()
-        flowlayout.itemSize = CGSize(width: (screenWidth - 2 * CellviewMargin - 2 * collectionviweMargin)/4, height: (screenWidth - 2 * CellviewMargin - 2 * collectionviweMargin)/4)
+        flowlayout.itemSize = CGSize(width: (screenWidth - 2 * CellviewMargin - 2 * collectionviweMargin) / 4,
+                                     height: (screenWidth - 2 * CellviewMargin - 2 * collectionviweMargin) / 4)
         flowlayout.sectionInset = UIEdgeInsetsMake(CellviewMargin, CellviewMargin, CellviewMargin, CellviewMargin)
         flowlayout.minimumLineSpacing = minimumLineSpacing
         flowlayout.minimumInteritemSpacing = 0
@@ -57,25 +58,31 @@ public class YCHomeBusinessHeader: UITableViewHeaderFooterView {
         collectionView.registerClassOf(YCHomeBusinessCollectionCell.self)
         collectionView.layer.backgroundColor = UIColor.white.cgColor
         collectionView.layer.cornerRadius = 5
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: topAnchor,constant:collectionviweMargin).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: leadingAnchor,constant:collectionviweMargin).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -collectionviweMargin).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -collectionviweMargin).isActive = true
-    }
+        contentView.addSubview(collectionView)
+        collectionView.snp.makeConstraints { (make) in
+            make.top.leading.equalTo(contentView).offset(collectionviweMargin)
+            make.trailing.bottom.equalTo(contentView).offset(-collectionviweMargin)
+        }
+     }
     
     
     func updateWithVer(_ ver:String?,and state:String?){
         
         let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
         if ver == appVersion && state == "1" {
-             dataSourceArray =  [(UIImage(named:"icon_funcationnav_home"),"主页"),(UIImage(named:"icon_funcationnav_shoppingmall"),"购物商城"),(UIImage(named:"icon_funcationnav_community"),"社区"),(UIImage(named:"icon_funcationnav_service"),"客服中心")]
+             dataSourceArray =  [(UIImage(named:"icon_funcationnav_home"), "主页"),
+                                 (UIImage(named:"icon_funcationnav_shoppingmall"), "购物商城"),
+                                 (UIImage(named:"icon_funcationnav_community"), "社区"),
+                                 (UIImage(named:"icon_funcationnav_service"), "客服中心")]
         }else {
-
-            
-            dataSourceArray =  [(UIImage(named:"icon_funcationnav_home"),"主页"),(UIImage(named:"icon_funcationnav_shoppingmall"),"购物商城"),(UIImage(named:"icon_02"),"订单管理"),(UIImage(named:"icon_funcationnav_service"),"客服中心"),(UIImage(named:"icon_funcationnav_wallet"),"钱包"),(UIImage(named:"icon_funcationnav_agent"),"代理申请"),(UIImage(named:"icon_funcationnav_message"),"聊天"),(UIImage(named:"icon_03"),"地址管理")]
-
+            dataSourceArray =  [(UIImage(named:"icon_funcationnav_home"), "主页"),
+                                (UIImage(named:"icon_funcationnav_shoppingmall"), "购物商城"),
+                                (UIImage(named:"icon_02"), "订单管理"),
+                                (UIImage(named:"icon_funcationnav_service"), "客服中心"),
+                                (UIImage(named:"icon_funcationnav_wallet"), "钱包"),
+                                (UIImage(named:"icon_funcationnav_agent"), "代理申请"),
+                                (UIImage(named:"icon_funcationnav_message"), "聊天"),
+                                (UIImage(named:"icon_03"), "地址管理")]
         }
         collectionView.reloadData()
     }
@@ -149,10 +156,10 @@ extension YCHomeBusinessHeader: UICollectionViewDataSource{
 
 class YCHomeBusinessCollectionCell: UICollectionViewCell {
     
-    var dataSource:(UIImage?,String)?{
+    var dataSource:(image: UIImage?,text: String)?{
         didSet{
-        self.namelabel.text = dataSource?.1
-        self.imageview.image = dataSource?.0
+        self.namelabel.text = dataSource?.text
+        self.imageview.image = dataSource?.image
       }
     }
     
@@ -163,21 +170,23 @@ class YCHomeBusinessCollectionCell: UICollectionViewCell {
         super.init(frame: frame)
         
         imageview = UIImageView()
-        imageview.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(imageview)
-        imageview.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        imageview.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        imageview.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7).isActive = true
-        imageview.heightAnchor.constraint(equalTo: imageview.widthAnchor).isActive = true
-        
+        imageview.snp.makeConstraints { (make) in
+            make.top.centerX.equalTo(contentView)
+            make.height.equalTo(imageview.snp.width)
+            make.width.equalTo(contentView).multipliedBy(0.7)
+        }
+      
         namelabel = UILabel()
         namelabel.textAlignment = .center
         namelabel.textColor = UIColor.darkcolor
         namelabel.font = UIFont.boldSystemFont(ofSize: 11)
-        namelabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(namelabel)
-        namelabel.centerXAnchor.constraint(equalTo: imageview.centerXAnchor).isActive = true
-        namelabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        namelabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(imageview)
+            make.bottom.equalTo(contentView)
+        }
+    
     }
     
     
