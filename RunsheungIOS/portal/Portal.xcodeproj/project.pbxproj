@@ -647,7 +647,6 @@
 		5B76BB751E00CA0F00F1F30B /* AdvertisementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76BB731E00CA0F00F1F30B /* AdvertisementController.swift */; };
 		5B76BB761E00CA0F00F1F30B /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76BB741E00CA0F00F1F30B /* WelcomeController.swift */; };
 		5B76BB781E00CAFD00F1F30B /* WelcomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76BB771E00CAFD00F1F30B /* WelcomeModel.swift */; };
-		5B76BB7A1E00CD5800F1F30B /* YCBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76BB791E00CD5800F1F30B /* YCBranchView.swift */; };
 		5B76BB7C1E01003100F1F30B /* YCCancelableTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76BB7B1E01003100F1F30B /* YCCancelableTask.swift */; };
 		5B78E4BD1E88BC1200E5D095 /* CanteenCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B78E4BC1E88BC1100E5D095 /* CanteenCommentModel.swift */; };
 		5B7DCAF81DEFBFFC00F1D2AB /* UIButton + YC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7DCAF71DEFBFFC00F1D2AB /* UIButton + YC.swift */; };
@@ -2163,7 +2162,6 @@
 		5B76BB731E00CA0F00F1F30B /* AdvertisementController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertisementController.swift; sourceTree = "<group>"; };
 		5B76BB741E00CA0F00F1F30B /* WelcomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
 		5B76BB771E00CAFD00F1F30B /* WelcomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeModel.swift; sourceTree = "<group>"; };
-		5B76BB791E00CD5800F1F30B /* YCBranchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCBranchView.swift; sourceTree = "<group>"; };
 		5B76BB7B1E01003100F1F30B /* YCCancelableTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCCancelableTask.swift; sourceTree = "<group>"; };
 		5B78E4BC1E88BC1100E5D095 /* CanteenCommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenCommentModel.swift; sourceTree = "<group>"; };
 		5B7DCAF71DEFBFFC00F1D2AB /* UIButton + YC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton + YC.swift"; sourceTree = "<group>"; };
@@ -6058,7 +6056,6 @@
 				5B1E63491DED667C005DDFB2 /* YCLoadMoreCell.xib */,
 				5BE1F2F91EC94A3200717E20 /* YCLoadMoreCollectionCell.swift */,
 				5BE1F2FA1EC94A3200717E20 /* YCLoadMoreCollectionCell.xib */,
-				5B76BB791E00CD5800F1F30B /* YCBranchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7237,7 +7234,6 @@
 				5B76BB781E00CAFD00F1F30B /* WelcomeModel.swift in Sources */,
 				1BEF69371E8F503200CE3434 /* HotelSearchTableViewCell.m in Sources */,
 				1B392F3C1E28D14E00F70981 /* SupermarketMineHeaderView.m in Sources */,
-				5B76BB7A1E00CD5800F1F30B /* YCBranchView.swift in Sources */,
 				1B3C971F1E29F3D400517684 /* TPKeyboardAvoidingTableView.m in Sources */,
 				267DAA991EA213EE00299E74 /* HotelHeadView.m in Sources */,
 				1B9DD4601E2EFF9600931DAD /* NSBundle+MJRefresh.m in Sources */,
