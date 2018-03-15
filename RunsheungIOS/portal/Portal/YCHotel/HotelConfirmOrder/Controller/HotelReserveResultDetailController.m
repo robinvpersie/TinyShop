@@ -202,7 +202,7 @@
 - (void)requestData {
     [MBProgressHUD showWithView:KEYWINDOW];
     [YCHotelHttpTool hotelGetOrderDetailWithOrderID:self.orderNum success:^(id response) {
-        NSLog(@"%@",response);
+  
         [MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
         NSNumber *status = response[@"status"];
         if (status.integerValue == 1) {
