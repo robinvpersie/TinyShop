@@ -266,7 +266,7 @@ class ShopHomeController: ShopTableViewController{
                         }
                         UIApplication.shared.openURL(url)
                    case "8":
-                        let request = URLRequest(url: URL(string: "http://ssadmin.dxbhtm.com:8090/20_CM/cmList.aspx")!)
+                        let request = URLRequest(url: URL(string: "http://ssadmin.gigawon.co.kr:8090/20_CM/cmList.aspx")!)
                         let web = EatWebController(url: request)
                         web.hidesBottomBarWhenPushed = true
                         strongself.navigationController?.pushViewController(web, animated: true)

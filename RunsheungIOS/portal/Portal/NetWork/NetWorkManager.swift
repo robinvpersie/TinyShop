@@ -72,7 +72,7 @@ struct CheckToken{
         #if !DEBUG
             let baseURI = URL(string: "http://192.168.2.165:89")!
         #else
-            let baseURI = URL(string:"http://member.dxbhtm.com:89")!
+            let baseURI = URL(string:"http://member.gigawon.co.kr:89")!
         #endif
         let netResource = NetResource(baseURL: baseURI,
                                       path: "/ws2016/srvJoinModule/10_Login/checkLogin_0911",

@@ -24,7 +24,7 @@ class YCRouteBox:NSObject {
         return rootvc
     }
     
-    var needPushUrl:URL? = URL(string: "http://hotel.dxbhtm.com:8863//NewsView/News?NewsSeq=121")!
+    var needPushUrl:URL? = URL(string: "http://hotel.gigawon.co.kr:8863//NewsView/News?NewsSeq=121")!
 
     
     func pushEatIn(nav:UINavigationController?,groupID:String){
@@ -80,7 +80,7 @@ class YCRouteBox:NSObject {
      }else if type == "8" {
             let newsID = parameters[2]
             let visibleVC = currentVC()
-            let webURL = URL(string: "http://hotel.dxbhtm.com:8863/NewsView/News?NewsSeq=\(newsID)")!
+            let webURL = URL(string: "http://hotel.gigawon.co.kr:8863/NewsView/News?NewsSeq=\(newsID)")!
             if let visibleVC = visibleVC,visibleVC is UINavigationController {
                   let nav = visibleVC as! UINavigationController
                   let top = nav.topViewController
