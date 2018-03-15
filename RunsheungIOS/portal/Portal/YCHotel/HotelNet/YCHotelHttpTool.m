@@ -7,6 +7,7 @@
 //
 
 #import "YCHotelHttpTool.h"
+#import <AdSupport/AdSupport.h>
 
 //#define HotelBaseUrl @"http://192.168.2.147:83/"
 //#define HotelBaseUrl @"http://hotel.dxbhtm.com:83/"

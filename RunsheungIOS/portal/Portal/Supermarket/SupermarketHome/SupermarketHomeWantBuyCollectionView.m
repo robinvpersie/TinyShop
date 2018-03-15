@@ -11,6 +11,7 @@
 #import "SupermarketHomePeopleLikeData.h"
 #import "UIView+ViewController.h"
 #import "GoodsDetailController.h"
+#import "UIImageView+ImageCache.h"
 
 @implementation SupermarketHomeWantBuyCollectionView
 

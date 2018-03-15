@@ -8,6 +8,7 @@
 
 #import "SupermarketMyOrderGoodView.h"
 #import "UILabel+CreateLabel.h"
+#import "UIImageView+ImageCache.h"
 
 #define ImageHeight 80
 #define CellHeight  110

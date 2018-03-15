@@ -26,6 +26,7 @@
 #import "UPPaymentControl.h"
 #import "UILabel+CreateLabel.h"
 #import "UILabel+WidthAndHeight.h"
+#import "UIImageView+ImageCache.h"
 
 #define BottomHeight 45
 

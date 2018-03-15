@@ -9,6 +9,7 @@
 #import "SupermarketHomePanicBuyingCollectionView.h"
 #import "SupermarketHomePanicBuyingCell.h"
 #import "SupermarketHomePurchaseData.h"
+#import "UIImageView+ImageCache.h"
 
 @implementation SupermarketHomePanicBuyingCollectionView
 

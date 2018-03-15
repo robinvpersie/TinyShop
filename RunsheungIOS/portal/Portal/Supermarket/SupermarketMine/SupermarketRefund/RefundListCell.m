@@ -12,6 +12,7 @@
 #import "UIView+ViewController.h"
 #import "SupermarketRefundDetailController.h"
 #import "AddExpressController.h"
+#import "UIImageView+ImageCache.h"
 
 #define ButtonWidth 80
 

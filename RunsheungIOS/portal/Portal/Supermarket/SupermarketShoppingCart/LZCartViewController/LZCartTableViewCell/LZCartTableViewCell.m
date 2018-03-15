@@ -11,6 +11,7 @@
 #import "LZCartTableViewCell.h"
 #import "LZConfigFile.h"
 #import "LZCartModel.h"
+#import "UIImageView+ImageCache.h"
 
 @interface LZCartTableViewCell ()
 {

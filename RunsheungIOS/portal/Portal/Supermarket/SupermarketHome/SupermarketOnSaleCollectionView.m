@@ -11,6 +11,7 @@
 #import "SupermarketOnSaleModel.h"
 #import "UIView+ViewController.h"
 #import "GoodsDetailController.h"
+#import "UIImageView+ImageCache.h"
 
 @interface SupermarketOnSaleCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
