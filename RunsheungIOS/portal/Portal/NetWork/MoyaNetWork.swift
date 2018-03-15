@@ -99,7 +99,7 @@ public enum BaseType {
 
 
 
-let activityPlugin = NetworkActivityPlugin { type in
+let activityPlugin = NetworkActivityPlugin { type, _ in
     switch type {
     case .began:
         NetActivityIndicator.share.increment()
@@ -154,9 +154,10 @@ final class MultiMoyaProvider:MoyaProvider<MultiTarget> {
     
     typealias Target = MultiTarget
     
-    override init(endpointClosure: @escaping EndpointClosure = MoyaProvider.defaultEndpointMapping,
-                requestClosure: @escaping RequestClosure = MoyaProvider.defaultRequestMapping,
-                stubClosure: @escaping StubClosure = MoyaProvider.neverStub,
+    override init(endpointClosure: @escaping MoyaProvider<Target>.EndpointClosure = MoyaProvider.defaultEndpointMapping,
+                requestClosure: @escaping MoyaProvider<Target>.RequestClosure = MoyaProvider<Target>.defaultRequestMapping,
+                stubClosure: @escaping MoyaProvider<Target>.StubClosure = MoyaProvider.neverStub,
+                callbackQueue: DispatchQueue? = nil,
                 manager: Manager = DefaultAlamofireManager.shareManager,
                 plugins: [PluginType] = pluginTypeArray,
                 trackInflights: Bool = false) {
@@ -164,6 +165,7 @@ final class MultiMoyaProvider:MoyaProvider<MultiTarget> {
         super.init(endpointClosure: endpointClosure,
                    requestClosure: requestClosure,
                    stubClosure: stubClosure,
+                   callbackQueue: callbackQueue,
                    manager: manager,
                    plugins: plugins,
                    trackInflights: trackInflights)
@@ -173,11 +175,10 @@ final class MultiMoyaProvider:MoyaProvider<MultiTarget> {
     @discardableResult
     func requestDecoded<T: DecodableTargetType>(
                         _ target: T,
-                        queue: DispatchQueue? = nil,
                         completion: @escaping (_ result:NetWorkResult<T.resultType>) -> Void)
                          -> Cancellable
     {
-        let cancellable = request(MultiTarget(target), queue: queue) { result in
+        let cancellable = request(MultiTarget(target)) { result in
                 switch result {
                 case .success(let response):
                     if let json: JSONDictionary = try? response.mapJSON() as! JSONDictionary,
@@ -201,11 +202,10 @@ final class MultiMoyaProvider:MoyaProvider<MultiTarget> {
     
     @discardableResult
     func requestTarget<T: MapTargetType>(target:T,
-                                         queue: DispatchQueue? = nil,
                                          completion: @escaping (_ result:NetWorkResult<T.resultType>) -> Void)
                                          -> Cancellable
     {
-        let cancellable = request(MultiTarget(target), queue: queue) { result in
+        let cancellable = request(MultiTarget(target)) { result in
             switch result {
             case .success(let response):
                 if let json: [String:Any] = try? response.mapJSON() as! JSONDictionary {
@@ -240,8 +240,7 @@ let YCProvider = MultiMoyaProvider()
 
 
 
-struct NetResource<T>:DecodableTargetType {
-
+struct NetResource<T>: DecodableTargetType {
     typealias resultType = T
     var baseURL: URL
     var path: String
@@ -251,6 +250,7 @@ struct NetResource<T>:DecodableTargetType {
     var sampleData: Data
     var task: Task
     var parse: (JSONDictionary) -> T?
+    var headers: [String : String]?
 
     init(baseURL: URL = BaseType.PortalBase.URI,
          path: String,
@@ -258,7 +258,7 @@ struct NetResource<T>:DecodableTargetType {
          parameters: [String:Any]?,
          parameterEncoding: ParameterEncoding = URLEncoding.default,
          sampleData: Data = Data(),
-         task: Task = .request,
+         task: Task = .requestPlain ,
          parse :@escaping (JSONDictionary) -> T?
         )
     {
@@ -268,31 +268,36 @@ struct NetResource<T>:DecodableTargetType {
         self.parameters = parameters
         self.parameterEncoding = parameterEncoding
         self.sampleData = sampleData
-        self.task = task
+        if let parameters = parameters {
+           self.task = .requestParameters(parameters: parameters, encoding: parameterEncoding)
+        }else {
+           self.task = task
+        }
         self.parse = parse
     }
 }
 
 
-struct RSEditProfileResource<T>:DecodableTargetType {
+struct RSEditProfileResource<T>: DecodableTargetType {
     
+    var headers: [String : String]?
     typealias resultType = T
     var baseURL: URL
     var path: String
-    var method:Moya.Method
+    var method: Moya.Method
     var parameters: [String : Any]?
     var parameterEncoding: ParameterEncoding
     var sampleData: Data
     var task: Task
     var parse: (JSONDictionary) -> T?
     
-    init(baseURL:URL = BaseType.editProfile.URI,
-         path:String,
-         method:Moya.Method,
-         parameters:[String:Any]?,
-         parameterEncoding:JSONEncoding = JSONEncoding.default,
-         sampleData:Data = Data(),
-         task:Task = .request,
+    init(baseURL: URL = BaseType.editProfile.URI,
+         path: String,
+         method: Moya.Method,
+         parameters: [String:Any]?,
+         parameterEncoding: JSONEncoding = JSONEncoding.default,
+         sampleData: Data = Data(),
+         task: Task = .requestPlain,
          parse:@escaping (JSONDictionary) -> T?
         )
     {
@@ -303,7 +308,11 @@ struct RSEditProfileResource<T>:DecodableTargetType {
         self.parameters = parameters
         self.parameterEncoding = parameterEncoding
         self.sampleData = sampleData
-        self.task = task
+        if let parameters = parameters {
+            self.task = .requestParameters(parameters: parameters, encoding: parameterEncoding)
+        }else {
+            self.task = task
+        }
         self.parse = parse
     }
 }
@@ -315,6 +324,8 @@ struct RSEditProfileResource<T>:DecodableTargetType {
 
 
 class tokenResource<T>:DecodableTargetType {
+    var headers: [String : String]?
+    
     
     typealias resultType = T
     var baseURL: URL
@@ -328,14 +339,14 @@ class tokenResource<T>:DecodableTargetType {
     var parse: (JSONDictionary) -> T?
     
     
-    init(baseURL:URL = BaseType.PortalBase.URI,
-         path:String,
-         method:Moya.Method,
-         parameters:[String:Any]?,
-         parameterEncoding:ParameterEncoding = URLEncoding.default,
-         sampleData:Data = Data(),
-         task:Task = .request,
-         parse:@escaping (JSONDictionary) -> T?)
+    init(baseURL: URL = BaseType.PortalBase.URI,
+         path: String,
+         method: Moya.Method,
+         parameters: [String:Any]?,
+         parameterEncoding: ParameterEncoding = URLEncoding.default,
+         sampleData: Data = Data(),
+         task: Task = .requestPlain,
+         parse: @escaping (JSONDictionary) -> T?)
     {
         self.baseURL = baseURL
         self.path = path
@@ -343,8 +354,13 @@ class tokenResource<T>:DecodableTargetType {
         self.parameters = parameters
         self.parameterEncoding = parameterEncoding
         self.sampleData = sampleData
-        self.task = task
-        self.parse = parse
+        
+        if let parameters = parameters {
+            self.task = .requestParameters(parameters: parameters, encoding: parameterEncoding)
+        }else {
+            self.task = task
+        }
+       self.parse = parse
     }
     
     func requestApi(completion:@escaping (TokenResult<T>)->Void,check:((CheckToken)->Void)? = nil){

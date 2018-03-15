@@ -673,12 +673,6 @@
 		5BE654301E6EA3A0003CC59F /* UITabBarItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654251E6EA3A0003CC59F /* UITabBarItem+WZLBadge.m */; };
 		5BE654311E6EA3A0003CC59F /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654281E6EA3A0003CC59F /* CAAnimation+WAnimation.m */; };
 		5BE654321E6EA3A0003CC59F /* UIView+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6542D1E6EA3A0003CC59F /* UIView+WZLBadge.m */; };
-		5BE6DD791E5681B600A6C9EC /* FSPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6DD731E5681B600A6C9EC /* FSPageControl.swift */; };
-		5BE6DD7A1E5681B600A6C9EC /* FSPagerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6DD741E5681B600A6C9EC /* FSPagerCollectionView.swift */; };
-		5BE6DD7B1E5681B600A6C9EC /* FSPagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6DD751E5681B600A6C9EC /* FSPagerView.swift */; };
-		5BE6DD7C1E5681B600A6C9EC /* FSPagerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6DD761E5681B600A6C9EC /* FSPagerViewCell.swift */; };
-		5BE6DD7D1E5681B600A6C9EC /* FSPageViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6DD771E5681B600A6C9EC /* FSPageViewLayout.swift */; };
-		5BE6DD7E1E5681B600A6C9EC /* FSPageViewTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6DD781E5681B600A6C9EC /* FSPageViewTransformer.swift */; };
 		5BE6EB8F1F341395006A4F6D /* BouncyLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6EB8E1F341395006A4F6D /* BouncyLayout.swift */; };
 		5BE9DCFF1E77798A0089A1C2 /* GoodsOptionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9DCFE1E77798A0089A1C2 /* GoodsOptionModel.m */; };
 		5BE9DD021E777A780089A1C2 /* SupermarketReleaseCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9DD011E777A780089A1C2 /* SupermarketReleaseCommentController.m */; };
@@ -2053,12 +2047,6 @@
 		5BE6542C1E6EA3A0003CC59F /* UIView+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WZLBadge.h"; sourceTree = "<group>"; };
 		5BE6542D1E6EA3A0003CC59F /* UIView+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WZLBadge.m"; sourceTree = "<group>"; };
 		5BE6542E1E6EA3A0003CC59F /* WZLBadgeImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLBadgeImport.h; sourceTree = "<group>"; };
-		5BE6DD731E5681B600A6C9EC /* FSPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageControl.swift; sourceTree = "<group>"; };
-		5BE6DD741E5681B600A6C9EC /* FSPagerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerCollectionView.swift; sourceTree = "<group>"; };
-		5BE6DD751E5681B600A6C9EC /* FSPagerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerView.swift; sourceTree = "<group>"; };
-		5BE6DD761E5681B600A6C9EC /* FSPagerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerViewCell.swift; sourceTree = "<group>"; };
-		5BE6DD771E5681B600A6C9EC /* FSPageViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageViewLayout.swift; sourceTree = "<group>"; };
-		5BE6DD781E5681B600A6C9EC /* FSPageViewTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageViewTransformer.swift; sourceTree = "<group>"; };
 		5BE6EB8E1F341395006A4F6D /* BouncyLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BouncyLayout.swift; sourceTree = "<group>"; };
 		5BE9DCFD1E77798A0089A1C2 /* GoodsOptionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsOptionModel.h; sourceTree = "<group>"; };
 		5BE9DCFE1E77798A0089A1C2 /* GoodsOptionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsOptionModel.m; sourceTree = "<group>"; };
@@ -4916,7 +4904,6 @@
 				5BEF65901F208C0500817141 /* Cosmos */,
 				5B5989C91E9F254200F70125 /* Player */,
 				5BE654201E6EA3A0003CC59F /* WZLBadge */,
-				5BE6DD721E5681B600A6C9EC /* FSPagerView */,
 				5B34C88B1E1FAD3300AF6B93 /* TYPagerController */,
 			);
 			name = ThirdParty;
@@ -5147,19 +5134,6 @@
 				5BE6542D1E6EA3A0003CC59F /* UIView+WZLBadge.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		5BE6DD721E5681B600A6C9EC /* FSPagerView */ = {
-			isa = PBXGroup;
-			children = (
-				5BE6DD731E5681B600A6C9EC /* FSPageControl.swift */,
-				5BE6DD741E5681B600A6C9EC /* FSPagerCollectionView.swift */,
-				5BE6DD751E5681B600A6C9EC /* FSPagerView.swift */,
-				5BE6DD761E5681B600A6C9EC /* FSPagerViewCell.swift */,
-				5BE6DD771E5681B600A6C9EC /* FSPageViewLayout.swift */,
-				5BE6DD781E5681B600A6C9EC /* FSPageViewTransformer.swift */,
-			);
-			path = FSPagerView;
 			sourceTree = "<group>";
 		};
 		5BE6EB8D1F34136B006A4F6D /* BouncyLayout */ = {
@@ -5803,6 +5777,7 @@
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/KeyboardMan/KeyboardMan.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -5825,6 +5800,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeyboardMan.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -6034,7 +6010,6 @@
 				1B392F321E28D14E00F70981 /* CouponOverTimeController.m in Sources */,
 				5B3ADC001E2CB80C003A6F4C /* KLTabOnlineVideoView.m in Sources */,
 				1B80E6D01E4D5631001603B2 /* MASConstraintMaker.m in Sources */,
-				5BE6DD7C1E5681B600A6C9EC /* FSPagerViewCell.swift in Sources */,
 				1B510E441E9C714400B77F14 /* HotelAlbumImageModel.m in Sources */,
 				1B392D8E1E28D0E500F70981 /* NSAttributedString+YYText.m in Sources */,
 				1B1971AF1E20803300E54D95 /* KLBuyingTicketViewController.m in Sources */,
@@ -6058,7 +6033,6 @@
 				1B392D7D1E28D0E500F70981 /* UIView+Layout.m in Sources */,
 				267DAA911EA213EE00299E74 /* HotelDownTableViewCell.m in Sources */,
 				5BE152771F137DC300FC74C2 /* Config.swift in Sources */,
-				5BE6DD7B1E5681B600A6C9EC /* FSPagerView.swift in Sources */,
 				1B3C97241E2A1B8B00517684 /* SupermarketAboutViewController.m in Sources */,
 				5B9CBDDF1DE7FABE0071A3B5 /* YCImageCache.swift in Sources */,
 				1B392EE71E28D14E00F70981 /* CountTimeView.m in Sources */,
@@ -6088,7 +6062,6 @@
 				267DAA981EA213EE00299E74 /* HotelDateView.m in Sources */,
 				1B392ED31E28D14E00F70981 /* StarView.m in Sources */,
 				1B392F051E28D14E00F70981 /* SupermarketLimitBuyTableView.m in Sources */,
-				5BE6DD791E5681B600A6C9EC /* FSPageControl.swift in Sources */,
 				5BC2DA261E1B709000082167 /* YCBaseTableViewController.swift in Sources */,
 				1BDBB9441EC5A73D00D01036 /* HotelDetailInfoModel.m in Sources */,
 				1BC876A31E98872E00BB38D7 /* HotelHomeAllDayController.m in Sources */,
@@ -6183,7 +6156,6 @@
 				1B19720C1E20803300E54D95 /* KLVoteViewController.m in Sources */,
 				1B54611B1EA89F5600E16169 /* NSDate+HotelAddition.m in Sources */,
 				5B34C8951E1FAD3300AF6B93 /* TYPagerController.m in Sources */,
-				5BE6DD7E1E5681B600A6C9EC /* FSPageViewTransformer.swift in Sources */,
 				621DB37B2006342A00EE3F63 /* ProfileModel.swift in Sources */,
 				1B392D601E28D0E500F70981 /* STUI.m in Sources */,
 				1B61569D1E9B15A900B16877 /* HotelOutLookController.m in Sources */,
@@ -6214,7 +6186,6 @@
 				6296F44B2019D50D00976C21 /* RecommendSearchController.swift in Sources */,
 				1B392EEB1E28D14E00F70981 /* PYSearchSuggestionViewController.m in Sources */,
 				1B510E4A1E9CAC8B00B77F14 /* HotelCityModel.m in Sources */,
-				5BE6DD7D1E5681B600A6C9EC /* FSPageViewLayout.swift in Sources */,
 				1B9546F81F1DF147006DCB6C /* UIImage+Zirkfied.m in Sources */,
 				1B392F651E28D14E00F70981 /* LZCartModel.m in Sources */,
 				1B392F2B1E28D14E00F70981 /* SLAreaLocation.m in Sources */,
@@ -6561,7 +6532,6 @@
 				1B392F4F1E28D14E00F70981 /* SupermarketRefundRuleController.m in Sources */,
 				5BEC6A121EADE2E900D86A14 /* YCRoute.swift in Sources */,
 				1B392D7F1E28D0E500F70981 /* YCSlideView.m in Sources */,
-				5BE6DD7A1E5681B600A6C9EC /* FSPagerCollectionView.swift in Sources */,
 				1B392F081E28D14E00F70981 /* SupermarketMostFreshController.m in Sources */,
 				1B0CD2CF1E8B5FA1008AF162 /* YCHotelNavigationController.m in Sources */,
 				2608A1561FF5D83E0072FB91 /* RSMineController.m in Sources */,

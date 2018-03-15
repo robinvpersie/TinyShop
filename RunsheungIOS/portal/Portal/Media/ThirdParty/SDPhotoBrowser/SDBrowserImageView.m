@@ -101,31 +101,27 @@
     
     
     __weak SDBrowserImageView *imageViewWeak = self;
-
-    [self sd_setImageWithURL:url placeholderImage:placeholder options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+    
+    [self sd_setImageWithURL:url placeholderImage:placeholder options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
         imageViewWeak.progress = (CGFloat)receivedSize / expectedSize;
-        
-    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         [imageViewWeak removeWaitingView];
-        
-        
         if (error) {
-            UILabel *label = [[UILabel alloc] init];
-            label.bounds = CGRectMake(0, 0, 160, 30);
-            label.center = CGPointMake(imageViewWeak.bounds.size.width * 0.5, imageViewWeak.bounds.size.height * 0.5);
-            label.text = @"图片加载失败";
-            label.font = [UIFont systemFontOfSize:16];
-            label.textColor = [UIColor whiteColor];
-            label.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
-            label.layer.cornerRadius = 5;
-            label.clipsToBounds = YES;
-            label.textAlignment = NSTextAlignmentCenter;
-            [imageViewWeak addSubview:label];
+           UILabel *label = [[UILabel alloc] init];
+           label.bounds = CGRectMake(0, 0, 160, 30);
+           label.center = CGPointMake(imageViewWeak.bounds.size.width * 0.5, imageViewWeak.bounds.size.height * 0.5);
+           label.text = @"图片加载失败";
+           label.font = [UIFont systemFontOfSize:16];
+           label.textColor = [UIColor whiteColor];
+           label.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
+           label.layer.cornerRadius = 5;
+           label.clipsToBounds = YES;
+           label.textAlignment = NSTextAlignmentCenter;
+           [imageViewWeak addSubview:label];
         } else {
-            _scrollImageView.image = image;
-            [_scrollImageView setNeedsDisplay];
+           _scrollImageView.image = image;
+           [_scrollImageView setNeedsDisplay];
         }
-   
     }];
 }
 

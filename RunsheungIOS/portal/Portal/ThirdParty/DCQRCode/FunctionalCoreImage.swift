@@ -74,7 +74,7 @@ func resizeFilter(_ desireSize:CGSize) -> Filter {
   return { image in
     
     let scaleRatio = desireSize.width/image.extent.width
-    let scaledImage = image.applying(CGAffineTransform(scaleX: scaleRatio, y: scaleRatio))
+    let scaledImage = image.transformed(by: CGAffineTransform(scaleX: scaleRatio, y: scaleRatio))
     
     return scaledImage
   }

@@ -153,14 +153,14 @@ extension PersonalStarController {
             return jsonArray
         }
         let MemberID:String = YCAccountModel.getAccount()!.memid!
-        let requestParameters:[String:Any] = [
+        let requestParameters: [String:Any] = [
             "MemberID":MemberID
         ]
         let netResource = NetResource(path: "/MyInfo/MyRecommand",
                                       method: .post,
                                       parameters: requestParameters,
                                       parse: parse)
-        YCProvider.requestDecoded(netResource, queue: nil, completion: completion)
+        YCProvider.requestDecoded(netResource, completion: completion)
         
     }
 

@@ -31,7 +31,7 @@ public extension ResultProtocol {
 	
 	/// Returns the value if self represents a success, `nil` otherwise.
 	public var value: Value? {
-        return analysis(ifSuccess: { $0 }, ifFailure: { _ in nil })
+		return analysis(ifSuccess: { $0 }, ifFailure: { _ in nil })
 	}
 	
 	/// Returns the error if self represents a failure, `nil` otherwise.

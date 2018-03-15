@@ -76,38 +76,38 @@ class OrderLocationController: UIViewController {
      }
     
     func getPlaceMarkWithLocation(_ location:CLLocation){
-        Location.getPlacemark(forLocation: location, success: { [weak self] placemark in
-            guard let this = self else { return }
-            if let first = placemark.first,
-                let name = first.locality ?? first.subLocality ?? first.thoroughfare {
-                this.locationCityName = .locationSuccess(name)
-                this.locationSuccessClosure?(name)
-            }
-            this.collectionView.reloadData()
-        }) { [weak self] error in
-            guard let this = self else { return }
-            this.locationCityName = .locationFailure("获取失败")
-            this.collectionView.reloadData()
-        }
+//        location.getPlacemark(forLocation: location, success: { [weak self] placemark in
+//            guard let this = self else { return }
+//            if let first = placemark.first,
+//                let name = first.locality ?? first.subLocality ?? first.thoroughfare {
+//                this.locationCityName = .locationSuccess(name)
+//                this.locationSuccessClosure?(name)
+//            }
+//            this.collectionView.reloadData()
+//        }) { [weak self] error in
+//            guard let this = self else { return }
+//            this.locationCityName = .locationFailure("获取失败")
+//            this.collectionView.reloadData()
+//        }
     }
     
     
     func location(){
-        
-         Location.getLocation(accuracy: .city,
-                              frequency: .oneShot,
-                              timeout: 40,
-                              cancelOnError: true,
-                              success:
-        { [weak self] request, location in
-            guard let this = self else { return }
-            this.getPlaceMarkWithLocation(location)
-            this.updateAddress(location)
-       }) { [weak self] (requeset, location, error) in
-            guard let this = self else { return }
-            this.locationCityName = .locationFailure("定位失败")
-            this.collectionView.reloadData()
-        }
+//
+//        location().getLocation(accuracy: .city,
+//                              frequency: .oneShot,
+//                              timeout: 40,
+//                              cancelOnError: true,
+//                              success:
+//        { [weak self] request, location in
+//            guard let this = self else { return }
+//            this.getPlaceMarkWithLocation(location)
+//            this.updateAddress(location)
+//       }) { [weak self] (requeset, location, error) in
+//            guard let this = self else { return }
+//            this.locationCityName = .locationFailure("定位失败")
+//            this.collectionView.reloadData()
+//        }
     }
     
     

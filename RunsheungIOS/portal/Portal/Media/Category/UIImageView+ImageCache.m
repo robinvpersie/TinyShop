@@ -6,7 +6,8 @@
 //  Copyright © 2016年 linpeng. All rights reserved.
 //
 
-#import "UIImageView+ImageCache.h"
+//#import "UIImageView+ImageCache.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UIImageView (ImageCache)
 
@@ -22,7 +23,10 @@
 //        }];
         
         [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",urlString]] placeholderImage:[UIImage imageNamed:@"supermarket_defaultIcon"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            [[SDImageCache sharedImageCache] storeImage:image forKey:key];
+//            [[SDImageCache sharedImageCache] storeImage:image forKey:key];
+            [[SDImageCache sharedImageCache] storeImage:image forKey:key completion:^{
+                
+            }];
         }];
     } else {
         imageView.image = storeImage;

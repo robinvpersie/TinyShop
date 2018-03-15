@@ -9,11 +9,13 @@ We may need keyboard infomation from keyboard notifications to do animation. How
 
 But KeyboardMan will make it simple & easy.
 
+另有[中文介绍](https://github.com/nixzhu/dev-blog/blob/master/2015-07-27-keyboard-man.md)。
+
 ## Requirements
 
-Swift 3.0, iOS 8.0
+Swift 4, iOS 8.0
 
-(Swift 2.3, use version 0.7.0)
+(Swift 3, use version 1.1.0)
 
 ## Example
 
@@ -65,22 +67,20 @@ keyboardMan.postKeyboardInfo = { [weak self] keyboardMan, keyboardInfo in
 
 Check the demo for more information.
 
-另有[中文介绍](https://github.com/nixzhu/dev-blog/blob/master/2015-07-27-keyboard-man.md)。
-
 ## Installation
 
-Feel free to drag `KeyboardMan.swift` to your iOS Project. But it's recommended to use CocoaPods or Carthage.
-
-### CocoaPods
-
-```ruby
-pod 'KeyboardMan', '~> 1.0.0'
-```
+Feel free to drag `KeyboardMan.swift` to your iOS Project. But it's recommended to use Carthage (or CocoaPods).
 
 ### Carthage
 
 ```ogdl
-github "nixzhu/KeyboardMan" >= 1.0.0
+github "nixzhu/KeyboardMan"
+```
+
+### CocoaPods
+
+```ruby
+pod 'KeyboardMan'
 ```
 
 ## Contact

@@ -18,7 +18,9 @@
     if (storeImage == nil) {
       
         [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",urlString]] placeholderImage:[UIImage imageNamed:@"hotel_placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            [[SDImageCache sharedImageCache] storeImage:image forKey:key];
+             [[SDImageCache sharedImageCache] storeImage:image forKey:key completion:^{
+                
+            }];
         }];
     } else {
         imageView.image = storeImage;

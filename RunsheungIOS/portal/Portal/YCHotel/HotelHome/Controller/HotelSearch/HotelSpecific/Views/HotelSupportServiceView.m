@@ -8,6 +8,8 @@
 
 #import "HotelSupportServiceView.h"
 #import "UILabel+CreateLabel.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
 #define BTNHEIGHT 50
 @implementation HotelSupportServiceView{
     CGRect _frame1;
@@ -46,7 +48,8 @@
             UIImageView *iconImg = [[UIImageView alloc]initWithFrame:CGRectMake(APPScreenWidth/8.0f-8.0f, 8, 16, 16)];
                 NSString *urlImg = dic.allKeys.firstObject;
                 urlImg = [urlImg stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            [iconImg setImageWithURL:[NSURL URLWithString:urlImg]];
+//            [iconImg setImageWithURL:[NSURL URLWithString:urlImg]];
+//                [iconImg setImageWithURL:[NSURL URLWithString:urlImg]];
             [iconImg setContentMode:UIViewContentModeScaleAspectFit];
             [iconImg setUserInteractionEnabled:YES];
             [btn addSubview:iconImg];

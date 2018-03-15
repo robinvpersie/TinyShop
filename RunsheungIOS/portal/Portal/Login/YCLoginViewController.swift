@@ -211,14 +211,12 @@ extension YCLoginViewController {
         }
         let parse:(JSONDictionary) -> JSONDictionary? = { $0 }
         let sha512 = password.sha512()
-        let requestParameter:[String:Any] = [
+        let requestParameter: [String:Any] = [
             "MemberID":memberId,
             "PassWord":sha512,
             "deviceNo":idfa
         ]
-        
-//        let resource = NetResource.init( path: "/Member/MemberLoginENC", method: .post, parameters: requestParameter, parameterEncoding: JSONEncoding.init(), parse: parse)
-        let netResource = NetResource(path: "/Member/MemberLoginENC",method: .post,parameters: requestParameter,parse: parse)
-        YCProvider.requestDecoded(netResource, queue: nil, completion: completion)
+        let netResource = NetResource(path: "/Member/MemberLoginENC",method: .post,parameters: requestParameter, parse: parse)
+        YCProvider.requestDecoded(netResource, completion: completion)
     }
 }
