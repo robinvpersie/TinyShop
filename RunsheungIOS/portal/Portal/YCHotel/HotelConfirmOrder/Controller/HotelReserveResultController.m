@@ -28,8 +28,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = NSLocalizedString(@"HotelReserveTitle", nil);
-    _titles = @[NSLocalizedString(@"HotelReserveTitle_0", nil),NSLocalizedString(@"HotelReserveTitle_1", nil),NSLocalizedString(@"HotelReserveTitle_2", nil),NSLocalizedString(@"HotelReserveTitle_3", nil),NSLocalizedString(@"HotelReserveTitle_4", nil),NSLocalizedString(@"HotelReserveTitle_5", nil)];
+    
+    _titles = @[NSLocalizedString(@"HotelReserveTitle_0", nil),
+                NSLocalizedString(@"HotelReserveTitle_1", nil),
+                NSLocalizedString(@"HotelReserveTitle_2", nil),
+                NSLocalizedString(@"HotelReserveTitle_3", nil),
+                NSLocalizedString(@"HotelReserveTitle_4", nil),
+                NSLocalizedString(@"HotelReserveTitle_5", nil)];
 //    _msg = @[@"长沙宇成国际酒店",@"03-20入住,03-21离店,共一晚",@"1间,高级大床房",@"李在翼",@"13000000000",@"18:00之前"];
     [self.view addSubview:self.tableView];
     

@@ -8,6 +8,7 @@
 
 #import "KLHttpTool.h"
 #import "YCShareAddress.h"
+#import <AdSupport/AdSupport.h>
 
 //#define BaseUrl  @"http://192.168.2.230:81/"
 //#define ShopBaseUrl @"http://192.168.2.179:96/"

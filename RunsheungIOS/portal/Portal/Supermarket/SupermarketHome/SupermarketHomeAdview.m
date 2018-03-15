@@ -10,6 +10,7 @@
 #import "UILabel+WidthAndHeight.h"
 #import "SupermarketHomeMostFreshData.h"
 #import "SupermarketHomeADVData.h"
+#import "UIImageView+ImageCache.h"
 
 @implementation SupermarketHomeAdview {
     UILabel *_titleLeft;
@@ -141,7 +142,7 @@
     if (dataArray.count > 0) {
         for (SupermarketHomeADVData *data in dataArray) {
             if ([data.ad_type isEqualToString:@"20"]) {
-                [UIImageView setimageWithImageView:_imageView1 UrlString:data.ad_image imageVersion:data.version];
+               [UIImageView setimageWithImageView:_imageView1 UrlString:data.ad_image imageVersion:data.version];
                 _titleLeft.text = data.ad_title;
                 _msgLeft.text = data.sub_title;
             }

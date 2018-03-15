@@ -13,6 +13,7 @@
 #import "SupermarketApplyRefundCell.h"
 #import "SupermarketOrderGoodsData.h"
 #import "SupermarketRefundResaonModel.h"
+#import "UIImageView+ImageCache.h"
 
 @interface SupermarketApplyRefundController ()<UITableViewDelegate, UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource,TZImagePickerControllerDelegate>
 

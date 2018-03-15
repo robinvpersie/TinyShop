@@ -39,7 +39,7 @@ func generateQRCodeFilter(_ info:String) -> Filter {
 func cropFilter(_ cropRect:CGRect) -> Filter {
   return { image in
     
-    let croppedImage = image.cropping(to: cropRect)
+    let croppedImage = image.cropped(to: cropRect)
     return croppedImage
     
   }
@@ -74,7 +74,7 @@ func resizeFilter(_ desireSize:CGSize) -> Filter {
   return { image in
     
     let scaleRatio = desireSize.width/image.extent.width
-    let scaledImage = image.applying(CGAffineTransform(scaleX: scaleRatio, y: scaleRatio))
+    let scaledImage = image.transformed(by: CGAffineTransform(scaleX: scaleRatio, y: scaleRatio))
     
     return scaledImage
   }
@@ -114,7 +114,7 @@ func affineTileFilter(_ transform:NSValue, corpRect:CGRect) -> Filter {
     let parameters = ["inputImage": image, "inputTransform": transform]
     guard let filter = CIFilter(name: "CIAffineTile", withInputParameters: parameters) else { fatalError() }
     guard var outputImage = filter.outputImage else { fatalError() }
-    outputImage = outputImage.cropping(to: corpRect)
+    outputImage = outputImage.cropped(to: corpRect)
     return outputImage
   }
 }

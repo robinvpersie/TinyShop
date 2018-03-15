@@ -11,6 +11,7 @@
 #import "ImageData.h"
 #import "ZoomingImageView.h"
 #import "SDPhotoBrowser.h"
+#import "UIImageView+ImageCache.h"
 
 @interface ZHSCorllHeader ()<UIScrollViewDelegate,SDPhotoBrowserDelegate>
 

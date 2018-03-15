@@ -36,26 +36,15 @@ import UIKit
 //}
 
 
-enum recentItem {
-    case orderlis(Orderlis)
-}
 
-extension recentItem {
-    var cellDescriptor:CellDesciptor {
-        switch self {
-        case .orderlis(let orderlis):
-            return CellDesciptor(reuseIdentifier: OrderConfirmBodyfoodCell.portal_reuseIdentifier, configure: orderlis.configureCell, height: orderlis.height)
-        }
-    }
-}
 
 struct CellDesciptor {
-    let cellClass:UITableViewCell.Type
-    let reuseIdentifier:String
-    let configure:(UITableViewCell) -> ()
-    let getHeight:()->CGFloat
+    let cellClass: UITableViewCell.Type
+    let reuseIdentifier: String
+    let configure: (UITableViewCell) -> ()
+    let getHeight: () -> CGFloat
     
-    init<Cell:UITableViewCell>(reuseIdentifier:String,configure:@escaping (Cell) -> (),height:@escaping ()->CGFloat) {
+    init<Cell:UITableViewCell>(reuseIdentifier: String, configure: @escaping (Cell) -> (), height: @escaping () -> CGFloat) {
         self.cellClass = Cell.self
         self.reuseIdentifier = reuseIdentifier
         self.configure = { cell in
@@ -68,7 +57,7 @@ struct CellDesciptor {
 }
 
 
-final class ItemsTableView<Item>:UITableView,UITableViewDelegate,UITableViewDataSource {
+final class ItemsTableView<Item>: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     var items:[Item] = [Item](){
         didSet {

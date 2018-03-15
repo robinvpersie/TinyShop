@@ -9,10 +9,11 @@
 import Foundation
 
 
-class YCRouteBox:NSObject {
+class YCRouteBox: NSObject {
     
     static let manager = YCRouteBox()
     
+<<<<<<< HEAD
     private func currentVC() -> UIViewController? {
         guard let KeyWindow = UIApplication.shared.keyWindow,
               let rootvc = KeyWindow.rootViewController else {
@@ -25,26 +26,13 @@ class YCRouteBox:NSObject {
     }
     
     var needPushUrl:URL? = URL(string: "http://hotel.gigawon.co.kr:8863//NewsView/News?NewsSeq=121")!
-
-    
-    func pushEatIn(nav:UINavigationController?,groupID:String){
-        let eatIn = EatInController()
-        eatIn.hidesBottomBarWhenPushed = true
-        eatIn.from = .fromPush
-        eatIn.groupId = groupID
-        nav?.pushViewController(eatIn, animated: true)
-    }
-    
-    func finishNeedPush(){
-        if let pushUrl = self.needPushUrl {
-           self.RouteWithUrl(pushUrl)
-           self.needPushUrl = nil 
-        }
-    }
-    
+=======
+    var needPushUrl:URL? = URL(string: "http://hotel.dxbhtm.com:8863//NewsView/News?NewsSeq=121")!
+>>>>>>> 568363a5c17ee422bdfd8b699a725bc56b5cb3f6
 
     @discardableResult
     func RouteWithUrl(_ url:URL) -> Bool {
+<<<<<<< HEAD
         guard url.scheme == "slapp" else {
             return false
         }
@@ -121,6 +109,9 @@ class YCRouteBox:NSObject {
          }
        }
         return true
+=======
+      return true
+>>>>>>> 568363a5c17ee422bdfd8b699a725bc56b5cb3f6
     }
     
 }

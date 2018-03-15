@@ -11,6 +11,7 @@
 #import "SupermarketKindsViewController.h"
 #import "UIView+ViewController.h"
 #import "SupermarketKindModel.h"
+#import "UIImageView+ImageCache.h"
 
 @interface SupermarketAllKindsCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 

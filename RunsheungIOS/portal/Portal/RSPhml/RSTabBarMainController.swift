@@ -96,7 +96,7 @@ class RSTabBarMainController: UITabBarController {
         tabBar.barStyle = .default
         UITabBarItem.appearance().setTitleTextAttributes(
         [
-          NSForegroundColorAttributeName:UIColor(red: 33/255.0, green: 192/255.0, blue: 67/255.0, alpha: CGFloat(1))], for: .selected
+            NSAttributedStringKey.foregroundColor: UIColor(red: 33/255.0, green: 192/255.0, blue: 67/255.0, alpha: CGFloat(1))], for: .selected
         )
         for (index,value) in viewControllers!.enumerated(){
             let nav = value as! UINavigationController

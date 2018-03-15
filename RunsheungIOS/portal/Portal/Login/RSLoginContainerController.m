@@ -313,16 +313,16 @@
     addcodefield.tag = AddMemberCodeTag;
     [addmemberBG addSubview:addcodefield];
     
-    UIButton *addcodeBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(addcodefield.frame) + 5, CGRectGetMinY(addcodeIcon.frame), 80, CGRectGetHeight(addcodeIcon.frame))];
-    [addcodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+    UIButton *addcodeBtn = [[UIButton alloc]initWithFrame: CGRectMake(CGRectGetMaxX(addcodefield.frame) + 5, CGRectGetMinY(addcodeIcon.frame), 80, CGRectGetHeight(addcodeIcon.frame))];
+    [addcodeBtn setTitle:@"获取验证码" forState: UIControlStateNormal];
     addcodeBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    [addcodeBtn setTitleColor:RGB(33, 192, 67) forState:UIControlStateNormal];
+    [addcodeBtn setTitleColor: RGB(33, 192, 67) forState: UIControlStateNormal];
     addcodeBtn.tag = AddMemberCodeBtnTag;
     [addcodeBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     [addmemberBG addSubview:addcodeBtn];
     
     
-    UITextField *addPwdfield = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(addpwdIcon.frame) + 5, CGRectGetMinY(addpwdIcon.frame), CGRectGetWidth(addmemberBG.frame) - CGRectGetMaxX(addpwdIcon.frame) - 10, CGRectGetHeight(addpwdIcon.frame))];
+    UITextField *addPwdfield = [[UITextField alloc]initWithFrame: CGRectMake(CGRectGetMaxX(addpwdIcon.frame) + 5, CGRectGetMinY(addpwdIcon.frame), CGRectGetWidth(addmemberBG.frame) - CGRectGetMaxX(addpwdIcon.frame) - 10, CGRectGetHeight(addpwdIcon.frame))];
     addPwdfield.placeholder = @"请输入密码";
     addPwdfield.keyboardType = UIKeyboardTypeDecimalPad;
     addPwdfield.tag = AddMemberPwdTag;

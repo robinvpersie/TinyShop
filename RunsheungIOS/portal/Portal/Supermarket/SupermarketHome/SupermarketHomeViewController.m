@@ -493,7 +493,7 @@
 - (void)clickAtIndex:(NSInteger)index {
     if (index == 0 || index == 1 || index == 3 || index == 4 || index == 5) {
         if (_islogIn == NO) {
-            YCLoginContainerController *loginVC = [[YCLoginContainerController alloc] init];
+            RSLoginContainerController *loginVC = [[RSLoginContainerController alloc] init];
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
             [self presentViewController:nav animated:YES completion:nil];
             return;

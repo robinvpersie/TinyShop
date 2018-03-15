@@ -12,6 +12,7 @@
 #import "UILabel+WidthAndHeight.h"
 #import "SupermarketCommentPicCollectionView.h"
 #import "UILabel+CreateLabel.h"
+#import "UIImageView+ImageCache.h"
 
 #define ImageViewHeight     100
 #define AvatarViewHeight    30

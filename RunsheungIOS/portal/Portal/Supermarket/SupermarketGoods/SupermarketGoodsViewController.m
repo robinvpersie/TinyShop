@@ -18,6 +18,7 @@
 #import "SupermarketChoseSizeView.h"
 #import "GoodsOptionModel.h"
 #import "CustomerServiceController.h"
+#import "UIImageView+ImageCache.h"
 
 #define kButtonWidth APPScreenWidth/5*2/3
 

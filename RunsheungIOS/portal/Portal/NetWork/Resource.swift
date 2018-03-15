@@ -16,10 +16,9 @@ struct TargetResource<T>: MapTargetType {
     var baseURL: URL
     var path: String
     var method: Moya.Method
-    var parameters: [String : Any]?
-    var parameterEncoding: ParameterEncoding
     var sampleData: Data
     var task: Task
+    var headers: [String : String]?
     var map: (JSONDictionary) throws -> T
     
     init(baseURL:URL = BaseType.PortalBase.URI,
@@ -28,17 +27,19 @@ struct TargetResource<T>: MapTargetType {
          parameters: [String:Any]?,
          parameterEncoding: ParameterEncoding = URLEncoding.default,
          sampleData: Data = Data(),
-         task: Task = .request,
+         task: Task = .requestPlain,
          map: @escaping (JSONDictionary) throws -> T
         )
     {
         self.baseURL = baseURL
         self.path = path
         self.method = method
-        self.parameters = parameters
-        self.parameterEncoding = parameterEncoding
         self.sampleData = sampleData
-        self.task = task
+        if let parameters = parameters {
+            self.task = .requestParameters(parameters: parameters, encoding: parameterEncoding)
+        }else {
+            self.task = task
+        }
         self.map = map
     }
 }

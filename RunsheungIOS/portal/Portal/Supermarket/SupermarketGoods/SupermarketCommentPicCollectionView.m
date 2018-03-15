@@ -8,6 +8,7 @@
 
 #import "SupermarketCommentPicCollectionView.h"
 #import "SupermarketCommentPicCell.h"
+#import "UIImageView+ImageCache.h"
 
 @implementation SupermarketCommentPicCollectionView
 

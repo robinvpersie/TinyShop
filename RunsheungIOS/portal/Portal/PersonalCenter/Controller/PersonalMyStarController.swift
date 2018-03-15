@@ -134,7 +134,7 @@ extension PersonalMyStarController {
                                       method: .post,
                                       parameters: requestParameters,
                                       parse: parse)
-        YCProvider.requestDecoded(netResource, queue: nil, completion: completion)
+        YCProvider.requestDecoded(netResource, completion: completion)
         
     }
 

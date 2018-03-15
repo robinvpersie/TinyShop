@@ -10,6 +10,7 @@
 #import "UILabel+WidthAndHeight.h"
 #import "SupermarketExpressData.h"
 #import "SupermarketExpInfoData.h"
+#import "UIImageView+ImageCache.h"
 
 @interface SupermarketCheckExpressController ()<UITableViewDataSource, UITableViewDelegate>
 
