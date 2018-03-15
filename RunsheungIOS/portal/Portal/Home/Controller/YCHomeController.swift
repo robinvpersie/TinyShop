@@ -203,9 +203,9 @@ class YCHomeController: UIViewController {
     
     
     func showBranch(){
-        let orderLocation = OrderLocationController()
-        orderLocation.divName = divName
-        self.navigationController?.pushViewController(orderLocation, animated: true)
+//        let orderLocation = OrderLocationController()
+//        orderLocation.divName = divName
+//        self.navigationController?.pushViewController(orderLocation, animated: true)
     }
     
     func updateMainData(mode:UpdateMode,finish:(() -> Void)? = nil){

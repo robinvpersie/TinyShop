@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		011B5234205A0B5400B7E4D7 /* OrderLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */; };
+		011B5236205A0CE500B7E4D7 /* OrderLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5235205A0CE500B7E4D7 /* OrderLocationModel.swift */; };
+		011B523A205A0DD200B7E4D7 /* OrderLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5237205A0DD200B7E4D7 /* OrderLocationCell.swift */; };
+		011B523B205A0DD200B7E4D7 /* OrderCurrentLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5238205A0DD200B7E4D7 /* OrderCurrentLocationCell.swift */; };
+		011B523C205A0DD200B7E4D7 /* OrderHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5239205A0DD200B7E4D7 /* OrderHeaderReusableView.swift */; };
 		018AE84B20594CC60018F854 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84A20594CC60018F854 /* Resource.swift */; };
 		018AE84D20594D210018F854 /* NetWorkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84C20594D210018F854 /* NetWorkResult.swift */; };
 		018AE84F20594DC90018F854 /* NetIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84E20594DC90018F854 /* NetIndicator.swift */; };
@@ -584,17 +589,8 @@
 		5B5989D41E9F583700F70125 /* MMMaterialDesignSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5989D11E9F583700F70125 /* MMMaterialDesignSpinner.m */; };
 		5B5989D61E9F662300F70125 /* PlayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5989D51E9F662300F70125 /* PlayDelegate.swift */; };
 		5B5989D81EA1AB8100F70125 /* PlayControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5989D71EA1AB8100F70125 /* PlayControlView.swift */; };
-		5B5C0EB41EC54E08004F8C5D /* ShopHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5C0EB31EC54E08004F8C5D /* ShopHomeController.swift */; };
-		5B5C0EB61EC56286004F8C5D /* ShopHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5C0EB51EC56286004F8C5D /* ShopHomeModel.swift */; };
-		5B5C0EB81EC58BE1004F8C5D /* ShopTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5C0EB71EC58BE1004F8C5D /* ShopTableViewController.swift */; };
 		5B5F882C1DF24EEE00EBD763 /* YCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F882B1DF24EEE00EBD763 /* YCTextField.swift */; };
 		5B5F88301DF2651600EBD763 /* YCNewMemberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F882F1DF2651600EBD763 /* YCNewMemberController.swift */; };
-		5B6091981EC6A67800000433 /* ShopBrandController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6091971EC6A67800000433 /* ShopBrandController.swift */; };
-		5B60919A1EC6A6CC00000433 /* ShopCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6091991EC6A6CC00000433 /* ShopCollectionViewController.swift */; };
-		5B60919C1EC6AC7B00000433 /* ShopBrandModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B60919B1EC6AC7B00000433 /* ShopBrandModel.swift */; };
-		5B60919E1EC6DDD600000433 /* ShopBrandFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B60919D1EC6DDD600000433 /* ShopBrandFilterController.swift */; };
-		5B6091A01EC6DE1F00000433 /* ShopBrandFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B60919F1EC6DE1F00000433 /* ShopBrandFilterCell.swift */; };
-		5B6091A21EC6F61F00000433 /* ShopBrandFilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6091A11EC6F61F00000433 /* ShopBrandFilterModel.swift */; };
 		5B62F6F31E021E2500E0B8EF /* YCFPSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62F6F21E021E2400E0B8EF /* YCFPSLabel.swift */; };
 		5B6F59541EFBBE4800D1DE90 /* YCIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6F59531EFBBE4800D1DE90 /* YCIndicator.swift */; };
 		5B76BB751E00CA0F00F1F30B /* AdvertisementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76BB731E00CA0F00F1F30B /* AdvertisementController.swift */; };
@@ -622,8 +618,6 @@
 		5B95EAED1DF7B81D006E74C4 /* Notification + YC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B95EAEC1DF7B81D006E74C4 /* Notification + YC.swift */; };
 		5B98B67C1E5819C2001FEAE0 /* AllCouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B98B6791E5819C2001FEAE0 /* AllCouponViewController.m */; };
 		5B98B67D1E5819C2001FEAE0 /* CouponCantUseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B98B67B1E5819C2001FEAE0 /* CouponCantUseController.m */; };
-		5B98E00E1F95A21A00CAF012 /* YCSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B98E00D1F95A21A00CAF012 /* YCSearchBar.swift */; };
-		5B98E0101F95D84600CAF012 /* ActivityContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B98E00F1F95D84600CAF012 /* ActivityContainerController.swift */; };
 		5B9CBDD51DE52F090071A3B5 /* YCUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9CBDD41DE52F090071A3B5 /* YCUserDefaults.swift */; };
 		5B9CBDD71DE547110071A3B5 /* UIImage+YC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9CBDD61DE547110071A3B5 /* UIImage+YC.swift */; };
 		5B9CBDD91DE547650071A3B5 /* BaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9CBDD81DE547650071A3B5 /* BaseProtocol.swift */; };
@@ -651,12 +645,6 @@
 		5BC2DA261E1B709000082167 /* YCBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2DA251E1B709000082167 /* YCBaseTableViewController.swift */; };
 		5BCE0AA51E319A960089A73A /* NSObject+TransfromModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BCE0AA41E319A960089A73A /* NSObject+TransfromModel.m */; };
 		5BCE0AA71E31B3290089A73A /* YCDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCE0AA61E31B3290089A73A /* YCDropdownView.swift */; };
-		5BD123071EC99DD4004A422E /* ShopHomeHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD123061EC99DD4004A422E /* ShopHomeHeaderCell.swift */; };
-		5BD123091EC9A3AB004A422E /* ShopFloorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD123081EC9A3AB004A422E /* ShopFloorModel.swift */; };
-		5BD1230B1ECACC7C004A422E /* ShopMallModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1230A1ECACC7C004A422E /* ShopMallModel.swift */; };
-		5BD1230D1ECAD104004A422E /* ShopMallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1230C1ECAD104004A422E /* ShopMallController.swift */; };
-		5BD1230F1ECAE613004A422E /* ShoppingMallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1230E1ECAE613004A422E /* ShoppingMallCell.swift */; };
-		5BD123111ECC3707004A422E /* ShopFloorDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD123101ECC3707004A422E /* ShopFloorDetailController.swift */; };
 		5BD429411DF1010700EE62DE /* YCLoginContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4293F1DF1010700EE62DE /* YCLoginContainerController.swift */; };
 		5BD429421DF1010700EE62DE /* YCLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD429401DF1010700EE62DE /* YCLoginViewController.swift */; };
 		5BD429441DF1013700EE62DE /* YCSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD429431DF1013700EE62DE /* YCSegmentView.swift */; };
@@ -680,7 +668,6 @@
 		5BE1528D1F137DF200FC74C2 /* ScalingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1528C1F137DF200FC74C2 /* ScalingImageView.swift */; };
 		5BE1F2FB1EC94A3200717E20 /* YCLoadMoreCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1F2F91EC94A3200717E20 /* YCLoadMoreCollectionCell.swift */; };
 		5BE1F2FC1EC94A3200717E20 /* YCLoadMoreCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BE1F2FA1EC94A3200717E20 /* YCLoadMoreCollectionCell.xib */; };
-		5BE1F2FE1EC98F3500717E20 /* ShopFloorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1F2FD1EC98F3500717E20 /* ShopFloorController.swift */; };
 		5BE38DD61F1F3916002E3DAF /* ForgetPassWotdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE38DD51F1F3916002E3DAF /* ForgetPassWotdController.swift */; };
 		5BE6542F1E6EA3A0003CC59F /* UIBarButtonItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654231E6EA3A0003CC59F /* UIBarButtonItem+WZLBadge.m */; };
 		5BE654301E6EA3A0003CC59F /* UITabBarItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654251E6EA3A0003CC59F /* UITabBarItem+WZLBadge.m */; };
@@ -693,18 +680,10 @@
 		5BE6DD7D1E5681B600A6C9EC /* FSPageViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6DD771E5681B600A6C9EC /* FSPageViewLayout.swift */; };
 		5BE6DD7E1E5681B600A6C9EC /* FSPageViewTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6DD781E5681B600A6C9EC /* FSPageViewTransformer.swift */; };
 		5BE6EB8F1F341395006A4F6D /* BouncyLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6EB8E1F341395006A4F6D /* BouncyLayout.swift */; };
-		5BE82ED91F26D515006E377F /* ShopSbController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE82ED81F26D515006E377F /* ShopSbController.swift */; };
 		5BE9DCFF1E77798A0089A1C2 /* GoodsOptionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9DCFE1E77798A0089A1C2 /* GoodsOptionModel.m */; };
 		5BE9DD021E777A780089A1C2 /* SupermarketReleaseCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9DD011E777A780089A1C2 /* SupermarketReleaseCommentController.m */; };
 		5BEB2D091E2874B5003F94DF /* WSStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BEB2D081E2874B5003F94DF /* WSStarRatingView.m */; };
 		5BEBB6771DFAB73400367D77 /* AlamofireNetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBB6761DFAB73400367D77 /* AlamofireNetWork.swift */; };
-		5BEBED131ECD2A3D00F7EB36 /* FilterHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBED121ECD2A3D00F7EB36 /* FilterHeader.swift */; };
-		5BEBED151ECD6EB800F7EB36 /* ShopClassifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBED141ECD6EB800F7EB36 /* ShopClassifyController.swift */; };
-		5BEBED171ECD71CE00F7EB36 /* ShopClassifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBED161ECD71CE00F7EB36 /* ShopClassifyModel.swift */; };
-		5BEBED191ECE844700F7EB36 /* ShopActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBED181ECE844700F7EB36 /* ShopActivityController.swift */; };
-		5BEBED1B1ECE8C1D00F7EB36 /* ShopCultureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBED1A1ECE8C1D00F7EB36 /* ShopCultureController.swift */; };
-		5BEBED1D1ECE9C2F00F7EB36 /* ShopMemberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBED1C1ECE9C2F00F7EB36 /* ShopMemberController.swift */; };
-		5BEBED1F1ECEA06500F7EB36 /* ShopConsultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBED1E1ECEA06500F7EB36 /* ShopConsultController.swift */; };
 		5BEC6A121EADE2E900D86A14 /* YCRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEC6A111EADE2E900D86A14 /* YCRoute.swift */; };
 		5BEC72381E46F0D8007D519D /* YCDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEC72371E46F0D8007D519D /* YCDownloadManager.swift */; };
 		5BEC723A1E46F725007D519D /* YCFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEC72391E46F725007D519D /* YCFileModel.swift */; };
@@ -734,13 +713,6 @@
 		5BF0A9DA1E0B7A900035B517 /* PersonalCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0A9D91E0B7A900035B517 /* PersonalCollectionController.swift */; };
 		5BF0A9DD1E0B7B050035B517 /* PersonalCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0A9DB1E0B7B050035B517 /* PersonalCollectionCell.swift */; };
 		5BF0A9DE1E0B7B050035B517 /* PersonalCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BF0A9DC1E0B7B050035B517 /* PersonalCollectionCell.xib */; };
-		5BF1A2041EC451DF004A0DA5 /* ShopBaseNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF1A2031EC451DF004A0DA5 /* ShopBaseNavController.swift */; };
-		5BF1A2061EC45263004A0DA5 /* ShopBaseTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF1A2051EC45263004A0DA5 /* ShopBaseTabController.swift */; };
-		5BF1A2081EC452BA004A0DA5 /* ShopBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF1A2071EC452BA004A0DA5 /* ShopBaseViewController.swift */; };
-		5BF1A20D1EC45C80004A0DA5 /* ShopHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF1A20C1EC45C80004A0DA5 /* ShopHomeCell.swift */; };
-		5BF6B7401F95E7110004D63C /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF6B73F1F95E7110004D63C /* ActivityModel.swift */; };
-		5BF6B7421F95EBA00004D63C /* ShopActivityDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF6B7411F95EBA00004D63C /* ShopActivityDetailController.swift */; };
-		5BF6B7441F95EC150004D63C /* ActivityDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF6B7431F95EC150004D63C /* ActivityDetailModel.swift */; };
 		5BFA4EA41E9F08240097DB27 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFA4EA31E9F08240097DB27 /* AudioToolbox.framework */; };
 		5BFA4EA61E9F082E0097DB27 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFA4EA51E9F082E0097DB27 /* AVFoundation.framework */; };
 		5BFA4EA81E9F08590097DB27 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFA4EA71E9F08590097DB27 /* CoreGraphics.framework */; };
@@ -809,6 +781,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationController.swift; sourceTree = "<group>"; };
+		011B5235205A0CE500B7E4D7 /* OrderLocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationModel.swift; sourceTree = "<group>"; };
+		011B5237205A0DD200B7E4D7 /* OrderLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationCell.swift; sourceTree = "<group>"; };
+		011B5238205A0DD200B7E4D7 /* OrderCurrentLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCurrentLocationCell.swift; sourceTree = "<group>"; };
+		011B5239205A0DD200B7E4D7 /* OrderHeaderReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHeaderReusableView.swift; sourceTree = "<group>"; };
 		018AE84A20594CC60018F854 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		018AE84C20594D210018F854 /* NetWorkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkResult.swift; sourceTree = "<group>"; };
 		018AE84E20594DC90018F854 /* NetIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetIndicator.swift; sourceTree = "<group>"; };
@@ -1978,17 +1955,8 @@
 		5B5989D11E9F583700F70125 /* MMMaterialDesignSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMaterialDesignSpinner.m; sourceTree = "<group>"; };
 		5B5989D51E9F662300F70125 /* PlayDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayDelegate.swift; sourceTree = "<group>"; };
 		5B5989D71EA1AB8100F70125 /* PlayControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayControlView.swift; sourceTree = "<group>"; };
-		5B5C0EB31EC54E08004F8C5D /* ShopHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopHomeController.swift; sourceTree = "<group>"; };
-		5B5C0EB51EC56286004F8C5D /* ShopHomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopHomeModel.swift; sourceTree = "<group>"; };
-		5B5C0EB71EC58BE1004F8C5D /* ShopTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopTableViewController.swift; sourceTree = "<group>"; };
 		5B5F882B1DF24EEE00EBD763 /* YCTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCTextField.swift; sourceTree = "<group>"; };
 		5B5F882F1DF2651600EBD763 /* YCNewMemberController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCNewMemberController.swift; sourceTree = "<group>"; };
-		5B6091971EC6A67800000433 /* ShopBrandController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopBrandController.swift; sourceTree = "<group>"; };
-		5B6091991EC6A6CC00000433 /* ShopCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopCollectionViewController.swift; sourceTree = "<group>"; };
-		5B60919B1EC6AC7B00000433 /* ShopBrandModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopBrandModel.swift; sourceTree = "<group>"; };
-		5B60919D1EC6DDD600000433 /* ShopBrandFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopBrandFilterController.swift; sourceTree = "<group>"; };
-		5B60919F1EC6DE1F00000433 /* ShopBrandFilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopBrandFilterCell.swift; sourceTree = "<group>"; };
-		5B6091A11EC6F61F00000433 /* ShopBrandFilterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopBrandFilterModel.swift; sourceTree = "<group>"; };
 		5B62F6F21E021E2400E0B8EF /* YCFPSLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCFPSLabel.swift; sourceTree = "<group>"; };
 		5B6F59531EFBBE4800D1DE90 /* YCIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCIndicator.swift; sourceTree = "<group>"; };
 		5B76BB731E00CA0F00F1F30B /* AdvertisementController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertisementController.swift; sourceTree = "<group>"; };
@@ -2023,8 +1991,6 @@
 		5B98B6791E5819C2001FEAE0 /* AllCouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllCouponViewController.m; sourceTree = "<group>"; };
 		5B98B67A1E5819C2001FEAE0 /* CouponCantUseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponCantUseController.h; sourceTree = "<group>"; };
 		5B98B67B1E5819C2001FEAE0 /* CouponCantUseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponCantUseController.m; sourceTree = "<group>"; };
-		5B98E00D1F95A21A00CAF012 /* YCSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YCSearchBar.swift; sourceTree = "<group>"; };
-		5B98E00F1F95D84600CAF012 /* ActivityContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityContainerController.swift; sourceTree = "<group>"; };
 		5B9CBDD41DE52F090071A3B5 /* YCUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCUserDefaults.swift; sourceTree = "<group>"; };
 		5B9CBDD61DE547110071A3B5 /* UIImage+YC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+YC.swift"; sourceTree = "<group>"; };
 		5B9CBDD81DE547650071A3B5 /* BaseProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseProtocol.swift; sourceTree = "<group>"; };
@@ -2053,12 +2019,6 @@
 		5BCE0AA31E319A960089A73A /* NSObject+TransfromModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+TransfromModel.h"; sourceTree = "<group>"; };
 		5BCE0AA41E319A960089A73A /* NSObject+TransfromModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+TransfromModel.m"; sourceTree = "<group>"; };
 		5BCE0AA61E31B3290089A73A /* YCDropdownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCDropdownView.swift; sourceTree = "<group>"; };
-		5BD123061EC99DD4004A422E /* ShopHomeHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopHomeHeaderCell.swift; sourceTree = "<group>"; };
-		5BD123081EC9A3AB004A422E /* ShopFloorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopFloorModel.swift; sourceTree = "<group>"; };
-		5BD1230A1ECACC7C004A422E /* ShopMallModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopMallModel.swift; sourceTree = "<group>"; };
-		5BD1230C1ECAD104004A422E /* ShopMallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopMallController.swift; sourceTree = "<group>"; };
-		5BD1230E1ECAE613004A422E /* ShoppingMallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingMallCell.swift; sourceTree = "<group>"; };
-		5BD123101ECC3707004A422E /* ShopFloorDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopFloorDetailController.swift; sourceTree = "<group>"; };
 		5BD4293F1DF1010700EE62DE /* YCLoginContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCLoginContainerController.swift; sourceTree = "<group>"; };
 		5BD429401DF1010700EE62DE /* YCLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCLoginViewController.swift; sourceTree = "<group>"; };
 		5BD429431DF1013700EE62DE /* YCSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCSegmentView.swift; sourceTree = "<group>"; };
@@ -2082,7 +2042,6 @@
 		5BE1528C1F137DF200FC74C2 /* ScalingImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScalingImageView.swift; path = Protocols/ScalingImageView.swift; sourceTree = "<group>"; };
 		5BE1F2F91EC94A3200717E20 /* YCLoadMoreCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCLoadMoreCollectionCell.swift; sourceTree = "<group>"; };
 		5BE1F2FA1EC94A3200717E20 /* YCLoadMoreCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YCLoadMoreCollectionCell.xib; sourceTree = "<group>"; };
-		5BE1F2FD1EC98F3500717E20 /* ShopFloorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopFloorController.swift; sourceTree = "<group>"; };
 		5BE38DD51F1F3916002E3DAF /* ForgetPassWotdController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPassWotdController.swift; sourceTree = "<group>"; };
 		5BE654221E6EA3A0003CC59F /* UIBarButtonItem+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WZLBadge.h"; sourceTree = "<group>"; };
 		5BE654231E6EA3A0003CC59F /* UIBarButtonItem+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+WZLBadge.m"; sourceTree = "<group>"; };
@@ -2101,7 +2060,6 @@
 		5BE6DD771E5681B600A6C9EC /* FSPageViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageViewLayout.swift; sourceTree = "<group>"; };
 		5BE6DD781E5681B600A6C9EC /* FSPageViewTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageViewTransformer.swift; sourceTree = "<group>"; };
 		5BE6EB8E1F341395006A4F6D /* BouncyLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BouncyLayout.swift; sourceTree = "<group>"; };
-		5BE82ED81F26D515006E377F /* ShopSbController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopSbController.swift; sourceTree = "<group>"; };
 		5BE9DCFD1E77798A0089A1C2 /* GoodsOptionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsOptionModel.h; sourceTree = "<group>"; };
 		5BE9DCFE1E77798A0089A1C2 /* GoodsOptionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsOptionModel.m; sourceTree = "<group>"; };
 		5BE9DD001E777A780089A1C2 /* SupermarketReleaseCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupermarketReleaseCommentController.h; sourceTree = "<group>"; };
@@ -2109,13 +2067,6 @@
 		5BEB2D071E2874B5003F94DF /* WSStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSStarRatingView.h; sourceTree = "<group>"; };
 		5BEB2D081E2874B5003F94DF /* WSStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSStarRatingView.m; sourceTree = "<group>"; };
 		5BEBB6761DFAB73400367D77 /* AlamofireNetWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireNetWork.swift; sourceTree = "<group>"; };
-		5BEBED121ECD2A3D00F7EB36 /* FilterHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterHeader.swift; sourceTree = "<group>"; };
-		5BEBED141ECD6EB800F7EB36 /* ShopClassifyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopClassifyController.swift; sourceTree = "<group>"; };
-		5BEBED161ECD71CE00F7EB36 /* ShopClassifyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopClassifyModel.swift; sourceTree = "<group>"; };
-		5BEBED181ECE844700F7EB36 /* ShopActivityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopActivityController.swift; sourceTree = "<group>"; };
-		5BEBED1A1ECE8C1D00F7EB36 /* ShopCultureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopCultureController.swift; sourceTree = "<group>"; };
-		5BEBED1C1ECE9C2F00F7EB36 /* ShopMemberController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopMemberController.swift; sourceTree = "<group>"; };
-		5BEBED1E1ECEA06500F7EB36 /* ShopConsultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopConsultController.swift; sourceTree = "<group>"; };
 		5BEC6A111EADE2E900D86A14 /* YCRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCRoute.swift; sourceTree = "<group>"; };
 		5BEC72371E46F0D8007D519D /* YCDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCDownloadManager.swift; sourceTree = "<group>"; };
 		5BEC72391E46F725007D519D /* YCFileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCFileModel.swift; sourceTree = "<group>"; };
@@ -2146,13 +2097,6 @@
 		5BF0A9D91E0B7A900035B517 /* PersonalCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalCollectionController.swift; sourceTree = "<group>"; };
 		5BF0A9DB1E0B7B050035B517 /* PersonalCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalCollectionCell.swift; sourceTree = "<group>"; };
 		5BF0A9DC1E0B7B050035B517 /* PersonalCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalCollectionCell.xib; sourceTree = "<group>"; };
-		5BF1A2031EC451DF004A0DA5 /* ShopBaseNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopBaseNavController.swift; sourceTree = "<group>"; };
-		5BF1A2051EC45263004A0DA5 /* ShopBaseTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopBaseTabController.swift; sourceTree = "<group>"; };
-		5BF1A2071EC452BA004A0DA5 /* ShopBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopBaseViewController.swift; sourceTree = "<group>"; };
-		5BF1A20C1EC45C80004A0DA5 /* ShopHomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopHomeCell.swift; sourceTree = "<group>"; };
-		5BF6B73F1F95E7110004D63C /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
-		5BF6B7411F95EBA00004D63C /* ShopActivityDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopActivityDetailController.swift; sourceTree = "<group>"; };
-		5BF6B7431F95EC150004D63C /* ActivityDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailModel.swift; sourceTree = "<group>"; };
 		5BFA4EA31E9F08240097DB27 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5BFA4EA51E9F082E0097DB27 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5BFA4EA71E9F08590097DB27 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -5314,80 +5258,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		5BF1A2011EC44F98004A0DA5 /* Shop */ = {
-			isa = PBXGroup;
-			children = (
-				5BF1A2021EC450D1004A0DA5 /* ShopBaseNavController */,
-				5BF1A2091EC45BF5004A0DA5 /* Controller */,
-				5BF1A20B1EC45C4C004A0DA5 /* View */,
-				5BF1A20A1EC45C13004A0DA5 /* Model */,
-			);
-			name = Shop;
-			path = Portal/Shop;
-			sourceTree = "<group>";
-		};
-		5BF1A2021EC450D1004A0DA5 /* ShopBaseNavController */ = {
-			isa = PBXGroup;
-			children = (
-				5BF1A2031EC451DF004A0DA5 /* ShopBaseNavController.swift */,
-				5BF1A2051EC45263004A0DA5 /* ShopBaseTabController.swift */,
-				5BF1A2071EC452BA004A0DA5 /* ShopBaseViewController.swift */,
-				5B5C0EB71EC58BE1004F8C5D /* ShopTableViewController.swift */,
-				5B6091991EC6A6CC00000433 /* ShopCollectionViewController.swift */,
-			);
-			path = ShopBaseNavController;
-			sourceTree = "<group>";
-		};
-		5BF1A2091EC45BF5004A0DA5 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				5B5C0EB31EC54E08004F8C5D /* ShopHomeController.swift */,
-				5B6091971EC6A67800000433 /* ShopBrandController.swift */,
-				5B60919D1EC6DDD600000433 /* ShopBrandFilterController.swift */,
-				5BE1F2FD1EC98F3500717E20 /* ShopFloorController.swift */,
-				5BD123101ECC3707004A422E /* ShopFloorDetailController.swift */,
-				5BD1230C1ECAD104004A422E /* ShopMallController.swift */,
-				5BEBED141ECD6EB800F7EB36 /* ShopClassifyController.swift */,
-				5BEBED181ECE844700F7EB36 /* ShopActivityController.swift */,
-				5BF6B7411F95EBA00004D63C /* ShopActivityDetailController.swift */,
-				5B98E00F1F95D84600CAF012 /* ActivityContainerController.swift */,
-				5BEBED1A1ECE8C1D00F7EB36 /* ShopCultureController.swift */,
-				5BE82ED81F26D515006E377F /* ShopSbController.swift */,
-				5BEBED1C1ECE9C2F00F7EB36 /* ShopMemberController.swift */,
-				5BEBED1E1ECEA06500F7EB36 /* ShopConsultController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		5BF1A20A1EC45C13004A0DA5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				5B5C0EB51EC56286004F8C5D /* ShopHomeModel.swift */,
-				5B60919B1EC6AC7B00000433 /* ShopBrandModel.swift */,
-				5B6091A11EC6F61F00000433 /* ShopBrandFilterModel.swift */,
-				5BD123081EC9A3AB004A422E /* ShopFloorModel.swift */,
-				5BD1230A1ECACC7C004A422E /* ShopMallModel.swift */,
-				5BEBED161ECD71CE00F7EB36 /* ShopClassifyModel.swift */,
-				5BF6B73F1F95E7110004D63C /* ActivityModel.swift */,
-				5BF6B7431F95EC150004D63C /* ActivityDetailModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		5BF1A20B1EC45C4C004A0DA5 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				5BF1A20C1EC45C80004A0DA5 /* ShopHomeCell.swift */,
-				5B60919F1EC6DE1F00000433 /* ShopBrandFilterCell.swift */,
-				5BD123061EC99DD4004A422E /* ShopHomeHeaderCell.swift */,
-				5BD1230E1ECAE613004A422E /* ShoppingMallCell.swift */,
-				5BEBED121ECD2A3D00F7EB36 /* FilterHeader.swift */,
-				5B98E00D1F95A21A00CAF012 /* YCSearchBar.swift */,
-			);
-			name = View;
-			path = Model/View;
-			sourceTree = "<group>";
-		};
 		5BFB700E1DEBFC6D0004ED83 /* PublicTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -5484,7 +5354,6 @@
 				1B0CD2B61E8B5A84008AF162 /* YCHotel */,
 				1BBF76B11E6418D400BF0AA9 /* Backup */,
 				1BFEF3461E5BDD3500D1CA0C /* Share */,
-				5BF1A2011EC44F98004A0DA5 /* Shop */,
 				1B392D9A1E28D14D00F70981 /* Supermarket */,
 				1B196FD11E20803300E54D95 /* Media */,
 				5B8476961DFF9372005DE66C /* PrefixHeader.pch */,
@@ -5568,6 +5437,11 @@
 		62ADFAE81DE3E027005FDE1D /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				011B5238205A0DD200B7E4D7 /* OrderCurrentLocationCell.swift */,
+				011B5239205A0DD200B7E4D7 /* OrderHeaderReusableView.swift */,
+				011B5237205A0DD200B7E4D7 /* OrderLocationCell.swift */,
+				011B5235205A0CE500B7E4D7 /* OrderLocationModel.swift */,
+				011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */,
 				62ADFAF31DE3F1FE005FDE1D /* View */,
 				62ADFAF21DE3F1F6005FDE1D /* Model */,
 				62ADFAEF1DE3F1EE005FDE1D /* Controller */,
@@ -6075,7 +5949,6 @@
 				5BF0A9D41E0B78FB0035B517 /* PersonalCenterController.swift in Sources */,
 				1B392EEE1E28D14E00F70981 /* UIColor+PYExtension.m in Sources */,
 				1BC876731E973AA300BB38D7 /* AlipayRequestConfig.m in Sources */,
-				5BD123111ECC3707004A422E /* ShopFloorDetailController.swift in Sources */,
 				1B392D6E1E28D0E500F70981 /* AMTagView.m in Sources */,
 				1B3C971D1E29F3D400517684 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				1B022D611F21A20400129849 /* ZoomingImageView.m in Sources */,
@@ -6097,27 +5970,24 @@
 				1B392D8B1E28D0E500F70981 /* YYTextParser.m in Sources */,
 				1B392D6F1E28D0E500F70981 /* LGSegment.m in Sources */,
 				1BC876A91E98D0AE00BB38D7 /* YCHotelChooseCityController.m in Sources */,
-				5B98E00E1F95A21A00CAF012 /* YCSearchBar.swift in Sources */,
 				5BCE0AA71E31B3290089A73A /* YCDropdownView.swift in Sources */,
 				5BEF65A81F208C0500817141 /* CosmosRating.swift in Sources */,
 				1B43F7A91EA59AE5002A36BB /* HotelRatedModel.m in Sources */,
 				1B9DD45C1E2EFF9600931DAD /* MJRefreshNormalHeader.m in Sources */,
 				1B9547031F1DF147006DCB6C /* ZFScanViewController.m in Sources */,
 				1B392D7C1E28D0E500F70981 /* TZVideoPlayerController.m in Sources */,
-				5B5C0EB81EC58BE1004F8C5D /* ShopTableViewController.swift in Sources */,
 				1B392D831E28D0E500F70981 /* YYTextInput.m in Sources */,
 				1B9DD4531E2EFF9600931DAD /* MJRefreshFooter.m in Sources */,
 				5BEF65AF1F208C0500817141 /* RightToLeft.swift in Sources */,
 				1B5B6BD11E9B622B009D5C75 /* HotelOrderTableView.m in Sources */,
 				1B0CD2D51E8B83EC008AF162 /* HotelChooseView.m in Sources */,
 				1B392EF21E28D14E00F70981 /* SupermarketHomeAdview.m in Sources */,
+				011B523B205A0DD200B7E4D7 /* OrderCurrentLocationCell.swift in Sources */,
 				1B392D871E28D0E500F70981 /* YYTextMagnifier.m in Sources */,
 				1B392ED81E28D14E00F70981 /* SupermarketCommentHeaderView.m in Sources */,
 				1BBF76B71E64191500BF0AA9 /* CanteenHomePage.m in Sources */,
-				5BEBED171ECD71CE00F7EB36 /* ShopClassifyModel.swift in Sources */,
 				5B85D6421F564BF200ED8E22 /* AdvertisingController.swift in Sources */,
 				1B392D991E28D0E500F70981 /* ZHSCorllHeader.m in Sources */,
-				5B60919A1EC6A6CC00000433 /* ShopCollectionViewController.swift in Sources */,
 				5B002A7D1E0BBAFD002D0A05 /* PersonalSexCell.swift in Sources */,
 				62ADFAE51DE3D6CB005FDE1D /* YCTabbarController.swift in Sources */,
 				6296F4472019A77600976C21 /* MatchManageController.swift in Sources */,
@@ -6128,7 +5998,6 @@
 				1BDDA0ED1EB97634005E8409 /* HotelCommentTableView.m in Sources */,
 				1B5B6BAD1E9B1E74009D5C75 /* HotelPicTableView.m in Sources */,
 				1B3C97201E29F3D400517684 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
-				5BF1A20D1EC45C80004A0DA5 /* ShopHomeCell.swift in Sources */,
 				1B392D571E28D0E500F70981 /* JSDropDownMenu.m in Sources */,
 				1B5461301EAC8C5000E16169 /* HotelMineHeaderView.m in Sources */,
 				1B392D841E28D0E500F70981 /* YYTextKeyboardManager.m in Sources */,
@@ -6138,7 +6007,6 @@
 				1B392D681E28D0E500F70981 /* HNScanViewController.m in Sources */,
 				1B9DD4621E2EFF9600931DAD /* UIScrollView+MJRefresh.m in Sources */,
 				1B392EDE1E28D14E00F70981 /* SupermarketConfirmOrderController.m in Sources */,
-				5BD1230B1ECACC7C004A422E /* ShopMallModel.swift in Sources */,
 				1BDDA0EA1EB96C74005E8409 /* HotelCommentModel.m in Sources */,
 				1B392D4F1E28D0E500F70981 /* KLRequestManager.m in Sources */,
 				1B392F021E28D14E00F70981 /* SupermarketLimitBuyCell.m in Sources */,
@@ -6153,11 +6021,13 @@
 				5B5F88301DF2651600EBD763 /* YCNewMemberController.swift in Sources */,
 				269248E12009FDD80071900E /* RSDetailViewController.m in Sources */,
 				1B9DD4571E2EFF9600931DAD /* MJRefreshAutoStateFooter.m in Sources */,
+				011B5234205A0B5400B7E4D7 /* OrderLocationController.swift in Sources */,
 				1B392F381E28D14E00F70981 /* SupermarketEditAddressController.m in Sources */,
 				1B1971BF1E20803300E54D95 /* VoteData.m in Sources */,
 				1BEF693E1E8F7DC000CE3434 /* HotelSearchCollectionViewCell.m in Sources */,
 				1B5B6BC21E9B583A009D5C75 /* HotelAllOrderController.m in Sources */,
 				1B5B6BC51E9B5866009D5C75 /* HotelActiveOrderController.m in Sources */,
+				011B5236205A0CE500B7E4D7 /* OrderLocationModel.swift in Sources */,
 				1B392F251E28D14E00F70981 /* SupermarketKindsViewController.m in Sources */,
 				1BEF693A1E8F527400CE3434 /* HotelSearchCollectionView.m in Sources */,
 				1B12C7961E7FAECE00D89DBB /* RefundListCell.m in Sources */,
@@ -6170,7 +6040,6 @@
 				1B1971AF1E20803300E54D95 /* KLBuyingTicketViewController.m in Sources */,
 				1B392D521E28D0E500F70981 /* CFLabelOnLeftButton.m in Sources */,
 				1BC876A01E9885C700BB38D7 /* YCHotelHomeController.m in Sources */,
-				5BF6B7441F95EC150004D63C /* ActivityDetailModel.swift in Sources */,
 				1BDDA0F01EB9798F005E8409 /* HotelCommentTableViewCell.m in Sources */,
 				1B392F581E28D14E00F70981 /* SupermarketWaitReceiveController.m in Sources */,
 				6296F45B201B244900976C21 /* MatchParentModel.swift in Sources */,
@@ -6192,7 +6061,6 @@
 				5BE6DD7B1E5681B600A6C9EC /* FSPagerView.swift in Sources */,
 				1B3C97241E2A1B8B00517684 /* SupermarketAboutViewController.m in Sources */,
 				5B9CBDDF1DE7FABE0071A3B5 /* YCImageCache.swift in Sources */,
-				5B6091A01EC6DE1F00000433 /* ShopBrandFilterCell.swift in Sources */,
 				1B392EE71E28D14E00F70981 /* CountTimeView.m in Sources */,
 				1B392F3F1E28D14E00F70981 /* SupermarketMyOrderController.m in Sources */,
 				1B392F3E1E28D14E00F70981 /* SupermarketMyAddressViewController.m in Sources */,
@@ -6212,7 +6080,6 @@
 				5BEF65A41F208C0500817141 /* CosmosDefaultSettings.swift in Sources */,
 				6272BE631DDC6AD60075EA1C /* NetWorkManager.swift in Sources */,
 				1B510E401E9C693A00B77F14 /* UIImageView+YCHotelImage.m in Sources */,
-				5B5C0EB41EC54E08004F8C5D /* ShopHomeController.swift in Sources */,
 				1B392D951E28D0E500F70981 /* YYTextWeakProxy.m in Sources */,
 				1B392F2C1E28D14E00F70981 /* SLAreaPickerView.m in Sources */,
 				018AE84F20594DC90018F854 /* NetIndicator.swift in Sources */,
@@ -6263,7 +6130,6 @@
 				1BC876791E973AA300BB38D7 /* NSDataEx.m in Sources */,
 				5BEF65A31F208C0500817141 /* CosmosAccessibility.swift in Sources */,
 				1B43F7A21EA4A124002A36BB /* HotelReseveCustomerModel.m in Sources */,
-				5B60919C1EC6AC7B00000433 /* ShopBrandModel.swift in Sources */,
 				1B392F411E28D14E00F70981 /* SupermarketMyOrderGoodView.m in Sources */,
 				1B392EDF1E28D14E00F70981 /* SupermarketConfirmOrderGoodsCell.m in Sources */,
 				5B98B67D1E5819C2001FEAE0 /* CouponCantUseController.m in Sources */,
@@ -6292,7 +6158,6 @@
 				1B392D511E28D0E500F70981 /* CFDropDownMenuView.m in Sources */,
 				5B98B67C1E5819C2001FEAE0 /* AllCouponViewController.m in Sources */,
 				1B4B8ADC1ED43B2000266C90 /* SupermarketRefundResaonModel.m in Sources */,
-				5BEBED1F1ECEA06500F7EB36 /* ShopConsultController.swift in Sources */,
 				1B392D4E1E28D0E500F70981 /* KLHttpTool.m in Sources */,
 				1BDDA0F31EB9A36F005E8409 /* HotelVirtualComments.m in Sources */,
 				5B002A761E0BB766002D0A05 /* PersinalSetController.swift in Sources */,
@@ -6315,7 +6180,6 @@
 				1B392EF81E28D14E00F70981 /* SupermarketHomePeopleLikeData.m in Sources */,
 				1B392F501E28D14E00F70981 /* SupermarketSelfPickCollectionView.m in Sources */,
 				5BEF65AA1F208C0500817141 /* CosmosSize.swift in Sources */,
-				5BEBED131ECD2A3D00F7EB36 /* FilterHeader.swift in Sources */,
 				1B19720C1E20803300E54D95 /* KLVoteViewController.m in Sources */,
 				1B54611B1EA89F5600E16169 /* NSDate+HotelAddition.m in Sources */,
 				5B34C8951E1FAD3300AF6B93 /* TYPagerController.m in Sources */,
@@ -6327,12 +6191,10 @@
 				1B4C103A1EB3195F005EAAE5 /* TQStarRatingView.m in Sources */,
 				1BDDA0DB1EB96A63005E8409 /* HotelCommentViewController.m in Sources */,
 				1B0CD2C31E8B5BE1008AF162 /* YCHotelHomeViewController.m in Sources */,
-				5BEBED151ECD6EB800F7EB36 /* ShopClassifyController.swift in Sources */,
 				1BBF76BA1E64192800BF0AA9 /* MallHomepage.m in Sources */,
 				1B392F231E28D14E00F70981 /* SupermarketKindPriceController.m in Sources */,
 				5BED7BCC1F68B9A600CE31D6 /* YCDataManager.swift in Sources */,
 				1B392D7E1E28D0E500F70981 /* XTPopView.m in Sources */,
-				5BD1230F1ECAE613004A422E /* ShoppingMallCell.swift in Sources */,
 				1B392ED61E28D14E00F70981 /* SupermarketCommentCell.m in Sources */,
 				6296F455201A0ACB00976C21 /* RecommendInfoController.swift in Sources */,
 				5BC13C641E10F4AB00985C41 /* UIImage+Navi.swift in Sources */,
@@ -6343,13 +6205,11 @@
 				26CFF6602004B1F400A10F91 /* RSOtcCollectionView.m in Sources */,
 				1B0CD2C61E8B5BFD008AF162 /* YCHotelMineViewController.m in Sources */,
 				1B392F4A1E28D14E00F70981 /* SupermarketApplyRefundController.m in Sources */,
-				5BEBED191ECE844700F7EB36 /* ShopActivityController.swift in Sources */,
 				1B392F161E28D14E00F70981 /* AllIntergrationControllerController.m in Sources */,
 				5BFB700B1DEBD51E0004ED83 /* YCHomeNewsCell.swift in Sources */,
 				5B8AAE421F7B840C001EB504 /* AnyActivity.swift in Sources */,
 				1B510E5D1E9E22BA00B77F14 /* HotelConfirmOrderEditTableViewCell.m in Sources */,
 				1B392D8F1E28D0E500F70981 /* NSParagraphStyle+YYText.m in Sources */,
-				5B6091981EC6A67800000433 /* ShopBrandController.swift in Sources */,
 				5BEC72381E46F0D8007D519D /* YCDownloadManager.swift in Sources */,
 				6296F44B2019D50D00976C21 /* RecommendSearchController.swift in Sources */,
 				1B392EEB1E28D14E00F70981 /* PYSearchSuggestionViewController.m in Sources */,
@@ -6385,7 +6245,6 @@
 				1B392EDB1E28D14E00F70981 /* SupermarketCommentPicCollectionView.m in Sources */,
 				1B392D4C1E28D0E500F70981 /* UIImageView+ImageCache.m in Sources */,
 				1B1971C01E20803300E54D95 /* KLMyCenterViewController.m in Sources */,
-				5BE82ED91F26D515006E377F /* ShopSbController.swift in Sources */,
 				267DAA971EA213EE00299E74 /* HotelCommentAndDetailedView.m in Sources */,
 				1B392EE11E28D14E00F70981 /* SupermarketDetailViewController.m in Sources */,
 				5BC13C551E10C2E300985C41 /* UIViewController+YC.swift in Sources */,
@@ -6404,7 +6263,6 @@
 				1B392D751E28D0E500F70981 /* TZImageManager.m in Sources */,
 				5BECA2381F2ADBBF00729382 /* MoyaNetWork.swift in Sources */,
 				1B0CD2C91E8B5C24008AF162 /* YCHotelOrderViewController.m in Sources */,
-				5BE1F2FE1EC98F3500717E20 /* ShopFloorController.swift in Sources */,
 				1B1971AE1E20803300E54D95 /* KLMainController.m in Sources */,
 				5B5989D41E9F583700F70125 /* MMMaterialDesignSpinner.m in Sources */,
 				1B392D4A1E28D0E500F70981 /* NSUserDefaults+YCAddition.m in Sources */,
@@ -6421,6 +6279,7 @@
 				1B510E641E9F78D800B77F14 /* HotelReserveResultController.m in Sources */,
 				5B8AAE451F7B8859001EB504 /* SocailInfo.swift in Sources */,
 				1BD7D6F21F131E5100D52F15 /* HotelRetainTimeModel.m in Sources */,
+				011B523A205A0DD200B7E4D7 /* OrderLocationCell.swift in Sources */,
 				5BE1528D1F137DF200FC74C2 /* ScalingImageView.swift in Sources */,
 				1B5461261EAAEE8400E16169 /* HotelCheckQRCodeCell.m in Sources */,
 				1B54611F1EA9D88000E16169 /* HotelQRCodeView.m in Sources */,
@@ -6437,7 +6296,6 @@
 				1B392F481E28D14E00F70981 /* SupermarketReceiveTimeController.m in Sources */,
 				5BE1F2FB1EC94A3200717E20 /* YCLoadMoreCollectionCell.swift in Sources */,
 				5BEF65B21F208C0500817141 /* StarLayer.swift in Sources */,
-				5BEBED1D1ECE9C2F00F7EB36 /* ShopMemberController.swift in Sources */,
 				5BEF65AB1F208C0500817141 /* CosmosText.swift in Sources */,
 				5BAD6AA71E0D050B00E43EAE /* PersonalStarContentCell.swift in Sources */,
 				1B392ED11E28D14E00F70981 /* CWStarRateView.m in Sources */,
@@ -6446,11 +6304,9 @@
 				1B3C971E1E29F3D400517684 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				5B34C8971E1FAD3300AF6B93 /* TYTabPagerController.m in Sources */,
 				5BD429411DF1010700EE62DE /* YCLoginContainerController.swift in Sources */,
-				5BD123091EC9A3AB004A422E /* ShopFloorModel.swift in Sources */,
 				5BB790AB1E03831900A13D50 /* YCWebViewController.swift in Sources */,
 				5B002A741E0B9FA0002D0A05 /* PersonalShareController.swift in Sources */,
 				1B392F151E28D14E00F70981 /* SupermarketTasteNewTableView.m in Sources */,
-				5BF1A2061EC45263004A0DA5 /* ShopBaseTabController.swift in Sources */,
 				1B12C78D1E7F720A00D89DBB /* UIButton+CreateButton.m in Sources */,
 				62ADFAEC1DE3E28B005FDE1D /* ProgressExtension.swift in Sources */,
 				5B5F882C1DF24EEE00EBD763 /* YCTextField.swift in Sources */,
@@ -6468,6 +6324,7 @@
 				1B392D5C1E28D0E500F70981 /* STPickerArea.m in Sources */,
 				1B392D711E28D0E500F70981 /* TZAssetCell.m in Sources */,
 				2608A1601FF5E8AD0072FB91 /* RSTabBarMainController.swift in Sources */,
+				011B523C205A0DD200B7E4D7 /* OrderHeaderReusableView.swift in Sources */,
 				5BD429441DF1013700EE62DE /* YCSegmentView.swift in Sources */,
 				1B392EF01E28D14E00F70981 /* SupermarketClassfictionView.m in Sources */,
 				6272BE691DDC6C320075EA1C /* YCAlert.swift in Sources */,
@@ -6491,7 +6348,6 @@
 				1B9DD4511E2EFF9600931DAD /* MJRefreshBackFooter.m in Sources */,
 				1B392D801E28D0E500F70981 /* YYTextContainerView.m in Sources */,
 				62C417D220060698005571D4 /* ProfileAvatarCell.swift in Sources */,
-				5BD1230D1ECAD104004A422E /* ShopMallController.swift in Sources */,
 				1B9DD4631E2EFF9600931DAD /* UIView+MJExtension.m in Sources */,
 				1B392EEA1E28D14E00F70981 /* PYSearchConst.m in Sources */,
 				1B392F531E28D14E00F70981 /* SupermarketSelfPickRightTableView.m in Sources */,
@@ -6552,9 +6408,7 @@
 				1BC876A61E98875B00BB38D7 /* HotelHomeTimeController.m in Sources */,
 				1B392F661E28D14E00F70981 /* LZCartTableViewCell.m in Sources */,
 				1B0CD2F21E8E0693008AF162 /* MSSCircleLabel.m in Sources */,
-				5B98E0101F95D84600CAF012 /* ActivityContainerController.swift in Sources */,
 				5BFB70071DEBB8D10004ED83 /* UIColor+YC.swift in Sources */,
-				5BEBED1B1ECE8C1D00F7EB36 /* ShopCultureController.swift in Sources */,
 				1B392F371E28D14E00F70981 /* SupermarketCouponController.m in Sources */,
 				1B1B01F41E56DDB6008CF96A /* CouponModel.m in Sources */,
 				1B0CD2EC1E8E0693008AF162 /* MSSCalendarCollectionViewCell.m in Sources */,
@@ -6585,13 +6439,11 @@
 				5BC13C621E10F4AB00985C41 /* AvatarPod.swift in Sources */,
 				1B5B6BCE1E9B5F20009D5C75 /* HotelFinishedOrderController.m in Sources */,
 				5B9CBDD71DE547110071A3B5 /* UIImage+YC.swift in Sources */,
-				5BD123071EC99DD4004A422E /* ShopHomeHeaderCell.swift in Sources */,
 				5BE654311E6EA3A0003CC59F /* CAAnimation+WAnimation.m in Sources */,
 				1B392D671E28D0E500F70981 /* HNCodeScannerView.m in Sources */,
 				1B9DD4561E2EFF9600931DAD /* MJRefreshAutoNormalFooter.m in Sources */,
 				26B5EE1F1FF391BD0001E40B /* RSLoginContainerController.m in Sources */,
 				1BA9B1EA1E791351001FB11F /* SupermarketPointModel.m in Sources */,
-				5B5C0EB61EC56286004F8C5D /* ShopHomeModel.swift in Sources */,
 				5BCE0AA51E319A960089A73A /* NSObject+TransfromModel.m in Sources */,
 				5B8AAE471F7B8B80001EB504 /* SocailShare.swift in Sources */,
 				1B6156A31E9B15E300B16877 /* HotelRoomPicsController.m in Sources */,
@@ -6658,11 +6510,9 @@
 				1B52E4691E7BD5CA008B0B75 /* SupermarketRefundDetailController.m in Sources */,
 				1B5461221EA9EF7200E16169 /* ZHGenerateQRCode.m in Sources */,
 				1B80E6D61E4D5631001603B2 /* View+MASAdditions.m in Sources */,
-				5BF1A2041EC451DF004A0DA5 /* ShopBaseNavController.swift in Sources */,
 				5BAD6A991E0CBF4900E43EAE /* PersonalMessageController.swift in Sources */,
 				1BEF69341E8F40DA00CE3434 /* HotelSearchTableView.m in Sources */,
 				5BAD6AA41E0D00A900E43EAE /* PersonalStarHeaderCell.swift in Sources */,
-				5BF1A2081EC452BA004A0DA5 /* ShopBaseViewController.swift in Sources */,
 				5B62F6F31E021E2500E0B8EF /* YCFPSLabel.swift in Sources */,
 				5B76BB781E00CAFD00F1F30B /* WelcomeModel.swift in Sources */,
 				1BEF69371E8F503200CE3434 /* HotelSearchTableViewCell.m in Sources */,
@@ -6671,7 +6521,6 @@
 				267DAA991EA213EE00299E74 /* HotelHeadView.m in Sources */,
 				1B9DD4601E2EFF9600931DAD /* NSBundle+MJRefresh.m in Sources */,
 				1B12C79C1E836A0800D89DBB /* NSDate+YCAddtion.m in Sources */,
-				5BF6B7401F95E7110004D63C /* ActivityModel.swift in Sources */,
 				5BFB70091DEBD1950004ED83 /* HomeModel.swift in Sources */,
 				1BC876881E9765CD00BB38D7 /* HotelSearchFilterView.m in Sources */,
 				1B80E6D51E4D5631001603B2 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
@@ -6682,7 +6531,6 @@
 				1BB2ABF91E34570C000B75FC /* YCUploadAttachmentOperation.swift in Sources */,
 				5BAD6AA91E0D072900E43EAE /* PersonalStarHeaderView.swift in Sources */,
 				1B52E4711E7BD8D3008B0B75 /* RefundDetailTableViewCell.m in Sources */,
-				5BF6B7421F95EBA00004D63C /* ShopActivityDetailController.swift in Sources */,
 				1B392D771E28D0E500F70981 /* TZImagePickerController.m in Sources */,
 				1BA9B1E71E78CF9D001FB11F /* CheckOrderGoodsRange.m in Sources */,
 				1B4C10211EB06E92005EAAE5 /* HotelRoomInfoServiceModel.m in Sources */,
@@ -6699,7 +6547,6 @@
 				1B72C4281EA1ED2800FA361E /* HotelCancelTableView.m in Sources */,
 				1B392D6D1E28D0E500F70981 /* AMTagListView.m in Sources */,
 				1B392F211E28D14E00F70981 /* SupermarketKindHotController.m in Sources */,
-				5B60919E1EC6DDD600000433 /* ShopBrandFilterController.swift in Sources */,
 				1B392EEF1E28D14E00F70981 /* UIView+PYExtension.m in Sources */,
 				5B95EAED1DF7B81D006E74C4 /* Notification + YC.swift in Sources */,
 				5BEBB6771DFAB73400367D77 /* AlamofireNetWork.swift in Sources */,
@@ -6719,7 +6566,6 @@
 				1B0CD2CF1E8B5FA1008AF162 /* YCHotelNavigationController.m in Sources */,
 				2608A1561FF5D83E0072FB91 /* RSMineController.m in Sources */,
 				6296F459201ABF3400976C21 /* CheckParentModel.swift in Sources */,
-				5B6091A21EC6F61F00000433 /* ShopBrandFilterModel.swift in Sources */,
 				1B392D921E28D0E500F70981 /* YYTextAsyncLayer.m in Sources */,
 				26E90ED52007987700E838E8 /* RSPayRep.m in Sources */,
 				1B0CD2EB1E8E0693008AF162 /* MSSCalendarCollectionReusableView.m in Sources */,
