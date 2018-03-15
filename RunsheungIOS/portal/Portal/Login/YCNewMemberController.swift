@@ -12,12 +12,12 @@ import SwiftyJSON
 
 class YCNewMemberController: UITableViewController {
     
-    private var Phonetextfield:YCTextField!
-    private var PassWorkfield:YCTextField!
-    private var messagefield:YCTextField!
-    private var passwordAgainfield:YCTextField!
-    private var loginBtn:UIButton!
-    private var codebtn:YCAuthCodeBtn!
+    private var Phonetextfield: YCTextField!
+    private var PassWorkfield: YCTextField!
+    private var messagefield: YCTextField!
+    private var passwordAgainfield: YCTextField!
+    private var loginBtn: UIButton!
+    private var codebtn: YCAuthCodeBtn!
     var AddmemberSuccessCallBack:(() -> ())?
 
     override func viewDidLoad() {

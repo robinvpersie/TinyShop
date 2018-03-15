@@ -602,8 +602,6 @@
 		5B484B6A1EA9F04B00EB7E22 /* EatTogetherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B484B691EA9F04B00EB7E22 /* EatTogetherModel.swift */; };
 		5B5196B31FCFA10C00E95CD0 /* OffRefundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5196B21FCFA10C00E95CD0 /* OffRefundView.swift */; };
 		5B5196B51FD14B7500E95CD0 /* OffRefundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5196B41FD14B7500E95CD0 /* OffRefundModel.swift */; };
-		5B53EB411FBC135300DA5BCF /* LoginProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B53EB401FBC135300DA5BCF /* LoginProtocols.swift */; };
-		5B53EB431FBC165800DA5BCF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B53EB421FBC165800DA5BCF /* LoginViewModel.swift */; };
 		5B56A5F41E9B51F5008D9B26 /* OrderPointController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B56A5F31E9B51F5008D9B26 /* OrderPointController.swift */; };
 		5B57ED631FB44C8600598252 /* OffNoServiceMkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B57ED621FB44C8600598252 /* OffNoServiceMkController.swift */; };
 		5B57ED651FB44D3600598252 /* OffNoServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B57ED641FB44D3600598252 /* OffNoServiceCell.swift */; };
@@ -2115,8 +2113,6 @@
 		5B484B691EA9F04B00EB7E22 /* EatTogetherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EatTogetherModel.swift; sourceTree = "<group>"; };
 		5B5196B21FCFA10C00E95CD0 /* OffRefundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffRefundView.swift; sourceTree = "<group>"; };
 		5B5196B41FD14B7500E95CD0 /* OffRefundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffRefundModel.swift; sourceTree = "<group>"; };
-		5B53EB401FBC135300DA5BCF /* LoginProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocols.swift; sourceTree = "<group>"; };
-		5B53EB421FBC165800DA5BCF /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		5B56A5F31E9B51F5008D9B26 /* OrderPointController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderPointController.swift; sourceTree = "<group>"; };
 		5B57ED621FB44C8600598252 /* OffNoServiceMkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffNoServiceMkController.swift; sourceTree = "<group>"; };
 		5B57ED641FB44D3600598252 /* OffNoServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffNoServiceCell.swift; sourceTree = "<group>"; };
@@ -5521,8 +5517,6 @@
 				5B5F882F1DF2651600EBD763 /* YCNewMemberController.swift */,
 				5BE38DD51F1F3916002E3DAF /* ForgetPassWotdController.swift */,
 				5B4292371DFE80E2000C242B /* YCAccountModel.swift */,
-				5B53EB401FBC135300DA5BCF /* LoginProtocols.swift */,
-				5B53EB421FBC165800DA5BCF /* LoginViewModel.swift */,
 				26B5EE1D1FF391BD0001E40B /* RSLoginContainerController.h */,
 				26B5EE1E1FF391BD0001E40B /* RSLoginContainerController.m */,
 			);
@@ -6639,7 +6633,6 @@
 				1B392F251E28D14E00F70981 /* SupermarketKindsViewController.m in Sources */,
 				1BEF693A1E8F527400CE3434 /* HotelSearchCollectionView.m in Sources */,
 				1B12C7961E7FAECE00D89DBB /* RefundListCell.m in Sources */,
-				5B53EB431FBC165800DA5BCF /* LoginViewModel.swift in Sources */,
 				5BD86F8B1E680E340089B47A /* OrderHeaderReusableView.swift in Sources */,
 				5BD86F241E66C52C0089B47A /* UpdatePhotoCell.swift in Sources */,
 				1B392F321E28D14E00F70981 /* CouponOverTimeController.m in Sources */,
@@ -7021,7 +7014,6 @@
 				1B392D801E28D0E500F70981 /* YYTextContainerView.m in Sources */,
 				62C417D220060698005571D4 /* ProfileAvatarCell.swift in Sources */,
 				5BD1230D1ECAD104004A422E /* ShopMallController.swift in Sources */,
-				5B53EB411FBC135300DA5BCF /* LoginProtocols.swift in Sources */,
 				5BE275A81F8B3F3600F8CE08 /* OffShopCarCell.swift in Sources */,
 				5BE9DD061E778A2B0089A1C2 /* CanteenSegmentMenu.swift in Sources */,
 				1B9DD4631E2EFF9600931DAD /* UIView+MJExtension.m in Sources */,

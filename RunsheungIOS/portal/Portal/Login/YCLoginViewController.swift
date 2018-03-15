@@ -202,7 +202,7 @@ extension YCLoginViewController:UITextFieldDelegate{
 
 extension YCLoginViewController {
     
-    func loginEnc(memberId: String, password: String,completion:@escaping(NetWorkResult<JSONDictionary>) -> Void)
+    func loginEnc(memberId: String, password: String, completion:@escaping(NetWorkResult<JSONDictionary>) -> Void)
     {
         
         var idfa:String = ""
