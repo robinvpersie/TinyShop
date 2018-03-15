@@ -319,20 +319,21 @@ class YCHomeController: UIViewController {
 }
 
 
-extension YCHomeController:UpdateDivCode{
+//extension YCHomeController:UpdateDivCode{
+//
+//    func updateWithDivCode(_ divCode: String, _ name: String) {
+//         self.divCode = divCode
+//         self.divName = name
+//         YCUserDefaults.HomeDivCode.value = divCode
+//         YCUserDefaults.HomeDicName.value = name
+//         updateMainData(mode: .TopRefresh)
+//    }
+//}
+
+
+
+extension YCHomeController: UITableViewDelegate{
     
-    func updateWithDivCode(_ divCode: String, _ name: String) {
-         self.divCode = divCode
-         self.divName = name
-         YCUserDefaults.HomeDivCode.value = divCode
-         YCUserDefaults.HomeDicName.value = name
-         updateMainData(mode: .TopRefresh)
-    }
-}
-
-
-
-extension YCHomeController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = Section(indexPath: indexPath)
         if section == .news{

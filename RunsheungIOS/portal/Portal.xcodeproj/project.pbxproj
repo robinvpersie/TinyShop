@@ -29,7 +29,6 @@
 		1B0CD2F21E8E0693008AF162 /* MSSCircleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CD2EA1E8E0693008AF162 /* MSSCircleLabel.m */; };
 		1B0CD2F51E8E0B40008AF162 /* HotelCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CD2F41E8E0B40008AF162 /* HotelCalendarView.m */; };
 		1B0CD2F91E8E261E008AF162 /* HotelSeachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CD2F81E8E261E008AF162 /* HotelSeachViewController.m */; };
-		1B12C78A1E7F603100D89DBB /* OrderMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B12C7891E7F603100D89DBB /* OrderMenuModel.swift */; };
 		1B12C78D1E7F720A00D89DBB /* UIButton+CreateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B12C78C1E7F720A00D89DBB /* UIButton+CreateButton.m */; };
 		1B12C7901E7FA31E00D89DBB /* RefundListData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B12C78F1E7FA31E00D89DBB /* RefundListData.m */; };
 		1B12C7931E7FADE000D89DBB /* RefundListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B12C7921E7FADE000D89DBB /* RefundListTableView.m */; };
@@ -340,14 +339,6 @@
 		1B52E4691E7BD5CA008B0B75 /* SupermarketRefundDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B52E4681E7BD5CA008B0B75 /* SupermarketRefundDetailController.m */; };
 		1B52E46E1E7BD699008B0B75 /* RefundDetailTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B52E46D1E7BD699008B0B75 /* RefundDetailTableView.m */; };
 		1B52E4711E7BD8D3008B0B75 /* RefundDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B52E4701E7BD8D3008B0B75 /* RefundDetailTableViewCell.m */; };
-		1B54465A1E617338001D84AE /* CanteenBaseNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54464E1E617338001D84AE /* CanteenBaseNavController.swift */; };
-		1B54465B1E617338001D84AE /* CanteenTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54464F1E617338001D84AE /* CanteenTableView.swift */; };
-		1B54465C1E617338001D84AE /* CanteenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5446501E617338001D84AE /* CanteenTableViewController.swift */; };
-		1B54465D1E617338001D84AE /* CantennTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5446521E617338001D84AE /* CantennTabBarController.swift */; };
-		1B54465E1E617338001D84AE /* YCCanteenHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5446541E617338001D84AE /* YCCanteenHomeController.swift */; };
-		1B54465F1E617338001D84AE /* CanteenHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5446571E617338001D84AE /* CanteenHomeCell.swift */; };
-		1B5446601E617338001D84AE /* CanteenHomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B5446581E617338001D84AE /* CanteenHomeCell.xib */; };
-		1B5446611E617338001D84AE /* HomeNaviView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5446591E617338001D84AE /* HomeNaviView.swift */; };
 		1B5446641E6183BB001D84AE /* KLBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5446631E6183BB001D84AE /* KLBaseNavigationController.m */; };
 		1B5461181EA74CBB00E16169 /* HotelOrderListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5461171EA74CBB00E16169 /* HotelOrderListModel.m */; };
 		1B54611B1EA89F5600E16169 /* NSDate+HotelAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B54611A1EA89F5600E16169 /* NSDate+HotelAddition.m */; };
@@ -506,7 +497,6 @@
 		1BEF69DB1E94B53200CE3434 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BEF69DA1E94B53200CE3434 /* CFNetwork.framework */; };
 		1BEF69DD1E94B54300CE3434 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BEF69DC1E94B54300CE3434 /* CoreTelephony.framework */; };
 		1BEF69DF1E94B55200CE3434 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BEF69DE1E94B55200CE3434 /* SystemConfiguration.framework */; };
-		1BF1138F1E497BD70084DA06 /* m.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1BF1138E1E497BD70084DA06 /* m.jpg */; };
 		1BF3F74C1F283EDC00EA44FB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BF3F74E1F283EDC00EA44FB /* Localizable.strings */; };
 		1BFEF3491E5BDF5700D1CA0C /* YCShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFEF3481E5BDF5700D1CA0C /* YCShareModel.m */; };
 		1BFEF34C1E5BE54900D1CA0C /* YCShareAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFEF34B1E5BE54900D1CA0C /* YCShareAddress.m */; };
@@ -586,11 +576,6 @@
 		5B3ADC001E2CB80C003A6F4C /* KLTabOnlineVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3ADBFF1E2CB80C003A6F4C /* KLTabOnlineVideoView.m */; };
 		5B4292361DFE3F1E000C242B /* UINavigationController + YC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4292351DFE3F1E000C242B /* UINavigationController + YC.swift */; };
 		5B4292381DFE80E2000C242B /* YCAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4292371DFE80E2000C242B /* YCAccountModel.swift */; };
-		5B484B641EA5FCB700EB7E22 /* OrderTogetherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B484B631EA5FCB700EB7E22 /* OrderTogetherController.swift */; };
-		5B484B661EA6F66800EB7E22 /* EatTogetherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B484B651EA6F66800EB7E22 /* EatTogetherController.swift */; };
-		5B484B681EA7067800EB7E22 /* EatGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B484B671EA7067800EB7E22 /* EatGroupModel.swift */; };
-		5B484B6A1EA9F04B00EB7E22 /* EatTogetherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B484B691EA9F04B00EB7E22 /* EatTogetherModel.swift */; };
-		5B56A5F41E9B51F5008D9B26 /* OrderPointController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B56A5F31E9B51F5008D9B26 /* OrderPointController.swift */; };
 		5B57ED6D1FB55EDC00598252 /* DCQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B57ED6B1FB55EDC00598252 /* DCQRCode.swift */; };
 		5B57ED6E1FB55EDC00598252 /* FunctionalCoreImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B57ED6C1FB55EDC00598252 /* FunctionalCoreImage.swift */; };
 		5B5989CB1E9F257300F70125 /* BrightnessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5989CA1E9F257300F70125 /* BrightnessView.swift */; };
@@ -599,14 +584,11 @@
 		5B5989D41E9F583700F70125 /* MMMaterialDesignSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5989D11E9F583700F70125 /* MMMaterialDesignSpinner.m */; };
 		5B5989D61E9F662300F70125 /* PlayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5989D51E9F662300F70125 /* PlayDelegate.swift */; };
 		5B5989D81EA1AB8100F70125 /* PlayControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5989D71EA1AB8100F70125 /* PlayControlView.swift */; };
-		5B5B2BA31E88E707002F9865 /* CanteenFavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B2BA21E88E707002F9865 /* CanteenFavoriteModel.swift */; };
 		5B5C0EB41EC54E08004F8C5D /* ShopHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5C0EB31EC54E08004F8C5D /* ShopHomeController.swift */; };
 		5B5C0EB61EC56286004F8C5D /* ShopHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5C0EB51EC56286004F8C5D /* ShopHomeModel.swift */; };
 		5B5C0EB81EC58BE1004F8C5D /* ShopTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5C0EB71EC58BE1004F8C5D /* ShopTableViewController.swift */; };
 		5B5F882C1DF24EEE00EBD763 /* YCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F882B1DF24EEE00EBD763 /* YCTextField.swift */; };
 		5B5F88301DF2651600EBD763 /* YCNewMemberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F882F1DF2651600EBD763 /* YCNewMemberController.swift */; };
-		5B5FF4181E7669CC0013F84B /* ReservationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5FF4171E7669CC0013F84B /* ReservationController.swift */; };
-		5B5FF41A1E766AE00013F84B /* ReservationControllerCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5FF4191E766AE00013F84B /* ReservationControllerCells.swift */; };
 		5B6091981EC6A67800000433 /* ShopBrandController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6091971EC6A67800000433 /* ShopBrandController.swift */; };
 		5B60919A1EC6A6CC00000433 /* ShopCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6091991EC6A6CC00000433 /* ShopCollectionViewController.swift */; };
 		5B60919C1EC6AC7B00000433 /* ShopBrandModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B60919B1EC6AC7B00000433 /* ShopBrandModel.swift */; };
@@ -614,19 +596,11 @@
 		5B6091A01EC6DE1F00000433 /* ShopBrandFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B60919F1EC6DE1F00000433 /* ShopBrandFilterCell.swift */; };
 		5B6091A21EC6F61F00000433 /* ShopBrandFilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6091A11EC6F61F00000433 /* ShopBrandFilterModel.swift */; };
 		5B62F6F31E021E2500E0B8EF /* YCFPSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62F6F21E021E2400E0B8EF /* YCFPSLabel.swift */; };
-		5B693E6E1E6A8C9E00732F6B /* OrderMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B693E6D1E6A8C9E00732F6B /* OrderMenuController.swift */; };
-		5B693E701E6A981B00732F6B /* FoodTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B693E6F1E6A981B00732F6B /* FoodTypeCell.swift */; };
-		5B693E721E6A9B4300732F6B /* MenuFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B693E711E6A9B4300732F6B /* MenuFoodCell.swift */; };
-		5B693E741E6AA4DD00732F6B /* OrderMenuBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B693E731E6AA4DD00732F6B /* OrderMenuBottomView.swift */; };
-		5B693E761E6AA84B00732F6B /* OrderMenuTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B693E751E6AA84B00732F6B /* OrderMenuTableHeader.swift */; };
-		5B6A88881E80071900BCED9F /* CanteenAllOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A88871E80071900BCED9F /* CanteenAllOrderModel.swift */; };
-		5B6A888A1E81243100BCED9F /* CanteenNeedLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A88891E81243100BCED9F /* CanteenNeedLoginView.swift */; };
 		5B6F59541EFBBE4800D1DE90 /* YCIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6F59531EFBBE4800D1DE90 /* YCIndicator.swift */; };
 		5B76BB751E00CA0F00F1F30B /* AdvertisementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76BB731E00CA0F00F1F30B /* AdvertisementController.swift */; };
 		5B76BB761E00CA0F00F1F30B /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76BB741E00CA0F00F1F30B /* WelcomeController.swift */; };
 		5B76BB781E00CAFD00F1F30B /* WelcomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76BB771E00CAFD00F1F30B /* WelcomeModel.swift */; };
 		5B76BB7C1E01003100F1F30B /* YCCancelableTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76BB7B1E01003100F1F30B /* YCCancelableTask.swift */; };
-		5B78E4BD1E88BC1200E5D095 /* CanteenCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B78E4BC1E88BC1100E5D095 /* CanteenCommentModel.swift */; };
 		5B7DCAF81DEFBFFC00F1D2AB /* UIButton + YC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7DCAF71DEFBFFC00F1D2AB /* UIButton + YC.swift */; };
 		5B7DCAFA1DEFEAE900F1D2AB /* YCWebViewClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7DCAF91DEFEAE900F1D2AB /* YCWebViewClass.swift */; };
 		5B7DCAFC1DF0013300F1D2AB /* YCTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7DCAFB1DF0013300F1D2AB /* YCTableFooterView.swift */; };
@@ -656,7 +630,6 @@
 		5B9CBDDB1DE6CE7C0071A3B5 /* YCConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9CBDDA1DE6CE7C0071A3B5 /* YCConcurrentOperation.swift */; };
 		5B9CBDDD1DE7DBB70071A3B5 /* YCGCDTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9CBDDC1DE7DBB70071A3B5 /* YCGCDTimer.swift */; };
 		5B9CBDDF1DE7FABE0071A3B5 /* YCImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9CBDDE1DE7FABE0071A3B5 /* YCImageCache.swift */; };
-		5B9D74DB1E9B665100A672BF /* MyPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9D74DA1E9B665100A672BF /* MyPointModel.swift */; };
 		5BAD6A991E0CBF4900E43EAE /* PersonalMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAD6A981E0CBF4900E43EAE /* PersonalMessageController.swift */; };
 		5BAD6A9D1E0CC65000E43EAE /* PersonalNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAD6A9C1E0CC65000E43EAE /* PersonalNewsCell.swift */; };
 		5BAD6A9F1E0CCC0B00E43EAE /* PersonalCommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAD6A9E1E0CCC0B00E43EAE /* PersonalCommentController.swift */; };
@@ -688,36 +661,9 @@
 		5BD429421DF1010700EE62DE /* YCLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD429401DF1010700EE62DE /* YCLoginViewController.swift */; };
 		5BD429441DF1013700EE62DE /* YCSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD429431DF1013700EE62DE /* YCSegmentView.swift */; };
 		5BD429461DF1033A00EE62DE /* YCSegMentTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD429451DF1033A00EE62DE /* YCSegMentTitleCell.swift */; };
-		5BD86F1C1E66AEE30089B47A /* OrderCommentDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F1B1E66AEE30089B47A /* OrderCommentDetailCell.swift */; };
-		5BD86F1E1E66B83B0089B47A /* OrderCommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F1D1E66B83B0089B47A /* OrderCommentController.swift */; };
-		5BD86F201E66BD9A0089B47A /* TotalPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F1F1E66BD9A0089B47A /* TotalPointCell.swift */; };
-		5BD86F221E66C31F0089B47A /* CommentTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F211E66C31F0089B47A /* CommentTextCell.swift */; };
-		5BD86F241E66C52C0089B47A /* UpdatePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F231E66C52C0089B47A /* UpdatePhotoCell.swift */; };
-		5BD86F261E67A6D90089B47A /* OrderSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F251E67A6D90089B47A /* OrderSearchController.swift */; };
-		5BD86F281E67A72F0089B47A /* OrderSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F271E67A72F0089B47A /* OrderSearchCell.swift */; };
-		5BD86F851E6800280089B47A /* OrderLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F841E6800280089B47A /* OrderLocationController.swift */; };
-		5BD86F871E68014B0089B47A /* OrderLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F861E68014B0089B47A /* OrderLocationCell.swift */; };
-		5BD86F891E6808C40089B47A /* OrderCurrentLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F881E6808C40089B47A /* OrderCurrentLocationCell.swift */; };
-		5BD86F8B1E680E340089B47A /* OrderHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F8A1E680E340089B47A /* OrderHeaderReusableView.swift */; };
-		5BD86F8D1E68F90D0089B47A /* OrderLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F8C1E68F90D0089B47A /* OrderLocationModel.swift */; };
-		5BD86F8F1E69198F0089B47A /* OrderChooseMarketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F8E1E69198F0089B47A /* OrderChooseMarketController.swift */; };
-		5BD86F911E691B1A0089B47A /* CanteenBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F901E691B1A0089B47A /* CanteenBaseViewController.swift */; };
-		5BD86F931E691D470089B47A /* MarketLeftTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F921E691D470089B47A /* MarketLeftTableView.swift */; };
-		5BD86F951E691D620089B47A /* MarketRightTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F941E691D620089B47A /* MarketRightTableView.swift */; };
-		5BD86F971E693CC00089B47A /* ChooseMarcketRegionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F961E693CC00089B47A /* ChooseMarcketRegionCell.swift */; };
-		5BD86F991E6946C00089B47A /* ChooseMarketSquareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F981E6946C00089B47A /* ChooseMarketSquareCell.swift */; };
-		5BD86F9B1E69533B0089B47A /* OrderSquareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD86F9A1E69533B0089B47A /* OrderSquareModel.swift */; };
-		5BD9104A1E84EBA2004675AF /* OrderReserveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD910491E84EBA2004675AF /* OrderReserveModel.swift */; };
-		5BDA04C61E65512000B1B5B7 /* OrderFoodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA04C51E65512000B1B5B7 /* OrderFoodController.swift */; };
-		5BDA04C81E65518700B1B5B7 /* OrderPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA04C71E65518700B1B5B7 /* OrderPageCell.swift */; };
-		5BDA04CA1E65638900B1B5B7 /* OrderAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA04C91E65638900B1B5B7 /* OrderAddressCell.swift */; };
-		5BDA04CC1E65664700B1B5B7 /* OrderDetailAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA04CB1E65664700B1B5B7 /* OrderDetailAddressCell.swift */; };
-		5BDA04CE1E65688B00B1B5B7 /* OrderDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA04CD1E65688B00B1B5B7 /* OrderDescriptionCell.swift */; };
-		5BDA04D01E656DA000B1B5B7 /* OrderCommentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA04CF1E656DA000B1B5B7 /* OrderCommentHeader.swift */; };
 		5BDA96D71F146B40009D6325 /* ChangePassWordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA96D61F146B40009D6325 /* ChangePassWordController.swift */; };
 		5BDDD47C1F7BA70400755E7E /* SocialShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDD47B1F7BA70400755E7E /* SocialShareCell.swift */; };
 		5BDDD4801F7CC75B00755E7E /* YCScanManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDD47F1F7CC75B00755E7E /* YCScanManager.swift */; };
-		5BE11F481E829D5300E9681E /* OrderConfirmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE11F471E829D5300E9681E /* OrderConfirmModel.swift */; };
 		5BE1526F1F13643300FC74C2 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1526E1F13643300FC74C2 /* Reference.swift */; };
 		5BE152771F137DC300FC74C2 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE152721F137DC300FC74C2 /* Config.swift */; };
 		5BE152781F137DC300FC74C2 /* OverlayActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE152731F137DC300FC74C2 /* OverlayActionView.swift */; };
@@ -735,34 +681,11 @@
 		5BE1F2FB1EC94A3200717E20 /* YCLoadMoreCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1F2F91EC94A3200717E20 /* YCLoadMoreCollectionCell.swift */; };
 		5BE1F2FC1EC94A3200717E20 /* YCLoadMoreCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BE1F2FA1EC94A3200717E20 /* YCLoadMoreCollectionCell.xib */; };
 		5BE1F2FE1EC98F3500717E20 /* ShopFloorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE1F2FD1EC98F3500717E20 /* ShopFloorController.swift */; };
-		5BE30DB71E97620900CA404F /* OrderMyCouponController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE30DB61E97620900CA404F /* OrderMyCouponController.swift */; };
-		5BE30DB91E97660A00CA404F /* MyCouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE30DB81E97660A00CA404F /* MyCouponModel.swift */; };
 		5BE38DD61F1F3916002E3DAF /* ForgetPassWotdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE38DD51F1F3916002E3DAF /* ForgetPassWotdController.swift */; };
-		5BE3C7641E7384260037665D /* CanteenDropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3C7631E7384260037665D /* CanteenDropDownMenu.swift */; };
-		5BE3C7681E739EE00037665D /* OrderApplyRefundCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3C7671E739EE00037665D /* OrderApplyRefundCells.swift */; };
-		5BE3C76A1E73D7450037665D /* OrderFoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3C7691E73D7450037665D /* OrderFoodModel.swift */; };
-		5BE594D61EAF3C4C00896EF7 /* EatInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE594D51EAF3C4C00896EF7 /* EatInController.swift */; };
-		5BE594D81EB1879500896EF7 /* EatPayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE594D71EB1879500896EF7 /* EatPayController.swift */; };
-		5BE594DA1EB1E16A00896EF7 /* EatWebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE594D91EB1E16A00896EF7 /* EatWebController.swift */; };
-		5BE654061E6D4E98003CC59F /* CanteenHomeTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654051E6D4E98003CC59F /* CanteenHomeTypeCell.swift */; };
-		5BE654081E6D5313003CC59F /* CanteenHeaderScrollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654071E6D5313003CC59F /* CanteenHeaderScrollCell.swift */; };
-		5BE6540A1E6E3F0D003CC59F /* CanteenHeaderPagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654091E6E3F0D003CC59F /* CanteenHeaderPagerCell.swift */; };
-		5BE6540C1E6E4AD2003CC59F /* OrderMainPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6540B1E6E4AD2003CC59F /* OrderMainPageModel.swift */; };
 		5BE6542F1E6EA3A0003CC59F /* UIBarButtonItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654231E6EA3A0003CC59F /* UIBarButtonItem+WZLBadge.m */; };
 		5BE654301E6EA3A0003CC59F /* UITabBarItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654251E6EA3A0003CC59F /* UITabBarItem+WZLBadge.m */; };
 		5BE654311E6EA3A0003CC59F /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654281E6EA3A0003CC59F /* CAAnimation+WAnimation.m */; };
 		5BE654321E6EA3A0003CC59F /* UIView+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6542D1E6EA3A0003CC59F /* UIView+WZLBadge.m */; };
-		5BE654341E6EA5F9003CC59F /* OrderFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654331E6EA5F9003CC59F /* OrderFormController.swift */; };
-		5BE654361E6EB4BD003CC59F /* OrderFormCanUseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654351E6EB4BD003CC59F /* OrderFormCanUseController.swift */; };
-		5BE6543C1E6F8CFA003CC59F /* OrderCanUseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6543B1E6F8CFA003CC59F /* OrderCanUseCell.swift */; };
-		5BE6543E1E6FB26D003CC59F /* OrderProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6543D1E6FB26D003CC59F /* OrderProfileController.swift */; };
-		5BE654401E6FD644003CC59F /* OrderFormDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6543F1E6FD644003CC59F /* OrderFormDetailController.swift */; };
-		5BE654421E6FD87C003CC59F /* OrderNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654411E6FD87C003CC59F /* OrderNumberCell.swift */; };
-		5BE654441E700281003CC59F /* OrderShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654431E700281003CC59F /* OrderShareView.swift */; };
-		5BE654461E70F218003CC59F /* OrderConfirmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654451E70F218003CC59F /* OrderConfirmController.swift */; };
-		5BE654481E714DCC003CC59F /* OrderConfirmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654471E714DCC003CC59F /* OrderConfirmCell.swift */; };
-		5BE6544A1E715939003CC59F /* OrderMyCommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE654491E715939003CC59F /* OrderMyCommentController.swift */; };
-		5BE6544C1E7159BC003CC59F /* OrderMyCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6544B1E7159BC003CC59F /* OrderMyCommentCell.swift */; };
 		5BE6DD791E5681B600A6C9EC /* FSPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6DD731E5681B600A6C9EC /* FSPageControl.swift */; };
 		5BE6DD7A1E5681B600A6C9EC /* FSPagerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6DD741E5681B600A6C9EC /* FSPagerCollectionView.swift */; };
 		5BE6DD7B1E5681B600A6C9EC /* FSPagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6DD751E5681B600A6C9EC /* FSPagerView.swift */; };
@@ -770,13 +693,9 @@
 		5BE6DD7D1E5681B600A6C9EC /* FSPageViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6DD771E5681B600A6C9EC /* FSPageViewLayout.swift */; };
 		5BE6DD7E1E5681B600A6C9EC /* FSPageViewTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6DD781E5681B600A6C9EC /* FSPageViewTransformer.swift */; };
 		5BE6EB8F1F341395006A4F6D /* BouncyLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6EB8E1F341395006A4F6D /* BouncyLayout.swift */; };
-		5BE7BE3A1E8E303300854F0A /* CanteenShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE7BE391E8E303300854F0A /* CanteenShareModel.swift */; };
 		5BE82ED91F26D515006E377F /* ShopSbController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE82ED81F26D515006E377F /* ShopSbController.swift */; };
 		5BE9DCFF1E77798A0089A1C2 /* GoodsOptionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9DCFE1E77798A0089A1C2 /* GoodsOptionModel.m */; };
 		5BE9DD021E777A780089A1C2 /* SupermarketReleaseCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9DD011E777A780089A1C2 /* SupermarketReleaseCommentController.m */; };
-		5BE9DD041E7783730089A1C2 /* CanteenHomeTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9DD031E7783730089A1C2 /* CanteenHomeTypeController.swift */; };
-		5BE9DD061E778A2B0089A1C2 /* CanteenSegmentMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9DD051E778A2B0089A1C2 /* CanteenSegmentMenu.swift */; };
-		5BE9DD081E77D2410089A1C2 /* CanteenHomeTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9DD071E77D2410089A1C2 /* CanteenHomeTypeModel.swift */; };
 		5BEB2D091E2874B5003F94DF /* WSStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BEB2D081E2874B5003F94DF /* WSStarRatingView.m */; };
 		5BEBB6771DFAB73400367D77 /* AlamofireNetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBB6761DFAB73400367D77 /* AlamofireNetWork.swift */; };
 		5BEBED131ECD2A3D00F7EB36 /* FilterHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBED121ECD2A3D00F7EB36 /* FilterHeader.swift */; };
@@ -786,8 +705,6 @@
 		5BEBED1B1ECE8C1D00F7EB36 /* ShopCultureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBED1A1ECE8C1D00F7EB36 /* ShopCultureController.swift */; };
 		5BEBED1D1ECE9C2F00F7EB36 /* ShopMemberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBED1C1ECE9C2F00F7EB36 /* ShopMemberController.swift */; };
 		5BEBED1F1ECEA06500F7EB36 /* ShopConsultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBED1E1ECEA06500F7EB36 /* ShopConsultController.swift */; };
-		5BEBFC161EF4D3B400D4DAF7 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBFC151EF4D3B400D4DAF7 /* PreviewViewController.swift */; };
-		5BEC6A101EAC8D8000D86A14 /* EatShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEC6A0F1EAC8D8000D86A14 /* EatShareModel.swift */; };
 		5BEC6A121EADE2E900D86A14 /* YCRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEC6A111EADE2E900D86A14 /* YCRoute.swift */; };
 		5BEC72381E46F0D8007D519D /* YCDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEC72371E46F0D8007D519D /* YCDownloadManager.swift */; };
 		5BEC723A1E46F725007D519D /* YCFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEC72391E46F725007D519D /* YCFileModel.swift */; };
@@ -795,7 +712,6 @@
 		5BED7BCC1F68B9A600CE31D6 /* YCDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED7BCB1F68B9A600CE31D6 /* YCDataManager.swift */; };
 		5BED7BCE1F690FD200CE31D6 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BED7BCD1F690FD200CE31D6 /* UMMobClick.framework */; };
 		5BED7BD01F69104900CE31D6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BED7BCF1F69104900CE31D6 /* libsqlite3.tbd */; };
-		5BEE026E1E725A090086CA8A /* OrderMyCollectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEE026D1E725A090086CA8A /* OrderMyCollectController.swift */; };
 		5BEF65A31F208C0500817141 /* CosmosAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF65921F208C0500817141 /* CosmosAccessibility.swift */; };
 		5BEF65A41F208C0500817141 /* CosmosDefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF65931F208C0500817141 /* CosmosDefaultSettings.swift */; };
 		5BEF65A51F208C0500817141 /* CosmosLayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF65941F208C0500817141 /* CosmosLayerHelper.swift */; };
@@ -935,7 +851,6 @@
 		1B0CD2F41E8E0B40008AF162 /* HotelCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotelCalendarView.m; sourceTree = "<group>"; };
 		1B0CD2F71E8E261E008AF162 /* HotelSeachViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelSeachViewController.h; sourceTree = "<group>"; };
 		1B0CD2F81E8E261E008AF162 /* HotelSeachViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotelSeachViewController.m; sourceTree = "<group>"; };
-		1B12C7891E7F603100D89DBB /* OrderMenuModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderMenuModel.swift; sourceTree = "<group>"; };
 		1B12C78B1E7F720A00D89DBB /* UIButton+CreateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CreateButton.h"; sourceTree = "<group>"; };
 		1B12C78C1E7F720A00D89DBB /* UIButton+CreateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CreateButton.m"; sourceTree = "<group>"; };
 		1B12C78E1E7FA31E00D89DBB /* RefundListData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefundListData.h; sourceTree = "<group>"; };
@@ -1528,14 +1443,6 @@
 		1B52E46D1E7BD699008B0B75 /* RefundDetailTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefundDetailTableView.m; sourceTree = "<group>"; };
 		1B52E46F1E7BD8D3008B0B75 /* RefundDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefundDetailTableViewCell.h; sourceTree = "<group>"; };
 		1B52E4701E7BD8D3008B0B75 /* RefundDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefundDetailTableViewCell.m; sourceTree = "<group>"; };
-		1B54464E1E617338001D84AE /* CanteenBaseNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenBaseNavController.swift; sourceTree = "<group>"; };
-		1B54464F1E617338001D84AE /* CanteenTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenTableView.swift; sourceTree = "<group>"; };
-		1B5446501E617338001D84AE /* CanteenTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenTableViewController.swift; sourceTree = "<group>"; };
-		1B5446521E617338001D84AE /* CantennTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CantennTabBarController.swift; sourceTree = "<group>"; };
-		1B5446541E617338001D84AE /* YCCanteenHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCCanteenHomeController.swift; sourceTree = "<group>"; };
-		1B5446571E617338001D84AE /* CanteenHomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenHomeCell.swift; sourceTree = "<group>"; };
-		1B5446581E617338001D84AE /* CanteenHomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CanteenHomeCell.xib; sourceTree = "<group>"; };
-		1B5446591E617338001D84AE /* HomeNaviView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNaviView.swift; sourceTree = "<group>"; };
 		1B5446621E6183BB001D84AE /* KLBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLBaseNavigationController.h; sourceTree = "<group>"; };
 		1B5446631E6183BB001D84AE /* KLBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLBaseNavigationController.m; sourceTree = "<group>"; };
 		1B5461161EA74CBB00E16169 /* HotelOrderListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelOrderListModel.h; sourceTree = "<group>"; };
@@ -1908,7 +1815,6 @@
 		1BEF69DA1E94B53200CE3434 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1BEF69DC1E94B54300CE3434 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		1BEF69DE1E94B55200CE3434 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		1BF1138E1E497BD70084DA06 /* m.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = m.jpg; sourceTree = "<group>"; };
 		1BF3F7461F283E7300EA44FB /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		1BF3F7471F283E7300EA44FB /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1BF3F7481F283E8000EA44FB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -2061,11 +1967,6 @@
 		5B3ADBFF1E2CB80C003A6F4C /* KLTabOnlineVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLTabOnlineVideoView.m; sourceTree = "<group>"; };
 		5B4292351DFE3F1E000C242B /* UINavigationController + YC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController + YC.swift"; sourceTree = "<group>"; };
 		5B4292371DFE80E2000C242B /* YCAccountModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCAccountModel.swift; sourceTree = "<group>"; };
-		5B484B631EA5FCB700EB7E22 /* OrderTogetherController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTogetherController.swift; sourceTree = "<group>"; };
-		5B484B651EA6F66800EB7E22 /* EatTogetherController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EatTogetherController.swift; sourceTree = "<group>"; };
-		5B484B671EA7067800EB7E22 /* EatGroupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EatGroupModel.swift; sourceTree = "<group>"; };
-		5B484B691EA9F04B00EB7E22 /* EatTogetherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EatTogetherModel.swift; sourceTree = "<group>"; };
-		5B56A5F31E9B51F5008D9B26 /* OrderPointController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderPointController.swift; sourceTree = "<group>"; };
 		5B57ED6B1FB55EDC00598252 /* DCQRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DCQRCode.swift; sourceTree = "<group>"; };
 		5B57ED6C1FB55EDC00598252 /* FunctionalCoreImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionalCoreImage.swift; sourceTree = "<group>"; };
 		5B5989CA1E9F257300F70125 /* BrightnessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrightnessView.swift; sourceTree = "<group>"; };
@@ -2077,14 +1978,11 @@
 		5B5989D11E9F583700F70125 /* MMMaterialDesignSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMaterialDesignSpinner.m; sourceTree = "<group>"; };
 		5B5989D51E9F662300F70125 /* PlayDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayDelegate.swift; sourceTree = "<group>"; };
 		5B5989D71EA1AB8100F70125 /* PlayControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayControlView.swift; sourceTree = "<group>"; };
-		5B5B2BA21E88E707002F9865 /* CanteenFavoriteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenFavoriteModel.swift; sourceTree = "<group>"; };
 		5B5C0EB31EC54E08004F8C5D /* ShopHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopHomeController.swift; sourceTree = "<group>"; };
 		5B5C0EB51EC56286004F8C5D /* ShopHomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopHomeModel.swift; sourceTree = "<group>"; };
 		5B5C0EB71EC58BE1004F8C5D /* ShopTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopTableViewController.swift; sourceTree = "<group>"; };
 		5B5F882B1DF24EEE00EBD763 /* YCTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCTextField.swift; sourceTree = "<group>"; };
 		5B5F882F1DF2651600EBD763 /* YCNewMemberController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCNewMemberController.swift; sourceTree = "<group>"; };
-		5B5FF4171E7669CC0013F84B /* ReservationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationController.swift; sourceTree = "<group>"; };
-		5B5FF4191E766AE00013F84B /* ReservationControllerCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationControllerCells.swift; sourceTree = "<group>"; };
 		5B6091971EC6A67800000433 /* ShopBrandController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopBrandController.swift; sourceTree = "<group>"; };
 		5B6091991EC6A6CC00000433 /* ShopCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopCollectionViewController.swift; sourceTree = "<group>"; };
 		5B60919B1EC6AC7B00000433 /* ShopBrandModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopBrandModel.swift; sourceTree = "<group>"; };
@@ -2092,19 +1990,11 @@
 		5B60919F1EC6DE1F00000433 /* ShopBrandFilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopBrandFilterCell.swift; sourceTree = "<group>"; };
 		5B6091A11EC6F61F00000433 /* ShopBrandFilterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopBrandFilterModel.swift; sourceTree = "<group>"; };
 		5B62F6F21E021E2400E0B8EF /* YCFPSLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCFPSLabel.swift; sourceTree = "<group>"; };
-		5B693E6D1E6A8C9E00732F6B /* OrderMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderMenuController.swift; sourceTree = "<group>"; };
-		5B693E6F1E6A981B00732F6B /* FoodTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTypeCell.swift; sourceTree = "<group>"; };
-		5B693E711E6A9B4300732F6B /* MenuFoodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuFoodCell.swift; sourceTree = "<group>"; };
-		5B693E731E6AA4DD00732F6B /* OrderMenuBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderMenuBottomView.swift; sourceTree = "<group>"; };
-		5B693E751E6AA84B00732F6B /* OrderMenuTableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderMenuTableHeader.swift; sourceTree = "<group>"; };
-		5B6A88871E80071900BCED9F /* CanteenAllOrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenAllOrderModel.swift; sourceTree = "<group>"; };
-		5B6A88891E81243100BCED9F /* CanteenNeedLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenNeedLoginView.swift; sourceTree = "<group>"; };
 		5B6F59531EFBBE4800D1DE90 /* YCIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCIndicator.swift; sourceTree = "<group>"; };
 		5B76BB731E00CA0F00F1F30B /* AdvertisementController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertisementController.swift; sourceTree = "<group>"; };
 		5B76BB741E00CA0F00F1F30B /* WelcomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
 		5B76BB771E00CAFD00F1F30B /* WelcomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeModel.swift; sourceTree = "<group>"; };
 		5B76BB7B1E01003100F1F30B /* YCCancelableTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCCancelableTask.swift; sourceTree = "<group>"; };
-		5B78E4BC1E88BC1100E5D095 /* CanteenCommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenCommentModel.swift; sourceTree = "<group>"; };
 		5B7DCAF71DEFBFFC00F1D2AB /* UIButton + YC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton + YC.swift"; sourceTree = "<group>"; };
 		5B7DCAF91DEFEAE900F1D2AB /* YCWebViewClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCWebViewClass.swift; sourceTree = "<group>"; };
 		5B7DCAFB1DF0013300F1D2AB /* YCTableFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCTableFooterView.swift; sourceTree = "<group>"; };
@@ -2141,7 +2031,6 @@
 		5B9CBDDA1DE6CE7C0071A3B5 /* YCConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCConcurrentOperation.swift; sourceTree = "<group>"; };
 		5B9CBDDC1DE7DBB70071A3B5 /* YCGCDTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCGCDTimer.swift; sourceTree = "<group>"; };
 		5B9CBDDE1DE7FABE0071A3B5 /* YCImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCImageCache.swift; sourceTree = "<group>"; };
-		5B9D74DA1E9B665100A672BF /* MyPointModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPointModel.swift; sourceTree = "<group>"; };
 		5BAD6A981E0CBF4900E43EAE /* PersonalMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalMessageController.swift; sourceTree = "<group>"; };
 		5BAD6A9C1E0CC65000E43EAE /* PersonalNewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalNewsCell.swift; sourceTree = "<group>"; };
 		5BAD6A9E1E0CCC0B00E43EAE /* PersonalCommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalCommentController.swift; sourceTree = "<group>"; };
@@ -2174,36 +2063,9 @@
 		5BD429401DF1010700EE62DE /* YCLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCLoginViewController.swift; sourceTree = "<group>"; };
 		5BD429431DF1013700EE62DE /* YCSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCSegmentView.swift; sourceTree = "<group>"; };
 		5BD429451DF1033A00EE62DE /* YCSegMentTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCSegMentTitleCell.swift; sourceTree = "<group>"; };
-		5BD86F1B1E66AEE30089B47A /* OrderCommentDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCommentDetailCell.swift; sourceTree = "<group>"; };
-		5BD86F1D1E66B83B0089B47A /* OrderCommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCommentController.swift; sourceTree = "<group>"; };
-		5BD86F1F1E66BD9A0089B47A /* TotalPointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TotalPointCell.swift; sourceTree = "<group>"; };
-		5BD86F211E66C31F0089B47A /* CommentTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTextCell.swift; sourceTree = "<group>"; };
-		5BD86F231E66C52C0089B47A /* UpdatePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePhotoCell.swift; sourceTree = "<group>"; };
-		5BD86F251E67A6D90089B47A /* OrderSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderSearchController.swift; sourceTree = "<group>"; };
-		5BD86F271E67A72F0089B47A /* OrderSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderSearchCell.swift; sourceTree = "<group>"; };
-		5BD86F841E6800280089B47A /* OrderLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationController.swift; sourceTree = "<group>"; };
-		5BD86F861E68014B0089B47A /* OrderLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationCell.swift; sourceTree = "<group>"; };
-		5BD86F881E6808C40089B47A /* OrderCurrentLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCurrentLocationCell.swift; sourceTree = "<group>"; };
-		5BD86F8A1E680E340089B47A /* OrderHeaderReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHeaderReusableView.swift; sourceTree = "<group>"; };
-		5BD86F8C1E68F90D0089B47A /* OrderLocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationModel.swift; sourceTree = "<group>"; };
-		5BD86F8E1E69198F0089B47A /* OrderChooseMarketController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderChooseMarketController.swift; sourceTree = "<group>"; };
-		5BD86F901E691B1A0089B47A /* CanteenBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenBaseViewController.swift; sourceTree = "<group>"; };
-		5BD86F921E691D470089B47A /* MarketLeftTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketLeftTableView.swift; sourceTree = "<group>"; };
-		5BD86F941E691D620089B47A /* MarketRightTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketRightTableView.swift; sourceTree = "<group>"; };
-		5BD86F961E693CC00089B47A /* ChooseMarcketRegionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseMarcketRegionCell.swift; sourceTree = "<group>"; };
-		5BD86F981E6946C00089B47A /* ChooseMarketSquareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseMarketSquareCell.swift; sourceTree = "<group>"; };
-		5BD86F9A1E69533B0089B47A /* OrderSquareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderSquareModel.swift; sourceTree = "<group>"; };
-		5BD910491E84EBA2004675AF /* OrderReserveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderReserveModel.swift; sourceTree = "<group>"; };
-		5BDA04C51E65512000B1B5B7 /* OrderFoodController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderFoodController.swift; sourceTree = "<group>"; };
-		5BDA04C71E65518700B1B5B7 /* OrderPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderPageCell.swift; sourceTree = "<group>"; };
-		5BDA04C91E65638900B1B5B7 /* OrderAddressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderAddressCell.swift; sourceTree = "<group>"; };
-		5BDA04CB1E65664700B1B5B7 /* OrderDetailAddressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailAddressCell.swift; sourceTree = "<group>"; };
-		5BDA04CD1E65688B00B1B5B7 /* OrderDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDescriptionCell.swift; sourceTree = "<group>"; };
-		5BDA04CF1E656DA000B1B5B7 /* OrderCommentHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCommentHeader.swift; sourceTree = "<group>"; };
 		5BDA96D61F146B40009D6325 /* ChangePassWordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePassWordController.swift; sourceTree = "<group>"; };
 		5BDDD47B1F7BA70400755E7E /* SocialShareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialShareCell.swift; sourceTree = "<group>"; };
 		5BDDD47F1F7CC75B00755E7E /* YCScanManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YCScanManager.swift; sourceTree = "<group>"; };
-		5BE11F471E829D5300E9681E /* OrderConfirmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderConfirmModel.swift; sourceTree = "<group>"; };
 		5BE1526E1F13643300FC74C2 /* Reference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
 		5BE152721F137DC300FC74C2 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		5BE152731F137DC300FC74C2 /* OverlayActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayActionView.swift; sourceTree = "<group>"; };
@@ -2221,19 +2083,7 @@
 		5BE1F2F91EC94A3200717E20 /* YCLoadMoreCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCLoadMoreCollectionCell.swift; sourceTree = "<group>"; };
 		5BE1F2FA1EC94A3200717E20 /* YCLoadMoreCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YCLoadMoreCollectionCell.xib; sourceTree = "<group>"; };
 		5BE1F2FD1EC98F3500717E20 /* ShopFloorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopFloorController.swift; sourceTree = "<group>"; };
-		5BE30DB61E97620900CA404F /* OrderMyCouponController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderMyCouponController.swift; sourceTree = "<group>"; };
-		5BE30DB81E97660A00CA404F /* MyCouponModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCouponModel.swift; sourceTree = "<group>"; };
 		5BE38DD51F1F3916002E3DAF /* ForgetPassWotdController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPassWotdController.swift; sourceTree = "<group>"; };
-		5BE3C7631E7384260037665D /* CanteenDropDownMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenDropDownMenu.swift; sourceTree = "<group>"; };
-		5BE3C7671E739EE00037665D /* OrderApplyRefundCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderApplyRefundCells.swift; sourceTree = "<group>"; };
-		5BE3C7691E73D7450037665D /* OrderFoodModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderFoodModel.swift; sourceTree = "<group>"; };
-		5BE594D51EAF3C4C00896EF7 /* EatInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EatInController.swift; sourceTree = "<group>"; };
-		5BE594D71EB1879500896EF7 /* EatPayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EatPayController.swift; sourceTree = "<group>"; };
-		5BE594D91EB1E16A00896EF7 /* EatWebController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EatWebController.swift; sourceTree = "<group>"; };
-		5BE654051E6D4E98003CC59F /* CanteenHomeTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenHomeTypeCell.swift; sourceTree = "<group>"; };
-		5BE654071E6D5313003CC59F /* CanteenHeaderScrollCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenHeaderScrollCell.swift; sourceTree = "<group>"; };
-		5BE654091E6E3F0D003CC59F /* CanteenHeaderPagerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenHeaderPagerCell.swift; sourceTree = "<group>"; };
-		5BE6540B1E6E4AD2003CC59F /* OrderMainPageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderMainPageModel.swift; sourceTree = "<group>"; };
 		5BE654221E6EA3A0003CC59F /* UIBarButtonItem+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WZLBadge.h"; sourceTree = "<group>"; };
 		5BE654231E6EA3A0003CC59F /* UIBarButtonItem+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+WZLBadge.m"; sourceTree = "<group>"; };
 		5BE654241E6EA3A0003CC59F /* UITabBarItem+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+WZLBadge.h"; sourceTree = "<group>"; };
@@ -2244,17 +2094,6 @@
 		5BE6542C1E6EA3A0003CC59F /* UIView+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WZLBadge.h"; sourceTree = "<group>"; };
 		5BE6542D1E6EA3A0003CC59F /* UIView+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WZLBadge.m"; sourceTree = "<group>"; };
 		5BE6542E1E6EA3A0003CC59F /* WZLBadgeImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLBadgeImport.h; sourceTree = "<group>"; };
-		5BE654331E6EA5F9003CC59F /* OrderFormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderFormController.swift; sourceTree = "<group>"; };
-		5BE654351E6EB4BD003CC59F /* OrderFormCanUseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderFormCanUseController.swift; sourceTree = "<group>"; };
-		5BE6543B1E6F8CFA003CC59F /* OrderCanUseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCanUseCell.swift; sourceTree = "<group>"; };
-		5BE6543D1E6FB26D003CC59F /* OrderProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderProfileController.swift; sourceTree = "<group>"; };
-		5BE6543F1E6FD644003CC59F /* OrderFormDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderFormDetailController.swift; sourceTree = "<group>"; };
-		5BE654411E6FD87C003CC59F /* OrderNumberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderNumberCell.swift; sourceTree = "<group>"; };
-		5BE654431E700281003CC59F /* OrderShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderShareView.swift; sourceTree = "<group>"; };
-		5BE654451E70F218003CC59F /* OrderConfirmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderConfirmController.swift; sourceTree = "<group>"; };
-		5BE654471E714DCC003CC59F /* OrderConfirmCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderConfirmCell.swift; sourceTree = "<group>"; };
-		5BE654491E715939003CC59F /* OrderMyCommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderMyCommentController.swift; sourceTree = "<group>"; };
-		5BE6544B1E7159BC003CC59F /* OrderMyCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderMyCommentCell.swift; sourceTree = "<group>"; };
 		5BE6DD731E5681B600A6C9EC /* FSPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageControl.swift; sourceTree = "<group>"; };
 		5BE6DD741E5681B600A6C9EC /* FSPagerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerCollectionView.swift; sourceTree = "<group>"; };
 		5BE6DD751E5681B600A6C9EC /* FSPagerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerView.swift; sourceTree = "<group>"; };
@@ -2262,15 +2101,11 @@
 		5BE6DD771E5681B600A6C9EC /* FSPageViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageViewLayout.swift; sourceTree = "<group>"; };
 		5BE6DD781E5681B600A6C9EC /* FSPageViewTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageViewTransformer.swift; sourceTree = "<group>"; };
 		5BE6EB8E1F341395006A4F6D /* BouncyLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BouncyLayout.swift; sourceTree = "<group>"; };
-		5BE7BE391E8E303300854F0A /* CanteenShareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenShareModel.swift; sourceTree = "<group>"; };
 		5BE82ED81F26D515006E377F /* ShopSbController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopSbController.swift; sourceTree = "<group>"; };
 		5BE9DCFD1E77798A0089A1C2 /* GoodsOptionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsOptionModel.h; sourceTree = "<group>"; };
 		5BE9DCFE1E77798A0089A1C2 /* GoodsOptionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsOptionModel.m; sourceTree = "<group>"; };
 		5BE9DD001E777A780089A1C2 /* SupermarketReleaseCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupermarketReleaseCommentController.h; sourceTree = "<group>"; };
 		5BE9DD011E777A780089A1C2 /* SupermarketReleaseCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupermarketReleaseCommentController.m; sourceTree = "<group>"; };
-		5BE9DD031E7783730089A1C2 /* CanteenHomeTypeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenHomeTypeController.swift; sourceTree = "<group>"; };
-		5BE9DD051E778A2B0089A1C2 /* CanteenSegmentMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenSegmentMenu.swift; sourceTree = "<group>"; };
-		5BE9DD071E77D2410089A1C2 /* CanteenHomeTypeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanteenHomeTypeModel.swift; sourceTree = "<group>"; };
 		5BEB2D071E2874B5003F94DF /* WSStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSStarRatingView.h; sourceTree = "<group>"; };
 		5BEB2D081E2874B5003F94DF /* WSStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSStarRatingView.m; sourceTree = "<group>"; };
 		5BEBB6761DFAB73400367D77 /* AlamofireNetWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireNetWork.swift; sourceTree = "<group>"; };
@@ -2281,8 +2116,6 @@
 		5BEBED1A1ECE8C1D00F7EB36 /* ShopCultureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopCultureController.swift; sourceTree = "<group>"; };
 		5BEBED1C1ECE9C2F00F7EB36 /* ShopMemberController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopMemberController.swift; sourceTree = "<group>"; };
 		5BEBED1E1ECEA06500F7EB36 /* ShopConsultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopConsultController.swift; sourceTree = "<group>"; };
-		5BEBFC151EF4D3B400D4DAF7 /* PreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
-		5BEC6A0F1EAC8D8000D86A14 /* EatShareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EatShareModel.swift; sourceTree = "<group>"; };
 		5BEC6A111EADE2E900D86A14 /* YCRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCRoute.swift; sourceTree = "<group>"; };
 		5BEC72371E46F0D8007D519D /* YCDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCDownloadManager.swift; sourceTree = "<group>"; };
 		5BEC72391E46F725007D519D /* YCFileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCFileModel.swift; sourceTree = "<group>"; };
@@ -2290,7 +2123,6 @@
 		5BED7BCB1F68B9A600CE31D6 /* YCDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCDataManager.swift; sourceTree = "<group>"; };
 		5BED7BCD1F690FD200CE31D6 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMMobClick.framework; sourceTree = "<group>"; };
 		5BED7BCF1F69104900CE31D6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		5BEE026D1E725A090086CA8A /* OrderMyCollectController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderMyCollectController.swift; sourceTree = "<group>"; };
 		5BEF65911F208C0500817141 /* Cosmos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cosmos.h; sourceTree = "<group>"; };
 		5BEF65921F208C0500817141 /* CosmosAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosAccessibility.swift; sourceTree = "<group>"; };
 		5BEF65931F208C0500817141 /* CosmosDefaultSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosDefaultSettings.swift; sourceTree = "<group>"; };
@@ -4050,137 +3882,6 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		1B54464C1E617338001D84AE /* YCCanteen */ = {
-			isa = PBXGroup;
-			children = (
-				1B54464D1E617338001D84AE /* CanteenBaseNavigation */,
-				1B5446511E617338001D84AE /* CantennTabController */,
-				1B5446531E617338001D84AE /* Controller */,
-				1B5446551E617338001D84AE /* Model */,
-				1B5446561E617338001D84AE /* View */,
-			);
-			name = YCCanteen;
-			path = Base/YCCanteen;
-			sourceTree = "<group>";
-		};
-		1B54464D1E617338001D84AE /* CanteenBaseNavigation */ = {
-			isa = PBXGroup;
-			children = (
-				1B54464E1E617338001D84AE /* CanteenBaseNavController.swift */,
-				5BD86F901E691B1A0089B47A /* CanteenBaseViewController.swift */,
-				1B54464F1E617338001D84AE /* CanteenTableView.swift */,
-				1B5446501E617338001D84AE /* CanteenTableViewController.swift */,
-			);
-			path = CanteenBaseNavigation;
-			sourceTree = "<group>";
-		};
-		1B5446511E617338001D84AE /* CantennTabController */ = {
-			isa = PBXGroup;
-			children = (
-				1B5446521E617338001D84AE /* CantennTabBarController.swift */,
-			);
-			path = CantennTabController;
-			sourceTree = "<group>";
-		};
-		1B5446531E617338001D84AE /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1B5446541E617338001D84AE /* YCCanteenHomeController.swift */,
-				5BEBFC151EF4D3B400D4DAF7 /* PreviewViewController.swift */,
-				5BE9DD031E7783730089A1C2 /* CanteenHomeTypeController.swift */,
-				5BDA04C51E65512000B1B5B7 /* OrderFoodController.swift */,
-				5B5FF4171E7669CC0013F84B /* ReservationController.swift */,
-				5BD86F1D1E66B83B0089B47A /* OrderCommentController.swift */,
-				5BD86F251E67A6D90089B47A /* OrderSearchController.swift */,
-				5BD86F841E6800280089B47A /* OrderLocationController.swift */,
-				5BD86F8E1E69198F0089B47A /* OrderChooseMarketController.swift */,
-				5B693E6D1E6A8C9E00732F6B /* OrderMenuController.swift */,
-				5BE654331E6EA5F9003CC59F /* OrderFormController.swift */,
-				5BE654351E6EB4BD003CC59F /* OrderFormCanUseController.swift */,
-				5BE6543F1E6FD644003CC59F /* OrderFormDetailController.swift */,
-				5B484B631EA5FCB700EB7E22 /* OrderTogetherController.swift */,
-				5B484B651EA6F66800EB7E22 /* EatTogetherController.swift */,
-				5BE594D51EAF3C4C00896EF7 /* EatInController.swift */,
-				5BE594D71EB1879500896EF7 /* EatPayController.swift */,
-				5BE594D91EB1E16A00896EF7 /* EatWebController.swift */,
-				5BE6543D1E6FB26D003CC59F /* OrderProfileController.swift */,
-				5BE654451E70F218003CC59F /* OrderConfirmController.swift */,
-				5BE654491E715939003CC59F /* OrderMyCommentController.swift */,
-				5BEE026D1E725A090086CA8A /* OrderMyCollectController.swift */,
-				5BE30DB61E97620900CA404F /* OrderMyCouponController.swift */,
-				5B56A5F31E9B51F5008D9B26 /* OrderPointController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1B5446551E617338001D84AE /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				5BD910491E84EBA2004675AF /* OrderReserveModel.swift */,
-				5BD86F8C1E68F90D0089B47A /* OrderLocationModel.swift */,
-				5BD86F9A1E69533B0089B47A /* OrderSquareModel.swift */,
-				5BE6540B1E6E4AD2003CC59F /* OrderMainPageModel.swift */,
-				5BE3C7691E73D7450037665D /* OrderFoodModel.swift */,
-				5BE9DD071E77D2410089A1C2 /* CanteenHomeTypeModel.swift */,
-				1B12C7891E7F603100D89DBB /* OrderMenuModel.swift */,
-				5B6A88871E80071900BCED9F /* CanteenAllOrderModel.swift */,
-				5BE11F471E829D5300E9681E /* OrderConfirmModel.swift */,
-				5B78E4BC1E88BC1100E5D095 /* CanteenCommentModel.swift */,
-				5B5B2BA21E88E707002F9865 /* CanteenFavoriteModel.swift */,
-				5BE7BE391E8E303300854F0A /* CanteenShareModel.swift */,
-				5BE30DB81E97660A00CA404F /* MyCouponModel.swift */,
-				5B9D74DA1E9B665100A672BF /* MyPointModel.swift */,
-				5B484B671EA7067800EB7E22 /* EatGroupModel.swift */,
-				5B484B691EA9F04B00EB7E22 /* EatTogetherModel.swift */,
-				5BEC6A0F1EAC8D8000D86A14 /* EatShareModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1B5446561E617338001D84AE /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1B5446571E617338001D84AE /* CanteenHomeCell.swift */,
-				1B5446581E617338001D84AE /* CanteenHomeCell.xib */,
-				5B6A88891E81243100BCED9F /* CanteenNeedLoginView.swift */,
-				5BE3C7631E7384260037665D /* CanteenDropDownMenu.swift */,
-				5BE654051E6D4E98003CC59F /* CanteenHomeTypeCell.swift */,
-				5BE654071E6D5313003CC59F /* CanteenHeaderScrollCell.swift */,
-				5BE654091E6E3F0D003CC59F /* CanteenHeaderPagerCell.swift */,
-				1B5446591E617338001D84AE /* HomeNaviView.swift */,
-				5BDA04C71E65518700B1B5B7 /* OrderPageCell.swift */,
-				5BDA04C91E65638900B1B5B7 /* OrderAddressCell.swift */,
-				5BDA04CB1E65664700B1B5B7 /* OrderDetailAddressCell.swift */,
-				5BDA04CD1E65688B00B1B5B7 /* OrderDescriptionCell.swift */,
-				5BDA04CF1E656DA000B1B5B7 /* OrderCommentHeader.swift */,
-				5BD86F1B1E66AEE30089B47A /* OrderCommentDetailCell.swift */,
-				5BD86F1F1E66BD9A0089B47A /* TotalPointCell.swift */,
-				5BD86F211E66C31F0089B47A /* CommentTextCell.swift */,
-				5BD86F231E66C52C0089B47A /* UpdatePhotoCell.swift */,
-				5BD86F271E67A72F0089B47A /* OrderSearchCell.swift */,
-				5BD86F861E68014B0089B47A /* OrderLocationCell.swift */,
-				5BD86F881E6808C40089B47A /* OrderCurrentLocationCell.swift */,
-				5BD86F8A1E680E340089B47A /* OrderHeaderReusableView.swift */,
-				5BD86F921E691D470089B47A /* MarketLeftTableView.swift */,
-				5BD86F941E691D620089B47A /* MarketRightTableView.swift */,
-				5BD86F961E693CC00089B47A /* ChooseMarcketRegionCell.swift */,
-				5BD86F981E6946C00089B47A /* ChooseMarketSquareCell.swift */,
-				5B693E6F1E6A981B00732F6B /* FoodTypeCell.swift */,
-				5B693E711E6A9B4300732F6B /* MenuFoodCell.swift */,
-				5B693E731E6AA4DD00732F6B /* OrderMenuBottomView.swift */,
-				5B693E751E6AA84B00732F6B /* OrderMenuTableHeader.swift */,
-				5BE6543B1E6F8CFA003CC59F /* OrderCanUseCell.swift */,
-				5BE654411E6FD87C003CC59F /* OrderNumberCell.swift */,
-				5BE654431E700281003CC59F /* OrderShareView.swift */,
-				5BE654471E714DCC003CC59F /* OrderConfirmCell.swift */,
-				5BE6544B1E7159BC003CC59F /* OrderMyCommentCell.swift */,
-				5BE3C7671E739EE00037665D /* OrderApplyRefundCells.swift */,
-				5B5FF4191E766AE00013F84B /* ReservationControllerCells.swift */,
-				5BE9DD051E778A2B0089A1C2 /* CanteenSegmentMenu.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		1B54611C1EA9D84600E16169 /* HotelQRCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -4947,24 +4648,6 @@
 				1BC8768E1E977A0200BB38D7 /* HotelSearchLeftTableViewCell.xib */,
 			);
 			name = View;
-			sourceTree = "<group>";
-		};
-		1BF113791E4959D80084DA06 /* Canteen */ = {
-			isa = PBXGroup;
-			children = (
-				1B54464C1E617338001D84AE /* YCCanteen */,
-				1BF1138E1E497BD70084DA06 /* m.jpg */,
-				1BF1137E1E495A3B0084DA06 /* Base */,
-			);
-			name = Canteen;
-			path = Portal/Canteen;
-			sourceTree = "<group>";
-		};
-		1BF1137E1E495A3B0084DA06 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Base;
 			sourceTree = "<group>";
 		};
 		1BFEF3461E5BDD3500D1CA0C /* Share */ = {
@@ -5802,7 +5485,6 @@
 				1BBF76B11E6418D400BF0AA9 /* Backup */,
 				1BFEF3461E5BDD3500D1CA0C /* Share */,
 				5BF1A2011EC44F98004A0DA5 /* Shop */,
-				1BF113791E4959D80084DA06 /* Canteen */,
 				1B392D9A1E28D14D00F70981 /* Supermarket */,
 				1B196FD11E20803300E54D95 /* Media */,
 				5B8476961DFF9372005DE66C /* PrefixHeader.pch */,
@@ -6158,11 +5840,9 @@
 				1B392F011E28D14E00F70981 /* SupermarketHomeWantBuyCollectionViewCell.xib in Resources */,
 				1B8059981E4AB2E300D58E92 /* SupermarketApplyRefundCell.xib in Resources */,
 				5B1E634B1DED667C005DDFB2 /* YCLoadMoreCell.xib in Resources */,
-				1B5446601E617338001D84AE /* CanteenHomeCell.xib in Resources */,
 				1B392EF61E28D14E00F70981 /* SupermarketHomePanicBuyingCell.xib in Resources */,
 				6275E85F1DDC692000656E2D /* Main.storyboard in Resources */,
 				1B392F621E28D14E00F70981 /* cart_selected_btn@3x.png in Resources */,
-				1BF1138F1E497BD70084DA06 /* m.jpg in Resources */,
 				1BF3F74C1F283EDC00EA44FB /* Localizable.strings in Resources */,
 				5BAD6AA51E0D00A900E43EAE /* PersonalStarHeaderCell.xib in Resources */,
 				1B392EDA1E28D14E00F70981 /* SupermarketCommentPicCell.xib in Resources */,
@@ -6381,11 +6061,8 @@
 			files = (
 				26CFF65C2004B1A600A10F91 /* RSOTCCollectionViewCell.m in Sources */,
 				269CA6F120020555009E6C54 /* AppDelegate.swift in Sources */,
-				5BE6540C1E6E4AD2003CC59F /* OrderMainPageModel.swift in Sources */,
-				5BD86F991E6946C00089B47A /* ChooseMarketSquareCell.swift in Sources */,
 				5BC13C611E10F4AB00985C41 /* Avatar.swift in Sources */,
 				1B392F671E28D14E00F70981 /* LZCartViewController.m in Sources */,
-				5BE9DD041E7783730089A1C2 /* CanteenHomeTypeController.swift in Sources */,
 				267DAA931EA213EE00299E74 /* HotelSpecificTableCell.m in Sources */,
 				1B861F801E53E06C00A1928B /* CountDown.m in Sources */,
 				1B0CD2F01E8E0693008AF162 /* MSSCalendarViewController.m in Sources */,
@@ -6397,14 +6074,12 @@
 				5B0744CD1F6F9E0000C66C2A /* SetLanguageController.swift in Sources */,
 				5BF0A9D41E0B78FB0035B517 /* PersonalCenterController.swift in Sources */,
 				1B392EEE1E28D14E00F70981 /* UIColor+PYExtension.m in Sources */,
-				1B54465C1E617338001D84AE /* CanteenTableViewController.swift in Sources */,
 				1BC876731E973AA300BB38D7 /* AlipayRequestConfig.m in Sources */,
 				5BD123111ECC3707004A422E /* ShopFloorDetailController.swift in Sources */,
 				1B392D6E1E28D0E500F70981 /* AMTagView.m in Sources */,
 				1B3C971D1E29F3D400517684 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				1B022D611F21A20400129849 /* ZoomingImageView.m in Sources */,
 				1B392D721E28D0E500F70981 /* TZAssetModel.m in Sources */,
-				5BEBFC161EF4D3B400D4DAF7 /* PreviewViewController.swift in Sources */,
 				1B392F3B1E28D14E00F70981 /* SupermarketMineData.m in Sources */,
 				1B392F4D1E28D14E00F70981 /* SupermarketRefundData.m in Sources */,
 				1B1971B71E20803300E54D95 /* KLHomeCollectionViewCell.m in Sources */,
@@ -6414,13 +6089,11 @@
 				1B12C7991E80F7E800D89DBB /* AddExpressController.m in Sources */,
 				1B5461181EA74CBB00E16169 /* HotelOrderListModel.m in Sources */,
 				1B392F1C1E28D14E00F70981 /* OutIntergrationController.m in Sources */,
-				5BDA04CE1E65688B00B1B5B7 /* OrderDescriptionCell.swift in Sources */,
 				1B3404FA1F145DFB00D62A24 /* HotelMidCommentViewController.m in Sources */,
 				1B392EF51E28D14E00F70981 /* SupermarketHomePanicBuyingCell.m in Sources */,
 				1B9DD45D1E2EFF9600931DAD /* MJRefreshStateHeader.m in Sources */,
 				5BEF65AC1F208C0500817141 /* CosmosTouch.swift in Sources */,
 				269CA6EB2002005E009E6C54 /* YCHomeController.swift in Sources */,
-				5B693E6E1E6A8C9E00732F6B /* OrderMenuController.swift in Sources */,
 				1B392D8B1E28D0E500F70981 /* YYTextParser.m in Sources */,
 				1B392D6F1E28D0E500F70981 /* LGSegment.m in Sources */,
 				1BC876A91E98D0AE00BB38D7 /* YCHotelChooseCityController.m in Sources */,
@@ -6449,18 +6122,14 @@
 				62ADFAE51DE3D6CB005FDE1D /* YCTabbarController.swift in Sources */,
 				6296F4472019A77600976C21 /* MatchManageController.swift in Sources */,
 				1B5B9AA21E320EB2004F4CB1 /* CYPasswordView.m in Sources */,
-				5BE3C76A1E73D7450037665D /* OrderFoodModel.swift in Sources */,
 				2608A1531FF5D82D0072FB91 /* RSShopCartController.m in Sources */,
-				5B484B6A1EA9F04B00EB7E22 /* EatTogetherModel.swift in Sources */,
 				1B43F7B61EA5C22A002A36BB /* HotelPaymentController.m in Sources */,
 				1B7036DC1F20587200F53333 /* SupermarketMyCommentController.m in Sources */,
 				1BDDA0ED1EB97634005E8409 /* HotelCommentTableView.m in Sources */,
 				1B5B6BAD1E9B1E74009D5C75 /* HotelPicTableView.m in Sources */,
 				1B3C97201E29F3D400517684 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
-				5BE654061E6D4E98003CC59F /* CanteenHomeTypeCell.swift in Sources */,
 				5BF1A20D1EC45C80004A0DA5 /* ShopHomeCell.swift in Sources */,
 				1B392D571E28D0E500F70981 /* JSDropDownMenu.m in Sources */,
-				5BE7BE3A1E8E303300854F0A /* CanteenShareModel.swift in Sources */,
 				1B5461301EAC8C5000E16169 /* HotelMineHeaderView.m in Sources */,
 				1B392D841E28D0E500F70981 /* YYTextKeyboardManager.m in Sources */,
 				2682D18A1FF63BE900F0470E /* RSCategoriesViewController.swift in Sources */,
@@ -6473,18 +6142,15 @@
 				1BDDA0EA1EB96C74005E8409 /* HotelCommentModel.m in Sources */,
 				1B392D4F1E28D0E500F70981 /* KLRequestManager.m in Sources */,
 				1B392F021E28D14E00F70981 /* SupermarketLimitBuyCell.m in Sources */,
-				1B5446611E617338001D84AE /* HomeNaviView.swift in Sources */,
 				1B6156971E9B155600B16877 /* HotelPicsController.m in Sources */,
 				1B5B9A9F1E320EB2004F4CB1 /* CYConst.m in Sources */,
 				1B43F7AC1EA59BB0002A36BB /* HotelSeviceInfoModel.m in Sources */,
 				6272BE6C1DDC76410075EA1C /* StringExtension.swift in Sources */,
-				1B54465A1E617338001D84AE /* CanteenBaseNavController.swift in Sources */,
 				5BD429461DF1033A00EE62DE /* YCSegMentTitleCell.swift in Sources */,
 				5B0744CF1F6FA1F900C66C2A /* BundleExtension.swift in Sources */,
 				5BE6EB8F1F341395006A4F6D /* BouncyLayout.swift in Sources */,
 				1B392ED91E28D14E00F70981 /* SupermarketCommentPicCell.m in Sources */,
 				5B5F88301DF2651600EBD763 /* YCNewMemberController.swift in Sources */,
-				5BDA04D01E656DA000B1B5B7 /* OrderCommentHeader.swift in Sources */,
 				269248E12009FDD80071900E /* RSDetailViewController.m in Sources */,
 				1B9DD4571E2EFF9600931DAD /* MJRefreshAutoStateFooter.m in Sources */,
 				1B392F381E28D14E00F70981 /* SupermarketEditAddressController.m in Sources */,
@@ -6495,18 +6161,12 @@
 				1B392F251E28D14E00F70981 /* SupermarketKindsViewController.m in Sources */,
 				1BEF693A1E8F527400CE3434 /* HotelSearchCollectionView.m in Sources */,
 				1B12C7961E7FAECE00D89DBB /* RefundListCell.m in Sources */,
-				5BD86F8B1E680E340089B47A /* OrderHeaderReusableView.swift in Sources */,
-				5BD86F241E66C52C0089B47A /* UpdatePhotoCell.swift in Sources */,
 				1B392F321E28D14E00F70981 /* CouponOverTimeController.m in Sources */,
-				5B693E701E6A981B00732F6B /* FoodTypeCell.swift in Sources */,
 				5B3ADC001E2CB80C003A6F4C /* KLTabOnlineVideoView.m in Sources */,
 				1B80E6D01E4D5631001603B2 /* MASConstraintMaker.m in Sources */,
-				5BE3C7681E739EE00037665D /* OrderApplyRefundCells.swift in Sources */,
 				5BE6DD7C1E5681B600A6C9EC /* FSPagerViewCell.swift in Sources */,
 				1B510E441E9C714400B77F14 /* HotelAlbumImageModel.m in Sources */,
 				1B392D8E1E28D0E500F70981 /* NSAttributedString+YYText.m in Sources */,
-				5BE594D61EAF3C4C00896EF7 /* EatInController.swift in Sources */,
-				5BD86F281E67A72F0089B47A /* OrderSearchCell.swift in Sources */,
 				1B1971AF1E20803300E54D95 /* KLBuyingTicketViewController.m in Sources */,
 				1B392D521E28D0E500F70981 /* CFLabelOnLeftButton.m in Sources */,
 				1BC876A01E9885C700BB38D7 /* YCHotelHomeController.m in Sources */,
@@ -6517,7 +6177,6 @@
 				1B1403B91E6D31650087B805 /* CheckOrderModel.m in Sources */,
 				627C24FE1DE2F4DD002A9698 /* ReuseExtension.swift in Sources */,
 				621DB37920060F3400EE3F63 /* ProfileServiceCell.swift in Sources */,
-				1B12C78A1E7F603100D89DBB /* OrderMenuModel.swift in Sources */,
 				1B392EF11E28D14E00F70981 /* SupermarketHomeADVData.m in Sources */,
 				1B0CD2ED1E8E0693008AF162 /* MSSCalendarHeaderModel.m in Sources */,
 				1B392D4D1E28D0E500F70981 /* UILabel+WidthAndHeight.m in Sources */,
@@ -6527,7 +6186,6 @@
 				5BE152841F137DD200FC74C2 /* Previewable.swift in Sources */,
 				1B1BC8661E52D35E0094E488 /* SupermarketOrderWaitPayDetailController.m in Sources */,
 				2682D18D1FF64AC900F0470E /* RSCategoryCollectionCell.swift in Sources */,
-				5B484B681EA7067800EB7E22 /* EatGroupModel.swift in Sources */,
 				1B392D7D1E28D0E500F70981 /* UIView+Layout.m in Sources */,
 				267DAA911EA213EE00299E74 /* HotelDownTableViewCell.m in Sources */,
 				5BE152771F137DC300FC74C2 /* Config.swift in Sources */,
@@ -6536,7 +6194,6 @@
 				5B9CBDDF1DE7FABE0071A3B5 /* YCImageCache.swift in Sources */,
 				5B6091A01EC6DE1F00000433 /* ShopBrandFilterCell.swift in Sources */,
 				1B392EE71E28D14E00F70981 /* CountTimeView.m in Sources */,
-				5B693E741E6AA4DD00732F6B /* OrderMenuBottomView.swift in Sources */,
 				1B392F3F1E28D14E00F70981 /* SupermarketMyOrderController.m in Sources */,
 				1B392F3E1E28D14E00F70981 /* SupermarketMyAddressViewController.m in Sources */,
 				5BEF65A71F208C0500817141 /* CosmosLocalizedRating.swift in Sources */,
@@ -6548,16 +6205,13 @@
 				1B392EE01E28D14E00F70981 /* SupermarketConfrimOrderByNumbersController.m in Sources */,
 				1B392F091E28D14E00F70981 /* SupermarketMostFreshTableView.m in Sources */,
 				1B392F3D1E28D14E00F70981 /* SupermarketMineViewController.m in Sources */,
-				5B484B661EA6F66800EB7E22 /* EatTogetherController.swift in Sources */,
 				5BEB2D091E2874B5003F94DF /* WSStarRatingView.m in Sources */,
-				5BD86F871E68014B0089B47A /* OrderLocationCell.swift in Sources */,
 				5B1E634D1DEEBD16005DDFB2 /* YCLocationService.swift in Sources */,
 				1B392D981E28D0E500F70981 /* ImageData.m in Sources */,
 				5B002A811E0BCE5E002D0A05 /* PersonalCleanCell.swift in Sources */,
 				5BEF65A41F208C0500817141 /* CosmosDefaultSettings.swift in Sources */,
 				6272BE631DDC6AD60075EA1C /* NetWorkManager.swift in Sources */,
 				1B510E401E9C693A00B77F14 /* UIImageView+YCHotelImage.m in Sources */,
-				5BE654461E70F218003CC59F /* OrderConfirmController.swift in Sources */,
 				5B5C0EB41EC54E08004F8C5D /* ShopHomeController.swift in Sources */,
 				1B392D951E28D0E500F70981 /* YYTextWeakProxy.m in Sources */,
 				1B392F2C1E28D14E00F70981 /* SLAreaPickerView.m in Sources */,
@@ -6578,18 +6232,15 @@
 				5BE152831F137DD200FC74C2 /* PhotosViewControllerDelegate.swift in Sources */,
 				5B7DCAF81DEFBFFC00F1D2AB /* UIButton + YC.swift in Sources */,
 				1B392EED1E28D14E00F70981 /* PYTempViewController.m in Sources */,
-				5B693E721E6A9B4300732F6B /* MenuFoodCell.swift in Sources */,
 				1B392F551E28D14E00F70981 /* SupermarketWaitCommentController.m in Sources */,
 				1BC876741E973AA300BB38D7 /* Order.m in Sources */,
 				1B392F0C1E28D14E00F70981 /* SupermarketOnSaleCollectionView.m in Sources */,
 				1B9DD45A1E2EFF9600931DAD /* MJRefreshBackStateFooter.m in Sources */,
-				5BE654341E6EA5F9003CC59F /* OrderFormController.swift in Sources */,
 				1B1971BE1E20803300E54D95 /* MovieData.m in Sources */,
 				1B392D8C1E28D0E500F70981 /* YYTextRubyAnnotation.m in Sources */,
 				1B392F2F1E28D14E00F70981 /* SupermarketCheckExpressController.m in Sources */,
 				1B392F561E28D14E00F70981 /* SupermarketWaitPayController.m in Sources */,
 				1B392D851E28D0E500F70981 /* YYTextLayout.m in Sources */,
-				5B6A888A1E81243100BCED9F /* CanteenNeedLoginView.swift in Sources */,
 				1BC8767C1E973AA300BB38D7 /* RSADataVerifier.m in Sources */,
 				1B0CD2F91E8E261E008AF162 /* HotelSeachViewController.m in Sources */,
 				1BDDA0E11EB96AE1005E8409 /* HotelImageCommentViewController.m in Sources */,
@@ -6599,17 +6250,13 @@
 				1B5B6BA81E9B17E7009D5C75 /* HotelFacilityPicsController.m in Sources */,
 				1B392F351E28D14E00F70981 /* CouponUsedController.m in Sources */,
 				1B392D6A1E28D0E500F70981 /* SDBrowserImageView.m in Sources */,
-				5BD86F951E691D620089B47A /* MarketRightTableView.swift in Sources */,
 				5BF0A9DD1E0B7B050035B517 /* PersonalCollectionCell.swift in Sources */,
 				1B392F281E28D14E00F70981 /* OrderDetailModel.m in Sources */,
-				5BD86F1C1E66AEE30089B47A /* OrderCommentDetailCell.swift in Sources */,
 				5BE1526F1F13643300FC74C2 /* Reference.swift in Sources */,
 				1B5C359B1E2DAD52007D195E /* SupermarketKindModel.m in Sources */,
 				1B392F311E28D14E00F70981 /* SupermarketChoseAddressViewController.m in Sources */,
 				1B392F171E28D14E00F70981 /* InIntergrationController.m in Sources */,
 				1B392F391E28D14E00F70981 /* SupermarketExpInfoData.m in Sources */,
-				5B5FF4181E7669CC0013F84B /* ReservationController.swift in Sources */,
-				5BD86F891E6808C40089B47A /* OrderCurrentLocationCell.swift in Sources */,
 				1B392F121E28D14E00F70981 /* SupermarketTasteNewCell.m in Sources */,
 				267DAA9B1EA213EE00299E74 /* HotelSpecificTableView.m in Sources */,
 				1B392D901E28D0E500F70981 /* UIPasteboard+YYText.m in Sources */,
@@ -6628,7 +6275,6 @@
 				1B9363871ED29039001CA2A5 /* LZShopModel.m in Sources */,
 				1B7755CD1E5FD221007742A1 /* SupermarketReleaseCommentsController.m in Sources */,
 				62ADFAEE1DE3F13C005FDE1D /* YCNavigationController.swift in Sources */,
-				5BD86F261E67A6D90089B47A /* OrderSearchController.swift in Sources */,
 				269CA6F420021B79009E6C54 /* SupermarketHomeViewController.m in Sources */,
 				269CA6E92001D90C009E6C54 /* WJSetLineColor.m in Sources */,
 				5B76BB761E00CA0F00F1F30B /* WelcomeController.swift in Sources */,
@@ -6652,7 +6298,6 @@
 				5B002A761E0BB766002D0A05 /* PersinalSetController.swift in Sources */,
 				5BAD6A9F1E0CCC0B00E43EAE /* PersonalCommentController.swift in Sources */,
 				1B392EE31E28D14E00F70981 /* SupermarketGoodsModel.m in Sources */,
-				5B78E4BD1E88BC1200E5D095 /* CanteenCommentModel.swift in Sources */,
 				1B0CD2F11E8E0693008AF162 /* MSSChineseCalendarManager.m in Sources */,
 				1B392D611E28D0E500F70981 /* UIView+ST.m in Sources */,
 				1B392EFC1E28D14E00F70981 /* SupermarketHomeTasteNewCollectionViewCell.m in Sources */,
@@ -6662,12 +6307,10 @@
 				5B5989D61E9F662300F70125 /* PlayDelegate.swift in Sources */,
 				26CFF65320046AD400A10F91 /* RSSpecialGoodsMedicineView.m in Sources */,
 				1B5B9AA31E320EB2004F4CB1 /* UIView+Extension.m in Sources */,
-				5BE654361E6EB4BD003CC59F /* OrderFormCanUseController.swift in Sources */,
 				1B12C7901E7FA31E00D89DBB /* RefundListData.m in Sources */,
 				1B392ED01E28D14E00F70981 /* ConfirmOrderheaderView.m in Sources */,
 				1B80E6B01E4D561F001603B2 /* DKFilterModel.m in Sources */,
 				1B392D491E28D0E500F70981 /* NSDictionary+Decode.m in Sources */,
-				5BE594DA1EB1E16A00896EF7 /* EatWebController.swift in Sources */,
 				5BDA96D71F146B40009D6325 /* ChangePassWordController.swift in Sources */,
 				1B392EF81E28D14E00F70981 /* SupermarketHomePeopleLikeData.m in Sources */,
 				1B392F501E28D14E00F70981 /* SupermarketSelfPickCollectionView.m in Sources */,
@@ -6698,7 +6341,6 @@
 				1B4C10141EAEE056005EAAE5 /* HotelOrderArrangeModel.m in Sources */,
 				1B7036D91F20411600F53333 /* SupermarketWaitDeliverOrderController.m in Sources */,
 				26CFF6602004B1F400A10F91 /* RSOtcCollectionView.m in Sources */,
-				5BE6544C1E7159BC003CC59F /* OrderMyCommentCell.swift in Sources */,
 				1B0CD2C61E8B5BFD008AF162 /* YCHotelMineViewController.m in Sources */,
 				1B392F4A1E28D14E00F70981 /* SupermarketApplyRefundController.m in Sources */,
 				5BEBED191ECE844700F7EB36 /* ShopActivityController.swift in Sources */,
@@ -6710,27 +6352,21 @@
 				5B6091981EC6A67800000433 /* ShopBrandController.swift in Sources */,
 				5BEC72381E46F0D8007D519D /* YCDownloadManager.swift in Sources */,
 				6296F44B2019D50D00976C21 /* RecommendSearchController.swift in Sources */,
-				5B484B641EA5FCB700EB7E22 /* OrderTogetherController.swift in Sources */,
 				1B392EEB1E28D14E00F70981 /* PYSearchSuggestionViewController.m in Sources */,
-				5BE654441E700281003CC59F /* OrderShareView.swift in Sources */,
 				1B510E4A1E9CAC8B00B77F14 /* HotelCityModel.m in Sources */,
 				5BE6DD7D1E5681B600A6C9EC /* FSPageViewLayout.swift in Sources */,
-				5BE654481E714DCC003CC59F /* OrderConfirmCell.swift in Sources */,
 				1B9546F81F1DF147006DCB6C /* UIImage+Zirkfied.m in Sources */,
 				1B392F651E28D14E00F70981 /* LZCartModel.m in Sources */,
-				5B6A88881E80071900BCED9F /* CanteenAllOrderModel.swift in Sources */,
 				1B392F2B1E28D14E00F70981 /* SLAreaLocation.m in Sources */,
 				1B392EF71E28D14E00F70981 /* SupermarketHomePanicBuyingCollectionView.m in Sources */,
 				1B392ED71E28D14E00F70981 /* SupermarketCommentData.m in Sources */,
 				1B54612A1EAAF17400E16169 /* HotelOrderDetailRoomModel.m in Sources */,
-				5BE654081E6D5313003CC59F /* CanteenHeaderScrollCell.swift in Sources */,
 				5B34C8981E1FAD3300AF6B93 /* TYTabTitleViewCell.m in Sources */,
 				1BEF69481E947E0C00CE3434 /* HotelSearchResultTableView.m in Sources */,
 				1B5B6BC81E9B5882009D5C75 /* HotelWaitPayOrderController.m in Sources */,
 				267DAA9C1EA213EE00299E74 /* HotelSupportServiceView.m in Sources */,
 				5BE6542F1E6EA3A0003CC59F /* UIBarButtonItem+WZLBadge.m in Sources */,
 				1B392EE61E28D14E00F70981 /* VirtualData.m in Sources */,
-				5BE6543E1E6FB26D003CC59F /* OrderProfileController.swift in Sources */,
 				6296F44F2019F84B00976C21 /* RecommendSearchPresent.swift in Sources */,
 				1B392F4B1E28D14E00F70981 /* SupermarketChekRefundProgressController.m in Sources */,
 				1B392F1D1E28D14E00F70981 /* AllKindsCollectionViewCell.m in Sources */,
@@ -6743,7 +6379,6 @@
 				1B392F221E28D14E00F70981 /* SupermarketKindNewController.m in Sources */,
 				1B392F331E28D14E00F70981 /* CouponTableView.m in Sources */,
 				1B80E6CE1E4D5631001603B2 /* MASCompositeConstraint.m in Sources */,
-				1B54465E1E617338001D84AE /* YCCanteenHomeController.swift in Sources */,
 				1B392F0F1E28D14E00F70981 /* SupermarketPopularFreshController.m in Sources */,
 				1B392F451E28D14E00F70981 /* SupermarketOrderGoodsData.m in Sources */,
 				1B392D961E28D0E500F70981 /* YYLabel.m in Sources */,
@@ -6758,7 +6393,6 @@
 				1B1971B51E20803300E54D95 /* KLBannerData.m in Sources */,
 				1BB41BF91EBAF50300224D6C /* HotelCommentScoreView.m in Sources */,
 				5BE38DD61F1F3916002E3DAF /* ForgetPassWotdController.swift in Sources */,
-				5BE6544A1E715939003CC59F /* OrderMyCommentController.swift in Sources */,
 				1B392F0D1E28D14E00F70981 /* SupermarketOnSaleController.m in Sources */,
 				1BC8769C1E98703900BB38D7 /* HotelIntroPhoneCell.m in Sources */,
 				1B1971B61E20803300E54D95 /* KLHomeCollectionView.m in Sources */,
@@ -6769,7 +6403,6 @@
 				1B392F3A1E28D14E00F70981 /* SupermarketExpressData.m in Sources */,
 				1B392D751E28D0E500F70981 /* TZImageManager.m in Sources */,
 				5BECA2381F2ADBBF00729382 /* MoyaNetWork.swift in Sources */,
-				5BD86F971E693CC00089B47A /* ChooseMarcketRegionCell.swift in Sources */,
 				1B0CD2C91E8B5C24008AF162 /* YCHotelOrderViewController.m in Sources */,
 				5BE1F2FE1EC98F3500717E20 /* ShopFloorController.swift in Sources */,
 				1B1971AE1E20803300E54D95 /* KLMainController.m in Sources */,
@@ -6793,7 +6426,6 @@
 				1B54611F1EA9D88000E16169 /* HotelQRCodeView.m in Sources */,
 				1B392D8D1E28D0E500F70981 /* YYTextRunDelegate.m in Sources */,
 				1B0CD2EF1E8E0693008AF162 /* MSSCalendarPopView.m in Sources */,
-				5BE30DB71E97620900CA404F /* OrderMyCouponController.swift in Sources */,
 				1B72C4251EA1EBC500FA361E /* CancelOrderViewController.m in Sources */,
 				1B48D0661F74FC9300DF6865 /* NSBundle+Language.m in Sources */,
 				1B510E4E1E9CC26100B77F14 /* HotelConfirmOrderViewController.m in Sources */,
@@ -6804,7 +6436,6 @@
 				1B392D651E28D0E500F70981 /* HNCodeScannerCoverView.m in Sources */,
 				1B392F481E28D14E00F70981 /* SupermarketReceiveTimeController.m in Sources */,
 				5BE1F2FB1EC94A3200717E20 /* YCLoadMoreCollectionCell.swift in Sources */,
-				5B5FF41A1E766AE00013F84B /* ReservationControllerCells.swift in Sources */,
 				5BEF65B21F208C0500817141 /* StarLayer.swift in Sources */,
 				5BEBED1D1ECE9C2F00F7EB36 /* ShopMemberController.swift in Sources */,
 				5BEF65AB1F208C0500817141 /* CosmosText.swift in Sources */,
@@ -6819,14 +6450,12 @@
 				5BB790AB1E03831900A13D50 /* YCWebViewController.swift in Sources */,
 				5B002A741E0B9FA0002D0A05 /* PersonalShareController.swift in Sources */,
 				1B392F151E28D14E00F70981 /* SupermarketTasteNewTableView.m in Sources */,
-				5BD86F221E66C31F0089B47A /* CommentTextCell.swift in Sources */,
 				5BF1A2061EC45263004A0DA5 /* ShopBaseTabController.swift in Sources */,
 				1B12C78D1E7F720A00D89DBB /* UIButton+CreateButton.m in Sources */,
 				62ADFAEC1DE3E28B005FDE1D /* ProgressExtension.swift in Sources */,
 				5B5F882C1DF24EEE00EBD763 /* YCTextField.swift in Sources */,
 				1B392EE81E28D14E00F70981 /* ProgressView.m in Sources */,
 				1B5B9AA01E320EB2004F4CB1 /* CYPasswordInputView.m in Sources */,
-				5BD86F8D1E68F90D0089B47A /* OrderLocationModel.swift in Sources */,
 				1B52E46E1E7BD699008B0B75 /* RefundDetailTableView.m in Sources */,
 				1B510E541E9CC35F00B77F14 /* HotelConfirmOrderTableView.m in Sources */,
 				5BAD6AA11E0CFFC000E43EAE /* PersonalStarController.swift in Sources */,
@@ -6863,10 +6492,8 @@
 				1B392D801E28D0E500F70981 /* YYTextContainerView.m in Sources */,
 				62C417D220060698005571D4 /* ProfileAvatarCell.swift in Sources */,
 				5BD1230D1ECAD104004A422E /* ShopMallController.swift in Sources */,
-				5BE9DD061E778A2B0089A1C2 /* CanteenSegmentMenu.swift in Sources */,
 				1B9DD4631E2EFF9600931DAD /* UIView+MJExtension.m in Sources */,
 				1B392EEA1E28D14E00F70981 /* PYSearchConst.m in Sources */,
-				5BE654421E6FD87C003CC59F /* OrderNumberCell.swift in Sources */,
 				1B392F531E28D14E00F70981 /* SupermarketSelfPickRightTableView.m in Sources */,
 				1B392F461E28D14E00F70981 /* SupermarketOrderTableView.m in Sources */,
 				1B392D911E28D0E500F70981 /* UIView+YYText.m in Sources */,
@@ -6876,7 +6503,6 @@
 				1B392EE41E28D14E00F70981 /* SupermarketGoodsViewController.m in Sources */,
 				5B5989D81EA1AB8100F70125 /* PlayControlView.swift in Sources */,
 				1B5B6BB71E9B20EE009D5C75 /* HotelPicsCollectionViewCell.m in Sources */,
-				5B693E761E6AA84B00732F6B /* OrderMenuTableHeader.swift in Sources */,
 				1B392D701E28D0E500F70981 /* NSBundle+TZImagePicker.m in Sources */,
 				5BC25E161E8F432D00732DA9 /* YCGenericTableView.swift in Sources */,
 				1B9DD45F1E2EFF9600931DAD /* MJRefreshConst.m in Sources */,
@@ -6892,7 +6518,6 @@
 				1B392F061E28D14E00F70981 /* SupermarketMostFreshCell.m in Sources */,
 				1B392D531E28D0E500F70981 /* UIView+CFFrame.m in Sources */,
 				1B392F441E28D14E00F70981 /* SupermarketOrderDetaiController.m in Sources */,
-				5BE6543C1E6F8CFA003CC59F /* OrderCanUseCell.swift in Sources */,
 				5B34C8961E1FAD3300AF6B93 /* TYTabButtonPagerController.m in Sources */,
 				5BE152821F137DD200FC74C2 /* PhotosViewControllerDataSource.swift in Sources */,
 				1B9DD4551E2EFF9600931DAD /* MJRefreshAutoGifFooter.m in Sources */,
@@ -6902,7 +6527,6 @@
 				1B80E6B31E4D561F001603B2 /* GSFilterView.m in Sources */,
 				26CFF6572004877300A10F91 /* RSSpecialGoodsMedicineCell.m in Sources */,
 				1B392F201E28D14E00F70981 /* SupermarketAllKindsController.m in Sources */,
-				5B9D74DB1E9B665100A672BF /* MyPointModel.swift in Sources */,
 				1B392F511E28D14E00F70981 /* SupermarketSelfPickCollectionViewCell.m in Sources */,
 				1BC876781E973AA300BB38D7 /* MD5DataSigner.m in Sources */,
 				1B392F4E1E28D14E00F70981 /* SupermarketRefundInfoData.m in Sources */,
@@ -6916,12 +6540,10 @@
 				1B392F141E28D14E00F70981 /* SupermarketTasteNewController.m in Sources */,
 				1BC876771E973AA300BB38D7 /* DataVerifier.m in Sources */,
 				1B9546F91F1DF147006DCB6C /* ZFMaskView.m in Sources */,
-				5BE6540A1E6E3F0D003CC59F /* CanteenHeaderPagerCell.swift in Sources */,
 				1B0CD2F51E8E0B40008AF162 /* HotelCalendarView.m in Sources */,
 				1B5B6BBC1E9B363E009D5C75 /* YCHotelHttpTool.m in Sources */,
 				1B1971C31E20803300E54D95 /* KLOnlineVideoViewController.m in Sources */,
 				5B57ED6E1FB55EDC00598252 /* FunctionalCoreImage.swift in Sources */,
-				5BE654401E6FD644003CC59F /* OrderFormDetailController.swift in Sources */,
 				1B392D621E28D0E500F70981 /* STPickerSingle.m in Sources */,
 				1B392F341E28D14E00F70981 /* CouponTableViewCell.m in Sources */,
 				5BEF65AE1F208C0500817141 /* CosmosTouchTarget.swift in Sources */,
@@ -6946,10 +6568,8 @@
 				269248DE2009FDC70071900E /* RSApplyViewController.m in Sources */,
 				1B9546F71F1DF147006DCB6C /* UIColor+Zirkfied.m in Sources */,
 				1B510E5A1E9CCE3A00B77F14 /* HotelConfirmOrderChooseView.m in Sources */,
-				5BDA04CA1E65638900B1B5B7 /* OrderAddressCell.swift in Sources */,
 				62ADFAE71DE3DF74005FDE1D /* BaseController.swift in Sources */,
 				1B510E571E9CC50A00B77F14 /* HotelConfirmTableViewCell.m in Sources */,
-				5BE594D81EB1879500896EF7 /* EatPayController.swift in Sources */,
 				1B392F1F1E28D14E00F70981 /* SupermarketAllKindsCollectionView.m in Sources */,
 				1B392F261E28D14E00F70981 /* SupermarketMainController.m in Sources */,
 				5B8A5CED1F7E26CD00793E14 /* YCOCShareManager.m in Sources */,
@@ -6960,7 +6580,6 @@
 				5B4292361DFE3F1E000C242B /* UINavigationController + YC.swift in Sources */,
 				5BF0A9DA1E0B7A900035B517 /* PersonalCollectionController.swift in Sources */,
 				1B4C10171EB03A19005EAAE5 /* HotelRoomTypeDetailView.m in Sources */,
-				5BD86F8F1E69198F0089B47A /* OrderChooseMarketController.swift in Sources */,
 				1B43F7AF1EA59C4F002A36BB /* HotelRoomTypeModel.m in Sources */,
 				1B80E6D21E4D5631001603B2 /* MASViewAttribute.m in Sources */,
 				5BC13C621E10F4AB00985C41 /* AvatarPod.swift in Sources */,
@@ -6974,7 +6593,6 @@
 				1BA9B1EA1E791351001FB11F /* SupermarketPointModel.m in Sources */,
 				5B5C0EB61EC56286004F8C5D /* ShopHomeModel.swift in Sources */,
 				5BCE0AA51E319A960089A73A /* NSObject+TransfromModel.m in Sources */,
-				5BD86F851E6800280089B47A /* OrderLocationController.swift in Sources */,
 				5B8AAE471F7B8B80001EB504 /* SocailShare.swift in Sources */,
 				1B6156A31E9B15E300B16877 /* HotelRoomPicsController.m in Sources */,
 				1B4B8AE01ED51C1B00266C90 /* SupermarketMyCollectionViewController.m in Sources */,
@@ -6986,7 +6604,6 @@
 				1B392D5A1E28D0E500F70981 /* UIView+ViewController.m in Sources */,
 				1B392D891E28D0E500F70981 /* YYTextArchiver.m in Sources */,
 				1B392F471E28D14E00F70981 /* SupermarketOrderTableViewCell.m in Sources */,
-				5B5B2BA31E88E707002F9865 /* CanteenFavoriteModel.swift in Sources */,
 				1B392D581E28D0E500F70981 /* NinaBaseView.m in Sources */,
 				62ADFAF71DE3F632005FDE1D /* YCHomeBusinessCell.swift in Sources */,
 				5BC2DA221E1B3B3000082167 /* PersonalCenterModel.swift in Sources */,
@@ -6995,7 +6612,6 @@
 				1B392F431E28D14E00F70981 /* SupermarketOrderData.m in Sources */,
 				1B80E6B21E4D561F001603B2 /* GSFilterCell.m in Sources */,
 				1B392D861E28D0E500F70981 /* YYTextLine.m in Sources */,
-				1B54465F1E617338001D84AE /* CanteenHomeCell.swift in Sources */,
 				5BE9DCFF1E77798A0089A1C2 /* GoodsOptionModel.m in Sources */,
 				1B0CD2BD1E8B5B6A008AF162 /* YCHotelMainController.m in Sources */,
 				1B392EDC1E28D14E00F70981 /* SupermarketCommentTableView.m in Sources */,
@@ -7012,42 +6628,32 @@
 				5BEF65A61F208C0500817141 /* CosmosLayers.swift in Sources */,
 				1B392D4B1E28D0E500F70981 /* UIButton+Badge.m in Sources */,
 				1BC876751E973AA300BB38D7 /* base64.m in Sources */,
-				5BE3C7641E7384260037665D /* CanteenDropDownMenu.swift in Sources */,
 				5BEF65B11F208C0500817141 /* StarFillMode.swift in Sources */,
-				5BD86F1E1E66B83B0089B47A /* OrderCommentController.swift in Sources */,
 				5B5989D31E9F583700F70125 /* ASValueTrackingSlider.m in Sources */,
-				5BE9DD081E77D2410089A1C2 /* CanteenHomeTypeModel.swift in Sources */,
 				5B4292381DFE80E2000C242B /* YCAccountModel.swift in Sources */,
 				1B392F2E1E28D14E00F70981 /* SupermarketAllOrderController.m in Sources */,
 				26CFF6502004671500A10F91 /* SuperMarketAddView.m in Sources */,
 				1B9DD4591E2EFF9600931DAD /* MJRefreshBackNormalFooter.m in Sources */,
 				267DAAA01EA214CC00299E74 /* HotelDetailedTraficCell.m in Sources */,
 				26B5EE231FF39B1F0001E40B /* SegmentView.m in Sources */,
-				5BEE026E1E725A090086CA8A /* OrderMyCollectController.swift in Sources */,
 				1B5B6BDB1E9B7F24009D5C75 /* NSDictionary+YCHotel.m in Sources */,
 				5BE1528B1F137DDF00FC74C2 /* PhotoTransitonController.swift in Sources */,
 				1BFEF34C1E5BE54900D1CA0C /* YCShareAddress.m in Sources */,
 				1B1971B91E20803300E54D95 /* KLHomeViewController.m in Sources */,
 				5B8AAE4B1F7B9DEF001EB504 /* SocailView.swift in Sources */,
 				6296F4492019AEA500976C21 /* RecommendMatchController.swift in Sources */,
-				5BDA04CC1E65664700B1B5B7 /* OrderDetailAddressCell.swift in Sources */,
 				1B80E6D31E4D5631001603B2 /* MASViewConstraint.m in Sources */,
-				5BD86F201E66BD9A0089B47A /* TotalPointCell.swift in Sources */,
-				1B54465B1E617338001D84AE /* CanteenTableView.swift in Sources */,
 				1B392F401E28D14E00F70981 /* SupermarketMyOrderGoodListView.m in Sources */,
 				5BEF65A51F208C0500817141 /* CosmosLayerHelper.swift in Sources */,
 				1B0CD2D81E8CE447008AF162 /* HotelChoosePriceView.m in Sources */,
 				5BF0A9D71E0B79710035B517 /* PersonalCenterCell.swift in Sources */,
-				5BD86F931E691D470089B47A /* MarketLeftTableView.swift in Sources */,
 				1B9DD4611E2EFF9600931DAD /* UIScrollView+MJExtension.m in Sources */,
 				1B392EF91E28D14E00F70981 /* SupermarketHomePurchaseData.m in Sources */,
 				1B392D7B1E28D0E500F70981 /* TZProgressView.m in Sources */,
 				6272BE641DDC6AD60075EA1C /* NetWorking.swift in Sources */,
 				1B392D541E28D0E500F70981 /* PGIndexBannerSubiew.m in Sources */,
 				1B9DD4581E2EFF9600931DAD /* MJRefreshBackGifFooter.m in Sources */,
-				5BD86F9B1E69533B0089B47A /* OrderSquareModel.swift in Sources */,
 				5B9CBDD91DE547650071A3B5 /* BaseProtocol.swift in Sources */,
-				1B54465D1E617338001D84AE /* CantennTabBarController.swift in Sources */,
 				1B3482DA1E7CCAF600FB7186 /* RefundDetailModel.m in Sources */,
 				1B52E4691E7BD5CA008B0B75 /* SupermarketRefundDetailController.m in Sources */,
 				1B5461221EA9EF7200E16169 /* ZHGenerateQRCode.m in Sources */,
@@ -7057,9 +6663,7 @@
 				1BEF69341E8F40DA00CE3434 /* HotelSearchTableView.m in Sources */,
 				5BAD6AA41E0D00A900E43EAE /* PersonalStarHeaderCell.swift in Sources */,
 				5BF1A2081EC452BA004A0DA5 /* ShopBaseViewController.swift in Sources */,
-				5BD9104A1E84EBA2004675AF /* OrderReserveModel.swift in Sources */,
 				5B62F6F31E021E2500E0B8EF /* YCFPSLabel.swift in Sources */,
-				5B56A5F41E9B51F5008D9B26 /* OrderPointController.swift in Sources */,
 				5B76BB781E00CAFD00F1F30B /* WelcomeModel.swift in Sources */,
 				1BEF69371E8F503200CE3434 /* HotelSearchTableViewCell.m in Sources */,
 				1B392F3C1E28D14E00F70981 /* SupermarketMineHeaderView.m in Sources */,
@@ -7084,27 +6688,22 @@
 				1B4C10211EB06E92005EAAE5 /* HotelRoomInfoServiceModel.m in Sources */,
 				1BBF76BD1E64197800BF0AA9 /* ParkingHomepage.m in Sources */,
 				5BDDD4801F7CC75B00755E7E /* YCScanManager.swift in Sources */,
-				5BD86F911E691B1A0089B47A /* CanteenBaseViewController.swift in Sources */,
 				5BE1527A1F137DC300FC74C2 /* PhotosViewController.swift in Sources */,
-				5BDA04C81E65518700B1B5B7 /* OrderPageCell.swift in Sources */,
 				1B392D881E28D0E500F70981 /* YYTextSelectionView.m in Sources */,
 				5BC2DA241E1B466000082167 /* YCInfoView.swift in Sources */,
 				1B5B6BD41E9B67F8009D5C75 /* HotelOrderTableViewCell.m in Sources */,
 				1B0CD2C01E8B5B8D008AF162 /* YCHoltelBaseViewController.m in Sources */,
-				5BE30DB91E97660A00CA404F /* MyCouponModel.swift in Sources */,
 				1B392EDD1E28D14E00F70981 /* SupermarketCommentViewController.m in Sources */,
 				1B392F181E28D14E00F70981 /* IntergrationController.m in Sources */,
 				1B392D5D1E28D0E500F70981 /* STConst.m in Sources */,
 				1B72C4281EA1ED2800FA361E /* HotelCancelTableView.m in Sources */,
 				1B392D6D1E28D0E500F70981 /* AMTagListView.m in Sources */,
-				5BEC6A101EAC8D8000D86A14 /* EatShareModel.swift in Sources */,
 				1B392F211E28D14E00F70981 /* SupermarketKindHotController.m in Sources */,
 				5B60919E1EC6DDD600000433 /* ShopBrandFilterController.swift in Sources */,
 				1B392EEF1E28D14E00F70981 /* UIView+PYExtension.m in Sources */,
 				5B95EAED1DF7B81D006E74C4 /* Notification + YC.swift in Sources */,
 				5BEBB6771DFAB73400367D77 /* AlamofireNetWork.swift in Sources */,
 				1B392EF31E28D14E00F70981 /* SupermarketHomeBannerData.m in Sources */,
-				5BE11F481E829D5300E9681E /* OrderConfirmModel.swift in Sources */,
 				5BE9DD021E777A780089A1C2 /* SupermarketReleaseCommentController.m in Sources */,
 				5B7DCAFA1DEFEAE900F1D2AB /* YCWebViewClass.swift in Sources */,
 				1B9DD45B1E2EFF9600931DAD /* MJRefreshGifHeader.m in Sources */,
@@ -7123,7 +6722,6 @@
 				5B6091A21EC6F61F00000433 /* ShopBrandFilterModel.swift in Sources */,
 				1B392D921E28D0E500F70981 /* YYTextAsyncLayer.m in Sources */,
 				26E90ED52007987700E838E8 /* RSPayRep.m in Sources */,
-				5BDA04C61E65512000B1B5B7 /* OrderFoodController.swift in Sources */,
 				1B0CD2EB1E8E0693008AF162 /* MSSCalendarCollectionReusableView.m in Sources */,
 				1B3293951E4C606500022B1D /* SupermarketChoseSizeView.m in Sources */,
 				62ADFAF51DE3F248005FDE1D /* YCHomeHeaderCell.swift in Sources */,
