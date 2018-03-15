@@ -13,20 +13,20 @@ import AdSupport
 
 
 
-let textfieldHeight:CGFloat = 44
-let leftEdges:CGFloat = Ruler.iPhoneHorizontal(20, 30, 30).value
-let toTopEdges:CGFloat = Ruler.iPhoneVertical(30, 30, 40, 45).value
-let textfieldEdges:CGFloat = Ruler.iPhoneVertical(20, 20, 20, 25).value
-let textfieldrighttopedges:CGFloat = 15
+let textfieldHeight: CGFloat = 44
+let leftEdges: CGFloat = Ruler.iPhoneHorizontal(20, 30, 30).value
+let toTopEdges: CGFloat = Ruler.iPhoneVertical(30, 30, 40, 45).value
+let textfieldEdges: CGFloat = Ruler.iPhoneVertical(20, 20, 20, 25).value
+let textfieldrighttopedges: CGFloat = 15
 
 class YCLoginViewController: UITableViewController {
     
-    var isChattingLogin:Bool? = false
-    var Phonetextfield:YCTextField!
-    var PassWorkfield:YCTextField!
-    var loginBtn:UIButton!
-    var forgetPasswordBtn:UIButton!
-    var loginSuccessCallBack:(() -> ())?
+    var isChattingLogin: Bool? = false
+    var Phonetextfield: YCTextField!
+    var PassWorkfield: YCTextField!
+    var loginBtn: UIButton!
+    var forgetPasswordBtn: UIButton!
+    var loginSuccessCallBack: (() -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class YCLoginViewController: UITableViewController {
         Phonetextfield.righttopedges = textfieldrighttopedges
         Phonetextfield.delegate = self
         Phonetextfield.rightViewMode = .always
-        Phonetextfield.rightView = UIImageView(image:UIImage.phone)
+        Phonetextfield.rightView = UIImageView(image: UIImage.phone)
         Phonetextfield.keyboardType = .numberPad
         Phonetextfield.font = UIFont.systemFont(ofSize: 13)
         Phonetextfield.addTarget(self, action: #selector(YCLoginViewController.phoneValueChanaged(sender:)), for: .editingChanged)
@@ -118,7 +118,7 @@ class YCLoginViewController: UITableViewController {
             let phone = Phonetextfield.text else {
             return
         }
-        if text.characters.count>=6 && phone.characters.count>8 {
+        if text.count >= 6 && phone.count>8 {
            loginBtn.backgroundColor = UIColor.navigationbarColor
            loginBtn.isEnabled = true
         }else {
@@ -129,8 +129,8 @@ class YCLoginViewController: UITableViewController {
     }
     
     
-    private func loginWithPhoneNumber(_ phoneNumber:String,
-                                      _ password:String)
+    private func loginWithPhoneNumber(_ phoneNumber: String,
+                                      _ password: String)
     {
          showLoading()
          loginEnc(memberId: phoneNumber, password: password) { [weak self] result in
@@ -140,7 +140,7 @@ class YCLoginViewController: UITableViewController {
             case .success(let dataJson):
                 var json = JSON(dataJson)
                 let flag = json["flag"].stringValue
-                var idfa:String = ""
+                var idfa: String = ""
                 if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
                     idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
                 }
@@ -202,7 +202,7 @@ extension YCLoginViewController:UITextFieldDelegate{
 
 extension YCLoginViewController {
     
-    func loginEnc(memberId:String,password:String,completion:@escaping(NetWorkResult<JSONDictionary>) -> Void)
+    func loginEnc(memberId: String, password: String,completion:@escaping(NetWorkResult<JSONDictionary>) -> Void)
     {
         
         var idfa:String = ""
@@ -216,6 +216,7 @@ extension YCLoginViewController {
             "PassWord":sha512,
             "deviceNo":idfa
         ]
+        
 //        let resource = NetResource.init( path: "/Member/MemberLoginENC", method: .post, parameters: requestParameter, parameterEncoding: JSONEncoding.init(), parse: parse)
         let netResource = NetResource(path: "/Member/MemberLoginENC",method: .post,parameters: requestParameter,parse: parse)
         YCProvider.requestDecoded(netResource, queue: nil, completion: completion)

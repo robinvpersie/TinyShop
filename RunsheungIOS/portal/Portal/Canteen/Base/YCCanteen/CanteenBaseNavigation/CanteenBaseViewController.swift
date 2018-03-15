@@ -11,23 +11,23 @@ import UIKit
 class CanteenBaseViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
-        let back = UIBarButtonItem(image: UIImage.leftarrow, style: .plain, target: self, action: #selector(popBack))
-        back.tintColor = UIColor.darkcolor
+        super.viewWillAppear(animated)
+        let back = UIBarButtonItem(image: UIImage.leftarrow?.withRenderingMode(.alwaysOriginal),
+                                   style: .plain,
+                                   target: self,
+                                   action: #selector(yc_back))
         navigationItem.leftBarButtonItem = back
      }
     
-    func popBack(){
-        if let navi = self.navigationController {
-           navi.popViewController(animated: true)
-        }
-    }
-    
-    override func viewDidLoad() {
+     override func viewDidLoad() {
         super.viewDidLoad()
        
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.barTintColor = UIColor.white
-        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName:UIFont.systemFont(ofSize: 19),NSForegroundColorAttributeName:UIColor.darkcolor]
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont.systemFont(ofSize: 19),
+            NSForegroundColorAttributeName: UIColor.darkcolor]
+        view.backgroundColor = UIColor.white
         
     }
 

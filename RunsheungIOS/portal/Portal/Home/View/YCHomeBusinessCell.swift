@@ -9,9 +9,9 @@
 import UIKit
 import SnapKit
 
-fileprivate let CellviewMargin:CGFloat = 10.0
-fileprivate let collectionviweMargin:CGFloat = Ruler.iPhoneHorizontal(10, 10, 20).value
-fileprivate let minimumLineSpacing:CGFloat = 10.0
+fileprivate let CellviewMargin: CGFloat = 10.0
+fileprivate let collectionviweMargin: CGFloat = Ruler.iPhoneHorizontal(10, 10, 20).value
+fileprivate let minimumLineSpacing: CGFloat = 10.0
 
 protocol SelectItemDelegate: class {
     func tapItem(type: YCHomeBusinessHeader.BusinessType)

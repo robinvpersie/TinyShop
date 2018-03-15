@@ -19,10 +19,10 @@ import SwiftyJSON
 
 class LoginViewModel {
     
-    let validatePassword:Observable<LoginValidationResult>
-    let validatePasswordRepeated:Observable<LoginValidationResult>
-    let signupEnabled:Observable<Bool>
-    let signedIn:Observable<JSON>
+    let validatePassword: Observable<LoginValidationResult>
+    let validatePasswordRepeated: Observable<LoginValidationResult>
+    let signupEnabled: Observable<Bool>
+    let signedIn: Observable<JSON>
     
     init(input:(
         userName:Observable<String>,
@@ -74,7 +74,7 @@ class LoginDefaultAPI:LoginAPI {
         if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
             idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
         }
-        let requestParameter:[String:Any] = [
+        let requestParameter: [String:Any] = [
             "MemberID":username,
             "PassWord":sha512,
             "deviceNo":idfa
