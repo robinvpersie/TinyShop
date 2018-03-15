@@ -50,7 +50,7 @@ class EatPayController: CanteenBaseViewController,UITableViewDelegate,UITableVie
         resultBtn.centerXAnchor.constraint(equalTo: footer.centerXAnchor).isActive = true
         
         let backBtn = UIButton(type: .custom)
-        backBtn.addTarget(self, action: #selector(popBack), for: .touchUpInside)
+        backBtn.addTarget(self, action: #selector(yc_back), for: .touchUpInside)
         backBtn.setTitle("返回", for: .normal)
         backBtn.backgroundColor = UIColor.white
         backBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17)

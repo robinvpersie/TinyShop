@@ -118,7 +118,7 @@ class EatInController: CanteenBaseViewController,UITableViewDelegate,UITableView
                    let msg = json["msg"].string
                    self.showMessage(msg)
                    delay(2, work: {
-                     self.popBack()
+                     self.yc_back()
                    })
                 }
               
@@ -157,7 +157,7 @@ class EatInController: CanteenBaseViewController,UITableViewDelegate,UITableView
         
     }
     
-    override func popBack() {
+    override func yc_back() {
         if let navi = self.navigationController {
             navi.popToRootViewController(animated: true)
         }else {

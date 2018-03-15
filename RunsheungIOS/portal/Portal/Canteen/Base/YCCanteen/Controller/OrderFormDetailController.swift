@@ -185,7 +185,7 @@ class OrderFormDetailController: CanteenBaseViewController,UITableViewDataSource
         }
     }
     
-    override func popBack() {
+    override func yc_back() {
         self.navigationController?.viewControllers.forEach({ controller in
             if self.from == .fromRestaurant {
                 if controller is OrderFoodController {

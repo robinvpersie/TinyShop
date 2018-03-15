@@ -223,11 +223,7 @@ class OrderConfirmController: CanteenBaseViewController {
         }
     }
     
-    override func popBack() {
-        super.popBack()
-    }
-
-    
+ 
     func upload(){
         
         if !YCAccountModel.islogin() {

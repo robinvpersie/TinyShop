@@ -285,21 +285,7 @@ class YCHomeController: UIViewController {
           present(scanController, animated: true, completion: nil)
      }
 
-    func goToOffline(){
-         let park = OfflineTabController()
-         park.divCode = divCode
-         park.tabmode = .empty
-         park.modalTransitionStyle = .flipHorizontal
-         present(park, animated: true, completion: nil)
-    }
-        
-    func goToShopCar(){
-         let shopcar = OfflineTabController()
-         shopcar.divCode = divCode
-         shopcar.tabmode = .ticket
-         shopcar.modalTransitionStyle = .flipHorizontal
-         present(shopcar, animated: true, completion: nil)
-    }
+
 
     @objc func clickRightBarItem() -> Void {
         showLoading()
@@ -320,27 +306,7 @@ class YCHomeController: UIViewController {
         }
     }
 
-    func checkTickets(){
-            let ticket = YCUserDefaults.tickets.value ?? ""
-            showLoading()
-            OffCheckTicketModel.checkTicket(ticket: ticket, completion: { [weak self] (result) in
-                guard let this = self else { return }
-                this.hideLoading()
-                switch result {
-                case .tokenError:
-                    this.goToLogin()
-                case .failure(let error):
-                    this.showMessage(error.localizedDescription)
-                case .success(let value):
-                    if value["status"].int == 1 {
-                       YCUserDefaults.tickets.value = value["tickets"].stringValue
-                       this.goToShopCar()
-                   }else {
-                       this.goToOffline()
-                   }
-                }
-             })
-        }
+
 
    override var preferredStatusBarStyle: UIStatusBarStyle{
          return .default
