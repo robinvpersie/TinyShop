@@ -16,7 +16,8 @@ class YCNavigationController: UINavigationController {
         super.viewDidLoad()
         
         navigationBar.barTintColor = UIColor.white
-        navigationBar.titleTextAttributes = [NSFontAttributeName:UIFont.systemFont(ofSize: 19),NSForegroundColorAttributeName:UIColor.darkText]
+        navigationBar.titleTextAttributes = [NSAttributedStringKey.font:UIFont.systemFont(ofSize: 19),
+                                             NSAttributedStringKey.foregroundColor:UIColor.darkText]
         
 
     }

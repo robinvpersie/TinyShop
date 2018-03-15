@@ -60,7 +60,7 @@ class RecommendMatchController: UIViewController {
         descriptionlb.text = "推荐人编号"
         descriptionlb.font = UIFont.systemFont(ofSize: 16)
         containerView.addSubview(descriptionlb)
-        descriptionlb.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
+        descriptionlb.setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
         descriptionlb.snp.makeConstraints { (make) in
             make.leading.equalTo(containerView).offset(15)
             make.centerY.equalTo(containerView)

@@ -15,18 +15,23 @@ public extension String {
     
     func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: width, height: CGFloat(MAXFLOAT))
-        let bound = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin,.usesFontLeading,.truncatesLastVisibleLine], attributes: [NSFontAttributeName: font], context: nil)
+        let bound = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin,.usesFontLeading,.truncatesLastVisibleLine], attributes: [NSAttributedStringKey.font: font], context: nil)
         return bound.height
     }
     
     func widthWithConstrainedWidth(height:CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width:CGFloat(MAXFLOAT) , height: height)
-        let boundingBox = self.boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil).width
+        let boundingBox = self.boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil).width
         return boundingBox
       }
     
     func sizeforConstrainedSize(font:UIFont,constrainedSize:CGSize) -> CGRect{
-        let  boundingBox = self.boundingRect(with: constrainedSize, options: [.truncatesLastVisibleLine,.usesLineFragmentOrigin,.usesFontLeading], attributes: [NSFontAttributeName:font], context: nil)
+        let  boundingBox = self.boundingRect(with: constrainedSize,
+                                             options: [.truncatesLastVisibleLine,
+                                                       .usesLineFragmentOrigin,
+                                                       .usesFontLeading],
+                                             attributes: [NSAttributedStringKey.font:font],
+                                             context: nil)
         return boundingBox
     }
     

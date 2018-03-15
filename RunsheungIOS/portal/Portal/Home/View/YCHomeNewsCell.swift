@@ -21,7 +21,7 @@ class YCHomeNewsCell: UITableViewCell {
      lazy var NewsNamelabel:UILabel = {
        let label = UILabel()
        label.textColor = UIColor.black
-       label.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightBold)
+        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
        label.numberOfLines = 1
        return label
     }()
@@ -139,7 +139,7 @@ class YCHomeNewsCell: UITableViewCell {
     
     class func getHeightWithModel(model:PersonalMyShareModel) -> CGFloat {
         
-          let newnameHeight = UIFont.systemFont(ofSize: 16, weight: UIFontWeightBold).lineHeight
+        let newnameHeight = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold).lineHeight
           let contentheight = UIFont.systemFont(ofSize: 12).lineHeight * 2
           let height = UIFont.systemFont(ofSize: 11).lineHeight
           return newnameHeight + toCellTopMargin + labelMargin + 2 + 12 + contentheight + height
@@ -199,7 +199,7 @@ class YCHomeNewsCell: UITableViewCell {
     
     class func GetHeight(model:Newsdat) -> CGFloat {
         
-        let newnameHeight = UIFont.systemFont(ofSize: 16, weight: UIFontWeightBold).lineHeight
+        let newnameHeight = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold).lineHeight
         let contentheight = UIFont.systemFont(ofSize: 12).lineHeight * 2
         let height = UIFont.systemFont(ofSize: 11).lineHeight
         return newnameHeight + toCellTopMargin + labelMargin + 2 + 12 + contentheight + height
