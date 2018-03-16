@@ -12,6 +12,7 @@
 		011B523A205A0DD200B7E4D7 /* OrderLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5237205A0DD200B7E4D7 /* OrderLocationCell.swift */; };
 		011B523B205A0DD200B7E4D7 /* OrderCurrentLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5238205A0DD200B7E4D7 /* OrderCurrentLocationCell.swift */; };
 		011B523C205A0DD200B7E4D7 /* OrderHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5239205A0DD200B7E4D7 /* OrderHeaderReusableView.swift */; };
+		011B523E205B6C6C00B7E4D7 /* ProtocolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B523D205B6C6C00B7E4D7 /* ProtocolController.swift */; };
 		018AE84B20594CC60018F854 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84A20594CC60018F854 /* Resource.swift */; };
 		018AE84D20594D210018F854 /* NetWorkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84C20594D210018F854 /* NetWorkResult.swift */; };
 		018AE84F20594DC90018F854 /* NetIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84E20594DC90018F854 /* NetIndicator.swift */; };
@@ -780,6 +781,7 @@
 		011B5237205A0DD200B7E4D7 /* OrderLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationCell.swift; sourceTree = "<group>"; };
 		011B5238205A0DD200B7E4D7 /* OrderCurrentLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCurrentLocationCell.swift; sourceTree = "<group>"; };
 		011B5239205A0DD200B7E4D7 /* OrderHeaderReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHeaderReusableView.swift; sourceTree = "<group>"; };
+		011B523D205B6C6C00B7E4D7 /* ProtocolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolController.swift; sourceTree = "<group>"; };
 		018AE84A20594CC60018F854 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		018AE84C20594D210018F854 /* NetWorkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkResult.swift; sourceTree = "<group>"; };
 		018AE84E20594DC90018F854 /* NetIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetIndicator.swift; sourceTree = "<group>"; };
@@ -4959,6 +4961,7 @@
 				5B76BB771E00CAFD00F1F30B /* WelcomeModel.swift */,
 				5B85D6411F564BF200ED8E22 /* AdvertisingController.swift */,
 				5B85D6431F5652C000ED8E22 /* DownloadADManager.swift */,
+				011B523D205B6C6C00B7E4D7 /* ProtocolController.swift */,
 			);
 			name = Welcome;
 			path = Portal/Welcome;
@@ -6180,6 +6183,7 @@
 				1B392F161E28D14E00F70981 /* AllIntergrationControllerController.m in Sources */,
 				5BFB700B1DEBD51E0004ED83 /* YCHomeNewsCell.swift in Sources */,
 				5B8AAE421F7B840C001EB504 /* AnyActivity.swift in Sources */,
+				011B523E205B6C6C00B7E4D7 /* ProtocolController.swift in Sources */,
 				1B510E5D1E9E22BA00B77F14 /* HotelConfirmOrderEditTableViewCell.m in Sources */,
 				1B392D8F1E28D0E500F70981 /* NSParagraphStyle+YYText.m in Sources */,
 				5BEC72381E46F0D8007D519D /* YCDownloadManager.swift in Sources */,
