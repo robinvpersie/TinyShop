@@ -29,7 +29,8 @@
 }
 
 + (NSString *)getDaysCountWithStartDate:(NSString *)startDateString
-                                endDate:(NSString *)endDateString {
+                                endDate:(NSString *)endDateString
+{
     NSDate *startDate = [self getDateWithStringDate:startDateString];
     NSDate *endDate = [self getDateWithStringDate:endDateString];
     
