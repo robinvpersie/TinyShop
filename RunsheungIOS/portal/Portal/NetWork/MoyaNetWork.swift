@@ -28,7 +28,7 @@ let recommendURI = "http://api1.dxbhtm.com:7778"
 
 #else
 
-let portalBaseURL = "http://portal.dxbhtm.com:8488"
+let portalBaseURL = "http://portal.gigawon.co.kr:8488"
 let mediaBaseURL = "http://klcm.dxbhtm.com:81"
 let MediaPlayVideoURL = "http://klcm.dxbhtm.com:89"
 let PortalAddressURL = "https://portal.dxbhtm.com"

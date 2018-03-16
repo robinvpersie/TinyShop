@@ -38,9 +38,9 @@ class RSCustomerService: UIViewController {
             case .cusgreen:
                 return "派送咨询"
             case .cusblue:
-                return  "产品咨询"
+                return "产品咨询"
             case .cusyellow:
-                return   "退货咨询"
+                return "退货咨询"
                 
             }
     }
@@ -65,7 +65,7 @@ class RSCustomerService: UIViewController {
         return back
     }()
     
-    func popController(){
+    @objc func popController(){
         self.dismiss(animated: true, completion: nil)
     }
     

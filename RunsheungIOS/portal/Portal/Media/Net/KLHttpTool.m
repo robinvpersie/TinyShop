@@ -111,7 +111,6 @@
                 NSString *finalToken = [self formatTokenWithResponse:response];
                 success(finalToken);
             } else {
-//                failureToken(response);
                  [[NSNotificationCenter defaultCenter]postNotificationName:TokenWrong object:nil];
             //没有token或者token失效 应该跳出登录界面
             }
