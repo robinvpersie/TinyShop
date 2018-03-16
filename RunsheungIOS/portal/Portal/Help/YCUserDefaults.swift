@@ -86,10 +86,10 @@ final public class YCUserDefaults{
     
     static let defaults = UserDefaults(suiteName: "YCSheLongWang")
     
-    public static var isFirstLanuch: Listenable<Bool?> = {
-       let firstLanuch = defaults?.bool(forKey: "isFirstLanuch")
+    public static var isAcceptProtocol: Listenable<Bool?> = {
+       let firstLanuch = defaults?.bool(forKey: "isAcceptProtocol")
         return Listenable<Bool?> (firstLanuch) { firstLanuch in
-            defaults?.set(firstLanuch, forKey: "isFirstLanuch")
+            defaults?.set(firstLanuch, forKey: "isAcceptProtocol")
         }
     }()
     

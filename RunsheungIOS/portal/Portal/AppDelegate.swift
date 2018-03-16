@@ -9,14 +9,11 @@
 import UIKit
 import Proposer
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var type: Int? = 100
-    var itemCode: String = ""
-    var shareArr = [String]()
+ 
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -37,18 +34,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UMSocialManager.default().setPlaform(.wechatTimeLine, appKey: "wx8ab5a1f852d8663c", appSecret: "b57c0626ccab1ef315b4ad7225e08da3", redirectURL: nil)
         }
         
-        proposeToAccess(.notifications(.init(types: [.sound,.alert,.badge], categories: nil)), agreed: {}, rejected: {})
+        proposeToAccess(.notifications(UIUserNotificationSettings(types: [.sound,.alert,.badge], categories: nil)), agreed: {}, rejected: {})
+        proposeToAccess(.location(.whenInUse), agreed: { }) { }
+        
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
       
-        if YCUserDefaults.isFirstLanuch.value == nil {
+        if YCUserDefaults.isAcceptProtocol.value == false || YCUserDefaults.isAcceptProtocol.value == nil  {
             let pro = ProtocolController()
             pro.startAction = { [weak self] in
                 guard let this = self else { return }
                 UIView.transition(with: this.window!,
                                   duration: 0.5,
-                                  options: UIViewAnimationOptions.transitionFlipFromRight,
+                                  options: UIViewAnimationOptions.curveEaseIn,
                                   animations:
                     {
                         let oldState = UIView.areAnimationsEnabled
@@ -57,15 +56,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         let nav = YCNavigationController(rootViewController: home)
                         this.window?.rootViewController = nav
                         UIView.setAnimationsEnabled(oldState)
-                    }, completion: nil)
+                }, completion: { finish in
+                    if finish {
+                        YCUserDefaults.isAcceptProtocol.value = true
+                    }
+                })
             }
             window?.rootViewController = pro
         } else {
             let home = YCHomeController()
             window?.rootViewController = YCNavigationController(rootViewController: home)
         }
-          window?.makeKeyAndVisible()
-        
+        window?.makeKeyAndVisible()
         return true
     }
     
