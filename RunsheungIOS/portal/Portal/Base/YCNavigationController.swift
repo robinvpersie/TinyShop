@@ -18,11 +18,13 @@ class YCNavigationController: UINavigationController {
         navigationBar.barTintColor = UIColor.white
         navigationBar.titleTextAttributes = [NSAttributedStringKey.font:UIFont.systemFont(ofSize: 19),
                                              NSAttributedStringKey.foregroundColor:UIColor.darkText]
+       
         
 
     }
    
-    func pushViewController(viewController:UIViewController,backTitle:String?,backAction:(() -> Void)?,animated:Bool?){
+    func pushViewController(viewController: UIViewController, backTitle: String?, backAction: (() -> Void)?, animated: Bool?){
+        
         if let backTitle = backTitle {
            let backitem = UIBarButtonItem()
            backitem.title = backTitle
@@ -33,13 +35,12 @@ class YCNavigationController: UINavigationController {
            return
         }
         
-        if let pushv = self.topViewController{
-            if pushv.responds(to:#selector(YCNavigationController.pushAnimation(viewcontroller:))){
-            pushv.perform(#selector(YCNavigationController.pushAnimation(viewcontroller:)), with: viewController)
-            }
-            else {
-             super.pushViewController(viewController, animated: false)
-             self.pushAnimation(viewcontroller: viewController)
+        if let pushv = self.topViewController {
+            if pushv.responds(to:#selector(YCNavigationController.pushAnimation(viewcontroller:))) {
+                pushv.perform(#selector(YCNavigationController.pushAnimation(viewcontroller:)), with: viewController)
+            } else {
+               super.pushViewController(viewController, animated: false)
+               self.pushAnimation(viewcontroller: viewController)
             }
         }
     }
@@ -47,7 +48,6 @@ class YCNavigationController: UINavigationController {
   
     override func popViewController(animated: Bool) -> UIViewController? {
         
-//       self.dismiss(animated: true, completion: nil)
         if animated {
           return super.popViewController(animated: animated)
         }
@@ -56,7 +56,7 @@ class YCNavigationController: UINavigationController {
                 popV.perform(#selector(YCNavigationController.popAnimation(viewController:)), with: popV)
                 return super.popViewController(animated: false)
             }else {
-              self.popAnimation(viewController: popV)
+               self.popAnimation(viewController: popV)
                 return super.popViewController(animated: false)
             }
         }else {
@@ -82,7 +82,7 @@ class YCNavigationController: UINavigationController {
         }
     }
     
-    @objc func pushAnimation(viewcontroller:UIViewController){
+    @objc func pushAnimation( viewcontroller :UIViewController){
         self.view.layer.add(self.pushAnimation, forKey: kCATransition)
     }
     
@@ -100,15 +100,7 @@ class YCNavigationController: UINavigationController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  
 
 }
 

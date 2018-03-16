@@ -18,7 +18,7 @@ extension UIViewController {
          self.present(navi, animated: true) {}
     }
     
-    func showMessage(_ message:String?,interval:TimeInterval = 2,completionAction:(()->Void)? = nil){
+    func showMessage(_ message: String?, interval: TimeInterval = 2, completionAction:(() -> Void)? = nil){
 
         MBProgressHUD.delay(view: self.view, interval: interval, text: message, completionAction: completionAction)
     }
@@ -44,5 +44,6 @@ extension UIViewController {
            navi.popViewController(animated: true)
         }
     }
+    
 }
 

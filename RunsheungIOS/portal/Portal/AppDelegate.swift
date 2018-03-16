@@ -41,9 +41,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
-        let home = YCHomeController()
-        window?.rootViewController = YCNavigationController(rootViewController: home)
-        window?.makeKeyAndVisible()
+      
+        if YCUserDefaults.isFirstLanuch.value != nil {
+            let pro = ProtocolController()
+            pro.startAction = { [weak self] in
+                guard let this = self else { return }
+                UIView.transition(with: this.window!,
+                                  duration: 0.5,
+                                  options: UIViewAnimationOptions.transitionFlipFromRight,
+                                  animations:
+                    {
+                        let oldState = UIView.areAnimationsEnabled
+                        UIView.setAnimationsEnabled(false)
+                        let home = YCHomeController()
+                        let nav = YCNavigationController(rootViewController: home)
+                        this.window?.rootViewController = nav
+                        UIView.setAnimationsEnabled(oldState)
+                    }, completion: nil)
+            }
+            window?.rootViewController = pro
+        } else {
+            let home = YCHomeController()
+            window?.rootViewController = YCNavigationController(rootViewController: home)
+        }
+          window?.makeKeyAndVisible()
+        
         return true
     }
     
@@ -58,3 +80,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 }
+
+

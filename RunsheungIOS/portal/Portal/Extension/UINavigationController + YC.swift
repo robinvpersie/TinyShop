@@ -11,7 +11,7 @@ import Foundation
 
 extension UINavigationController{
     
-    var popAnimation:CATransition{
+    var popAnimation: CATransition{
         let transition = CATransition()
         transition.duration = 0.3
         transition.type = kCATransitionFade
@@ -21,7 +21,7 @@ extension UINavigationController{
         return transition
     }
     
-    var pushAnimation:CATransition{
+    var pushAnimation: CATransition{
         let transition = CATransition()
         transition.duration = 0.3
         transition.type = kCATransitionFade
@@ -32,17 +32,23 @@ extension UINavigationController{
     }
     
     open override var shouldAutorotate: Bool{
-        guard let visible = self.visibleViewController else { return super.shouldAutorotate }
+        guard let visible = self.visibleViewController else {
+            return super.shouldAutorotate
+        }
         return visible.shouldAutorotate
     }
     
     open override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
-        guard let visible = self.visibleViewController else { return super.supportedInterfaceOrientations }
+        guard let visible = self.visibleViewController else {
+            return super.supportedInterfaceOrientations
+        }
         return visible.supportedInterfaceOrientations
     }
     
     open override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation{
-        guard let visible = self.visibleViewController else { return super.preferredInterfaceOrientationForPresentation }
+        guard let visible = self.visibleViewController else {
+            return super.preferredInterfaceOrientationForPresentation
+        }
         return visible.preferredInterfaceOrientationForPresentation
     }
     
@@ -51,7 +57,9 @@ extension UINavigationController{
 extension UITabBarController {
     
     open override var shouldAutorotate: Bool{
-        guard let vc = self.viewControllers?[self.selectedIndex] else { return super.shouldAutorotate }
+        guard let vc = self.viewControllers?[self.selectedIndex] else {
+            return super.shouldAutorotate
+        }
         if vc is UINavigationController {
            let vc = vc as! UINavigationController
            return vc.shouldAutorotate
