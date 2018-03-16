@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
       
-        if YCUserDefaults.isFirstLanuch.value != nil {
+        if YCUserDefaults.isFirstLanuch.value == nil {
             let pro = ProtocolController()
             pro.startAction = { [weak self] in
                 guard let this = self else { return }

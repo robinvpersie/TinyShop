@@ -11,6 +11,7 @@ import SnapKit
 import SwiftyJSON
 import CryptoSwift
 import MJRefresh
+import Hero
 
 class YCHomeController: BaseViewController {
     
@@ -426,7 +427,7 @@ extension YCHomeController: SelectItemDelegate {
             case .ordermanage:
                let myOrder = SupermarketMyOrderController()
                let navi = UINavigationController(rootViewController: myOrder)
-               present(navi, animated: false, completion: nil)
+               present(navi, animated: true, completion: nil)
             case .customerservice:
                let customerVC = RSCustomerService()
                let navi = UINavigationController(rootViewController: customerVC)
