@@ -24,6 +24,8 @@ target 'Portal' do
   pod 'Hero’
   pod 'FMDB'
   pod 'FSPagerView'
+  pod 'MJRefresh'
+  pod 'TPKeyboardAvoiding'
   
 
 

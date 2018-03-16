@@ -10,6 +10,7 @@
 #import "IntergrationTableView.h"
 #import "SupermarketPointModel.h"
 #import "UILabel+CreateLabel.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface OutIntergrationController ()
 

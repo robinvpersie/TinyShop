@@ -10,6 +10,7 @@
 #import "LZCartModel.h"
 #import "LZConfigFile.h"
 #import "LZCartTableViewCell.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface SupermarketMyCollectionViewController ()<UITableViewDelegate,UITableViewDataSource>
 
