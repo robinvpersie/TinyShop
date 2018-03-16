@@ -9,6 +9,7 @@
 #import "InIntergrationController.h"
 #import "IntergrationTableView.h"
 #import "UILabel+CreateLabel.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface InIntergrationController ()
 

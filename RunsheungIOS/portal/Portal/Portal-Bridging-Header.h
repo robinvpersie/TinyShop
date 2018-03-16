@@ -20,7 +20,7 @@
 #import "KLRecommendCollectionViewCell.h"
 #import "YYTextView.h"
 #import "GoodsDetailController.h"
-#import "MJRefresh.h"
+
 #import "YCShareAddress.h"
 #import "YCShareModel.h"
 #import "MallHomepage.h"
@@ -29,7 +29,7 @@
 #import "HNScanViewController.h"
 #import "UIButton+Badge.h"
 #import "TZImagePickerController.h"
-#import "TPKeyboardAvoidingTableView.h"
+
 #import "WZLBadgeImport.h"
 #import "CYPasswordView.h"
 #import "KLHttpTool.h"
