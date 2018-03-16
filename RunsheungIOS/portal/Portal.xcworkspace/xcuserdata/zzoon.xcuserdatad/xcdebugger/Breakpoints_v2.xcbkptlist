@@ -9,12 +9,28 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Portal/Home/Model/HomeModel.swift"
-            timestampString = "542808513.228791"
+            filePath = "Portal/Welcome/WelcomeModel.swift"
+            timestampString = "542876260.263015"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "intro(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Portal/Home/Model/HomeModel.swift"
+            timestampString = "542882161.380056"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
             landmarkName = "mainHome(place:bannerType:currentPage:completion:)"
             landmarkType = "7">
          </BreakpointContent>

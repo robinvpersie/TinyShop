@@ -248,6 +248,7 @@ struct MainModel {
     
     static func mainHome(place: String, bannerType: Int, currentPage: Int, completion:@escaping (NetWorkResult<MainModel>) -> Void)
     {
+		
         let parse:(JSONDictionary) -> MainModel? = { Data in
             let model = MainModel.createWithJson(Data)
             return model
