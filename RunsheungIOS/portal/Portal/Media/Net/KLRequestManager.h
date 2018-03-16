@@ -10,7 +10,7 @@
 #import <AFNetworking/AFHTTPSessionManager.h>
 
 #define baseRYURL @"http://im.hsw188.com:8081/appserver/index.php/"
-#define RSLonginBaseURL @"http://member.gigawon.co.kr:8800/api/Login/"//登录注册基本url
+#define RSLonginBaseURL @"http://member.dxbhtm.com:8800/api/Login/"//登录注册基本url
 typedef NS_ENUM(NSInteger, KLRequestMethodType) {
     KLRequestMethodTypePost = 1,
     KLRequestMethodTypeGet = 2

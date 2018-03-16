@@ -139,7 +139,7 @@ class YCWebViewController: UIViewController {
                           shareModel.password = YCAccountModel.getAccount()?.password
                           shareModel.title = parameterArray[4]
                           shareModel.content = parameterArray[5]
-                          let originalUrlString = "http://portal.gigawon.co.kr:8488/img/11.png"
+                          let originalUrlString = "http://portal.dxbhtm.com:8488/img/11.png"
                           shareModel.imageUrl = parameterArray[3].isEmpty ? originalUrlString:parameterArray[3]
                           shareModel.url = self!.url.absoluteString
                           shareModel.type = parameterArray[1]

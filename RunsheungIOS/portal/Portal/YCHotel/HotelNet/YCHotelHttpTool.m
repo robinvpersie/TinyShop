@@ -10,16 +10,16 @@
 #import <AdSupport/AdSupport.h>
 
 //#define HotelBaseUrl @"http://192.168.2.147:83/"
-//#define HotelBaseUrl @"http://hotel.gigawon.co.kr:83/"
+//#define HotelBaseUrl @"http://hotel.dxbhtm.com:83/"
 #if !DEBUG // 判断是否在测试环境下
     #define HotelBaseUrl @"http://192.168.2.147:84/"
     #define GetTokenUrl @"http://192.168.2.165:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
     #define LocationUrl @"http://192.168.2.29:8488/Location/GetMyLocation?type=8&lon=113.027417&lat=28.184747"
 #else
-    #define HotelBaseUrl @"http://hotel.gigawon.co.kr:8863/"
-    #define GetTokenUrl @"http://member.gigawon.co.kr:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
-    #define LocationUrl @"https://portal.gigawon.co.kr:443/Location/GetMyLocation?type=8&lon=113.027417&lat=28.184747"
-//    #define LocationUrl @"http://portal.gigawon.co.kr:8488/Location/GetMyLocation?type=8&lon=113.027417&lat=28.184747"
+    #define HotelBaseUrl @"http://hotel.dxbhtm.com:8863/"
+    #define GetTokenUrl @"http://member.dxbhtm.com:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
+    #define LocationUrl @"https://portal.dxbhtm.com:443/Location/GetMyLocation?type=8&lon=113.027417&lat=28.184747"
+//    #define LocationUrl @"http://portal.dxbhtm.com:8488/Location/GetMyLocation?type=8&lon=113.027417&lat=28.184747"
 #endif
 
 @implementation YCHotelHttpTool
@@ -545,7 +545,7 @@
 + (void)hotelUpLoadImages:(NSArray *)images
                   success:(void (^)(id response))success
                   failure:(void (^)(NSError *err))failure {
-//    NSString *url = [NSString stringWithFormat:@"http://hotel.gigawon.co.kr:83/07_FileUpload/MultiFileUploader.ashx"];
+//    NSString *url = [NSString stringWithFormat:@"http://hotel.dxbhtm.com:83/07_FileUpload/MultiFileUploader.ashx"];
     NSString *url = [NSString stringWithFormat:@"%@07_FileUpload/MultiFileUploader.ashx",HotelBaseUrl];
 //    NSString *url = @"http://222.240.51.146:8488/Common/MultiFileUploader.ashx";
     

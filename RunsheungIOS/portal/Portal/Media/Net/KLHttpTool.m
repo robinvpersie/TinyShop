@@ -16,11 +16,11 @@
 //#define PaymentUrl @"http://192.168.2.201/wPayment/api/wPayment"
 //#define PointListUrl @"http://192.168.2.201/pl_Point/api/PointGetListAndBalance"
 
-//#define BaseUrl  @"http://pay.gigawon.co.kr:81/"
-//#define PaymentBaseURL @"http://pay.gigawon.co.kr:8088/"
-//#define ShopBaseUrl @"http://api1.gigawon.co.kr:96/"
-//#define PaymentUrl @"https://api.gigawon.co.kr/wPayment/api/wPayment"
-//#define PointListUrl @"https://api.gigawon.co.kr/pl_Point/api/PointGetListAndBalance"
+//#define BaseUrl  @"http://pay.dxbhtm.com:81/"
+//#define PaymentBaseURL @"http://pay.dxbhtm.com:8088/"
+//#define ShopBaseUrl @"http://api1.dxbhtm.com:96/"
+//#define PaymentUrl @"https://api.dxbhtm.com/wPayment/api/wPayment"
+//#define PointListUrl @"https://api.dxbhtm.com/pl_Point/api/PointGetListAndBalance"
 
 #if !DEBUG // 判断是否在测试环境下
     #define BaseUrl  @"http://192.168.2.230:81/"
@@ -33,14 +33,14 @@
     #define GetTokenUrl @"http://192.168.2.165:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
 #else
 
-    #define BaseUrl  @"http://pay.gigawon.co.kr:81/"
-    #define PaymentBaseURL @"http://pay.gigawon.co.kr:8088/"
-    #define ShopBaseUrl @"http://api1.gigawon.co.kr:96/"
-    #define PaymentUrl @"https://api.gigawon.co.kr:8444/wPayment/api/wPayment"
-    #define PointListUrl @"https://api.gigawon.co.kr:8444/pl_Point/api/PointGetListAndBalance"
-    #define CheckTokenUrl @"https://api.gigawon.co.kr:8444/appapi/userapi"
-    #define GetZipcodeUrl @"http://api1.gigawon.co.kr:82/api/ycZipCode/getZipCode"
-    #define GetTokenUrl @"http://member.gigawon.co.kr:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
+    #define BaseUrl  @"http://pay.dxbhtm.com:81/"
+    #define PaymentBaseURL @"http://pay.dxbhtm.com:8088/"
+    #define ShopBaseUrl @"http://api1.dxbhtm.com:96/"
+    #define PaymentUrl @"https://api.dxbhtm.com:8444/wPayment/api/wPayment"
+    #define PointListUrl @"https://api.dxbhtm.com:8444/pl_Point/api/PointGetListAndBalance"
+    #define CheckTokenUrl @"https://api.dxbhtm.com:8444/appapi/userapi"
+    #define GetZipcodeUrl @"http://api1.dxbhtm.com:82/api/ycZipCode/getZipCode"
+    #define GetTokenUrl @"http://member.dxbhtm.com:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
 #endif
 
 
@@ -1316,7 +1316,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:customCode forKey:@"custom_code"];
     [parameters setObject:@"chn" forKey:@"lang_type"];
-    NSString *autoMatchingURI = @"http://api1.gigawon.co.kr:7778/api/apiMember/doAutoMatching";
+    NSString *autoMatchingURI = @"http://api1.dxbhtm.com:7778/api/apiMember/doAutoMatching";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer = responseSerializer;
@@ -1440,7 +1440,7 @@
                          success:(void (^)(id response))success
                          failure:(void (^)(NSError *err))failure {
 //    NSString *url = @"http://192.168.2.97:83/api/wPayment";
-//    NSString *url = @"https://api.gigawon.co.kr/wPayment/api/wPayment";
+//    NSString *url = @"https://api.dxbhtm.com/wPayment/api/wPayment";
 //    NSString *url = @"http://192.168.2.201/wPayment/api/wPayment";
     
     NSMutableDictionary *params = @{}.mutableCopy;
@@ -1509,7 +1509,7 @@
                             pageIndex:(NSInteger)pageIndex
                               success:(void (^)(id response))success
                               failure:(void (^)(NSError *err))failure {
-//    NSString *urlString = @"https://api.gigawon.co.kr/pl_Point/api/PointGetListAndBalance";
+//    NSString *urlString = @"https://api.dxbhtm.com/pl_Point/api/PointGetListAndBalance";
     
     NSMutableDictionary *params = @{}.mutableCopy;
     
@@ -2339,7 +2339,7 @@
 
 + (void)checkVersionsuccess:(void (^)(id response))success
                     failure:(void (^)(NSError *err))failure {
-    NSString *url = @"https://api.gigawon.co.kr:8444/appapi/userapi";
+    NSString *url = @"https://api.dxbhtm.com:8444/appapi/userapi";
     NSMutableDictionary *params = @{}.mutableCopy;
     [params setObject:@"checkver" forKey:@"action"];
     [params setObject:@"11" forKey:@"vercode"];
@@ -2362,7 +2362,7 @@
                 withParentId:(NSString *)parent_ID
                     success:(void (^)(id response))success
                     failure:(void (^)(NSError *err))failure{
-    NSString*url = @"http://member.gigawon.co.kr:8800/api/Login/joinMember";
+    NSString*url = @"http://member.dxbhtm.com:8800/api/Login/joinMember";
     NSMutableDictionary *dic;
     if (parent_ID.length == 0) {
          dic = @{@"memid":memid,@"HPnum":memid,@"ver":@"2",@"mempwd":mempwd,@"AuthNum":AuthNum}.mutableCopy;
@@ -2394,7 +2394,7 @@
 +(void)getVerCodeWithHPnum:(NSString*)HPnum
                    success:(void (^)(id response))success
                    failure:(void (^)(NSError *err))failure{
-   NSString *url = [NSString stringWithFormat:@"http://portal.gigawon.co.kr:8488/Member/SMSAuthNumSend?HPnum=%@",HPnum];
+   NSString *url = [NSString stringWithFormat:@"http://portal.dxbhtm.com:8488/Member/SMSAuthNumSend?HPnum=%@",HPnum];
     [[KLRequestManager shareManager]RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:nil success:^(id response) {
         if ([response[@"status"] intValue] == 1) {
             success(response);
@@ -2410,7 +2410,7 @@
                       withDeviceNo:(NSString*)deviceNo
                            success:(void (^)(id response))success
                            failure:(void (^)(NSError *err))failure{
-    NSString*url = @"http://member.gigawon.co.kr:8800/api/Login/memberLogin";
+    NSString*url = @"http://member.dxbhtm.com:8800/api/Login/memberLogin";
     
     NSMutableDictionary *jsondic = @{@"memid":memid,@"mempwd":mempwd,@"deviceNo":deviceNo,@"ver":@"2",@"s_id":@"",@"lang_type":@"chn"}.mutableCopy;
 
@@ -2439,7 +2439,7 @@
 + (void)joinStudentSellerwithwithParams:(NSMutableDictionary*)param
                                 success:(void (^)(id response))success
                                 failure:(void (^)(NSError *err))failure{
-    NSString*url = @"http://api1.gigawon.co.kr:7778/api/apiSeller/joinStudentSeller";
+    NSString*url = @"http://api1.dxbhtm.com:7778/api/apiSeller/joinStudentSeller";
     
     //获得请求管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -2466,7 +2466,7 @@
 + (void)joinDoctorSellerwithwithParams:(NSMutableDictionary*)param
                                 success:(void (^)(id response))success
                                 failure:(void (^)(NSError *err))failure{
-    NSString*url = @"http://api1.gigawon.co.kr:7778/api/apiSeller/joinDoctorSeller";
+    NSString*url = @"http://api1.dxbhtm.com:7778/api/apiSeller/joinDoctorSeller";
     
     
     
@@ -2495,7 +2495,7 @@
 + (void)joinWeixinSellerwithwithParams:(NSMutableDictionary*)param
                                success:(void (^)(id response))success
                                failure:(void (^)(NSError *err))failure{
-    NSString*url = @"http://api1.gigawon.co.kr:7778/api/apiSeller/joinWeixinSeller";
+    NSString*url = @"http://api1.dxbhtm.com:7778/api/apiSeller/joinWeixinSeller";
     
     //获得请求管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -2585,7 +2585,7 @@
     NSMutableDictionary *josnParms = @{@"memberID":memberID,@"nickName":nickName,@"imagePath":imagePath,@"gender":gender,@"token":token}.mutableCopy;
 
     // 1.创建请求
-    NSURL *url = [NSURL URLWithString:@"http://rsmember.gigawon.co.kr:8800/api/member/editProfile"];
+    NSURL *url = [NSURL URLWithString:@"http://rsmember.dxbhtm.com:8800/api/member/editProfile"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = @"POST";
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -2598,7 +2598,7 @@
     }];
     
    /* //获得请求管理者
-    NSString*url = @"http://rsmember.gigawon.co.kr:8800/api/member/editProfile";
+    NSString*url = @"http://rsmember.dxbhtm.com:8800/api/member/editProfile";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
