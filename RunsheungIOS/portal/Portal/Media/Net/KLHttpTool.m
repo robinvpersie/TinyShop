@@ -33,14 +33,14 @@
     #define GetTokenUrl @"http://192.168.2.165:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
 #else
 
-    #define BaseUrl  @"http://pay.dxbhtm.com:81/"
-    #define PaymentBaseURL @"http://pay.dxbhtm.com:8088/"
-    #define ShopBaseUrl @"http://api1.dxbhtm.com:96/"
-    #define PaymentUrl @"https://api.dxbhtm.com:8444/wPayment/api/wPayment"
-    #define PointListUrl @"https://api.dxbhtm.com:8444/pl_Point/api/PointGetListAndBalance"
-    #define CheckTokenUrl @"https://api.dxbhtm.com:8444/appapi/userapi"
-    #define GetZipcodeUrl @"http://api1.dxbhtm.com:82/api/ycZipCode/getZipCode"
-    #define GetTokenUrl @"http://member.dxbhtm.com:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
+    #define BaseUrl  @"http://pay.gigawon.co.kr:81/"
+    #define PaymentBaseURL @"http://pay.gigawon.co.kr:8088/"
+    #define ShopBaseUrl @"http://api1.gigawon.co.kr:96/"
+    #define PaymentUrl @"https://api.gigawon.co.kr:8444/wPayment/api/wPayment"
+    #define PointListUrl @"https://api.gigawon.co.kr:8444/pl_Point/api/PointGetListAndBalance"
+    #define CheckTokenUrl @"https://api.gigawon.co.kr:8444/appapi/userapi"
+    #define GetZipcodeUrl @"http://api1.gigawon.co.kr:82/api/ycZipCode/getZipCode"
+    #define GetTokenUrl @"http://member.gigawon.co.kr:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
 #endif
 
 
