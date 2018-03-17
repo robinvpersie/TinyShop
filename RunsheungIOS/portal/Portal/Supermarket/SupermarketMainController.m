@@ -15,6 +15,8 @@
 #import "SupermarketBaseNavigationController.h"
 #import "LZCartViewController.h"
 #import "SupermarketAllKindsController.h"
+#import "TSCategoryController.h"
+
 
 @interface SupermarketMainController ()<UITabBarControllerDelegate>
 
@@ -60,7 +62,7 @@
     SupermarketMineViewController *mine = [[SupermarketMineViewController alloc] init];
     LZCartViewController *shopping_Cart = [[LZCartViewController alloc] init];
     shopping_Cart.divCode = self.divCode;
-    SupermarketAllKindsController *allKinds = [[SupermarketAllKindsController alloc] init];
+    TSCategoryController *allKinds = [[TSCategoryController alloc] init];
     
 //    shopping_Cart.type = ShoppingCartController;
     
