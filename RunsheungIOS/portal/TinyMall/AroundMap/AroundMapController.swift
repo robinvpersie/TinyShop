@@ -15,6 +15,7 @@ class AroundMapController: UIViewController {
     
     var mapView: MKMapView!
     var artworks = [Artwork]()
+    lazy var shopDetailView = ShopInfoView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +24,6 @@ class AroundMapController: UIViewController {
         makeUI()
         loadInitialData()
         location()
-       
-        
     }
     
     func location() {
@@ -82,12 +81,19 @@ class AroundMapController: UIViewController {
             }
             make.leading.trailing.bottom.equalTo(view)
         }
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didUnitTap))
+        tap.delegate = self
+        mapView.addGestureRecognizer(tap)
+    }
+    
+    @objc func didUnitTap() {
+        shopDetailView.hide()
     }
     
     func loadInitialData() {
         guard let fileName = Bundle.main.path(forResource: "PublicArt", ofType: "json") else { return }
         let optionalData = try? Data(contentsOf: URL(fileURLWithPath: fileName))
-        
         guard let data = optionalData,
         let json = try? JSONSerialization.jsonObject(with: data),
         let dictionary = json as? [String : Any],
@@ -116,7 +122,17 @@ extension AroundMapController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        
+        shopDetailView.showInView(self.view)
     }
+    
+}
+
+extension AroundMapController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+  
     
 }

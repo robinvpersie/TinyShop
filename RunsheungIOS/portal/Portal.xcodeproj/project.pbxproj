@@ -11,6 +11,7 @@
 		01099A01205CFC1200FCC6B6 /* ArtworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01099A00205CFC1200FCC6B6 /* ArtworkView.swift */; };
 		01099A03205CFEA700FCC6B6 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01099A02205CFEA700FCC6B6 /* Artwork.swift */; };
 		01099A05205D057E00FCC6B6 /* PublicArt.json in Resources */ = {isa = PBXBuildFile; fileRef = 01099A04205D057E00FCC6B6 /* PublicArt.json */; };
+		01099A07205D0F9100FCC6B6 /* ShopInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01099A06205D0F9100FCC6B6 /* ShopInfoView.swift */; };
 		011B5234205A0B5400B7E4D7 /* OrderLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */; };
 		011B5236205A0CE500B7E4D7 /* OrderLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5235205A0CE500B7E4D7 /* OrderLocationModel.swift */; };
 		011B523A205A0DD200B7E4D7 /* OrderLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5237205A0DD200B7E4D7 /* OrderLocationCell.swift */; };
@@ -770,6 +771,7 @@
 		01099A00205CFC1200FCC6B6 /* ArtworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkView.swift; sourceTree = "<group>"; };
 		01099A02205CFEA700FCC6B6 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		01099A04205D057E00FCC6B6 /* PublicArt.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PublicArt.json; sourceTree = "<group>"; };
+		01099A06205D0F9100FCC6B6 /* ShopInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopInfoView.swift; sourceTree = "<group>"; };
 		011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationController.swift; sourceTree = "<group>"; };
 		011B5235205A0CE500B7E4D7 /* OrderLocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationModel.swift; sourceTree = "<group>"; };
 		011B5237205A0DD200B7E4D7 /* OrderLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationCell.swift; sourceTree = "<group>"; };
@@ -2189,6 +2191,7 @@
 				01099A04205D057E00FCC6B6 /* PublicArt.json */,
 				01099A00205CFC1200FCC6B6 /* ArtworkView.swift */,
 				01099A02205CFEA700FCC6B6 /* Artwork.swift */,
+				01099A06205D0F9100FCC6B6 /* ShopInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6453,6 +6456,7 @@
 				1B0CD2EB1E8E0693008AF162 /* MSSCalendarCollectionReusableView.m in Sources */,
 				1B3293951E4C606500022B1D /* SupermarketChoseSizeView.m in Sources */,
 				62ADFAF51DE3F248005FDE1D /* YCHomeHeaderCell.swift in Sources */,
+				01099A07205D0F9100FCC6B6 /* ShopInfoView.swift in Sources */,
 				1B80E6D41E4D5631001603B2 /* NSArray+MASAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
