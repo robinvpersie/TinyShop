@@ -13,6 +13,7 @@
 		011B523B205A0DD200B7E4D7 /* OrderCurrentLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5238205A0DD200B7E4D7 /* OrderCurrentLocationCell.swift */; };
 		011B523C205A0DD200B7E4D7 /* OrderHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5239205A0DD200B7E4D7 /* OrderHeaderReusableView.swift */; };
 		011B523E205B6C6C00B7E4D7 /* ProtocolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B523D205B6C6C00B7E4D7 /* ProtocolController.swift */; };
+		011B5240205BDE2500B7E4D7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B523F205BDE2500B7E4D7 /* BaseViewController.swift */; };
 		018AE84B20594CC60018F854 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84A20594CC60018F854 /* Resource.swift */; };
 		018AE84D20594D210018F854 /* NetWorkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84C20594D210018F854 /* NetWorkResult.swift */; };
 		018AE84F20594DC90018F854 /* NetIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84E20594DC90018F854 /* NetIndicator.swift */; };
@@ -767,6 +768,7 @@
 		011B5238205A0DD200B7E4D7 /* OrderCurrentLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCurrentLocationCell.swift; sourceTree = "<group>"; };
 		011B5239205A0DD200B7E4D7 /* OrderHeaderReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHeaderReusableView.swift; sourceTree = "<group>"; };
 		011B523D205B6C6C00B7E4D7 /* ProtocolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolController.swift; sourceTree = "<group>"; };
+		011B523F205BDE2500B7E4D7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		018AE84A20594CC60018F854 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		018AE84C20594D210018F854 /* NetWorkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkResult.swift; sourceTree = "<group>"; };
 		018AE84E20594DC90018F854 /* NetIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetIndicator.swift; sourceTree = "<group>"; };
@@ -5274,6 +5276,7 @@
 			isa = PBXGroup;
 			children = (
 				269CA6EA2002005E009E6C54 /* YCHomeController.swift */,
+				011B523F205BDE2500B7E4D7 /* BaseViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5841,6 +5844,7 @@
 				1B9547031F1DF147006DCB6C /* ZFScanViewController.m in Sources */,
 				1B392D7C1E28D0E500F70981 /* TZVideoPlayerController.m in Sources */,
 				1B392D831E28D0E500F70981 /* YYTextInput.m in Sources */,
+				011B5240205BDE2500B7E4D7 /* BaseViewController.swift in Sources */,
 				5BEF65AF1F208C0500817141 /* RightToLeft.swift in Sources */,
 				1B5B6BD11E9B622B009D5C75 /* HotelOrderTableView.m in Sources */,
 				1B0CD2D51E8B83EC008AF162 /* HotelChooseView.m in Sources */,

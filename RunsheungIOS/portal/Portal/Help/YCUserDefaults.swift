@@ -86,6 +86,13 @@ final public class YCUserDefaults{
     
     static let defaults = UserDefaults(suiteName: "YCSheLongWang")
     
+    public static var isAcceptProtocol: Listenable<Bool?> = {
+       let firstLanuch = defaults?.bool(forKey: "isAcceptProtocol")
+        return Listenable<Bool?> (firstLanuch) { firstLanuch in
+            defaults?.set(firstLanuch, forKey: "isAcceptProtocol")
+        }
+    }()
+    
     public static var locationAddress:Listenable<String?> = {
         let locationAddress = defaults?.string(forKey:canteenlocationKey)
         return Listenable<String?>(locationAddress){ locationAddress in

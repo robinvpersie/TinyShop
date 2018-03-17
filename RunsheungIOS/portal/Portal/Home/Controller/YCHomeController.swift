@@ -11,8 +11,9 @@ import SnapKit
 import SwiftyJSON
 import CryptoSwift
 import MJRefresh
+import Hero
 
-class YCHomeController: UIViewController {
+class YCHomeController: BaseViewController {
     
     enum Section:Int {
         case news
@@ -203,7 +204,7 @@ class YCHomeController: UIViewController {
         }
     
     
-    func showBranch(){
+    @objc func showBranch(){
 //        let orderLocation = OrderLocationController()
 //        orderLocation.divName = divName
 //        self.navigationController?.pushViewController(orderLocation, animated: true)
@@ -412,9 +413,9 @@ extension YCHomeController: SelectItemDelegate {
     func tapItem(type: YCHomeBusinessHeader.BusinessType) {
         switch type {
             case .main:
-               let mainVC:CustomerServiceController = CustomerServiceController()
+               let mainVC = CustomerServiceController()
                mainVC.flag = 1
-               let navi:UINavigationController = UINavigationController(rootViewController: mainVC)
+               let navi = UINavigationController(rootViewController: mainVC)
                present(navi, animated: true, completion: nil)
             case .superMarket:
                let supermarket = SupermarketMainController()
@@ -425,7 +426,7 @@ extension YCHomeController: SelectItemDelegate {
                present(supermarket, animated: true, completion: nil)
             case .ordermanage:
                let myOrder = SupermarketMyOrderController()
-               let navi:UINavigationController = UINavigationController(rootViewController: myOrder)
+               let navi = UINavigationController(rootViewController: myOrder)
                present(navi, animated: true, completion: nil)
             case .customerservice:
                let customerVC = RSCustomerService()
