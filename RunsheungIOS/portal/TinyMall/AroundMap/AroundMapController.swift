@@ -34,16 +34,7 @@ class AroundMapController: UIViewController {
             let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate, 1000, 1000)
             self?.mapView.setRegion(coordinateRegion, animated: false)
             self?.mapView.addAnnotations(self!.artworks)
-//            let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 1000, 1000)
-//            UIView.animate(withDuration: 0.3,
-//                           delay: 0.2,
-//                           usingSpringWithDamping: 0,
-//                           initialSpringVelocity: 0,
-//                           options: UIViewAnimationOptions.transitionCrossDissolve,
-//                           animations: {
-//                              self?.mapView.setRegion(coordinateRegion, animated: true)
-//                            },
-//                           completion: nil)
+
         }) { [weak self] error, location in
             self?.showMessage(error.localizedDescription)
         }
@@ -122,7 +113,9 @@ extension AroundMapController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        shopDetailView.showInView(self.view)
+        if shopDetailView.superview == nil {
+           shopDetailView.showInView(self.view)
+        }
     }
     
 }
@@ -132,7 +125,5 @@ extension AroundMapController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
-    
-  
     
 }
