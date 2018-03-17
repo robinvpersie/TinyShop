@@ -119,7 +119,7 @@
 	<key>NSContactsUsageDescription</key>
 	<string>允许Portal使用您的通讯录吗</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>开启定位</string>
+	<string>允许小商工人利用您的定位吗</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>允许Portal使用您的麦克风吗</string>
 	<key>NSPhotoLibraryUsageDescription</key>

@@ -10,9 +10,6 @@
 #import "ChoiceHeadView.h"
 #import "ChoiceSegmentView.h"
 #import "ChoiceTableViewCell.h"
-//#import "ShopDetailedController.h"
-//#import "ShopCategoryViewModel.h"
-//#import "MoreViewController.h"
 
 @interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, copy) NSArray * moderArr;
@@ -39,43 +36,18 @@
 	self.view.backgroundColor = RGB(250, 250, 250);
 	
 	
-	[self getCategoryData];
 	[self createSemgentViews];
 	[self createTableview];
 	[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PushEditAction) name:@"EDITACTIONNOTIFICATIONS" object:nil];
 }
 
 - (void)PushEditAction{
-//	MoreViewController *moreVC = [MoreViewController new];
-//	moreVC.title = @"添加更多";
-//	[self.navigationController pushViewController:moreVC animated:YES];
-}
-
-#pragma mark -- 获取分类数据
-- (void)getCategoryData{
-//	MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//	[hud showAnimated: YES];
-//	ShopCategoryViewModel *viewmodel = [[ShopCategoryViewModel alloc]init];
-//	[viewmodel setBlockWithReturnBlock:^(NSDictionary* returnValue) {
-//
-//		[hud hideAnimated:YES];
-//		self.returnDit = returnValue;
-//		self.allData = returnValue[@"data"];
-//
-//
-//
-//	} withErrorBlock:^(id errorCode) {
-//
-//	} withFailureBlock:^{
-//
-//	}];
-//	[viewmodel fetchShopCategoryModel];
 }
 
 - (void)createTableview{
 	if (self.tableview == nil) {
 		
-		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView.frame)+ 10, APPScreenWidth, APPScreenHeight - CGRectGetMaxY(self.segmentView.frame) - 10) style:UITableViewStylePlain];
+		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView.frame), APPScreenWidth, APPScreenHeight - CGRectGetMaxY(self.segmentView.frame) - 10) style:UITableViewStylePlain];
 		[self.tableview registerNib:[UINib nibWithNibName:@"ChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChoiceTableViewCellID"];
 		self.tableview.delegate = self;
 		self.tableview.dataSource = self;
@@ -97,7 +69,6 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	ChoiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChoiceTableViewCellID"];
-//	cell.dic = self.allData[indexPath.row];
 	cell.starValue = 1;
 	return cell;
 	
@@ -118,8 +89,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-//	ShopDetailedController *detailVC = [ShopDetailedController new];
-//	[self.navigationController pushViewController:detailVC animated:YES];
 }
 
 #pragma  mark --创建选择试图
@@ -139,12 +108,12 @@
 
 - (void)setNaviBar{
 	
-	UIButton *right1Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 14, 14)];
+	UIButton *right1Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
 	[right1Btn setImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
 	right1Btn.imageEdgeInsets = UIEdgeInsetsMake(0, 7, 0, -7);
 	UIBarButtonItem *right1Item = [[UIBarButtonItem alloc]initWithCustomView:right1Btn];
 	
-	UIButton *right2Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 14, 14)];
+	UIButton *right2Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
 	[right2Btn setImage:[UIImage imageNamed:@"icon_map1"] forState:UIControlStateNormal];
 	UIBarButtonItem *right2Item = [[UIBarButtonItem alloc]initWithCustomView:right2Btn];
 	

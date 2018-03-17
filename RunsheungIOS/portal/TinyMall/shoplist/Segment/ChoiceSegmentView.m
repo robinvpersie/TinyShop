@@ -32,7 +32,7 @@
 		[datas addObject:keyValue];
 	}
 	if (self.SingleSegment == nil) {
-		self.SingleSegment = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 50) withDic:self.dataArray withData:datas withLineBottomColor:[UIColor redColor] withflag:0];
+		self.SingleSegment = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 50) withDic:self.dataArray withData:datas withLineBottomColor:RGB(33, 192, 67) withflag:0];
 		self.SingleSegment.delegate = self;
 		[self addSubview:self.SingleSegment];
 	}
@@ -48,7 +48,7 @@
 		}
 	if (self.SingleSegmentSecond == nil) {
 		
-		self.SingleSegmentSecond = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, 60, APPScreenWidth, 50)withDic:self.dataArray withData:da withLineBottomColor:[UIColor blackColor] withflag:1];
+		self.SingleSegmentSecond = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, 60, APPScreenWidth, 50)withDic:self.dataArray withData:da withLineBottomColor:RGB(33, 192, 67) withflag:1];
 		self.SingleSegmentSecond.delegate = self;
 		[self addSubview:self.SingleSegmentSecond];
 	}
@@ -87,7 +87,7 @@
 				[da addObject:dic.allKeys.firstObject];
 			}
 			if (self.SingleSegmentSecond == nil) {
-				self.SingleSegmentSecond = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, 60, APPScreenWidth, 50) withDic:self.dataArray withData:da withLineBottomColor:[UIColor blackColor] withflag:1];
+				self.SingleSegmentSecond = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, 60, APPScreenWidth, 50) withDic:self.dataArray withData:da withLineBottomColor:RGB(33, 192, 67) withflag:1];
 				[self addSubview:self.SingleSegmentSecond];
 			}
 		}

@@ -300,7 +300,7 @@ public extension UIImage {
         return UIImage(named: "icon_comment_002")!
     }
     
-    static var leftarrow:UIImage? {
+    static var leftarrow: UIImage? {
         return UIImage(named: "icon_02_01")
     }
     

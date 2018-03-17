@@ -54,7 +54,7 @@
 	[firstView addSubview:self.scrollview];
 	
 	if (self.bottomLine == nil) {
-		self.bottomLine = [[UILabel alloc]initWithFrame:CGRectMake(5,self.scrollview.frame.size.height - 3 , 55, 2)];
+		self.bottomLine = [[UILabel alloc]initWithFrame:CGRectMake(10,self.scrollview.frame.size.height - 3 , 45, 2)];
 		self.bottomLine.backgroundColor = self.lineColor;
 		[self.scrollview addSubview:self.bottomLine];
 		
@@ -121,35 +121,35 @@
 	}
 	
 	
-	if (self.flag) {
-		if ([self.delegate respondsToSelector:@selector(clickUpThirdItem:)]) {
-			NSMutableArray *firstAllKeys = @[].mutableCopy;
-			for (NSDictionary *dics in self.alldata) {
-				NSArray *allKeys = dics.allKeys;
-				[firstAllKeys addObjectsFromArray:allKeys];
-			
-			}
-			for (NSString *keys in firstAllKeys) {
-				for (NSDictionary *dics in self.alldata) {
-					if ([keys isEqualToString:dics.allKeys.firstObject]) {
-						NSArray *dss = dics.allValues.firstObject;
-						for (NSDictionary *dics in dss) {
-							NSString*Keys = dics.allKeys.firstObject;
-							if ([itemkey isEqualToString:Keys]) {
-								NSArray *dssss = dics[Keys];
-								[self.delegate clickUpThirdItem:dssss];
-								
-							}
-							
-						}
-
-					}
-				}
-			}
-
-		}
-		
-	}
+//	if (self.flag) {
+//		if ([self.delegate respondsToSelector:@selector(clickUpThirdItem:)]) {
+//			NSMutableArray *firstAllKeys = @[].mutableCopy;
+//			for (NSDictionary *dics in self.alldata) {
+//				NSArray *allKeys = dics.allKeys;
+//				[firstAllKeys addObjectsFromArray:allKeys];
+//			
+//			}
+//			for (NSString *keys in firstAllKeys) {
+//				for (NSDictionary *dics in self.alldata) {
+//					if ([keys isEqualToString:dics.allKeys.firstObject]) {
+//						NSArray *dss = dics.allValues.firstObject;
+//						for (NSDictionary *dics in dss) {
+//							NSString*Keys = dics.allKeys.firstObject;
+//							if ([itemkey isEqualToString:Keys]) {
+//								NSArray *dssss = dics[Keys];
+//								[self.delegate clickUpThirdItem:dssss];
+//								
+//							}
+//							
+//						}
+//
+//					}
+//				}
+//			}
+//
+//		}
+//		
+//	}
 }
 
 

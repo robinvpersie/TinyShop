@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010999FE205CBAE900FCC6B6 /* AroundMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010999FD205CBAE900FCC6B6 /* AroundMapController.swift */; };
 		011B5234205A0B5400B7E4D7 /* OrderLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */; };
 		011B5236205A0CE500B7E4D7 /* OrderLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5235205A0CE500B7E4D7 /* OrderLocationModel.swift */; };
 		011B523A205A0DD200B7E4D7 /* OrderLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5237205A0DD200B7E4D7 /* OrderLocationCell.swift */; };
@@ -762,6 +763,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		010999FD205CBAE900FCC6B6 /* AroundMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMapController.swift; sourceTree = "<group>"; };
 		011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationController.swift; sourceTree = "<group>"; };
 		011B5235205A0CE500B7E4D7 /* OrderLocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationModel.swift; sourceTree = "<group>"; };
 		011B5237205A0DD200B7E4D7 /* OrderLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationCell.swift; sourceTree = "<group>"; };
@@ -2166,6 +2168,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		010999FC205CBAC500FCC6B6 /* AroundMap */ = {
+			isa = PBXGroup;
+			children = (
+				010999FD205CBAE900FCC6B6 /* AroundMapController.swift */,
+			);
+			path = AroundMap;
+			sourceTree = "<group>";
+		};
 		1B0CD2B61E8B5A84008AF162 /* YCHotel */ = {
 			isa = PBXGroup;
 			children = (
@@ -5351,6 +5361,7 @@
 		D59D3A1B205BE42E0074F0E8 /* TinyMall */ = {
 			isa = PBXGroup;
 			children = (
+				010999FC205CBAC500FCC6B6 /* AroundMap */,
 				D59D3A1C205BE42E0074F0E8 /* shoplist */,
 			);
 			path = TinyMall;
@@ -6374,6 +6385,7 @@
 				267DAA991EA213EE00299E74 /* HotelHeadView.m in Sources */,
 				1B12C79C1E836A0800D89DBB /* NSDate+YCAddtion.m in Sources */,
 				5BFB70091DEBD1950004ED83 /* HomeModel.swift in Sources */,
+				010999FE205CBAE900FCC6B6 /* AroundMapController.swift in Sources */,
 				1BC876881E9765CD00BB38D7 /* HotelSearchFilterView.m in Sources */,
 				1B80E6D51E4D5631001603B2 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				1B392F001E28D14E00F70981 /* SupermarketHomeWantBuyCollectionViewCell.m in Sources */,
