@@ -85,34 +85,34 @@
         switch (index) {
             case 0:
             {
-                UIImage *image = [UIImage imageNamed:@"tabbar_home-page_n"];
-                UIImage *selectedImage = [UIImage imageNamed:@"tabbar_home-page_s"];
+                UIImage *image = [UIImage imageNamed:@"icon_home_bottom"];
+                UIImage *selectedImage = [UIImage imageNamed:@"icon_home_bottom_s"];
                 selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"SupermarketTabHome",nil) image:image selectedImage:selectedImage];
+                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:image selectedImage:selectedImage];
             }
                 break;
             case 1:
             {
-                UIImage *image = [UIImage imageNamed:@"tabbar_classification_n"];
-                UIImage *selectedImage = [UIImage imageNamed:@"tabbar_classification_s"];
+                UIImage *image = [UIImage imageNamed:@"icon_shop_bottom"];
+                UIImage *selectedImage = [UIImage imageNamed:@"icon_shop_bottom_s"];
                 selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"SupermarketTabKinds",nil) image:image selectedImage:selectedImage];
+                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"附近商家" image:image selectedImage:selectedImage];
             }
                 break;
             case 2:
             {
-                UIImage *image = [UIImage imageNamed:@"tabbar_shoppingcart_n"];
-                UIImage *selectedImage = [UIImage imageNamed:@"tabbar_shoppingcart_s"];
+                UIImage *image = [UIImage imageNamed:@"icon_sale_bottom"];
+                UIImage *selectedImage = [UIImage imageNamed:@"icon_sale_bottom_s"];
                 selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"SupermarketTabShoppingCart",nil) image:image selectedImage:selectedImage];
+                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"特价优惠" image:image selectedImage:selectedImage];
             }
                 break;
             case 3:
             {
-                UIImage *image = [UIImage imageNamed:@"tabbar_my_n"];
-                UIImage *selectedImage = [UIImage imageNamed:@"tabbar_my_s"];
+                UIImage *image = [UIImage imageNamed:@"icon_personal_bottom"];
+                UIImage *selectedImage = [UIImage imageNamed:@"icon_personal_bottom_s"];
                 selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"SupermarketTabMine",nil) image:image selectedImage:selectedImage];
+                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:image selectedImage:selectedImage];
             }
                 break;
             default:

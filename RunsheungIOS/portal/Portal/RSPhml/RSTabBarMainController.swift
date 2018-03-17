@@ -21,38 +21,38 @@ class RSTabBarMainController: UITabBarController {
             case .home:
                 return "首页"
             case .category:
-                return "分类"
+                return "附近商家"
             case .shopcart:
-                return "购物车"
+                return "特价优惠"
             case .mine:
-                return "我"
+                return "我的"
             }
         }
         
         var normalImage:UIImage? {
             switch self {
             case .home:
-                return UIImage(named: "icon_home_n1")
+                return UIImage(named: "icon_home_bottom")
             case .category:
-                return UIImage(named: "icon_classification_n")
+                return UIImage(named: "icon_shop_bottom")
             case .shopcart:
-                return UIImage(named: "icon_shoppingcart_n")
+                return UIImage(named: "icon_sale_bottom")
                
             case .mine:
-                return UIImage(named: "icon_me_n")
+                return UIImage(named: "icon_personal_bottom")
             }
         }
         
         var selectImage:UIImage? {
             switch self {
             case .home:
-                return UIImage(named: "icon_home_s1")?.withRenderingMode(.alwaysOriginal)
+                return UIImage(named: "icon_home_bottom_s")?.withRenderingMode(.alwaysOriginal)
             case .category:
-                return UIImage(named: "icon_classification_s")?.withRenderingMode(.alwaysOriginal)
+                return UIImage(named: "icon_shop_bottom_s")?.withRenderingMode(.alwaysOriginal)
             case .shopcart:
-                return UIImage(named: "icon_shoppingcart_s")?.withRenderingMode(.alwaysOriginal)
+                return UIImage(named: "icon_sale_bottom_s")?.withRenderingMode(.alwaysOriginal)
             case .mine:
-                return UIImage(named: "icon_me_s")?.withRenderingMode(.alwaysOriginal)
+                return UIImage(named: "icon_personal_bottom_s")?.withRenderingMode(.alwaysOriginal)
             }
         }
     }
