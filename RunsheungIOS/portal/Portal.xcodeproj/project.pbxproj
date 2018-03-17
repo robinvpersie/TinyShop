@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		010999FE205CBAE900FCC6B6 /* AroundMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010999FD205CBAE900FCC6B6 /* AroundMapController.swift */; };
+		01099A01205CFC1200FCC6B6 /* ArtworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01099A00205CFC1200FCC6B6 /* ArtworkView.swift */; };
+		01099A03205CFEA700FCC6B6 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01099A02205CFEA700FCC6B6 /* Artwork.swift */; };
+		01099A05205D057E00FCC6B6 /* PublicArt.json in Resources */ = {isa = PBXBuildFile; fileRef = 01099A04205D057E00FCC6B6 /* PublicArt.json */; };
 		011B5234205A0B5400B7E4D7 /* OrderLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */; };
 		011B5236205A0CE500B7E4D7 /* OrderLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5235205A0CE500B7E4D7 /* OrderLocationModel.swift */; };
 		011B523A205A0DD200B7E4D7 /* OrderLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5237205A0DD200B7E4D7 /* OrderLocationCell.swift */; };
@@ -764,6 +767,9 @@
 
 /* Begin PBXFileReference section */
 		010999FD205CBAE900FCC6B6 /* AroundMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMapController.swift; sourceTree = "<group>"; };
+		01099A00205CFC1200FCC6B6 /* ArtworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkView.swift; sourceTree = "<group>"; };
+		01099A02205CFEA700FCC6B6 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
+		01099A04205D057E00FCC6B6 /* PublicArt.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PublicArt.json; sourceTree = "<group>"; };
 		011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationController.swift; sourceTree = "<group>"; };
 		011B5235205A0CE500B7E4D7 /* OrderLocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationModel.swift; sourceTree = "<group>"; };
 		011B5237205A0DD200B7E4D7 /* OrderLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationCell.swift; sourceTree = "<group>"; };
@@ -2171,9 +2177,20 @@
 		010999FC205CBAC500FCC6B6 /* AroundMap */ = {
 			isa = PBXGroup;
 			children = (
+				010999FF205CFBF200FCC6B6 /* View */,
 				010999FD205CBAE900FCC6B6 /* AroundMapController.swift */,
 			);
 			path = AroundMap;
+			sourceTree = "<group>";
+		};
+		010999FF205CFBF200FCC6B6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01099A04205D057E00FCC6B6 /* PublicArt.json */,
+				01099A00205CFC1200FCC6B6 /* ArtworkView.swift */,
+				01099A02205CFEA700FCC6B6 /* Artwork.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		1B0CD2B61E8B5A84008AF162 /* YCHotel */ = {
@@ -5562,6 +5579,7 @@
 				1B9546FB1F1DF147006DCB6C /* Down@2x.png in Resources */,
 				1B392F521E28D14E00F70981 /* SupermarketSelfPickCollectionViewCell.xib in Resources */,
 				1B9547021F1DF147006DCB6C /* ScanQR4@2x.png in Resources */,
+				01099A05205D057E00FCC6B6 /* PublicArt.json in Resources */,
 				5B002A7A1E0BB876002D0A05 /* PersonalHeaderCell.xib in Resources */,
 				2682D18E1FF64AC900F0470E /* RSCategoryCollectionCell.xib in Resources */,
 				1B1971BC1E20803300E54D95 /* KLRecommendCollectionViewCell.xib in Resources */,
@@ -5828,6 +5846,7 @@
 				5B0744CD1F6F9E0000C66C2A /* SetLanguageController.swift in Sources */,
 				D59D3A29205BE42E0074F0E8 /* SingleSegmentView.m in Sources */,
 				5BF0A9D41E0B78FB0035B517 /* PersonalCenterController.swift in Sources */,
+				01099A01205CFC1200FCC6B6 /* ArtworkView.swift in Sources */,
 				1B392EEE1E28D14E00F70981 /* UIColor+PYExtension.m in Sources */,
 				1BC876731E973AA300BB38D7 /* AlipayRequestConfig.m in Sources */,
 				1B392D6E1E28D0E500F70981 /* AMTagView.m in Sources */,
@@ -6241,6 +6260,7 @@
 				1B392F061E28D14E00F70981 /* SupermarketMostFreshCell.m in Sources */,
 				1B392D531E28D0E500F70981 /* UIView+CFFrame.m in Sources */,
 				1B392F441E28D14E00F70981 /* SupermarketOrderDetaiController.m in Sources */,
+				01099A03205CFEA700FCC6B6 /* Artwork.swift in Sources */,
 				D59D3A35205BF1C20074F0E8 /* ChoiceTableViewCell.m in Sources */,
 				5B34C8961E1FAD3300AF6B93 /* TYTabButtonPagerController.m in Sources */,
 				D59D3A2C205BE42E0074F0E8 /* TSCategoryController.m in Sources */,
