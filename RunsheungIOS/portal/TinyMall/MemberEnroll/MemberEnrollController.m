@@ -409,12 +409,46 @@
 
 		}
 			break;
+		case 1:
+		{
+			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
+			[self presentViewController:personalVC animated:YES completion:nil];
+			
+		}
+			break;
+
+		case 2:
+		{
+			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
+			[self presentViewController:personalVC animated:YES completion:nil];
+			
+		}
+			break;
+
 		case 3:
 		{
 			TeamEnrollController*teamVC = [TeamEnrollController new];
 			UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:teamVC];
 			[self presentViewController:navi animated:YES completion:nil];
 
+			
+		}
+			break;
+			
+		case 4:
+		{
+			TeamEnrollController*teamVC = [TeamEnrollController new];
+			UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:teamVC];
+			[self presentViewController:navi animated:YES completion:nil];
+			
+			
+		}
+			break;
+
+		case 5:
+		{
+			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
+			[self presentViewController:personalVC animated:YES completion:nil];
 			
 		}
 			break;

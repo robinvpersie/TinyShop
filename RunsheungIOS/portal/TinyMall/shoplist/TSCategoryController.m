@@ -14,6 +14,7 @@
 #import "TSFirstMoreViewController.h"
 #import "TSItemView.h"
 #import "MemberEnrollController.h"
+#import "SupermarketHomeViewController.h"
 
 @interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource,WJClickItemsDelegate>
 
@@ -146,6 +147,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+	SupermarketHomeViewController *shopDetailed = [SupermarketHomeViewController new];
+	shopDetailed.hidesBottomBarWhenPushed = YES;
+	[self.navigationController pushViewController:shopDetailed animated:YES];
+	
 	
 }
 

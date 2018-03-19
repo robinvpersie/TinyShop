@@ -16,6 +16,7 @@
 #import "LZCartViewController.h"
 #import "SupermarketAllKindsController.h"
 #import "TSCategoryController.h"
+#import "TinyShopMainController.h"
 
 
 @interface SupermarketMainController ()<UITabBarControllerDelegate>
@@ -26,6 +27,7 @@
 
 @implementation SupermarketMainController {
     SupermarketHomeViewController *home;
+	TinyShopMainController *tinyShophome;
 }
 
 - (void)viewDidLoad {
@@ -57,7 +59,8 @@
     home.divName = self.divName;
     home.version = self.version;
     home.state = self.state;
-    
+	
+	tinyShophome = [[TinyShopMainController alloc]init];
 //    SuperMarketProfileController *mine = [[SuperMarketProfileController alloc]init];
     SupermarketMineViewController *mine = [[SupermarketMineViewController alloc] init];
     LZCartViewController *shopping_Cart = [[LZCartViewController alloc] init];
@@ -66,7 +69,7 @@
     
 //    shopping_Cart.type = ShoppingCartController;
     
-    SupermarketBaseNavigationController *nav0 = [[SupermarketBaseNavigationController alloc] initWithRootViewController:home];
+    SupermarketBaseNavigationController *nav0 = [[SupermarketBaseNavigationController alloc] initWithRootViewController:tinyShophome];
 //    SupermarketBaseNavigationController *nav1 = [[SupermarketBaseNavigationController alloc] initWithRootViewController:activity];
     SupermarketBaseNavigationController *nav2 = [[SupermarketBaseNavigationController alloc] initWithRootViewController:allKinds];
     SupermarketBaseNavigationController *nav3 = [[SupermarketBaseNavigationController alloc] initWithRootViewController:shopping_Cart];

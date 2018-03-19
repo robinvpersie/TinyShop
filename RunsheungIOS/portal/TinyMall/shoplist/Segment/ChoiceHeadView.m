@@ -20,21 +20,21 @@
 
 - (void)createSubviews{
 	
-	
 	NSString *content = @"영등포구영등포동";
-	NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:15]};
+	NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:16]};
 	CGSize contentSize = [content boundingRectWithSize:CGSizeMake(MAXFLOAT,30) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
 	UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake((self.frame.size.width - contentSize.width)/2.0f, 0, contentSize.width, 30)];
 	label.text = content;
+	label.textColor = [UIColor whiteColor];
 	label.textAlignment = NSTextAlignmentCenter;
-	label.font = [UIFont systemFontOfSize:15];
+	label.font = [UIFont systemFontOfSize:16];
 	[self addSubview:label];
 	
-	UIImageView *redlocation = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_location"]];
+	UIImageView *redlocation = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"location"]];
 	redlocation.frame = CGRectMake(CGRectGetMinX(label.frame)-16, 8, 12, 14);
 	[self addSubview:redlocation];
 	
-	UIImageView *arrowImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_arrow_bottom"]];
+	UIImageView *arrowImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_down"]];
 	arrowImg.frame = CGRectMake(CGRectGetMaxX(label.frame) +3, 13 , 10, 8);
 	[self addSubview:arrowImg];
 

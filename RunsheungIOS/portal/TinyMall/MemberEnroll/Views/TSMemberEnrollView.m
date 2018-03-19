@@ -46,7 +46,7 @@
 }
 
 - (void)clickaction:(UIButton*)sender{
-	if ([self.delegate respondsToSelector:@selector(ClickTSMemberDelegate:)]) {
+	if ([self.delegate respondsToSelector:@selector(ClickTSMemberDelegate: )]) {
 		[self.delegate ClickTSMemberDelegate:(int)sender.tag];
 	}
 }
