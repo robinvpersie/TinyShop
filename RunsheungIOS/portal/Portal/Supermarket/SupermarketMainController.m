@@ -83,7 +83,7 @@
                                                        [UIColor greenColor], NSForegroundColorAttributeName,
                                                        nil] forState:UIControlStateSelected];
     NSInteger index = 0;
-    for (index = 0;index<self.viewControllers.count;index++) {
+    for (index = 0; index <self.viewControllers.count; index++) {
         UINavigationController *nav = self.viewControllers[index];
         switch (index) {
             case 0:
@@ -141,9 +141,6 @@
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
     self.selectNavi = (UINavigationController *)tabBarController.viewControllers[self.selectedIndex];
     NSInteger index = [self.viewControllers indexOfObject:viewController];
-//    if (index == 3) {
-//        [[NSNotificationCenter defaultCenter] postNotificationName:SupermarketSelectTabBar object:nil];
-//    }
     if (index == 2 || index == 3) {
         if ([YCAccountModel islogin]){
             return YES;

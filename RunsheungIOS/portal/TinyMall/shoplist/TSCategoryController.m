@@ -32,6 +32,9 @@
 
 @property (nonatomic,assign)BOOL extend;
 
+@property (nonatomic, strong)ShowLocationView * locationView;
+@property (nonatomic, strong)ChoiceHeadView *choiceHeadView;
+
 @end
 
 @implementation TSCategoryController
@@ -45,6 +48,7 @@
 	
 	[self createSemgentViews];
 	[self createTableview];
+    [self location];
 	[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PushEditAction:) name:@"EDITACTIONNOTIFICATIONS" object:nil];
 }
 
@@ -183,10 +187,45 @@
 	[self.navigationItem setRightBarButtonItems:@[right1Item,right2Item]];
 	
 	
-	ChoiceHeadView *choiceHeadView = [[ChoiceHeadView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
-	self.navigationItem.titleView = choiceHeadView;
-	
-	
+	self.choiceHeadView = [[ChoiceHeadView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
+    __weak typeof(self) weakSelf = self;
+    self.choiceHeadView.showAction = ^{
+        [weakSelf.locationView showInView:weakSelf.view.window];
+        weakSelf.locationView.location = ^{
+            [weakSelf location];
+        };
+        weakSelf.locationView.map = ^{
+            
+        };
+
+    };
+	self.navigationItem.titleView = self.choiceHeadView;
+}
+
+-(void)location {
+    [YCLocationService turnOn];
+    [YCLocationService singleUpdate:^(CLLocation * location) {
+        [YCLocationService turnOff];
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+            if (placemarks.count > 0) {
+                NSString *address = placemarks.firstObject.name;
+                self.choiceHeadView.addressName = address;
+            } else {
+                self.choiceHeadView.addressName = @"定位失败";
+            };
+        }];
+    } failure:^(NSError * error) {
+        [YCLocationService turnOff];
+        self.choiceHeadView.addressName = @"定位失败";
+    }];
+}
+
+-(ShowLocationView *)locationView {
+    if (_locationView == nil) {
+        _locationView = [[ShowLocationView alloc] init];
+    }
+    return _locationView;
 }
 
 #pragma mark -- 右边点击方法
