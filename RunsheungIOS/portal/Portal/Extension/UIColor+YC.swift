@@ -24,7 +24,7 @@ extension UIColor{
         return UIColor(hex:0xf2f2f2)
     }
     
-    static var darkcolor:UIColor{
+    @objc static var darkcolor:UIColor{
         return UIColor(hex: 0x333333)
     }
     

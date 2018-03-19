@@ -413,9 +413,15 @@ extension YCHomeController: SelectItemDelegate {
     func tapItem(type: YCHomeBusinessHeader.BusinessType) {
         switch type {
             case .main:
+                let forget = ForgetPassWotdController()
+                let navi = UINavigationController(rootViewController: forget)
+                present(navi, animated: true)
+//                let company = CompanyAuthController()
+//                let navi = UINavigationController(rootViewController: company)
+//                present(navi, animated: false);
             
-                let map = AroundMapController()
-                present(map, animated: false, completion: nil)
+//                let map = AroundMapController()
+//                present(map, animated: false, completion: nil)
     
 //               let mainVC = CustomerServiceController()
 //               mainVC.flag = 1

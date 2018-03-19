@@ -22,6 +22,8 @@
 		011B523C205A0DD200B7E4D7 /* OrderHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5239205A0DD200B7E4D7 /* OrderHeaderReusableView.swift */; };
 		011B523E205B6C6C00B7E4D7 /* ProtocolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B523D205B6C6C00B7E4D7 /* ProtocolController.swift */; };
 		011B5240205BDE2500B7E4D7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B523F205BDE2500B7E4D7 /* BaseViewController.swift */; };
+		013297E7205E53CC007735B4 /* CompanyAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013297E6205E53CC007735B4 /* CompanyAuthController.m */; };
+		013297EA205E55F4007735B4 /* InputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 013297E9205E55F4007735B4 /* InputFieldView.m */; };
 		018AE84B20594CC60018F854 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84A20594CC60018F854 /* Resource.swift */; };
 		018AE84D20594D210018F854 /* NetWorkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84C20594D210018F854 /* NetWorkResult.swift */; };
 		018AE84F20594DC90018F854 /* NetIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84E20594DC90018F854 /* NetIndicator.swift */; };
@@ -798,6 +800,10 @@
 		011B5239205A0DD200B7E4D7 /* OrderHeaderReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHeaderReusableView.swift; sourceTree = "<group>"; };
 		011B523D205B6C6C00B7E4D7 /* ProtocolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolController.swift; sourceTree = "<group>"; };
 		011B523F205BDE2500B7E4D7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		013297E5205E53CC007735B4 /* CompanyAuthController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyAuthController.h; sourceTree = "<group>"; };
+		013297E6205E53CC007735B4 /* CompanyAuthController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyAuthController.m; sourceTree = "<group>"; };
+		013297E8205E55F4007735B4 /* InputFieldView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputFieldView.h; sourceTree = "<group>"; };
+		013297E9205E55F4007735B4 /* InputFieldView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputFieldView.m; sourceTree = "<group>"; };
 		018AE84A20594CC60018F854 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		018AE84C20594D210018F854 /* NetWorkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkResult.swift; sourceTree = "<group>"; };
 		018AE84E20594DC90018F854 /* NetIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetIndicator.swift; sourceTree = "<group>"; };
@@ -4959,6 +4965,10 @@
 				5B4292371DFE80E2000C242B /* YCAccountModel.swift */,
 				26B5EE1D1FF391BD0001E40B /* RSLoginContainerController.h */,
 				26B5EE1E1FF391BD0001E40B /* RSLoginContainerController.m */,
+				013297E5205E53CC007735B4 /* CompanyAuthController.h */,
+				013297E6205E53CC007735B4 /* CompanyAuthController.m */,
+				013297E8205E55F4007735B4 /* InputFieldView.h */,
+				013297E9205E55F4007735B4 /* InputFieldView.m */,
 			);
 			name = Login;
 			path = Portal/Login;
@@ -6358,6 +6368,7 @@
 				5BE654311E6EA3A0003CC59F /* CAAnimation+WAnimation.m in Sources */,
 				1B392D671E28D0E500F70981 /* HNCodeScannerView.m in Sources */,
 				26B5EE1F1FF391BD0001E40B /* RSLoginContainerController.m in Sources */,
+				013297E7205E53CC007735B4 /* CompanyAuthController.m in Sources */,
 				1BA9B1EA1E791351001FB11F /* SupermarketPointModel.m in Sources */,
 				5BCE0AA51E319A960089A73A /* NSObject+TransfromModel.m in Sources */,
 				5B8AAE471F7B8B80001EB504 /* SocailShare.swift in Sources */,
@@ -6475,6 +6486,7 @@
 				1B0CD2CF1E8B5FA1008AF162 /* YCHotelNavigationController.m in Sources */,
 				2608A1561FF5D83E0072FB91 /* RSMineController.m in Sources */,
 				6296F459201ABF3400976C21 /* CheckParentModel.swift in Sources */,
+				013297EA205E55F4007735B4 /* InputFieldView.m in Sources */,
 				1B392D921E28D0E500F70981 /* YYTextAsyncLayer.m in Sources */,
 				26E90ED52007987700E838E8 /* RSPayRep.m in Sources */,
 				1B0CD2EB1E8E0693008AF162 /* MSSCalendarCollectionReusableView.m in Sources */,

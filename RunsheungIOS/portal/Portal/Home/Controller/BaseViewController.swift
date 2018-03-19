@@ -14,9 +14,15 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.white
-     }
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow?.withRenderingMode(.alwaysOriginal),
+                                                                style: .plain,
+                                                                target: self,
+                                                                action: #selector(yc_back))
+        
+    }
     
-    
+
     var pushAnimation: CATransition {
         let transition = CATransition()
         transition.duration = 0.4

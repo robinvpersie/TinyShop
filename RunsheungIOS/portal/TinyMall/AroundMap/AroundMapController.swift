@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import SwiftLocation
 
-
 let UserPOIflagTypeDefault: NMapPOIflagType = NMapPOIflagTypeReserved + 1
 let UserPOIflagTypeInvisible: NMapPOIflagType = NMapPOIflagTypeReserved + 2
 
@@ -145,7 +144,6 @@ extension AroundMapController: NMapViewDelegate {
         shopDetailView.hide()
     }
     
-    
 }
 
 extension AroundMapController: NMapPOIdataOverlayDelegate {
@@ -170,7 +168,5 @@ extension AroundMapController: NMapPOIdataOverlayDelegate {
         shopDetailView.showInView(self.view)
         return false
     }
-    
-    
     
 }
