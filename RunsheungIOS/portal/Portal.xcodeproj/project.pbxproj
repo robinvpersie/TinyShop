@@ -761,6 +761,11 @@
 		D5D01F2A205F5606002263CC /* TeamEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F29205F5606002263CC /* TeamEnrollController.m */; };
 		D5D01F2E205F6412002263CC /* TSMemberEnrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F2D205F6411002263CC /* TSMemberEnrollView.m */; };
 		D5D01F31205F645E002263CC /* EnrollSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F30205F645E002263CC /* EnrollSheetView.m */; };
+		D5D01F34205FA3EB002263CC /* FindTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F33205FA3EB002263CC /* FindTeamViewController.m */; };
+		D5D01F37205FAAB3002263CC /* FindSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F36205FAAB3002263CC /* FindSearchView.m */; };
+		D5D01F3B205FB3FF002263CC /* TinyShopMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F3A205FB3FF002263CC /* TinyShopMainController.m */; };
+		D5D01F40205FD5E6002263CC /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F3E205FD5E6002263CC /* MainTableViewCell.m */; };
+		D5D01F41205FD5E6002263CC /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D01F3F205FD5E6002263CC /* MainTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2167,6 +2172,15 @@
 		D5D01F2D205F6411002263CC /* TSMemberEnrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMemberEnrollView.m; sourceTree = "<group>"; };
 		D5D01F2F205F645E002263CC /* EnrollSheetView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnrollSheetView.h; sourceTree = "<group>"; };
 		D5D01F30205F645E002263CC /* EnrollSheetView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnrollSheetView.m; sourceTree = "<group>"; };
+		D5D01F32205FA3EB002263CC /* FindTeamViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindTeamViewController.h; sourceTree = "<group>"; };
+		D5D01F33205FA3EB002263CC /* FindTeamViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindTeamViewController.m; sourceTree = "<group>"; };
+		D5D01F35205FAAB3002263CC /* FindSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindSearchView.h; sourceTree = "<group>"; };
+		D5D01F36205FAAB3002263CC /* FindSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindSearchView.m; sourceTree = "<group>"; };
+		D5D01F39205FB3FF002263CC /* TinyShopMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TinyShopMainController.h; sourceTree = "<group>"; };
+		D5D01F3A205FB3FF002263CC /* TinyShopMainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TinyShopMainController.m; sourceTree = "<group>"; };
+		D5D01F3D205FD5E6002263CC /* MainTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTableViewCell.h; sourceTree = "<group>"; };
+		D5D01F3E205FD5E6002263CC /* MainTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTableViewCell.m; sourceTree = "<group>"; };
+		D5D01F3F205FD5E6002263CC /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5450,6 +5464,8 @@
 				D53093D0205E683D00427350 /* StepOneMemEnrollController.m */,
 				D5D01F28205F5606002263CC /* TeamEnrollController.h */,
 				D5D01F29205F5606002263CC /* TeamEnrollController.m */,
+				D5D01F32205FA3EB002263CC /* FindTeamViewController.h */,
+				D5D01F33205FA3EB002263CC /* FindTeamViewController.m */,
 			);
 			path = MemberEnroll;
 			sourceTree = "<group>";
@@ -5457,6 +5473,7 @@
 		D59D3A1B205BE42E0074F0E8 /* TinyMall */ = {
 			isa = PBXGroup;
 			children = (
+				D5D01F38205FB3D1002263CC /* Main */,
 				D53093C5205E483600427350 /* MemberEnroll */,
 				010999FC205CBAC500FCC6B6 /* AroundMap */,
 				D59D3A1C205BE42E0074F0E8 /* shoplist */,
@@ -5509,8 +5526,30 @@
 				D5D01F2D205F6411002263CC /* TSMemberEnrollView.m */,
 				D5D01F2F205F645E002263CC /* EnrollSheetView.h */,
 				D5D01F30205F645E002263CC /* EnrollSheetView.m */,
+				D5D01F35205FAAB3002263CC /* FindSearchView.h */,
+				D5D01F36205FAAB3002263CC /* FindSearchView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D5D01F38205FB3D1002263CC /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				D5D01F3C205FD5BE002263CC /* View */,
+				D5D01F39205FB3FF002263CC /* TinyShopMainController.h */,
+				D5D01F3A205FB3FF002263CC /* TinyShopMainController.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		D5D01F3C205FD5BE002263CC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D5D01F3D205FD5E6002263CC /* MainTableViewCell.h */,
+				D5D01F3E205FD5E6002263CC /* MainTableViewCell.m */,
+				D5D01F3F205FD5E6002263CC /* MainTableViewCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5591,7 +5630,7 @@
 				TargetAttributes = {
 					6275E8551DDC692000656E2D = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 9U679452T2;
+						DevelopmentTeam = 9A8T4DFUB8;
 						ProvisioningStyle = Automatic;
 					};
 					6275E8691DDC692100656E2D = {
@@ -5705,6 +5744,7 @@
 				1B8059981E4AB2E300D58E92 /* SupermarketApplyRefundCell.xib in Resources */,
 				5B1E634B1DED667C005DDFB2 /* YCLoadMoreCell.xib in Resources */,
 				1B392EF61E28D14E00F70981 /* SupermarketHomePanicBuyingCell.xib in Resources */,
+				D5D01F41205FD5E6002263CC /* MainTableViewCell.xib in Resources */,
 				6275E85F1DDC692000656E2D /* Main.storyboard in Resources */,
 				1B392F621E28D14E00F70981 /* cart_selected_btn@3x.png in Resources */,
 				1BF3F74C1F283EDC00EA44FB /* Localizable.strings in Resources */,
@@ -6103,6 +6143,7 @@
 				1B392F561E28D14E00F70981 /* SupermarketWaitPayController.m in Sources */,
 				1B392D851E28D0E500F70981 /* YYTextLayout.m in Sources */,
 				1BC8767C1E973AA300BB38D7 /* RSADataVerifier.m in Sources */,
+				D5D01F37205FAAB3002263CC /* FindSearchView.m in Sources */,
 				1B0CD2F91E8E261E008AF162 /* HotelSeachViewController.m in Sources */,
 				1BDDA0E11EB96AE1005E8409 /* HotelImageCommentViewController.m in Sources */,
 				1B1971BB1E20803300E54D95 /* KLRecommendCollectionViewCell.m in Sources */,
@@ -6251,6 +6292,7 @@
 				1B43F7BB1EA5C42B002A36BB /* HotelPaymentRoomCell.m in Sources */,
 				5BE152811F137DD200FC74C2 /* Photo.swift in Sources */,
 				1B4C101B1EB051FA005EAAE5 /* HotelRoomInfoModel.m in Sources */,
+				D5D01F34205FA3EB002263CC /* FindTeamViewController.m in Sources */,
 				1B43F7B21EA5ADC3002A36BB /* HotelCreateSuccessOrderModel.m in Sources */,
 				1B392F3A1E28D14E00F70981 /* SupermarketExpressData.m in Sources */,
 				1B392D751E28D0E500F70981 /* TZImageManager.m in Sources */,
@@ -6446,6 +6488,7 @@
 				5BE152891F137DDF00FC74C2 /* PhotoDismissalInteractionController.swift in Sources */,
 				1B43F7A61EA59A3A002A36BB /* HotelDetailModel.m in Sources */,
 				1B392D5A1E28D0E500F70981 /* UIView+ViewController.m in Sources */,
+				D5D01F3B205FB3FF002263CC /* TinyShopMainController.m in Sources */,
 				1B392D891E28D0E500F70981 /* YYTextArchiver.m in Sources */,
 				1B392F471E28D14E00F70981 /* SupermarketOrderTableViewCell.m in Sources */,
 				1B392D581E28D0E500F70981 /* NinaBaseView.m in Sources */,
@@ -6511,6 +6554,7 @@
 				1B392F3C1E28D14E00F70981 /* SupermarketMineHeaderView.m in Sources */,
 				267DAA991EA213EE00299E74 /* HotelHeadView.m in Sources */,
 				1B12C79C1E836A0800D89DBB /* NSDate+YCAddtion.m in Sources */,
+				D5D01F40205FD5E6002263CC /* MainTableViewCell.m in Sources */,
 				5BFB70091DEBD1950004ED83 /* HomeModel.swift in Sources */,
 				010999FE205CBAE900FCC6B6 /* AroundMapController.swift in Sources */,
 				1BC876881E9765CD00BB38D7 /* HotelSearchFilterView.m in Sources */,
@@ -6817,7 +6861,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 9U679452T2;
+				DEVELOPMENT_TEAM = 9A8T4DFUB8;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6900,7 +6944,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 9U679452T2;
+				DEVELOPMENT_TEAM = 9A8T4DFUB8;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

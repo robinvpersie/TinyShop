@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol EnrollSheetViewDelegate<NSObject>
+
+- (void)click:(int)index  selfTag:(int)selftag;
+@end;
 @interface EnrollSheetView : UIView
 
+@property (nonatomic,assign)id<EnrollSheetViewDelegate> delegate;
+
+- (instancetype)initWithFrame:(CGRect)frame withBtntitles:(NSArray*)titles;
 @end

@@ -8,9 +8,13 @@
 
 #import "TeamEnrollController.h"
 #import "EnrollSheetView.h"
-@interface TeamEnrollController ()
+#import "ProtectItemsController.h"
+#import "FindTeamViewController.h"
+@interface TeamEnrollController ()<EnrollSheetViewDelegate>
 
 @property (nonatomic,retain)EnrollSheetView *sheetView;
+@property (nonatomic,retain)EnrollSheetView *sheetViewsec;
+
 @end
 
 @implementation TeamEnrollController
@@ -84,12 +88,46 @@
 	
 }
 
-- (void)showAlert {
-	if (self.sheetView == nil) {
-		self.sheetView = [[EnrollSheetView alloc]initWithFrame:CGRectMake(50, APPScreenHeight/ 3.0f, APPScreenWidth - 100,  APPScreenHeight/ 3.0f)];
+#pragma mark -- EnrollSheetViewDelegate
+- (void)click:(int)index selfTag:(int)selftag{
+	if (selftag == 0) {//点击第一个提示view
+		if (index == 1001) {
+			if (self.sheetViewsec == nil) {
+				self.sheetViewsec = [[EnrollSheetView alloc]initWithFrame:CGRectMake(50, APPScreenHeight/ 3.0f, APPScreenWidth - 100,  APPScreenHeight/ 3.0f) withBtntitles:@[@"사업자 유형 선택",@"개인",@"사업자"]];
+				self.sheetViewsec.tag = 1;
+				self.sheetViewsec.delegate = self;
+			}
+			
+		} else {
+			FindTeamViewController *findteamVC = [[FindTeamViewController alloc]init];
+			UINavigationController *navi = [[UINavigationController alloc]
+											initWithRootViewController:findteamVC];
+			[self presentViewController:navi animated:YES completion:nil];
+			
+
+			
+		}
+
+	} else {//点击第二个提示view
+		
+		if (index == 1001) {
+			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
+			[self presentViewController:personalVC animated:YES completion:nil];
+			
+
+		} else {
+		}
+
 		
 	}
-	
+}
+
+- (void)showAlert {
+	if (self.sheetView == nil) {
+		self.sheetView = [[EnrollSheetView alloc]initWithFrame:CGRectMake(50, APPScreenHeight/ 3.0f, APPScreenWidth - 100,  APPScreenHeight/ 3.0f) withBtntitles:@[@"단체 회원 가입",@"단체신청",@"단체찾기"]];
+		self.sheetView.tag = 0;
+		self.sheetView.delegate = self;
+	}
 }
 - (void)pop:(UIButton *)sender{
 	[self dismissViewControllerAnimated:YES completion:nil];

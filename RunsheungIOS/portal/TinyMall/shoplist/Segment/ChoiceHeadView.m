@@ -33,28 +33,23 @@ static const CGFloat locationWidth = 12;
 
 - (void)createSubviews{
 	
+	NSString *content = @"영등포구영등포동";
+	NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:16]};
+	CGSize contentSize = [content boundingRectWithSize:CGSizeMake(MAXFLOAT,30) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
+	UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake((self.frame.size.width - contentSize.width)/2.0f, 0, contentSize.width, 30)];
+	label.text = content;
+	label.textColor = [UIColor whiteColor];
+	label.textAlignment = NSTextAlignmentCenter;
+	label.font = [UIFont systemFontOfSize:16];
+	[self addSubview:label];
 	
- //    self.contentlb = [[UILabel alloc]initWithFrame:CGRectMake((self.frame.size.width - contentSize.width)/2.0f, 0, contentSize.width, 30)];
-    self.contentlb = [[UILabel alloc] init];
-//    label.text = content;
-	self.contentlb.textAlignment = NSTextAlignmentCenter;
-	self.contentlb.font = [UIFont systemFontOfSize:15];
-    [self addSubview:self.contentlb];
+	UIImageView *redlocation = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"location"]];
+	redlocation.frame = CGRectMake(CGRectGetMinX(label.frame)-16, 8, 12, 14);
+	[self addSubview:redlocation];
 	
-	self.locationImgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_location"]];
-     [self.locationImgView setHidden: (self.addressName != nil ? NO:YES)];
-	//redlocation.frame = CGRectMake(CGRectGetMinX(label.frame)-16, 8, 12, 14);
-	[self addSubview:self.locationImgView];
-	
-	self.arrImgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_arrow_bottom"]];
-     [self.arrImgView setHidden: (self.addressName == nil ? YES:NO)];
-	//arrowImg.frame = CGRectMake(CGRectGetMaxX(label.frame) +3, 13 , 10, 8);
-	[self addSubview:self.arrImgView];
-    
-    self.invisibleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.invisibleBtn addTarget:self action:@selector(showPopView) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.invisibleBtn];
-  
+	UIImageView *arrowImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_down"]];
+	arrowImg.frame = CGRectMake(CGRectGetMaxX(label.frame) +3, 13 , 10, 8);
+	[self addSubview:arrowImg];
 
 }
 
