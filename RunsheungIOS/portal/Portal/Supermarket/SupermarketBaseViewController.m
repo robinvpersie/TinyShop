@@ -53,7 +53,7 @@
 //}
 
 - (void)logIn {
-    RSLoginContainerController *logIn = [[RSLoginContainerController alloc] init];
+    MemberEnrollController *logIn = [[MemberEnrollController alloc] init];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:logIn];
     

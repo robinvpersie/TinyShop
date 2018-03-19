@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SingleSegmentView.h"
-#import "SegmentItem.h"
+
 
 
 
@@ -17,11 +17,7 @@
 
 @property (nonatomic,retain)SingleSegmentView *SingleSegmentSecond;
 
-@property (nonatomic,retain)SegmentItem *SegmentItem;
+@property (nonatomic,retain)NSMutableDictionary *dataDic;
 
-@property (nonatomic,retain)NSMutableArray *dataArray;
-
-
-
-- (instancetype)initWithFrame:(CGRect)frame withData:(NSMutableArray*)data;
+- (instancetype)initWithFrame:(CGRect)frame withData:(NSMutableDictionary*)dict ;
 @end

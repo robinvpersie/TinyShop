@@ -176,7 +176,7 @@
 
 - (void)goLogin:(UITapGestureRecognizer *)tap {
     
-    RSLoginContainerController *logIN = [[RSLoginContainerController alloc] init];
+    MemberEnrollController *logIN = [[MemberEnrollController alloc] init];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:logIN];
     

@@ -11,6 +11,6 @@
 @interface SegmentItem : UIView
 
 @property (nonatomic,retain)NSMutableArray *dataArray;
-
-- (instancetype)initWithFrame:(CGRect)frame withData:(NSMutableArray*)data;
+@property (nonatomic,retain)NSMutableArray *buttonArray;
+- (instancetype)initWithFrame:(CGRect)frame;
 @end

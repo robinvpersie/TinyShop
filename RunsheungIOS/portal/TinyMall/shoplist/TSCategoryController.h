@@ -8,6 +8,6 @@
 
 #import "TSBaseViewController.h"
 
-@interface TSCategoryController : TSBaseViewController
+@interface TSCategoryController : UIViewController
 
 @end

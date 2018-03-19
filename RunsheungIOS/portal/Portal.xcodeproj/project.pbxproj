@@ -12,8 +12,9 @@
 		01099A03205CFEA700FCC6B6 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01099A02205CFEA700FCC6B6 /* Artwork.swift */; };
 		01099A05205D057E00FCC6B6 /* PublicArt.json in Resources */ = {isa = PBXBuildFile; fileRef = 01099A04205D057E00FCC6B6 /* PublicArt.json */; };
 		01099A07205D0F9100FCC6B6 /* ShopInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01099A06205D0F9100FCC6B6 /* ShopInfoView.swift */; };
-		01099A0A205D405400FCC6B6 /* ApiGatewayMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01099A08205D405300FCC6B6 /* ApiGatewayMac.framework */; };
-		01099A0B205D405400FCC6B6 /* NMapViewerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01099A09205D405400FCC6B6 /* NMapViewerSDK.framework */; };
+		01099A10205D4A9A00FCC6B6 /* ApiGatewayMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01099A0D205D49B700FCC6B6 /* ApiGatewayMac.framework */; };
+		01099A11205D4A9A00FCC6B6 /* ApiGatewayMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01099A0D205D49B700FCC6B6 /* ApiGatewayMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		01099A16205D4BCE00FCC6B6 /* NMapViewerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01099A15205D4BCE00FCC6B6 /* NMapViewerSDK.framework */; };
 		011B5234205A0B5400B7E4D7 /* OrderLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */; };
 		011B5236205A0CE500B7E4D7 /* OrderLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5235205A0CE500B7E4D7 /* OrderLocationModel.swift */; };
 		011B523A205A0DD200B7E4D7 /* OrderLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5237205A0DD200B7E4D7 /* OrderLocationCell.swift */; };
@@ -740,15 +741,23 @@
 		838F8B76C110A40044A207B0 /* Pods_Portal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256438E4A531EA452632FC34 /* Pods_Portal.framework */; };
 		C433F8242E4FA5BC81AF8004 /* Pods_PortalUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8179359380611AE76CEE55B2 /* Pods_PortalUITests.framework */; };
 		D0CF005259FA3D3921BC6052 /* Pods_PortalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13D323634F062064C36589E /* Pods_PortalTests.framework */; };
-		D59D3A28205BE42E0074F0E8 /* SegmentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A22205BE42E0074F0E8 /* SegmentItem.m */; };
-		D59D3A29205BE42E0074F0E8 /* SingleSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A23205BE42E0074F0E8 /* SingleSegmentView.m */; };
-		D59D3A2A205BE42E0074F0E8 /* ChoiceSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A24205BE42E0074F0E8 /* ChoiceSegmentView.m */; };
-		D59D3A2B205BE42E0074F0E8 /* GigaStarLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A25205BE42E0074F0E8 /* GigaStarLabel.m */; };
+		D53093BA205E445400427350 /* SingleSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093AD205E445100427350 /* SingleSegmentView.m */; };
+		D53093BB205E445400427350 /* SegmentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093AF205E445100427350 /* SegmentItem.m */; };
+		D53093BC205E445400427350 /* ChoiceHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093B0205E445200427350 /* ChoiceHeadView.m */; };
+		D53093BD205E445400427350 /* ChoiceSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093B3205E445200427350 /* ChoiceSegmentView.m */; };
+		D53093BE205E445400427350 /* ChoiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093B4205E445300427350 /* ChoiceTableViewCell.m */; };
+		D53093BF205E445400427350 /* TSItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093B6205E445300427350 /* TSItemView.m */; };
+		D53093C0205E445400427350 /* ChoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D53093B7205E445300427350 /* ChoiceTableViewCell.xib */; };
+		D53093C1205E445400427350 /* GigaStarLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093B8205E445300427350 /* GigaStarLabel.m */; };
+		D53093C4205E44E400427350 /* TSFirstMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093C2205E44E100427350 /* TSFirstMoreViewController.m */; };
+		D53093CA205E483700427350 /* MemberEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093C8205E483700427350 /* MemberEnrollController.m */; };
+		D53093CE205E520C00427350 /* ProtectItemsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093CD205E520C00427350 /* ProtectItemsController.m */; };
+		D53093D1205E683D00427350 /* StepOneMemEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093D0205E683D00427350 /* StepOneMemEnrollController.m */; };
 		D59D3A2C205BE42E0074F0E8 /* TSCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */; };
 		D59D3A2F205BF1030074F0E8 /* TSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */; };
-		D59D3A35205BF1C20074F0E8 /* ChoiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A30205BF1C10074F0E8 /* ChoiceTableViewCell.m */; };
-		D59D3A36205BF1C20074F0E8 /* ChoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D59D3A31205BF1C10074F0E8 /* ChoiceTableViewCell.xib */; };
-		D59D3A3A205BF25A0074F0E8 /* ChoiceHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A39205BF25A0074F0E8 /* ChoiceHeadView.m */; };
+		D5D01F2A205F5606002263CC /* TeamEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F29205F5606002263CC /* TeamEnrollController.m */; };
+		D5D01F2E205F6412002263CC /* TSMemberEnrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F2D205F6411002263CC /* TSMemberEnrollView.m */; };
+		D5D01F31205F645E002263CC /* EnrollSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F30205F645E002263CC /* EnrollSheetView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -768,14 +777,28 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		01099A12205D4A9A00FCC6B6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				01099A11205D4A9A00FCC6B6 /* ApiGatewayMac.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		010999FD205CBAE900FCC6B6 /* AroundMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMapController.swift; sourceTree = "<group>"; };
 		01099A00205CFC1200FCC6B6 /* ArtworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkView.swift; sourceTree = "<group>"; };
 		01099A02205CFEA700FCC6B6 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		01099A04205D057E00FCC6B6 /* PublicArt.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PublicArt.json; sourceTree = "<group>"; };
 		01099A06205D0F9100FCC6B6 /* ShopInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopInfoView.swift; sourceTree = "<group>"; };
-		01099A08205D405300FCC6B6 /* ApiGatewayMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ApiGatewayMac.framework; sourceTree = "<group>"; };
-		01099A09205D405400FCC6B6 /* NMapViewerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMapViewerSDK.framework; sourceTree = "<group>"; };
+		01099A0D205D49B700FCC6B6 /* ApiGatewayMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ApiGatewayMac.framework; sourceTree = "<group>"; };
+		01099A15205D4BCE00FCC6B6 /* NMapViewerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMapViewerSDK.framework; sourceTree = "<group>"; };
 		011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationController.swift; sourceTree = "<group>"; };
 		011B5235205A0CE500B7E4D7 /* OrderLocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationModel.swift; sourceTree = "<group>"; };
 		011B5237205A0DD200B7E4D7 /* OrderLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationCell.swift; sourceTree = "<group>"; };
@@ -2102,23 +2125,39 @@
 		8A0C308058E3D70509C7E41F /* Pods-PortalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PortalTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PortalTests/Pods-PortalTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B13D323634F062064C36589E /* Pods_PortalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PortalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59A1C094918F79D66DBED79 /* Pods-PortalUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PortalUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PortalUITests/Pods-PortalUITests.release.xcconfig"; sourceTree = "<group>"; };
-		D59D3A1E205BE42E0074F0E8 /* SingleSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleSegmentView.h; sourceTree = "<group>"; };
-		D59D3A1F205BE42E0074F0E8 /* SegmentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentItem.h; sourceTree = "<group>"; };
-		D59D3A20205BE42E0074F0E8 /* GigaStarLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GigaStarLabel.h; sourceTree = "<group>"; };
-		D59D3A21205BE42E0074F0E8 /* ChoiceSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceSegmentView.h; sourceTree = "<group>"; };
-		D59D3A22205BE42E0074F0E8 /* SegmentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentItem.m; sourceTree = "<group>"; };
-		D59D3A23205BE42E0074F0E8 /* SingleSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleSegmentView.m; sourceTree = "<group>"; };
-		D59D3A24205BE42E0074F0E8 /* ChoiceSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceSegmentView.m; sourceTree = "<group>"; };
-		D59D3A25205BE42E0074F0E8 /* GigaStarLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GigaStarLabel.m; sourceTree = "<group>"; };
+		D53093AB205E445100427350 /* ChoiceSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceSegmentView.h; sourceTree = "<group>"; };
+		D53093AC205E445100427350 /* SegmentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentItem.h; sourceTree = "<group>"; };
+		D53093AD205E445100427350 /* SingleSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleSegmentView.m; sourceTree = "<group>"; };
+		D53093AE205E445100427350 /* TSItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSItemView.h; sourceTree = "<group>"; };
+		D53093AF205E445100427350 /* SegmentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentItem.m; sourceTree = "<group>"; };
+		D53093B0205E445200427350 /* ChoiceHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceHeadView.m; sourceTree = "<group>"; };
+		D53093B1205E445200427350 /* ChoiceHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceHeadView.h; sourceTree = "<group>"; };
+		D53093B2205E445200427350 /* ChoiceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceTableViewCell.h; sourceTree = "<group>"; };
+		D53093B3205E445200427350 /* ChoiceSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceSegmentView.m; sourceTree = "<group>"; };
+		D53093B4205E445300427350 /* ChoiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceTableViewCell.m; sourceTree = "<group>"; };
+		D53093B5205E445300427350 /* SingleSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleSegmentView.h; sourceTree = "<group>"; };
+		D53093B6205E445300427350 /* TSItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSItemView.m; sourceTree = "<group>"; };
+		D53093B7205E445300427350 /* ChoiceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoiceTableViewCell.xib; sourceTree = "<group>"; };
+		D53093B8205E445300427350 /* GigaStarLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GigaStarLabel.m; sourceTree = "<group>"; };
+		D53093B9205E445400427350 /* GigaStarLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GigaStarLabel.h; sourceTree = "<group>"; };
+		D53093C2205E44E100427350 /* TSFirstMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSFirstMoreViewController.m; sourceTree = "<group>"; };
+		D53093C3205E44E300427350 /* TSFirstMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSFirstMoreViewController.h; sourceTree = "<group>"; };
+		D53093C6205E483600427350 /* MemberEnrollController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberEnrollController.h; sourceTree = "<group>"; };
+		D53093C8205E483700427350 /* MemberEnrollController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberEnrollController.m; sourceTree = "<group>"; };
+		D53093CC205E520C00427350 /* ProtectItemsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtectItemsController.h; sourceTree = "<group>"; };
+		D53093CD205E520C00427350 /* ProtectItemsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProtectItemsController.m; sourceTree = "<group>"; };
+		D53093CF205E683D00427350 /* StepOneMemEnrollController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StepOneMemEnrollController.h; sourceTree = "<group>"; };
+		D53093D0205E683D00427350 /* StepOneMemEnrollController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StepOneMemEnrollController.m; sourceTree = "<group>"; };
 		D59D3A26205BE42E0074F0E8 /* TSCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCategoryController.h; sourceTree = "<group>"; };
 		D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCategoryController.m; sourceTree = "<group>"; };
 		D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBaseViewController.m; sourceTree = "<group>"; };
 		D59D3A2E205BF1030074F0E8 /* TSBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBaseViewController.h; sourceTree = "<group>"; };
-		D59D3A30205BF1C10074F0E8 /* ChoiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceTableViewCell.m; sourceTree = "<group>"; };
-		D59D3A31205BF1C10074F0E8 /* ChoiceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoiceTableViewCell.xib; sourceTree = "<group>"; };
-		D59D3A33205BF1C20074F0E8 /* ChoiceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceTableViewCell.h; sourceTree = "<group>"; };
-		D59D3A38205BF25A0074F0E8 /* ChoiceHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceHeadView.h; sourceTree = "<group>"; };
-		D59D3A39205BF25A0074F0E8 /* ChoiceHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceHeadView.m; sourceTree = "<group>"; };
+		D5D01F28205F5606002263CC /* TeamEnrollController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeamEnrollController.h; sourceTree = "<group>"; };
+		D5D01F29205F5606002263CC /* TeamEnrollController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeamEnrollController.m; sourceTree = "<group>"; };
+		D5D01F2C205F6411002263CC /* TSMemberEnrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMemberEnrollView.h; sourceTree = "<group>"; };
+		D5D01F2D205F6411002263CC /* TSMemberEnrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMemberEnrollView.m; sourceTree = "<group>"; };
+		D5D01F2F205F645E002263CC /* EnrollSheetView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnrollSheetView.h; sourceTree = "<group>"; };
+		D5D01F30205F645E002263CC /* EnrollSheetView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnrollSheetView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2134,8 +2173,8 @@
 				5BFA4EB21E9F089C0097DB27 /* MobileCoreServices.framework in Frameworks */,
 				26B5EDE51FF2317F0001E40B /* TencentOpenAPI.framework in Frameworks */,
 				5BFA4EAE1E9F08800097DB27 /* libbz2.tbd in Frameworks */,
-				01099A0A205D405400FCC6B6 /* ApiGatewayMac.framework in Frameworks */,
-				01099A0B205D405400FCC6B6 /* NMapViewerSDK.framework in Frameworks */,
+				01099A10205D4A9A00FCC6B6 /* ApiGatewayMac.framework in Frameworks */,
+				01099A16205D4BCE00FCC6B6 /* NMapViewerSDK.framework in Frameworks */,
 				5BFA4EAC1E9F086E0097DB27 /* CoreVideo.framework in Frameworks */,
 				1BDBB93E1EC16A2A00D01036 /* libPaymentControl.a in Frameworks */,
 				1BDBB93C1EC1666000D01036 /* libssl.a in Frameworks */,
@@ -5342,8 +5381,8 @@
 		BF83E793403F5FF9916CC2EA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				01099A08205D405300FCC6B6 /* ApiGatewayMac.framework */,
-				01099A09205D405400FCC6B6 /* NMapViewerSDK.framework */,
+				01099A15205D4BCE00FCC6B6 /* NMapViewerSDK.framework */,
+				01099A0D205D49B700FCC6B6 /* ApiGatewayMac.framework */,
 				5BED7BCF1F69104900CE31D6 /* libsqlite3.tbd */,
 				5BED7BCD1F690FD200CE31D6 /* UMMobClick.framework */,
 				5BFA4EB91E9F08C30097DB27 /* VideoToolbox.framework */,
@@ -5386,9 +5425,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D53093C5205E483600427350 /* MemberEnroll */ = {
+			isa = PBXGroup;
+			children = (
+				D5D01F2B205F63EF002263CC /* Views */,
+				D53093C6205E483600427350 /* MemberEnrollController.h */,
+				D53093C8205E483700427350 /* MemberEnrollController.m */,
+				D53093CC205E520C00427350 /* ProtectItemsController.h */,
+				D53093CD205E520C00427350 /* ProtectItemsController.m */,
+				D53093CF205E683D00427350 /* StepOneMemEnrollController.h */,
+				D53093D0205E683D00427350 /* StepOneMemEnrollController.m */,
+				D5D01F28205F5606002263CC /* TeamEnrollController.h */,
+				D5D01F29205F5606002263CC /* TeamEnrollController.m */,
+			);
+			path = MemberEnroll;
+			sourceTree = "<group>";
+		};
 		D59D3A1B205BE42E0074F0E8 /* TinyMall */ = {
 			isa = PBXGroup;
 			children = (
+				D53093C5205E483600427350 /* MemberEnroll */,
 				010999FC205CBAC500FCC6B6 /* AroundMap */,
 				D59D3A1C205BE42E0074F0E8 /* shoplist */,
 			);
@@ -5403,6 +5459,8 @@
 				D59D3A1D205BE42E0074F0E8 /* Segment */,
 				D59D3A26205BE42E0074F0E8 /* TSCategoryController.h */,
 				D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */,
+				D53093C3205E44E300427350 /* TSFirstMoreViewController.h */,
+				D53093C2205E44E100427350 /* TSFirstMoreViewController.m */,
 			);
 			path = shoplist;
 			sourceTree = "<group>";
@@ -5410,21 +5468,34 @@
 		D59D3A1D205BE42E0074F0E8 /* Segment */ = {
 			isa = PBXGroup;
 			children = (
-				D59D3A38205BF25A0074F0E8 /* ChoiceHeadView.h */,
-				D59D3A39205BF25A0074F0E8 /* ChoiceHeadView.m */,
-				D59D3A33205BF1C20074F0E8 /* ChoiceTableViewCell.h */,
-				D59D3A30205BF1C10074F0E8 /* ChoiceTableViewCell.m */,
-				D59D3A31205BF1C10074F0E8 /* ChoiceTableViewCell.xib */,
-				D59D3A1F205BE42E0074F0E8 /* SegmentItem.h */,
-				D59D3A22205BE42E0074F0E8 /* SegmentItem.m */,
-				D59D3A1E205BE42E0074F0E8 /* SingleSegmentView.h */,
-				D59D3A23205BE42E0074F0E8 /* SingleSegmentView.m */,
-				D59D3A21205BE42E0074F0E8 /* ChoiceSegmentView.h */,
-				D59D3A24205BE42E0074F0E8 /* ChoiceSegmentView.m */,
-				D59D3A20205BE42E0074F0E8 /* GigaStarLabel.h */,
-				D59D3A25205BE42E0074F0E8 /* GigaStarLabel.m */,
+				D53093B1205E445200427350 /* ChoiceHeadView.h */,
+				D53093B0205E445200427350 /* ChoiceHeadView.m */,
+				D53093AB205E445100427350 /* ChoiceSegmentView.h */,
+				D53093B3205E445200427350 /* ChoiceSegmentView.m */,
+				D53093B5205E445300427350 /* SingleSegmentView.h */,
+				D53093AD205E445100427350 /* SingleSegmentView.m */,
+				D53093B2205E445200427350 /* ChoiceTableViewCell.h */,
+				D53093B4205E445300427350 /* ChoiceTableViewCell.m */,
+				D53093B7205E445300427350 /* ChoiceTableViewCell.xib */,
+				D53093B9205E445400427350 /* GigaStarLabel.h */,
+				D53093B8205E445300427350 /* GigaStarLabel.m */,
+				D53093AC205E445100427350 /* SegmentItem.h */,
+				D53093AF205E445100427350 /* SegmentItem.m */,
+				D53093AE205E445100427350 /* TSItemView.h */,
+				D53093B6205E445300427350 /* TSItemView.m */,
 			);
 			path = Segment;
+			sourceTree = "<group>";
+		};
+		D5D01F2B205F63EF002263CC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D5D01F2C205F6411002263CC /* TSMemberEnrollView.h */,
+				D5D01F2D205F6411002263CC /* TSMemberEnrollView.m */,
+				D5D01F2F205F645E002263CC /* EnrollSheetView.h */,
+				D5D01F30205F645E002263CC /* EnrollSheetView.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5440,6 +5511,7 @@
 				6275E8541DDC692000656E2D /* Resources */,
 				93EE4C66145F6573B731DEDE /* [CP] Embed Pods Frameworks */,
 				5273F39E96138C69A79A6E85 /* [CP] Copy Pods Resources */,
+				01099A12205D4A9A00FCC6B6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -5504,7 +5576,7 @@
 				TargetAttributes = {
 					6275E8551DDC692000656E2D = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 9A8T4DFUB8;
+						DevelopmentTeam = 9U679452T2;
 						ProvisioningStyle = Automatic;
 					};
 					6275E8691DDC692100656E2D = {
@@ -5552,6 +5624,7 @@
 				1BEF694D1E94847300CE3434 /* hotel.jpg in Resources */,
 				1B392D5B1E28D0E500F70981 /* area.plist in Resources */,
 				5BF0A9DE1E0B7B050035B517 /* PersonalCollectionCell.xib in Resources */,
+				D53093C0205E445400427350 /* ChoiceTableViewCell.xib in Resources */,
 				1B392F0B1E28D14E00F70981 /* SupermarketOnSaleCell.xib in Resources */,
 				1B392D641E28D0E500F70981 /* BEEP.mp3 in Resources */,
 				267DAAA31EA214DD00299E74 /* hotelintroduce.jpg in Resources */,
@@ -5624,7 +5697,6 @@
 				1B392EDA1E28D14E00F70981 /* SupermarketCommentPicCell.xib in Resources */,
 				26B5EDE91FF2317F0001E40B /* WeiboSDK.bundle in Resources */,
 				5B002A7E1E0BBAFD002D0A05 /* PersonalSexCell.xib in Resources */,
-				D59D3A36205BF1C20074F0E8 /* ChoiceTableViewCell.xib in Resources */,
 				1B1971AC1E20803300E54D95 /* 256252.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5844,6 +5916,7 @@
 			files = (
 				26CFF65C2004B1A600A10F91 /* RSOTCCollectionViewCell.m in Sources */,
 				269CA6F120020555009E6C54 /* AppDelegate.swift in Sources */,
+				D53093BE205E445400427350 /* ChoiceTableViewCell.m in Sources */,
 				5BC13C611E10F4AB00985C41 /* Avatar.swift in Sources */,
 				1B392F671E28D14E00F70981 /* LZCartViewController.m in Sources */,
 				267DAA931EA213EE00299E74 /* HotelSpecificTableCell.m in Sources */,
@@ -5855,7 +5928,6 @@
 				5B7DCAFC1DF0013300F1D2AB /* YCTableFooterView.swift in Sources */,
 				1B58E06E1ECB025900D7E46B /* CustomerServiceController.m in Sources */,
 				5B0744CD1F6F9E0000C66C2A /* SetLanguageController.swift in Sources */,
-				D59D3A29205BE42E0074F0E8 /* SingleSegmentView.m in Sources */,
 				5BF0A9D41E0B78FB0035B517 /* PersonalCenterController.swift in Sources */,
 				01099A01205CFC1200FCC6B6 /* ArtworkView.swift in Sources */,
 				1B392EEE1E28D14E00F70981 /* UIColor+PYExtension.m in Sources */,
@@ -5877,6 +5949,7 @@
 				5BEF65AC1F208C0500817141 /* CosmosTouch.swift in Sources */,
 				269CA6EB2002005E009E6C54 /* YCHomeController.swift in Sources */,
 				1B392D8B1E28D0E500F70981 /* YYTextParser.m in Sources */,
+				D5D01F2A205F5606002263CC /* TeamEnrollController.m in Sources */,
 				1B392D6F1E28D0E500F70981 /* LGSegment.m in Sources */,
 				1BC876A91E98D0AE00BB38D7 /* YCHotelChooseCityController.m in Sources */,
 				5BCE0AA71E31B3290089A73A /* YCDropdownView.swift in Sources */,
@@ -5921,13 +5994,14 @@
 				1B43F7AC1EA59BB0002A36BB /* HotelSeviceInfoModel.m in Sources */,
 				6272BE6C1DDC76410075EA1C /* StringExtension.swift in Sources */,
 				5BD429461DF1033A00EE62DE /* YCSegMentTitleCell.swift in Sources */,
+				D53093BB205E445400427350 /* SegmentItem.m in Sources */,
 				5B0744CF1F6FA1F900C66C2A /* BundleExtension.swift in Sources */,
 				5BE6EB8F1F341395006A4F6D /* BouncyLayout.swift in Sources */,
 				1B392ED91E28D14E00F70981 /* SupermarketCommentPicCell.m in Sources */,
 				5B5F88301DF2651600EBD763 /* YCNewMemberController.swift in Sources */,
 				269248E12009FDD80071900E /* RSDetailViewController.m in Sources */,
+				D53093D1205E683D00427350 /* StepOneMemEnrollController.m in Sources */,
 				011B5234205A0B5400B7E4D7 /* OrderLocationController.swift in Sources */,
-				D59D3A28205BE42E0074F0E8 /* SegmentItem.m in Sources */,
 				1B392F381E28D14E00F70981 /* SupermarketEditAddressController.m in Sources */,
 				1B1971BF1E20803300E54D95 /* VoteData.m in Sources */,
 				1BEF693E1E8F7DC000CE3434 /* HotelSearchCollectionViewCell.m in Sources */,
@@ -5955,6 +6029,7 @@
 				1B392EF11E28D14E00F70981 /* SupermarketHomeADVData.m in Sources */,
 				1B0CD2ED1E8E0693008AF162 /* MSSCalendarHeaderModel.m in Sources */,
 				1B392D4D1E28D0E500F70981 /* UILabel+WidthAndHeight.m in Sources */,
+				D53093BA205E445400427350 /* SingleSegmentView.m in Sources */,
 				5BEF65AD1F208C0500817141 /* CosmosView.swift in Sources */,
 				1B392D941E28D0E500F70981 /* YYTextUtilities.m in Sources */,
 				1B392D971E28D0E500F70981 /* YYTextView.m in Sources */,
@@ -5965,6 +6040,7 @@
 				267DAA911EA213EE00299E74 /* HotelDownTableViewCell.m in Sources */,
 				5BE152771F137DC300FC74C2 /* Config.swift in Sources */,
 				1B3C97241E2A1B8B00517684 /* SupermarketAboutViewController.m in Sources */,
+				D53093CA205E483700427350 /* MemberEnrollController.m in Sources */,
 				5B9CBDDF1DE7FABE0071A3B5 /* YCImageCache.swift in Sources */,
 				1B392EE71E28D14E00F70981 /* CountTimeView.m in Sources */,
 				1B392F3F1E28D14E00F70981 /* SupermarketMyOrderController.m in Sources */,
@@ -5979,7 +6055,6 @@
 				1B392F3D1E28D14E00F70981 /* SupermarketMineViewController.m in Sources */,
 				5BEB2D091E2874B5003F94DF /* WSStarRatingView.m in Sources */,
 				5B1E634D1DEEBD16005DDFB2 /* YCLocationService.swift in Sources */,
-				D59D3A3A205BF25A0074F0E8 /* ChoiceHeadView.m in Sources */,
 				1B392D981E28D0E500F70981 /* ImageData.m in Sources */,
 				5B002A811E0BCE5E002D0A05 /* PersonalCleanCell.swift in Sources */,
 				5BEF65A41F208C0500817141 /* CosmosDefaultSettings.swift in Sources */,
@@ -6105,6 +6180,7 @@
 				1B7036D91F20411600F53333 /* SupermarketWaitDeliverOrderController.m in Sources */,
 				26CFF6602004B1F400A10F91 /* RSOtcCollectionView.m in Sources */,
 				1B0CD2C61E8B5BFD008AF162 /* YCHotelMineViewController.m in Sources */,
+				D53093C1205E445400427350 /* GigaStarLabel.m in Sources */,
 				1B392F4A1E28D14E00F70981 /* SupermarketApplyRefundController.m in Sources */,
 				1B392F161E28D14E00F70981 /* AllIntergrationControllerController.m in Sources */,
 				5BFB700B1DEBD51E0004ED83 /* YCHomeNewsCell.swift in Sources */,
@@ -6272,7 +6348,6 @@
 				1B392D531E28D0E500F70981 /* UIView+CFFrame.m in Sources */,
 				1B392F441E28D14E00F70981 /* SupermarketOrderDetaiController.m in Sources */,
 				01099A03205CFEA700FCC6B6 /* Artwork.swift in Sources */,
-				D59D3A35205BF1C20074F0E8 /* ChoiceTableViewCell.m in Sources */,
 				5B34C8961E1FAD3300AF6B93 /* TYTabButtonPagerController.m in Sources */,
 				D59D3A2C205BE42E0074F0E8 /* TSCategoryController.m in Sources */,
 				5BE152821F137DD200FC74C2 /* PhotosViewControllerDataSource.swift in Sources */,
@@ -6291,6 +6366,7 @@
 				261E5C2E20108B4A00E106EF /* RSWebProgressLayer.m in Sources */,
 				1B510E6D1EA0C52800B77F14 /* HotelProgressView.m in Sources */,
 				1B392F0A1E28D14E00F70981 /* SupermarketOnSaleCell.m in Sources */,
+				D5D01F31205F645E002263CC /* EnrollSheetView.m in Sources */,
 				1B392F141E28D14E00F70981 /* SupermarketTasteNewController.m in Sources */,
 				1BC876771E973AA300BB38D7 /* DataVerifier.m in Sources */,
 				1B9546F91F1DF147006DCB6C /* ZFMaskView.m in Sources */,
@@ -6303,6 +6379,7 @@
 				5BEF65AE1F208C0500817141 /* CosmosTouchTarget.swift in Sources */,
 				1B9546FA1F1DF147006DCB6C /* ZFConst.m in Sources */,
 				1B510E671EA0790400B77F14 /* HotelReserveResultDetailController.m in Sources */,
+				D53093C4205E44E400427350 /* TSFirstMoreViewController.m in Sources */,
 				1BC876A61E98875B00BB38D7 /* HotelHomeTimeController.m in Sources */,
 				1B392F661E28D14E00F70981 /* LZCartTableViewCell.m in Sources */,
 				1B0CD2F21E8E0693008AF162 /* MSSCircleLabel.m in Sources */,
@@ -6310,10 +6387,10 @@
 				1B392F371E28D14E00F70981 /* SupermarketCouponController.m in Sources */,
 				1B1B01F41E56DDB6008CF96A /* CouponModel.m in Sources */,
 				1B0CD2EC1E8E0693008AF162 /* MSSCalendarCollectionViewCell.m in Sources */,
-				D59D3A2A205BE42E0074F0E8 /* ChoiceSegmentView.m in Sources */,
 				1B392F541E28D14E00F70981 /* SupermarketSelfPickViewController.m in Sources */,
 				1B392ED41E28D14E00F70981 /* SupermarketChangeBuyView.m in Sources */,
 				1B392EEC1E28D14E00F70981 /* PYSearchViewController.m in Sources */,
+				D53093BC205E445400427350 /* ChoiceHeadView.m in Sources */,
 				1BC876851E973AA300BB38D7 /* PaymentWay.m in Sources */,
 				1B6156A01E9B15C600B16877 /* HotelHallPicsController.m in Sources */,
 				62ADFAE21DE3CEB6005FDE1D /* YCRuler.swift in Sources */,
@@ -6327,7 +6404,6 @@
 				1B392F261E28D14E00F70981 /* SupermarketMainController.m in Sources */,
 				5B8A5CED1F7E26CD00793E14 /* YCOCShareManager.m in Sources */,
 				1B4C103D1EB32956005EAAE5 /* HotelCommentFaceTableViewCell.m in Sources */,
-				D59D3A2B205BE42E0074F0E8 /* GigaStarLabel.m in Sources */,
 				1B5B6BD71E9B7DB8009D5C75 /* HotelHomeListModel.m in Sources */,
 				1B392D591E28D0E500F70981 /* NinaPagerView.m in Sources */,
 				1B392D731E28D0E500F70981 /* TZGifPhotoPreviewController.m in Sources */,
@@ -6387,6 +6463,8 @@
 				267DAAA01EA214CC00299E74 /* HotelDetailedTraficCell.m in Sources */,
 				26B5EE231FF39B1F0001E40B /* SegmentView.m in Sources */,
 				1B5B6BDB1E9B7F24009D5C75 /* NSDictionary+YCHotel.m in Sources */,
+				D53093CE205E520C00427350 /* ProtectItemsController.m in Sources */,
+				D5D01F2E205F6412002263CC /* TSMemberEnrollView.m in Sources */,
 				5BE1528B1F137DDF00FC74C2 /* PhotoTransitonController.swift in Sources */,
 				1BFEF34C1E5BE54900D1CA0C /* YCShareAddress.m in Sources */,
 				1B1971B91E20803300E54D95 /* KLHomeViewController.m in Sources */,
@@ -6404,6 +6482,7 @@
 				5B9CBDD91DE547650071A3B5 /* BaseProtocol.swift in Sources */,
 				1B3482DA1E7CCAF600FB7186 /* RefundDetailModel.m in Sources */,
 				1B52E4691E7BD5CA008B0B75 /* SupermarketRefundDetailController.m in Sources */,
+				D53093BD205E445400427350 /* ChoiceSegmentView.m in Sources */,
 				1B5461221EA9EF7200E16169 /* ZHGenerateQRCode.m in Sources */,
 				1B80E6D61E4D5631001603B2 /* View+MASAdditions.m in Sources */,
 				5BAD6A991E0CBF4900E43EAE /* PersonalMessageController.swift in Sources */,
@@ -6443,6 +6522,7 @@
 				1B392D6D1E28D0E500F70981 /* AMTagListView.m in Sources */,
 				1B392F211E28D14E00F70981 /* SupermarketKindHotController.m in Sources */,
 				1B392EEF1E28D14E00F70981 /* UIView+PYExtension.m in Sources */,
+				D53093BF205E445400427350 /* TSItemView.m in Sources */,
 				5B95EAED1DF7B81D006E74C4 /* Notification + YC.swift in Sources */,
 				5BEBB6771DFAB73400367D77 /* AlamofireNetWork.swift in Sources */,
 				1B392EF31E28D14E00F70981 /* SupermarketHomeBannerData.m in Sources */,
@@ -6655,7 +6735,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -6700,7 +6780,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -6719,7 +6799,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 9A8T4DFUB8;
+				DEVELOPMENT_TEAM = 9U679452T2;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6728,6 +6808,8 @@
 					"$(PROJECT_DIR)/UMSocial/UMSocialSDK",
 					"$(PROJECT_DIR)/UMSocial/UMSocialUI",
 					"$(PROJECT_DIR)/UMSocial/SocialLibraries/QQ",
+					NMapViewerSDK,
+					ApiGatewayMac,
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Portal/PrefixHeader.pch";
@@ -6773,6 +6855,8 @@
 					"-framework",
 					"\"SwiftyJSON\"",
 					"-ObjC",
+					"-lxml2",
+					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -6797,7 +6881,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 9A8T4DFUB8;
+				DEVELOPMENT_TEAM = 9U679452T2;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6851,6 +6935,8 @@
 					"\"SwiftDate\"",
 					"-framework",
 					"\"SwiftyJSON\"",
+					"-ObjC",
+					"-lxml2",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";

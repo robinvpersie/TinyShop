@@ -11,17 +11,13 @@
 @implementation SingleSegmentView
 
 - (instancetype)initWithFrame:(CGRect)frame
-					  withDic:(NSMutableArray*)alldata
-					 withData:(NSMutableArray*)mutableArray
-		  withLineBottomColor:(UIColor*)color
-					 withflag:(int)flag{
-	
+					  withdata:(NSMutableArray*)alldata
+		  withLineBottomColor:(UIColor*)color{
+
 	self = [super initWithFrame:frame];
 	if (self) {
-		self.alldata = alldata;
-		self.datas = mutableArray;
+		self.datas = alldata;
 		self.lineColor = color;
-		self.flag = flag;
 		[self createSubview];
 	}
 	return self;
@@ -94,7 +90,7 @@
 			button.selected = NO;
 		}
 	}
-	
+	NSString *firstItem = self.datas[(int)sender.tag];
 	[UIView animateWithDuration:0.4f animations:^{
 		
 		self.bottomLine.frame = CGRectMake(5+sender.tag*65,47 , 55, 2);
@@ -102,58 +98,21 @@
 	}];
 	
 	sender.selected = !sender.selected;
-	NSString *itemkey = self.datas[sender.tag];
-	if ([self.delegate respondsToSelector:@selector(clickUpItem:)]) {
-		[self.delegate clickUpItem:itemkey];
-	}
 	
-	for (NSDictionary *dic in self.alldata) {
-		if ([itemkey isEqualToString:dic.allKeys.firstObject]) {
-		
-			NSArray *datass = (NSArray*)dic.allValues.firstObject;
-			NSDictionary *dicss1 = (NSDictionary*)datass.firstObject;
-			NSArray *datas1 = (NSArray*)dicss1.allValues.firstObject;
-		
-			if ([self.delegate respondsToSelector:@selector(clickUpSecItem:)]) {
-				[self.delegate clickUpSecItem:(NSMutableArray*)datas1];
-			}
-		}
+	if ([self.delegate respondsToSelector:@selector(clickItem:)]) {
+		[self.delegate clickItem:firstItem];
 	}
 	
 	
-//	if (self.flag) {
-//		if ([self.delegate respondsToSelector:@selector(clickUpThirdItem:)]) {
-//			NSMutableArray *firstAllKeys = @[].mutableCopy;
-//			for (NSDictionary *dics in self.alldata) {
-//				NSArray *allKeys = dics.allKeys;
-//				[firstAllKeys addObjectsFromArray:allKeys];
-//			
-//			}
-//			for (NSString *keys in firstAllKeys) {
-//				for (NSDictionary *dics in self.alldata) {
-//					if ([keys isEqualToString:dics.allKeys.firstObject]) {
-//						NSArray *dss = dics.allValues.firstObject;
-//						for (NSDictionary *dics in dss) {
-//							NSString*Keys = dics.allKeys.firstObject;
-//							if ([itemkey isEqualToString:Keys]) {
-//								NSArray *dssss = dics[Keys];
-//								[self.delegate clickUpThirdItem:dssss];
-//								
-//							}
-//							
-//						}
-//
-//					}
-//				}
-//			}
-//
-//		}
-//		
-//	}
 }
 
 
 - (void)editAction:(UIButton*)sender{
-	[[NSNotificationCenter defaultCenter]postNotificationName:@"EDITACTIONNOTIFICATIONS" object:nil];
+	if (self.frame.origin.y > 30) {
+		[[NSNotificationCenter defaultCenter]postNotificationName:@"EDITACTIONNOTIFICATIONS" object:@"0"];
+
+	}else{
+		[[NSNotificationCenter defaultCenter]postNotificationName:@"EDITACTIONNOTIFICATIONS" object:@"1"];
+	}
 }
 @end

@@ -189,7 +189,7 @@ extension YCWebViewController:WKNavigationDelegate{
         }
        }else if requestUrlHost == callLogin{
              decisionHandler(.allow)
-             let login = RSLoginContainerController()
+             let login = MemberEnrollController()
 //             login.longinSuccess = { [weak self] in
 //                self?.refresh()
 //             }
