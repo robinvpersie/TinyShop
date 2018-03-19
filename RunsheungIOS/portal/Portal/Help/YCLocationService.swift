@@ -16,13 +16,15 @@ class YCLocationService: NSObject {
     
     static let sharedManager = YCLocationService()
     
+    @objc (turnOn)
     class func turnOn() {
         if ( CLLocationManager.locationServicesEnabled()) {
             self.sharedManager.locationManager.startUpdatingLocation()
         }
     }
     
-    class func turnoff() {
+    @objc (turnOff)
+    class func turnOff() {
         self.sharedManager.locationManager.stopUpdatingLocation()
     }
     

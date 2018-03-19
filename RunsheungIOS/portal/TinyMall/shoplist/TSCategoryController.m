@@ -33,6 +33,7 @@
 @property (nonatomic,assign)BOOL extend;
 
 @property (nonatomic, strong)ShowLocationView * locationView;
+@property (nonatomic, strong)ChoiceHeadView *choiceHeadView;
 
 @end
 
@@ -47,6 +48,7 @@
 	
 	[self createSemgentViews];
 	[self createTableview];
+    [self location];
 	[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PushEditAction:) name:@"EDITACTIONNOTIFICATIONS" object:nil];
 }
 
@@ -181,20 +183,38 @@
 	[self.navigationItem setRightBarButtonItems:@[right1Item,right2Item]];
 	
 	
-	ChoiceHeadView *choiceHeadView = [[ChoiceHeadView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
+	self.choiceHeadView = [[ChoiceHeadView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
     __weak typeof(self) weakSelf = self;
-    choiceHeadView.showAction = ^{
-        [weakSelf.locationView showInView:weakSelf.view];
-//        [YCLocationService turnOn];
-//        [YCLocationService singleUpdate:^(CLLocation * location) {
-//            [YCLocationService turnoff];
-//        } failure:^(NSError * error) {
-//            [YCLocationService turnoff];
-//        }];
+    self.choiceHeadView.showAction = ^{
+        [weakSelf.locationView showInView:weakSelf.view.window];
+        weakSelf.locationView.location = ^{
+            [weakSelf location];
+        };
+        weakSelf.locationView.map = ^{
+            
+        };
+
     };
-	self.navigationItem.titleView = choiceHeadView;
-	
-	
+	self.navigationItem.titleView = self.choiceHeadView;
+}
+
+-(void)location {
+    [YCLocationService turnOn];
+    [YCLocationService singleUpdate:^(CLLocation * location) {
+        [YCLocationService turnOff];
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+            if (placemarks.count > 0) {
+                NSString *address = placemarks.firstObject.name;
+                self.choiceHeadView.addressName = address;
+            } else {
+                self.choiceHeadView.addressName = @"定位失败";
+            };
+        }];
+    } failure:^(NSError * error) {
+        [YCLocationService turnOff];
+        self.choiceHeadView.addressName = @"定位失败";
+    }];
 }
 
 -(ShowLocationView *)locationView {

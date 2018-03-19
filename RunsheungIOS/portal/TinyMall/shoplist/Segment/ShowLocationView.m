@@ -47,6 +47,7 @@
         toplb.textColor = [UIColor darkTextColor];
         toplb.font = [UIFont systemFontOfSize:15];
         toplb.text = @"내 위치 지정";
+        toplb.textAlignment = NSTextAlignmentCenter;
         toplb.numberOfLines = 0;
         [self.whiteContainerView addSubview:toplb];
         [toplb mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,7 +70,7 @@
         UILabel *locationlb = [[UILabel alloc]init];
         locationlb.text = @"현재위치로 재검색";
         locationlb.textColor = [UIColor darkTextColor];
-        locationlb.font = [UIFont systemFontOfSize:15];
+        locationlb.font = [UIFont systemFontOfSize:13];
         [self.whiteContainerView addSubview:locationlb];
         [locationlb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(locationBtn);
@@ -82,12 +83,12 @@
         [self.whiteContainerView addSubview:mapBtn];
         [mapBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.height.top.equalTo(locationBtn);
-            make.trailing.equalTo(self.whiteContainerView).width.offset(-62);
+            make.trailing.equalTo(self.whiteContainerView).with.offset(-62);
         }];
         
         UILabel *maplb = [[UILabel alloc] init];
         maplb.textColor = [UIColor darkTextColor];
-        maplb.font = [UIFont systemFontOfSize:15];
+        maplb.font = [UIFont systemFontOfSize:13];
         maplb.text = @"지도로 위치지정";
         [self.whiteContainerView addSubview:maplb];
         [maplb mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -100,7 +101,7 @@
         [deleteBtn addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:deleteBtn];
         [deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.whiteContainerView.mas_top).offset(-10);
+            make.bottom.equalTo(self.whiteContainerView.mas_top).with.offset(-10);
             make.trailing.equalTo(self.whiteContainerView);
             make.width.equalTo(@18);
             make.height.equalTo(@20);
@@ -111,6 +112,7 @@
 }
 
 -(void)didmap {
+    [self hide];
     if (_map != nil) {
         _map();
     }
@@ -118,6 +120,7 @@
 }
 
 -(void)didlocation {
+    [self hide];
     if (_location != nil) {
         _location();
     }

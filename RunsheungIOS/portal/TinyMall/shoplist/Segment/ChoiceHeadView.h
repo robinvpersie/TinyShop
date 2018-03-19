@@ -13,5 +13,6 @@ typedef void (^ShowActionBlock)();
 @interface ChoiceHeadView : UIView
 
 @property (nonatomic, copy) ShowActionBlock showAction;
+@property (nonatomic, copy) NSString *addressName;
 
 @end
