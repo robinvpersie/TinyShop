@@ -56,7 +56,8 @@
 #import "WXApi.h"
 #import "CustomerServiceController.h"
 #import "RSAgencyViewController.h"
-
+#import "CompanyAuthController.h"
+#import "InputFieldView.h"
 
 
 #endif /* Portal_Bridging_Header_h */

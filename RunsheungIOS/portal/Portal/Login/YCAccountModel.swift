@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-public class YCAccountModel:NSObject,NSCoding{
+public class YCAccountModel: NSObject, NSCoding {
     
     public enum userSex: String{
         case boy = "男"
@@ -83,17 +83,16 @@ public class YCAccountModel:NSObject,NSCoding{
     
     class func islogin() -> Bool {
         if let account = YCAccountModel.getAccount() {
-            guard let token = account.token, !token.characters.isEmpty else {
+            guard let token = account.token, !token.isEmpty else {
                 return false
             }
             return true
         }else {
             return false
         }
-        
     }
     
-    class func getAccount() -> YCAccountModel?{
+    class func getAccount() -> YCAccountModel? {
         let accountData:Data? = UserDefaults.standard.object(forKey: "accountModel") as? Data
         if let data = accountData {
           let loaded = NSKeyedUnarchiver.unarchiveObject(with: data) as? YCAccountModel

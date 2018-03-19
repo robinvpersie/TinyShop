@@ -57,7 +57,7 @@ extension UINavigationController{
 extension UITabBarController {
     
     open override var shouldAutorotate: Bool{
-        guard let vc = self.viewControllers?[self.selectedIndex] else {
+        guard let vc = viewControllers?[selectedIndex] else {
             return super.shouldAutorotate
         }
         if vc is UINavigationController {
@@ -68,16 +68,7 @@ extension UITabBarController {
         }
     }
     
-    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
-        guard let vc = self.viewControllers?[self.selectedIndex] else { return super.supportedInterfaceOrientations }
-        if vc is UINavigationController {
-            let nav = vc as! UINavigationController
-            guard let top = nav.topViewController else { return super.supportedInterfaceOrientations }
-            return top.supportedInterfaceOrientations
-        }else {
-            return vc.supportedInterfaceOrientations
-        }
-    }
+
     
     open override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
         guard let vc = self.viewControllers?[self.selectedIndex] else { return super.preferredInterfaceOrientationForPresentation }
