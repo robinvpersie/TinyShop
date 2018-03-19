@@ -191,7 +191,9 @@
             [weakSelf location];
         };
         weakSelf.locationView.map = ^{
-            
+            AroundMapController *map = [[AroundMapController alloc]init];
+            map.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:map animated:YES];
         };
 
     };
