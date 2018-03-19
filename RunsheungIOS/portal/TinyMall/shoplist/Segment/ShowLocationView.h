@@ -13,4 +13,6 @@
 @property (nonatomic, copy) void(^location)();
 @property (nonatomic, copy) void(^map)();
 
+-(void)showInView:(UIView *)superView;
+
 @end

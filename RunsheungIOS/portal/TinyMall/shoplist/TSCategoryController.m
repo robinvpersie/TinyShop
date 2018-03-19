@@ -14,7 +14,7 @@
 #import "TSFirstMoreViewController.h"
 #import "TSItemView.h"
 #import "MemberEnrollController.h"
-
+#import "ShowLocationView.h"
 
 @interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource,WJClickItemsDelegate>
 
@@ -31,6 +31,8 @@
 @property (nonatomic,retain)TSItemView *ItemView;
 
 @property (nonatomic,assign)BOOL extend;
+
+@property (nonatomic, strong)ShowLocationView * locationView;
 
 @end
 
@@ -180,18 +182,26 @@
 	
 	
 	ChoiceHeadView *choiceHeadView = [[ChoiceHeadView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
-    //__weak typeof(self) weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     choiceHeadView.showAction = ^{
-        [YCLocationService turnOn];
-        [YCLocationService singleUpdate:^(CLLocation * location) {
-            [YCLocationService turnoff];
-        } failure:^(NSError * error) {
-            [YCLocationService turnoff];
-        }];
+        [weakSelf.locationView showInView:weakSelf.view];
+//        [YCLocationService turnOn];
+//        [YCLocationService singleUpdate:^(CLLocation * location) {
+//            [YCLocationService turnoff];
+//        } failure:^(NSError * error) {
+//            [YCLocationService turnoff];
+//        }];
     };
 	self.navigationItem.titleView = choiceHeadView;
 	
 	
+}
+
+-(ShowLocationView *)locationView {
+    if (_locationView == nil) {
+        _locationView = [[ShowLocationView alloc] init];
+    }
+    return _locationView;
 }
 
 #pragma mark -- 右边点击方法
