@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TSBaseViewController : UIViewController
-
+- (void)pop:(UIButton*)sender;
+- (void)setNaviLineColor:(UIViewController*)vc withColor:(UIColor*)color;
 @end

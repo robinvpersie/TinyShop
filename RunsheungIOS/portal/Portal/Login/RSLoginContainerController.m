@@ -1,5 +1,5 @@
 //
-//  RSLoginContainerController.m
+//  MemberEnrollController.m
 //  Portal
 //
 //  Created by zhengzeyou on 2017/12/27.

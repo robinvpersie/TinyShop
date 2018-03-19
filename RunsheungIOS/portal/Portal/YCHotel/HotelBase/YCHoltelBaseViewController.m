@@ -46,7 +46,7 @@
 }
 
 - (void)goLogIn {
-    RSLoginContainerController *logInController = [[RSLoginContainerController alloc] init];
+    MemberEnrollController *logInController = [[MemberEnrollController alloc] init];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:logInController];
     

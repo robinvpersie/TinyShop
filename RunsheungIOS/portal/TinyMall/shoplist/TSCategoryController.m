@@ -10,43 +10,64 @@
 #import "ChoiceHeadView.h"
 #import "ChoiceSegmentView.h"
 #import "ChoiceTableViewCell.h"
+#import "SegmentItem.h"
+#import "TSFirstMoreViewController.h"
+#import "TSItemView.h"
+#import "MemberEnrollController.h"
 
-@interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic, copy) NSArray * moderArr;
-@property (nonatomic, copy) NSArray * moderArr1;
-@property (nonatomic, copy) NSArray * moderArr2;
+@interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource,WJClickItemsDelegate>
 
 @property (nonatomic,retain)UITableView *tableview;
 
 @property (nonatomic,retain)NSDictionary *returnDit;
 
-@property (nonatomic,retain)NSArray *allData;
+@property (nonatomic,retain)NSMutableDictionary *allDic;
 
 @property (nonatomic,retain)ChoiceSegmentView *segmentView;
+
+@property (nonatomic,retain)SegmentItem *SegmentItem;
+
+@property (nonatomic,retain)TSItemView *ItemView;
+
+@property (nonatomic,assign)BOOL extend;
 
 @end
 
 @implementation TSCategoryController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
 	[self setNaviBar];
-	
-	
+	self.extend = NO;
 	self.view.backgroundColor = RGB(250, 250, 250);
 	
 	
 	[self createSemgentViews];
 	[self createTableview];
-	[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PushEditAction) name:@"EDITACTIONNOTIFICATIONS" object:nil];
+	[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PushEditAction:) name:@"EDITACTIONNOTIFICATIONS" object:nil];
 }
 
-- (void)PushEditAction{
+- (void)PushEditAction:(NSNotification*)notice{
+	NSString *notices = notice.object;
+	if ([notices isEqualToString:@"1"]) {
+		TSFirstMoreViewController *firstMore = [TSFirstMoreViewController new];
+		firstMore.title = @"添加更多";
+		firstMore.choiceBlock = ^(NSString *selectItem) {
+			[self.allDic setObject:@[@"新添加1",@"新添加2",@"新添加3",@"新添加4",@"新添加5"] forKey:selectItem];
+			self.segmentView.dataDic = self.allDic;
+		};
+		[self.navigationController pushViewController:firstMore animated:YES];
+	}else{
+		self.extend = !self.extend;
+		[self.tableview reloadData];
+	}
+	
 }
 
 - (void)createTableview{
 	if (self.tableview == nil) {
 		
+		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView.frame)+10, APPScreenWidth, APPScreenHeight - CGRectGetMaxY(self.segmentView.frame) - 74) style:UITableViewStylePlain];
 		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView.frame), APPScreenWidth, APPScreenHeight - CGRectGetMaxY(self.segmentView.frame) - 10) style:UITableViewStylePlain];
 		[self.tableview registerNib:[UINib nibWithNibName:@"ChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChoiceTableViewCellID"];
 		self.tableview.delegate = self;
@@ -58,16 +79,44 @@
 		[self.view addSubview:self.tableview];
 		
 	}
-
+	
 }
 
 #pragma mark -- 代理
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+	return 2;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-	
+	if (section == 0) {
+		return 1;
+	}
 	
 	return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+	if (indexPath.section == 0) {
+		UITableViewCell *cell = [[UITableViewCell alloc]init];
+		
+		if (self.extend) {
+			self.ItemView =[[TSItemView alloc]initWithFrame:CGRectMake(10, 10, APPScreenWidth - 20, 130) withData:@[@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店",@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店",@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店"]];
+			self.ItemView.wjitemdelegate = self;
+			
+			[cell.contentView addSubview:self.ItemView];
+			
+		}else{
+			
+			self.SegmentItem = [[SegmentItem alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 50)];
+			[cell.contentView addSubview:self.SegmentItem];
+			
+		}
+		
+		return cell;
+	} else {
+		ChoiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChoiceTableViewCellID"];
+		cell.starValue = 1;
+		return cell;
+		
+	}
 	ChoiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChoiceTableViewCellID"];
 	cell.starValue = 1;
 	return cell;
@@ -76,7 +125,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-	return  120;
+	if (indexPath.section == 0) {
+		if (self.extend) {
+			return 150.0f;
+			
+		}else{
+			return 50.0f;
+			
+		}
+	}
+	return  120.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -93,30 +151,30 @@
 
 #pragma  mark --创建选择试图
 - (void)createSemgentViews{
-	self.moderArr = self.returnDit[@"cate1"];
-	self.moderArr1 = self.returnDit[@"cate2"];
-
-	self.moderArr2 = @[@"",@"음식",@"의류"];
 	
-	NSMutableArray *cate2 = @[@{@"音乐":@[@{@"通俗":@[@"通俗1",@"通俗2",@"通俗3"]},@{@"民歌":@[@"民歌1",@"民歌2",@"民歌3"]},@{@"流行":@[@"流行1",@"流行2",@"流行3"]},@{@"摇滚":@[@"摇滚1",@"摇滚2",@"摇滚3"]},@{@"嘻哈":@[@"嘻哈1",@"嘻哈2",@"嘻哈3"]}]},@{@"人文":@[@{@"人文1":@[@"人文11",@"人文12",@"人文13"]},@{@"人文2":@[@"人文21",@"人文22",@"人文23"]},@{@"人文3":@[@"人文31",@"人文32",@"人文33"]},@{@"人文4":@[@"人文41",@"人文42",@"人文43"]}]},@{@"科技":@[@{@"科技1":@[@"科技11",@"科技12",@"科技13"]},@{@"科技2":@[@"科技21",@"科技22",@"科技23"]},@{@"科技3":@[@"科技31",@"科技32",@"科技33"]},@{@"科技4":@[@"科技41",@"科技42",@"科技43"]},@{@"科技5":@[@"科技51",@"科技52",@"科技53"]}]},@{@"趣事":@[@{@"趣事1":@[@"趣事11",@"趣事12",@"趣事13"]},@{@"趣事2":@[@"趣事21",@"趣事22",@"趣事23"]},@{@"趣事3":@[@"趣事31",@"趣事32",@"趣事33"]}]},@{@"贴吧":@[@{@"贴吧1":@[@"贴吧11",@"贴吧12",@"贴吧13"]},@{@"贴吧2":@[@"贴吧21",@"贴吧22",@"贴吧23"]},@{@"贴吧3":@[@"贴吧31",@"贴吧32",@"贴吧33"]},@{@"贴吧4":@[@"贴吧41",@"贴吧42",@"贴吧43"]},@{@"贴吧5":@[@"贴吧51",@"贴吧52",@"贴吧53"]}]},@{@"论坛":@[@{@"论坛1":@[@"论坛11",@"论坛12",@"论坛13"]},@{@"论坛2":@[@"论坛21",@"论坛22",@"论坛23"]},@{@"论坛3":@[@"论坛31",@"论坛32",@"论坛33"]},@{@"论坛4":@[@"论坛41",@"论坛42",@"论坛43"]},@{@"论坛5":@[@"论坛51",@"论坛52",@"论坛53"]}]}].mutableCopy;
+	self.allDic= @{@"音乐":@[@"通俗",@"民歌",@"乡村",@"流行"],@"科技":@[@"科技1",@"科技2",@"科技3",@"科技4"],@"贴吧":@[@"贴吧1",@"贴吧2",@"贴吧3",@"贴吧4"],@"超市":@[@"超市1",@"超市2",@"超市3",@"超市4"],@"酒店":@[@"酒店1",@"酒店2",@"酒店3",@"酒店4"],@"影院":@[@"影院1",@"影院2",@"影院3",@"影院4"],@"服装":@[@"服装1",@"服装2",@"服装3",@"服装4"]}.mutableCopy;
 	
 	if (self.segmentView == nil) {
-		self.segmentView = [[ChoiceSegmentView alloc]initWithFrame:CGRectMake(0, 64, APPScreenWidth, 170) withData:cate2];
+		self.segmentView = [[ChoiceSegmentView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 110) withData:self.allDic];
 		[self.view addSubview:self.segmentView];
 	}
 }
 
 - (void)setNaviBar{
 	
+	self.navigationController.navigationBar.translucent = NO;
 	UIButton *right1Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
 	[right1Btn setImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
 	right1Btn.imageEdgeInsets = UIEdgeInsetsMake(0, 7, 0, -7);
+	right1Btn.tag = 2004;
+	[right1Btn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
 	UIBarButtonItem *right1Item = [[UIBarButtonItem alloc]initWithCustomView:right1Btn];
 	
 	UIButton *right2Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
 	[right2Btn setImage:[UIImage imageNamed:@"icon_map1"] forState:UIControlStateNormal];
 	UIBarButtonItem *right2Item = [[UIBarButtonItem alloc]initWithCustomView:right2Btn];
-	
+	[right2Btn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
+	right2Btn.tag = 2005;
 	[self.navigationItem setRightBarButtonItems:@[right1Item,right2Item]];
 	
 	
@@ -126,4 +184,20 @@
 	
 }
 
+#pragma mark -- 右边点击方法
+- (void)rightAction:(UIButton*)sender{
+	if (sender.tag == 2004) {
+		MemberEnrollController *memberEnroll = [[MemberEnrollController alloc] init];
+		UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:memberEnroll];
+		[self presentViewController:nav animated:YES completion:nil];
+		
+	}
+	
+}
+
+//点击单个的项目响应
+- (void)wjClickItems:(NSString*)item{
+	
+}
 @end
+

@@ -56,7 +56,7 @@
                     </label>
                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FfH-7L-eW1">
                         <rect key="frame" x="97" y="80" width="46" height="20"/>
-                        <color key="backgroundColor" red="0.80000000000000004" green="0.08235294118" blue="0.10980392160000001" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="ljg-uK-Ob7"/>
                             <constraint firstAttribute="width" constant="46" id="oDN-vq-qHM"/>

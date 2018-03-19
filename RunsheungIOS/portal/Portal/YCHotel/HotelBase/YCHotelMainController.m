@@ -85,7 +85,7 @@
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     BOOL isLogIn = [YCAccountModel islogin];
     if (isLogIn == NO) {
-        RSLoginContainerController *logInController = [[RSLoginContainerController alloc] init];
+        MemberEnrollController *logInController = [[MemberEnrollController alloc] init];
         
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:logInController];
         

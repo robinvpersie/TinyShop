@@ -48,7 +48,7 @@
 #import "ZFScanViewController.h"
 #import "YCOCShareManager.h"
 //#import "UShareUI/UShareUI.h"
-#import "RSLoginContainerController.h"
+#import "MemberEnrollController.h"
 #import "SupermarketMyOrderController.h"
 #import "RSShopCartController.h"
 #import "RSMineController.h"

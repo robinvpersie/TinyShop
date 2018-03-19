@@ -493,7 +493,7 @@
 - (void)clickAtIndex:(NSInteger)index {
     if (index == 0 || index == 1 || index == 3 || index == 4 || index == 5) {
         if (_islogIn == NO) {
-            RSLoginContainerController *loginVC = [[RSLoginContainerController alloc] init];
+            MemberEnrollController *loginVC = [[MemberEnrollController alloc] init];
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
             [self presentViewController:nav animated:YES completion:nil];
             return;
@@ -537,7 +537,7 @@
             }
             
         }else{
-            RSLoginContainerController *logInController = [[RSLoginContainerController alloc] init];
+            MemberEnrollController *logInController = [[MemberEnrollController alloc] init];
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:logInController];
             [self presentViewController:nav animated:YES completion:nil];
             

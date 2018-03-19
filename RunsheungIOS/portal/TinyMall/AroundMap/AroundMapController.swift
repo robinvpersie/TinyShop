@@ -10,12 +10,14 @@ import UIKit
 import SnapKit
 import SwiftLocation
 
+
 let UserPOIflagTypeDefault: NMapPOIflagType = NMapPOIflagTypeReserved + 1
 let UserPOIflagTypeInvisible: NMapPOIflagType = NMapPOIflagTypeReserved + 2
 
 class AroundMapController: UIViewController {
     
     var mapView: NMapView?
+    var artworks = [Artwork]()
     lazy var shopDetailView = ShopInfoView()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,7 +45,7 @@ class AroundMapController: UIViewController {
         
         Locator.requestAuthorizationIfNeeded(.whenInUse)
         makeUI()
-        showMarkers()
+        
         location()
     }
     
@@ -73,32 +75,32 @@ class AroundMapController: UIViewController {
                                                             action: #selector(didSearch))
         
         mapView = NMapView(frame: .zero)
-        
         if let mapView = mapView {
             mapView.setClientId("DDs0cS8ZfU_oVMqjWJd6")
             mapView.delegate = self
             view.addSubview(mapView)
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(didUnitTap))
+            tap.delegate = self
+            mapView.addGestureRecognizer(tap)
         }
+        
+       
     }
     
     func showMarkers() {
         if let mapOverlayManager = mapView?.mapOverlayManager,
             let poiDataOverlay = mapOverlayManager.newPOIdataOverlay()
         {
-            poiDataOverlay.delegate = self 
             poiDataOverlay.initPOIdata(3)
             poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: 126.979, latitude: 37.567), title: nil, type: UserPOIflagTypeDefault, iconIndex: 0, with: nil)
-            poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: 126.974, latitude: 37.566), title: nil, type: UserPOIflagTypeDefault, iconIndex: 1, with: nil)
-            poiDataOverlay.addPOIitem(atLocation: NGeoPoint(longitude: 126.984, latitude: 37.565), title: nil, type: UserPOIflagTypeDefault, iconIndex: 2, with: nil)
-            poiDataOverlay.endPOIdata()
-            poiDataOverlay.showAllPOIdata()
         }
     }
     
-    func clearOverlays() {
-        if let mapOverlayManager = mapView?.mapOverlayManager {
-            mapOverlayManager.clearOverlays()
-        }
+    
+    
+    @objc func didUnitTap() {
+        shopDetailView.hide()
     }
     
     override func viewDidLayoutSubviews() {
@@ -140,9 +142,6 @@ extension AroundMapController: NMapViewDelegate {
         }
     }
     
-    func onMapView(_ mapView: NMapView!, handleSingleTapGesture recogniser: UIGestureRecognizer!) {
-        shopDetailView.hide()
-    }
     
 }
 
@@ -153,7 +152,7 @@ extension AroundMapController: NMapPOIdataOverlayDelegate {
     }
     
     func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, anchorPointWithType poiFlagType: NMapPOIflagType) -> CGPoint {
-        return CGPoint(x: 0.5, y: 1.0)
+        return CGPoint(x: 0.5, y: 0.0)
     }
     
     func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, imageForCalloutOverlayItem poiItem: NMapPOIitem!, constraintSize: CGSize, selected: Bool, imageForCalloutRightAccessory: UIImage!, calloutPosition: UnsafeMutablePointer<CGPoint>!, calloutHit calloutHitRect: UnsafeMutablePointer<CGRect>!) -> UIImage! {
@@ -164,9 +163,5 @@ extension AroundMapController: NMapPOIdataOverlayDelegate {
         return CGPoint(x: 0.5, y: 0.0)
     }
     
-    func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, didSelectCalloutOfPOIitemAt index: Int32, with object: Any!) -> Bool {
-        shopDetailView.showInView(self.view)
-        return false
-    }
     
 }
