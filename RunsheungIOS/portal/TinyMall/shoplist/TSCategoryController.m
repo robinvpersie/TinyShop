@@ -15,6 +15,7 @@
 #import "TSItemView.h"
 #import "MemberEnrollController.h"
 #import "SupermarketHomeViewController.h"
+#import "ShowLocationView.h"
 
 @interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource,WJClickItemsDelegate>
 
