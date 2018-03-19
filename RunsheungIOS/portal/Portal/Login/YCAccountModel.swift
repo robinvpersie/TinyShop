@@ -81,7 +81,7 @@ public class YCAccountModel: NSObject, NSCoding {
     }
     
     
-    class func islogin() -> Bool {
+    @objc class func islogin() -> Bool {
         if let account = YCAccountModel.getAccount() {
             guard let token = account.token, !token.isEmpty else {
                 return false

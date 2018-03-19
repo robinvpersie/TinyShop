@@ -58,16 +58,12 @@
     home.version = self.version;
     home.state = self.state;
     
-//    SuperMarketProfileController *mine = [[SuperMarketProfileController alloc]init];
     SupermarketMineViewController *mine = [[SupermarketMineViewController alloc] init];
     LZCartViewController *shopping_Cart = [[LZCartViewController alloc] init];
     shopping_Cart.divCode = self.divCode;
     TSCategoryController *allKinds = [[TSCategoryController alloc] init];
     
-//    shopping_Cart.type = ShoppingCartController;
-    
     SupermarketBaseNavigationController *nav0 = [[SupermarketBaseNavigationController alloc] initWithRootViewController:home];
-//    SupermarketBaseNavigationController *nav1 = [[SupermarketBaseNavigationController alloc] initWithRootViewController:activity];
     SupermarketBaseNavigationController *nav2 = [[SupermarketBaseNavigationController alloc] initWithRootViewController:allKinds];
     SupermarketBaseNavigationController *nav3 = [[SupermarketBaseNavigationController alloc] initWithRootViewController:shopping_Cart];
     YCNavigationController *nav4 = [[YCNavigationController alloc] initWithRootViewController:mine];
@@ -80,7 +76,7 @@
                                                        [UIColor greenColor], NSForegroundColorAttributeName,
                                                        nil] forState:UIControlStateSelected];
     NSInteger index = 0;
-    for (index = 0;index<self.viewControllers.count;index++) {
+    for (index = 0; index <self.viewControllers.count; index++) {
         UINavigationController *nav = self.viewControllers[index];
         switch (index) {
             case 0:
@@ -138,9 +134,6 @@
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
     self.selectNavi = (UINavigationController *)tabBarController.viewControllers[self.selectedIndex];
     NSInteger index = [self.viewControllers indexOfObject:viewController];
-//    if (index == 3) {
-//        [[NSNotificationCenter defaultCenter] postNotificationName:SupermarketSelectTabBar object:nil];
-//    }
     if (index == 2 || index == 3) {
         if ([YCAccountModel islogin]){
             return YES;

@@ -24,6 +24,7 @@
 		011B5240205BDE2500B7E4D7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B523F205BDE2500B7E4D7 /* BaseViewController.swift */; };
 		013297E7205E53CC007735B4 /* CompanyAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013297E6205E53CC007735B4 /* CompanyAuthController.m */; };
 		013297EA205E55F4007735B4 /* InputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 013297E9205E55F4007735B4 /* InputFieldView.m */; };
+		01637E57205F9C6000C59F30 /* ShowLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01637E56205F9C6000C59F30 /* ShowLocationView.m */; };
 		018AE84B20594CC60018F854 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84A20594CC60018F854 /* Resource.swift */; };
 		018AE84D20594D210018F854 /* NetWorkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84C20594D210018F854 /* NetWorkResult.swift */; };
 		018AE84F20594DC90018F854 /* NetIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84E20594DC90018F854 /* NetIndicator.swift */; };
@@ -812,6 +813,8 @@
 		013297E6205E53CC007735B4 /* CompanyAuthController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyAuthController.m; sourceTree = "<group>"; };
 		013297E8205E55F4007735B4 /* InputFieldView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputFieldView.h; sourceTree = "<group>"; };
 		013297E9205E55F4007735B4 /* InputFieldView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputFieldView.m; sourceTree = "<group>"; };
+		01637E55205F9C6000C59F30 /* ShowLocationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowLocationView.h; sourceTree = "<group>"; };
+		01637E56205F9C6000C59F30 /* ShowLocationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowLocationView.m; sourceTree = "<group>"; };
 		018AE84A20594CC60018F854 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		018AE84C20594D210018F854 /* NetWorkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkResult.swift; sourceTree = "<group>"; };
 		018AE84E20594DC90018F854 /* NetIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetIndicator.swift; sourceTree = "<group>"; };
@@ -5493,6 +5496,8 @@
 				D53093AF205E445100427350 /* SegmentItem.m */,
 				D53093AE205E445100427350 /* TSItemView.h */,
 				D53093B6205E445300427350 /* TSItemView.m */,
+				01637E55205F9C6000C59F30 /* ShowLocationView.h */,
+				01637E56205F9C6000C59F30 /* ShowLocationView.m */,
 			);
 			path = Segment;
 			sourceTree = "<group>";
@@ -5929,6 +5934,7 @@
 				D53093BE205E445400427350 /* ChoiceTableViewCell.m in Sources */,
 				5BC13C611E10F4AB00985C41 /* Avatar.swift in Sources */,
 				1B392F671E28D14E00F70981 /* LZCartViewController.m in Sources */,
+				01637E57205F9C6000C59F30 /* ShowLocationView.m in Sources */,
 				267DAA931EA213EE00299E74 /* HotelSpecificTableCell.m in Sources */,
 				1B861F801E53E06C00A1928B /* CountDown.m in Sources */,
 				1B0CD2F01E8E0693008AF162 /* MSSCalendarViewController.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "ChoiceHeadView.h"
+#import "Masonry.h"
 
 @implementation ChoiceHeadView
 
@@ -37,7 +38,21 @@
 	UIImageView *arrowImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_arrow_bottom"]];
 	arrowImg.frame = CGRectMake(CGRectGetMaxX(label.frame) +3, 13 , 10, 8);
 	[self addSubview:arrowImg];
+    
+    UIButton *invisibleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [invisibleBtn addTarget:self action:@selector(showPopView) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:invisibleBtn];
+    [invisibleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+    }];
 
-	
 }
+
+-(void)showPopView {
+    if (_showAction != nil) {
+        _showAction();
+    }
+}
+
+
 @end

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^ShowActionBlock)();
+
 @interface ChoiceHeadView : UIView
+
+@property (nonatomic, copy) ShowActionBlock showAction;
 
 @end

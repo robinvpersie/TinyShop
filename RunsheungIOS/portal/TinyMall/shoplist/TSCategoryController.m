@@ -15,6 +15,7 @@
 #import "TSItemView.h"
 #import "MemberEnrollController.h"
 
+
 @interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource,WJClickItemsDelegate>
 
 @property (nonatomic,retain)UITableView *tableview;
@@ -179,6 +180,15 @@
 	
 	
 	ChoiceHeadView *choiceHeadView = [[ChoiceHeadView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
+    //__weak typeof(self) weakSelf = self;
+    choiceHeadView.showAction = ^{
+        [YCLocationService turnOn];
+        [YCLocationService singleUpdate:^(CLLocation * location) {
+            [YCLocationService turnoff];
+        } failure:^(NSError * error) {
+            [YCLocationService turnoff];
+        }];
+    };
 	self.navigationItem.titleView = choiceHeadView;
 	
 	
