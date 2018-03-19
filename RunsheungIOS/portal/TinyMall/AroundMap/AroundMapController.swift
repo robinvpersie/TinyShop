@@ -150,7 +150,8 @@ class AroundMapController: UIViewController {
     }
     
     @objc func searchAddress() {
-        
+        let searchList = SearchListController()
+        navigationController?.pushViewController(searchList, animated: true)
     }
     
     @objc func searchArea() {
