@@ -2409,23 +2409,28 @@
                       withDeviceNo:(NSString*)deviceNo
                            success:(void (^)(id response))success
                            failure:(void (^)(NSError *err))failure{
-    NSString*url = @"http://member.dxbhtm.com:8800/api/Login/memberLogin";
+    NSString * url = @"http://member.gigawon.co.kr:8800/api/Login/requestLoginCheck";
     
-    NSMutableDictionary *jsondic = @{@"memid":memid,@"mempwd":mempwd,@"deviceNo":deviceNo,@"ver":@"2",@"s_id":@"",@"lang_type":@"chn"}.mutableCopy;
+    //NSMutableDictionary *jsondic = @{@"memid":memid,@"mempwd":mempwd,@"deviceNo":deviceNo,@"ver":@"2",@"s_id":@"",@"lang_type":@"chn"}.mutableCopy;
+    NSMutableDictionary *jsondic = [NSMutableDictionary dictionary];
+    [jsondic setObject:memid forKey:@"memid"];
+    [jsondic setObject:mempwd forKey:@"mempwd"];
+    [jsondic setObject:deviceNo forKey:@"deviceNo"];
+    [jsondic setObject:@"kor" forKey:@"lang_type"];
 
     //获得请求管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
+ 
     [manager POST:url parameters:jsondic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
         if (success) {
-            [MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
-            
-            id result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-            success(result);
+            success(responseObject);
+//            id result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+//            success(result);
         }
-        
+
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {
             failure(error);

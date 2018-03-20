@@ -12,35 +12,40 @@ import MBProgressHUD
 
 extension UIViewController {
     
-    func goToLogin(completion:(()->Void)? = nil){
+    func goToLogin(completion: (()->Void)? = nil){
          let loginContainer = MemberEnrollController()
          let navi = UINavigationController(rootViewController: loginContainer)
-         self.present(navi, animated: true) {}
+         present(navi, animated: true, completion: nil)
+     }
+    
+    @objc (showMessage:interval:completionAction:)
+    func showMessage(_ message: String?, interval: TimeInterval = 2, completionAction: (() -> Void)? = nil){
+        MBProgressHUD.delay(view: view, interval: interval, text: message, completionAction: completionAction)
     }
     
-    func showMessage(_ message: String?, interval: TimeInterval = 2, completionAction:(() -> Void)? = nil){
-
-        MBProgressHUD.delay(view: self.view, interval: interval, text: message, completionAction: completionAction)
-    }
-    
+    @objc (showCustomloading)
     func showCustomloading(){
-        MBProgressHUD.showCustomInView(self.view)
+        MBProgressHUD.showCustomInView(view)
     }
     
+    @objc (showLoading)
     func showLoading(){
-        MBProgressHUD.show(view: self.view)
+        MBProgressHUD.show(view: view)
     }
     
+    @objc (hideLoading)
     func hideLoading(){
-       MBProgressHUD.hide(for: self.view, animated: true)
+       MBProgressHUD.hide(for: view, animated: true)
     }
     
-    func yc_showErrMessage(_ message:String?,subtitle:String?){
-       MBProgressHUD.hideAfterDelay(view: self.view, interval: 1.5, text: subtitle)
+    @objc (yc_showErrMessage:subtitle:)
+    func yc_showErrMessage(_ message: String?, subtitle: String?) {
+       MBProgressHUD.hideAfterDelay(view: view, interval: 1.5, text: subtitle)
     }
    
-    @objc func yc_back(){
-        if let navi = self.navigationController {
+    @objc (yc_back)
+    func yc_back(){
+        if let navi = navigationController {
            navi.popViewController(animated: true)
         }
     }

@@ -319,7 +319,7 @@ extension AroundMapController: NMapLocationManagerDelegate {
     func locationManager(_ locationManager: NMapLocationManager!, didFailWithError errorType: NMapLocationManagerErrorType) {
         var message: String?
         switch errorType {
-        case .unknown,.canceled,.timeout:
+        case .unknown, .canceled, .timeout:
             message = "일시적으로 내위치를 확인 할 수 없습니다."
         case .denied:
             message = "위치 정보를 확인 할 수 없습니다.\n사용자의 위치 정보를 확인하도록 허용하시려면 위치서비스를 켜십시오."
