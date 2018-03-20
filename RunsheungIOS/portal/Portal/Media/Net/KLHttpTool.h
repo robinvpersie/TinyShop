@@ -523,4 +523,16 @@
 				  withtelephon:(NSString*)telephon
 					   success:(void (^)(id response))success
 					   failure:(void (^)(NSError *err))failure;
+
+//获取商家列表
++ (void)TinyShoprequestStoreCateListwithCustom_code:(NSString *)custom_code
+											 withpg:(NSString*)pg
+										  withtoken:(NSString*)token
+									withcustom_lev1:(NSString*)custom_lev1
+									withcustom_lev2:(NSString*)custom_lev2
+									withcustom_lev3:(NSString*)custom_lev3
+									   withlatitude:(NSString*)latitude
+									  withlongitude:(NSString*)longitude
+											success:(void (^)(id response))success
+											failure:(void (^)(NSError *err))failure;
 @end

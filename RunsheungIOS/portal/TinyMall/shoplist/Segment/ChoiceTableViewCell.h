@@ -16,5 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *unkownBtn;
 @property (nonatomic,retain)NSDictionary *dic;
 @property (weak, nonatomic) IBOutlet UILabel *detailedLab;
+@property (weak, nonatomic) IBOutlet UILabel *distance;
+@property (weak, nonatomic) IBOutlet UILabel *lastlabel;
 
 @end
