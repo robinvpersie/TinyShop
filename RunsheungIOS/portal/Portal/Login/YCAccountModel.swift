@@ -92,6 +92,7 @@ public class YCAccountModel: NSObject, NSCoding {
         }
     }
     
+    @objc (getAccount)
     class func getAccount() -> YCAccountModel? {
         let accountData:Data? = UserDefaults.standard.object(forKey: "accountModel") as? Data
         if let data = accountData {

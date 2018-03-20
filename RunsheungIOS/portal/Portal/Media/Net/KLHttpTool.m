@@ -31,6 +31,7 @@
     #define CheckTokenUrl @"http://192.168.2.201/appapi/userapi"
     #define GetZipcodeUrl @"http://192.168.2.179:82/api/ycZipCode/getZipCode"
     #define GetTokenUrl @"http://192.168.2.165:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
+    #define MallBaseUrl @"http://mall.gigawon.co.kr:8800"
 #else
 
     #define BaseUrl  @"http://pay.gigawon.co.kr:81/"
@@ -41,6 +42,7 @@
     #define CheckTokenUrl @"https://api.gigawon.co.kr:8444/appapi/userapi"
     #define GetZipcodeUrl @"http://api1.gigawon.co.kr:82/api/ycZipCode/getZipCode"
     #define GetTokenUrl @"http://member.gigawon.co.kr:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
+    #define MallBaseUrl @"http://mall.gigawon.co.kr:8800"
 #endif
 
 
@@ -590,33 +592,28 @@
     }];
 }
 
-+ (void)getMyCollectionListWithAppType:(NSInteger)appType
++ (void)getMyCollectionListWithOffSet:(NSInteger)offset
                                success:(void (^)(id response))success
                            failure:(void (^)(NSError *err))failure {
-    NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/GetUserFavoritesOfList",BaseUrl];
-    
-    NSMutableDictionary *params = @{}.mutableCopy;
-    
+    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/FavoritesList",MallBaseUrl];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     YCAccountModel *model = [YCAccountModel getAccount];
-//    if (model.token) {
-//        [params setObject:model.token forKey:@"token"];
-//    }
-    [params setObject:@(appType) forKey:@"appType"];
+    [params setObject:@"20" forKey:@"pagesize"];
+    [params setObject:@"37.434688" forKey:@"latitude"];
+    [params setObject:@"122.160742" forKey:@"longitude"];
+    [params setObject:[NSString stringWithFormat:@"%ld", offset] forKey:@"pg"];
+    [params setObject:model.token forKey:@"token"];
+    [params setObject:model.customCode forKey:@"custom_code"];
+    [params setObject:@"kor" forKey:@"lang_type"];
     
-    [self getToken:^(id token) {
-        [params setObject:token forKey:@"token"];
-        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-            if (success) {
-                [self checkStatusWithResponse:response];
+    [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+        if (success) {
+            [self checkStatusWithResponse:response];
                 success(response);
             }
         } failure:^(NSError *err) {
             NSLog(@"%@",err);
         }];
-
-    } failure:^(NSError *errToken) {
-        
-    }];
 }
 
 + (void)getSupermarketShoppintCartListWithAppType:(NSInteger)appType
@@ -1052,15 +1049,9 @@
                              success:(void (^)(id response))success
                              failure:(void (^)(NSError *err))failure {
     NSString *url = [NSString stringWithFormat:@"%@User/GetUserOfComment",BaseUrl];
-    
-    NSMutableDictionary *params = @{}.mutableCopy;
-    YCAccountModel *model = [YCAccountModel getAccount];
-//    if (model.token) {
-//        [params setObject:model.token forKey:@"token"];
-//    }
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@(pageIndex) forKey:@"pageIndex"];
     [params setObject:@(20) forKey:@"pageSize"];
-    
     [self getToken:^(id token) {
         [params setObject:token forKey:@"token"];
         [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
@@ -1069,7 +1060,6 @@
                 [self checkStatusWithResponse:response];
                 success(response);
             }
-            
         } failure:^(NSError *err) {
             NSLog(@"%@",err);
         }];
@@ -2409,7 +2399,7 @@
                       withDeviceNo:(NSString*)deviceNo
                            success:(void (^)(id response))success
                            failure:(void (^)(NSError *err))failure{
-    NSString * url = @"http://member.gigawon.co.kr:8800/api/Login/requestLoginCheck";
+    NSString * url = @"http://member.gigawon.co.kr:8808/api/Login/requestLoginCheck";
     
     //NSMutableDictionary *jsondic = @{@"memid":memid,@"mempwd":mempwd,@"deviceNo":deviceNo,@"ver":@"2",@"s_id":@"",@"lang_type":@"chn"}.mutableCopy;
     NSMutableDictionary *jsondic = [NSMutableDictionary dictionary];

@@ -9,8 +9,9 @@
 #import "SupermarketCommentTableView.h"
 #import "SupermarketCommentCell.h"
 #import "SupermarketCommentData.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
-@interface SupermarketCommentTableView ()<UITableViewDelegate, UITableViewDataSource>
+@interface SupermarketCommentTableView ()<UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource>
 
 @end
 
@@ -23,6 +24,8 @@
         [self registerClass:[SupermarketCommentCell class] forCellReuseIdentifier:@"Comment_Cell"];
         self.dataSource = self;
         self.delegate = self;
+        self.emptyDataSetSource = self;
+        self.tableFooterView = [[UIView alloc] init];
     }
     return self;
 }
@@ -66,6 +69,10 @@
         return data.height + 80;
     }
     
+}
+
+-(NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return  [[NSAttributedString alloc] initWithString:@"暂无评论"];
 }
 
 @end

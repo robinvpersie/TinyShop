@@ -10,6 +10,7 @@
 #import "SupermarketCommentTableView.h"
 #import "MJRefresh.h"
 #import "SupermarketCommentData.h"
+#import "Masonry.h"
 
 @interface SupermarketMyCommentController ()
 
@@ -26,35 +27,39 @@
     [super viewDidLoad];
     
     self.title = NSLocalizedString(@"SMMineMyComment", nil);
-    
     self.view.backgroundColor = [UIColor whiteColor];
     
-    _dataArr = @[].mutableCopy;
-    _pageIndex = 1;
-    
+    self.dataArr = [NSMutableArray array];
+    self.pageIndex = 1;
     [self createView];
-    
     [self requetDaata];
     // Do any additional setup after loading the view.
 }
 
 - (void)createView {
-    _myCommentTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        _pageIndex++;
-        if (_dataArr.count < _totalCount) {
-            [self requetDaata];
+  
+
+    self.myCommentTableView = [[SupermarketCommentTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.myCommentTableView.commentControllerType = CommentControllerTypeMine;
+    __weak typeof(self) weakself = self;
+    self.myCommentTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        weakself.pageIndex++;
+        if (weakself.dataArr.count < weakself.totalCount) {
+            [weakself requetDaata];
         } else {
-            [_myCommentTableView.mj_footer endRefreshingWithNoMoreData];
+            [weakself.myCommentTableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
-
-    
     [self.view addSubview:self.myCommentTableView];
+    [self.myCommentTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
 }
+
+
 
 - (void)requetDaata {
     [KLHttpTool getMyCommentListWithPageInde:_pageIndex success:^(id response) {
-        NSLog(@"%@",response);
         NSNumber *status = response[@"status"];
         if (status.integerValue == 1) {
             NSArray *data = response[@"data"];
@@ -72,13 +77,6 @@
     }];
 }
 
-- (SupermarketCommentTableView *)myCommentTableView {
-    if (_myCommentTableView == nil) {
-        _myCommentTableView = [[SupermarketCommentTableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
-        _myCommentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-        _myCommentTableView.commentControllerType = CommentControllerTypeMine;
-    }
-    return _myCommentTableView;
-}
+
 
 @end

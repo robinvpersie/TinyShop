@@ -92,7 +92,8 @@ extension MBProgressHUD{
         }
     }
     
-    public class func hideAfterDelay(view:UIView,interval:TimeInterval = 1,text:String? = nil){
+    @objc (hideAfterDelayWithView:interval:text:)
+    public class func hideAfterDelay(view: UIView, interval: TimeInterval = 1, text: String? = nil){
         let hud = MBProgressHUD.showAdded(to: view, animated: true)
         hud.mode = .text
         hud.detailsLabel.text = text
@@ -100,7 +101,7 @@ extension MBProgressHUD{
         hud.hide(animated: true, afterDelay: interval)
   }
     
-    class func delay(view:UIView,interval:TimeInterval = 1,text:String? = nil,completionAction:(()->Void)? = nil){
+    class func delay(view: UIView, interval: TimeInterval = 1, text: String? = nil, completionAction:(()->Void)? = nil){
         let hud = MBProgressHUD.showAdded(to: view, animated: true)
         hud.mode = .text
         hud.detailsLabel.text = text

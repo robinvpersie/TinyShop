@@ -96,10 +96,9 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 60;
-    
     url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSLog(@"url:%@",url);
-    //[MBProgressHUD showWithView:KEYWINDOW];
+ 
     switch (methodType) {
         case KLRequestMethodTypeGet: {// GET请求
             [manager GET:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

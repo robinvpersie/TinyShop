@@ -17,10 +17,7 @@
 #import "SupermarketApplyRefundController.h"
 #import "SupermarketAboutViewController.h"
 #import "SupermarketMyOrderController.h"
-
 #import "SupermarketWaitPayController.h"
-//#import "SupermarketWaitSendController.h"
-//#import "SupermarketWaitPickController.h"
 #import "SupermarketWaitReceiveController.h"
 #import "SupermarketWaitCommentController.h"
 #import "SupermarketMyAddressViewController.h"
@@ -138,9 +135,7 @@
 
 - (void)requestData {
     if (self.controllerType == ControllerTypeDepartmentStores) {
-        NSLog(@"=======百货======");
-        [KLHttpTool getSupermarketMineDataWithappType:8 success:^(id response) {
-            NSLog(@"%@",response);
+       [KLHttpTool getSupermarketMineDataWithappType:8 success:^(id response) {
             NSNumber *status = response[@"status"];
             if (status.integerValue == 1) {
                 NSDictionary *data = response[@"data"];
@@ -153,7 +148,6 @@
 
     } else {
         [KLHttpTool getSupermarketMineDataWithappType:6 success:^(id response) {
-            NSLog(@"%@",response);
             NSNumber *status = response[@"status"];
             if (status.integerValue == 1) {
                 NSDictionary *data = response[@"data"];
@@ -218,6 +212,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"minecell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

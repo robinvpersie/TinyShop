@@ -240,7 +240,7 @@ class YCHomeController: BaseViewController {
                 strongself.nextPageIndex = dataModel.newsNextPage
                 strongself.currentVersion = dataModel.currentVersion
                 strongself.currentState = dataModel.currentState
-                var waytoupdate:UITableView.WayToUpdate = .none
+                var waytoupdate: UITableView.WayToUpdate = .none
                 if case .LoadMore = mode {
                     let oldnewsCount = strongself.newsData.count
                     strongself.newsData.append(contentsOf: dataModel.newsData)
@@ -319,19 +319,6 @@ class YCHomeController: BaseViewController {
 
     }
 }
-
-
-//extension YCHomeController:UpdateDivCode{
-//
-//    func updateWithDivCode(_ divCode: String, _ name: String) {
-//         self.divCode = divCode
-//         self.divName = name
-//         YCUserDefaults.HomeDivCode.value = divCode
-//         YCUserDefaults.HomeDicName.value = name
-//         updateMainData(mode: .TopRefresh)
-//    }
-//}
-
 
 
 extension YCHomeController: UITableViewDelegate{
