@@ -9,8 +9,9 @@
 #import "CouponTableView.h"
 #import "CouponTableViewCell.h"
 #import "CouponModel.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
-@interface CouponTableView ()<UITableViewDelegate, UITableViewDataSource, SelectCouponDelegate>
+@interface CouponTableView ()<UITableViewDelegate, UITableViewDataSource, SelectCouponDelegate, DZNEmptyDataSetSource>
 
 @end
 
@@ -23,25 +24,24 @@
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.dataSource = self;
         self.delegate = self;
-        _selectedArray = @[].mutableCopy;
-        [self registerClass:[CouponTableViewCell class] forCellReuseIdentifier:@"CouponTableViewCell"];
+        self.tableFooterView = [[UIView alloc] init];
+        self.emptyDataSetSource = self;
+        [self registerClass:[CouponTableViewCell class] forCellReuseIdentifier:@"couponCell"];
+        self.selectedArray = [NSMutableArray array];
+        self.dataArray = [NSMutableArray array];
+       
+//        [self registerClass:[CouponTableViewCell class] forCellReuseIdentifier:@"CouponTableViewCell"];
     }
     return self;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_dataArray.count > 0) {
-        return _dataArray.count;
-    }
-    return 0;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CouponTableViewCell *cell = [[CouponTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CouponTableViewCell"];
-    if (_dataArray.count > 0) {
-        cell.coupon = _dataArray[indexPath.row];
-    }
-    
+    CouponTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"couponCell" forIndexPath:indexPath];
+    cell.coupon = self.dataArray[indexPath.row];
     cell.couponStatus = self.couponStatus;
     cell.delegate = self;
     return cell;
@@ -138,6 +138,10 @@
 - (void)setDataArray:(NSArray *)dataArray {
     _dataArray = dataArray;
     [self reloadData];
+}
+
+-(NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [[NSAttributedString alloc] initWithString:@"没有优惠券"];
 }
 
 @end

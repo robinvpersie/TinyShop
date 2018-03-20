@@ -218,12 +218,12 @@
 + (LZCartModel *)getLzCartModelWithDic:(NSDictionary *)dic {
     LZCartModel *model = [[LZCartModel alloc] init];
     if (dic != nil) {
-        model.item_code = dic[@"item_code"];
-        model.image_url = dic[@"img_path"];
-        model.nameStr = dic[@"item_name"];
-        model.price = dic[@"price"];
-        model.stock_unit = dic[@"stock_unit"];
-        model.divCode = dic[@"div_code"];
+//        model.item_code = dic[@"item_code"];
+//        model.image_url = dic[@"img_path"];
+//        model.nameStr = dic[@"item_name"];
+//        model.price = dic[@"price"];
+//        model.stock_unit = dic[@"stock_unit"];
+//        model.divCode = dic[@"div_code"];
     }
     return model;
 }
@@ -231,15 +231,15 @@
 + (LZCartModel *)getShoppingCartModelWithDic:(NSDictionary *)dic {
      LZCartModel *model = [[LZCartModel alloc] init];
     if (dic != nil) {
-        model.item_code = dic[@"item_code"];
-        model.image_url = dic[@"image_url"];
-        NSNumber *number = dic[@"item_quantity"];
-        model.number = number.floatValue;
-        model.price = dic[@"item_price"];
-        model.stock_unit = dic[@"stock_unit"];
-        model.nameStr = dic[@"item_name"];
-//        model.divCode = ((NSNumber *)dic[@"div_code"]).stringValue;
-        model.divCode = dic[@"div_code"];
+//        model.item_code = dic[@"item_code"];
+//        model.image_url = dic[@"image_url"];
+//        NSNumber *number = dic[@"item_quantity"];
+//        model.number = number.floatValue;
+//        model.price = dic[@"item_price"];
+//        model.stock_unit = dic[@"stock_unit"];
+//        model.nameStr = dic[@"item_name"];
+////        model.divCode = ((NSNumber *)dic[@"div_code"]).stringValue;
+//        model.divCode = dic[@"div_code"];
     }
     return model;
 }
