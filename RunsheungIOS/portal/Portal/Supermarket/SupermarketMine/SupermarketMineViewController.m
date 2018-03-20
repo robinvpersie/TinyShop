@@ -326,7 +326,10 @@
             [self.navigationController pushViewController:vc animated:YES];
         } else if (indexPath.row == 2) {
 //            [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"暂未开放"];
-            SupermarketAboutViewController *vc = [[SupermarketAboutViewController alloc] init];
+//            SupermarketAboutViewController *vc = [[SupermarketAboutViewController alloc] init];
+//            vc.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController pushViewController:vc animated:YES];
+            AllCouponViewController *vc = [[AllCouponViewController alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         } else if (indexPath.row == 3) {
