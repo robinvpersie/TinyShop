@@ -9,15 +9,24 @@
 #import <UIKit/UIKit.h>
 #import "SingleSegmentView.h"
 
+@protocol ChoiceDelegate<NSObject>
 
-
+- (void)ChoiceDelegateaction:(NSString *)lev2;
+@end;
 
 @interface ChoiceSegmentView : UIView<SingleSegmentDelegate>
+
 @property (nonatomic,retain)SingleSegmentView *SingleSegment;
 
 @property (nonatomic,retain)SingleSegmentView *SingleSegmentSecond;
 
 @property (nonatomic,retain)NSMutableDictionary *dataDic;
 
-- (instancetype)initWithFrame:(CGRect)frame withData:(NSMutableDictionary*)dict ;
+@property (nonatomic,retain)NSMutableDictionary *responseDic;
+
+@property (nonatomic,assign)id<ChoiceDelegate> delegate;
+
+- (instancetype)initWithFrame:(CGRect)frame
+					 withData:(NSMutableDictionary*)dict
+				 withresponse:(NSDictionary*)response ;
 @end

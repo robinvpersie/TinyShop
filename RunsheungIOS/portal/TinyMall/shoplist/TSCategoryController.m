@@ -19,11 +19,11 @@
 
 
 
-@interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource,WJClickItemsDelegate>
+@interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource,WJClickItemsDelegate,ChoiceDelegate>{
+	MBProgressHUD *hudloading;
+}
 
 @property (nonatomic,retain)UITableView *tableview;
-
-@property (nonatomic,retain)NSDictionary *returnDit;
 
 @property (nonatomic,retain)NSMutableDictionary *allDic;
 
@@ -39,6 +39,10 @@
 
 @property (nonatomic, strong)ChoiceHeadView *choiceHeadView;
 
+@property (nonatomic,strong)NSDictionary *responseDit;
+
+@property (nonatomic,retain)NSArray *shoplistData;
+
 @end
 
 @implementation TSCategoryController
@@ -48,12 +52,69 @@
 	[self setNaviBar];
 	self.extend = NO;
 	self.view.backgroundColor = RGB(250, 250, 250);
-	
-	
-	[self createSemgentViews];
-	[self createTableview];
+	self.allDic = @{}.mutableCopy;
+	hudloading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 	[self location];
 	[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PushEditAction:) name:@"EDITACTIONNOTIFICATIONS" object:nil];
+	[self loadStoreListwithLeve1:@"13" withLeve2:@"1" withLeve3:@"1"];
+}
+
+- (void)loadStoreListwithLeve1:(NSString*)leve1 withLeve2:(NSString*)leve2 withLeve3:(NSString*)leve3{
+	
+	
+	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:@"155555555566426a" withpg:@"1" withtoken:@"155555555566426af2f5ac36-9bd0-4ddc-a1df-fdb88f0bad07" withcustom_lev1:leve1 withcustom_lev2:leve2 withcustom_lev3:leve3 withlatitude:@"37.434668" withlongitude:@"122.160742" success:^(id response) {
+		if ([response[@"status"] intValue] == 1) {
+			[hudloading hideAnimated:YES afterDelay:2];
+			self.responseDit = response;
+			[self transferResponse];
+			self.shoplistData = self.responseDit[@"storelist"];
+			[self.tableview reloadData];
+		}
+		
+	} failure:^(NSError *err) {
+		hudloading.mode = MBProgressHUDModeText;
+		hudloading.label.text = @"可能网络出现问题！";
+		[hudloading hideAnimated:YES afterDelay:2.0f];
+		
+	}];
+}
+
+- (void)transferResponse{
+	NSArray *leve2s = self.responseDit[@"lev2s"];
+	NSArray *leve3s = self.responseDit[@"lev3s"];
+	NSMutableArray *leve2Mutables  = @[].mutableCopy;
+	NSMutableArray *leve3Mutables  = @[].mutableCopy;
+	
+	for (int i = 0; i<leve2s.count; i++) {
+		NSDictionary *dic2 = leve2s[i];
+		[leve2Mutables addObject:dic2[@"lev_name"]];
+	}
+	
+	for (int i = 0; i<leve3s.count; i++) {
+		NSDictionary *dic3 = leve3s[i];
+		[leve3Mutables addObject:dic3[@"lev_name"]];
+	}
+
+	for (int i = 0; i<leve2Mutables.count; i++) {
+		NSString *key = leve2Mutables[i];
+		if (i == 0) {
+			[self.allDic setObject:leve3Mutables forKey:key];
+
+		} else {
+			[self.allDic setObject:@[] forKey:key];
+
+		}
+		
+		
+	}
+	
+	if (self.segmentView == nil) {
+		self.segmentView = [[ChoiceSegmentView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 110) withData:self.allDic withresponse:self.responseDit];
+		self.segmentView.delegate = self;
+		[self.view addSubview:self.segmentView];
+	}
+	[self createTableview];
+
 }
 
 - (void)PushEditAction:(NSNotification*)notice{
@@ -100,7 +161,7 @@
 		return 1;
 	}
 	
-	return 3;
+	return self.shoplistData.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	if (indexPath.section == 0) {
@@ -122,7 +183,9 @@
 		return cell;
 	} else {
 		ChoiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChoiceTableViewCellID"];
-		cell.starValue = 1;
+		NSDictionary *dics = self.shoplistData[indexPath.row];
+		cell.dic = dics;
+		cell.starValue = [dics[@"score"] floatValue];
 		return cell;
 		
 	}
@@ -162,16 +225,6 @@
 	
 }
 
-#pragma  mark --创建选择试图
-- (void)createSemgentViews{
-	
-	self.allDic= @{@"音乐":@[@"通俗",@"民歌",@"乡村",@"流行"],@"科技":@[@"科技1",@"科技2",@"科技3",@"科技4"],@"贴吧":@[@"贴吧1",@"贴吧2",@"贴吧3",@"贴吧4"],@"超市":@[@"超市1",@"超市2",@"超市3",@"超市4"],@"酒店":@[@"酒店1",@"酒店2",@"酒店3",@"酒店4"],@"影院":@[@"影院1",@"影院2",@"影院3",@"影院4"],@"服装":@[@"服装1",@"服装2",@"服装3",@"服装4"]}.mutableCopy;
-	
-	if (self.segmentView == nil) {
-		self.segmentView = [[ChoiceSegmentView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 110) withData:self.allDic];
-		[self.view addSubview:self.segmentView];
-	}
-}
 
 - (void)setNaviBar{
 	
@@ -192,6 +245,8 @@
 	
 	
 	self.choiceHeadView = [[ChoiceHeadView alloc]initWithFrame:CGRectMake(0, 0, 200, 30) withTextColor:RGB(25, 25, 25) withData:@[@"icon_location",@"icon_arrow_bottom"]];
+	
+	
 	__weak typeof(self) weakSelf = self;
 	self.choiceHeadView.showAction = ^{
 		[weakSelf.locationView showInView:weakSelf.view.window];
@@ -245,6 +300,11 @@
 	
 }
 
+#pragma mark --
+- (void)ChoiceDelegateaction:(NSString *)lev2{
+	[self loadStoreListwithLeve1:@"13" withLeve2:lev2 withLeve3:@"1"];
+	
+}
 //点击单个的项目响应
 - (void)wjClickItems:(NSString*)item{
 	

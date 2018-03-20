@@ -11,13 +11,15 @@
 @implementation ChoiceSegmentView
 
 - (instancetype)initWithFrame:(CGRect)frame
-					  withData:(NSMutableDictionary*)dict{
+					  withData:(NSMutableDictionary*)dict
+				 withresponse:(NSDictionary*)response{
 	self = [super initWithFrame: frame];
 	if (self) {
 		self.layer.borderColor = RGB(221, 221, 221).CGColor;
 		self.layer.borderWidth = 1.0f;
 		self.backgroundColor = RGB(250, 250, 250);
 		self.dataDic = dict;
+		self.responseDic = response;
 		[self createSubviews];
 	}
 	return self;
@@ -38,81 +40,30 @@
 		[self addSubview:self.SingleSegment];
 		self.SingleSegmentSecond = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, 60, APPScreenWidth, 50) withdata:firstData withLineBottomColor:RGB(33, 192, 67)];
 		[self addSubview:self.SingleSegmentSecond];
-	NSMutableArray *datas = @[].mutableCopy;
-//	for (NSDictionary*dict in self.dataArray) {
-//
-//		NSString *keyValue = dict.allKeys.firstObject;
-//		[datas addObject:keyValue];
-//	}
-//	if (self.SingleSegment == nil) {
-//		self.SingleSegment = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 50) withDic:self.dataArray withData:datas withLineBottomColor:RGB(33, 192, 67) withflag:0];
-//		self.SingleSegment.delegate = self;
-//		[self addSubview:self.SingleSegment];
-//	}
-//
-//	NSDictionary *dict = self.dataArray.firstObject;
-//	NSString *keyValue = dict.allKeys.firstObject;
-//		NSMutableArray *dats = dict[keyValue];
-//
-//		NSMutableArray *da = @[].mutableCopy;
-//		for (NSDictionary*dic in dats) {
-//
-//			[da addObject:dic.allKeys.firstObject];
-//		}
-//	if (self.SingleSegmentSecond == nil) {
-//
-//		self.SingleSegmentSecond = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, 60, APPScreenWidth, 50)withDic:self.dataArray withData:da withLineBottomColor:RGB(33, 192, 67) withflag:1];
-//		self.SingleSegmentSecond.delegate = self;
-//		[self addSubview:self.SingleSegmentSecond];
-//	}
-//
-//
-//	//item 按钮
-//	NSDictionary *dict1 = self.dataArray.firstObject;
-//	NSMutableArray *dats1 = dict1.allValues.firstObject;
-//	NSDictionary *dic1 = dats1.firstObject;
-//	NSMutableArray *data1 = dic1.allValues.firstObject;
-//	if (self.SegmentItem == nil) {
-//		self.SegmentItem = [[SegmentItem alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.SingleSegmentSecond.frame)+10, APPScreenWidth, 50) withData:data1];
-//		[self addSubview:self.SegmentItem];
-//	}
 }
 
-- (void)clickUpItem:(NSString *)upitem{
-//	NSMutableArray *datas = @[].mutableCopy;
-//	for (NSDictionary*dict in self.dataArray) {
-//
-//		NSString *keyValue = dict.allKeys.firstObject;
-//		[datas addObject:keyValue];
-//	}
-//
-//
-//	self.SingleSegmentSecond = nil;
-//	for (NSDictionary*dict in self.dataArray) {
-//
-//		NSString *keyValue = dict.allKeys.firstObject;
-//		if ([upitem isEqualToString:keyValue]) {
-//			NSMutableArray *dats = dict[keyValue];
-//
-//			NSMutableArray *da = @[].mutableCopy;
-//			for (NSDictionary*dic in dats) {
-//
-//				[da addObject:dic.allKeys.firstObject];
-//			}
-//			if (self.SingleSegmentSecond == nil) {
-//				self.SingleSegmentSecond = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, 60, APPScreenWidth, 50) withDic:self.dataArray withData:da withLineBottomColor:RGB(33, 192, 67) withflag:1];
-//				[self addSubview:self.SingleSegmentSecond];
-//			}
-//		}
-//	}
-//		
-	
-	
-}
 
 - (void)clickItem:(NSString*)key{
-//	self.SingleSegmentSecond = nil;
 	NSArray *data = _dataDic[key];
+
+	NSArray *leve2s = self.responseDic[@"lev2s"];
+	
+	for (int i = 0; i<leve2s.count; i++) {
+		NSDictionary *dic2 = leve2s[i];
+		NSString *currentStr = dic2[@"lev_name"];
+		
+		if ([currentStr isEqualToString:key]) {
+			[[NSUserDefaults standardUserDefaults] setObject:dic2[@"lev"] forKey:@"lev2"];
+			[[NSUserDefaults standardUserDefaults] synchronize];
+			if ([self.delegate respondsToSelector:@selector(ChoiceDelegateaction:)]) {
+				[self.delegate ChoiceDelegateaction:dic2[@"lev"]];
+			}
+		}
+	}
+	
+	
+	
+	
 	self.SingleSegmentSecond = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, 60, APPScreenWidth, 50) withdata:data withLineBottomColor:RGB(33, 192, 67)];
 	[self addSubview:self.SingleSegmentSecond];
 

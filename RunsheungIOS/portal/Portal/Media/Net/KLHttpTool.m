@@ -9,7 +9,7 @@
 #import "KLHttpTool.h"
 #import "YCShareAddress.h"
 #import <AdSupport/AdSupport.h>
-
+#import <CoreLocation/CLLocation.h>
 //#define BaseUrl  @"http://192.168.2.230:81/"
 //#define ShopBaseUrl @"http://192.168.2.179:96/"
 //#define PaymentBaseURL @"http://192.168.2.230:8088/"
@@ -2697,6 +2697,44 @@
 	
 }
 
-//
+//获取商家列表
++ (void)TinyShoprequestStoreCateListwithCustom_code:(NSString *)custom_code
+											 withpg:(NSString*)pg
+										  withtoken:(NSString*)token
+									withcustom_lev1:(NSString*)custom_lev1
+									withcustom_lev2:(NSString*)custom_lev2
+									withcustom_lev3:(NSString*)custom_lev3
+									   withlatitude:(NSString*)latitude
+									   withlongitude:(NSString*)longitude
+											success:(void (^)(id response))success
+											failure:(void (^)(NSError *err))failure{
+	NSString *url = @"http://mall.gigawon.co.kr:8800/api/StoreCate/requestStoreCateList";
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(custom_code,pg,token,custom_lev1,custom_lev2,custom_lev3,longitude,latitude).mutableCopy;
+	[params setObject:@"2" forKey:@"div_code"];
+	[params setObject:@"5" forKey:@"pagesize"];
+	[params setObject:@"kor" forKey:@"lang_type"];
+	
+	//获得请求管理者
+	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+	manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+	manager.requestSerializer = [AFJSONRequestSerializer serializer];
+	[manager POST:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+		
+		if (success) {
+			[MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
+			
+			id result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+			success(result);
+		}
+		
+	} failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+		if (failure) {
+			failure(error);
+		}
+	}];
+	
+
+	
+}
 
 @end

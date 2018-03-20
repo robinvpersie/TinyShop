@@ -12,7 +12,13 @@
 @implementation ChoiceTableViewCell
 - (void)setDic:(NSDictionary *)dic{
 	_dic = dic;
+	[self.Headavor sd_setImageWithURL:[NSURL URLWithString:_dic[@"shop_thumnail_image"]]];
+	[self.titleLab setText:_dic[@"custom_name"]];
 	
+	[self.detailedLab setText:[NSString stringWithFormat:@"评论:%d  回复:%d", [_dic[@"cnt"] intValue],[_dic[@"sale_custom_cnt"] intValue]]];
+	
+	[self.distance setText:_dic[@"distance"]];
+		
 }
 
 - (void)setStarValue:(CGFloat)starValue{
@@ -21,11 +27,14 @@
 	self.unkownBtn.layer.cornerRadius = 8;
 	self.unkownBtn.layer.masksToBounds = YES;
 
-	GigaStarLabel *starview = [[GigaStarLabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(self.starView.frame), CGRectGetMinY(self.starView.frame), 200, 12) withStarValue:3.3];
+	GigaStarLabel *starview = [[GigaStarLabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(self.starView.frame), CGRectGetMinY(self.starView.frame), 200, 12) withStarValue:_starValue];
 	[self.contentView addSubview:starview];
 
 }
+
+
 - (IBAction)unkownAction:(UIButton *)sender {
-	}
+
+}
 
 @end
