@@ -7,7 +7,7 @@
 //
 
 #import "StepOneMemEnrollController.h"
-
+#import "CompanyAuthController.h"
 @interface StepOneMemEnrollController ()
 
 @end
@@ -75,7 +75,10 @@
 	submitBtn.layer.masksToBounds = YES;
 	[submitBtn setBackgroundColor:RGB(33, 192, 67)];
 	[submitBtn setTitle:@"다음" forState:UIControlStateNormal];
+	[submitBtn addTarget:self action:@selector(submitAction:) forControlEvents:UIControlEventTouchUpInside];
 	[backImg addSubview:submitBtn];
+	
+
 
 	
 	UIButton *forget = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth/2 -100, CGRectGetMaxY(submitBtn.frame) +20, 200, 40)];
@@ -86,10 +89,12 @@
 	[forget setTitleColor:RGB(45, 45, 45) forState:UIControlStateNormal];
 	[backImg addSubview:forget];
 	
-	
-	
-	
 
+}
+
+- (void)submitAction:(UIButton *)sender{
+	CompanyAuthController *companyVC = [CompanyAuthController new];
+	[self presentViewController:companyVC animated:YES completion:nil];
 }
 
 - (void)pop:(UIButton *)sender{

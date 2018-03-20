@@ -14,5 +14,6 @@ typedef void (^ShowActionBlock)();
 
 @property (nonatomic, copy) ShowActionBlock showAction;
 @property (nonatomic, copy) NSString *addressName;
-
+- (instancetype)initWithFrame:(CGRect)frame withTextColor:(UIColor*)textColor withData:(NSArray*)images;
 @end
+

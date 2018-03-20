@@ -1,3 +1,4 @@
+
 //
 //  TinyShopMainController.m
 //  Portal
@@ -21,7 +22,7 @@
 @implementation TinyShopMainController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
 	[self setNaviBar];
 	[self createScrollview];
 	
@@ -79,7 +80,7 @@
 		MainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MainTableViewCell" forIndexPath:indexPath];
 		return cell;
 	}
-
+	
 	return cell;
 }
 
@@ -129,8 +130,8 @@
 	UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:leftBtn];
 	[leftBtn addTarget:self action:@selector(leftBtn:) forControlEvents:UIControlEventTouchUpInside];
 	[self.navigationItem setLeftBarButtonItems:@[leftItem]];
-		
-	ChoiceHeadView *choiceHeadView = [[ChoiceHeadView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
+	
+	ChoiceHeadView *choiceHeadView = [[ChoiceHeadView alloc]initWithFrame:CGRectMake(0, 0, 200, 30) withTextColor:[UIColor whiteColor] withData:@[@"location",@""]];
 	self.navigationItem.titleView = choiceHeadView;
 	
 }
@@ -153,3 +154,4 @@
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 @end
+

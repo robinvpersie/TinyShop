@@ -17,6 +17,8 @@
 #import "SupermarketHomeViewController.h"
 #import "ShowLocationView.h"
 
+
+
 @interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource,WJClickItemsDelegate>
 
 @property (nonatomic,retain)UITableView *tableview;
@@ -34,6 +36,7 @@
 @property (nonatomic,assign)BOOL extend;
 
 @property (nonatomic, strong)ShowLocationView * locationView;
+
 @property (nonatomic, strong)ChoiceHeadView *choiceHeadView;
 
 @end
@@ -49,7 +52,7 @@
 	
 	[self createSemgentViews];
 	[self createTableview];
-    [self location];
+	[self location];
 	[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PushEditAction:) name:@"EDITACTIONNOTIFICATIONS" object:nil];
 }
 
@@ -188,47 +191,45 @@
 	[self.navigationItem setRightBarButtonItems:@[right1Item,right2Item]];
 	
 	
-	self.choiceHeadView = [[ChoiceHeadView alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
-    __weak typeof(self) weakSelf = self;
-    self.choiceHeadView.showAction = ^{
-        [weakSelf.locationView showInView:weakSelf.view.window];
-        weakSelf.locationView.location = ^{
-            [weakSelf location];
-        };
-        weakSelf.locationView.map = ^{
-            AroundMapController *map = [[AroundMapController alloc]init];
-            map.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:map animated:YES];
-        };
-
-    };
+	self.choiceHeadView = [[ChoiceHeadView alloc]initWithFrame:CGRectMake(0, 0, 200, 30) withTextColor:RGB(25, 25, 25) withData:@[@"icon_location",@"icon_arrow_bottom"]];
+	__weak typeof(self) weakSelf = self;
+	self.choiceHeadView.showAction = ^{
+		[weakSelf.locationView showInView:weakSelf.view.window];
+		weakSelf.locationView.location = ^{
+			[weakSelf location];
+		};
+		weakSelf.locationView.map = ^{
+			
+		};
+		
+	};
 	self.navigationItem.titleView = self.choiceHeadView;
 }
 
 -(void)location {
-    [YCLocationService turnOn];
-    [YCLocationService singleUpdate:^(CLLocation * location) {
-        [YCLocationService turnOff];
-        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-        [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-            if (placemarks.count > 0) {
-                NSString *address = placemarks.firstObject.name;
-                self.choiceHeadView.addressName = address;
-            } else {
-                self.choiceHeadView.addressName = @"定位失败";
-            };
-        }];
-    } failure:^(NSError * error) {
-        [YCLocationService turnOff];
-        self.choiceHeadView.addressName = @"定位失败";
-    }];
+	[YCLocationService turnOn];
+	[YCLocationService singleUpdate:^(CLLocation * location) {
+		[YCLocationService turnOff];
+		CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+		[geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+			if (placemarks.count > 0) {
+				NSString *address = placemarks.firstObject.name;
+				self.choiceHeadView.addressName = address;
+			} else {
+				self.choiceHeadView.addressName = @"定位失败";
+			};
+		}];
+	} failure:^(NSError * error) {
+		[YCLocationService turnOff];
+		self.choiceHeadView.addressName = @"定位失败";
+	}];
 }
 
 -(ShowLocationView *)locationView {
-    if (_locationView == nil) {
-        _locationView = [[ShowLocationView alloc] init];
-    }
-    return _locationView;
+	if (_locationView == nil) {
+		_locationView = [[ShowLocationView alloc] init];
+	}
+	return _locationView;
 }
 
 #pragma mark -- 右边点击方法
@@ -247,4 +248,8 @@
 	
 }
 @end
+
+
+
+
 
