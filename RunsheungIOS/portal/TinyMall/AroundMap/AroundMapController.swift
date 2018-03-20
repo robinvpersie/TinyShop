@@ -140,9 +140,6 @@ class AroundMapController: UIViewController {
             make.trailing.equalTo(container).offset(-30)
             make.height.equalTo(40)
         }
-        
-        
-        
     }
     
     @objc func didTop() {
