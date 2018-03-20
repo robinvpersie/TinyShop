@@ -58,8 +58,6 @@
 }
 #pragma mark -- 登录注册
 - (void)btnAction:(UIButton*)sender{
-	
-	
 	if (sender.tag == LoginBtnTag) {//登录
 		hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 		[hud showAnimated:YES];
@@ -84,12 +82,10 @@
 	UITextField *phone = (UITextField*)[loginBG viewWithTag:LoginPhoneTag];
 	UITextField *pwd = (UITextField*)[loginBG viewWithTag:LoginPWDTag];
 
-	if (phone.text.length&&pwd.text.length) {
-		MBProgressHUD *showloading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-		[showloading showAnimated:YES];
-		[KLHttpTool LoginMemberWithMemid:phone.text withMempwd:[self sha512: pwd.text] withDeviceNo:UUID success:^(id response) {
+	if (phone.text.length && pwd.text.length) {
+        [KLHttpTool LoginMemberWithMemid:phone.text withMempwd:[self sha512: pwd.text] withDeviceNo:UUID success:^(id response) {
+            [weakself hideLoading];
 			if ([response[@"status"] intValue] == 1) {
-				[hud hideAnimated:NO];
 				YCAccountModel *accountModel = [YCAccountModel new];
 				accountModel.memid = response[@"memid"];
 				accountModel.token =[NSString stringWithFormat:@"%@|%@",response[@"token"],UUID] ;
@@ -104,16 +100,13 @@
 				NSData *objectTodata = [NSKeyedArchiver archivedDataWithRootObject:accountModel];
 				[[NSUserDefaults standardUserDefaults] setObject:objectTodata forKey:@"accountModel"];
 				[[NSNotificationCenter defaultCenter]postNotificationName:@"YCAccountIsLogin" object:nil];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					[weakself dismissViewControllerAnimated:YES completion:^{
-						[showloading hideAnimated:YES afterDelay:0.3f];
-					}];
-				});
-
-			}
+                [weakself dismissViewControllerAnimated:true completion:nil];
+            } else {
+                [weakself showMessage:response[@"msg"] interval:2 completionAction:^{ }];
+            }
 		} failure:^(NSError *err) {
-
-		}];
+            [weakself hideLoading];
+        }];
 	}else{
 		MBProgressHUD *hude = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 		hude.mode = MBProgressHUDModeText;
@@ -153,10 +146,8 @@
 	} failure:^(NSError *err) {
 		
 	}];
-	
 	_count = 60;
 	if (_timer == nil) {
-		
 		_timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeraction) userInfo:nil repeats:YES];
 		[_timer fire];
 	}

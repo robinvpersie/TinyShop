@@ -23,20 +23,20 @@ public class YCAccountModel: NSObject, NSCoding {
         case weixin = "123"
     }
 
-    var memid: String?
-    var mall_home_id: String?
-    var flag: String?
-    var token: String?
-    var userName: String?
+    @objc var memid: String?
+    @objc var mall_home_id: String?
+    @objc var flag: String?
+    @objc var token: String?
+    @objc var userName: String?
     var usersex: userSex?
-    var avatarPath: String?
-    var password: String?
-    var customId: String = ""
-    var customCode: String = ""
-    var ssoId: String?
-    var pointCardNo: String?
-    var parentId: String?
-    var customlev: String?
+    @objc var avatarPath: String?
+    @objc var password: String?
+    @objc var customId: String = ""
+    @objc var customCode: String = ""
+    @objc var ssoId: String?
+    @objc var pointCardNo: String?
+    @objc var parentId: String?
+    @objc var customlev: String?
     
     public override init() {
         super.init()

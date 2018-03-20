@@ -84,7 +84,7 @@
         [KLHttpTool LoginMemberWithMemid:phone.text withMempwd:[self sha512: pwd.text] withDeviceNo:UUID success:^(id response) {
             if ([response[@"status"] intValue] == 1) {
                 [hud hideAnimated:NO];
-                YCAccountModel *accountModel = [YCAccountModel new];
+                YCAccountModel *accountModel = [[YCAccountModel alloc] init];
                 accountModel.memid = response[@"memid"];
                 accountModel.token =[NSString stringWithFormat:@"%@|%@",response[@"token"],UUID] ;
                 accountModel.customId = response[@"custom_id"];
@@ -106,7 +106,7 @@
                 
             }
         } failure:^(NSError *err) {
-            
+            [hud hideAnimated:NO];
         }];
     }else{
         MBProgressHUD *hude = [MBProgressHUD showHUDAddedTo:self.view animated:YES];

@@ -28,6 +28,8 @@
 		018AE84B20594CC60018F854 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84A20594CC60018F854 /* Resource.swift */; };
 		018AE84D20594D210018F854 /* NetWorkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84C20594D210018F854 /* NetWorkResult.swift */; };
 		018AE84F20594DC90018F854 /* NetIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84E20594DC90018F854 /* NetIndicator.swift */; };
+		01C03460205FED7F00237AAD /* SearchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C0345F205FED7F00237AAD /* SearchListController.swift */; };
+		01C03462205FEDE000237AAD /* SearchListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C03461205FEDE000237AAD /* SearchListCell.swift */; };
 		1B022D611F21A20400129849 /* ZoomingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B022D601F21A20400129849 /* ZoomingImageView.m */; };
 		1B0CD2BD1E8B5B6A008AF162 /* YCHotelMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CD2BC1E8B5B6A008AF162 /* YCHotelMainController.m */; };
 		1B0CD2C01E8B5B8D008AF162 /* YCHoltelBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CD2BF1E8B5B8D008AF162 /* YCHoltelBaseViewController.m */; };
@@ -824,6 +826,8 @@
 		018AE84A20594CC60018F854 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		018AE84C20594D210018F854 /* NetWorkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkResult.swift; sourceTree = "<group>"; };
 		018AE84E20594DC90018F854 /* NetIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetIndicator.swift; sourceTree = "<group>"; };
+		01C0345F205FED7F00237AAD /* SearchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListController.swift; sourceTree = "<group>"; };
+		01C03461205FEDE000237AAD /* SearchListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListCell.swift; sourceTree = "<group>"; };
 		1B022D5F1F21A20400129849 /* ZoomingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomingImageView.h; sourceTree = "<group>"; };
 		1B022D601F21A20400129849 /* ZoomingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomingImageView.m; sourceTree = "<group>"; };
 		1B0CD2BB1E8B5B6A008AF162 /* YCHotelMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHotelMainController.h; sourceTree = "<group>"; };
@@ -5496,6 +5500,7 @@
 				D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */,
 				D53093C3205E44E300427350 /* TSFirstMoreViewController.h */,
 				D53093C2205E44E100427350 /* TSFirstMoreViewController.m */,
+				01C0345F205FED7F00237AAD /* SearchListController.swift */,
 			);
 			path = shoplist;
 			sourceTree = "<group>";
@@ -5520,6 +5525,7 @@
 				D53093B6205E445300427350 /* TSItemView.m */,
 				01637E55205F9C6000C59F30 /* ShowLocationView.h */,
 				01637E56205F9C6000C59F30 /* ShowLocationView.m */,
+				01C03461205FEDE000237AAD /* SearchListCell.swift */,
 			);
 			path = Segment;
 			sourceTree = "<group>";
@@ -6235,12 +6241,14 @@
 				1B392D7E1E28D0E500F70981 /* XTPopView.m in Sources */,
 				1B392ED61E28D14E00F70981 /* SupermarketCommentCell.m in Sources */,
 				6296F455201A0ACB00976C21 /* RecommendInfoController.swift in Sources */,
+				01C03462205FEDE000237AAD /* SearchListCell.swift in Sources */,
 				5BC13C641E10F4AB00985C41 /* UIImage+Navi.swift in Sources */,
 				5B1E63471DEC0794005DDFB2 /* YCInfiniteScrollView.swift in Sources */,
 				5BE1528A1F137DDF00FC74C2 /* PhotoTransitionAnimator.swift in Sources */,
 				1B4C10141EAEE056005EAAE5 /* HotelOrderArrangeModel.m in Sources */,
 				1B7036D91F20411600F53333 /* SupermarketWaitDeliverOrderController.m in Sources */,
 				26CFF6602004B1F400A10F91 /* RSOtcCollectionView.m in Sources */,
+				01C03460205FED7F00237AAD /* SearchListController.swift in Sources */,
 				1B0CD2C61E8B5BFD008AF162 /* YCHotelMineViewController.m in Sources */,
 				D53093C1205E445400427350 /* GigaStarLabel.m in Sources */,
 				1B392F4A1E28D14E00F70981 /* SupermarketApplyRefundController.m in Sources */,
