@@ -123,7 +123,7 @@
                       failure:(void (^)(NSError *err))failure;
 
 //获取我的收藏夹列表
-+ (void)getMyCollectionListWithAppType:(NSInteger)appType
++ (void)getMyCollectionListWithOffSet:(NSInteger)offset
                                success:(void (^)(id response))success
                            failure:(void (^)(NSError *err))failure;
 
