@@ -769,6 +769,10 @@
 		D5D01F40205FD5E6002263CC /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F3E205FD5E6002263CC /* MainTableViewCell.m */; };
 		D5D01F41205FD5E6002263CC /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D01F3F205FD5E6002263CC /* MainTableViewCell.xib */; };
 		D5D01F4420609272002263CC /* StepSecMemEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F4320609272002263CC /* StepSecMemEnrollController.m */; };
+		D5D01F4820610C0A002263CC /* TinyShopDetailedView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F4720610C0A002263CC /* TinyShopDetailedView.m */; };
+		D5D01F5020612870002263CC /* ShopDetailedCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D01F4B2061286D002263CC /* ShopDetailedCollectionCell.xib */; };
+		D5D01F5120612870002263CC /* TSShopDetailedCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F4C2061286D002263CC /* TSShopDetailedCollectionView.m */; };
+		D5D01F5220612870002263CC /* ShopDetailedCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F4E2061286F002263CC /* ShopDetailedCollectionCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2188,6 +2192,13 @@
 		D5D01F3F205FD5E6002263CC /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
 		D5D01F4220609272002263CC /* StepSecMemEnrollController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StepSecMemEnrollController.h; sourceTree = "<group>"; };
 		D5D01F4320609272002263CC /* StepSecMemEnrollController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StepSecMemEnrollController.m; sourceTree = "<group>"; };
+		D5D01F4620610C0A002263CC /* TinyShopDetailedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TinyShopDetailedView.h; sourceTree = "<group>"; };
+		D5D01F4720610C0A002263CC /* TinyShopDetailedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TinyShopDetailedView.m; sourceTree = "<group>"; };
+		D5D01F4B2061286D002263CC /* ShopDetailedCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopDetailedCollectionCell.xib; sourceTree = "<group>"; };
+		D5D01F4C2061286D002263CC /* TSShopDetailedCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSShopDetailedCollectionView.m; sourceTree = "<group>"; };
+		D5D01F4D2061286E002263CC /* ShopDetailedCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopDetailedCollectionCell.h; sourceTree = "<group>"; };
+		D5D01F4E2061286F002263CC /* ShopDetailedCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopDetailedCollectionCell.m; sourceTree = "<group>"; };
+		D5D01F4F2061286F002263CC /* TSShopDetailedCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSShopDetailedCollectionView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4750,6 +4761,7 @@
 		26CFF64D200466B300A10F91 /* SupermarketSubviews */ = {
 			isa = PBXGroup;
 			children = (
+				D5D01F4520610B90002263CC /* TinyShopDetails */,
 				26CFF64E2004671500A10F91 /* SuperMarketAddView.h */,
 				26CFF64F2004671500A10F91 /* SuperMarketAddView.m */,
 				26CFF65120046AD400A10F91 /* RSSpecialGoodsMedicineView.h */,
@@ -5563,6 +5575,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		D5D01F4520610B90002263CC /* TinyShopDetails */ = {
+			isa = PBXGroup;
+			children = (
+				D5D01F4D2061286E002263CC /* ShopDetailedCollectionCell.h */,
+				D5D01F4E2061286F002263CC /* ShopDetailedCollectionCell.m */,
+				D5D01F4B2061286D002263CC /* ShopDetailedCollectionCell.xib */,
+				D5D01F4F2061286F002263CC /* TSShopDetailedCollectionView.h */,
+				D5D01F4C2061286D002263CC /* TSShopDetailedCollectionView.m */,
+				D5D01F4620610C0A002263CC /* TinyShopDetailedView.h */,
+				D5D01F4720610C0A002263CC /* TinyShopDetailedView.m */,
+			);
+			name = TinyShopDetails;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -5692,6 +5718,7 @@
 				D53093C0205E445400427350 /* ChoiceTableViewCell.xib in Resources */,
 				1B392F0B1E28D14E00F70981 /* SupermarketOnSaleCell.xib in Resources */,
 				1B392D641E28D0E500F70981 /* BEEP.mp3 in Resources */,
+				D5D01F5020612870002263CC /* ShopDetailedCollectionCell.xib in Resources */,
 				267DAAA31EA214DD00299E74 /* hotelintroduce.jpg in Resources */,
 				1B392F5D1E28D14E00F70981 /* cart_addBtn_nomal@2x.png in Resources */,
 				5B002A821E0BCE5E002D0A05 /* PersonalCleanCell.xib in Resources */,
@@ -6085,6 +6112,7 @@
 				1B510E441E9C714400B77F14 /* HotelAlbumImageModel.m in Sources */,
 				1B392D8E1E28D0E500F70981 /* NSAttributedString+YYText.m in Sources */,
 				1B1971AF1E20803300E54D95 /* KLBuyingTicketViewController.m in Sources */,
+				D5D01F4820610C0A002263CC /* TinyShopDetailedView.m in Sources */,
 				1B392D521E28D0E500F70981 /* CFLabelOnLeftButton.m in Sources */,
 				1BC876A01E9885C700BB38D7 /* YCHotelHomeController.m in Sources */,
 				1BDDA0F01EB9798F005E8409 /* HotelCommentTableViewCell.m in Sources */,
@@ -6340,6 +6368,7 @@
 				1B392F041E28D14E00F70981 /* SupermarketLimitBuyController.m in Sources */,
 				1BC876941E978ADB00BB38D7 /* HotelDetailIntroController.m in Sources */,
 				5B5989CB1E9F257300F70125 /* BrightnessView.swift in Sources */,
+				D5D01F5220612870002263CC /* ShopDetailedCollectionCell.m in Sources */,
 				1B392D651E28D0E500F70981 /* HNCodeScannerCoverView.m in Sources */,
 				1B392F481E28D14E00F70981 /* SupermarketReceiveTimeController.m in Sources */,
 				5BE1F2FB1EC94A3200717E20 /* YCLoadMoreCollectionCell.swift in Sources */,
@@ -6351,6 +6380,7 @@
 				1BEF694B1E947FF700CE3434 /* HotelSearchResultTableViewCell.m in Sources */,
 				5B34C8971E1FAD3300AF6B93 /* TYTabPagerController.m in Sources */,
 				5BD429411DF1010700EE62DE /* YCLoginContainerController.swift in Sources */,
+				D5D01F5120612870002263CC /* TSShopDetailedCollectionView.m in Sources */,
 				5BB790AB1E03831900A13D50 /* YCWebViewController.swift in Sources */,
 				5B002A741E0B9FA0002D0A05 /* PersonalShareController.swift in Sources */,
 				1B392F151E28D14E00F70981 /* SupermarketTasteNewTableView.m in Sources */,

@@ -44,6 +44,8 @@
 #import "ZFScanViewController.h"
 #import "Masonry.h"
 
+#import "TinyShopDetailedView.h"
+#import "TSShopDetailedCollectionView.h"
 
 //#pragma mark -- 人生
 #import "SuperMarketAddView.h"
@@ -51,7 +53,7 @@
 #import "RSOtcCollectionView.h"
 #import <SwiftLocation/SwiftLocation-Swift.h>
 
-@interface SupermarketHomeViewController ()<PYSearchViewControllerDelegate,ClassificationViewDelegate, HNScanViewControllerDelegate,SupermarketHomeAdviewDelegate,ZHScrollHeaderTaped>
+@interface SupermarketHomeViewController ()<PYSearchViewControllerDelegate,ClassificationViewDelegate, HNScanViewControllerDelegate,SupermarketHomeAdviewDelegate,ZHScrollHeaderTaped,DetailedDelegate>
 
 @property(nonatomic, strong) UIScrollView *mainScrollView;
 @property(nonatomic, strong) SuperMarketAddView *RsSingleAdview;
@@ -70,6 +72,10 @@
 
 @property(nonatomic, strong) CountTimeView *countTimeView;//倒计时
 
+
+@property (nonatomic,retain)TinyShopDetailedView *tinyShopDetailView;
+
+@property(nonatomic,retain)TSShopDetailedCollectionView *tsDetailedView;
 @end
 
 @implementation SupermarketHomeViewController {
@@ -100,16 +106,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //    NSString *path = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"];
-    //
-    //    NSString *lprojPath = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj" inDirectory:@"Portal"];
-    
     self.view.backgroundColor = [UIColor whiteColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginOk:) name:@"YCAccountIsLogin" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chooseDivCode:) name:@"ChooseDivCode" object:nil];
-    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goDetail:) name:@"ItemCode" object:nil];
-    
     _isRefresh = NO;
     
     _islogIn = [YCAccountModel islogin];
@@ -160,7 +160,7 @@
     UIBarButtonItem *dismiss = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_back"] style:UIBarButtonItemStylePlain target:self action:@selector(dismis)];
     dismiss.tintColor = [UIColor darkcolor];
     
-    UIBarButtonItem *location = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"location"] style:UIBarButtonItemStylePlain target:self action:@selector(goLocation)];
+    UIBarButtonItem *location = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(goLocation)];
     location.imageInsets = UIEdgeInsetsMake(0,-30,0,0);
     location.tintColor = [UIColor darkcolor];
   
@@ -170,20 +170,10 @@
     [locationName addTarget:self action:@selector(goLocation) forControlEvents:UIControlEventTouchUpInside];
     UIButton *titlebtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 30)];
     
-    [titlebtn setTitle:NSLocalizedString(@"SupermarketHomeTitle",nil) forState:UIControlStateNormal];
+    [titlebtn setTitle:_dic[@"custom_name"] forState:UIControlStateNormal];
     [titlebtn setTitleColor:RGB(16, 16, 16) forState:UIControlStateNormal];
-    
-    if (isIOS11) {
-        
-        locationName.titleEdgeInsets = UIEdgeInsetsMake(0,-60,0,0);
-        titlebtn.contentEdgeInsets = UIEdgeInsetsMake(0,-60,0,0);
-    } else {
-        
-        locationName.titleEdgeInsets = UIEdgeInsetsMake(0,-30,0,0);
-        titlebtn.contentEdgeInsets = UIEdgeInsetsMake(0,-30,0,0);
-    }
-    
-    self.navigationItem.titleView = titlebtn;
+	
+	self.navigationItem.titleView = titlebtn;
     
     UIBarButtonItem *locationNameItem = [[UIBarButtonItem alloc] initWithCustomView:locationName];
     locationNameItem.tintColor = [UIColor darkcolor];
@@ -197,9 +187,14 @@
     
 }
 
+#pragma mark ---  DetailedDelegate
+- (void)clickSegment:(int)index{
+	
+}
+
 - (void)initView {
     
-    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, self.view.frame.size.height)];
+    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, self.view.frame.size.height - 64)];
     _mainScrollView.contentSize = CGSizeMake(APPScreenWidth, APPScreenHeight*5);
     _mainScrollView.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
     [self.view addSubview:_mainScrollView];
@@ -207,83 +202,105 @@
     banner = [[ZHSCorllHeader alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenWidth/2)];
     [_mainScrollView addSubview:banner];
     banner.delegate = self;
-//    banner.imageNameArray = @[@"img_design_04"];
     [_mainScrollView addSubview:banner];
-    
-    classfictionView = [[SupermarketClassfictionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(banner.frame), APPScreenWidth, APPScreenWidth/5+5)];
-    classfictionView.delegate = self;
-    [_mainScrollView addSubview:classfictionView];
-  
-    
-    recommendNewPic = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(classfictionView.frame)+10, APPScreenWidth, APPScreenWidth/4)];
-    recommendNewPic.clipsToBounds = YES;
-    recommendNewPic.image = [UIImage imageNamed:@"img_design_05"];
-    recommendNewPic.contentMode = UIViewContentModeScaleAspectFill;
-    recommendNewPic.userInteractionEnabled = YES;
-    UITapGestureRecognizer *goTasteNew = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goTasteNew:)];
-    [recommendNewPic addGestureRecognizer:goTasteNew];
-    
-    [_mainScrollView addSubview:recommendNewPic];
-    
-   
-    UIView *specialBG = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(recommendNewPic.frame)+10, APPScreenWidth, 30)];
-    specialBG.backgroundColor = [UIColor whiteColor];
-    //特价好药
-    UILabel *titlelabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 4, 80, 30)];
-    titlelabel.text = @"特价好药";
-    titlelabel.textAlignment = NSTextAlignmentCenter;
-    [specialBG addSubview:titlelabel];
-    
-    //查看更多的按钮
-    UIButton *morebtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth- 80, 4, 80, 30)];
-    [morebtn setTitle:@"查看更多" forState:UIControlStateNormal];
-    [morebtn.titleLabel setFont:[UIFont systemFontOfSize:13]];
-    [morebtn setTitleColor:RGB(160, 160, 160) forState:UIControlStateNormal];
-    [specialBG addSubview:morebtn];
-    [_mainScrollView addSubview:specialBG];
-    
-    UICollectionViewFlowLayout *layOut_0 = [[UICollectionViewFlowLayout alloc] init];
-    layOut_0.minimumInteritemSpacing = 0;
-    layOut_0.minimumLineSpacing = 1;
-    layOut_0.itemSize = CGSizeMake(APPScreenWidth/2-4,APPScreenWidth/2-4);
-    layOut_0.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    layOut_0.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    
-    _tasteNewCollectionView = [[SupermarketHomeTasteNewCollectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(specialBG.frame), APPScreenWidth, APPScreenWidth/2+5) collectionViewLayout:layOut_0];
-    [_mainScrollView addSubview:_tasteNewCollectionView];
-    
-    /**
-     以下为大家都爱买
-     */
-    otcImgview = [[UIImageView alloc] initWithFrame:CGRectMake(APPScreenWidth/3, CGRectGetMaxY(_tasteNewCollectionView.frame)+13, APPScreenWidth/3, 15)];
-    otcImgview.backgroundColor = [UIColor clearColor];
-    otcImgview.image = [UIImage imageNamed:@"img_otc_title"];
-    [_mainScrollView addSubview:otcImgview];
-    
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(otcImgview.frame), APPScreenWidth, 0.0f)];
-    line.backgroundColor = _mainScrollView.backgroundColor;
-    [_mainScrollView addSubview:line];
-    
-    UICollectionViewFlowLayout *layOut = [[UICollectionViewFlowLayout alloc] init];
-    layOut.minimumInteritemSpacing = 0;
-    layOut.minimumLineSpacing = 0;
-    layOut.itemSize = CGSizeMake(APPScreenWidth/2, APPScreenWidth/2+60);
-    layOut.sectionInset = UIEdgeInsetsMake(2, 0, 2, 0);
-    layOut.scrollDirection = UICollectionViewScrollDirectionVertical;
-    
-    _wantBuyCollectionView = [[SupermarketHomeWantBuyCollectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame) + 10.0f, APPScreenWidth, ((APPScreenWidth - 4)/2 +56)*2+10) collectionViewLayout:layOut];
-    _wantBuyCollectionView.scrollEnabled = NO;
-    [_mainScrollView addSubview:_wantBuyCollectionView];
-    
-    CGSize size = _mainScrollView.contentSize;
-    size.height = CGRectGetMaxY(_wantBuyCollectionView.frame);
-    _mainScrollView.contentSize = size;
-    
-    
-    _refresh = [[UIRefreshControl alloc] init];
-    [_refresh addTarget:self action:@selector(refreshData:) forControlEvents:UIControlEventValueChanged];
-    //    [_mainScrollView addSubview:_refresh];
-    
+	
+	//创建头部图片显示
+	if (self.tinyShopDetailView == nil) {
+		self.tinyShopDetailView = [[TinyShopDetailedView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(banner.frame), SCREEN_WIDTH, 120)];
+		self.tinyShopDetailView.delegete = self;
+		self.tinyShopDetailView.dic = self.dic;
+		[_mainScrollView addSubview:self.tinyShopDetailView];
+	}
+
+	if (self.tsDetailedView == nil) {
+		UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+		layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+		
+		self.tsDetailedView = [[TSShopDetailedCollectionView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tinyShopDetailView.frame), SCREEN_WIDTH, 2*(APPScreenWidth/2- 5)) collectionViewLayout:layout];
+		self.tsDetailedView.showsVerticalScrollIndicator = NO;
+		self.tsDetailedView.scrollEnabled = NO;
+		
+		[self.view addSubview:self.tsDetailedView];
+		[_mainScrollView addSubview:self.tsDetailedView];
+		_mainScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, CGRectGetMaxY(self.tsDetailedView.frame));
+		
+	}
+	
+
+//    classfictionView = [[SupermarketClassfictionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(banner.frame), APPScreenWidth, APPScreenWidth/5+5)];
+//    classfictionView.delegate = self;
+//    [_mainScrollView addSubview:classfictionView];
+
+//
+//    recommendNewPic = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(classfictionView.frame)+10, APPScreenWidth, APPScreenWidth/4)];
+//    recommendNewPic.clipsToBounds = YES;
+//    recommendNewPic.image = [UIImage imageNamed:@"img_design_05"];
+//    recommendNewPic.contentMode = UIViewContentModeScaleAspectFill;
+//    recommendNewPic.userInteractionEnabled = YES;
+//    UITapGestureRecognizer *goTasteNew = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goTasteNew:)];
+//    [recommendNewPic addGestureRecognizer:goTasteNew];
+//
+//    [_mainScrollView addSubview:recommendNewPic];
+//
+//
+//    UIView *specialBG = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(recommendNewPic.frame)+10, APPScreenWidth, 30)];
+//    specialBG.backgroundColor = [UIColor whiteColor];
+//    //特价好药
+//    UILabel *titlelabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 4, 80, 30)];
+//    titlelabel.text = @"特价好药";
+//    titlelabel.textAlignment = NSTextAlignmentCenter;
+//    [specialBG addSubview:titlelabel];
+//
+//    //查看更多的按钮
+//    UIButton *morebtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth- 80, 4, 80, 30)];
+//    [morebtn setTitle:@"查看更多" forState:UIControlStateNormal];
+//    [morebtn.titleLabel setFont:[UIFont systemFontOfSize:13]];
+//    [morebtn setTitleColor:RGB(160, 160, 160) forState:UIControlStateNormal];
+//    [specialBG addSubview:morebtn];
+//    [_mainScrollView addSubview:specialBG];
+//
+//    UICollectionViewFlowLayout *layOut_0 = [[UICollectionViewFlowLayout alloc] init];
+//    layOut_0.minimumInteritemSpacing = 0;
+//    layOut_0.minimumLineSpacing = 1;
+//    layOut_0.itemSize = CGSizeMake(APPScreenWidth/2-4,APPScreenWidth/2-4);
+//    layOut_0.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+//    layOut_0.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+//
+//    _tasteNewCollectionView = [[SupermarketHomeTasteNewCollectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tinyShopDetailView.frame)+ 10, APPScreenWidth, APPScreenWidth/2+5) collectionViewLayout:layOut_0];
+//    [_mainScrollView addSubview:_tasteNewCollectionView];
+//
+//    /**
+//     以下为大家都爱买
+//     */
+//    otcImgview = [[UIImageView alloc] initWithFrame:CGRectMake(APPScreenWidth/3, CGRectGetMaxY(_tasteNewCollectionView.frame)+13, APPScreenWidth/3, 15)];
+//    otcImgview.backgroundColor = [UIColor clearColor];
+//    otcImgview.image = [UIImage imageNamed:@"img_otc_title"];
+//    [_mainScrollView addSubview:otcImgview];
+//
+//    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(otcImgview.frame), APPScreenWidth, 0.0f)];
+//    line.backgroundColor = _mainScrollView.backgroundColor;
+//    [_mainScrollView addSubview:line];
+//
+//    UICollectionViewFlowLayout *layOut = [[UICollectionViewFlowLayout alloc] init];
+//    layOut.minimumInteritemSpacing = 0;
+//    layOut.minimumLineSpacing = 0;
+//    layOut.itemSize = CGSizeMake(APPScreenWidth/2, APPScreenWidth/2+60);
+//    layOut.sectionInset = UIEdgeInsetsMake(2, 0, 2, 0);
+//    layOut.scrollDirection = UICollectionViewScrollDirectionVertical;
+//
+//    _wantBuyCollectionView = [[SupermarketHomeWantBuyCollectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame) + 10.0f, APPScreenWidth, ((APPScreenWidth - 4)/2 +56)*2+10) collectionViewLayout:layOut];
+//    _wantBuyCollectionView.scrollEnabled = NO;
+//    [_mainScrollView addSubview:_wantBuyCollectionView];
+//
+//    CGSize size = _mainScrollView.contentSize;
+//    size.height = CGRectGetMaxY(_wantBuyCollectionView.frame);
+//    _mainScrollView.contentSize = size;
+//
+//
+//    _refresh = [[UIRefreshControl alloc] init];
+//    [_refresh addTarget:self action:@selector(refreshData:) forControlEvents:UIControlEventValueChanged];
+//    //    [_mainScrollView addSubview:_refresh];
+	
 }
 
 - (void)requestData {
@@ -408,15 +425,18 @@
             [otcData addObject:model];
         }
     }
-    _tasteNewCollectionView.dataArray = testData;
-    if (otcData.count > 0) {
+//    _tasteNewCollectionView.dataArray = testData;
+	
+//	self.tsDetailedView.dataArray = testData;
+    if (testData.count > 0) {
      
-        _wantBuyCollectionView.dataArray = otcData;
-        CGRect frames = self.wantBuyCollectionView.frame;
-        frames.size.height = (otcData.count *((APPScreenWidth - 4)/2 +75))/2+10;
-        _wantBuyCollectionView.frame = frames;
+        self.tsDetailedView.dataArray = testData;
+		int colum =  (testData.count/2.0f - (int)(testData.count/2.0f) )>0?(int)(testData.count/2.0f)+1:(int)(testData.count/2.0f);
+		CGRect frames = self.tsDetailedView.frame;
+        frames.size.height = colum *(SCREEN_WIDTH/2 - 5);
+        _tsDetailedView.frame = frames;
         CGSize size = _mainScrollView.contentSize;
-        size.height = CGRectGetMaxY(_wantBuyCollectionView.frame);
+        size.height = CGRectGetMaxY(_tsDetailedView.frame);
         _mainScrollView.contentSize = size;
         
     }

@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SegmentItemDelegate<NSObject>
+
+- (void)clickSegment:(int)index;
+@end;
 @interface SegmentItem : UIView
 
 @property (nonatomic,retain)NSMutableArray *dataArray;
 @property (nonatomic,retain)NSMutableArray *buttonArray;
+
+@property (nonatomic,assign)id<SegmentItemDelegate> delegate;
 - (instancetype)initWithFrame:(CGRect)frame;
 @end

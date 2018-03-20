@@ -19,7 +19,7 @@
 
 
 
-@interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource,WJClickItemsDelegate,ChoiceDelegate>{
+@interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource,WJClickItemsDelegate,ChoiceDelegate,SegmentItemDelegate>{
 	MBProgressHUD *hudloading;
 }
 
@@ -56,12 +56,12 @@
 	hudloading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 	[self location];
 	[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PushEditAction:) name:@"EDITACTIONNOTIFICATIONS" object:nil];
-	[self loadStoreListwithLeve1:@"13" withLeve2:@"1" withLeve3:@"1"];
+	[self loadStoreListwithLeve1:@"13" withLeve2:@"1" withLeve3:@"1" withorderBy:@"1"];
 }
 
-- (void)loadStoreListwithLeve1:(NSString*)leve1 withLeve2:(NSString*)leve2 withLeve3:(NSString*)leve3{
+- (void)loadStoreListwithLeve1:(NSString*)leve1 withLeve2:(NSString*)leve2 withLeve3:(NSString*)leve3 withorderBy:(NSString*)order_by{
 	
-	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:@"155555555566426a" withpg:@"1" withtoken:@"155555555566426af2f5ac36-9bd0-4ddc-a1df-fdb88f0bad07" withcustom_lev1:leve1 withcustom_lev2:leve2 withcustom_lev3:leve3 withlatitude:@"37.434668" withlongitude:@"122.160742" success:^(id response) {
+	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:@"155555555566426a" withpg:@"1" withtoken:@"155555555566426af2f5ac36-9bd0-4ddc-a1df-fdb88f0bad07" withcustom_lev1:leve1 withcustom_lev2:leve2 withcustom_lev3:leve3 withlatitude:@"37.434668" withlongitude:@"122.160742" withorder_by:order_by success:^(id response) {
 		if ([response[@"status"] intValue] == 1) {
 			[hudloading hideAnimated:YES afterDelay:2];
 			self.responseDit = response;
@@ -165,6 +165,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	if (indexPath.section == 0) {
 		UITableViewCell *cell = [[UITableViewCell alloc]init];
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 		if (self.extend) {
 			self.ItemView =[[TSItemView alloc]initWithFrame:CGRectMake(10, 10, APPScreenWidth - 20, 130) withData:@[@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店",@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店",@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店"]];
@@ -175,6 +176,7 @@
 		}else{
 			
 			self.SegmentItem = [[SegmentItem alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 50)];
+			self.SegmentItem.delegate = self;
 			[cell.contentView addSubview:self.SegmentItem];
 			
 		}
@@ -182,6 +184,7 @@
 		return cell;
 	} else {
 		ChoiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChoiceTableViewCellID"];
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		NSDictionary *dics = self.shoplistData[indexPath.row];
 		cell.dic = dics;
 		cell.starValue = [dics[@"score"] floatValue];
@@ -217,10 +220,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-	SupermarketHomeViewController *shopDetailed = [SupermarketHomeViewController new];
-	shopDetailed.hidesBottomBarWhenPushed = YES;
-	[self.navigationController pushViewController:shopDetailed animated:YES];
-	
+	if (indexPath.section ==1) {
+		NSDictionary *dic = self.shoplistData[indexPath.row];
+		SupermarketHomeViewController *shopDetailed = [SupermarketHomeViewController new];
+		shopDetailed.hidesBottomBarWhenPushed = YES;
+		shopDetailed.dic = dic;
+		[self.navigationController pushViewController:shopDetailed animated:YES];
+		
+
+	}
 	
 }
 
@@ -301,8 +309,17 @@
 
 #pragma mark --
 - (void)ChoiceDelegateaction:(NSString *)lev2{
-	[self loadStoreListwithLeve1:@"13" withLeve2:lev2 withLeve3:@"1"];
+	[self loadStoreListwithLeve1:@"13" withLeve2:lev2 withLeve3:@"1" withorderBy:@"1"];
 	
+}
+
+- (void)clickSegment:(int)index{
+	NSString *orderby = [NSString stringWithFormat:@"%d",index];
+	NSString *level2 = [[NSUserDefaults standardUserDefaults] objectForKey:@"lev2"];
+	[[NSUserDefaults standardUserDefaults] setObject:orderby forKey:@"orderby"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	
+	[self loadStoreListwithLeve1:@"13" withLeve2:level2 withLeve3:@"1" withorderBy:[NSString stringWithFormat:@"%d",index]];
 }
 //点击单个的项目响应
 - (void)wjClickItems:(NSString*)item{
