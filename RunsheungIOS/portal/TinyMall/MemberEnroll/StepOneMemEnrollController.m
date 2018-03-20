@@ -7,9 +7,13 @@
 //
 
 #import "StepOneMemEnrollController.h"
-#import "CompanyAuthController.h"
-@interface StepOneMemEnrollController ()
+#import "StepSecMemEnrollController.h"
 
+@interface StepOneMemEnrollController ()
+{
+	UITextField *pwdfield;
+	UITextField *phonefield;
+}
 @end
 
 @implementation StepOneMemEnrollController
@@ -22,9 +26,8 @@
 }
 - (void)createSubviews{
 	self.title = @"회원가입";
-	UIImageView *backImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@""]];
+	UIImageView *backImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"loginbackView"]];
 	backImg.frame = self.view.frame;
-	backImg.backgroundColor = RGB(124, 251, 232);
 	backImg.userInteractionEnabled = YES;
 	[self.view addSubview:backImg];
 	
@@ -35,17 +38,15 @@
 	
 	UIView *backview1 = [[UIView alloc]initWithFrame:CGRectMake(40, CGRectGetMaxY(phonetitle.frame), APPScreenWidth - 80, 40)];
 	backview1.backgroundColor = [UIColor whiteColor];
-	backview1.layer.cornerRadius = 5;
-	backview1.layer.masksToBounds = YES;
 	[backImg addSubview:backview1];
 	
-	UITextField *phonefield = [[UITextField alloc]initWithFrame:CGRectMake(5, 0, CGRectGetWidth(backview1.frame)-45, 40)];
+	phonefield = [[UITextField alloc]initWithFrame:CGRectMake(5, 0, CGRectGetWidth(backview1.frame)-45, 40)];
 	phonefield.placeholder = @"010-1234-5678";
 	[backview1 addSubview:phonefield];
 	
 	UIButton *phoneCheck = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(phonefield.frame), 0, 40, 40)];
-	[phoneCheck setImage:[UIImage imageNamed:@"icon_checkbox_default"] forState:UIControlStateNormal];
-	[phoneCheck setImage:[UIImage imageNamed:@"icon_checkbox_green"] forState:UIControlStateSelected];
+	[phoneCheck setImage:[UIImage imageNamed:@"checkgreen"] forState:UIControlStateNormal];
+	[phoneCheck setImage:[UIImage imageNamed:@"checkgreen"] forState:UIControlStateSelected];
 	[backview1 addSubview:phoneCheck];
 	
 	
@@ -55,18 +56,16 @@
 	[backImg addSubview:pwdtitle];
 	
 	UIView *backview2 = [[UIView alloc]initWithFrame:CGRectMake(40, CGRectGetMaxY(pwdtitle.frame), APPScreenWidth - 80, 40)];
-	backview2.layer.cornerRadius = 5;
-	backview2.layer.masksToBounds = YES;
 	backview2.backgroundColor = [UIColor whiteColor];
 	[backImg addSubview:backview2];
 	
-	UITextField *pwdfield = [[UITextField alloc]initWithFrame:CGRectMake(5, 0, CGRectGetWidth(backview2.frame)-45, 40)];
+	pwdfield = [[UITextField alloc]initWithFrame:CGRectMake(5, 0, CGRectGetWidth(backview2.frame)-45, 40)];
 	pwdfield.placeholder = @"1234";
 	[backview2 addSubview:pwdfield];
 	
 	UIButton *pwdCheck = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(pwdfield.frame), 0, 40, 40)];
-	[pwdCheck setImage:[UIImage imageNamed:@"icon_checkbox_default"] forState:UIControlStateNormal];
-	[pwdCheck setImage:[UIImage imageNamed:@"icon_checkbox_green"] forState:UIControlStateSelected];
+	[pwdCheck setImage:[UIImage imageNamed:@"checkgreen"] forState:UIControlStateNormal];
+	[pwdCheck setImage:[UIImage imageNamed:@"checkgreen"] forState:UIControlStateSelected];
 	[backview2 addSubview:pwdCheck];
 	
 	
@@ -79,8 +78,6 @@
 	[backImg addSubview:submitBtn];
 	
 
-
-	
 	UIButton *forget = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth/2 -100, CGRectGetMaxY(submitBtn.frame) +20, 200, 40)];
 	forget.layer.cornerRadius = 5;
 	forget.layer.masksToBounds = YES;
@@ -93,8 +90,14 @@
 }
 
 - (void)submitAction:(UIButton *)sender{
-	CompanyAuthController *companyVC = [CompanyAuthController new];
-	[self presentViewController:companyVC animated:YES completion:nil];
+	
+	StepSecMemEnrollController *step1 = [StepSecMemEnrollController new];
+	[[NSUserDefaults standardUserDefaults]setObject:phonefield.text forKey:@"joinphone"];
+	[[NSUserDefaults standardUserDefaults]setObject:pwdfield.text forKey:@"joinauthnum"];
+	UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:step1];
+	
+	[self presentViewController:navi animated:YES completion:nil];
+	
 }
 
 - (void)pop:(UIButton *)sender{

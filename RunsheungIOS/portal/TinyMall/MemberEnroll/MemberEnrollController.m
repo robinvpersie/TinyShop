@@ -13,6 +13,8 @@
 #import "ProtectItemsController.h"
 #import "MBProgressHUD.h"
 #import "TeamEnrollController.h"
+#import "EnrollSheetView.h"
+#import "FindTeamViewController.h"
 
 #define LoginPhoneTag 1001
 #define LoginPWDTag 1002
@@ -24,12 +26,15 @@
 #define AddMemberCodeBtnTag 3003
 #define ForgetPwdBtnTag 3004
 #define AddMemberRefTag 3005
-@interface MemberEnrollController ()<SegmentDelegate,TSMemberDelegate,UIScrollViewDelegate,UITextFieldDelegate>{
+@interface MemberEnrollController ()<EnrollSheetViewDelegate,SegmentDelegate,TSMemberDelegate,UIScrollViewDelegate,UITextFieldDelegate>{
 	UIView *loginBG;
 	TSMemberEnrollView *addmemberBG;
 	MBProgressHUD *hud;
 	
 }
+
+@property (nonatomic,retain)EnrollSheetView *sheetView;
+@property (nonatomic,retain)EnrollSheetView *sheetViewsec;
 
 @property (nonatomic,retain)UIImageView *tableViewheadView;
 @property (nonatomic,retain)UIScrollView *scrollview;
@@ -400,11 +405,14 @@
 }
 
 - (void)ClickTSMemberDelegate:(int)index{
-
+	
 	switch (index) {
 		case 0:
 		{
 			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
+			[[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:@"joinKinds"];
+			[[NSUserDefaults standardUserDefaults]synchronize];
+
 			[self presentViewController:personalVC animated:YES completion:nil];
 
 		}
@@ -412,36 +420,48 @@
 		case 1:
 		{
 			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
+			[[NSUserDefaults standardUserDefaults]setObject:@"2" forKey:@"joinKinds"];
+			[[NSUserDefaults standardUserDefaults]synchronize];
+			
+
 			[self presentViewController:personalVC animated:YES completion:nil];
 			
+
 		}
 			break;
 
 		case 2:
 		{
 			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
+			[[NSUserDefaults standardUserDefaults]setObject:@"5" forKey:@"joinKinds"];
+			[[NSUserDefaults standardUserDefaults]synchronize];
+			
+
 			[self presentViewController:personalVC animated:YES completion:nil];
 			
+
 		}
 			break;
 
 		case 3:
 		{
-			TeamEnrollController*teamVC = [TeamEnrollController new];
-			UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:teamVC];
-			[self presentViewController:navi animated:YES completion:nil];
-
+			[self showAlert];
+			[[NSUserDefaults standardUserDefaults]setObject:@"4" forKey:@"joinKinds"];
+			[[NSUserDefaults standardUserDefaults]synchronize];
 			
+
 		}
 			break;
 			
 		case 4:
 		{
-			TeamEnrollController*teamVC = [TeamEnrollController new];
-			UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:teamVC];
-			[self presentViewController:navi animated:YES completion:nil];
+			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
+			[self presentViewController:personalVC animated:YES completion:nil];
+			[[NSUserDefaults standardUserDefaults]setObject:@"6" forKey:@"joinKinds"];
+			[[NSUserDefaults standardUserDefaults]synchronize];
 			
-			
+
+
 		}
 			break;
 
@@ -449,7 +469,11 @@
 		{
 			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
 			[self presentViewController:personalVC animated:YES completion:nil];
+			[[NSUserDefaults standardUserDefaults]setObject:@"8" forKey:@"joinKinds"];
+			[[NSUserDefaults standardUserDefaults]synchronize];
 			
+
+
 		}
 			break;
 
@@ -457,6 +481,45 @@
 		default:
 			break;
 	}
+}
+
+
+#pragma mark -- EnrollSheetViewDelegate
+- (void)click:(int)index selfTag:(int)selftag{
+	if (selftag == 0) {//点击第一个提示view
+		if (index == 1001) {
+				self.sheetViewsec = [[EnrollSheetView alloc]initWithFrame:CGRectMake(50, APPScreenHeight/ 3.0f, APPScreenWidth - 100,  APPScreenHeight/ 3.0f) withBtntitles:@[@"사업자 유형 선택",@"개인",@"사업자"]];
+				self.sheetViewsec.tag = 1;
+				self.sheetViewsec.delegate = self;
+			
+		} else {
+			FindTeamViewController *findteamVC = [[FindTeamViewController alloc]init];
+			UINavigationController *navi = [[UINavigationController alloc]
+											initWithRootViewController:findteamVC];
+			[self presentViewController:navi animated:YES completion:nil];
+			
+			
+			
+		}
+		
+	} else {//点击第二个提示view
+		
+		if (index == 1001) {
+			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
+			[self presentViewController:personalVC animated:YES completion:nil];
+			
+			
+		} else {
+		}
+		
+		
+	}
+}
+
+- (void)showAlert {
+		self.sheetView = [[EnrollSheetView alloc]initWithFrame:CGRectMake(50, APPScreenHeight/ 3.0f, APPScreenWidth - 100,  APPScreenHeight/ 3.0f) withBtntitles:@[@"단체 회원 가입",@"단체신청",@"단체찾기"]];
+		self.sheetView.tag = 0;
+		self.sheetView.delegate = self;
 }
 @end
 

@@ -497,4 +497,30 @@
 
 + (void)autoMatching:(void (^)(id response))success
              failure:(void (^)(NSError *err))failure;
+
+
+
+
+//小商工人个人注册
++ (void)TinyResgisterwithPhone:(NSString *)memid
+					withmempwd:(NSString *)mempwd
+				  withnickname:(NSString*)nickname
+					 withemail:(NSString *)email
+				  witheAuthNum:(NSString *)AuthNum
+			   withcustom_name:(NSString *)custom_name
+			  withtop_zip_code:(NSString *)top_zip_code
+			 withtop_addr_head:(NSString *)top_addr_head
+		   withtop_addr_detail:(NSString *)top_addr_detail
+			 withbusiness_type:(NSString*)business_type
+				 withlang_type:(NSString*)lang_type
+
+				withcomp_class:(NSString*)comp_class
+				 withcomp_type:(NSString*)comp_type
+			   withcompany_num:(NSString*)company_num
+				  withzip_code:(NSString*)zip_code
+				  withkor_addr:(NSString*)kor_addr
+		   withkor_addr_detail:(NSString*)kor_addr_detail
+				  withtelephon:(NSString*)telephon
+					   success:(void (^)(id response))success
+					   failure:(void (^)(NSError *err))failure;
 @end
