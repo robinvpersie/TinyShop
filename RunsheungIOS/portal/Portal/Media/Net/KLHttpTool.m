@@ -2621,4 +2621,82 @@
     }];
     */
 }
+
+
+//tinyshop注册
++ (void)TinyResgisterwithPhone:(NSString *)memid
+								withmempwd:(NSString *)mempwd
+							  withnickname:(NSString*)nickname
+								 withemail:(NSString *)email
+							  witheAuthNum:(NSString *)AuthNum
+						   withcustom_name:(NSString *)custom_name
+						  withtop_zip_code:(NSString *)top_zip_code
+						 withtop_addr_head:(NSString *)top_addr_head
+					   withtop_addr_detail:(NSString *)top_addr_detail
+						withbusiness_type:(NSString*)business_type
+							withlang_type:(NSString*)lang_type
+
+						   withcomp_class:(NSString*)comp_class
+							withcomp_type:(NSString*)comp_type
+						  withcompany_num:(NSString*)company_num
+							withzip_code:(NSString*)zip_code
+							withkor_addr:(NSString*)kor_addr
+							withkor_addr_detail:(NSString*)kor_addr_detail
+							withtelephon:(NSString*)telephon
+					   success:(void (^)(id response))success
+					   failure:(void (^)(NSError *err))failure{
+	NSString *url = @"http://member.gigawon.co.kr:8808/api/Login/joinMember";
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(memid,mempwd,nickname,email,AuthNum,custom_name,top_zip_code,top_addr_head,top_addr_detail,business_type,lang_type).mutableCopy;
+	
+	if (comp_class.length) {
+		[params setObject:comp_class forKey:@"comp_class"];
+	}
+	if (comp_type.length) {
+		[params setObject:comp_type forKey:@"comp_type"];
+	}
+
+	if (company_num.length) {
+		[params setObject:company_num forKey:@"company_num"];
+	}
+
+	if (zip_code.length) {
+		[params setObject:zip_code forKey:@"zip_code"];
+	}
+
+	if (kor_addr.length) {
+		[params setObject:kor_addr forKey:@"kor_addr"];
+	}
+
+	if (kor_addr_detail.length) {
+		[params setObject:kor_addr_detail forKey:@"kor_addr_detail"];
+	}
+	
+	if (telephon.length) {
+		[params setObject:telephon forKey:@"telephon"];
+	}
+
+	//获得请求管理者
+	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+	manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+	manager.requestSerializer = [AFJSONRequestSerializer serializer];
+	[manager POST:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+		
+		if (success) {
+			[MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
+			
+			id result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+			success(result);
+		}
+		
+	} failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+		if (failure) {
+			failure(error);
+		}
+	}];
+	
+	
+}
+
+//
+
 @end

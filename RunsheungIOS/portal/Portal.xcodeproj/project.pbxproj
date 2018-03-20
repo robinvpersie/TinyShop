@@ -768,6 +768,7 @@
 		D5D01F3B205FB3FF002263CC /* TinyShopMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F3A205FB3FF002263CC /* TinyShopMainController.m */; };
 		D5D01F40205FD5E6002263CC /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F3E205FD5E6002263CC /* MainTableViewCell.m */; };
 		D5D01F41205FD5E6002263CC /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D01F3F205FD5E6002263CC /* MainTableViewCell.xib */; };
+		D5D01F4420609272002263CC /* StepSecMemEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F4320609272002263CC /* StepSecMemEnrollController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2185,6 +2186,8 @@
 		D5D01F3D205FD5E6002263CC /* MainTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTableViewCell.h; sourceTree = "<group>"; };
 		D5D01F3E205FD5E6002263CC /* MainTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTableViewCell.m; sourceTree = "<group>"; };
 		D5D01F3F205FD5E6002263CC /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
+		D5D01F4220609272002263CC /* StepSecMemEnrollController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StepSecMemEnrollController.h; sourceTree = "<group>"; };
+		D5D01F4320609272002263CC /* StepSecMemEnrollController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StepSecMemEnrollController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5466,6 +5469,8 @@
 				D53093CD205E520C00427350 /* ProtectItemsController.m */,
 				D53093CF205E683D00427350 /* StepOneMemEnrollController.h */,
 				D53093D0205E683D00427350 /* StepOneMemEnrollController.m */,
+				D5D01F4220609272002263CC /* StepSecMemEnrollController.h */,
+				D5D01F4320609272002263CC /* StepSecMemEnrollController.m */,
 				D5D01F28205F5606002263CC /* TeamEnrollController.h */,
 				D5D01F29205F5606002263CC /* TeamEnrollController.m */,
 				D5D01F32205FA3EB002263CC /* FindTeamViewController.h */,
@@ -6518,6 +6523,7 @@
 				1BC876761E973AA300BB38D7 /* DataSigner.m in Sources */,
 				1B392ECE1E28D14E00F70981 /* SupermarketBaseNavigationController.m in Sources */,
 				1B1971BD1E20803300E54D95 /* KLVoteActionView.m in Sources */,
+				D5D01F4420609272002263CC /* StepSecMemEnrollController.m in Sources */,
 				5B9CBDDD1DE7DBB70071A3B5 /* YCGCDTimer.swift in Sources */,
 				1BC8767A1E973AA300BB38D7 /* openssl_wrapper.m in Sources */,
 				5BEF65A61F208C0500817141 /* CosmosLayers.swift in Sources */,

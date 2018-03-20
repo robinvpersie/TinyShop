@@ -42,12 +42,12 @@
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E5%B7%A5%E4%BA%BA/TinyShop/RunsheungIOS/portal/Portal/RSPhml/RSTabBarMainController.swift"
-                  timestampString = "543158290.109087"
+                  timestampString = "543214854.55339"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "15"
                   endingLineNumber = "15"
-                  offsetFromSymbolStart = "36">
+                  offsetFromSymbolStart = "32">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -57,14 +57,30 @@
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E5%B7%A5%E4%BA%BA/TinyShop/RunsheungIOS/portal/Portal/RSPhml/RSTabBarMainController.swift"
-                  timestampString = "543158290.115256"
+                  timestampString = "543214854.555532"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "15"
                   endingLineNumber = "15"
-                  offsetFromSymbolStart = "63">
+                  offsetFromSymbolStart = "72">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TinyMall/MemberEnroll/StepSecMemEnrollController.m"
+            timestampString = "543215352.05808"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "-submitAction:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

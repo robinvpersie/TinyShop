@@ -10,7 +10,7 @@
 #import "Masonry.h"
 #import "InputFieldView.h"
 #import <TPKeyboardAvoiding/TPKeyboardAvoidingScrollView.h>
-
+#include <CommonCrypto/CommonDigest.h>
 @interface CompanyAuthController ()
 
 @property (nonatomic, strong) TPKeyboardAvoidingScrollView * scrollView;
@@ -40,6 +40,7 @@
     
     self.title = @"";
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage: [[UIImage imageNamed:@"icon_02_01"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain
      target:self action:@selector(goBack)];
@@ -274,7 +275,23 @@
 }
 
 -(void)didBottom {
-    
+	
+	[KLHttpTool TinyResgisterwithPhone:[[NSUserDefaults standardUserDefaults] objectForKey:@"joinphone"] withmempwd:[self sha512:self.mempwd ] withnickname:self.nickname withemail:self.email witheAuthNum:[[NSUserDefaults standardUserDefaults] objectForKey:@"joinauthnum"] withcustom_name:self.custom_name withtop_zip_code:self.top_zip_code withtop_addr_head:self.top_addr_head withtop_addr_detail:self.top_addr_detail withbusiness_type:[[NSUserDefaults standardUserDefaults] objectForKey:@"joinKinds"] withlang_type:@"kor" withcomp_class:_input1.text withcomp_type:_input2.text  withcompany_num:_input3.text  withzip_code:_input4.text  withkor_addr:_input5.text  withkor_addr_detail:_input6.text  withtelephon:_input7.text  success:^(id response) {
+		
+		MBProgressHUD *hud12 = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+		hud12.mode = MBProgressHUDModeText;
+		
+		if ([response[@"status"] intValue] == 1) {
+			hud12.label.text = @"注册成功！";
+			
+		}else{
+			
+			hud12.label.text = response[@"msg"];
+		}
+		[hud12 hideAnimated:YES afterDelay:2];
+	} failure:^(NSError *err) {
+		
+	} ];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -282,5 +299,21 @@
    
 }
 
+- (NSString*)sha512:(NSString*)input {
+	const char *cstr = [input cStringUsingEncoding:NSUTF8StringEncoding];
+	NSData *data = [NSData dataWithBytes:cstr length:input.length];
+	
+	uint8_t digest[CC_SHA512_DIGEST_LENGTH];
+	
+	CC_SHA512(data.bytes, (CC_LONG)data.length, digest);
+	
+	NSMutableString* output = [NSMutableString stringWithCapacity:CC_SHA512_DIGEST_LENGTH * 2];
+	
+	for(int i = 0; i < CC_SHA512_DIGEST_LENGTH; i++)
+		[output appendFormat:@"%02x", digest[i]];
+	
+	return output;
+	
+}
 
 @end
