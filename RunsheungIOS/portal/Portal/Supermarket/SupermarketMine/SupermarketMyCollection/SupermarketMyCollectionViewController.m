@@ -13,6 +13,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "Masonry.h"
+#import "CollectionItemModel.h"
 
 typedef NS_ENUM(NSInteger, FetchType) {
     TopRefresh,
@@ -34,10 +35,10 @@ typedef NS_ENUM(NSInteger, FetchType) {
 @end
 
 @implementation SupermarketMyCollectionViewController {
-    UIButton *collectionDelete;//收藏夹删除
-    UIButton *collectionDeleteTile;//收藏夹删除
-    UIButton *collectionMoveShoppingCart;//收藏夹移入购物车
-    UIButton *collectionMoveShoppingCartTitle;//收藏夹移入购物车
+//    UIButton *collectionDelete;//收藏夹删除
+//    UIButton *collectionDeleteTile;//收藏夹删除
+//    UIButton *collectionMoveShoppingCart;//收藏夹移入购物车
+//    UIButton *collectionMoveShoppingCartTitle;//收藏夹移入购物车
 }
 
 
@@ -63,7 +64,7 @@ typedef NS_ENUM(NSInteger, FetchType) {
     self.view.backgroundColor = [UIColor whiteColor];
     [self commonInit];
     [self setupCartView];
-    [self topRefresh];
+    [self.myTableView.mj_header beginRefreshing];
     
 }
 
@@ -96,7 +97,7 @@ typedef NS_ENUM(NSInteger, FetchType) {
             NSArray *favoriteslist = response[@"Favoriteslist"];
             NSMutableArray *modelArray = [NSMutableArray array];
             for (NSDictionary *dic in favoriteslist) {
-                LZCartModel *model = [NSDictionary getLzCartModelWithDic:dic];
+                CollectionItemModel *model = [[CollectionItemModel alloc] initWithDic:dic];
                 [modelArray addObject:model];
             }
             if (type == Normal || type == TopRefresh) {
@@ -111,7 +112,7 @@ typedef NS_ENUM(NSInteger, FetchType) {
                 NSInteger newCount = weakself.dataArray.count;
                 NSMutableArray<NSIndexPath *> *indexPathArray = [NSMutableArray array];
                 for (NSInteger x = originalCount; x < newCount; x++) {
-                    NSIndexPath *index = [[NSIndexPath alloc]initWithIndex:x];
+                    NSIndexPath *index = [NSIndexPath indexPathForItem:x inSection:0];
                     [indexPathArray addObject:index];
                 }
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -129,9 +130,6 @@ typedef NS_ENUM(NSInteger, FetchType) {
 
 - (void)setupCartView {
     self.myTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-    self.myTableView.delegate = self;
-    self.myTableView.dataSource = self;
-    self.myTableView.emptyDataSetSource = self;
     self.myTableView.rowHeight = lz_CartRowHeight;
     self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.myTableView.backgroundColor = LZColorFromRGB(245, 246, 248);
@@ -140,6 +138,9 @@ typedef NS_ENUM(NSInteger, FetchType) {
     self.myTableView.tableFooterView = [[UIView alloc] init];
     [self.myTableView registerClass:[LZCartTableViewCell class] forCellReuseIdentifier:@"LZCart"];
     [self.view addSubview:self.myTableView];
+    self.myTableView.delegate = self;
+    self.myTableView.dataSource = self;
+    self.myTableView.emptyDataSetSource = self;
     [self.myTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
@@ -247,10 +248,8 @@ typedef NS_ENUM(NSInteger, FetchType) {
 
 #pragma mark --- UITableViewDataSource & UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    if (self.dataArray.count > 0) {
-//        return self.dataArray.count;
-//    }
-//    return 0;
+
+    [tableView.mj_footer setHidden: self.dataArray.count > 0 ? NO:YES ];
     return self.dataArray.count;
 }
 

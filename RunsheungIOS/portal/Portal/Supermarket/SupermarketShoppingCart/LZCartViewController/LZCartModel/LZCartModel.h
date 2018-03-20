@@ -12,7 +12,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LZCartModel : NSObject
-//自定义模型时,这三个属性必须有
+////自定义模型时,这三个属性必须有
 @property (nonatomic,assign) BOOL select;
 @property (nonatomic,assign) BOOL isEditing;
 
@@ -32,5 +32,16 @@
 @property(nonatomic, copy) NSString *image_url;
 @property(nonatomic, copy) NSString *stock_unit;
 @property(nonatomic, copy) NSString *ver;
+
+//@property (nonatomic, copy) NSString *shopImage;
+//@property (nonatomic, copy) NSString *customCode;
+//@property (nonatomic, copy) NSString *customName;
+//@property (nonatomic, copy) NSString *koraddr;
+//@property (nonatomic, copy) NSString *distance;
+//@property (nonatomic, copy) NSString *score;
+//@property (nonatomic, copy) NSString *cnt;
+//@property (nonatomic, copy) NSString *salCustomCnt;
+//
+//-(instancetype)initWithDic:(NSDictionary*)dic;
 
 @end

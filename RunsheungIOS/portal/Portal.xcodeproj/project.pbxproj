@@ -25,6 +25,7 @@
 		013297E7205E53CC007735B4 /* CompanyAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013297E6205E53CC007735B4 /* CompanyAuthController.m */; };
 		013297EA205E55F4007735B4 /* InputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 013297E9205E55F4007735B4 /* InputFieldView.m */; };
 		01637E57205F9C6000C59F30 /* ShowLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01637E56205F9C6000C59F30 /* ShowLocationView.m */; };
+		01885C9C2060FE0E00901AF1 /* CollectionItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 01885C9B2060FE0E00901AF1 /* CollectionItemModel.m */; };
 		018AE84B20594CC60018F854 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84A20594CC60018F854 /* Resource.swift */; };
 		018AE84D20594D210018F854 /* NetWorkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84C20594D210018F854 /* NetWorkResult.swift */; };
 		018AE84F20594DC90018F854 /* NetIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84E20594DC90018F854 /* NetIndicator.swift */; };
@@ -823,6 +824,8 @@
 		013297E9205E55F4007735B4 /* InputFieldView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputFieldView.m; sourceTree = "<group>"; };
 		01637E55205F9C6000C59F30 /* ShowLocationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowLocationView.h; sourceTree = "<group>"; };
 		01637E56205F9C6000C59F30 /* ShowLocationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowLocationView.m; sourceTree = "<group>"; };
+		01885C9A2060FE0E00901AF1 /* CollectionItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionItemModel.h; sourceTree = "<group>"; };
+		01885C9B2060FE0E00901AF1 /* CollectionItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionItemModel.m; sourceTree = "<group>"; };
 		018AE84A20594CC60018F854 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		018AE84C20594D210018F854 /* NetWorkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkResult.swift; sourceTree = "<group>"; };
 		018AE84E20594DC90018F854 /* NetIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetIndicator.swift; sourceTree = "<group>"; };
@@ -3673,6 +3676,8 @@
 			children = (
 				1B4B8ADE1ED51C1B00266C90 /* SupermarketMyCollectionViewController.h */,
 				1B4B8ADF1ED51C1B00266C90 /* SupermarketMyCollectionViewController.m */,
+				01885C9A2060FE0E00901AF1 /* CollectionItemModel.h */,
+				01885C9B2060FE0E00901AF1 /* CollectionItemModel.m */,
 			);
 			path = SupermarketMyCollection;
 			sourceTree = "<group>";
@@ -6604,6 +6609,7 @@
 				5BE9DD021E777A780089A1C2 /* SupermarketReleaseCommentController.m in Sources */,
 				5B7DCAFA1DEFEAE900F1D2AB /* YCWebViewClass.swift in Sources */,
 				1B80E6CF1E4D5631001603B2 /* MASConstraint.m in Sources */,
+				01885C9C2060FE0E00901AF1 /* CollectionItemModel.m in Sources */,
 				5BC13C671E10F9B300985C41 /* PlainAvatar.swift in Sources */,
 				5B0EB3041E0A0BD000D1BABA /* YCPublicVar.swift in Sources */,
 				267DAA951EA213EE00299E74 /* HotelSpecificSearchResultController.m in Sources */,
