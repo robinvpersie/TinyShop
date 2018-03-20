@@ -2409,7 +2409,7 @@
                       withDeviceNo:(NSString*)deviceNo
                            success:(void (^)(id response))success
                            failure:(void (^)(NSError *err))failure{
-    NSString * url = @"http://member.gigawon.co.kr:8800/api/Login/requestLoginCheck";
+    NSString * url = @"http://member.gigawon.co.kr:8808/api/Login/requestLoginCheck";
     
     //NSMutableDictionary *jsondic = @{@"memid":memid,@"mempwd":mempwd,@"deviceNo":deviceNo,@"ver":@"2",@"s_id":@"",@"lang_type":@"chn"}.mutableCopy;
     NSMutableDictionary *jsondic = [NSMutableDictionary dictionary];

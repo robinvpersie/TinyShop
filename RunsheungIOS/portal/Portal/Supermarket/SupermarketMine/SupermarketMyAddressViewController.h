@@ -23,14 +23,11 @@
 
 @interface SupermarketMyAddressViewController : SupermarketBaseViewController
 
-@property (nonatomic,retain)UITableView *tableView;
-@property (nonatomic,retain)NSMutableArray *data;
+@property (nonatomic, strong)UITableView *tableView;
+@property (nonatomic, strong)NSMutableArray *data;
 @property (nonatomic, weak) id<MyAddressDelegete> delegate;
-
 @property (nonatomic, assign) BOOL isPageView;
-
 @property (nonatomic, assign) BOOL isCreateOrder;//是否是在创建订单的时候
-
 @property (nonatomic, copy) NSString *divCode;//在创建订单的时候传值
 
 @end

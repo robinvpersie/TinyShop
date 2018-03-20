@@ -361,9 +361,8 @@
 }
 //UITextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-   
     [self moveToTop];
-    return  YES;
+    return YES;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -379,7 +378,6 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
     _segment.disoffx = scrollView.contentOffset.x;
 }
 - (void)dismiss{
@@ -389,11 +387,9 @@
 - (void)timeraction{
      UIButton *getVerCode = (UIButton*)[addmemberBG viewWithTag:AddMemberCodeBtnTag];
     if (_count>0) {
-       
         [getVerCode setTitle:[NSString stringWithFormat:@"还剩%ds",_count] forState:UIControlStateNormal];
         _count--;
     }else{
-        
         [_timer invalidate];
         _timer = nil;
         [getVerCode setTitle:@"获取验证码" forState:UIControlStateNormal];

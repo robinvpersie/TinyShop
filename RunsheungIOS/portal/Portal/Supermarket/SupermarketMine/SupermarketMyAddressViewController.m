@@ -15,7 +15,8 @@
 #import "UILabel+WidthAndHeight.h"
 
 @interface SupermarketMyAddressViewController ()<UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic,retain)MBProgressHUD *loadHud;//加载地址数据是的提示
+
+@property (nonatomic, strong)MBProgressHUD *loadHud;//加载地址数据是的提示
 
 @end
 
@@ -80,8 +81,7 @@
 
     } else {
         [KLHttpTool getSupermarketUserAddressListWithDivCode:@"0" success:^(id response) {
-            NSLog(@"%@",response);
-            NSMutableArray *array = @[].mutableCopy;
+            NSMutableArray *array = [NSMutableArray array];
             NSNumber *status = response[@"status"];
             if (status.integerValue == 1) {
                 [_loadHud hideAnimated:YES];
@@ -101,7 +101,9 @@
 }
 
 - (void)setNavi{
+    
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    
     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"shengqing_back"] style:UIBarButtonItemStylePlain target:self action:@selector(popController)];
     back.tintColor = [UIColor blackColor];
     self.navigationItem.leftBarButtonItem = back;
@@ -335,7 +337,8 @@
     return 8;
 }
 
-- (void)setData:(NSArray *)data{
+
+-(void)setData:(NSMutableArray *)data {
     _data = data;
     [self.tableView reloadData];
 }
