@@ -338,7 +338,9 @@
             myComment.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:myComment animated:YES];
         } else if (indexPath.row == 4) {
-           
+            PersinalSetController *personal = [[PersinalSetController alloc] init];
+            personal.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:personal animated:YES];
         } else {
             SupermarketMyCollectionViewController *mycollection = [[SupermarketMyCollectionViewController alloc] init];
             mycollection.hidesBottomBarWhenPushed = YES;

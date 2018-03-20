@@ -72,10 +72,10 @@ class PersinalSetController: UITableViewController,UIImagePickerControllerDelega
         }
     }
     
-    var NickName:String?
-    var Sex:String?
-    var avatarString:String?
-    var token:String?
+    var NickName: String?
+    var Sex: String?
+    var avatarString: String?
+    var token: String?
     var operationQue = OperationQueue()
     
     func getAccountAvatarString() -> String? {
