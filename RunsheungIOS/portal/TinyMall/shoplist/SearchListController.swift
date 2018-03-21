@@ -31,7 +31,7 @@ class SearchListController: UIViewController {
         searchBar.snp.makeConstraints { (make) in
             make.leading.trailing.equalTo(view)
             if #available(iOS 11.0, *) {
-                make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+                make.top.equalTo(view.safeAreaLayoutGuide)
             } else {
                 make.top.equalTo(topLayoutGuide.snp.bottom)
             }
@@ -41,6 +41,7 @@ class SearchListController: UIViewController {
         tableView = UITableView(frame: CGRect.zero, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 10;
         tableView.registerClassOf(SearchListCell.self)
         tableView.backgroundColor = UIColor.clear
         view.addSubview(tableView)
@@ -48,8 +49,6 @@ class SearchListController: UIViewController {
             make.leading.trailing.bottom.equalTo(view)
             make.top.equalTo(searchBar.snp.bottom)
         }
-        
-        
     }
     
     @objc func didPrev() {

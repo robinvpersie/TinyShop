@@ -94,54 +94,37 @@
     
     //获得请求管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.requestSerializer.timeoutInterval = 60;
-    url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"url:%@",url);
- 
+    url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    
     switch (methodType) {
         case KLRequestMethodTypeGet: {// GET请求
             [manager GET:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 if (success) {
                     [MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
-                    //1.解析数据
-                    id result1 = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-
-                    success(result1);
-                    
+                    success(responseObject);
                 }
-                
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 if (failure) {
-                    
-                    failure(error);
+                   failure(error);
                 }
             }];
-            
+
         } break;
-            
+
         case KLRequestMethodTypePost: {// POST请求
             [manager POST:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                
-                
                 if (success) {
                     [MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
-
-                    id result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-                    
-                    
-
-                    success(result);
-                    
-                    
+                    success(responseObject);
                 }
-                
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                
+             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 if (failure) {
                     failure(error);
                 }
-                
+
             }];
         } break;
         default:

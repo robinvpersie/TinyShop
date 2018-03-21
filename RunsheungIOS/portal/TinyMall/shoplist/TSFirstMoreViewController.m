@@ -8,10 +8,10 @@
 
 #import "TSFirstMoreViewController.h"
 
-@interface TSFirstMoreViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface TSFirstMoreViewController ()<UITableViewDelegate, UITableViewDataSource>
+
 @property (nonatomic,retain)UITableView *leftTableview;
 @property (nonatomic,retain)UITableView *rightTableview;
-
 @property (nonatomic,retain)NSMutableDictionary *dict;
 @property (nonatomic,retain)NSArray *firstData;
 @property (nonatomic,retain)NSMutableArray *secondData;
@@ -23,7 +23,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self createTableview];
-	self.dict = @{@"音乐":@[@"通俗",@"民歌",@"乡村",@"流行"],@"科技":@[@"科技1",@"科技2",@"科技3",@"科技4"],@"贴吧":@[@"贴吧1",@"贴吧2",@"贴吧3",@"贴吧4"],@"超市":@[@"超市1",@"超市2",@"超市3",@"超市4"],@"酒店":@[@"酒店1",@"酒店2",@"酒店3",@"酒店4"],@"影院":@[@"影院1",@"影院2",@"影院3",@"影院4"],@"服装":@[@"服装1",@"服装2",@"服装3",@"服装4"]}.mutableCopy;
+	self.dict = @{
+                  @"音乐":@[@"通俗",@"民歌",@"乡村",@"流行"],
+                  @"科技":@[@"科技1",@"科技2",@"科技3",@"科技4"],
+                  @"贴吧":@[@"贴吧1",@"贴吧2",@"贴吧3",@"贴吧4"],
+                  @"超市":@[@"超市1",@"超市2",@"超市3",@"超市4"],
+                  @"酒店":@[@"酒店1",@"酒店2",@"酒店3",@"酒店4"],
+                  @"影院":@[@"影院1",@"影院2",@"影院3",@"影院4"],
+                  @"服装":@[@"服装1",@"服装2",@"服装3",@"服装4"]
+                 }.mutableCopy;
 	self.firstData = self.dict.allKeys;
 	self.secondData = self.dict[self.dict.allKeys.firstObject];
 	

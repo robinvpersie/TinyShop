@@ -87,7 +87,6 @@ typedef NS_ENUM(NSInteger, FetchType) {
     }else {
         self.offset = self.offset + 1;
     }
-    
     __weak typeof(self) weakself = self;
     [KLHttpTool getMyCollectionListWithOffSet:self.offset success:^(id response) {
         weakself.isFetch = NO;
@@ -97,7 +96,7 @@ typedef NS_ENUM(NSInteger, FetchType) {
             NSArray *favoriteslist = response[@"Favoriteslist"];
             NSMutableArray *modelArray = [NSMutableArray array];
             for (NSDictionary *dic in favoriteslist) {
-                CollectionItemModel *model = [[CollectionItemModel alloc] initWithDic:dic];
+                LZCartModel *model = [NSDictionary getLzCartModelWithDic:dic];
                 [modelArray addObject:model];
             }
             if (type == Normal || type == TopRefresh) {
@@ -255,6 +254,24 @@ typedef NS_ENUM(NSInteger, FetchType) {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LZCartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LZCart" forIndexPath:indexPath];
+    cell.isCollection = YES;
+    LZCartModel *model = self.dataArray[indexPath.row];
+    [cell reloadDataWithModel:model];
+//    [cell cellSelectedWithBlock:^(BOOL select) {
+//        model.select = select;
+//        if (select) {
+//            [self.selectedArray addObject:model];
+//        }else {
+//            [self.selectedArray removeObject:model];
+//        }
+//        if (self.selectedArray.count == self.dataArray.count) {
+//            _allSellectedButton.selected = YES;
+//        }else {
+//            _allSellectedButton.selected = NO;
+//        }
+//
+//
+//    }];
     return cell;
 //    LZCartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LZCartReusableCell"];
 //    if (cell == nil) {

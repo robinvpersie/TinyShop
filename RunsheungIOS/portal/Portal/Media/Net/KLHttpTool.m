@@ -1075,31 +1075,51 @@
 + (void)getSupermarketMineDataWithappType:(NSInteger)appType
                                   success:(void (^)(id response))success
                               failure:(void (^)(NSError *err))failure {
-    NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/GetUserInfo",BaseUrl];
-    
-    NSMutableDictionary *params = @{}.mutableCopy;
-    
+    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/GetMyInfo", MallBaseUrl];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     YCAccountModel *model = [YCAccountModel getAccount];
+    [params setObject:model.token forKey:@"token"];
+    [params setObject:model.customCode forKey:@"custom_code"];
+    [params setObject:@"kor" forKey:@"lang_type"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
+    url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    
+    [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (success) {
+            [self checkStatusWithResponse:responseObject];
+            success(responseObject);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+    
 //    if (model.token) {
 //        [params setObject:model.token forKey:@"token"];
 //    }
-    [params setObject:@(appType) forKey:@"appType"];
+//    [params setObject:@(appType) forKey:@"appType"];
     
-    [self getToken:^(id token) {
-        [params setObject:token forKey:@"token"];
-        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-            NSLog(@"%@",response);
-            if (success) {
-                [self checkStatusWithResponse:response];
-                success(response);
-            }
-        } failure:^(NSError *err) {
-            NSLog(@"%@",err);
-        }];
+//    [self getToken:^(id token) {
+//        [params setObject:token forKey:@"token"];
+//    [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+//           if (success) {
+//                [self checkStatusWithResponse:response];
+//                success(response);
+//            }
+//        } failure:^(NSError *err) {
+//            failure(err);
+//        }];
 
-    } failure:^(NSError *errToken) {
-        
-    }];
+//    } failure:^(NSError *errToken) {
+//
+//    }];
 }
 
 //物流详情

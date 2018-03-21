@@ -274,14 +274,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	if (indexPath.section ==1) {
 		NSDictionary *dic = self.shoplistData[indexPath.row];
-		SupermarketHomeViewController *shopDetailed = [SupermarketHomeViewController new];
+		SupermarketHomeViewController *shopDetailed = [[SupermarketHomeViewController alloc] init];
 		shopDetailed.hidesBottomBarWhenPushed = YES;
 		shopDetailed.dic = dic;
 		[self.navigationController pushViewController:shopDetailed animated:YES];
-		
-
-	}
-	
+    }
 }
 
 
@@ -318,8 +315,7 @@
             around.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:around animated:YES];
 		};
-		
-	};
+    };
 	self.navigationItem.titleView = self.choiceHeadView;
 }
 

@@ -122,7 +122,7 @@
 
 - (void)createTableView{
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, self.view.frame.size.height ) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, self.view.frame.size.height ) style: UITableViewStyleGrouped];
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
     self.tableView.delegate = self;
     self.tableView.dataSource  = self;
