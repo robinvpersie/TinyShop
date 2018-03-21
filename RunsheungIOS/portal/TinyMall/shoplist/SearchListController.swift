@@ -41,6 +41,7 @@ class SearchListController: UIViewController {
         tableView = UITableView(frame: CGRect.zero, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 10;
         tableView.registerClassOf(SearchListCell.self)
         tableView.backgroundColor = UIColor.clear
         view.addSubview(tableView)

@@ -58,14 +58,14 @@
 }
 
 - (void)checkLogStatus {
-//    [KLHttpTool getToken:^(id token) {
-//        if (token) {
-//            [self performSelector:@selector(requestData) withObject:nil afterDelay:0];
-//        }
-//    } failure:^(NSError *errToken) {
-//
-//    }];
-    [self requestData];
+    [KLHttpTool getToken:^(id token) {
+        if (token) {
+            [self performSelector:@selector(requestData) withObject:nil afterDelay:0];
+        }
+    } failure:^(NSError *errToken) {
+
+    }];
+//    [self requestData];
     
 }
 
