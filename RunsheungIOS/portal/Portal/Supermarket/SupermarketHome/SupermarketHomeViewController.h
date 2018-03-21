@@ -15,4 +15,6 @@
 @property(nonatomic, copy) NSString *version;
 @property(nonatomic, copy) NSString *state;
 
+@property(nonatomic,retain)NSDictionary *dic;
+
 @end

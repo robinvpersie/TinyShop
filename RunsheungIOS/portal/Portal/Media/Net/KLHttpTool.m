@@ -2696,10 +2696,11 @@
 									withcustom_lev3:(NSString*)custom_lev3
 									   withlatitude:(NSString*)latitude
 									   withlongitude:(NSString*)longitude
+									   withorder_by:(NSString *)order_by
 											success:(void (^)(id response))success
 											failure:(void (^)(NSError *err))failure{
 	NSString *url = @"http://mall.gigawon.co.kr:8800/api/StoreCate/requestStoreCateList";
-	NSMutableDictionary *params = NSDictionaryOfVariableBindings(custom_code,pg,token,custom_lev1,custom_lev2,custom_lev3,longitude,latitude).mutableCopy;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(custom_code,pg,token,custom_lev1,custom_lev2,custom_lev3,longitude,latitude,order_by).mutableCopy;
 	[params setObject:@"2" forKey:@"div_code"];
 	[params setObject:@"5" forKey:@"pagesize"];
 	[params setObject:@"kor" forKey:@"lang_type"];

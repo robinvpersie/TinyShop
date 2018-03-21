@@ -533,6 +533,7 @@
 									withcustom_lev3:(NSString*)custom_lev3
 									   withlatitude:(NSString*)latitude
 									  withlongitude:(NSString*)longitude
+									   withorder_by:(NSString *)order_by
 											success:(void (^)(id response))success
 											failure:(void (^)(NSError *err))failure;
 @end
