@@ -9,5 +9,5 @@
 #import "TSBaseViewController.h"
 
 @interface TSCategoryController : UIViewController
-
+@property (nonatomic,retain)NSMutableArray *leves;
 @end

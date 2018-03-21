@@ -774,6 +774,7 @@
 		D5D01F5020612870002263CC /* ShopDetailedCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D01F4B2061286D002263CC /* ShopDetailedCollectionCell.xib */; };
 		D5D01F5120612870002263CC /* TSShopDetailedCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F4C2061286D002263CC /* TSShopDetailedCollectionView.m */; };
 		D5D01F5220612870002263CC /* ShopDetailedCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F4E2061286F002263CC /* ShopDetailedCollectionCell.m */; };
+		D5D01F58206213E8002263CC /* NumDomainView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F57206213E6002263CC /* NumDomainView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2202,6 +2203,8 @@
 		D5D01F4D2061286E002263CC /* ShopDetailedCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopDetailedCollectionCell.h; sourceTree = "<group>"; };
 		D5D01F4E2061286F002263CC /* ShopDetailedCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopDetailedCollectionCell.m; sourceTree = "<group>"; };
 		D5D01F4F2061286F002263CC /* TSShopDetailedCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSShopDetailedCollectionView.h; sourceTree = "<group>"; };
+		D5D01F56206213E4002263CC /* NumDomainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumDomainView.h; sourceTree = "<group>"; };
+		D5D01F57206213E6002263CC /* NumDomainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumDomainView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5573,6 +5576,8 @@
 		D5D01F3C205FD5BE002263CC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D5D01F56206213E4002263CC /* NumDomainView.h */,
+				D5D01F57206213E6002263CC /* NumDomainView.m */,
 				D5D01F3D205FD5E6002263CC /* MainTableViewCell.h */,
 				D5D01F3E205FD5E6002263CC /* MainTableViewCell.m */,
 				D5D01F3F205FD5E6002263CC /* MainTableViewCell.xib */,
@@ -6026,6 +6031,7 @@
 				6296F4512019F86900976C21 /* RecommendSearchDismiss.swift in Sources */,
 				5B7DCAFC1DF0013300F1D2AB /* YCTableFooterView.swift in Sources */,
 				1B58E06E1ECB025900D7E46B /* CustomerServiceController.m in Sources */,
+				D5D01F58206213E8002263CC /* NumDomainView.m in Sources */,
 				5B0744CD1F6F9E0000C66C2A /* SetLanguageController.swift in Sources */,
 				5BF0A9D41E0B78FB0035B517 /* PersonalCenterController.swift in Sources */,
 				01099A01205CFC1200FCC6B6 /* ArtworkView.swift in Sources */,

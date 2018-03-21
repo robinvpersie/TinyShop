@@ -11,12 +11,14 @@
 @implementation SingleSegmentView
 
 - (instancetype)initWithFrame:(CGRect)frame
-					  withdata:(NSMutableArray*)alldata
+					  withdit:(NSDictionary*)alldit
+					 withData:(NSArray*)showarray
 		  withLineBottomColor:(UIColor*)color{
 
 	self = [super initWithFrame:frame];
 	if (self) {
-		self.datas = alldata;
+		self.alldit = alldit;
+		self.showarray = showarray;
 		self.lineColor = color;
 		[self createSubview];
 	}
@@ -56,8 +58,10 @@
 		
 	}
 	
-	for (int i = 0; i<self.datas.count; i++) {
-		NSString *titles = self.datas[i];
+
+	
+	for (int i = 0; i<self.showarray.count; i++) {
+		NSString *titles = self.showarray[i];
 		UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(i*65, 0, 65, 47)];
 		[btn setTitle:titles forState:UIControlStateNormal];
 		btn.backgroundColor = [UIColor whiteColor];
@@ -75,7 +79,7 @@
 	}
 	
 	
-	self.scrollview .contentSize = CGSizeMake(self.datas.count * 65, 50);
+	self.scrollview .contentSize = CGSizeMake(self.showarray.count * 65, 50);
 	
 	
 }
@@ -90,18 +94,32 @@
 			button.selected = NO;
 		}
 	}
-	NSString *firstItem = self.datas[(int)sender.tag];
 	[UIView animateWithDuration:0.4f animations:^{
-		
+
 		self.bottomLine.frame = CGRectMake(5+sender.tag*65,47 , 55, 2);
-		
+
 	}];
+	if (self.tag == 1001) {
+		
+		if ([self.delegate respondsToSelector:@selector(clickItem:)]) {
+			NSArray *leve2s = self.alldit[@"lev2s"];
+			NSDictionary *dic = leve2s[(int)sender.tag];
+			[self.delegate clickItem:dic[@"lev"]];
+		}
+
+	}else if(self.tag == 1002){
+		
+		if ([self.delegate respondsToSelector:@selector(clickItemsec:)]) {
+			NSArray *leve3s = self.alldit[@"lev3s"];
+			NSDictionary *dic = leve3s[(int)sender.tag];
+			[self.delegate clickItemsec:dic[@"lev"]];
+		}
+
 	
-	sender.selected = !sender.selected;
-	
-	if ([self.delegate respondsToSelector:@selector(clickItem:)]) {
-		[self.delegate clickItem:firstItem];
 	}
+
+	sender.selected = !sender.selected;
+
 	
 	
 }

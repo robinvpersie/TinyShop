@@ -8,7 +8,6 @@
 
 #import "TSCategoryController.h"
 #import "ChoiceHeadView.h"
-#import "ChoiceSegmentView.h"
 #import "ChoiceTableViewCell.h"
 #import "SegmentItem.h"
 #import "TSFirstMoreViewController.h"
@@ -16,18 +15,25 @@
 #import "MemberEnrollController.h"
 #import "SupermarketHomeViewController.h"
 #import "ShowLocationView.h"
+#import "SingleSegmentView.h"
 
 
 
-@interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource,WJClickItemsDelegate,ChoiceDelegate,SegmentItemDelegate>{
+@interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource,WJClickItemsDelegate,SingleSegmentDelegate,SegmentItemDelegate>{
 	MBProgressHUD *hudloading;
+	NSString *Level1;
+	NSString *Level2;
+	NSString *Level3;
+	NSString *orderBy;
 }
 
 @property (nonatomic,retain)UITableView *tableview;
 
 @property (nonatomic,retain)NSMutableDictionary *allDic;
 
-@property (nonatomic,retain)ChoiceSegmentView *segmentView;
+@property (nonatomic,retain)SingleSegmentView *segmentView1;
+
+@property (nonatomic,retain)SingleSegmentView *segmentView2;
 
 @property (nonatomic,retain)SegmentItem *SegmentItem;
 
@@ -43,20 +49,50 @@
 
 @property (nonatomic,retain)NSArray *shoplistData;
 
+
+
 @end
 
 @implementation TSCategoryController
 
+
+- (void)viewWillAppear:(BOOL)animated{
+	[super viewWillAppear:animated];
+	if (self.leves.count) {
+	
+		[self setNavi];
+
+	}
+}
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	[self setNaviBar];
+	if (self.leves.count) {
+		Level1 = self.leves.firstObject;
+		Level2 = self.leves[1];
+		Level3 = self.leves.lastObject;
+		orderBy = @"1";
+
+	}else{
+		Level1 = @"13";
+		Level2 = @"1";
+		Level3 = @"1";
+		orderBy = @"1";
+
+	}
 	self.extend = NO;
 	self.view.backgroundColor = RGB(250, 250, 250);
 	self.allDic = @{}.mutableCopy;
 	hudloading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 	[self location];
 	[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PushEditAction:) name:@"EDITACTIONNOTIFICATIONS" object:nil];
-	[self loadStoreListwithLeve1:@"13" withLeve2:@"1" withLeve3:@"1" withorderBy:@"1"];
+	[self loadStoreListwithLeve1:Level1  withLeve2:Level2 withLeve3:Level3 withorderBy:orderBy];
+	[self createTableview];
+
+}
+
+- (void)setLeves:(NSMutableArray *)leves{
+	_leves = leves;
 }
 
 - (void)loadStoreListwithLeve1:(NSString*)leve1 withLeve2:(NSString*)leve2 withLeve3:(NSString*)leve3 withorderBy:(NSString*)order_by{
@@ -79,6 +115,7 @@
 }
 
 - (void)transferResponse{
+	
 	NSArray *leve2s = self.responseDit[@"lev2s"];
 	NSArray *leve3s = self.responseDit[@"lev3s"];
 	NSMutableArray *leve2Mutables  = @[].mutableCopy;
@@ -93,27 +130,39 @@
 		NSDictionary *dic3 = leve3s[i];
 		[leve3Mutables addObject:dic3[@"lev_name"]];
 	}
-
-	for (int i = 0; i<leve2Mutables.count; i++) {
-		NSString *key = leve2Mutables[i];
-		if (i == 0) {
-			[self.allDic setObject:leve3Mutables forKey:key];
-
-		} else {
-			[self.allDic setObject:@[] forKey:key];
-
-		}
-		
-		
+	if (self.segmentView1 == nil) {
+		self.segmentView1 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView1.frame)+10, APPScreenWidth, 50) withdit:self.responseDit  withData:leve2Mutables withLineBottomColor:RGB(33, 192, 67)];
+		self.segmentView1.tag = 1001;
+		self.segmentView1.delegate =self;
+		[self.view addSubview:self.segmentView1];
 	}
+
+	[self createSecSegmentView:leve3Mutables];
 	
-	if (self.segmentView == nil) {
-		self.segmentView = [[ChoiceSegmentView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 110) withData:self.allDic withresponse:self.responseDit];
-		self.segmentView.delegate = self;
-		[self.view addSubview:self.segmentView];
-	}
-	[self createTableview];
 
+}
+
+- (void)createSecSegmentView:(NSMutableArray*)array{
+	
+	if (self.segmentView2 == nil) {
+		self.segmentView2 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView1.frame)+10, APPScreenWidth, 50) withdit:self.responseDit  withData:array withLineBottomColor:RGB(33, 192, 67)];
+		self.segmentView2.tag = 1002;
+		self.segmentView2.delegate = self;
+		[self.view addSubview:self.segmentView2];
+	}
+	[self.view addSubview:self.SegmentItem];
+	[self createSegmentItem];
+
+}
+
+- (void)createSegmentItem{
+	if (self.SegmentItem == nil) {
+		self.SegmentItem = [[SegmentItem alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView2.frame)+10, APPScreenWidth, 50)];
+		self.SegmentItem.delegate = self;
+		[self.view addSubview:self.SegmentItem];
+		
+
+	}
 }
 
 - (void)PushEditAction:(NSNotification*)notice{
@@ -122,22 +171,32 @@
 		TSFirstMoreViewController *firstMore = [TSFirstMoreViewController new];
 		firstMore.title = @"添加更多";
 		firstMore.choiceBlock = ^(NSString *selectItem) {
-			[self.allDic setObject:@[@"新添加1",@"新添加2",@"新添加3",@"新添加4",@"新添加5"] forKey:selectItem];
-			self.segmentView.dataDic = self.allDic;
+//			[self.allDic setObject:@[@"新添加1",@"新添加2",@"新添加3",@"新添加4",@"新添加5"] forKey:selectItem];
+//			self.segmentView.dataDic = self.allDic;
 		};
 		[self.navigationController pushViewController:firstMore animated:YES];
 	}else{
 		self.extend = !self.extend;
+		CGRect frams = self.tableview.frame;
+		if (self.extend) {
+			frams.origin.y = 110;
+			self.SegmentItem.hidden = YES;
+		}else{
+			frams.origin.y = 170;
+			self.SegmentItem.hidden = NO;
+		}
+		self.tableview.frame = frams;
+
 		[self.tableview reloadData];
 	}
 	
 }
 
 - (void)createTableview{
+	
 	if (self.tableview == nil) {
 		
-		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView.frame)+10, APPScreenWidth, APPScreenHeight - CGRectGetMaxY(self.segmentView.frame) - 74) style:UITableViewStylePlain];
-		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView.frame), APPScreenWidth, APPScreenHeight - CGRectGetMaxY(self.segmentView.frame) - 10) style:UITableViewStylePlain];
+		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, 170, APPScreenWidth, APPScreenHeight - CGRectGetMaxY(self.segmentView2.frame) - 10) style:UITableViewStylePlain];
 		[self.tableview registerNib:[UINib nibWithNibName:@"ChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChoiceTableViewCellID"];
 		self.tableview.delegate = self;
 		self.tableview.dataSource = self;
@@ -156,7 +215,7 @@
 	return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-	if (section == 0) {
+	if (section == 0&&self.extend ) {
 		return 1;
 	}
 	
@@ -170,14 +229,7 @@
 		if (self.extend) {
 			self.ItemView =[[TSItemView alloc]initWithFrame:CGRectMake(10, 10, APPScreenWidth - 20, 130) withData:@[@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店",@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店",@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店"]];
 			self.ItemView.wjitemdelegate = self;
-			
 			[cell.contentView addSubview:self.ItemView];
-			
-		}else{
-			
-			self.SegmentItem = [[SegmentItem alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 50)];
-			self.SegmentItem.delegate = self;
-			[cell.contentView addSubview:self.SegmentItem];
 			
 		}
 		
@@ -204,7 +256,7 @@
 			return 150.0f;
 			
 		}else{
-			return 50.0f;
+			return 0.0f;
 			
 		}
 	}
@@ -235,6 +287,7 @@
 
 - (void)setNaviBar{
 	
+	self.navigationItem.leftBarButtonItem = nil;
 	self.navigationController.navigationBar.translucent = NO;
 	UIButton *right1Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
 	[right1Btn setImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
@@ -308,23 +361,54 @@
 }
 
 #pragma mark --
-- (void)ChoiceDelegateaction:(NSString *)lev2{
-	[self loadStoreListwithLeve1:@"13" withLeve2:lev2 withLeve3:@"1" withorderBy:@"1"];
-	
+- (void)clickItem:(NSString*)itemIndex{
+	self.segmentView2 = nil;
+	self.SegmentItem = nil;
+	Level2 = itemIndex;
+	self.extend = NO;
+	CGRect frams = self.tableview.frame;
+	frams.origin.y = 170;
+	self.tableview.frame = frams;
+	[self.tableview reloadData];
+
+	[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:@"1" withorderBy:@"1"];
+}
+- (void)clickItemsec:(NSString*)itemIndex{
+	self.SegmentItem = nil;
+	Level3 = itemIndex;
+	self.extend = NO;
+	CGRect frams = self.tableview.frame;
+	frams.origin.y = 170;
+	self.tableview.frame = frams;
+	[self.tableview reloadData];
+
+	[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:@"1"];
 }
 
 - (void)clickSegment:(int)index{
-	NSString *orderby = [NSString stringWithFormat:@"%d",index];
-	NSString *level2 = [[NSUserDefaults standardUserDefaults] objectForKey:@"lev2"];
-	[[NSUserDefaults standardUserDefaults] setObject:orderby forKey:@"orderby"];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-	
-	[self loadStoreListwithLeve1:@"13" withLeve2:level2 withLeve3:@"1" withorderBy:[NSString stringWithFormat:@"%d",index]];
+	[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:[NSString stringWithFormat:@"%d",index]];
 }
 //点击单个的项目响应
 - (void)wjClickItems:(NSString*)item{
 	
 }
+
+
+- (void)setNavi{
+	UIButton *popBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+	[popBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
+	[popBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
+	[popBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+	[popBtn addTarget:self action:@selector(pop:) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:popBtn];
+	[self.navigationItem setLeftBarButtonItem:item];
+	
+}
+
+- (void)pop:(UIButton*)sender{
+	[self.navigationController popViewControllerAnimated:YES];
+}
+
 @end
 
 

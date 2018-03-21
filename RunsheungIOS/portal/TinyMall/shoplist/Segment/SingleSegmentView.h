@@ -9,19 +9,21 @@
 #import <UIKit/UIKit.h>
 @protocol SingleSegmentDelegate<NSObject>
 
-- (void)clickItem:(NSString*)item;
+- (void)clickItem:(NSString*)itemIndex;
+- (void)clickItemsec:(NSString*)itemIndex;
 @end;
 
 @interface SingleSegmentView : UIView
 @property (nonatomic,retain)UIScrollView *scrollview;
 @property (nonatomic,retain)UILabel *bottomLine;
 @property (nonatomic,retain)UIColor *lineColor;
-@property (nonatomic,retain)NSMutableArray *datas;
-
+@property (nonatomic,retain)NSDictionary *alldit;
+@property (nonatomic,retain)NSArray *showarray;
 @property (nonatomic,assign)id<SingleSegmentDelegate> delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame
-					  withdata:(NSMutableArray*)alldata
+					  withdit:(NSDictionary*)alldit
+					 withData:(NSArray*)showarray
 		  withLineBottomColor:(UIColor*)color;
 
 

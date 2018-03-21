@@ -27,26 +27,10 @@
 	self.buttonArray = @[].mutableCopy;
 	for (int i = 0; i<self.dataArray.count; i++) {
 		UIButton *buton = [[UIButton alloc]initWithFrame:CGRectMake(10 + i*75, 10, 65, 30)];
-		NSString *orderby = [[NSUserDefaults standardUserDefaults]objectForKey:@"orderby"];
-
-		
-		if ([orderby isEqualToString:@"1"]) {
-			if (i == 1) {
-				buton.selected = YES;
-			}
-		} else if ([orderby isEqualToString:@"2"]) {
-			if (i == 2) {
-				buton.selected = YES;
-			}
-
-		}else{
-			if (i == 0) {
-				buton.selected = YES;
-			}
-
+		if (i == 0) {
+			buton.selected = YES;
 		}
 		buton.layer.cornerRadius = 15;
-		
 		buton.tag = i;
 		buton.layer.masksToBounds = YES;
 		[buton addTarget:self action:@selector(ItemThird:) forControlEvents:UIControlEventTouchUpInside];

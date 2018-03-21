@@ -10,6 +10,8 @@
 #import "TinyShopMainController.h"
 #import "ChoiceHeadView.h"
 #import "MainTableViewCell.h"
+#import "NumDomainView.h"
+
 @interface TinyShopMainController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,retain)UIScrollView *scrollview;
@@ -35,10 +37,13 @@
 		[self.view addSubview:self.scrollview];
 		
 	}
-	
-	self.numberDomainview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 300)];
+	UIView *blackView  = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width ,3*(self.view.frame.size.width - 30)/5+70 )];
+	blackView.backgroundColor = RGB(60, 60, 60);
+	[self.scrollview addSubview:blackView];
+
+	self.numberDomainview = [[NumDomainView alloc]initWithFrame:CGRectMake(15, 10, self.view.frame.size.width - 30,3*(self.view.frame.size.width - 30)/5+60 )];
 	self.numberDomainview.backgroundColor = RGB(60, 60, 60);
-	[self.scrollview addSubview:self.numberDomainview];
+	[blackView addSubview:self.numberDomainview];
 	
 	//创建标示图
 	[self createTableview];
@@ -92,14 +97,14 @@
 	return 0.01f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-	return 10.01f;
+	return 10.0f;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-	UILabel *view = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 10)];
-	view.text = @"    고객만고만고객";
-	view.textColor = RGB(46, 46, 46);
-	return view;
+	UILabel *views = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 10)];
+	views.text = @"    고객만고만고객";
+	views.textColor = RGB(46, 46, 46);
+	return views;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -108,7 +113,6 @@
 
 #pragma mark -- 设置导航栏
 - (void)setNaviBar{
-	self.navigationController.navigationBar.barTintColor = RGB(60, 60, 60);
 	
 	UIButton *right1Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
 	[right1Btn setImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
