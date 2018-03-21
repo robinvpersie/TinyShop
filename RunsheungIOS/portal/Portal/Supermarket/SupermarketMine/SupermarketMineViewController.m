@@ -58,13 +58,14 @@
 }
 
 - (void)checkLogStatus {
-    [KLHttpTool getToken:^(id token) {
-        if (token) {
-            [self performSelector:@selector(requestData) withObject:nil afterDelay:0];
-        }
-    } failure:^(NSError *errToken) {
-        
-    }];
+//    [KLHttpTool getToken:^(id token) {
+//        if (token) {
+//            [self performSelector:@selector(requestData) withObject:nil afterDelay:0];
+//        }
+//    } failure:^(NSError *errToken) {
+//
+//    }];
+    [self requestData];
     
 }
 
@@ -93,17 +94,20 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkLogStatus) name:SupermarketSelectTabBar object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUIWithNotLogin) name:TokenWrong object:nil];
-    [self checkLogStatus];
-   // selftitle = @"我的奢厨";
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logInNotification:) name:@"YCAccountIsLogin" object:nil];
+    
+  
     self.navigationItem.title = @"我的";
     self.view.backgroundColor = [UIColor redColor];
+    
+      [self checkLogStatus];
     
     _imageNames = @[@"icon_myaddress",@"icon_mylive",@"icon_coupon",@"icon_notice",@"icon_setting2",@"icon_collection2"];
     _titles = @[NSLocalizedString(@"SupermarketMyOrderWaitPay", nil),/*@"待发货",@"待自提",*/NSLocalizedString(@"SupermarketMyOrderWaitReceive", nil),NSLocalizedString(@"SupermarketMyOrderWaitComment", nil)];
 //    _titles = @[@"我的地址",@"我的直播",@"优惠券",@"我的消息",@"系统设置",@"我的收藏"];
     _footerImageNames = @[@"Icon_stay",/*@"Iocn_fh",@"Iocn_zt",*/@"Iocn_sh",@"Iocn_evaluate"];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logInNotification:) name:@"YCAccountIsLogin" object:nil];
+   
     
     [self createSubViews];
     
@@ -130,37 +134,49 @@
     
     
     headerView = [[SupermarketMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 250.0 * 2.0/3.0)];
-    headerView.controllerType = self.controllerType;
-    headerView.divCode = _divCode;
+//    headerView.controllerType = self.controllerType;
+//    headerView.divCode = _divCode;
     _tableView.tableHeaderView = headerView;
    
 }
 
 - (void)requestData {
-    if (self.controllerType == ControllerTypeDepartmentStores) {
-       [KLHttpTool getSupermarketMineDataWithappType:8 success:^(id response) {
-            NSNumber *status = response[@"status"];
-            if (status.integerValue == 1) {
-                NSDictionary *data = response[@"data"];
-                mineData = [NSDictionary getMineDataWithDic:data];
-                [self reloadUI];
-            }
-        } failure:^(NSError *err) {
-            
-        }];
-
-    } else {
-        [KLHttpTool getSupermarketMineDataWithappType:6 success:^(id response) {
-            NSNumber *status = response[@"status"];
-            if (status.integerValue == 1) {
-                NSDictionary *data = response[@"data"];
-                mineData = [NSDictionary getMineDataWithDic:data];
-                [self reloadUI];
-            }
-        } failure:^(NSError *err) {
-            
-        }];
-    }
+   
+    [KLHttpTool getSupermarketMineDataWithappType:8 success:^(id response) {
+        NSString * status = response[@"status"];
+        if ([status isEqualToString:@"1"]) {
+            NSString *nickname = response[@"nick_name"];
+            NSString *phone = response[@"custom_id"];
+            NSString *avatarUrl = response[@"img_path"];
+            [headerView refreshUIWithPhone:phone nickName:nickname avatarUrlString:avatarUrl];
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+//    if (self.controllerType == ControllerTypeDepartmentStores) {
+//       [KLHttpTool getSupermarketMineDataWithappType:8 success:^(id response) {
+//            NSNumber *status = response[@"status"];
+//            if (status.integerValue == 1) {
+//                NSDictionary *data = response[@"data"];
+//                mineData = [NSDictionary getMineDataWithDic:data];
+//                [self reloadUI];
+//            }
+//        } failure:^(NSError *err) {
+//
+//        }];
+//
+//    } else {
+//        [KLHttpTool getSupermarketMineDataWithappType:6 success:^(id response) {
+//            NSNumber *status = response[@"status"];
+//            if (status.integerValue == 1) {
+//                NSDictionary *data = response[@"data"];
+//                mineData = [NSDictionary getMineDataWithDic:data];
+//                [self reloadUI];
+//            }
+//        } failure:^(NSError *err) {
+//
+//        }];
+//    }
 }
 
 - (void)reloadUI {
@@ -208,9 +224,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (section == 0) {
-        return 80;
-    }
+//    if (section == 0) {
+//        return 80;
+//    }
     return 0.1f;
 }
 
@@ -258,49 +274,49 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if (section == 0) {
-        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 80)];
-        bgView.backgroundColor = [UIColor whiteColor];
-        for (int i = 0; i < 3; i++) {
-            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(ItemWidth*i, 0, ItemWidth, 80)];
-            [bgView addSubview:view];
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.frame = CGRectMake(ItemWidth/2 - 15, view.center.y-25, 30, 30);
-            [button setImage:[UIImage imageNamed:_footerImageNames[i]] forState:UIControlStateNormal];
-            button.badgeBGColor = [UIColor whiteColor];
-            [view addSubview:button];
-            
-            if (i == 0) {
-                _waitPay = button;
-                [_waitPay addTarget:self action:@selector(goWaitPay) forControlEvents:UIControlEventTouchUpInside];
-            }
-            if (i == 1) {
-                _waitReceive = button;
-                [_waitReceive addTarget:self action:@selector(goWaitReceive) forControlEvents:UIControlEventTouchUpInside];
-            }
-            if (i == 2) {
-                _waitCommet = button;
-                [_waitCommet addTarget:self action:@selector(goWaitComment) forControlEvents:UIControlEventTouchUpInside];
-            }
-            if (i == 3) {
-                _waitReceive = button;
-                [_waitReceive addTarget:self action:@selector(goWaitReceive) forControlEvents:UIControlEventTouchUpInside];
-            }
-            if (i == 4) {
-                _waitCommet = button;
-                [_waitCommet addTarget:self action:@selector(goWaitComment) forControlEvents:UIControlEventTouchUpInside];
-            }
-            
-            UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(button.frame), view.frame.size.width, 20)];
-            title.textAlignment = NSTextAlignmentCenter;
-            title.text = _titles[i];
-            title.font = [UIFont systemFontOfSize:14];
-            title.textColor = [UIColor darkcolor];
-            [view addSubview:title];
-            
-        }
-        return bgView;
-    }
+//    if (section == 0) {
+//        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 80)];
+//        bgView.backgroundColor = [UIColor whiteColor];
+//        for (int i = 0; i < 3; i++) {
+//            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(ItemWidth*i, 0, ItemWidth, 80)];
+//            [bgView addSubview:view];
+//            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//            button.frame = CGRectMake(ItemWidth/2 - 15, view.center.y-25, 30, 30);
+//            [button setImage:[UIImage imageNamed:_footerImageNames[i]] forState:UIControlStateNormal];
+//            button.badgeBGColor = [UIColor whiteColor];
+//            [view addSubview:button];
+//
+//            if (i == 0) {
+//                _waitPay = button;
+//                [_waitPay addTarget:self action:@selector(goWaitPay) forControlEvents:UIControlEventTouchUpInside];
+//            }
+//            if (i == 1) {
+//                _waitReceive = button;
+//                [_waitReceive addTarget:self action:@selector(goWaitReceive) forControlEvents:UIControlEventTouchUpInside];
+//            }
+//            if (i == 2) {
+//                _waitCommet = button;
+//                [_waitCommet addTarget:self action:@selector(goWaitComment) forControlEvents:UIControlEventTouchUpInside];
+//            }
+//            if (i == 3) {
+//                _waitReceive = button;
+//                [_waitReceive addTarget:self action:@selector(goWaitReceive) forControlEvents:UIControlEventTouchUpInside];
+//            }
+//            if (i == 4) {
+//                _waitCommet = button;
+//                [_waitCommet addTarget:self action:@selector(goWaitComment) forControlEvents:UIControlEventTouchUpInside];
+//            }
+//
+//            UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(button.frame), view.frame.size.width, 20)];
+//            title.textAlignment = NSTextAlignmentCenter;
+//            title.text = _titles[i];
+//            title.font = [UIFont systemFontOfSize:14];
+//            title.textColor = [UIColor darkcolor];
+//            [view addSubview:title];
+//
+//        }
+//        return bgView;
+//    }
     return nil;
 }
 

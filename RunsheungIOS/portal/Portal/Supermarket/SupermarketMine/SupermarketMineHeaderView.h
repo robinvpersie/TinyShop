@@ -15,4 +15,6 @@
 @property(nonatomic, assign) ControllerType controllerType;
 @property(nonatomic, copy) NSString *divCode;
 
+-(void)refreshUIWithPhone:(NSString *)phone nickName:(NSString *)nickName avatarUrlString:(NSString *)url;
+
 @end

@@ -176,11 +176,8 @@
 }
 
 - (void)goLogin:(UITapGestureRecognizer *)tap {
-    
     MemberEnrollController *logIN = [[MemberEnrollController alloc] init];
-    
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:logIN];
-    
     [self.viewController presentViewController:nav animated:YES completion:nil];
 }
 
@@ -213,6 +210,12 @@
     phoneNumber.text = NSLocalizedString(@"SMMineLogInTitle", nil);
     [phoneNumber addGestureRecognizer:goLogin];
     avatar.image = [UIImage imageNamed:@""];
+}
+
+-(void)refreshUIWithPhone:(NSString *)phone nickName:(NSString *)nickName avatarUrlString:(NSString *)url {
+    phoneNumber.text = phone;
+    userName.text = nickName;
+    [UIImageView setimageWithImageView:avatar UrlString:url imageVersion:nil];
 }
 
 
