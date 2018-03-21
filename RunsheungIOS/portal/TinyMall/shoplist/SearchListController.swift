@@ -31,7 +31,7 @@ class SearchListController: UIViewController {
         searchBar.snp.makeConstraints { (make) in
             make.leading.trailing.equalTo(view)
             if #available(iOS 11.0, *) {
-                make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+                make.top.equalTo(view.safeAreaLayoutGuide)
             } else {
                 make.top.equalTo(topLayoutGuide.snp.bottom)
             }
@@ -48,8 +48,6 @@ class SearchListController: UIViewController {
             make.leading.trailing.bottom.equalTo(view)
             make.top.equalTo(searchBar.snp.bottom)
         }
-        
-        
     }
     
     @objc func didPrev() {

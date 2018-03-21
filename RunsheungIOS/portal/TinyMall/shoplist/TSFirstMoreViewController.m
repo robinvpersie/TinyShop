@@ -8,10 +8,10 @@
 
 #import "TSFirstMoreViewController.h"
 
-@interface TSFirstMoreViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface TSFirstMoreViewController ()<UITableViewDelegate, UITableViewDataSource>
+
 @property (nonatomic,retain)UITableView *leftTableview;
 @property (nonatomic,retain)UITableView *rightTableview;
-
 @property (nonatomic,retain)NSMutableDictionary *dict;
 @property (nonatomic,retain)NSArray *firstData;
 @property (nonatomic,retain)NSMutableArray *secondData;
