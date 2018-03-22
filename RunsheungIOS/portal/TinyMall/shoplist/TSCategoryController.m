@@ -276,6 +276,7 @@
 		NSDictionary *dic = self.shoplistData[indexPath.row];
 		SupermarketHomeViewController *shopDetailed = [[SupermarketHomeViewController alloc] init];
 		shopDetailed.hidesBottomBarWhenPushed = YES;
+
 		shopDetailed.dic = dic;
 		[self.navigationController pushViewController:shopDetailed animated:YES];
     }

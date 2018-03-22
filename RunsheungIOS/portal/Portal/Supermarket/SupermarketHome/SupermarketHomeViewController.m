@@ -308,7 +308,9 @@
         [MBProgressHUD showWithView:self.view];
     }
     NSString *div;
-    NSString *divCode = [[NSUserDefaults standardUserDefaults] objectForKey:DivCodeDefault];
+//    NSString *divCode = [[NSUserDefaults standardUserDefaults] objectForKey:DivCodeDefault];
+	
+	NSString *divCode = @"2";
     if (divCode.length > 0) {
         div = divCode;
     }
