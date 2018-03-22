@@ -52,9 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     {
                         let oldState = UIView.areAnimationsEnabled
                         UIView.setAnimationsEnabled(false)
-                        let home = YCHomeController()
-                        let nav = YCNavigationController(rootViewController: home)
-                        this.window?.rootViewController = nav
+                        let home = SupermarketMainController()
+//                        let nav = YCNavigationController(rootViewController: home)
+                        this.window?.rootViewController = home
                         UIView.setAnimationsEnabled(oldState)
                 }, completion: { finish in
                     if finish {
@@ -64,8 +64,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             window?.rootViewController = pro
         } else {
-            let home = YCHomeController()
-            window?.rootViewController = YCNavigationController(rootViewController: home)
+            let home = SupermarketMainController()
+			window?.rootViewController = home;
+//				YCNavigationController(rootViewController: home)
         }
         window?.makeKeyAndVisible()
         return true

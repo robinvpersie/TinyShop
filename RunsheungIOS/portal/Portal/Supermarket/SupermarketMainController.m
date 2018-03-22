@@ -104,10 +104,10 @@
                 break;
             case 2:
             {
-                UIImage *image = [UIImage imageNamed:@"icon_sale_bottom"];
-                UIImage *selectedImage = [UIImage imageNamed:@"icon_sale_bottom_s"];
+                UIImage *image = [UIImage imageNamed:@"icon_shoppingcart_n"];
+                UIImage *selectedImage = [UIImage imageNamed:@"icon_shoppingcart_s"];
                 selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"特价优惠" image:image selectedImage:selectedImage];
+                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"购物车" image:image selectedImage:selectedImage];
             }
                 break;
             case 3:
