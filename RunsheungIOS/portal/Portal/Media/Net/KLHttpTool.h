@@ -536,4 +536,33 @@
 									   withorder_by:(NSString *)order_by
 											success:(void (^)(id response))success
 											failure:(void (^)(NSError *err))failure;
+/*
+ *加载商家详情
+ */
+
++(void)TinyRequestStoreItemDetailwithsaleCustomCode:(NSString *)sale_custom_code
+									   withLatitude:(NSString *)latitude
+									  withLongitude:(NSString *)longitude
+									 withCustomCode:(NSString *)custom_code
+									   withPagesize:(NSString *)pagesize
+											 withPg:(NSString *)pg
+											success:(void (^)(id response))success
+											failure:(void (^)(NSError *err))failure;
+
+/*
+ *加载第一个商家列表更多的数据
+ */
++(void)TinyRequestGetCategory1And2ListWithCustom_lev1:(NSString *)custom_lev1
+										 WithLangtype:(NSString*)lang_type
+											  success:(void (^)(id response))success
+											  failure:(void (^)(NSError *err))failure;
+
+/*
+ *加载第二个商家列表更多的数据
+ */
++(void)TinyRequestGetCategory3ListWithCustom_lev1:(NSString *)custom_lev1
+								  WithCustom_lev2:(NSString *)custom_lev2
+									 WithLangtype:(NSString*)lang_type
+										  success:(void (^)(id response))success
+										  failure:(void (^)(NSError *err))failure;
 @end

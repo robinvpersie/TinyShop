@@ -36,6 +36,11 @@
     #define MallBaseUrl @"http://mall.gigawon.co.kr:8800"
 #else
 
+
+
+    #define TinyMemberShopBaseURL @"http://member.gigawon.co.kr:8808/api/"
+    #define TinyMallShopBaseURL @"http://mall.gigawon.co.kr:8800/api/"
+
     #define BaseUrl  @"http://pay.gigawon.co.kr:81/"
     #define PaymentBaseURL @"http://pay.gigawon.co.kr:8088/"
     #define ShopBaseUrl @"http://api1.gigawon.co.kr:96/"
@@ -2657,7 +2662,7 @@
 							withtelephon:(NSString*)telephon
 					   success:(void (^)(id response))success
 					   failure:(void (^)(NSError *err))failure{
-	NSString *url = @"http://member.gigawon.co.kr:8808/api/Login/joinMember";
+	NSString *url = [NSString stringWithFormat:@"%@%@",TinyMemberShopBaseURL,@"Login/joinMember"];
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(memid,mempwd,nickname,email,AuthNum,custom_name,top_zip_code,top_addr_head,top_addr_detail,business_type,lang_type).mutableCopy;
 	
 	if (comp_class.length) {
@@ -2721,7 +2726,7 @@
 									   withorder_by:(NSString *)order_by
 											success:(void (^)(id response))success
 											failure:(void (^)(NSError *err))failure{
-	NSString *url = @"http://mall.gigawon.co.kr:8800/api/StoreCate/requestStoreCateList";
+	NSString *url = [NSString stringWithFormat:@"%@%@",TinyMallShopBaseURL,@"StoreCate/requestStoreCateList"];
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(custom_code,pg,token,custom_lev1,custom_lev2,custom_lev3,longitude,latitude,order_by).mutableCopy;
 	[params setObject:@"2" forKey:@"div_code"];
 	[params setObject:@"5" forKey:@"pagesize"];
@@ -2750,4 +2755,88 @@
 	
 }
 
+/*
+ *加载商家详情
+ */
+
++(void)TinyRequestStoreItemDetailwithsaleCustomCode:(NSString *)sale_custom_code
+									   withLatitude:(NSString *)latitude
+									  withLongitude:(NSString *)longitude
+									 withCustomCode:(NSString *)custom_code
+									   withPagesize:(NSString *)pagesize
+											 withPg:(NSString *)pg
+											success:(void (^)(id response))success
+											failure:(void (^)(NSError *err))failure{
+	
+	NSString *url =[NSString stringWithFormat:@"%@%@",TinyMallShopBaseURL,@"StoreCate/requestStoreItemDetail"] ;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(sale_custom_code,latitude,longitude,custom_code,pagesize,pg).mutableCopy;
+
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+	}];
+}
+
+
+/*
+ *加载第一个商家列表更多的数据
+ */
++(void)TinyRequestGetCategory1And2ListWithCustom_lev1:(NSString *)custom_lev1
+										 WithLangtype:(NSString*)lang_type
+											success:(void (^)(id response))success
+											failure:(void (^)(NSError *err))failure{
+	
+	NSString *url =[NSString stringWithFormat:@"%@%@",TinyMallShopBaseURL,@"StoreCate/GetCategory1And2List"] ;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(custom_lev1,lang_type).mutableCopy;
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+	}];
+}
+
+/*
+ *加载第二个商家列表更多的数据
+ */
++(void)TinyRequestGetCategory3ListWithCustom_lev1:(NSString *)custom_lev1
+								  WithCustom_lev2:(NSString *)custom_lev2
+									 WithLangtype:(NSString*)lang_type
+										  success:(void (^)(id response))success
+										  failure:(void (^)(NSError *err))failure{
+	
+	NSString *url =[NSString stringWithFormat:@"%@%@",TinyMallShopBaseURL,@"StoreCate/GetCategory3List"] ;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(custom_lev1,custom_lev2,lang_type).mutableCopy;
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+	}];
+}
+
+
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+

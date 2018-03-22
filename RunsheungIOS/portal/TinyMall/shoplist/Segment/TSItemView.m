@@ -15,7 +15,7 @@
     if (self) {
         
         self.ItemsArr = data;
-      
+		self.backgroundColor = [UIColor whiteColor];
         [self createItems:frame];
     }
     return self;

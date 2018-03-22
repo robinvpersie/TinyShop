@@ -63,6 +63,8 @@
 		[self setNavi];
 
 	}
+
+	
 }
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -88,6 +90,7 @@
 	[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PushEditAction:) name:@"EDITACTIONNOTIFICATIONS" object:nil];
 	[self loadStoreListwithLeve1:Level1  withLeve2:Level2 withLeve3:Level3 withorderBy:orderBy];
 	[self createTableview];
+	
 
 }
 
@@ -96,8 +99,10 @@
 }
 
 - (void)loadStoreListwithLeve1:(NSString*)leve1 withLeve2:(NSString*)leve2 withLeve3:(NSString*)leve3 withorderBy:(NSString*)order_by{
-	
-	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:@"155555555566426a" withpg:@"1" withtoken:@"155555555566426af2f5ac36-9bd0-4ddc-a1df-fdb88f0bad07" withcustom_lev1:leve1 withcustom_lev2:leve2 withcustom_lev3:leve3 withlatitude:@"37.434668" withlongitude:@"122.160742" withorder_by:order_by success:^(id response) {
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString *latitude = [[NSUserDefaults standardUserDefaults]objectForKey:@"latitude"];
+	NSString *longitude = [[NSUserDefaults standardUserDefaults]objectForKey:@"longtitude"];
+	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:account.customCode withpg:@"1" withtoken:account.token withcustom_lev1:leve1 withcustom_lev2:leve2 withcustom_lev3:leve3 withlatitude:latitude withlongitude:longitude withorder_by:order_by success:^(id response) {
 		if ([response[@"status"] intValue] == 1) {
 			[hudloading hideAnimated:YES afterDelay:2];
 			self.responseDit = response;
@@ -159,35 +164,70 @@
 	if (self.SegmentItem == nil) {
 		self.SegmentItem = [[SegmentItem alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView2.frame)+10, APPScreenWidth, 50)];
 		self.SegmentItem.delegate = self;
+		
 		[self.view addSubview:self.SegmentItem];
 		
-
 	}
 }
 
+- (void)createItemView:(NSMutableArray*)array{
+	if (self.ItemView == nil) {
+		self.ItemView =[[TSItemView alloc]initWithFrame:CGRectMake(10, 120, APPScreenWidth - 20, 50) withData:array];
+		self.ItemView.wjitemdelegate = self;
+		
+		[self.view addSubview:self.ItemView];
+		
+		self.SegmentItem.hidden = YES;
+
+	}
+	
+}
+- (void)loadThirdData{
+	[KLHttpTool TinyRequestGetCategory3ListWithCustom_lev1:Level1 WithCustom_lev2:Level2 WithLangtype:@"kor" success:^(id response) {
+		if ([response[@"status"] intValue] == 1) {
+			NSArray *dicArray = response[@"lev3s"];
+			NSMutableArray *lev3sArray = @[].mutableCopy;
+			
+			for (int i =0; i<dicArray.count; i++) {
+				NSDictionary *dic = dicArray[i];
+				[lev3sArray addObject:dic[@"lev_name"]];
+				
+			}
+			[self createItemView:lev3sArray];
+		}
+	} failure:^(NSError *err) {
+		
+	}];
+	
+}
 - (void)PushEditAction:(NSNotification*)notice{
 	NSString *notices = notice.object;
 	if ([notices isEqualToString:@"1"]) {
 		TSFirstMoreViewController *firstMore = [TSFirstMoreViewController new];
 		firstMore.title = @"添加更多";
+		firstMore.level1 = Level1;
 		firstMore.choiceBlock = ^(NSString *selectItem) {
 //			[self.allDic setObject:@[@"新添加1",@"新添加2",@"新添加3",@"新添加4",@"新添加5"] forKey:selectItem];
 //			self.segmentView.dataDic = self.allDic;
 		};
 		[self.navigationController pushViewController:firstMore animated:YES];
+	
 	}else{
-		self.extend = !self.extend;
-		CGRect frams = self.tableview.frame;
-		if (self.extend) {
-			frams.origin.y = 110;
+		if (self.ItemView !=nil) {
+			
+			self.ItemView.hidden = YES;
+			self.ItemView = nil;
 			self.SegmentItem.hidden = YES;
-		}else{
-			frams.origin.y = 170;
-			self.SegmentItem.hidden = NO;
-		}
-		self.tableview.frame = frams;
+			self.SegmentItem = nil;
 
-		[self.tableview reloadData];
+			[self createSegmentItem];
+		}else{
+			[self loadThirdData];
+
+		}
+		
+
+		
 	}
 	
 }
@@ -212,29 +252,26 @@
 
 #pragma mark -- 代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-	return 2;
+	return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-	if (section == 0&&self.extend ) {
-		return 1;
-	}
 	
 	return self.shoplistData.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-	if (indexPath.section == 0) {
-		UITableViewCell *cell = [[UITableViewCell alloc]init];
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-		
-		if (self.extend) {
-			self.ItemView =[[TSItemView alloc]initWithFrame:CGRectMake(10, 10, APPScreenWidth - 20, 130) withData:@[@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店",@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店",@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店"]];
-			self.ItemView.wjitemdelegate = self;
-			[cell.contentView addSubview:self.ItemView];
-			
-		}
-		
-		return cell;
-	} else {
+//	if (indexPath.section == 0) {
+//		UITableViewCell *cell = [[UITableViewCell alloc]init];
+//		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//
+//		if (self.extend) {
+//			self.ItemView =[[TSItemView alloc]initWithFrame:CGRectMake(10, 10, APPScreenWidth - 20, 130) withData:@[@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店",@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店",@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店"]];
+//			self.ItemView.wjitemdelegate = self;
+//			[cell.contentView addSubview:self.ItemView];
+//
+//		}
+//
+//		return cell;
+//	} else {
 		ChoiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChoiceTableViewCellID"];
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		NSDictionary *dics = self.shoplistData[indexPath.row];
@@ -242,24 +279,11 @@
 		cell.starValue = [dics[@"score"] floatValue];
 		return cell;
 		
-	}
-	ChoiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChoiceTableViewCellID"];
-	cell.starValue = 1;
-	return cell;
 	
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-	if (indexPath.section == 0) {
-		if (self.extend) {
-			return 150.0f;
-			
-		}else{
-			return 0.0f;
-			
-		}
-	}
 	return  120.0f;
 }
 
@@ -272,14 +296,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-	if (indexPath.section ==1) {
 		NSDictionary *dic = self.shoplistData[indexPath.row];
 		SupermarketHomeViewController *shopDetailed = [[SupermarketHomeViewController alloc] init];
 		shopDetailed.hidesBottomBarWhenPushed = YES;
 
 		shopDetailed.dic = dic;
 		[self.navigationController pushViewController:shopDetailed animated:YES];
-    }
 }
 
 
@@ -324,6 +346,15 @@
 	[YCLocationService turnOn];
 	[YCLocationService singleUpdate:^(CLLocation * location) {
 		[YCLocationService turnOff];
+		
+		//保存定位经纬度
+		CLLocationCoordinate2D location2d = location.coordinate;
+		NSString *latitude = [NSString stringWithFormat:@"%f",location2d.latitude] ;
+		NSString *longtitude =  [NSString stringWithFormat:@"%f",location2d.longitude];
+		[[NSUserDefaults standardUserDefaults] setObject:latitude forKey:@"latitude"];
+		[[NSUserDefaults standardUserDefaults] setObject:longtitude forKey:@"longtitude"];
+		[[NSUserDefaults standardUserDefaults]synchronize];
+		
 		CLGeocoder *geocoder = [[CLGeocoder alloc] init];
 		[geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
 			if (placemarks.count > 0) {
@@ -359,26 +390,21 @@
 
 #pragma mark --
 - (void)clickItem:(NSString*)itemIndex{
+	self.segmentView2.hidden = YES;
 	self.segmentView2 = nil;
+	self.SegmentItem.hidden = YES;
 	self.SegmentItem = nil;
+	self.ItemView.hidden = YES;
+	self.ItemView = nil;
 	Level2 = itemIndex;
-	self.extend = NO;
-	CGRect frams = self.tableview.frame;
-	frams.origin.y = 170;
-	self.tableview.frame = frams;
-	[self.tableview reloadData];
-
 	[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:@"1" withorderBy:@"1"];
 }
 - (void)clickItemsec:(NSString*)itemIndex{
+	self.SegmentItem.hidden = YES;
 	self.SegmentItem = nil;
 	Level3 = itemIndex;
-	self.extend = NO;
-	CGRect frams = self.tableview.frame;
-	frams.origin.y = 170;
-	self.tableview.frame = frams;
-	[self.tableview reloadData];
-
+	self.ItemView.hidden = YES;
+	self.ItemView = nil;
 	[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:@"1"];
 }
 
