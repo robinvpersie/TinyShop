@@ -16,11 +16,10 @@
 	self.backView.layer.borderWidth = 1;
 }
 
-- (void)setModel:(SupermarketHomePeopleLikeData *)model {
-	_model = model;
-	[self.shopImg sd_setImageWithURL:[NSURL URLWithString:_model.imageUrl]];
-	[self.shopname setText:_model.item_name];
-	[self.money setText:[NSString stringWithFormat:@"售价:￥%d",[_model.item_price intValue]]];
-	
+- (void)setDic:(NSDictionary *)dic{
+	_dic = dic;
+	[self.shopImg sd_setImageWithURL:[NSURL URLWithString:_dic[@"image_url"]]];
+	[self.shopname setText:_dic[@""]];
+	[self.money setText:[NSString stringWithFormat:@"售价:￥%d",[_dic[@"item_p"] intValue]]];
 }
 @end

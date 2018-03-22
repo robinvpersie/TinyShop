@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SupermarketHomePeopleLikeData.h"
 
 @interface ShopDetailedCollectionCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIView *backView;
@@ -15,5 +14,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *shopname;
 @property (weak, nonatomic) IBOutlet UILabel *money;
 
-@property (nonatomic,retain)SupermarketHomePeopleLikeData *model;
+@property (nonatomic,retain)NSDictionary *dic;
 @end

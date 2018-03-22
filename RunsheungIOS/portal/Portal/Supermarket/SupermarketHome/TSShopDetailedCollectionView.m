@@ -38,12 +38,12 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
 	
-	return 4;
+	return self.dataArray.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
 	ShopDetailedCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentityID forIndexPath:indexPath];
-	cell.model = self.dataArray[indexPath.row];
+	cell.dic = self.dataArray[indexPath.row];
 	return cell;
 }
 
@@ -76,6 +76,10 @@
 
 -(void)setDataArray:(NSArray *)dataArray{
 	_dataArray = dataArray;
+	CGRect frams = self.frame;
+	frams.size.height = floorf(_dataArray.count/2.0f) *(APPScreenWidth/2 - 5);
+	self.frame = frams;
+													
 	[self reloadData];
 }
 

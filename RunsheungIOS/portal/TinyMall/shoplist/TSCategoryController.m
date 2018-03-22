@@ -63,6 +63,8 @@
 		[self setNavi];
 
 	}
+
+	
 }
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -80,6 +82,7 @@
 		orderBy = @"1";
 
 	}
+	
 	self.extend = NO;
 	self.view.backgroundColor = RGB(250, 250, 250);
 	self.allDic = @{}.mutableCopy;
@@ -96,8 +99,10 @@
 }
 
 - (void)loadStoreListwithLeve1:(NSString*)leve1 withLeve2:(NSString*)leve2 withLeve3:(NSString*)leve3 withorderBy:(NSString*)order_by{
-	
-	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:@"155555555566426a" withpg:@"1" withtoken:@"155555555566426af2f5ac36-9bd0-4ddc-a1df-fdb88f0bad07" withcustom_lev1:leve1 withcustom_lev2:leve2 withcustom_lev3:leve3 withlatitude:@"37.434668" withlongitude:@"122.160742" withorder_by:order_by success:^(id response) {
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString *latitude = [[NSUserDefaults standardUserDefaults]objectForKey:@"latitude"];
+	NSString *longitude = [[NSUserDefaults standardUserDefaults]objectForKey:@"longtitude"];
+	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:account.customCode withpg:@"1" withtoken:account.token withcustom_lev1:leve1 withcustom_lev2:leve2 withcustom_lev3:leve3 withlatitude:latitude withlongitude:longitude withorder_by:order_by success:^(id response) {
 		if ([response[@"status"] intValue] == 1) {
 			[hudloading hideAnimated:YES afterDelay:2];
 			self.responseDit = response;
@@ -324,6 +329,15 @@
 	[YCLocationService turnOn];
 	[YCLocationService singleUpdate:^(CLLocation * location) {
 		[YCLocationService turnOff];
+		
+		//保存定位经纬度
+		CLLocationCoordinate2D location2d = location.coordinate;
+		NSString *latitude = [NSString stringWithFormat:@"%f",location2d.latitude] ;
+		NSString *longtitude =  [NSString stringWithFormat:@"%f",location2d.longitude];
+		[[NSUserDefaults standardUserDefaults] setObject:latitude forKey:@"latitude"];
+		[[NSUserDefaults standardUserDefaults] setObject:longtitude forKey:@"longtitude"];
+		[[NSUserDefaults standardUserDefaults]synchronize];
+		
 		CLGeocoder *geocoder = [[CLGeocoder alloc] init];
 		[geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
 			if (placemarks.count > 0) {

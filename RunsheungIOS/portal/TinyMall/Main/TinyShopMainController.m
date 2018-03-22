@@ -174,6 +174,16 @@
 -(void)location {
 	[YCLocationService turnOn];
 	[YCLocationService singleUpdate:^(CLLocation * location) {
+		
+		//保存定位经纬度
+		CLLocationCoordinate2D location2d = location.coordinate;
+		NSString *latitude = [NSString stringWithFormat:@"%f",location2d.latitude] ;
+		NSString *longtitude =  [NSString stringWithFormat:@"%f",location2d.longitude];
+		[[NSUserDefaults standardUserDefaults] setObject:latitude forKey:@"latitude"];
+		[[NSUserDefaults standardUserDefaults] setObject:longtitude forKey:@"longtitude"];
+		[[NSUserDefaults standardUserDefaults]synchronize];
+		
+
 		[YCLocationService turnOff];
 		CLGeocoder *geocoder = [[CLGeocoder alloc] init];
 		[geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {

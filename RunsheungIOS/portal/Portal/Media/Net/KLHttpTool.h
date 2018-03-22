@@ -536,4 +536,16 @@
 									   withorder_by:(NSString *)order_by
 											success:(void (^)(id response))success
 											failure:(void (^)(NSError *err))failure;
+/*
+ *加载商家详情
+ */
+
++(void)TinyRequestStoreItemDetailwithsaleCustomCode:(NSString *)sale_custom_code
+									   withLatitude:(NSString *)latitude
+									  withLongitude:(NSString *)longitude
+									 withCustomCode:(NSString *)custom_code
+									   withPagesize:(NSString *)pagesize
+											 withPg:(NSString *)pg
+											success:(void (^)(id response))success
+											failure:(void (^)(NSError *err))failure;
 @end

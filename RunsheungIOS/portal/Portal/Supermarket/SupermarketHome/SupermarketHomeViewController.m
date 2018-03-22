@@ -118,11 +118,10 @@
     
     [self initView];
     
-    [self requestData];
+//    [self requestData];
+	[self requesTinyShopDetailData];
     
     [self locationCityName];
-    //    [KLHttpTool testPost];
-    // Do any additional setup after loading the view.
 }
 //进入页面开始定位当前所在的城市
 - (void)locationCityName{
@@ -200,7 +199,6 @@
     [self.view addSubview:_mainScrollView];
     
     banner = [[ZHSCorllHeader alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenWidth/2)];
-    [_mainScrollView addSubview:banner];
     banner.delegate = self;
     [_mainScrollView addSubview:banner];
 	
@@ -216,7 +214,7 @@
 		UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
 		layout.scrollDirection = UICollectionViewScrollDirectionVertical;
 		
-		self.tsDetailedView = [[TSShopDetailedCollectionView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tinyShopDetailView.frame), SCREEN_WIDTH, 2*(APPScreenWidth/2- 5)) collectionViewLayout:layout];
+		self.tsDetailedView = [[TSShopDetailedCollectionView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tinyShopDetailView.frame), SCREEN_WIDTH, 0) collectionViewLayout:layout];
 		self.tsDetailedView.showsVerticalScrollIndicator = NO;
 		self.tsDetailedView.scrollEnabled = NO;
 		
@@ -227,80 +225,33 @@
 	}
 	
 
-//    classfictionView = [[SupermarketClassfictionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(banner.frame), APPScreenWidth, APPScreenWidth/5+5)];
-//    classfictionView.delegate = self;
-//    [_mainScrollView addSubview:classfictionView];
+}
 
-//
-//    recommendNewPic = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(classfictionView.frame)+10, APPScreenWidth, APPScreenWidth/4)];
-//    recommendNewPic.clipsToBounds = YES;
-//    recommendNewPic.image = [UIImage imageNamed:@"img_design_05"];
-//    recommendNewPic.contentMode = UIViewContentModeScaleAspectFill;
-//    recommendNewPic.userInteractionEnabled = YES;
-//    UITapGestureRecognizer *goTasteNew = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goTasteNew:)];
-//    [recommendNewPic addGestureRecognizer:goTasteNew];
-//
-//    [_mainScrollView addSubview:recommendNewPic];
-//
-//
-//    UIView *specialBG = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(recommendNewPic.frame)+10, APPScreenWidth, 30)];
-//    specialBG.backgroundColor = [UIColor whiteColor];
-//    //特价好药
-//    UILabel *titlelabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 4, 80, 30)];
-//    titlelabel.text = @"特价好药";
-//    titlelabel.textAlignment = NSTextAlignmentCenter;
-//    [specialBG addSubview:titlelabel];
-//
-//    //查看更多的按钮
-//    UIButton *morebtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth- 80, 4, 80, 30)];
-//    [morebtn setTitle:@"查看更多" forState:UIControlStateNormal];
-//    [morebtn.titleLabel setFont:[UIFont systemFontOfSize:13]];
-//    [morebtn setTitleColor:RGB(160, 160, 160) forState:UIControlStateNormal];
-//    [specialBG addSubview:morebtn];
-//    [_mainScrollView addSubview:specialBG];
-//
-//    UICollectionViewFlowLayout *layOut_0 = [[UICollectionViewFlowLayout alloc] init];
-//    layOut_0.minimumInteritemSpacing = 0;
-//    layOut_0.minimumLineSpacing = 1;
-//    layOut_0.itemSize = CGSizeMake(APPScreenWidth/2-4,APPScreenWidth/2-4);
-//    layOut_0.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
-//    layOut_0.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-//
-//    _tasteNewCollectionView = [[SupermarketHomeTasteNewCollectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tinyShopDetailView.frame)+ 10, APPScreenWidth, APPScreenWidth/2+5) collectionViewLayout:layOut_0];
-//    [_mainScrollView addSubview:_tasteNewCollectionView];
-//
-//    /**
-//     以下为大家都爱买
-//     */
-//    otcImgview = [[UIImageView alloc] initWithFrame:CGRectMake(APPScreenWidth/3, CGRectGetMaxY(_tasteNewCollectionView.frame)+13, APPScreenWidth/3, 15)];
-//    otcImgview.backgroundColor = [UIColor clearColor];
-//    otcImgview.image = [UIImage imageNamed:@"img_otc_title"];
-//    [_mainScrollView addSubview:otcImgview];
-//
-//    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(otcImgview.frame), APPScreenWidth, 0.0f)];
-//    line.backgroundColor = _mainScrollView.backgroundColor;
-//    [_mainScrollView addSubview:line];
-//
-//    UICollectionViewFlowLayout *layOut = [[UICollectionViewFlowLayout alloc] init];
-//    layOut.minimumInteritemSpacing = 0;
-//    layOut.minimumLineSpacing = 0;
-//    layOut.itemSize = CGSizeMake(APPScreenWidth/2, APPScreenWidth/2+60);
-//    layOut.sectionInset = UIEdgeInsetsMake(2, 0, 2, 0);
-//    layOut.scrollDirection = UICollectionViewScrollDirectionVertical;
-//
-//    _wantBuyCollectionView = [[SupermarketHomeWantBuyCollectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame) + 10.0f, APPScreenWidth, ((APPScreenWidth - 4)/2 +56)*2+10) collectionViewLayout:layOut];
-//    _wantBuyCollectionView.scrollEnabled = NO;
-//    [_mainScrollView addSubview:_wantBuyCollectionView];
-//
-//    CGSize size = _mainScrollView.contentSize;
-//    size.height = CGRectGetMaxY(_wantBuyCollectionView.frame);
-//    _mainScrollView.contentSize = size;
-//
-//
-//    _refresh = [[UIRefreshControl alloc] init];
-//    [_refresh addTarget:self action:@selector(refreshData:) forControlEvents:UIControlEventValueChanged];
-//    //    [_mainScrollView addSubview:_refresh];
+- (void)requesTinyShopDetailData{
+	YCAccountModel *accountmodel = [YCAccountModel getAccount];
+	NSString *latitude = [[NSUserDefaults standardUserDefaults]objectForKey:@"latitude"];
+	NSString *longitude = [[NSUserDefaults standardUserDefaults]objectForKey:@"longtitude"];
+
+	[KLHttpTool TinyRequestStoreItemDetailwithsaleCustomCode:self.dic[@"custom_code"] withLatitude:latitude withLongitude:longitude withCustomCode:accountmodel.customCode withPagesize:@"10" withPg:@"1" success:^(id response) {
 	
+		NSDictionary *responseDit = (NSDictionary *)response;
+		if ([responseDit[@"status"] intValue] == 1) {
+			NSArray *storeItem = responseDit[@"Storeitems"];
+			self.tsDetailedView.dataArray = storeItem;
+			[self.tsDetailedView reloadData];
+			
+			self.mainScrollView.contentSize = CGSizeMake(APPScreenWidth,CGRectGetMaxY(self.tsDetailedView.frame));
+			
+			
+			_bannerDataArray = @[].mutableCopy;
+			[_bannerDataArray addObject:responseDit[@"shop_thumnail_image"]];
+			banner.urlImagesArray = _bannerDataArray;
+
+		}
+		
+	} failure:^(NSError *err) {
+		
+	}];
 }
 
 - (void)requestData {
@@ -308,7 +259,7 @@
         [MBProgressHUD showWithView:self.view];
     }
     NSString *div;
-//    NSString *divCode = [[NSUserDefaults standardUserDefaults] objectForKey:DivCodeDefault];
+//  NSString *divCode = [[NSUserDefaults standardUserDefaults] objectForKey:DivCodeDefault];
 	
 	NSString *divCode = @"2";
     if (divCode.length > 0) {
@@ -466,7 +417,8 @@
             
             NSLog(@"refresh end");
             _isRefresh = YES;
-            [self requestData];
+			[self requesTinyShopDetailData];
+//            [self requestData];
         });
     });
     
