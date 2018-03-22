@@ -152,7 +152,8 @@ class AroundMapController: UIViewController {
     }
     
     @objc func searchArea() {
-        
+        let allAddress = AllAddressController()
+        navigationController?.pushViewController(allAddress, animated: true)
     }
     
     func showMarkers() {

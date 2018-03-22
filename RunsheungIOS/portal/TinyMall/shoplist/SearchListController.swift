@@ -103,6 +103,8 @@ extension SearchListController: UITableViewDelegate {
         defer {
             tableView.deselectRow(at: indexPath, animated: true)
         }
+        searchBar.resignFirstResponder()
+        yc_back()
         
     }
     
