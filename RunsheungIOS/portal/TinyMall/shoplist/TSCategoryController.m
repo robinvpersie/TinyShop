@@ -82,6 +82,7 @@
 		orderBy = @"1";
 
 	}
+	
 	self.extend = NO;
 	self.view.backgroundColor = RGB(250, 250, 250);
 	self.allDic = @{}.mutableCopy;

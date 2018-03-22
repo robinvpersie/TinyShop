@@ -7,52 +7,58 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
-class SearchListController: UIViewController {
+class SearchListController: BaseViewController {
     
     var tableView: UITableView!
     var searchBar: UISearchBar!
+    var dataSource = [SearchListModel]()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow?.withRenderingMode(.alwaysOriginal),
-                                                           style: .plain,
-                                                           target: self, action: #selector(yc_back))
         
         view.backgroundColor = UIColor.white
         
         searchBar = UISearchBar()
         searchBar.searchBarStyle = .minimal
         searchBar.backgroundImage = UIImage()
-        searchBar.delegate = self
+        searchBar.showsCancelButton = true
         searchBar.placeholder = "搜索地址"
-        view.addSubview(searchBar)
-        searchBar.snp.makeConstraints { (make) in
-            make.leading.trailing.equalTo(view)
-            if #available(iOS 11.0, *) {
-                make.top.equalTo(view.safeAreaLayoutGuide)
-            } else {
-                make.top.equalTo(topLayoutGuide.snp.bottom)
-            }
-            make.height.equalTo(40)
-        }
+        searchBar.delegate = self
+        searchBar.becomeFirstResponder()
+        navigationItem.titleView = searchBar
         
         tableView = UITableView(frame: CGRect.zero, style: .plain)
+        tableView.estimatedRowHeight = 10;
+        tableView.registerClassOf(UITableViewCell.self)
+        tableView.backgroundColor = UIColor.clear
+        tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.estimatedRowHeight = 10;
-        tableView.registerClassOf(SearchListCell.self)
-        tableView.backgroundColor = UIColor.clear
+        tableView.emptyDataSetSource = self
+        tableView.keyboardDismissMode = .onDrag
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
-            make.leading.trailing.bottom.equalTo(view)
-            make.top.equalTo(searchBar.snp.bottom)
+            make.edges.equalTo(view)
         }
+    
     }
     
-    @objc func didPrev() {
-        navigationController?.popViewController(animated: true)
+    func requestDataWithQuery(_ query: String) {
+        
+        SearchListModel.requestWithQuery(query) { [weak self] (modelArray) in
+            self?.dataSource = modelArray
+            OperationQueue.main.addOperation {
+                self?.tableView.reloadData()
+            }
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,11 +70,32 @@ class SearchListController: UIViewController {
 
 extension SearchListController: UISearchBarDelegate {
     
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        return false
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        yc_back()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.requestDataWithQuery(searchBar.text ?? "")
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        throttle { [weak self] in
+            self?.requestDataWithQuery(searchText)
+        }
     }
     
 }
+
+
+extension SearchListController: DZNEmptyDataSetSource {
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "搜索想要的商品")
+    }
+}
+
+
 
 extension SearchListController: UITableViewDelegate {
     
@@ -76,24 +103,27 @@ extension SearchListController: UITableViewDelegate {
         defer {
             tableView.deselectRow(at: indexPath, animated: true)
         }
+        searchBar.resignFirstResponder()
+        yc_back()
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return SearchListCell.getHeight()
+        return 50
     }
     
 }
-
+//
 extension SearchListController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: SearchListCell = tableView.dequeueReusableCell()
+        let cell = tableView.dequeueReusableCell()
+        cell.textLabel?.text = dataSource[indexPath.row].address
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return dataSource.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -101,5 +131,6 @@ extension SearchListController: UITableViewDataSource {
     }
     
 }
+
 
 
