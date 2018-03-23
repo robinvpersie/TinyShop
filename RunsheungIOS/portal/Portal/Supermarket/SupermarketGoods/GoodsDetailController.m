@@ -76,20 +76,24 @@
     }
 }
 
+- (void)setShopDic:(NSDictionary *)shopDic{
+	_shopDic = shopDic;
+}
 - (void)setControllers {
     SupermarketGoodsViewController *goods = [[SupermarketGoodsViewController alloc] init];
     goods.item_code = self.item_code;
-    goods.isScan = self.isScan;
-    goods.divCode = self.divCode;
+//    goods.isScan = self.isScan;
+    goods.divCode =@"2";
     goods.controllerType = self.controllerType;
-    SupermarketDetailViewController *detail = [[SupermarketDetailViewController alloc] init];
-    SupermarketCommentViewController *comment = [[SupermarketCommentViewController alloc] init];
-    comment.divCode = self.divCode;
-    comment.item_code = self.item_code;
-    
+	goods.shopDic = self.shopDic;
+//    SupermarketDetailViewController *detail = [[SupermarketDetailViewController alloc] init];
+//    SupermarketCommentViewController *comment = [[SupermarketCommentViewController alloc] init];
+//    comment.divCode = self.divCode;
+//    comment.item_code = self.item_code;
+	
     [self addChildViewController:goods];
-    [self addChildViewController:detail];
-    [self addChildViewController:comment];
+//    [self addChildViewController:detail];
+//    [self addChildViewController:comment];
 }
 
 - (void)setContentScrollView {

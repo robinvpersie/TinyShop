@@ -76,6 +76,13 @@
 @property (nonatomic,retain)TinyShopDetailedView *tinyShopDetailView;
 
 @property(nonatomic,retain)TSShopDetailedCollectionView *tsDetailedView;
+
+@property (nonatomic,retain)UIView  *mallInfoView;
+
+
+@property (nonatomic,retain)NSDictionary *responseDic;
+
+@property (nonatomic,retain)UIButton *loveBtn;
 @end
 
 @implementation SupermarketHomeViewController {
@@ -151,18 +158,22 @@
 }
 
 - (void)initNavigation {
-    //    self.title = NSLocalizedString(@"SupermarketHomeTitle",nil);
-    
-    UIBarButtonItem *search = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_search_"] style:UIBarButtonItemStylePlain target:self action:@selector(searchAction)];
-    //    self.navigationItem.rightBarButtonItem = search;
-    
+	
+	self.loveBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 16, 6)];
+	
+	[self.loveBtn setImage:[UIImage imageNamed:@"icon-_collection_s"] forState:UIControlStateSelected];
+	[self.loveBtn setImage:[UIImage imageNamed:@"icon-_collection_n"] forState:UIControlStateNormal];
+	[self.loveBtn addTarget:self action:@selector(LoveAction:) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *loveitem = [[UIBarButtonItem alloc]initWithCustomView:self.loveBtn];
+		self.navigationItem.rightBarButtonItem = loveitem;
+	
     UIBarButtonItem *dismiss = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_back"] style:UIBarButtonItemStylePlain target:self action:@selector(dismis)];
     dismiss.tintColor = [UIColor darkcolor];
     
-    UIBarButtonItem *location = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(goLocation)];
-    location.imageInsets = UIEdgeInsetsMake(0,-30,0,0);
-    location.tintColor = [UIColor darkcolor];
-  
+//    UIBarButtonItem *location = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(goLocation)];
+//    location.imageInsets = UIEdgeInsetsMake(0,-30,0,0);
+//    location.tintColor = [UIColor darkcolor];
+	
 
     locationName = [UIButton createButtonWithFrame:CGRectMake(0, 0, 60, 20) title:self.divName titleColor:[UIColor darkcolor] titleFont:[UIFont systemFontOfSize:12] backgroundColor:[UIColor clearColor]];
     locationName.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -182,18 +193,15 @@
                                        target:self action:nil];
     negativeSpacer.width = -10;
     
-    self.navigationItem.leftBarButtonItems = @[dismiss,location,locationNameItem];
+    self.navigationItem.leftBarButtonItems = @[dismiss];
     
 }
 
-#pragma mark ---  DetailedDelegate
-- (void)clickSegment:(int)index{
-	
-}
+
 
 - (void)initView {
     
-    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, self.view.frame.size.height - 64)];
+    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, self.view.frame.size.height - 114)];
     _mainScrollView.contentSize = CGSizeMake(APPScreenWidth, APPScreenHeight*5);
     _mainScrollView.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
     [self.view addSubview:_mainScrollView];
@@ -207,6 +215,7 @@
 		self.tinyShopDetailView = [[TinyShopDetailedView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(banner.frame), SCREEN_WIDTH, 120)];
 		self.tinyShopDetailView.delegete = self;
 		self.tinyShopDetailView.dic = self.dic;
+		self.tinyShopDetailView.hidden = YES;
 		[_mainScrollView addSubview:self.tinyShopDetailView];
 	}
 
@@ -217,34 +226,50 @@
 		self.tsDetailedView = [[TSShopDetailedCollectionView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tinyShopDetailView.frame), SCREEN_WIDTH, 0) collectionViewLayout:layout];
 		self.tsDetailedView.showsVerticalScrollIndicator = NO;
 		self.tsDetailedView.scrollEnabled = NO;
-		
+		self.tsDetailedView.shopDic = self.dic;
 		[self.view addSubview:self.tsDetailedView];
 		[_mainScrollView addSubview:self.tsDetailedView];
 		_mainScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, CGRectGetMaxY(self.tsDetailedView.frame));
 		
 	}
 	
-
+	//添加打电话的按钮
+	UIView *callview = [[UIView alloc]initWithFrame:CGRectMake(0, APPScreenHeight - 114, APPScreenWidth, 50)];
+	callview.backgroundColor = RGB(0,128, 48);
+	[self.view addSubview:callview];
+	
+	
+	UIButton *callPhoneBtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth/2 - 50, 0,100, 50)];
+	[callPhoneBtn setBackgroundColor:RGB(0,128, 48)];
+	[callPhoneBtn addTarget:self action:@selector(callPhoneBtn:) forControlEvents:UIControlEventTouchUpInside];
+	[callPhoneBtn setImage:[UIImage imageNamed:@"icon_call_order"] forState:UIControlStateNormal];
+	[callview addSubview:callPhoneBtn];
 }
 
 - (void)requesTinyShopDetailData{
 	YCAccountModel *accountmodel = [YCAccountModel getAccount];
 	NSString *latitude = [[NSUserDefaults standardUserDefaults]objectForKey:@"latitude"];
 	NSString *longitude = [[NSUserDefaults standardUserDefaults]objectForKey:@"longtitude"];
-
-	[KLHttpTool TinyRequestStoreItemDetailwithsaleCustomCode:self.dic[@"custom_code"] withLatitude:latitude withLongitude:longitude withCustomCode:accountmodel.customCode withPagesize:@"10" withPg:@"1" success:^(id response) {
 	
-		NSDictionary *responseDit = (NSDictionary *)response;
-		if ([responseDit[@"status"] intValue] == 1) {
-			NSArray *storeItem = responseDit[@"Storeitems"];
+	[KLHttpTool TinyRequestStoreItemDetailwithsaleCustomCode:self.dic[@"custom_code"] withLatitude:latitude withLongitude:longitude withCustomCode:accountmodel.customCode withPagesize:@"10" withPg:@"1" success:^(id response) {
+		self.responseDic =  (NSDictionary *)response;
+
+		if ([self.responseDic[@"status"] intValue] == 1) {
+			self.tinyShopDetailView.hidden = NO;
+			NSArray *storeItem = self.responseDic[@"Storeitems"];
 			self.tsDetailedView.dataArray = storeItem;
 			[self.tsDetailedView reloadData];
 			
 			self.mainScrollView.contentSize = CGSizeMake(APPScreenWidth,CGRectGetMaxY(self.tsDetailedView.frame));
 			
+			if ([self.responseDic[@"favorites"] isEqualToString:@"False"]) {
+				self.loveBtn.selected = NO;
+			}else{
+				self.loveBtn.selected = YES;
+			}
 			
 			_bannerDataArray = @[].mutableCopy;
-			[_bannerDataArray addObject:responseDit[@"shop_thumnail_image"]];
+			[_bannerDataArray addObject:self.responseDic[@"shop_thumnail_image"]];
 			banner.urlImagesArray = _bannerDataArray;
 
 		}
@@ -615,20 +640,47 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark ---  DetailedDelegate
+- (void)clickSegment:(int)index{
+	if (index == 0) {
+		self.tsDetailedView.hidden = NO;
+		self.mallInfoView.hidden = YES;
+		self.mainScrollView.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.tsDetailedView.frame)+50);
+		
+	}else{
+		
+		self.tsDetailedView.hidden = YES;
+		if (self.mallInfoView == nil) {
+			[self createShopInfomations];
+
+		}else{
+			self.mainScrollView.hidden = NO;
+		}
+	}
+	
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+- (void)createShopInfomations{
+	
+	if (self.mallInfoView == nil) {
+		self.mallInfoView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tinyShopDetailView.frame), APPScreenWidth, APPScreenHeight - CGRectGetMaxY(self.tinyShopDetailView.frame))];
+		self.mallInfoView.backgroundColor = [UIColor whiteColor];
+		[self.mainScrollView addSubview:self.mallInfoView];
+		self.mainScrollView.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.mallInfoView.frame));
+		
+		
 
+	}
+}
+
+- (void)callPhoneBtn:(UIButton*)sender{
+	NSURL *url = [NSURL URLWithString:@"telprompt://13142252288"];
+	[[UIApplication sharedApplication] openURL:url];
+}
+
+- (void)LoveAction:(UIButton*)sender{
+	sender.selected = !sender.selected;
+	
+}
 @end
 

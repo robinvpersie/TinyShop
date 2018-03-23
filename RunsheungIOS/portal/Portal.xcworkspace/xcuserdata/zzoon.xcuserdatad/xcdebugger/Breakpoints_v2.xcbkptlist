@@ -42,7 +42,7 @@
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E5%B7%A5%E4%BA%BA/TinyShop/RunsheungIOS/portal/Portal/RSPhml/RSTabBarMainController.swift"
-                  timestampString = "543390714.930469"
+                  timestampString = "543461887.7108099"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "15"
@@ -57,7 +57,7 @@
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E5%B7%A5%E4%BA%BA/TinyShop/RunsheungIOS/portal/Portal/RSPhml/RSTabBarMainController.swift"
-                  timestampString = "543390714.937714"
+                  timestampString = "543461887.715067"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "15"
@@ -90,7 +90,7 @@
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E5%B7%A5%E4%BA%BA/TinyShop/RunsheungIOS/portal/TinyMall/MemberEnroll/StepSecMemEnrollController.m"
-                  timestampString = "543390714.960575"
+                  timestampString = "543461887.729081"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -105,7 +105,7 @@
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E5%B7%A5%E4%BA%BA/TinyShop/RunsheungIOS/portal/TinyMall/MemberEnroll/StepSecMemEnrollController.m"
-                  timestampString = "543390714.964343"
+                  timestampString = "543461887.737383"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -121,44 +121,60 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "543391482.644325"
+            filePath = "Portal/Supermarket/SupermarketShoppingCart/LZCartViewController/LZCartViewController.m"
+            timestampString = "543463063.349426"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2774"
-            endingLineNumber = "2774"
-            landmarkName = "+TinyRequestStoreItemDetailwithsaleCustomCode:withLatitude:withLongitude:withCustomCode:withPagesize:withPg:success:failure:"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Portal/Media/Category/NSDictionary+Decode.m"
+            timestampString = "543463063.349561"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
+            landmarkName = "+getShoppingartListShopsWithData:"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "+[KLHttpTool TinyRequestStoreItemDetailwithsaleCustomCode:withLatitude:withLongitude:withCustomCode:withPagesize:withPg:success:failure:]"
+                  symbolName = "+[NSDictionary(Decode) getShoppingartListShopsWithData:]"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E5%B7%A5%E4%BA%BA/TinyShop/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
-                  timestampString = "543390715.0333281"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E5%B7%A5%E4%BA%BA/TinyShop/RunsheungIOS/portal/Portal/Media/Category/NSDictionary+Decode.m"
+                  timestampString = "543461887.748422"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "2774"
-                  endingLineNumber = "2774"
-                  offsetFromSymbolStart = "528">
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "548">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__137+[KLHttpTool TinyRequestStoreItemDetailwithsaleCustomCode:withLatitude:withLongitude:withCustomCode:withPagesize:withPg:success:failure:]_block_invoke"
+                  symbolName = "+[NSDictionary(Decode) getShoppingartListShopsWithData:]"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E5%B7%A5%E4%BA%BA/TinyShop/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
-                  timestampString = "543390715.035558"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E5%B7%A5%E4%BA%BA/TinyShop/RunsheungIOS/portal/Portal/Media/Category/NSDictionary+Decode.m"
+                  timestampString = "543461887.750519"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "2774"
-                  endingLineNumber = "2774"
-                  offsetFromSymbolStart = "24">
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "560">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -169,13 +185,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "543391482.6444269"
+            filePath = "Portal/Media/Category/NSDictionary+Decode.m"
+            timestampString = "543463063.349637"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2776"
-            endingLineNumber = "2776"
-            landmarkName = "+TinyRequestStoreItemDetailwithsaleCustomCode:withLatitude:withLongitude:withCustomCode:withPagesize:withPg:success:failure:"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
+            landmarkName = "+getShoppingartListShopsWithData:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -185,13 +201,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "543391482.644509"
+            filePath = "Portal/Media/Category/NSDictionary+Decode.m"
+            timestampString = "543463063.3497"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2780"
-            endingLineNumber = "2780"
-            landmarkName = "+TinyRequestStoreItemDetailwithsaleCustomCode:withLatitude:withLongitude:withCustomCode:withPagesize:withPg:success:failure:"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "+getShoppingartListShopsWithData:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -201,13 +217,109 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Portal/Supermarket/SupermarketHome/TSShopDetailedCollectionView.m"
-            timestampString = "543391482.644588"
+            filePath = "Portal/Supermarket/SupermarketGoods/SupermarketGoodsViewController.m"
+            timestampString = "543463063.349789"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "-collectionView:numberOfItemsInSection:"
+            startingLineNumber = "382"
+            endingLineNumber = "382"
+            landmarkName = "-collectionGoods:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SupermarketGoodsViewController collectionGoods:]"
+                  moduleName = "Portal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E5%B7%A5%E4%BA%BA/TinyShop/RunsheungIOS/portal/Portal/Supermarket/SupermarketGoods/SupermarketGoodsViewController.m"
+                  timestampString = "543461887.765861"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "428"
+                  endingLineNumber = "428"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__50-[SupermarketGoodsViewController collectionGoods:]_block_invoke"
+                  moduleName = "Portal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E5%B7%A5%E4%BA%BA/TinyShop/RunsheungIOS/portal/Portal/Supermarket/SupermarketGoods/SupermarketGoodsViewController.m"
+                  timestampString = "543461887.769426"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "429"
+                  endingLineNumber = "429"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Portal/Supermarket/SupermarketGoods/SupermarketGoodsViewController.m"
+            timestampString = "543463063.350318"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "-requestData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Portal/Supermarket/SupermarketGoods/SupermarketGoodsViewController.m"
+            timestampString = "543463063.350672"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Portal/Media/Category/NSDictionary+Decode.m"
+            timestampString = "543463063.350961"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "+getGoodsMsgDataWithDic:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Portal/Media/Category/NSDictionary+Decode.m"
+            timestampString = "543463063.351018"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "+getGoodsMsgDataWithDic:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

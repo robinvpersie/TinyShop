@@ -16,4 +16,6 @@
  */
 @property(nonatomic,retain)NSArray *dataArray;
 
+@property (nonatomic,retain)NSDictionary *shopDic;
+
 @end

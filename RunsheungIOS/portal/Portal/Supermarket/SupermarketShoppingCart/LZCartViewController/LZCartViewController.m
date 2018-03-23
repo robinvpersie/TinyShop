@@ -99,29 +99,32 @@ typedef void(^finishAction)();
 
 
 - (void)requestShoppingCartData:(finishAction)finish{
+	
      [self.indicator startAnimating];
-     [KLHttpTool getSupermarketShoppintCartListWithAppType:6 success:^(id response) {
-           [self.indicator stopAnimating];
-           self.isloading = NO;
-           NSNumber *status = response[@"status"];
-            if (status.integerValue == 1) {
-                NSArray *data = response[@"data"];
-                if (data.count > 0) {
-                    self.dataArray = [NSDictionary getShoppingartListShopsWithData:data];
-                }
-            }else {
-                [MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:response[@"message"]];
-            }
-          [NSOperationQueue.mainQueue addOperationWithBlock:^{
-             [self.myTableView reloadData];
-          }];
-          finish();
-         } failure:^(NSError *err) {
-             [self.myTableView reloadEmptyDataSet];
-             finish();
-        }];
+	
+	[KLHttpTool TinyRequestShoppingCartCountWithShoppCartUrl:@"Order/requestShoppingCartList" WithSale_q:@"" WithCurrentPage:@"1" WithPageSize:@"5" success:^(id response) {
+		[self.indicator stopAnimating];
+		self.isloading = NO;
 
+		if ([response[@"status"] intValue] == 1) {
+			NSArray *data = response[@"data"];
+			if (data.count > 0) {
+				self.dataArray = [NSDictionary getShoppingartListShopsWithData:data];
+			}
 
+		}else{
+			[MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:response[@"message"]];
+		}
+		[NSOperationQueue.mainQueue addOperationWithBlock:^{
+			[self.myTableView reloadData];
+		}];
+		finish();
+
+	} failure:^(NSError *err) {
+		[self.myTableView reloadEmptyDataSet];
+		finish();
+
+	}];
     
 }
 
@@ -139,7 +142,8 @@ typedef void(^finishAction)();
 //    [self checkLogStatus];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkLogStatus) name:SupermarketSelectTabBar object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess:) name:@"YCAccountIsLogin" object:nil];
+
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess:) name:@"YCAccountIsLogin" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chooseDivCode:) name:@"ChooseDivCode" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadAllData) name:@"ReloadShoppingCartNotification" object:nil];
     

@@ -810,7 +810,9 @@
 + (void)getSupermarketShoppintCartListWithAppType:(NSInteger)appType
                                           success:(void (^)(id response))success
                                       failure:(void (^)(NSError *err))failure {
-    NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/GetUserShopCartOfList",BaseUrl];
+    NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/GetUserShopCartOfList",@"http://pay.dxbhtm.com:81/"];
+	YCAccountModel *accountModel = [YCAccountModel getAccount];
+	
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 //    YCAccountModel *model = [YCAccountModel getAccount];
 ////    if (model.token) {
@@ -820,8 +822,12 @@
 //    [params setObject:model.token forKey:@"token"];
 
     
-    [self getToken:^(id token) {
-        [params setObject:token forKey:@"token"];
+//    [self getToken:^(id token) {
+	NSString *token = accountModel.token;
+	if (token.length) {
+		[params setObject:token forKey:@"token"];
+
+	}
         [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost
                                                           url:url
                                                        params:params
@@ -835,9 +841,9 @@
         } failure:^(NSError *err) {
             NSLog(@"%@",err);
         }];
-    } failure:^(NSError *errToken) {
-
-    }];
+//    } failure:^(NSError *errToken) {
+//
+//    }];
 }
 
 //删除我的购物车
@@ -2993,6 +2999,136 @@
 		NSLog(@"%@",err);
 	}];
 }
+
+
+/*
+ *加载第一个商家列表更多的数据
+ */
++(void)TinyRequestGetCategory1And2ListWithCustom_lev1:(NSString *)custom_lev1
+										 WithLangtype:(NSString*)lang_type
+											success:(void (^)(id response))success
+											failure:(void (^)(NSError *err))failure{
+	
+	NSString *url =[NSString stringWithFormat:@"%@%@",TinyMallShopBaseURL,@"StoreCate/GetCategory1And2List"] ;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(custom_lev1,lang_type).mutableCopy;
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+	}];
+}
+
+/*
+ *加载第二个商家列表更多的数据
+ */
++(void)TinyRequestGetCategory3ListWithCustom_lev1:(NSString *)custom_lev1
+								  WithCustom_lev2:(NSString *)custom_lev2
+									 WithLangtype:(NSString*)lang_type
+										  success:(void (^)(id response))success
+										  failure:(void (^)(NSError *err))failure{
+	
+	NSString *url =[NSString stringWithFormat:@"%@%@",TinyMallShopBaseURL,@"StoreCate/GetCategory3List"] ;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(custom_lev1,custom_lev2,lang_type).mutableCopy;
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+	}];
+}
+
+/*
+ *购物车的数量，列表，删除
+ */
++(void)TinyRequestShoppingCartCountWithShoppCartUrl:(NSString *)urls
+									WithSale_q:(NSString *)sale_q
+								   WithCurrentPage:(NSString*)pg
+									  WithPageSize:(NSString*)pagesize
+										  success:(void (^)(id response))success
+										  failure:(void (^)(NSError *err))failure{
+	
+	NSString *url =[NSString stringWithFormat:@"%@%@",TinyMallShopBaseURL,urls] ;
+
+	NSString *lang_type = @"kor";
+	NSString *div_code = @"2";
+	
+	YCAccountModel *accountmodel = [YCAccountModel getAccount];
+	NSString *custom_code = accountmodel.customCode;
+	NSString *token = accountmodel.token;
+
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,div_code,custom_code).mutableCopy;
+	if (pg.length) {
+		[params setObject:pg forKey:@"pg"];
+	}
+	if (pagesize.length) {
+		[params setObject:pagesize forKey:@"pagesize"];
+	}
+	if (sale_q.length) {
+		[params setObject:sale_q forKey:@"sale_q"];
+	}
+	if (token.length) {
+		[params setObject:token forKey:@"token"];
+	}
+
+
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+	}];
+}
+
+/*
+ *商家商品详情查询
+ */
++(void)TinyRequestGetKFMEGoodsDetailUrl:(NSString *)urls
+					 WithSaleCustomCode:(NSString *)sale_custom_code
+						   WithItemCode:(NSString*)item_code
+								success:(void (^)(id response))success
+								failure:(void (^)(NSError *err))failure{
+	
+	NSString *url =[NSString stringWithFormat:@"%@%@",TinyMallShopBaseURL,urls] ;
+	
+	NSString *lang_type = @"kor";
+	NSString *div_code = @"2";
+	
+	YCAccountModel *accountmodel = [YCAccountModel getAccount];
+	NSString *custom_code = accountmodel.customCode;
+	NSString *token = accountmodel.token;
+	
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,div_code,custom_code).mutableCopy;
+	if (sale_custom_code.length) {
+		[params setObject:sale_custom_code forKey:@"sale_custom_code"];
+	}
+	if (item_code.length) {
+		[params setObject:item_code forKey:@"item_code"];
+	}
+
+	if (token.length) {
+		[params setObject:token forKey:@"token"];
+	}
+	
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+	}];
+}
+
 
 @end
 

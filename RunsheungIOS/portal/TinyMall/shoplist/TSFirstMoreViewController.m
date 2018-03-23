@@ -23,23 +23,44 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self createTableview];
-	self.dict = @{
-                  @"音乐":@[@"通俗",@"民歌",@"乡村",@"流行"],
-                  @"科技":@[@"科技1",@"科技2",@"科技3",@"科技4"],
-                  @"贴吧":@[@"贴吧1",@"贴吧2",@"贴吧3",@"贴吧4"],
-                  @"超市":@[@"超市1",@"超市2",@"超市3",@"超市4"],
-                  @"酒店":@[@"酒店1",@"酒店2",@"酒店3",@"酒店4"],
-                  @"影院":@[@"影院1",@"影院2",@"影院3",@"影院4"],
-                  @"服装":@[@"服装1",@"服装2",@"服装3",@"服装4"]
-                 }.mutableCopy;
-	self.firstData = self.dict.allKeys;
-	self.secondData = self.dict[self.dict.allKeys.firstObject];
-	
+	[self loadData];
+
 }
+
+#pragma mark -- 加载数据
+- (void)loadData{
+	[KLHttpTool TinyRequestGetCategory1And2ListWithCustom_lev1:self.level1 WithLangtype:@"kor" success:^(id response) {
+		if ([response[@"status"] intValue] == 1) {
+			self.firstData = response[@"lev1s"];
+			self.secondData = response[@"lev2s"];
+			[self.leftTableview reloadData];
+			[self.rightTableview reloadData];
+
+		}
+		
+	} failure:^(NSError *err) {
+		
+	}];
+}
+
+- (void)loadDataClick:(NSString*)clickLev{
+	[KLHttpTool TinyRequestGetCategory1And2ListWithCustom_lev1:clickLev WithLangtype:@"kor" success:^(id response) {
+		if ([response[@"status"] intValue] == 1) {
+			
+			self.secondData = response[@"lev2s"];
+			[self.rightTableview reloadData];
+			
+		}
+		
+	} failure:^(NSError *err) {
+		
+	}];
+}
+
 - (void)createTableview{
 	if (self.leftTableview == nil) {
 		
-		self.leftTableview =[[UITableView alloc]initWithFrame:CGRectMake(0,0, 80,APPScreenHeight) style:UITableViewStylePlain];
+		self.leftTableview =[[UITableView alloc]initWithFrame:CGRectMake(0,0, 140,APPScreenHeight) style:UITableViewStylePlain];
 		self.leftTableview.tag = 1001;
 		[self.leftTableview registerNib:[UINib nibWithNibName:@"ChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChoiceTableViewCellID"];
 		self.leftTableview.delegate = self;
@@ -55,7 +76,7 @@
 	
 	if (self.rightTableview == nil) {
 		
-		self.rightTableview =[[UITableView alloc]initWithFrame:CGRectMake(80,0,APPScreenWidth - 80,APPScreenHeight) style:UITableViewStylePlain];
+		self.rightTableview =[[UITableView alloc]initWithFrame:CGRectMake(140,0,APPScreenWidth - 80,APPScreenHeight) style:UITableViewStylePlain];
 		self.rightTableview.tag = 1002;
 		[self.rightTableview registerNib:[UINib nibWithNibName:@"ChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChoiceTableViewCellID"];
 		self.rightTableview.delegate = self;
@@ -87,13 +108,16 @@
 	UITableViewCell *cell = [[UITableViewCell alloc]init];
 	CGRect frameline;
 	
+	NSDictionary *dic;
 	if (tableView.tag == 1001) {
+		dic = self.firstData[indexPath.row];
 		cell.contentView.backgroundColor = RGB(235, 235, 235);
 		frameline = CGRectMake(0, 0, 80, 1);
-		cell.textLabel.text = self.firstData[indexPath.row];
+		cell.textLabel.text = dic[@"lev_name"];
 	}else {
+		dic = self.secondData[indexPath.row];
 		frameline = CGRectMake(0, 0, APPScreenWidth - 80, 1);
-		cell.textLabel.text = self.secondData[indexPath.row];
+		cell.textLabel.text = dic[@"lev_name"];
 	}
 	UILabel *line = [[UILabel alloc]initWithFrame:frameline];
 	line.backgroundColor = RGB(244, 244, 244);
@@ -119,9 +143,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	if (tableView.tag == 1001) {
-		NSString *keys = self.firstData[indexPath.row];
-		self.secondData = self.dict[keys];
-		[self.rightTableview reloadData];
+		NSDictionary *dic = self.firstData[indexPath.row];
+		[self loadDataClick:dic[@"lev"]];
+
 	}else{
 		if (self.choiceBlock) {
 			

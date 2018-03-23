@@ -14,4 +14,5 @@ typedef void(^choiceOkBlock)(NSString *selectItem);
 
 @property(nonatomic,copy)choiceOkBlock choiceBlock;
 
+@property(nonatomic,copy)NSString *level1;
 @end

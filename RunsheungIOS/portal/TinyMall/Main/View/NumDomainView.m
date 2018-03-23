@@ -102,10 +102,19 @@
 }
 - (void)okAction:(UIButton*)sender{
 	
-	TSCategoryController *cateVC = [[TSCategoryController alloc]init];
-	cateVC.hidesBottomBarWhenPushed = YES;
-	cateVC.leves = @[[NSString stringWithFormat:@"%d",self.pickerIndex1],[NSString stringWithFormat:@"%d",self.pickerIndex2],[NSString stringWithFormat:@"%d",self.pickerIndex3]].mutableCopy;
-	[self.viewController.navigationController pushViewController:cateVC animated:YES];
+	BOOL islogIn = [YCAccountModel islogin];
+	if (islogIn) {
+		TSCategoryController *cateVC = [[TSCategoryController alloc]init];
+		cateVC.hidesBottomBarWhenPushed = YES;
+		cateVC.leves = @[[NSString stringWithFormat:@"%d",self.pickerIndex1],[NSString stringWithFormat:@"%d",self.pickerIndex2],[NSString stringWithFormat:@"%d",self.pickerIndex3]].mutableCopy;
+		[self.viewController.navigationController pushViewController:cateVC animated:YES];
+		
+	}else{
+		MemberEnrollController *loginVC = [[MemberEnrollController alloc] init];
+		UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
+		[self.viewController presentViewController:nav animated:YES completion:nil];
+		
+	}
 	
 }
 
@@ -253,11 +262,19 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-	
-	TSCategoryController *cateVC = [[TSCategoryController alloc]init];
-	cateVC.hidesBottomBarWhenPushed = YES;
-	cateVC.leves = @[[NSString stringWithFormat:@"%d",self.pickerIndex1],[NSString stringWithFormat:@"%d",self.pickerIndex2],[NSString stringWithFormat:@"%d",self.pickerIndex3]].mutableCopy;
-	[self.viewController.navigationController pushViewController:cateVC animated:YES];
+	BOOL islogIn = [YCAccountModel islogin];
+	if (islogIn) {
+		TSCategoryController *cateVC = [[TSCategoryController alloc]init];
+		cateVC.hidesBottomBarWhenPushed = YES;
+		cateVC.leves = @[[NSString stringWithFormat:@"%d",self.pickerIndex1],[NSString stringWithFormat:@"%d",self.pickerIndex2],[NSString stringWithFormat:@"%d",self.pickerIndex3]].mutableCopy;
+		[self.viewController.navigationController pushViewController:cateVC animated:YES];
+
+	}else{
+		MemberEnrollController *loginVC = [[MemberEnrollController alloc] init];
+		UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
+		[self.viewController presentViewController:nav animated:YES completion:nil];
+
+	}
 	
 
 	

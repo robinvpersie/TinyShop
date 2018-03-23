@@ -592,4 +592,40 @@
 											 withPg:(NSString *)pg
 											success:(void (^)(id response))success
 											failure:(void (^)(NSError *err))failure;
+
+/*
+ *加载第一个商家列表更多的数据
+ */
++(void)TinyRequestGetCategory1And2ListWithCustom_lev1:(NSString *)custom_lev1
+										 WithLangtype:(NSString*)lang_type
+											  success:(void (^)(id response))success
+											  failure:(void (^)(NSError *err))failure;
+
+/*
+ *加载第二个商家列表更多的数据
+ */
++(void)TinyRequestGetCategory3ListWithCustom_lev1:(NSString *)custom_lev1
+								  WithCustom_lev2:(NSString *)custom_lev2
+									 WithLangtype:(NSString*)lang_type
+										  success:(void (^)(id response))success
+										  failure:(void (^)(NSError *err))failure;
+
+/*
+ *购物车的数量，列表，删除
+ */
++(void)TinyRequestShoppingCartCountWithShoppCartUrl:(NSString *)urls
+										 WithSale_q:(NSString *)sale_q
+									WithCurrentPage:(NSString*)pg
+									   WithPageSize:(NSString*)pagesize
+											success:(void (^)(id response))success
+											failure:(void (^)(NSError *err))failure;
+
+/*
+ *商家商品详情查询
+ */
++(void)TinyRequestGetKFMEGoodsDetailUrl:(NSString *)urls
+					 WithSaleCustomCode:(NSString *)sale_custom_code
+						   WithItemCode:(NSString*)item_code
+								success:(void (^)(id response))success
+								failure:(void (^)(NSError *err))failure;
 @end
