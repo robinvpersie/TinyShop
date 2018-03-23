@@ -59,7 +59,7 @@ struct SearchListModel {
     
     static func requestWithQuery(_ query: String, completion:@escaping ([SearchListModel]) -> Void)
     {
-        let searchResource = SearchSource(query: "삼성동")
+        let searchResource = SearchSource(query: query)
         let provider = MoyaProvider<SearchSource>(plugins: [loggerPlugin])
         provider.request(searchResource) { (result) in
             switch result {

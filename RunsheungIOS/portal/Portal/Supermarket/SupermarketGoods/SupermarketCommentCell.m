@@ -165,6 +165,15 @@
     [_goodBGView addSubview:_goodsName];
 }
 
+-(void)setModel:(SPCommentModel *)model {
+    _contentLabel.text = model.saleContent;
+    _nickNameLabel.text = model.nickname;
+    _timeLabel.text = model.regdate;
+    [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:model.imagePath]];
+    [_likeContentButton setTitle:model.rnm forState:UIControlStateNormal];
+    _goodsName.text = model.customname;
+}
+
 - (void)setCommentData:(SupermarketCommentData *)commentData {
     _contentLabel.text = commentData.content;
     _nickNameLabel.text = commentData.userID;

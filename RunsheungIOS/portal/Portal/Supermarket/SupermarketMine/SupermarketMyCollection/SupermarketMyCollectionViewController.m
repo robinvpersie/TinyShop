@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, FetchType) {
 
 @interface SupermarketMyCollectionViewController ()<UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource>
 
-@property (strong,nonatomic)NSMutableArray *dataArray;
+@property (strong,nonatomic)NSMutableArray<NewCartModel *> *dataArray;
 @property (strong,nonatomic)NSMutableArray *selectedArray;
 @property (strong,nonatomic)UITableView *myTableView;
 @property (strong,nonatomic)UIButton *allSellectedButton;
@@ -94,9 +94,10 @@ typedef NS_ENUM(NSInteger, FetchType) {
         NSNumber *status = response[@"status"];
         if (status.integerValue == 1) {
             NSArray *favoriteslist = response[@"Favoriteslist"];
-            NSMutableArray *modelArray = [NSMutableArray array];
+            NSMutableArray<NewCartModel *> *modelArray = [NSMutableArray array];
             for (NSDictionary *dic in favoriteslist) {
-                LZCartModel *model = [NSDictionary getLzCartModelWithDic:dic];
+               // LZCartModel *model = [NSDictionary getLzCartModelWithDic:dic];
+                NewCartModel *model = [NSDictionary getCartModelWithDic:dic];
                 [modelArray addObject:model];
             }
             if (type == Normal || type == TopRefresh) {
@@ -247,16 +248,17 @@ typedef NS_ENUM(NSInteger, FetchType) {
 
 #pragma mark --- UITableViewDataSource & UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    [tableView.mj_footer setHidden: self.dataArray.count > 0 ? NO:YES ];
+    [tableView.mj_footer setHidden:self.dataArray.count > 0 ? NO:YES ];
     return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LZCartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LZCart" forIndexPath:indexPath];
     cell.isCollection = YES;
-    LZCartModel *model = self.dataArray[indexPath.row];
-    [cell reloadDataWithModel:model];
+   // LZCartModel *model = self.dataArray[indexPath.row];
+    NewCartModel *model = self.dataArray[indexPath.row];
+    [cell configureWithModel:model];
+   // [cell reloadDataWithModel:model];
 //    [cell cellSelectedWithBlock:^(BOOL select) {
 //        model.select = select;
 //        if (select) {

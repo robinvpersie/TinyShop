@@ -125,4 +125,6 @@
 //带评价商品
 + (SupermarketOrderGoodsData *)getWaitCommentGoodsDataWithDic:(NSDictionary *)dic;
 
++ (NewCartModel *)getCartModelWithDic:(NSDictionary *)dic;
+
 @end

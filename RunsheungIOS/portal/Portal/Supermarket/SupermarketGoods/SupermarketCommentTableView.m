@@ -10,6 +10,11 @@
 #import "SupermarketCommentCell.h"
 #import "SupermarketCommentData.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "SPCommentModel.h"
+#import "UILabel+WidthAndHeight.h"
+
+#define LabelWidth APPScreenWidth - 15 - 10
+
 
 @interface SupermarketCommentTableView ()<UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource>
 
@@ -47,7 +52,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SupermarketCommentCell *cell = [[SupermarketCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Comment_Cell"];
     cell.commentControllerType = self.commentControllerType;
-    cell.commentData = self.dataArray[indexPath.section];
+    cell.model = self.dataArray[indexPath.section];
+    //cell.commentData = self.dataArray[indexPath.section];
     return cell;
 }
 
@@ -61,13 +67,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    SupermarketCommentData *data = self.dataArray[indexPath.section];
+    SPCommentModel *data = self.dataArray[indexPath.section];
+    CGFloat contentHeight = [UILabel getHeightByWidth:LabelWidth title:data.saleContent font:[UIFont systemFontOfSize:14]];
+    return  contentHeight + 105;
     
-    if (self.commentControllerType == 0) {
-        return data.height;
-    } else {
-        return data.height + 80;
-    }
+//    if (self.commentControllerType == 0) {
+//        return data.height;
+//    } else {
+//        return data.height + 80;
+//    }
     
 }
 

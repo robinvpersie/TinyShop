@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010064E42064F7230068EFB8 /* SPCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 010064E32064F7230068EFB8 /* SPCommentModel.m */; };
 		010999FE205CBAE900FCC6B6 /* AroundMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010999FD205CBAE900FCC6B6 /* AroundMapController.swift */; };
 		01099A01205CFC1200FCC6B6 /* ArtworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01099A00205CFC1200FCC6B6 /* ArtworkView.swift */; };
 		01099A03205CFEA700FCC6B6 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01099A02205CFEA700FCC6B6 /* Artwork.swift */; };
@@ -15,6 +16,7 @@
 		01099A10205D4A9A00FCC6B6 /* ApiGatewayMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01099A0D205D49B700FCC6B6 /* ApiGatewayMac.framework */; };
 		01099A11205D4A9A00FCC6B6 /* ApiGatewayMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01099A0D205D49B700FCC6B6 /* ApiGatewayMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		01099A16205D4BCE00FCC6B6 /* NMapViewerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01099A15205D4BCE00FCC6B6 /* NMapViewerSDK.framework */; };
+		01192C8B2063CE16009A5FD4 /* MarketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 01192C8A2063CE16009A5FD4 /* MarketModel.m */; };
 		011B5234205A0B5400B7E4D7 /* OrderLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */; };
 		011B5236205A0CE500B7E4D7 /* OrderLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5235205A0CE500B7E4D7 /* OrderLocationModel.swift */; };
 		011B523A205A0DD200B7E4D7 /* OrderLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5237205A0DD200B7E4D7 /* OrderLocationCell.swift */; };
@@ -811,6 +813,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		010064E22064F7230068EFB8 /* SPCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPCommentModel.h; sourceTree = "<group>"; };
+		010064E32064F7230068EFB8 /* SPCommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPCommentModel.m; sourceTree = "<group>"; };
 		010999FD205CBAE900FCC6B6 /* AroundMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMapController.swift; sourceTree = "<group>"; };
 		01099A00205CFC1200FCC6B6 /* ArtworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkView.swift; sourceTree = "<group>"; };
 		01099A02205CFEA700FCC6B6 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
@@ -818,6 +822,8 @@
 		01099A06205D0F9100FCC6B6 /* ShopInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopInfoView.swift; sourceTree = "<group>"; };
 		01099A0D205D49B700FCC6B6 /* ApiGatewayMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ApiGatewayMac.framework; sourceTree = "<group>"; };
 		01099A15205D4BCE00FCC6B6 /* NMapViewerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMapViewerSDK.framework; sourceTree = "<group>"; };
+		01192C892063CE16009A5FD4 /* MarketModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarketModel.h; sourceTree = "<group>"; };
+		01192C8A2063CE16009A5FD4 /* MarketModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarketModel.m; sourceTree = "<group>"; };
 		011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationController.swift; sourceTree = "<group>"; };
 		011B5235205A0CE500B7E4D7 /* OrderLocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationModel.swift; sourceTree = "<group>"; };
 		011B5237205A0DD200B7E4D7 /* OrderLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationCell.swift; sourceTree = "<group>"; };
@@ -3253,6 +3259,8 @@
 				1B392E911E28D14E00F70981 /* SupermarketReceiveTimeModel.m */,
 				1B392E571E28D14D00F70981 /* SupermarketAddressModel.h */,
 				1B392E581E28D14D00F70981 /* SupermarketAddressModel.m */,
+				01192C892063CE16009A5FD4 /* MarketModel.h */,
+				01192C8A2063CE16009A5FD4 /* MarketModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -3320,6 +3328,8 @@
 			children = (
 				1B392E741E28D14D00F70981 /* SupermarketMineData.h */,
 				1B392E751E28D14D00F70981 /* SupermarketMineData.m */,
+				010064E22064F7230068EFB8 /* SPCommentModel.h */,
+				010064E32064F7230068EFB8 /* SPCommentModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -6458,6 +6468,7 @@
 				1B80E6B41E4D561F001603B2 /* ModelBtn.m in Sources */,
 				1BDDA0E41EB96AF8005E8409 /* HotelLowCommentViewController.m in Sources */,
 				1B392D631E28D0E500F70981 /* STPickerView.m in Sources */,
+				01192C8B2063CE16009A5FD4 /* MarketModel.m in Sources */,
 				1B1971AD1E20803300E54D95 /* KLBaseViewController.m in Sources */,
 				1B392F491E28D14E00F70981 /* SupermarketReceiveTimeModel.m in Sources */,
 				1BC8768B1E97695400BB38D7 /* HotelSearchChooseLocationView.m in Sources */,
@@ -6668,6 +6679,7 @@
 				1B392D921E28D0E500F70981 /* YYTextAsyncLayer.m in Sources */,
 				26E90ED52007987700E838E8 /* RSPayRep.m in Sources */,
 				1B0CD2EB1E8E0693008AF162 /* MSSCalendarCollectionReusableView.m in Sources */,
+				010064E42064F7230068EFB8 /* SPCommentModel.m in Sources */,
 				1B3293951E4C606500022B1D /* SupermarketChoseSizeView.m in Sources */,
 				62ADFAF51DE3F248005FDE1D /* YCHomeHeaderCell.swift in Sources */,
 				01099A07205D0F9100FCC6B6 /* ShopInfoView.swift in Sources */,
@@ -6944,7 +6956,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = Portal/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7025,7 +7037,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = Portal/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

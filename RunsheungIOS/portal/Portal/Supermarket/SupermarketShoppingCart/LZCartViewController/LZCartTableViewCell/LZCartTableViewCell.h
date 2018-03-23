@@ -25,4 +25,5 @@ typedef void(^LZCellSelectedBlock)(BOOL select);
 - (void)numberAddWithBlock:(LZNumberChangedBlock)block;
 - (void)numberCutWithBlock:(LZNumberChangedBlock)block;
 - (void)cellSelectedWithBlock:(LZCellSelectedBlock)block;
+- (void)configureWithModel: (NewCartModel *)model;
 @end

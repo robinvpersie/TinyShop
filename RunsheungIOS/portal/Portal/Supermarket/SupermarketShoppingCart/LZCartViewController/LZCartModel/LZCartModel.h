@@ -45,3 +45,17 @@
 //-(instancetype)initWithDic:(NSDictionary*)dic;
 
 @end
+
+
+@interface NewCartModel: NSObject
+
+@property (nonatomic, copy) NSString *shopthumnail;
+@property (nonatomic, copy) NSString *customcode;
+@property (nonatomic, copy) NSString *customname;
+@property (nonatomic, copy) NSString *koraddr;
+@property (nonatomic, copy) NSString *distance;
+@property (nonatomic, copy) NSString *score;
+@property (nonatomic, copy) NSString *cnt;
+@property (nonatomic, copy) NSString *salecustomcnt;
+
+@end

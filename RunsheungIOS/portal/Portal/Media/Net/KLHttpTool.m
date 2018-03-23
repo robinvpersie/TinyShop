@@ -304,31 +304,141 @@
         }];
 }
 
+
++(void)getSupermarketUserAddressListWithOffset:(NSString *)offset
+                                       success:(void (^)(id response))success
+                                       failure:(void (^)(NSError *err))failure
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    YCAccountModel *model = [YCAccountModel getAccount];
+    [params setObject:@"kor" forKey:@"lang_type"];
+    [params setObject:model.customCode forKey:@"custom_code"];
+    [params setObject:model.token forKey:@"token"];
+    [params setObject:[NSString stringWithFormat:@"%@", offset] forKey:@"pg"];
+    [params setObject:@"20" forKey:@"pagesize"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
+    
+   // NSString *url = [NSString stringWithFormat:@"%@api/MyInfo/MyinfoAddressList",BaseUrl];
+    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/MyinfoAddressList",MallBaseUrl];
+    
+    [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (success) {
+            [self checkStatusWithResponse:responseObject];
+            success(responseObject);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+
 +(void)getSupermarketUserAddressListWithDivCode:(NSString *)divCode
                                         success:(void (^)(id response))success
                                         failure:(void (^)(NSError *err))failure {
-    NSMutableDictionary *params = @{}.mutableCopy;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     YCAccountModel *model = [YCAccountModel getAccount];
+    [params setObject:@"kor" forKey:@"lang_type"];
+    [params setObject:model.customCode forKey:@"custom_code"];
+    [params setObject:model.token forKey:@"token"];
+    [params setObject:@"" forKey:@"pg"];
+    [params setObject:@"20" forKey:@"pagesize"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
+    
+    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/MyinfoAddressList",BaseUrl];
+    
+    [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (success) {
+            [self checkStatusWithResponse:responseObject];
+            success(responseObject);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+
+    
 //    if (model.token) {
 //        [params setObject:model.token forKey:@"token"];
 //    }
-    
-    [self getToken:^(id token) {
-        [params setObject:token forKey:@"token"];
-        [params setObject:divCode forKey:@"div_code"];
-        NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/GetUserShopAddressOfList",BaseUrl];
-        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-            if (success) {
-                [self checkStatusWithResponse:response];
-                success(response);
-            }
-        } failure:^(NSError *err) {
-            NSLog(@"%@",err);
-        }];
-    } failure:^(NSError *errToken) {
-        
-    }];
+//
+//    [self getToken:^(id token) {
+//        [params setObject:token forKey:@"token"];
+//        [params setObject:divCode forKey:@"div_code"];
+//        NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/GetUserShopAddressOfList",BaseUrl];
+//        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+//            if (success) {
+//                [self checkStatusWithResponse:response];
+//                success(response);
+//            }
+//        } failure:^(NSError *err) {
+//            NSLog(@"%@",err);
+//        }];
+//    } failure:^(NSError *errToken) {
+//
+//    }];
 }
+
+
++(void)superMarketAddNewAddressWithDeliveryName:(NSString *)name
+                                        Address:(NSString *)address
+                                        zipcode:(NSString *)zipcode
+                                        zipName:(NSString *)zipname
+                                      mobilepho:(NSString *)mobilepho
+                                     defaultAdd:(NSString *)defaultAdd
+                                       latitude:(NSString *)latitude
+                                      longitude:(NSString *)longitude
+                                        success:(void (^)(id response))success
+                                        failure:(void (^)(NSError *err))failure
+{
+    YCAccountModel *model = [YCAccountModel getAccount];
+    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/MyInfoAddressAdd", MallBaseUrl];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:@"kor" forKey:@"lang_type"];
+    [parameters setObject:model.customCode forKey:@"custom_code"];
+    [parameters setObject:model.token forKey:@"token"];
+    [parameters setObject:name forKey:@"delivery_name"];
+    [parameters setObject:address forKey:@"to_address"];
+    [parameters setObject:zipcode forKey:@"zip_code"];
+    [parameters setObject:zipname forKey:@"zip_name"];
+    [parameters setObject:mobilepho forKey:@"mobilepho"];
+    [parameters setObject:defaultAdd forKey:@"default_add"];
+    [parameters setObject:latitude forKey:@"latitude"];
+    [parameters setObject:longitude forKey:@"longitude"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPRequestSerializer *requestSerializer = [AFHTTPRequestSerializer serializer];
+    requestSerializer.timeoutInterval = 30;
+    AFHTTPResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = requestSerializer;
+    manager.responseSerializer = responseSerializer;
+    [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+    
+}
+
+
+
+
 
 + (void)supermarketAddNewAddressWithName:(NSString *)name
                                 location:(NSString *)location
@@ -372,6 +482,53 @@
         
     }];
 }
+
+
+
+
+
++(void)supermaketEditAddresswWithRealName:(NSString *)name
+                                 location:(NSString *)location
+                                  address:(NSString *)address
+                                   seqNum:(NSString *)seqNum
+                                mobilepho:(NSString *)mobilepho
+                                  zipCode:(NSString *)zipcode
+                                  zipName:(NSString *)zipname
+                               defaultAdd:(NSString *)defaultAdd
+                                  success:(void (^)(id response))success
+                                  failure:(void (^)(NSError *err))failure
+{
+    YCAccountModel *account = [YCAccountModel getAccount];
+    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/MyinfoAddressEdit", MallBaseUrl];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:@"kor" forKey:@"lang_type"];
+    [parameters setObject:account.customCode forKey:@"custom_code"];
+    [parameters setObject:account.token forKey:@"token"];
+    [parameters setObject:seqNum forKey:@"seq_num"];
+    [parameters setObject:name forKey:@"delivery_name"];
+    [parameters setObject:address forKey:@"to_address"];
+    [parameters setObject:mobilepho forKey:@"mobilepho"];
+    [parameters setObject:zipcode forKey:@"zip_code"];
+    [parameters setObject:zipname forKey:@"zip_name"];
+    [parameters setObject:defaultAdd forKey:@"default_add"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
+    
+    [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+
+
+
 
 //编辑收货地址
 + (void)supermarketEditAddressWithName:(NSString *)name
@@ -444,6 +601,32 @@
     } failure:^(NSError *errToken) {
         
     }];
+}
+
++(void)deleteSuperMarketAddressWithSeqNum:(NSString *)seqNum
+                                  success:(void (^)(id response))success
+                                  failure:(void (^)(NSError *err))failure {
+    YCAccountModel *model = [YCAccountModel getAccount];
+    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/MyInfoAddressDel", MallBaseUrl];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:@"kor" forKey:@"lang_type"];
+    [parameters setObject:model.customCode forKey:@"custom_code"];
+    [parameters setObject:model.token forKey:@"token"];
+    [parameters setObject:seqNum forKey:@"del_seq_no"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
+    
+    [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+    
 }
 
 //删除地址
@@ -600,8 +783,9 @@
 }
 
 + (void)getMyCollectionListWithOffSet:(NSInteger)offset
-                               success:(void (^)(id response))success
-                           failure:(void (^)(NSError *err))failure {
+                              success:(void (^)(id response))success
+                              failure:(void (^)(NSError *err))failure
+{
     NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/FavoritesList",MallBaseUrl];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     YCAccountModel *model = [YCAccountModel getAccount];
@@ -1057,6 +1241,35 @@
         
     }];
 }
+
+
++(void)getMyCommentWithOffSet:(NSInteger)offset
+                      success:(void (^)(id response))success
+                      failure:(void (^)(NSError *err))failure
+{
+    YCAccountModel *account = [YCAccountModel getAccount];
+    NSString *url = [NSString stringWithFormat:@"%@/api/Assess/requestMyInfoAssessList", MallBaseUrl];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:[NSString stringWithFormat:@"%ld", (long)offset] forKey:@"pg"];
+    [parameters setObject:@"kor" forKey:@"lang_type"];
+    [parameters setObject:account.customCode forKey:@"custom_code"];
+    [parameters setObject:@"10" forKey:@"pagesize"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+    
+}
+
 
 //获取我的评价列表
 + (void)getMyCommentListWithPageInde:(NSInteger)pageIndex

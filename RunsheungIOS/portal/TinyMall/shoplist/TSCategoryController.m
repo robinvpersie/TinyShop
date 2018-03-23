@@ -30,28 +30,16 @@
 }
 
 @property (nonatomic,retain)UITableView *tableview;
-
 @property (nonatomic,retain)NSMutableDictionary *allDic;
-
 @property (nonatomic,retain)SingleSegmentView *segmentView1;
-
 @property (nonatomic,retain)SingleSegmentView *segmentView2;
-
 @property (nonatomic,retain)SegmentItem *SegmentItem;
-
 @property (nonatomic,retain)TSItemView *ItemView;
-
 @property (nonatomic,assign)BOOL extend;
-
 @property (nonatomic, strong)ShowLocationView * locationView;
-
 @property (nonatomic, strong)ChoiceHeadView *choiceHeadView;
-
 @property (nonatomic,strong)NSDictionary *responseDit;
-
 @property (nonatomic,retain)NSArray *shoplistData;
-
-
 
 @end
 
@@ -126,7 +114,20 @@
 	YCAccountModel *account = [YCAccountModel getAccount];
 	NSString *latitude = [[NSUserDefaults standardUserDefaults]objectForKey:@"latitude"];
 	NSString *longitude = [[NSUserDefaults standardUserDefaults]objectForKey:@"longtitude"];
-	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:account.customCode withpg:@"1" withtoken:account.token withcustom_lev1:leve1 withcustom_lev2:leve2 withcustom_lev3:leve3 withlatitude:latitude withlongitude:longitude withorder_by:order_by success:^(id response) {
+    if (account == nil ) {
+        return ;
+    }
+	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:account.customCode
+                                                     withpg:@"1"
+                                                  withtoken:account.token
+                                            withcustom_lev1:leve1
+                                            withcustom_lev2:leve2
+                                            withcustom_lev3:leve3
+                                               withlatitude:latitude
+                                              withlongitude:longitude
+                                               withorder_by:order_by
+                                                    success:^(id response)
+     {
 		if ([response[@"status"] intValue] == 1) {
 			[hudloading hideAnimated:YES afterDelay:2];
 			self.responseDit = response;
@@ -300,23 +301,42 @@
 	return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+	if (section == 0 && self.extend ) {
+		return 1;
+	}
 	
 	return self.shoplistData.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//	if (indexPath.section == 0) {
-//		UITableViewCell *cell = [[UITableViewCell alloc]init];
-//		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//
-//		if (self.extend) {
-//			self.ItemView =[[TSItemView alloc]initWithFrame:CGRectMake(10, 10, APPScreenWidth - 20, 130) withData:@[@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店",@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店",@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店"]];
-//			self.ItemView.wjitemdelegate = self;
-//			[cell.contentView addSubview:self.ItemView];
-//
-//		}
-//
-//		return cell;
-//	} else {
+	if (indexPath.section == 0) {
+		UITableViewCell *cell = [[UITableViewCell alloc]init];
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		
+		if (self.extend) {
+			self.ItemView = [[TSItemView alloc]initWithFrame:CGRectMake(10, 10, APPScreenWidth - 20, 130)
+                                                    withData:@[
+                                                               @"宇成国际酒店",
+                                                               @"九龙城国际酒店",
+                                                               @"速8酒店",
+                                                               @"汉庭酒店",
+                                                               @"希尔顿酒店",
+                                                               @"宇成国际酒店",
+                                                               @"九龙城国际酒店",
+                                                               @"速8酒店",
+                                                               @"汉庭酒店",
+                                                               @"希尔顿酒店",
+                                                               @"宇成国际酒店",
+                                                               @"九龙城国际酒店",
+                                                               @"速8酒店",
+                                                               @"汉庭酒店",
+                                                               @"希尔顿酒店"]];
+			self.ItemView.wjitemdelegate = self;
+			[cell.contentView addSubview:self.ItemView];
+			
+		}
+		
+		return cell;
+	} else {
 		ChoiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChoiceTableViewCellID"];
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		NSDictionary *dics = self.shoplistData[indexPath.row];
@@ -401,7 +421,9 @@
 		[[NSUserDefaults standardUserDefaults]synchronize];
 		
 		CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-		[geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+		[geocoder reverseGeocodeLocation:location
+                       completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error)
+         {
 			if (placemarks.count > 0) {
 				NSString *address = placemarks.firstObject.name;
 				self.choiceHeadView.addressName = address;

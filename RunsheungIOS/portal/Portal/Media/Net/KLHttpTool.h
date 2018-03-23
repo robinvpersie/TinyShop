@@ -73,6 +73,11 @@
 + (void)getSupermarketUserAddressListWithDivCode:(NSString *)divCode
                                          success:(void (^)(id response))success
                                          failure:(void (^)(NSError *err))failure;
+
++ (void)getSupermarketUserAddressListWithOffset:(NSString *)offset
+                                        success:(void (^)(id response))success
+                                        failure:(void (^)(NSError *err))failure;
+
 //新增收货地址
 + (void)supermarketAddNewAddressWithName:(NSString *)name
                                 location:(NSString *)location
@@ -84,6 +89,35 @@
                                isDefault:(BOOL)isDefault
                                  success:(void (^)(id response))success
                                  failure:(void (^)(NSError *err))failure;
+
+
+
++(void)superMarketAddNewAddressWithDeliveryName:(NSString *)name
+                                        Address:(NSString *)address
+                                        zipcode:(NSString *)zipcode
+                                        zipName:(NSString *)zipname
+                                      mobilepho:(NSString *)mobilepho
+                                     defaultAdd:(NSString *)defaultAdd
+                                       latitude:(NSString *)latitude
+                                      longitude:(NSString *)longitude
+                                        success:(void (^)(id response))success
+                                        failure:(void (^)(NSError *err))failure;
+
+
+
++(void)supermaketEditAddresswWithRealName:(NSString *)name
+                                 location:(NSString *)location
+                                  address:(NSString *)address
+                                   seqNum:(NSString *)seqNum
+                                mobilepho:(NSString *)mobilepho
+                                  zipCode:(NSString *)zipcode
+                                  zipName:(NSString *)zipname
+                               defaultAdd:(NSString *)defaultAdd
+                                  success:(void (^)(id response))success
+                                  failure:(void (^)(NSError *err))failure;
+
+
+
 
 //编辑收货地址
 + (void)supermarketEditAddressWithName:(NSString *)name
@@ -106,6 +140,12 @@
 + (void)deleteSupermarketAddressWithAddressID:(NSString *)addressID
                                       success:(void (^)(id response))success
                                       failure:(void (^)(NSError *err))failure;
+
+
++(void)deleteSuperMarketAddressWithSeqNum:(NSString *)seqNum
+                                  success:(void (^)(id response))success
+                                  failure:(void (^)(NSError *err))failure;
+
 
 //获取自提站点
 + (void)getSelfPickAddressListsuccess:(void (^)(id response))success
@@ -217,6 +257,10 @@
                         divCode:(NSString *)divCode
                         success:(void (^)(id response))success
                         failure:(void (^)(NSError *err))failure;
+
++(void)getMyCommentWithOffSet:(NSInteger)offset
+                      success:(void (^)(id response))success
+                      failure:(void (^)(NSError *err))failure;
 
 //获取我的评价列表
 + (void)getMyCommentListWithPageInde:(NSInteger)pageIndex

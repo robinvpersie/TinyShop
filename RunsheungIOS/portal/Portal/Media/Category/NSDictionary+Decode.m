@@ -214,6 +214,21 @@
     return data;
 }
 
++ (NewCartModel *)getCartModelWithDic:(NSDictionary *)dic {
+    NewCartModel *model = [[NewCartModel alloc] init];
+    if (dic != nil) {
+        model.shopthumnail = dic[@"shop_thumnail_image"];
+        model.customcode = dic[@"custom_code"];
+        model.customname = dic[@"custom_name"];
+        model.koraddr = dic[@"kor_addr"];
+        model.distance = dic[@"distance"];
+        model.score = dic[@"score"];
+        model.cnt = dic[@"cnt"];
+        model.salecustomcnt = dic[@"sale_custom_cnt"];
+    }
+    return model;
+}
+
 //收藏
 + (LZCartModel *)getLzCartModelWithDic:(NSDictionary *)dic {
     LZCartModel *model = [[LZCartModel alloc] init];
