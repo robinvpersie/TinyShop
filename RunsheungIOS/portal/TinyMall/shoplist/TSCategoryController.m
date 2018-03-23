@@ -19,7 +19,7 @@
 
 
 
-@interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource,WJClickItemsDelegate,SingleSegmentDelegate,SegmentItemDelegate>{
+@interface TSCategoryController ()<UITableViewDelegate, UITableViewDataSource, WJClickItemsDelegate, SingleSegmentDelegate, SegmentItemDelegate>{
 	MBProgressHUD *hudloading;
 	NSString *Level1;
 	NSString *Level2;
