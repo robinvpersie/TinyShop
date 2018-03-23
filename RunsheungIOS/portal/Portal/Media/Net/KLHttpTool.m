@@ -483,6 +483,53 @@
     }];
 }
 
+
+
+
+
++(void)supermaketEditAddresswWithRealName:(NSString *)name
+                                 location:(NSString *)location
+                                  address:(NSString *)address
+                                   seqNum:(NSString *)seqNum
+                                mobilepho:(NSString *)mobilepho
+                                  zipCode:(NSString *)zipcode
+                                  zipName:(NSString *)zipname
+                               defaultAdd:(NSString *)defaultAdd
+                                  success:(void (^)(id response))success
+                                  failure:(void (^)(NSError *err))failure
+{
+    YCAccountModel *account = [YCAccountModel getAccount];
+    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/MyinfoAddressEdit", MallBaseUrl];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:@"kor" forKey:@"lang_type"];
+    [parameters setObject:account.customCode forKey:@"custom_code"];
+    [parameters setObject:account.token forKey:@"token"];
+    [parameters setObject:seqNum forKey:@"seq_num"];
+    [parameters setObject:name forKey:@"delivery_name"];
+    [parameters setObject:address forKey:@"to_address"];
+    [parameters setObject:mobilepho forKey:@"mobilepho"];
+    [parameters setObject:zipcode forKey:@"zip_code"];
+    [parameters setObject:zipname forKey:@"zip_name"];
+    [parameters setObject:defaultAdd forKey:@"default_add"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
+    
+    [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+
+
+
+
 //编辑收货地址
 + (void)supermarketEditAddressWithName:(NSString *)name
                               location:(NSString *)location
@@ -736,8 +783,9 @@
 }
 
 + (void)getMyCollectionListWithOffSet:(NSInteger)offset
-                               success:(void (^)(id response))success
-                           failure:(void (^)(NSError *err))failure {
+                              success:(void (^)(id response))success
+                              failure:(void (^)(NSError *err))failure
+{
     NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/FavoritesList",MallBaseUrl];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     YCAccountModel *model = [YCAccountModel getAccount];
@@ -1186,6 +1234,35 @@
         
     }];
 }
+
+
++(void)getMyCommentWithOffSet:(NSInteger)offset
+                      success:(void (^)(id response))success
+                      failure:(void (^)(NSError *err))failure
+{
+    YCAccountModel *account = [YCAccountModel getAccount];
+    NSString *url = [NSString stringWithFormat:@"%@/api/Assess/requestMyInfoAssessList", MallBaseUrl];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:[NSString stringWithFormat:@"%ld", (long)offset] forKey:@"pg"];
+    [parameters setObject:@"kor" forKey:@"lang_type"];
+    [parameters setObject:account.customCode forKey:@"custom_code"];
+    [parameters setObject:@"10" forKey:@"pagesize"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+    
+}
+
 
 //获取我的评价列表
 + (void)getMyCommentListWithPageInde:(NSInteger)pageIndex

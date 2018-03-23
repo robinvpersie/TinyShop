@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010064E42064F7230068EFB8 /* SPCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 010064E32064F7230068EFB8 /* SPCommentModel.m */; };
 		010999FE205CBAE900FCC6B6 /* AroundMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010999FD205CBAE900FCC6B6 /* AroundMapController.swift */; };
 		01099A01205CFC1200FCC6B6 /* ArtworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01099A00205CFC1200FCC6B6 /* ArtworkView.swift */; };
 		01099A03205CFEA700FCC6B6 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01099A02205CFEA700FCC6B6 /* Artwork.swift */; };
@@ -812,6 +813,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		010064E22064F7230068EFB8 /* SPCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPCommentModel.h; sourceTree = "<group>"; };
+		010064E32064F7230068EFB8 /* SPCommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPCommentModel.m; sourceTree = "<group>"; };
 		010999FD205CBAE900FCC6B6 /* AroundMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMapController.swift; sourceTree = "<group>"; };
 		01099A00205CFC1200FCC6B6 /* ArtworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkView.swift; sourceTree = "<group>"; };
 		01099A02205CFEA700FCC6B6 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
@@ -3325,6 +3328,8 @@
 			children = (
 				1B392E741E28D14D00F70981 /* SupermarketMineData.h */,
 				1B392E751E28D14D00F70981 /* SupermarketMineData.m */,
+				010064E22064F7230068EFB8 /* SPCommentModel.h */,
+				010064E32064F7230068EFB8 /* SPCommentModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -6674,6 +6679,7 @@
 				1B392D921E28D0E500F70981 /* YYTextAsyncLayer.m in Sources */,
 				26E90ED52007987700E838E8 /* RSPayRep.m in Sources */,
 				1B0CD2EB1E8E0693008AF162 /* MSSCalendarCollectionReusableView.m in Sources */,
+				010064E42064F7230068EFB8 /* SPCommentModel.m in Sources */,
 				1B3293951E4C606500022B1D /* SupermarketChoseSizeView.m in Sources */,
 				62ADFAF51DE3F248005FDE1D /* YCHomeHeaderCell.swift in Sources */,
 				01099A07205D0F9100FCC6B6 /* ShopInfoView.swift in Sources */,

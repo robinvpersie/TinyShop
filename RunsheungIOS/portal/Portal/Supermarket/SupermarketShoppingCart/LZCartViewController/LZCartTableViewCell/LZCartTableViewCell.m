@@ -12,6 +12,8 @@
 #import "LZConfigFile.h"
 #import "LZCartModel.h"
 #import "UIImageView+ImageCache.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
 
 @interface LZCartTableViewCell ()
 {
@@ -88,8 +90,16 @@
     } else {
         self.isEditing = NO;
     }
-
 }
+
+
+- (void)configureWithModel: (NewCartModel *)model {
+    [self.lzImageView sd_setImageWithURL:[NSURL URLWithString:model.shopthumnail]];
+    self.numberLabel.text = model.salecustomcnt;
+    self.dateLabel.text = model.distance;
+    self.sizeLabel.text = model.score;
+}
+
 
 - (void)numberAddWithBlock:(LZNumberChangedBlock)block {
     numberAddBlock = block;

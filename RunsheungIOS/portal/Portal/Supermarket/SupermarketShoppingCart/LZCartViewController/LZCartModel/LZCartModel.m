@@ -29,3 +29,7 @@
 
 
 @end
+
+@implementation NewCartModel
+
+@end

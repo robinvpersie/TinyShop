@@ -11,6 +11,7 @@
 #import "MJRefresh.h"
 #import "SupermarketCommentData.h"
 #import "Masonry.h"
+#import "SPCommentModel.h"
 
 @interface SupermarketMyCommentController ()
 
@@ -29,11 +30,15 @@
     self.title = NSLocalizedString(@"SMMineMyComment", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.dataArr = [NSMutableArray array];
-    self.pageIndex = 1;
+  
     [self createView];
     [self requetDaata];
     // Do any additional setup after loading the view.
+}
+
+-(void)commonInit {
+    self.dataArr = [NSMutableArray array];
+    self.pageIndex = 1;
 }
 
 - (void)createView {
@@ -59,22 +64,38 @@
 
 
 - (void)requetDaata {
-    [KLHttpTool getMyCommentListWithPageInde:_pageIndex success:^(id response) {
-        NSNumber *status = response[@"status"];
-        if (status.integerValue == 1) {
-            NSArray *data = response[@"data"];
-            if (data.count > 0) {
-                for (NSDictionary *dic in data) {
-                    SupermarketCommentData *data = [NSDictionary getCommentDataWithDic:dic];
-                    [_dataArr addObject:data];
-                }
-                 [_myCommentTableView.mj_footer endRefreshing];
-                _myCommentTableView.dataArray = _dataArr;
+    [KLHttpTool getMyCommentWithOffSet:self.pageIndex success:^(id response) {
+        NSString *status = response[@"status"];
+        if ([status isEqualToString:@"1"]) {
+            NSArray *data = response[@"MyinfoAssesses"];
+            for (NSDictionary *dic in data) {
+                SPCommentModel *model = [[SPCommentModel alloc]initWithDic:dic];
+                [self.dataArr addObject:model];
             }
+            [_myCommentTableView.mj_footer endRefreshing];
+            _myCommentTableView.dataArray = _dataArr;
         }
+        
     } failure:^(NSError *err) {
         
     }];
+    
+//    [KLHttpTool getMyCommentListWithPageInde:_pageIndex success:^(id response) {
+//        NSNumber *status = response[@"status"];
+//        if (status.integerValue == 1) {
+//            NSArray *data = response[@"data"];
+//            if (data.count > 0) {
+//                for (NSDictionary *dic in data) {
+//                    SupermarketCommentData *data = [NSDictionary getCommentDataWithDic:dic];
+//                    [_dataArr addObject:data];
+//                }
+//                 [_myCommentTableView.mj_footer endRefreshing];
+//                _myCommentTableView.dataArray = _dataArr;
+//            }
+//        }
+//    } failure:^(NSError *err) {
+//
+//    }];
 }
 
 

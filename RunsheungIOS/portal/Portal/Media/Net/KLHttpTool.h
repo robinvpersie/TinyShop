@@ -104,6 +104,21 @@
                                         failure:(void (^)(NSError *err))failure;
 
 
+
++(void)supermaketEditAddresswWithRealName:(NSString *)name
+                                 location:(NSString *)location
+                                  address:(NSString *)address
+                                   seqNum:(NSString *)seqNum
+                                mobilepho:(NSString *)mobilepho
+                                  zipCode:(NSString *)zipcode
+                                  zipName:(NSString *)zipname
+                               defaultAdd:(NSString *)defaultAdd
+                                  success:(void (^)(id response))success
+                                  failure:(void (^)(NSError *err))failure;
+
+
+
+
 //编辑收货地址
 + (void)supermarketEditAddressWithName:(NSString *)name
                               location:(NSString *)location
@@ -242,6 +257,10 @@
                         divCode:(NSString *)divCode
                         success:(void (^)(id response))success
                         failure:(void (^)(NSError *err))failure;
+
++(void)getMyCommentWithOffSet:(NSInteger)offset
+                      success:(void (^)(id response))success
+                      failure:(void (^)(NSError *err))failure;
 
 //获取我的评价列表
 + (void)getMyCommentListWithPageInde:(NSInteger)pageIndex

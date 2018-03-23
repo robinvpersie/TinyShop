@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "SupermarketCommentData.h"
 #import "SupermarketCommentTableView.h"
+#import "SPCommentModel.h"
 
 @interface SupermarketCommentCell : UITableViewCell
 
 @property(nonatomic, strong) SupermarketCommentData *commentData;
+@property(nonatomic, strong) SPCommentModel *model;
 @property(nonatomic, assign)CommentControllerType commentControllerType;
 
 @end

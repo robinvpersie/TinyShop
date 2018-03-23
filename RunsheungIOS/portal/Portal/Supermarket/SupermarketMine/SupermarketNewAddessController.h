@@ -8,11 +8,13 @@
 
 #import "SupermarketBaseViewController.h"
 #import "SupermarketAddressModel.h"
+#import "MarketModel.h"
 
 @interface SupermarketNewAddessController : SupermarketBaseViewController
 
-@property(nonatomic, strong) SupermarketAddressModel *addressModel;
+//@property(nonatomic, strong) SupermarketAddressModel *addressModel;
 
+@property(nonatomic, strong) MarketModel *addressModel;
 @property(nonatomic, assign) BOOL isMyAddress;
 
 @end

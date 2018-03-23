@@ -218,7 +218,7 @@
 	return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-	if (section == 0&&self.extend ) {
+	if (section == 0 && self.extend ) {
 		return 1;
 	}
 	
@@ -230,7 +230,23 @@
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 		if (self.extend) {
-			self.ItemView =[[TSItemView alloc]initWithFrame:CGRectMake(10, 10, APPScreenWidth - 20, 130) withData:@[@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店",@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店",@"宇成国际酒店",@"九龙城国际酒店",@"速8酒店",@"汉庭酒店",@"希尔顿酒店"]];
+			self.ItemView = [[TSItemView alloc]initWithFrame:CGRectMake(10, 10, APPScreenWidth - 20, 130)
+                                                    withData:@[
+                                                               @"宇成国际酒店",
+                                                               @"九龙城国际酒店",
+                                                               @"速8酒店",
+                                                               @"汉庭酒店",
+                                                               @"希尔顿酒店",
+                                                               @"宇成国际酒店",
+                                                               @"九龙城国际酒店",
+                                                               @"速8酒店",
+                                                               @"汉庭酒店",
+                                                               @"希尔顿酒店",
+                                                               @"宇成国际酒店",
+                                                               @"九龙城国际酒店",
+                                                               @"速8酒店",
+                                                               @"汉庭酒店",
+                                                               @"希尔顿酒店"]];
 			self.ItemView.wjitemdelegate = self;
 			[cell.contentView addSubview:self.ItemView];
 			
@@ -339,7 +355,9 @@
         
 		
 		CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-		[geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+		[geocoder reverseGeocodeLocation:location
+                       completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error)
+         {
 			if (placemarks.count > 0) {
 				NSString *address = placemarks.firstObject.name;
 				self.choiceHeadView.addressName = address;
