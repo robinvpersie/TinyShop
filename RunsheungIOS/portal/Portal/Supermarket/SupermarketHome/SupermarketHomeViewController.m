@@ -160,6 +160,7 @@
 - (void)initNavigation {
 	
 	self.loveBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 16, 6)];
+	
 	[self.loveBtn setImage:[UIImage imageNamed:@"icon-_collection_s"] forState:UIControlStateSelected];
 	[self.loveBtn setImage:[UIImage imageNamed:@"icon-_collection_n"] forState:UIControlStateNormal];
 	[self.loveBtn addTarget:self action:@selector(LoveAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -200,7 +201,7 @@
 
 - (void)initView {
     
-    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, self.view.frame.size.height - 64)];
+    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, self.view.frame.size.height - 114)];
     _mainScrollView.contentSize = CGSizeMake(APPScreenWidth, APPScreenHeight*5);
     _mainScrollView.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
     [self.view addSubview:_mainScrollView];
@@ -225,14 +226,24 @@
 		self.tsDetailedView = [[TSShopDetailedCollectionView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tinyShopDetailView.frame), SCREEN_WIDTH, 0) collectionViewLayout:layout];
 		self.tsDetailedView.showsVerticalScrollIndicator = NO;
 		self.tsDetailedView.scrollEnabled = NO;
-		
+		self.tsDetailedView.shopDic = self.dic;
 		[self.view addSubview:self.tsDetailedView];
 		[_mainScrollView addSubview:self.tsDetailedView];
 		_mainScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, CGRectGetMaxY(self.tsDetailedView.frame));
 		
 	}
 	
-
+	//添加打电话的按钮
+	UIView *callview = [[UIView alloc]initWithFrame:CGRectMake(0, APPScreenHeight - 114, APPScreenWidth, 50)];
+	callview.backgroundColor = RGB(0,128, 48);
+	[self.view addSubview:callview];
+	
+	
+	UIButton *callPhoneBtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth/2 - 50, 0,100, 50)];
+	[callPhoneBtn setBackgroundColor:RGB(0,128, 48)];
+	[callPhoneBtn addTarget:self action:@selector(callPhoneBtn:) forControlEvents:UIControlEventTouchUpInside];
+	[callPhoneBtn setImage:[UIImage imageNamed:@"icon_call_order"] forState:UIControlStateNormal];
+	[callview addSubview:callPhoneBtn];
 }
 
 - (void)requesTinyShopDetailData{
@@ -251,6 +262,11 @@
 			
 			self.mainScrollView.contentSize = CGSizeMake(APPScreenWidth,CGRectGetMaxY(self.tsDetailedView.frame));
 			
+			if ([self.responseDic[@"favorites"] isEqualToString:@"False"]) {
+				self.loveBtn.selected = NO;
+			}else{
+				self.loveBtn.selected = YES;
+			}
 			
 			_bannerDataArray = @[].mutableCopy;
 			[_bannerDataArray addObject:self.responseDic[@"shop_thumnail_image"]];
@@ -655,6 +671,11 @@
 		
 
 	}
+}
+
+- (void)callPhoneBtn:(UIButton*)sender{
+	NSURL *url = [NSURL URLWithString:@"telprompt://13142252288"];
+	[[UIApplication sharedApplication] openURL:url];
 }
 
 - (void)LoveAction:(UIButton*)sender{

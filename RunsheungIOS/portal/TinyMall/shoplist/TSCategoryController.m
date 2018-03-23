@@ -58,6 +58,15 @@
 
 - (void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
+	BOOL islogIn = [YCAccountModel islogin];
+	if (!islogIn) {
+		
+		MemberEnrollController *loginVC = [[MemberEnrollController alloc] init];
+		UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
+		[self presentViewController:nav animated:YES completion:nil];
+		
+	}
+
 	if (self.leves.count) {
 	
 		[self setNavi];

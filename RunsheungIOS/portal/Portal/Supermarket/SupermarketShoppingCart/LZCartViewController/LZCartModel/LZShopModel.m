@@ -16,14 +16,14 @@
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
         for (NSDictionary *dic in array) {
             LZCartModel *model = [[LZCartModel alloc]init];
-            model.divCode = dic[@"div_code"];
-            model.divName = dic[@"div_name"];
+//            model.divCode = dic[@"div_code"];
+//            model.divName = dic[@"div_name"];
             model.nameStr = dic[@"item_name"];
-            model.image_url = dic[@"image_url"];
+            model.image_url = dic[@"item_img_url"];
             model.item_code = dic[@"item_code"];
-            model.price = dic[@"item_price"];
-            model.number = ((NSNumber *)dic[@"item_quantity"]).integerValue;
-            model.stock_unit = dic[@"stock_unit"];
+            model.price = dic[@"item_p"];
+            model.number = ((NSNumber *)dic[@"sale_q"]).integerValue;
+//            model.stock_unit = dic[@"stock_unit"];
             [dataArray addObject:model];
         }
         

@@ -249,9 +249,9 @@
     if (data.count > 0) {
         for (NSDictionary *shopDic in data) {
             LZShopModel *shopModel = [[LZShopModel alloc] init];
-            shopModel.shopID = shopDic[@"div_code"];
-            shopModel.shopName = shopDic[@"div_name"];
-            [shopModel configGoodsArrayWithArray:shopDic[@"items"]];
+            shopModel.shopID = @"10088";
+            shopModel.shopName =@"shopName";
+            [shopModel configGoodsArrayWithArray:data];
             [shops addObject:shopModel];
         }
     }

@@ -232,51 +232,52 @@
     if (self.item_code == nil) {
         self.item_code = @"6901285991271";
     }
+	[KLHttpTool TinyRequestGetKFMEGoodsDetailUrl:@"Product/requestGetKFMEGoodsDetail" WithSaleCustomCode:self.shopDic[@"custom_code"] WithItemCode:self.item_code success:^(id response) {
+		[MBProgressHUD hideHUDForView:self.view animated:YES];
+		NSNumber *status = response[@"status"];
+		if (status.integerValue == 1) {
+			NSArray *productArray = response[@"data"];
+			NSDictionary *productDic = productArray.firstObject;
+			goods = [NSDictionary getGoodsMsgDataWithDic:productDic];
+			
+			NSArray *attachOptionList = productDic[@"attachOptionList"];
+			if (attachOptionList.count > 0) {
+				for (NSDictionary *option in attachOptionList) {
+					GoodsOptionModel *optionModel = [NSDictionary getGoodsOptionModelWithDic:option];
+					[_mutiChoseArr addObject:optionModel];
+				}
+			}
+			NSArray *justOptionList = productDic[@"justOptionList"];
+			if (justOptionList.count > 0) {
+				for (NSDictionary *option in justOptionList) {
+					GoodsOptionModel *optionModel = [NSDictionary getGoodsOptionModelWithDic:option];
+					[_singleChooseArr addObject:optionModel];
+				}
+			}
+			[self reloaUI];
+		} else {
+			NSString *msg = response[@"message"];
+			
+			MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+			hud.label.text = msg;
+			
+			// 再设置模式
+			hud.mode = MBProgressHUDModeCustomView;
+			
+			// 隐藏时候从父控件中移除
+			hud.removeFromSuperViewOnHide = YES;
+			
+			// 1秒之后再消失
+			[hud hideAnimated:YES afterDelay:1.5];
+			
+			[self performSelector:@selector(popController) withObject:nil afterDelay:1.5];
+			
+		}
+		
+	} failure:^(NSError *err) {
+		
+	}];
     
-    [KLHttpTool getSupermarketGoodsMsgWithItemCode:self.item_code shopCode:self.divCode salerCode:@"yc01" success:^(id response) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        NSNumber *status = response[@"status"];
-        if (status.integerValue == 1) {
-            goods = [NSDictionary getGoodsMsgDataWithDic:response[@"data"]];
-            
-            NSDictionary *data = response[@"data"];  
-            NSArray *attachOptionList = data[@"attachOptionList"];
-            if (attachOptionList.count > 0) {
-                for (NSDictionary *option in attachOptionList) {
-                    GoodsOptionModel *optionModel = [NSDictionary getGoodsOptionModelWithDic:option];
-                    [_mutiChoseArr addObject:optionModel];
-                }
-            }
-            NSArray *justOptionList = data[@"justOptionList"];
-            if (justOptionList.count > 0) {
-                for (NSDictionary *option in justOptionList) {
-                    GoodsOptionModel *optionModel = [NSDictionary getGoodsOptionModelWithDic:option];
-                    [_singleChooseArr addObject:optionModel];
-                }
-            }
-            [self reloaUI];
-        } else {
-            NSString *msg = response[@"message"];
-            
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            hud.label.text = msg;
-
-            // 再设置模式
-            hud.mode = MBProgressHUDModeCustomView;
-            
-            // 隐藏时候从父控件中移除
-            hud.removeFromSuperViewOnHide = YES;
-            
-            // 1秒之后再消失
-            [hud hideAnimated:YES afterDelay:1.5];
-            
-            [self performSelector:@selector(popController) withObject:nil afterDelay:1.5];
-            
-        }
-
-    } failure:^(NSError *err) {
-        
-    }];
 }
 
 - (void)reloaUI {

@@ -49,9 +49,10 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 	
-	SupermarketHomeMostFreshData *data = _dataArray[indexPath.item];
+	NSDictionary *data = _dataArray[indexPath.item];
 	GoodsDetailController *vc = [GoodsDetailController new];
-	vc.item_code = data.item_code;
+	vc.item_code = data[@"item_code"];
+	vc.shopDic = self.shopDic;
 	[self.viewController.navigationController pushViewController:vc animated:YES];
 	
 }
