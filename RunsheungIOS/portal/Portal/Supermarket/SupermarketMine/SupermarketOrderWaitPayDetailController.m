@@ -63,7 +63,8 @@
 }
 
 - (void)paySuccess {
-    // 快速显示一个提示信息
+	
+	// 快速显示一个提示信息
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:KEYWINDOW animated:YES];
     hud.label.text = NSLocalizedString(@"PaySucMsg", nil);
     hud.label.textColor = [UIColor whiteColor];
@@ -79,11 +80,14 @@
     [hud hideAnimated:YES afterDelay:2.0];
     
     [self performSelector:@selector(popController) withObject:nil afterDelay:2.0f];
+
 }
 
 
 - (void)popController {
-    [self.navigationController popViewControllerAnimated:YES];
+	
+	[self.navigationController popViewControllerAnimated:YES];
+	
     [[NSNotificationCenter defaultCenter] postNotificationName:ReceiveGoodsSucNotification object:nil];//刷新数据
 }
 

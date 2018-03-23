@@ -259,7 +259,6 @@
     price = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(sumMoney.frame)+10, 0, 100, BottomHeight)];
     price.font = [UIFont systemFontOfSize:15];
     price.textColor = [UIColor redColor];
-//    price.text = @"¥45";
    
     
     UIButton *submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -300,8 +299,8 @@
         [attchments addObject:attch];
     }
     [parmas setObject:attchments forKey:@"attachment"];
-    [MBProgressHUD showWithView:KEYWINDOW];
-    
+//    [MBProgressHUD showWithView:KEYWINDOW];//暂时屏蔽
+	
     if (self.controllerType == ControllerTypeDepartmentStores) {
 
         [KLHttpTool supermarketCheckBeforeCreateOrder:parmas isShoppingCart:false appType:8 success:^(id response) {

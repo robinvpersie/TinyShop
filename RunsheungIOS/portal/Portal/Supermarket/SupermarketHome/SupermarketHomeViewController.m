@@ -109,6 +109,14 @@
     
     UIButton *locationName;
     SupermarketClassfictionView *classfictionView;
+	
+	UIButton *callPhoneBtn;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+	[super viewWillAppear:animated];
+	
+	
 }
 
 - (void)viewDidLoad {
@@ -169,12 +177,7 @@
 	
     UIBarButtonItem *dismiss = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_back"] style:UIBarButtonItemStylePlain target:self action:@selector(dismis)];
     dismiss.tintColor = [UIColor darkcolor];
-    
-//    UIBarButtonItem *location = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(goLocation)];
-//    location.imageInsets = UIEdgeInsetsMake(0,-30,0,0);
-//    location.tintColor = [UIColor darkcolor];
 	
-
     locationName = [UIButton createButtonWithFrame:CGRectMake(0, 0, 60, 20) title:self.divName titleColor:[UIColor darkcolor] titleFont:[UIFont systemFontOfSize:12] backgroundColor:[UIColor clearColor]];
     locationName.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [locationName addTarget:self action:@selector(goLocation) forControlEvents:UIControlEventTouchUpInside];
@@ -234,16 +237,25 @@
 	}
 	
 	//添加打电话的按钮
-	UIView *callview = [[UIView alloc]initWithFrame:CGRectMake(0, APPScreenHeight - 114, APPScreenWidth, 50)];
-	callview.backgroundColor = RGB(0,128, 48);
-	[self.view addSubview:callview];
-	
-	
-	UIButton *callPhoneBtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth/2 - 50, 0,100, 50)];
-	[callPhoneBtn setBackgroundColor:RGB(0,128, 48)];
-	[callPhoneBtn addTarget:self action:@selector(callPhoneBtn:) forControlEvents:UIControlEventTouchUpInside];
-	[callPhoneBtn setImage:[UIImage imageNamed:@"icon_call_order"] forState:UIControlStateNormal];
-	[callview addSubview:callPhoneBtn];
+	if (callPhoneBtn == nil) {
+		
+		callPhoneBtn = [[UIButton alloc]initWithFrame:CGRectZero];
+		[callPhoneBtn setBackgroundColor:RGB(0,128, 48)];
+		[callPhoneBtn addTarget:self action:@selector(callPhoneBtn:) forControlEvents:UIControlEventTouchUpInside];
+		[callPhoneBtn setImage:[UIImage imageNamed:@"icon_call_order"] forState:UIControlStateNormal];
+		[self.view addSubview:callPhoneBtn];
+		[callPhoneBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.leading.trailing.bottom.equalTo(self.view);
+			make.height.equalTo(@50);
+		}];
+		[_mainScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.left.equalTo(self.view).with.offset(0);
+			make.top.equalTo(self.view).with.offset(0);
+			make.right.equalTo(self.view).with.offset(0);
+			make.bottom.equalTo(callPhoneBtn.mas_top);
+		}];
+
+	}
 }
 
 - (void)requesTinyShopDetailData{

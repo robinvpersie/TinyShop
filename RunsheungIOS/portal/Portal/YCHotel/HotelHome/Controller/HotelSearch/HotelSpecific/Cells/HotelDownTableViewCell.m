@@ -17,6 +17,7 @@
     // Initialization code
     [self setUI];
 }
+
 - (void)setUI{
     
     self.specificEnjoy.layer.borderColor = PurpleColor.CGColor;
