@@ -158,7 +158,7 @@
 - (void)createTableView{
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
+//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
     self.tableView.delegate = self;
     self.tableView.dataSource  = self;
     self.tableView.tableFooterView = [[UIView alloc] init];
@@ -216,7 +216,7 @@
         CGFloat y = CGRectGetMaxY(safeArea);
         self.bottomBtn.frame = CGRectMake(15, y - 45 , self.view.frame.size.width - 30, 35);
     } else {
-        
+        self.bottomBtn.frame = CGRectMake(15, self.view.frame.size.height - self.bottomLayoutGuide.length - 45, self.view.frame.size.width - 30, 35);
     }
 }
 
@@ -521,20 +521,35 @@
         if ([view isKindOfClass:[UITableViewCell class]]) {
             UITableViewCell *cell = (UITableViewCell *)view;
             NSIndexPath *indexPath = [_tableView indexPathForCell:cell];
-            SupermarketAddressModel *model = _data[indexPath.section];
-            
-            [KLHttpTool deleteSupermarketAddressWithAddressID:model.addressID.stringValue success:^(id response) {
-                NSNumber *status = response[@"status"];
-                if (status.integerValue == 1) {
-                    if ([_data containsObject:model]) {
-                        [_data removeObject:model];
-                    }
-                    [_tableView reloadData];
-                    [MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:response[@"message"]];
-                }
-            } failure:^(NSError *err) {
+            MarketModel *model = self.data[indexPath.section];
+            [self showLoading];
+            [KLHttpTool deleteSuperMarketAddressWithSeqNum:model.seqnum success:^(id response) {
+                [self hideLoading];
+                NSString *status = response[@"status"];
+                if ([status isEqualToString:@"1"]) {
+                    if ([self.data containsObject:model]) {
+                          [self.data removeObject:model];
+                        }
+                        [self.tableView reloadData];
+                   }
+                } failure:^(NSError *err) {
                 
             }];
+
+//            SupermarketAddressModel *model = _data[indexPath.section];
+//
+//            [KLHttpTool deleteSupermarketAddressWithAddressID:model.addressID.stringValue success:^(id response) {
+//                NSNumber *status = response[@"status"];
+//                if (status.integerValue == 1) {
+//                    if ([_data containsObject:model]) {
+//                        [_data removeObject:model];
+//                    }
+//                    [_tableView reloadData];
+//                    [MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:response[@"message"]];
+//                }
+//            } failure:^(NSError *err) {
+//
+//            }];
         }
     }];
     

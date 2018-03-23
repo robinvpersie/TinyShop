@@ -90,6 +90,20 @@
                                  success:(void (^)(id response))success
                                  failure:(void (^)(NSError *err))failure;
 
+
+
++(void)superMarketAddNewAddressWithDeliveryName:(NSString *)name
+                                        Address:(NSString *)address
+                                        zipcode:(NSString *)zipcode
+                                        zipName:(NSString *)zipname
+                                      mobilepho:(NSString *)mobilepho
+                                     defaultAdd:(NSString *)defaultAdd
+                                       latitude:(NSString *)latitude
+                                      longitude:(NSString *)longitude
+                                        success:(void (^)(id response))success
+                                        failure:(void (^)(NSError *err))failure;
+
+
 //编辑收货地址
 + (void)supermarketEditAddressWithName:(NSString *)name
                               location:(NSString *)location
@@ -111,6 +125,12 @@
 + (void)deleteSupermarketAddressWithAddressID:(NSString *)addressID
                                       success:(void (^)(id response))success
                                       failure:(void (^)(NSError *err))failure;
+
+
++(void)deleteSuperMarketAddressWithSeqNum:(NSString *)seqNum
+                                  success:(void (^)(id response))success
+                                  failure:(void (^)(NSError *err))failure;
+
 
 //获取自提站点
 + (void)getSelfPickAddressListsuccess:(void (^)(id response))success

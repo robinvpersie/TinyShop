@@ -393,6 +393,53 @@
 //    }];
 }
 
+
++(void)superMarketAddNewAddressWithDeliveryName:(NSString *)name
+                                        Address:(NSString *)address
+                                        zipcode:(NSString *)zipcode
+                                        zipName:(NSString *)zipname
+                                      mobilepho:(NSString *)mobilepho
+                                     defaultAdd:(NSString *)defaultAdd
+                                       latitude:(NSString *)latitude
+                                      longitude:(NSString *)longitude
+                                        success:(void (^)(id response))success
+                                        failure:(void (^)(NSError *err))failure
+{
+    YCAccountModel *model = [YCAccountModel getAccount];
+    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/MyInfoAddressAdd", MallBaseUrl];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:@"kor" forKey:@"lang_type"];
+    [parameters setObject:model.customCode forKey:@"custom_code"];
+    [parameters setObject:model.token forKey:@"token"];
+    [parameters setObject:name forKey:@"delivery_name"];
+    [parameters setObject:address forKey:@"to_address"];
+    [parameters setObject:zipcode forKey:@"zip_code"];
+    [parameters setObject:zipname forKey:@"zip_name"];
+    [parameters setObject:mobilepho forKey:@"mobilepho"];
+    [parameters setObject:defaultAdd forKey:@"default_add"];
+    [parameters setObject:latitude forKey:@"latitude"];
+    [parameters setObject:longitude forKey:@"longitude"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPRequestSerializer *requestSerializer = [AFHTTPRequestSerializer serializer];
+    requestSerializer.timeoutInterval = 30;
+    AFHTTPResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = requestSerializer;
+    manager.responseSerializer = responseSerializer;
+    [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+    
+}
+
+
+
+
+
 + (void)supermarketAddNewAddressWithName:(NSString *)name
                                 location:(NSString *)location
                                  address:(NSString *)address
@@ -507,6 +554,32 @@
     } failure:^(NSError *errToken) {
         
     }];
+}
+
++(void)deleteSuperMarketAddressWithSeqNum:(NSString *)seqNum
+                                  success:(void (^)(id response))success
+                                  failure:(void (^)(NSError *err))failure {
+    YCAccountModel *model = [YCAccountModel getAccount];
+    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/MyInfoAddressDel", MallBaseUrl];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:@"kor" forKey:@"lang_type"];
+    [parameters setObject:model.customCode forKey:@"custom_code"];
+    [parameters setObject:model.token forKey:@"token"];
+    [parameters setObject:seqNum forKey:@"del_seq_no"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
+    
+    [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+    
 }
 
 //删除地址
