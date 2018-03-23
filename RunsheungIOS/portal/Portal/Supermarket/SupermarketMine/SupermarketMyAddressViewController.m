@@ -13,10 +13,15 @@
 #import "MJRefresh.h"
 #import "UILabel+CreateLabel.h"
 #import "UILabel+WidthAndHeight.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "Masonry.h"
+#import "MarketModel.h"
 
-@interface SupermarketMyAddressViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface SupermarketMyAddressViewController ()<UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource>
 
 @property (nonatomic, strong)MBProgressHUD *loadHud;//加载地址数据是的提示
+@property (nonatomic, assign)NSInteger offset;
+@property (nonatomic, strong)UIButton *bottomBtn;
 
 @end
 
@@ -26,7 +31,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = RGB(239, 239, 244);
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestData) name:RefreshMyAddressListNotification object:nil];
-    
+    [self commonInit];
 //    [self createData];
     
     [self setNavi];
@@ -35,6 +40,11 @@
     
     [self requestData];
     // Do any additional setup after loading the view.
+}
+
+-(void)commonInit {
+    self.offset = 1;
+    
 }
 
 //- (void)createData {
@@ -55,49 +65,73 @@
 //}
 
 - (void)requestData {
-    if (_loadHud == nil) {
-        _loadHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        _loadHud.tintColor = [UIColor lightGrayColor];
-    }
-    
-    if (_isCreateOrder == YES) {
-        [KLHttpTool getSupermarketUserAddressListWithDivCode:@"2" success:^(id response) {
-            NSLog(@"%@",response);
-            NSMutableArray *array = @[].mutableCopy;
-            NSNumber *status = response[@"status"];
-            if (status.integerValue == 1) {
-                [_loadHud hideAnimated:YES];
-                NSArray *data = response[@"data"];
-                for (NSDictionary *dic in data) {
-                    SupermarketAddressModel *model = [NSDictionary getAddressDataWithDic:dic];
-                    [array addObject:model];
-                }
-                self.data = array;
-                [self.tableView.mj_header endRefreshing];
-            }
-        } failure:^(NSError *err) {
-            
-        }];
-
-    } else {
-        [KLHttpTool getSupermarketUserAddressListWithDivCode:@"0" success:^(id response) {
+    [self showLoading];
+    __weak typeof(self) weakself = self;
+    [KLHttpTool getSupermarketUserAddressListWithOffset:[NSString stringWithFormat:@"%ld", (long)self.offset] success:^(id response) {
+        [weakself hideLoading];
+        NSNumber *status = response[@"status"];
+        if (status.integerValue == 1) {
             NSMutableArray *array = [NSMutableArray array];
-            NSNumber *status = response[@"status"];
-            if (status.integerValue == 1) {
-                [_loadHud hideAnimated:YES];
-                NSArray *data = response[@"data"];
-                for (NSDictionary *dic in data) {
-                    SupermarketAddressModel *model = [NSDictionary getAddressDataWithDic:dic];
-                    [array addObject:model];
-                }
-                self.data = array;
-                [self.tableView.mj_header endRefreshing];
+            NSArray *data = response[@"bcm100ts"];
+            for (NSDictionary *dic in data) {
+                MarketModel *model = [[MarketModel alloc]initWithDic:dic];
+                [array addObject:model];
             }
-        } failure:^(NSError *err) {
-            
-        }];
-
-    }
+            self.data = array;
+            [self.tableView.mj_header endRefreshing];
+        }
+        
+        NSLog(@"%@",response);
+        
+    } failure:^(NSError *err) {
+        [weakself hideLoading];
+        NSLog(@"%@",err);
+    }];
+    
+//    KLHttpTool getSupermarketUserAddressListWithDivCode:<#(NSString *)#> success:<#^(id response)success#> failure:<#^(NSError *err)failure#>
+//    if (_loadHud == nil) {
+//        _loadHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        _loadHud.tintColor = [UIColor lightGrayColor];
+//    }
+//
+//    if (_isCreateOrder == YES) {
+//        [KLHttpTool getSupermarketUserAddressListWithDivCode:@"2" success:^(id response) {
+//            NSLog(@"%@",response);
+//            NSMutableArray *array = @[].mutableCopy;
+//            NSNumber *status = response[@"status"];
+//            if (status.integerValue == 1) {
+//                [_loadHud hideAnimated:YES];
+//                NSArray *data = response[@"data"];
+//                for (NSDictionary *dic in data) {
+//                    SupermarketAddressModel *model = [NSDictionary getAddressDataWithDic:dic];
+//                    [array addObject:model];
+//                }
+//                self.data = array;
+//                [self.tableView.mj_header endRefreshing];
+//            }
+//        } failure:^(NSError *err) {
+//
+//        }];
+//
+//    } else {
+//        [KLHttpTool getSupermarketUserAddressListWithDivCode:@"0" success:^(id response) {
+//            NSMutableArray *array = [NSMutableArray array];
+//            NSNumber *status = response[@"status"];
+//            if (status.integerValue == 1) {
+//                [_loadHud hideAnimated:YES];
+//                NSArray *data = response[@"data"];
+//                for (NSDictionary *dic in data) {
+//                    SupermarketAddressModel *model = [NSDictionary getAddressDataWithDic:dic];
+//                    [array addObject:model];
+//                }
+//                self.data = array;
+//                [self.tableView.mj_header endRefreshing];
+//            }
+//        } failure:^(NSError *err) {
+//
+//        }];
+//
+//    }
 }
 
 - (void)setNavi{
@@ -117,63 +151,97 @@
 }
 
 - (void)popController{
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+    //[self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (void)createTableView{
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, self.view.frame.size.height ) style: UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
     self.tableView.delegate = self;
     self.tableView.dataSource  = self;
-    
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self requestData];
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    self.tableView.estimatedRowHeight = 20;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
     }];
     
-    [self.view addSubview:self.tableView];
+  
     
-    if (_isPageView) {
-        self.tableView.frame = CGRectMake(0, 0, APPScreenWidth, self.view.frame.size.height - 55);
-        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
-    }
+//    if (_isPageView) {
+//        self.tableView.frame = CGRectMake(0, 0, APPScreenWidth, self.view.frame.size.height - 55);
+//        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
+//    }
     
 }
 
 - (void)createBottom{
-    UIButton *button =[[UIButton alloc]initWithFrame:CGRectMake(15, self.view.frame.size.height - 45, APPScreenWidth - 30, 35)];
-    button.backgroundColor = RGB(23, 206, 116);
-    if (_isPageView) {
-        button.frame = CGRectMake(15, self.view.frame.size.height - 45 - 110, APPScreenWidth - 30, 35);
+    self.bottomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+   // UIButton *button =[[UIButton alloc]initWithFrame:CGRectMake(15, self.view.frame.size.height - 45, APPScreenWidth - 30, 35)];
+    self.bottomBtn.backgroundColor = RGB(23, 206, 116);
+//    if (_isPageView) {
+//        button.frame = CGRectMake(15, self.view.frame.size.height - 45 - 110, APPScreenWidth - 30, 35);
+//    }
+    [self.bottomBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.bottomBtn setTitle:@"+ 新增地址" forState:UIControlStateNormal];
+    self.bottomBtn.layer.cornerRadius = 2.0f;
+    [self.bottomBtn addTarget:self action:@selector(addNewAddress:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.bottomBtn];
+
+//    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(self.view);
+//        make.height.equalTo(@35)
+//        make.width.equalTo(@(APPScreenWidth-30))
+//        make.bottom.equalTo
+////        make.centerX.equalTo(self.view);
+////        make.height.equalTo(@35);
+////        make.width.equalTo(@(APPScreenWidth-30));
+////        if (@available(iOS 11.0, *)) {
+////            make.bottom.equalTo(self.view.safeAreaLayoutGuide).with.offset(10);
+////        } else {
+////            make.bottom.equalTo(self.bottomLayoutGuide).with.offset(10);
+////        }
+//    }];
+}
+
+-(void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    if (@available(iOS 11.0, *)) {
+        CGRect safeArea = self.view.safeAreaLayoutGuide.layoutFrame;
+        CGFloat y = CGRectGetMaxY(safeArea);
+        self.bottomBtn.frame = CGRectMake(15, y - 45 , self.view.frame.size.width - 30, 35);
+    } else {
+        
     }
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button setTitle:@"+ 新增地址" forState:UIControlStateNormal];
-    button.layer.cornerRadius = 2.0f;
-    [button addTarget:self action:@selector(addNewAddress:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
 }
 
 #pragma mark- -UITableViewDelegate,UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
     return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    SupermarketAddressModel *model = self.data[indexPath.section];
+    MarketModel *model = self.data[indexPath.section];
+    //SupermarketAddressModel *model = self.data[indexPath.section];
     UITableViewCell *cell = [[UITableViewCell alloc]init];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row == 0) {
         UILabel *nameLab =[[UILabel alloc]initWithFrame:CGRectMake(15, 10 , 100, 30)];
         nameLab.font = [UIFont systemFontOfSize:14];
         nameLab.textColor = [UIColor darkGrayColor];
-        nameLab.text = [NSString stringWithFormat:@"%@",model.realname];
+       // nameLab.text = [NSString stringWithFormat:@"%@",model.realname];
+        nameLab.text = [NSString stringWithFormat:@"%@", model.deliveryname];
         [cell.contentView addSubview:nameLab];
         
         UILabel *telephoneLab =[[UILabel alloc]initWithFrame:CGRectMake(APPScreenWidth - 115, 10 , 100, 30)];
         telephoneLab.font = [UIFont systemFontOfSize:14];
         telephoneLab.textColor = [UIColor darkGrayColor];
-        telephoneLab.text = model.mobile;
+        //telephoneLab.text = model.mobile;
+        telephoneLab.text = model.mobilepho;
         telephoneLab.textAlignment = NSTextAlignmentRight;
         [cell.contentView addSubview:telephoneLab];
         
@@ -181,17 +249,18 @@
         maskView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.7];
         maskView.hidden = YES;
 //        [cell.contentView addSubview:maskView];
-        if (model.hasDelivery.integerValue == 0) {
-            maskView.hidden = NO;
-        }
+//        if (model.hasDelivery.integerValue == 0) {
+//            maskView.hidden = NO;
+//        }
+//        if (model.)
         
     }else if (indexPath.row == 1){
         
         UILabel *addressLab =[[UILabel alloc]initWithFrame:CGRectMake(15, 0 , APPScreenWidth - 30 , CGRectGetHeight(cell.frame))];
         addressLab.textColor = [UIColor darkGrayColor];
         addressLab.font = [UIFont systemFontOfSize:14];
-        addressLab.text = [NSString stringWithFormat:@"%@%@",model.location,model.address];
-        
+       // addressLab.text = [NSString stringWithFormat:@"%@%@",model.location,model.address];
+        addressLab.text = model.toaddress;
         addressLab.numberOfLines = 2;
         
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 43, APPScreenWidth, 1)];
@@ -213,10 +282,10 @@
         [cell.contentView addSubview:maskImageView];
         
         [cell.contentView addSubview:maskLabel];
-        if (model.hasDelivery.integerValue == 0) {
-            maskLabel.hidden = NO;
-            maskImageView.hidden = NO;
-        }
+//        if (model.hasDelivery.integerValue == 0) {
+//            maskLabel.hidden = NO;
+//            maskImageView.hidden = NO;
+//        }
         
     }else if (indexPath.row == 2){
         
@@ -227,7 +296,7 @@
         
         UIImageView *imagview1;
         UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 120, 20)];
-        if (model.isdefault.integerValue == 1) {
+        if ([model.defaultadd isEqualToString:@"True"]) {
             
             defaultBtn.selected = !defaultBtn.selected;
             imagview1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cart_selected_btn"]];
@@ -242,11 +311,31 @@
             
         }
         
-        if (model.isdefault.integerValue == 1) {
+        if ([model.defaultadd isEqualToString:@"True"]) {
             defaultBtn.userInteractionEnabled = NO;
         } else {
             defaultBtn.userInteractionEnabled = YES;
         }
+//        if (model.isdefault.integerValue == 1) {
+//
+//            defaultBtn.selected = !defaultBtn.selected;
+//            imagview1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cart_selected_btn"]];
+//            title.text = @"默认地址";
+//            title.textColor = RGB(23, 206, 116);
+//
+//        }else{
+//
+//            imagview1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cart_unSelect_btn"]];
+//            title.text = @"设置为默认地址";
+//            title.textColor = [UIColor grayColor];
+//
+//        }
+        
+//        if (model.isdefault.integerValue == 1) {
+//            defaultBtn.userInteractionEnabled = NO;
+//        } else {
+//            defaultBtn.userInteractionEnabled = YES;
+//        }
         
         
         imagview1.tag = 1002;
@@ -292,9 +381,9 @@
         maskView.hidden = YES;
         maskView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.7];
 //        [cell.contentView addSubview:maskView];
-        if (model.hasDelivery.integerValue == 0) {
-            maskView.hidden = NO;
-        }
+//        if (model.hasDelivery.integerValue == 0) {
+//            maskView.hidden = NO;
+//        }
     }
     return cell;
 }
@@ -454,6 +543,10 @@
     [deleteAlert addAction:cancel];
     
     [self presentViewController:deleteAlert animated:YES completion:nil];
+}
+
+-(NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [[NSAttributedString alloc] initWithString:@"你还未添加地址"];
 }
 
 - (void)didReceiveMemoryWarning {

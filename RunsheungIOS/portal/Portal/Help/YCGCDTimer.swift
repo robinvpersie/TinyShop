@@ -8,19 +8,18 @@
 
 import Foundation
 
-
 public typealias GCDThrottleBlock = () -> Void
 public var scheduledSources = [String:DispatchSourceTimer]()
 
-public func throttle(threshold:TimeInterval = 0.3,
-                     queue:DispatchQueue = .main,
-                     key:String = Thread.callStackSymbols[1],
-                     block:@escaping GCDThrottleBlock)
+public func throttle(threshold: TimeInterval = 0.3,
+                     queue: DispatchQueue = .main,
+                     key: String = Thread.callStackSymbols[1],
+                     block: @escaping GCDThrottleBlock)
 {
     
     func createSource(){
-        let source = DispatchSource.makeTimerSource(queue:queue)
-        source.scheduleRepeating(deadline: .now() + threshold, interval: threshold)
+        let source = DispatchSource.makeTimerSource(queue: queue)
+        source.schedule(deadline: .now() + threshold, repeating: threshold)
         source.setEventHandler {
             block()
             source.cancel()

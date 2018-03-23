@@ -73,6 +73,11 @@
 + (void)getSupermarketUserAddressListWithDivCode:(NSString *)divCode
                                          success:(void (^)(id response))success
                                          failure:(void (^)(NSError *err))failure;
+
++ (void)getSupermarketUserAddressListWithOffset:(NSString *)offset
+                                        success:(void (^)(id response))success
+                                        failure:(void (^)(NSError *err))failure;
+
 //新增收货地址
 + (void)supermarketAddNewAddressWithName:(NSString *)name
                                 location:(NSString *)location

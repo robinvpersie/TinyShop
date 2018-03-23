@@ -304,30 +304,93 @@
         }];
 }
 
+
++(void)getSupermarketUserAddressListWithOffset:(NSString *)offset
+                                       success:(void (^)(id response))success
+                                       failure:(void (^)(NSError *err))failure
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    YCAccountModel *model = [YCAccountModel getAccount];
+    [params setObject:@"kor" forKey:@"lang_type"];
+    [params setObject:model.customCode forKey:@"custom_code"];
+    [params setObject:model.token forKey:@"token"];
+    [params setObject:[NSString stringWithFormat:@"%@", offset] forKey:@"pg"];
+    [params setObject:@"20" forKey:@"pagesize"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
+    
+   // NSString *url = [NSString stringWithFormat:@"%@api/MyInfo/MyinfoAddressList",BaseUrl];
+    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/MyinfoAddressList",MallBaseUrl];
+    
+    [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (success) {
+            [self checkStatusWithResponse:responseObject];
+            success(responseObject);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+
 +(void)getSupermarketUserAddressListWithDivCode:(NSString *)divCode
                                         success:(void (^)(id response))success
                                         failure:(void (^)(NSError *err))failure {
-    NSMutableDictionary *params = @{}.mutableCopy;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     YCAccountModel *model = [YCAccountModel getAccount];
+    [params setObject:@"kor" forKey:@"lang_type"];
+    [params setObject:model.customCode forKey:@"custom_code"];
+    [params setObject:model.token forKey:@"token"];
+    [params setObject:@"" forKey:@"pg"];
+    [params setObject:@"20" forKey:@"pagesize"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
+    
+    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/MyinfoAddressList",BaseUrl];
+    
+    [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (success) {
+            [self checkStatusWithResponse:responseObject];
+            success(responseObject);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+
+    
 //    if (model.token) {
 //        [params setObject:model.token forKey:@"token"];
 //    }
-    
-    [self getToken:^(id token) {
-        [params setObject:token forKey:@"token"];
-        [params setObject:divCode forKey:@"div_code"];
-        NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/GetUserShopAddressOfList",BaseUrl];
-        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-            if (success) {
-                [self checkStatusWithResponse:response];
-                success(response);
-            }
-        } failure:^(NSError *err) {
-            NSLog(@"%@",err);
-        }];
-    } failure:^(NSError *errToken) {
-        
-    }];
+//
+//    [self getToken:^(id token) {
+//        [params setObject:token forKey:@"token"];
+//        [params setObject:divCode forKey:@"div_code"];
+//        NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/GetUserShopAddressOfList",BaseUrl];
+//        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+//            if (success) {
+//                [self checkStatusWithResponse:response];
+//                success(response);
+//            }
+//        } failure:^(NSError *err) {
+//            NSLog(@"%@",err);
+//        }];
+//    } failure:^(NSError *errToken) {
+//
+//    }];
 }
 
 + (void)supermarketAddNewAddressWithName:(NSString *)name

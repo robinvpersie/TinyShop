@@ -28,28 +28,16 @@
 }
 
 @property (nonatomic,retain)UITableView *tableview;
-
 @property (nonatomic,retain)NSMutableDictionary *allDic;
-
 @property (nonatomic,retain)SingleSegmentView *segmentView1;
-
 @property (nonatomic,retain)SingleSegmentView *segmentView2;
-
 @property (nonatomic,retain)SegmentItem *SegmentItem;
-
 @property (nonatomic,retain)TSItemView *ItemView;
-
 @property (nonatomic,assign)BOOL extend;
-
 @property (nonatomic, strong)ShowLocationView * locationView;
-
 @property (nonatomic, strong)ChoiceHeadView *choiceHeadView;
-
 @property (nonatomic,strong)NSDictionary *responseDit;
-
 @property (nonatomic,retain)NSArray *shoplistData;
-
-
 
 @end
 
@@ -59,13 +47,10 @@
 - (void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
 	if (self.leves.count) {
-	
-		[self setNavi];
-
-	}
-
-	
+	   [self setNavi];
+    }
 }
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	[self setNaviBar];
@@ -105,7 +90,17 @@
     if (account == nil ) {
         return ;
     }
-	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:account.customCode withpg:@"1" withtoken:account.token withcustom_lev1:leve1 withcustom_lev2:leve2 withcustom_lev3:leve3 withlatitude:latitude withlongitude:longitude withorder_by:order_by success:^(id response) {
+	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:account.customCode
+                                                     withpg:@"1"
+                                                  withtoken:account.token
+                                            withcustom_lev1:leve1
+                                            withcustom_lev2:leve2
+                                            withcustom_lev3:leve3
+                                               withlatitude:latitude
+                                              withlongitude:longitude
+                                               withorder_by:order_by
+                                                    success:^(id response)
+     {
 		if ([response[@"status"] intValue] == 1) {
 			[hudloading hideAnimated:YES afterDelay:2];
 			self.responseDit = response;
