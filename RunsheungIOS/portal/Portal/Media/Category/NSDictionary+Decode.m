@@ -173,7 +173,7 @@
 + (SupermarketGoodsModel *)getGoodsMsgDataWithDic:(NSDictionary *)dic {
     SupermarketGoodsModel *goods = [[SupermarketGoodsModel alloc] init];
     if (dic != nil) {
-        goods.title = dic[@"title"];
+        goods.title = dic[@"title"] ;
         goods.images = dic[@"images"];
         goods.city = dic[@"city"];
         goods.sold = dic[@"sold"];
@@ -249,9 +249,10 @@
     if (data.count > 0) {
         for (NSDictionary *shopDic in data) {
             LZShopModel *shopModel = [[LZShopModel alloc] init];
-            shopModel.shopID = @"10088";
-            shopModel.shopName =@"shopName";
-            [shopModel configGoodsArrayWithArray:data];
+            shopModel.shopID = shopDic[@"sale_custom_code"];
+            shopModel.shopName = shopDic[@"sale_custom_name"];
+			NSArray *datasec = shopDic[@"cart_data"];
+            [shopModel configGoodsArrayWithArray:datasec];
             [shops addObject:shopModel];
         }
     }

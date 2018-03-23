@@ -29,7 +29,7 @@
     [super viewWillAppear:animated];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationController.navigationBar.translucent = YES;
-  
+	NSLog(@"%f",APPScreenHeight);
 }
 
 - (void)viewDidLoad {
@@ -86,14 +86,14 @@
     goods.divCode =@"2";
     goods.controllerType = self.controllerType;
 	goods.shopDic = self.shopDic;
-//    SupermarketDetailViewController *detail = [[SupermarketDetailViewController alloc] init];
-//    SupermarketCommentViewController *comment = [[SupermarketCommentViewController alloc] init];
-//    comment.divCode = self.divCode;
-//    comment.item_code = self.item_code;
+    SupermarketDetailViewController *detail = [[SupermarketDetailViewController alloc] init];
+    SupermarketCommentViewController *comment = [[SupermarketCommentViewController alloc] init];
+    comment.divCode = @"2";
+    comment.item_code = self.item_code;
 	
     [self addChildViewController:goods];
-//    [self addChildViewController:detail];
-//    [self addChildViewController:comment];
+    [self addChildViewController:detail];
+    [self addChildViewController:comment];
 }
 
 - (void)setContentScrollView {

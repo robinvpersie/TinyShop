@@ -739,18 +739,19 @@
 //        [params setObject:model.token forKey:@"token"];
 //    }
     
-    [self getToken:^(id token) {
-        [params setObject:token forKey:@"token"];
-        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-            if (success) {
-                success(response);
-            }
-        } failure:^(NSError *err) {
-            NSLog(@"%@",err);
-        }];
-    } failure:^(NSError *errToken) {
-        
-    }];
+	if ([YCAccountModel islogin]) {
+		YCAccountModel *accoutmodel = [YCAccountModel getAccount];
+		
+		[params setObject:accoutmodel.token forKey:@"token"];
+		[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+			if (success) {
+				success(response);
+			}
+		} failure:^(NSError *err) {
+			NSLog(@"%@",err);
+		}];
+
+	}
 }
 
 //获取搜索列表  0降 1 升
@@ -1268,20 +1269,33 @@
 //    }
     [dic setObject:@(appType) forKey:@"appType"];
     
-    [self getToken:^(id token) {
-        [dic setObject:token forKey:@"token"];
-        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:dic success:^(id response) {
-            NSLog(@"%@",response);
-            if (success) {
-                success(response);
-            }
-        } failure:^(NSError *err) {
-            NSLog(@"%@",err);
-        }];
+//    [self getToken:^(id token) {
+		if ([YCAccountModel islogin]) {
+			YCAccountModel *accountmodel = [YCAccountModel getAccount];
+			[dic setObject:accountmodel.token forKey:@"token"];
+			[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:dic success:^(id response) {
+				NSLog(@"%@",response);
+				if (success) {
+					success(response);
+				}
+			} failure:^(NSError *err) {
+				NSLog(@"%@",err);
+			}];
 
-    } failure:^(NSError *errToken) {
-        
-    }];
+		}
+//        [dic setObject:token forKey:@"token"];
+//        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:dic success:^(id response) {
+//            NSLog(@"%@",response);
+//            if (success) {
+//                success(response);
+//            }
+//        } failure:^(NSError *err) {
+//            NSLog(@"%@",err);
+//        }];
+//
+//    } failure:^(NSError *errToken) {
+//
+//    }];
 }
 
 

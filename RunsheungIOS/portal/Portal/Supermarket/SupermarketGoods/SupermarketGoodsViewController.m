@@ -436,8 +436,8 @@
 
 - (void)goShoppingCart {
 
-    [KLHttpTool getToken:^(id token) {
-        if (token) {
+//    [KLHttpTool getToken:^(id token) {
+//        if (token) {
             LZCartViewController *shoppingCart = [[LZCartViewController alloc] init];
             //    shoppingCart.type = ShoppingCartController;
             shoppingCart.isPush = YES;
@@ -446,10 +446,10 @@
             _bottom.hidden = YES;
             [self.navigationController pushViewController:shoppingCart animated:YES];
            
-        }
-    } failure:^(NSError *errToken) {
-        
-    }];
+//        }
+//    } failure:^(NSError *errToken) {
+//
+//    }];
 }
 
 
@@ -489,70 +489,66 @@
     }
     
     [self.choseSizeView removeView];
-    
-    [KLHttpTool getToken:^(id token) {
-        if (token) {
-            if (self.actionType == 0) {
-                SupermarketConfirmOrderController *confirmOrder = [[SupermarketConfirmOrderController alloc] init];
-                confirmOrder.controllerType = self.controllerType;
-                if (goods != nil) {
-                    
-                    if (goods.stock.integerValue == 0) {
-                        [MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:@"库存为0"];
-                        return;
-                    }
-                    goods.itemCode = singleChosedOneModel.item_code;
-                    confirmOrder.goodsModel = goods;
-                    confirmOrder.amout = self.choseSizeView.buyAmount;
-                    confirmOrder.attachGoods = mutiChosedModelArr;
-                    [self.navigationController pushViewController:confirmOrder animated:YES];
-                    _bottom.hidden = YES;
-                }
-            } else if(self.actionType == 1){
-                
-                [KLHttpTool addGoodsToShoppingCartWithGoodsID:goods.itemCode shopID:goods.business_code applyID:goods.supplier_code numbers:_choseSizeView.buyAmount success:^(id response) {
-                    NSNumber *status = response[@"status"];
-                    if (status.integerValue == 1) {
-                        
-                        MBProgressHUD *hudsuccess = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                        hudsuccess.mode = MBProgressHUDModeText;
-                        hudsuccess.label.text = @"加入购物车成功!";
-                        [hudsuccess hideAnimated:YES afterDelay:1.0f];
-                        
-                        if (self.isScan) {
-                            UIAlertAction *continueBuy = [UIAlertAction actionWithTitle:@"继续购物" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                                
-                                ZFScanViewController * vc = [[ZFScanViewController alloc] init];
-                                vc.returnScanBarCodeValue = ^(NSString * barCodeString){
-                                    
-                                    NSLog(@"扫描结果的字符串======%@",barCodeString);
-                                    GoodsDetailController *goodDetail = [[GoodsDetailController alloc] init];
-                                    goodDetail.item_code = barCodeString;
-                                    goodDetail.hidesBottomBarWhenPushed = YES;
-                                    goodDetail.isScan = YES;
-                                    [self.navigationController pushViewController:goodDetail animated:YES];
-                                    
-                                };
-                                
-                                [self presentViewController:vc animated:YES completion:nil];
-                                
-                            }];
-                            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"暂时不去" style:UIAlertActionStyleCancel handler:nil];
-                            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"加入购物车成功,是否回到扫描页面继续购物" preferredStyle:UIAlertControllerStyleAlert];
-                            [alert addAction:continueBuy];
-                            [alert addAction:cancel];
-                            [self presentViewController:alert animated:YES completion:nil];
-                        }
-                    }
-                    
-                } failure:^(NSError *err) {
-                    
-                }];
-            }
-        }
-    } failure:^(NSError *errToken) {
-        
-    }];
+	if ([YCAccountModel islogin]) {
+		if (self.actionType == 0) {
+			SupermarketConfirmOrderController *confirmOrder = [[SupermarketConfirmOrderController alloc] init];
+			confirmOrder.controllerType = self.controllerType;
+			if (goods != nil) {
+				
+				if (goods.stock.integerValue == 0) {
+					[MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:@"库存为0"];
+					return;
+				}
+				goods.itemCode = singleChosedOneModel.item_code;
+				confirmOrder.goodsModel = goods;
+				confirmOrder.amout = self.choseSizeView.buyAmount;
+				confirmOrder.attachGoods = mutiChosedModelArr;
+				[self.navigationController pushViewController:confirmOrder animated:YES];
+				_bottom.hidden = YES;
+			}
+		} else if(self.actionType == 1){
+			
+			[KLHttpTool addGoodsToShoppingCartWithGoodsID:goods.itemCode shopID:goods.business_code applyID:goods.supplier_code numbers:_choseSizeView.buyAmount success:^(id response) {
+				NSNumber *status = response[@"status"];
+				if (status.integerValue == 1) {
+					
+					MBProgressHUD *hudsuccess = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+					hudsuccess.mode = MBProgressHUDModeText;
+					hudsuccess.label.text = @"加入购物车成功!";
+					[hudsuccess hideAnimated:YES afterDelay:1.0f];
+					
+					if (self.isScan) {
+						UIAlertAction *continueBuy = [UIAlertAction actionWithTitle:@"继续购物" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+							
+							ZFScanViewController * vc = [[ZFScanViewController alloc] init];
+							vc.returnScanBarCodeValue = ^(NSString * barCodeString){
+								
+								NSLog(@"扫描结果的字符串======%@",barCodeString);
+								GoodsDetailController *goodDetail = [[GoodsDetailController alloc] init];
+								goodDetail.item_code = barCodeString;
+								goodDetail.hidesBottomBarWhenPushed = YES;
+								goodDetail.isScan = YES;
+								[self.navigationController pushViewController:goodDetail animated:YES];
+								
+							};
+							
+							[self presentViewController:vc animated:YES completion:nil];
+							
+						}];
+						UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"暂时不去" style:UIAlertActionStyleCancel handler:nil];
+						UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"加入购物车成功,是否回到扫描页面继续购物" preferredStyle:UIAlertControllerStyleAlert];
+						[alert addAction:continueBuy];
+						[alert addAction:cancel];
+						[self presentViewController:alert animated:YES completion:nil];
+					}
+				}
+				
+			} failure:^(NSError *err) {
+				
+			}];
+		}
+	}
+
 }
 
 - (void)didReceiveMemoryWarning {

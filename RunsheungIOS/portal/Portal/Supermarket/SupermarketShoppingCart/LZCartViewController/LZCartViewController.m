@@ -102,12 +102,12 @@ typedef void(^finishAction)();
 	
      [self.indicator startAnimating];
 	
-	[KLHttpTool TinyRequestShoppingCartCountWithShoppCartUrl:@"Order/requestShoppingCartList" WithSale_q:@"" WithCurrentPage:@"1" WithPageSize:@"5" success:^(id response) {
+	[KLHttpTool TinyRequestShoppingCartCountWithShoppCartUrl:@"Order/requestKFMEShoppingCartList" WithSale_q:@"" WithCurrentPage:@"" WithPageSize:@"" success:^(id response) {
 		[self.indicator stopAnimating];
 		self.isloading = NO;
 
 		if ([response[@"status"] intValue] == 1) {
-			NSArray *data = response[@"data"];
+			NSArray *data = response[@"custom_data"];
 			if (data.count > 0) {
 				self.dataArray = [NSDictionary getShoppingartListShopsWithData:data];
 			}
@@ -520,7 +520,8 @@ typedef void(^finishAction)();
             }];
         } else {
             [KLHttpTool editSupermarketShoppingCartWithDataArray:dataArr success:^(id response) {
-            } failure:^(NSError *err) {
+				
+			} failure:^(NSError *err) {
                 
             }];
         }
@@ -653,9 +654,8 @@ typedef void(^finishAction)();
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     GoodsDetailController *goodsDetail = [[GoodsDetailController alloc] init];
-    goodsDetail.controllerType = self.controllerType;
+//    goodsDetail.controllerType = self.controllerType;
     goodsDetail.hidesBottomBarWhenPushed = YES;
-    
     LZShopModel *shop = self.dataArray[indexPath.section];
     LZCartModel *goods = shop.goodsArray[indexPath.row];
     

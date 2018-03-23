@@ -16,6 +16,7 @@
 #import "SupermarketHomeViewController.h"
 #import "ShowLocationView.h"
 #import "SingleSegmentView.h"
+#import "Masonry.h"
 
 
 
@@ -25,6 +26,7 @@
 	NSString *Level2;
 	NSString *Level3;
 	NSString *orderBy;
+	UIView *categoryView;
 }
 
 @property (nonatomic,retain)UITableView *tableview;
@@ -72,11 +74,23 @@
 		[self setNavi];
 
 	}
-
 	
 }
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	if (categoryView == nil) {
+		categoryView = [[UIView alloc]initWithFrame:CGRectZero];
+		[self.view addSubview:categoryView];
+		
+		[categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(self.view).with.offset(0);
+			make.left.equalTo(self.view).with.offset(0);
+			make.right.equalTo(self.view).with.offset(0);
+			make.height.equalTo(@170);
+
+		}];
+	}
 	[self setNaviBar];
 	if (self.leves.count) {
 		Level1 = self.leves.firstObject;
@@ -146,26 +160,40 @@
 		[leve3Mutables addObject:dic3[@"lev_name"]];
 	}
 	if (self.segmentView1 == nil) {
-		self.segmentView1 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView1.frame)+10, APPScreenWidth, 50) withdit:self.responseDit  withData:leve2Mutables withLineBottomColor:RGB(33, 192, 67)];
+		self.segmentView1 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, 10, APPScreenWidth, 50) withdit:self.responseDit  withData:leve2Mutables withLineBottomColor:RGB(33, 192, 67)];
 		self.segmentView1.tag = 1001;
 		self.segmentView1.delegate =self;
-		[self.view addSubview:self.segmentView1];
+		[categoryView addSubview:self.segmentView1];
+		
+		
 	}
+//	[self.segmentView1 mas_makeConstraints:^(MASConstraintMaker *make) {
+//		make.top.equalTo(self.view).with.offset(10);
+//		make.left.equalTo(self.view).with.offset(0);
+//		make.right.equalTo(self.view).with.offset(0);
+//		make.height.equalTo(@50);
+//	}];
 
 	[self createSecSegmentView:leve3Mutables];
 	
-
 }
 
 - (void)createSecSegmentView:(NSMutableArray*)array{
 	
 	if (self.segmentView2 == nil) {
-		self.segmentView2 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView1.frame)+10, APPScreenWidth, 50) withdit:self.responseDit  withData:array withLineBottomColor:RGB(33, 192, 67)];
+		self.segmentView2 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(self.segmentView1.frame) +10, APPScreenWidth, 50) withdit:self.responseDit  withData:array withLineBottomColor:RGB(33, 192, 67)];
 		self.segmentView2.tag = 1002;
 		self.segmentView2.delegate = self;
-		[self.view addSubview:self.segmentView2];
+		[categoryView addSubview:self.segmentView2];
 	}
-	[self.view addSubview:self.SegmentItem];
+//	[self.segmentView2 mas_makeConstraints:^(MASConstraintMaker *make) {
+//		make.top.equalTo(self.segmentView1.mas_bottom).with.offset(10);
+//		make.left.equalTo(self.view).with.offset(0);
+//		make.right.equalTo(self.view).with.offset(0);
+//		make.height.equalTo(@50);
+//	}];
+
+//	[categoryView addSubview:self.SegmentItem];
 	[self createSegmentItem];
 
 }
@@ -175,7 +203,7 @@
 		self.SegmentItem = [[SegmentItem alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView2.frame)+10, APPScreenWidth, 50)];
 		self.SegmentItem.delegate = self;
 		
-		[self.view addSubview:self.SegmentItem];
+		[categoryView addSubview:self.SegmentItem];
 		
 	}
 }
@@ -246,15 +274,22 @@
 	
 	if (self.tableview == nil) {
 		
-		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, 170, APPScreenWidth, APPScreenHeight - CGRectGetMaxY(self.segmentView2.frame) - 10) style:UITableViewStylePlain];
+		self.tableview =[[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
 		[self.tableview registerNib:[UINib nibWithNibName:@"ChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChoiceTableViewCellID"];
 		self.tableview.delegate = self;
 		self.tableview.dataSource = self;
 		self.tableview.estimatedRowHeight = 0;
 		self.tableview.estimatedSectionHeaderHeight = 0;
 		self.tableview.estimatedSectionFooterHeight = 0;
+		self.tableview.backgroundColor = [UIColor yellowColor];
 		self.tableview.tableFooterView = [[UIView alloc]init];
 		[self.view addSubview:self.tableview];
+		[self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(categoryView.mas_bottom);
+			make.left.equalTo(self.view).with.offset(0);
+			make.right.equalTo(self.view).with.offset(0);
+			make.bottom.equalTo(self.view).with.offset(0);
+		}];
 		
 	}
 	

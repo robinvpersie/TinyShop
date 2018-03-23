@@ -16,7 +16,7 @@
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
         for (NSDictionary *dic in array) {
             LZCartModel *model = [[LZCartModel alloc]init];
-//            model.divCode = dic[@"div_code"];
+            model.divCode = @"2";
 //            model.divName = dic[@"div_name"];
             model.nameStr = dic[@"item_name"];
             model.image_url = dic[@"item_img_url"];
