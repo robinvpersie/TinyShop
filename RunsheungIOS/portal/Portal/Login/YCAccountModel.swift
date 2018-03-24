@@ -37,6 +37,7 @@ public class YCAccountModel: NSObject, NSCoding {
     @objc var pointCardNo: String?
     @objc var parentId: String?
     @objc var customlev: String?
+    @objc var combineToken: String?
     
     public override init() {
         super.init()
@@ -58,6 +59,7 @@ public class YCAccountModel: NSObject, NSCoding {
         aCoder.encode(pointCardNo, forKey: "pointCardNo")
         aCoder.encode(parentId, forKey: "parentId")
         aCoder.encode(customlev, forKey: "customlev")
+        aCoder.encode(combineToken, forKey: "combinetoken")
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -77,6 +79,7 @@ public class YCAccountModel: NSObject, NSCoding {
         pointCardNo = aDecoder.decodeObject(forKey: "pointCardNo") as? String
         parentId = aDecoder.decodeObject(forKey: "parentId") as? String
         customlev = aDecoder.decodeObject(forKey: "customlev") as? String
+        combineToken = aDecoder.decodeObject(forKey: "combinetoken") as? String
         
     }
     

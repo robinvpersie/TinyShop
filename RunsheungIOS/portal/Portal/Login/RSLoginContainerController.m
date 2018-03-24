@@ -79,14 +79,17 @@
     UITextField *pwd = (UITextField*)[loginBG viewWithTag:LoginPWDTag];
    
     if (phone.text.length&&pwd.text.length) {
-        MBProgressHUD *showloading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [showloading showAnimated:YES];
+//        MBProgressHUD *showloading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        [showloading showAnimated:YES];
+        [self showLoading];
         [KLHttpTool LoginMemberWithMemid:phone.text withMempwd:[self sha512: pwd.text] withDeviceNo:UUID success:^(id response) {
             if ([response[@"status"] intValue] == 1) {
-                [hud hideAnimated:NO];
+//                [hud hideAnimated:NO];
+                [weakself hideLoading];
                 YCAccountModel *accountModel = [[YCAccountModel alloc] init];
                 accountModel.memid = response[@"memid"];
-                accountModel.token =[NSString stringWithFormat:@"%@|%@",response[@"token"],UUID] ;
+               // accountModel.token =[NSString stringWithFormat:@"%@|%@",response[@"token"],UUID] ;
+                accountModel.token = response[@"token"];
                 accountModel.customId = response[@"custom_id"];
                 accountModel.mall_home_id = response[@"mall_home_id"];
                 accountModel.customCode = response[@"custom_code"];
@@ -100,7 +103,8 @@
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"YCAccountIsLogin" object:nil];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [weakself dismissViewControllerAnimated:YES completion:^{
-                        [showloading hideAnimated:YES afterDelay:0.3f];
+                        //[showloading hideAnimated:YES afterDelay:0.3f];
+                        [weakself hideLoading];
                     }];
                 });
                 
@@ -109,10 +113,13 @@
             [hud hideAnimated:NO];
         }];
     }else{
-        MBProgressHUD *hude = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hude.mode = MBProgressHUDModeText;
-        hude.label.text = @"请输入账号和密码！";
-        [hude hideAnimated:YES afterDelay:1.0f];
+//        MBProgressHUD *hude = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        hude.mode = MBProgressHUDModeText;
+//        hude.label.text = @"请输入账号和密码！";
+//        [hude hideAnimated:YES afterDelay:1.0f];
+        [self showMessage:@"请输入账号和密码" interval:1 completionAction:^{
+            
+        }];
     }
     
 }
@@ -124,7 +131,7 @@
     UITextField *code = (UITextField*)[addmemberBG viewWithTag:AddMemberCodeTag];
     UITextField *pwd = (UITextField*)[addmemberBG viewWithTag:AddMemberPwdTag];
     UITextField *refree = (UITextField*)[addmemberBG viewWithTag:AddMemberRefTag];
-    
+  
     [KLHttpTool registerwithMemberId:phone.text withMemberPwd:[self sha512:pwd.text] withAuthNum:code.text withParentId:refree.text  success:^(id response) {
         if ([response[@"status"] intValue] == 1) {
             [hud hideAnimated:NO];

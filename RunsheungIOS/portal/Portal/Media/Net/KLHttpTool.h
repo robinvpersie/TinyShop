@@ -167,6 +167,13 @@
                                success:(void (^)(id response))success
                            failure:(void (^)(NSError *err))failure;
 
+
++ (void)getMyCollectionListWithAppType:(NSInteger)appType
+                               success:(void (^)(id response))success
+                               failure:(void (^)(NSError *err))failure;
+
+
+
 //获取购物车列表
 + (void)getSupermarketShoppintCartListWithAppType:(NSInteger)appType
                                           success:(void (^)(id response))success
