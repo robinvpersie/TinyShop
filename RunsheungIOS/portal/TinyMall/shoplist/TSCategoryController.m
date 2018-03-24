@@ -19,6 +19,7 @@
 
 
 
+
 @interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource,WJClickItemsDelegate,SingleSegmentDelegate,SegmentItemDelegate>{
 	MBProgressHUD *hudloading;
 	NSString *Level1;
@@ -110,7 +111,7 @@
 }
 
 - (void)setLeves:(NSMutableArray *)leves{
-	_leves = leves;
+    _leves = leves;
 }
 
 - (void)loadStoreListwithLeve1:(NSString*)leve1 withLeve2:(NSString*)leve2 withLeve3:(NSString*)leve3 withorderBy:(NSString*)order_by{
@@ -198,23 +199,23 @@
 	
 }
 - (void)loadThirdData{
-	[KLHttpTool TinyRequestGetCategory3ListWithCustom_lev1:Level1 WithCustom_lev2:Level2 WithLangtype:@"kor" success:^(id response) {
-		if ([response[@"status"] intValue] == 1) {
-			NSArray *dicArray = response[@"lev3s"];
-			NSMutableArray *lev3sArray = @[].mutableCopy;
-			
-			for (int i =0; i<dicArray.count; i++) {
-				NSDictionary *dic = dicArray[i];
-				[lev3sArray addObject:dic[@"lev_name"]];
-				
-			}
-			[self createItemView:lev3sArray];
-		}
-	} failure:^(NSError *err) {
-		
-	}];
-	
+    [KLHttpTool TinyRequestGetCategory3ListWithCustom_lev1:Level1 WithCustom_lev2:Level2 WithLangtype:@"kor" success:^(id response) {
+        if ([response[@"status"] intValue] == 1) {
+            NSArray *dicArray = response[@"lev3s"];
+            NSMutableArray *lev3sArray = [NSMutableArray array];
+            
+            for (int i =0; i<dicArray.count; i++) {
+                NSDictionary *dic = dicArray[i];
+                [lev3sArray addObject:dic[@"lev_name"]];
+                
+            }
+            [self createItemView:lev3sArray];
+        }
+    } failure:^(NSError *err) {
+        
+    }];
 }
+
 - (void)PushEditAction:(NSNotification*)notice{
 	NSString *notices = notice.object;
 	if ([notices isEqualToString:@"1"]) {
@@ -245,6 +246,7 @@
 	
 }
 
+
 - (void)createTableview{
 	
 	if (self.tableview == nil) {
@@ -265,12 +267,13 @@
 
 #pragma mark -- 代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-	return 1;
+    return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 	
 	return self.shoplistData.count;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	ChoiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChoiceTableViewCellID"];
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -282,17 +285,18 @@
 	
 }
 
+
+    
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-	
-	return  120.0f;
+     return  120.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-	return 0.01f;
+    return 0.01f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-	return 0.01f;
+    return 0.01f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -304,7 +308,7 @@
 	[self.navigationController pushViewController:shopDetailed animated:YES];
 }
 
-
+    
 - (void)setNaviBar{
 	
 	self.navigationItem.leftBarButtonItem = nil;
@@ -371,70 +375,69 @@
 }
 
 -(ShowLocationView *)locationView {
-	if (_locationView == nil) {
-		_locationView = [[ShowLocationView alloc] init];
-	}
-	return _locationView;
+    if (_locationView == nil) {
+        _locationView = [[ShowLocationView alloc] init];
+    }
+    return _locationView;
 }
-
+    
 #pragma mark -- 右边点击方法
 - (void)rightAction:(UIButton*)sender{
-	if (sender.tag == 2004) {
-		MemberEnrollController *memberEnroll = [[MemberEnrollController alloc] init];
-		UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:memberEnroll];
-		[self presentViewController:nav animated:YES completion:nil];
-		
-	}
-	
+        if (sender.tag == 2004) {
+            MemberEnrollController *memberEnroll = [[MemberEnrollController alloc] init];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:memberEnroll];
+            [self presentViewController:nav animated:YES completion:nil];
+
+        }
+
 }
 
 #pragma mark --
 - (void)clickItem:(NSString*)itemIndex{
-	self.segmentView2.hidden = YES;
-	self.segmentView2 = nil;
-	self.SegmentItem.hidden = YES;
-	self.SegmentItem = nil;
-	self.ItemView.hidden = YES;
-	self.ItemView = nil;
-	Level2 = itemIndex;
-	[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:@"1" withorderBy:@"1"];
-}
-- (void)clickItemsec:(NSString*)itemIndex{
-	self.SegmentItem.hidden = YES;
-	self.SegmentItem = nil;
-	Level3 = itemIndex;
-	self.ItemView.hidden = YES;
-	self.ItemView = nil;
-	[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:@"1"];
+        self.segmentView2.hidden = YES;
+        self.segmentView2 = nil;
+        self.SegmentItem.hidden = YES;
+        self.SegmentItem = nil;
+        self.ItemView.hidden = YES;
+        self.ItemView = nil;
+        Level2 = itemIndex;
+        [self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:@"1" withorderBy:@"1"];
 }
 
-- (void)clickSegment:(int)index{
-	[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:[NSString stringWithFormat:@"%d",index]];
+- (void)clickItemsec:(NSString*)itemIndex{
+        self.SegmentItem.hidden = YES;
+        self.SegmentItem = nil;
+        Level3 = itemIndex;
+        self.ItemView.hidden = YES;
+        self.ItemView = nil;
+        [self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:@"1"];
 }
-//点击单个的项目响应
+//
+- (void)clickSegment:(int)index{
+       [self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:[NSString stringWithFormat:@"%d",index]];
+}
+    //点击单个的项目响应
 - (void)wjClickItems:(NSString*)item{
-	
+
 }
 
 
 - (void)setNavi{
-	UIButton *popBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-	[popBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
-	[popBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
-	[popBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
-	[popBtn addTarget:self action:@selector(pop:) forControlEvents:UIControlEventTouchUpInside];
-	UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:popBtn];
-	[self.navigationItem setLeftBarButtonItem:item];
-	
+        UIButton *popBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+        [popBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
+        [popBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
+        [popBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+        [popBtn addTarget:self action:@selector(pop:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:popBtn];
+        [self.navigationItem setLeftBarButtonItem:item];
+
 }
 
 - (void)pop:(UIButton*)sender{
-	[self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
+    
 @end
-
-
-
-
-
+    
+    
