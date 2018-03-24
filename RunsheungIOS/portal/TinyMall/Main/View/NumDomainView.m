@@ -189,7 +189,7 @@
 		self.centerShowCollectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 60, 5* ScrollviewHeight,3* ScrollviewHeight) collectionViewLayout:layout];
 		self.centerShowCollectView.tag = centerScrollViewTag;
 		[self.centerShowCollectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCellID"];
-		self.centerShowCollectView.scrollEnabled = NO;
+//		self.centerShowCollectView.scrollEnabled = NO;
 		self.centerShowCollectView.showsVerticalScrollIndicator = NO;
 		self.centerShowCollectView.showsHorizontalScrollIndicator = NO;
 		self.centerShowCollectView.delegate = self;
@@ -204,12 +204,9 @@
 
 #pragma mark -- UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-	if (collectionView.tag == centerScrollViewTag) {
-		return 5;
-	} else {
-		
-		return 1;
-	}
+	
+	
+	return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -232,7 +229,7 @@
 	NSString *topImgNamed;
 	if (collectionView.tag == topLandScropeTag||collectionView.tag == bottomLandScropeTag) {
 		
-		if (indexPath.row <9) {
+		if (indexPath.row < 9) {
 			topImgNamed = [NSString stringWithFormat:@"top_r0%d.png",(int)indexPath.row+1];
 		}else{
 			topImgNamed = [NSString stringWithFormat:@"top_r%d.png",(int)indexPath.row+1];
@@ -240,17 +237,17 @@
 
 	}else if(collectionView.tag == leftPortraitTag||collectionView.tag == rightPortraitTag){
 
-		if (indexPath.row <9) {
+		if (indexPath.row < 9) {
 			topImgNamed = [NSString stringWithFormat:@"left_r0%d.png",(int)indexPath.row+1];
 		}else{
 			topImgNamed = [NSString stringWithFormat:@"left_r%d.png",(int)indexPath.row+1];
 		}
 
 	}else{
-		if (indexPath.row <9) {
+		if ((int)indexPath.row < 9) {
 			topImgNamed = [NSString stringWithFormat:@"m_icon0%d.png",(int)indexPath.row+1];
 		}else{
-			topImgNamed = [NSString stringWithFormat:@"m_icon%d.png",(int)indexPath.row+1];
+			topImgNamed = [NSString stringWithFormat:@"m_icon%d.png", (int)indexPath.row+1];
 		}
 
 	}
@@ -266,6 +263,7 @@
 	if (islogIn) {
 		TSCategoryController *cateVC = [[TSCategoryController alloc]init];
 		cateVC.hidesBottomBarWhenPushed = YES;
+		self.pickerIndex1 =(int)indexPath.row+1;
 		cateVC.leves = @[[NSString stringWithFormat:@"%d",self.pickerIndex1],[NSString stringWithFormat:@"%d",self.pickerIndex2],[NSString stringWithFormat:@"%d",self.pickerIndex3]].mutableCopy;
 		[self.viewController.navigationController pushViewController:cateVC animated:YES];
 
@@ -297,6 +295,8 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 	return 0;
 }
+
+
 #pragma mark - scrollView 停止滚动监测
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 	// 停止类型1、停止类型2

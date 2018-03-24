@@ -628,4 +628,19 @@
 						   WithItemCode:(NSString*)item_code
 								success:(void (^)(id response))success
 								failure:(void (^)(NSError *err))failure;
+
+/*
+ 加载主页数据
+ */
++(void)TinyRequestMainDataUrl:(NSString *)urls
+					   Withpg:(NSString *)pg
+				 WithPagesize:(NSString*)pagesize
+			   WithCustomlev1:(NSString*)custom_lev1
+			   WithCustomlev2:(NSString*)custom_lev2
+			   WithCustomlev3:(NSString*)custom_lev3
+				 Withlatitude:(NSString*)latitude
+				Withlongitude:(NSString*)longitude
+				 Withorder_by:(NSString*)order_by
+					  success:(void (^)(id response))success
+					  failure:(void (^)(NSError *err))failure;
 @end

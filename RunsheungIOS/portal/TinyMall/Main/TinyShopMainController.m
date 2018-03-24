@@ -12,6 +12,8 @@
 #import "MainTableViewCell.h"
 #import "NumDomainView.h"
 #import "ShowLocationView.h"
+#import "SupermarketHomeViewController.h"
+
 
 @interface TinyShopMainController ()<UITableViewDelegate,UITableViewDataSource>{
 	UIView *blackView;
@@ -23,6 +25,8 @@
 @property (nonatomic, strong)ChoiceHeadView *choiceHeadView;
 
 @property (nonatomic, strong)ShowLocationView * locationView;
+
+@property(nonatomic,strong)NSMutableArray*mutaleData;
 
 
 @end
@@ -45,12 +49,30 @@
 	[self createScrollview];
 	
 }
-
+- (void)loadMainData{
+	[KLHttpTool TinyRequestMainDataUrl:@"StoreCate/requestStoreCateList" Withpg:@"2" WithPagesize:@"5" WithCustomlev1:@"13" WithCustomlev2:@"2" WithCustomlev3:@"1" Withlatitude:[[NSUserDefaults standardUserDefaults] objectForKey:@"latitude"] Withlongitude:[[NSUserDefaults standardUserDefaults] objectForKey:@"longtitude"] Withorder_by:@"1" success:^(id response) {
+		if ([response[@"status"] intValue] == 1) {
+			self.mutaleData = @[].mutableCopy;
+			NSArray *data = response[@"storelist"];
+			for (NSDictionary *dic in data) {
+				
+				[self.mutaleData  addObject:dic];
+				
+			}
+			[self.tableView reloadData];
+			CGRect fram = self.tableView.frame;
+			fram.size.height = self.mutaleData.count *100+15;
+			self.tableView.frame = fram;
+			self.scrollview.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.tableView.frame));
+		}
+		
+	} failure:^(NSError *err) {
+		
+	}];
+}
 - (void)createScrollview{
 	if (self.scrollview ==nil) {
 		self.scrollview = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenHeight - 44)];
-		
-		self.scrollview.backgroundColor = RGB(252, 252, 252);
 		[self.view addSubview:self.scrollview];
 		
 	}
@@ -67,40 +89,37 @@
 
 - (void)createTableview{
 	if (self.tableView ==nil) {
-		self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(blackView.frame), APPScreenWidth, 60+100*7) style:UITableViewStyleGrouped];
+		self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(blackView.frame), APPScreenWidth, 0) style:UITableViewStyleGrouped];
 		self.tableView.tableFooterView = [UIView new];
 		[self.tableView registerNib:[UINib nibWithNibName:@"MainTableViewCell" bundle:nil] forCellReuseIdentifier:@"MainTableViewCell"];
-		self.tableView.delegate = self;
 		self.tableView.scrollEnabled = NO;
+		self.tableView.delegate = self;
 		self.tableView.dataSource = self;
+		UIView *tableheadview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 10)];
+		self.tableView.tableHeaderView = tableheadview;
+		self.tableView.estimatedRowHeight = 0;
+		self.tableView.estimatedSectionFooterHeight = 0;
+		self.tableView.estimatedSectionHeaderHeight = 0;
 		self.tableView.separatorColor = RGB(255, 255, 255);
 		self.tableView.backgroundColor = RGB(255, 255, 255);
 		[self.scrollview addSubview:self.tableView];
 		
-		self.scrollview.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.tableView.frame));
 	}
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-	return 2;
+	return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-	if (section == 0) {
-		return 3;
-	}
-	return 4;
+	return self.mutaleData.count;
 	
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	UITableViewCell *cell = [[UITableViewCell alloc]init];
-	if (indexPath.section == 0) {
-		UIImageView *showImg = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, APPScreenWidth - 20, 90)];
-		[showImg setImage:[UIImage imageNamed:@"banner01"]];
-		[cell.contentView addSubview:showImg];
-	}else{
-		MainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MainTableViewCell" forIndexPath:indexPath];
-		return cell;
-	}
+	NSDictionary *dic = self.mutaleData[indexPath.row];
+	UIImageView *showImg = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, APPScreenWidth - 20, 90)];
+	[showImg sd_setImageWithURL:[NSURL URLWithString:dic[@"shop_thumnail_image"]] placeholderImage:[UIImage imageNamed:@"banner01"]];
+	[cell.contentView addSubview:showImg];
 	
 	return cell;
 }
@@ -113,18 +132,23 @@
 	return 0.01f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-	return 10.0f;
+	return 15.0f;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-	UILabel *views = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 10)];
+	UILabel *views = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 15)];
 	views.text = @"    고객만고만고객";
 	views.textColor = RGB(46, 46, 46);
 	return views;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-	
+	NSDictionary *dic = self.mutaleData[indexPath.row];
+	SupermarketHomeViewController *shopDetailed = [[SupermarketHomeViewController alloc] init];
+	shopDetailed.hidesBottomBarWhenPushed = YES;
+	shopDetailed.dic = dic;
+	[self.navigationController pushViewController:shopDetailed animated:YES];
+
 }
 
 -(void)location {
@@ -139,6 +163,7 @@
 		[[NSUserDefaults standardUserDefaults] setObject:longtitude forKey:@"longtitude"];
 		[[NSUserDefaults standardUserDefaults]synchronize];
 		
+		[self loadMainData];
 
 		[YCLocationService turnOff];
 		CLGeocoder *geocoder = [[CLGeocoder alloc] init];
@@ -170,13 +195,33 @@
 
 #pragma mark -- 右边点击方法
 - (void)rightAction:(UIButton*)sender{
-	if (sender.tag == 2004) {
-		MemberEnrollController *memberEnroll = [[MemberEnrollController alloc] init];
-		UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:memberEnroll];
-		[self presentViewController:nav animated:YES completion:nil];
-		
-	}
-	
+		if ([YCAccountModel islogin]) {
+			if (sender.tag == 2004) {
+				
+				ZFScanViewController *scanVC = [ZFScanViewController new];
+				scanVC.returnScanBarCodeValue = ^(NSString *barCodeString) {
+					
+				};
+				[self presentViewController:scanVC animated:YES completion:nil];
+				
+			}else if (sender.tag == 2005){
+			
+				LZCartViewController *shoppingCart = [[LZCartViewController alloc] init];
+				//    shoppingCart.type = ShoppingCartController;
+				shoppingCart.isPush = YES;
+				shoppingCart.hidesBottomBarWhenPushed = YES;
+				[self.navigationController pushViewController:shoppingCart animated:YES];
+				
+				
+
+			}
+		}else{
+			MemberEnrollController *memberEnroll = [[MemberEnrollController alloc] init];
+			UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:memberEnroll];
+			[self presentViewController:nav animated:YES completion:nil];
+			
+
+		}
 }
 #pragma mark -- 设置导航栏
 - (void)setNaviBar{
