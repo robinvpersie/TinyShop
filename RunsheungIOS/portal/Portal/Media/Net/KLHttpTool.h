@@ -66,7 +66,7 @@
  */
 + (void)getSupermarketGoodsMsgWithItemCode:(NSString *)itemCode
                                   shopCode:(NSString *)shopCode
-                                 salerCode:(NSString *)salerCode
+							saleCustomCode:(NSString *)sale_custom_code
                                    success:(void (^)(id response))success
                                    failure:(void (^)(NSError *err))failure;
 

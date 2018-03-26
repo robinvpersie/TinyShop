@@ -53,25 +53,27 @@
 	
 }
 - (void)loadMainData{
-	[KLHttpTool TinyRequestMainDataUrl:@"StoreCate/requestStoreCateList" Withpg:@"2" WithPagesize:@"5" WithCustomlev1:@"13" WithCustomlev2:@"2" WithCustomlev3:@"1" Withlatitude:[[NSUserDefaults standardUserDefaults] objectForKey:@"latitude"] Withlongitude:[[NSUserDefaults standardUserDefaults] objectForKey:@"longtitude"] Withorder_by:@"1" success:^(id response) {
-		if ([response[@"status"] intValue] == 1) {
-			self.mutaleData = @[].mutableCopy;
-			NSArray *data = response[@"storelist"];
-			for (NSDictionary *dic in data) {
-				
-				[self.mutaleData  addObject:dic];
-				
+
+		[KLHttpTool TinyRequestMainDataUrl:@"StoreCate/requestStoreCateList" Withpg:@"2" WithPagesize:@"5" WithCustomlev1:@"13" WithCustomlev2:@"2" WithCustomlev3:@"1" Withlatitude:[[NSUserDefaults standardUserDefaults] objectForKey:@"latitude"] Withlongitude:[[NSUserDefaults standardUserDefaults] objectForKey:@"longtitude"] Withorder_by:@"1" success:^(id response) {
+			if ([response[@"status"] intValue] == 1) {
+				self.mutaleData = @[].mutableCopy;
+				NSArray *data = response[@"storelist"];
+				for (NSDictionary *dic in data) {
+					
+					[self.mutaleData  addObject:dic];
+					
+				}
+				[self.tableView reloadData];
+				CGRect fram = self.tableView.frame;
+				fram.size.height = self.mutaleData.count *100+15;
+				self.tableView.frame = fram;
+				self.scrollview.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.tableView.frame));
 			}
-			[self.tableView reloadData];
-			CGRect fram = self.tableView.frame;
-			fram.size.height = self.mutaleData.count *100+15;
-			self.tableView.frame = fram;
-			self.scrollview.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.tableView.frame));
-		}
-		
-	} failure:^(NSError *err) {
-		
-	}];
+			
+		} failure:^(NSError *err) {
+			
+		}];
+
 }
 - (void)createScrollview{
 	if (self.scrollview ==nil) {
@@ -141,7 +143,8 @@
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 	UILabel *views = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 15)];
-	views.text = @"    고객만고만고객";
+	views.text = @"    여러분을 위해 골라봤어요";
+	views.font = [UIFont systemFontOfSize:13];
 	views.textColor = RGB(46, 46, 46);
 	return views;
 }

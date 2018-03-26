@@ -99,7 +99,7 @@
 - (UITableView *)baseSearchTableView
 {
     if (!_baseSearchTableView) {
-        UITableView *baseSearchTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        UITableView *baseSearchTableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
         baseSearchTableView.backgroundColor = PYBackgroundColor;
         baseSearchTableView.delegate = self;
         baseSearchTableView.dataSource = self;

@@ -227,7 +227,7 @@
 	NSString *notices = notice.object;
 	if ([notices isEqualToString:@"1"]) {
 		TSFirstMoreViewController *firstMore = [TSFirstMoreViewController new];
-		firstMore.title = @"添加更多";
+		firstMore.title = @"더보기";
 		firstMore.level1 = Level1;
 		firstMore.choiceBlock = ^(NSString *selectItem) {
 		};

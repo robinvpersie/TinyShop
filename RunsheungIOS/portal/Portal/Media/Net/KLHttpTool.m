@@ -276,7 +276,7 @@
  */
 + (void)getSupermarketGoodsMsgWithItemCode:(NSString *)itemCode
                                   shopCode:(NSString *)shopCode
-                                 salerCode:(NSString *)salerCode
+                                 saleCustomCode:(NSString *)sale_custom_code
                               success:(void (^)(id response))success
                               failure:(void (^)(NSError *err))failure {
     NSString  *url = @"FreshMart/Goods/GetGoodsOfDetails";
@@ -285,7 +285,7 @@
     NSMutableDictionary *params = @{}.mutableCopy;
     [params setObject:itemCode forKey:@"item_code"];
     [params setObject:shopCode forKey:@"div_code"];
-    [params setObject:salerCode forKey:@"custom_code"];
+    [params setObject:sale_custom_code forKey:@"sale_custom_code"];
     
     YCAccountModel *model = [YCAccountModel getAccount];
     
@@ -814,22 +814,22 @@
 + (void)getSupermarketShoppintCartListWithAppType:(NSInteger)appType
                                           success:(void (^)(id response))success
                                       failure:(void (^)(NSError *err))failure {
-    NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/GetUserShopCartOfList",BaseUrl];
+    NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/GetUserCartOfList",BaseUrl];
 	YCAccountModel *accountModel = [YCAccountModel getAccount];
 	
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    YCAccountModel *model = [YCAccountModel getAccount];
-////    if (model.token) {
-//        [params setObject:model.token forKey:@"token"];
-//    }
-    [params setObject:@(appType) forKey:@"appType"];
-//    [params setObject:model.token forKey:@"token"];
-
-    
-//    [self getToken:^(id token) {
-	NSString *token = accountModel.token;
-	if (token.length) {
-		[params setObject:token forKey:@"token"];
+////    YCAccountModel *model = [YCAccountModel getAccount];
+//////    if (model.token) {
+////        [params setObject:model.token forKey:@"token"];
+////    }
+//    [params setObject:@(appType) forKey:@"appType"];
+////    [params setObject:model.token forKey:@"token"];
+//
+//
+////    [self getToken:^(id token) {
+	NSString *Pintoken =[ NSString stringWithFormat:@"%@|%@|%@",accountModel.token,@"ghjgbjhhjjg",accountModel.customCode] ;
+	if (Pintoken.length) {
+		[params setObject:Pintoken forKey:@"token"];
 
 	}
         [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost
@@ -3228,8 +3228,15 @@
 	NSString *custom_code = accountmodel.customCode;
 	NSString *token = accountmodel.token;
 	
-	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,pagesize,div_code,custom_code,pg,custom_lev1,custom_lev2,custom_lev3,latitude,longitude,order_by,token).mutableCopy;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,pagesize,div_code,pg,custom_lev1,custom_lev2,custom_lev3,latitude,longitude,order_by).mutableCopy;
 	
+	if (custom_code.length) {
+		[params setObject:custom_code forKey:@"custom_code"];
+	}
+	if (token.length) {
+		[params setObject:token forKey:@"token"];
+	}
+
 	
 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
 		NSLog(@"%@",response);

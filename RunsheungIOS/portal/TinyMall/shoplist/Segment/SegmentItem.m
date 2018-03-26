@@ -13,7 +13,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
 	self = [super initWithFrame: frame];
 	if (self) {
-		self.dataArray = @[@"销量最高",@"离我最近",@"平台推荐"].mutableCopy;
+		self.dataArray = @[@"땡처리",@"거리순",@"인기순"].mutableCopy;
 		self.backgroundColor = RGB(254, 254, 254);
 		self.layer.borderWidth = 0.6f;
 		self.layer.borderColor = RGB(221, 221, 221).CGColor;
