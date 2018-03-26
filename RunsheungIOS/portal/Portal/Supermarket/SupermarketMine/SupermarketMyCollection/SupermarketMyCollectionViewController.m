@@ -480,13 +480,11 @@
             NSNumber *status = response[@"status"];
             if (status.integerValue == 1) {
                 NSArray *data = response[@"data"];
-                if (data.count > 0) {
-                    for (NSDictionary *dic in data) {
-                        LZCartModel *model = [NSDictionary getLzCartModelWithDic:dic];
-                        [dataArray addObject:model];
-                    }
-                    self.dataArray = dataArray;
+                for (NSDictionary *dic in data) {
+                    LZCartModel *model = [NSDictionary getLzCartModelWithDic:dic];
+                    [dataArray addObject:model];
                 }
+                self.dataArray = dataArray;
                 [self changeView];
                 [self.myTableView.mj_header endRefreshing];
             }
@@ -554,13 +552,9 @@
     self.myTableView = table;
     
     self.myTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        if (self.selectedArray.count > 0) {
             [self.selectedArray removeAllObjects];
-        }
-        if (self.dataArray.count > 0) {
             [self.dataArray removeAllObjects];
-        }
-        [self loadData];
+            [self loadData];
     }];
 }
 
@@ -631,7 +625,7 @@
             [KLHttpTool addGoodsToShoppingCartWithGoodsID:model.item_code shopID:div applyID:@"YC01" numbers:1 success:^(id response) {
                 NSNumber *status = response[@"status"];
                 if (status.integerValue == 1) {
-                    [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
+                    [self showMessage:response[@"message"] interval:2 completionAction:nil];
                 }
             } failure:^(NSError *err) { }];
         }
@@ -705,7 +699,7 @@
         UIAlertAction *ok = [UIAlertAction actionWithTitle:NSLocalizedString(@"SMDeleteTitle", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSMutableArray *goodsIDs = [NSMutableArray array];
             for (LZCartModel *model in self.selectedArray) {
-                NSMutableDictionary *dic = @{}.mutableCopy;
+                NSMutableDictionary *dic = [NSMutableDictionary dictionary];
                 [dic setObject:model.item_code forKey:@"item_code"];
                 [dic setObject:model.divCode forKey:@"div_code"];
                 [goodsIDs addObject:dic];
