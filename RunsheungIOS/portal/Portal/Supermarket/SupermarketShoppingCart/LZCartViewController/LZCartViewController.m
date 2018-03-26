@@ -75,7 +75,10 @@ typedef void(^finishAction)();
     _totlePriceLabel.attributedText = [self LZSetString:@"￥0.00"];
 
     [self.myTableView reloadData];
-    
+//	BOOL islogIn = [YCAccountModel islogin];
+//	if (islogIn) {
+//		[self loadData];
+//	}
 }
 
 
@@ -926,7 +929,8 @@ typedef void(^finishAction)();
                 if (status.integerValue == 1) {
                     [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                        [self.myTableView reloadData];
+//						[self.dataArray removeAllObjects];
+						[self reloadAllData];
                     }];
                 }
                 

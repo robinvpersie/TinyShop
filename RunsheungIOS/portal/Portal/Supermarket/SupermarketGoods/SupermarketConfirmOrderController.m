@@ -383,6 +383,24 @@
 }
 
 - (void)createOrder {
+	SupermarketMyOrderController *vc = [[SupermarketMyOrderController alloc] init];
+	vc.title = @"待收货";
+	vc.pageIndex = 3;
+	vc.controllerType = 6;
+//	__weak typeof(self) weakself = self;
+	vc.refresh = ^{
+//		__strong typeof(weakself) strongself = weakself;
+//		[strongself checkLogStatus];
+	};
+	
+	vc.hidesBottomBarWhenPushed = YES;
+	[self.navigationController pushViewController:vc animated:YES];
+
+	
+	
+	
+	
+	
     if (_checkOrderModel.guid.length == 0) {
         return;
     }

@@ -667,21 +667,25 @@
     [params setObject:goodsID forKey:@"item_code"];
     [params setObject:shopID forKey:@"div_code"];
     [params setObject:applyID forKey:@"custom_code"];
-    YCAccountModel *model = [YCAccountModel getAccount];
+	
     
-    [self getToken:^(id token) {
-        [params setObject:token forKey:@"token"];
-        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-            [self checkStatusWithResponse:response];
-            if (success) {
-                success(response);
-            }
-        } failure:^(NSError *err) {
-            NSLog(@"%@",err);
-        }];
-    } failure:^(NSError *errToken) {
-        
-    }];
+//    [self getToken:^(id token) {
+	if ([YCAccountModel islogin]) {
+		YCAccountModel *model = [YCAccountModel getAccount];
+		[params setObject:model.token forKey:@"token"];
+		[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+			[self checkStatusWithResponse:response];
+			if (success) {
+				success(response);
+			}
+		} failure:^(NSError *err) {
+			NSLog(@"%@",err);
+		}];
+	}
+	
+//    } failure:^(NSError *errToken) {
+//
+//    }];
 }
 
 //获取自提站点
@@ -3196,6 +3200,43 @@
 	if (token.length) {
 		[params setObject:token forKey:@"token"];
 	}
+	
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+	}];
+}
+
+/*
+ 加载主页数据
+ */
++(void)TinyRequestMainDataUrl:(NSString *)urls
+					   Withpg:(NSString *)pg
+				 WithPagesize:(NSString*)pagesize
+				 WithCustomlev1:(NSString*)custom_lev1
+				 WithCustomlev2:(NSString*)custom_lev2
+				 WithCustomlev3:(NSString*)custom_lev3
+				 Withlatitude:(NSString*)latitude
+				 Withlongitude:(NSString*)longitude
+				 Withorder_by:(NSString*)order_by
+						success:(void (^)(id response))success
+						failure:(void (^)(NSError *err))failure{
+	
+	NSString *url =[NSString stringWithFormat:@"%@%@",TinyMallShopBaseURL,urls] ;
+	
+	NSString *lang_type = @"kor";
+	NSString *div_code = @"2";
+	
+	YCAccountModel *accountmodel = [YCAccountModel getAccount];
+	NSString *custom_code = accountmodel.customCode;
+	NSString *token = accountmodel.token;
+	
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,pagesize,div_code,custom_code,pg,custom_lev1,custom_lev2,custom_lev3,latitude,longitude,order_by,token).mutableCopy;
 	
 	
 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {

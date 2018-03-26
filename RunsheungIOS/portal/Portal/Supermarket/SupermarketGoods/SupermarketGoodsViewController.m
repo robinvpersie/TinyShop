@@ -438,14 +438,17 @@
 
 //    [KLHttpTool getToken:^(id token) {
 //        if (token) {
-            LZCartViewController *shoppingCart = [[LZCartViewController alloc] init];
-            //    shoppingCart.type = ShoppingCartController;
-            shoppingCart.isPush = YES;
-            shoppingCart.hidesBottomBarWhenPushed = YES;
-            shoppingCart.controllerType = self.controllerType;
-            _bottom.hidden = YES;
-            [self.navigationController pushViewController:shoppingCart animated:YES];
-           
+	if ([YCAccountModel islogin]) {
+		LZCartViewController *shoppingCart = [[LZCartViewController alloc] init];
+		//    shoppingCart.type = ShoppingCartController;
+		shoppingCart.isPush = YES;
+		shoppingCart.hidesBottomBarWhenPushed = YES;
+		shoppingCart.controllerType = self.controllerType;
+		_bottom.hidden = YES;
+		[self.navigationController pushViewController:shoppingCart animated:YES];
+		
+
+	}
 //        }
 //    } failure:^(NSError *errToken) {
 //
