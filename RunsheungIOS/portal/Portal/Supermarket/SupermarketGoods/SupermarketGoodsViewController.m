@@ -385,7 +385,7 @@
 		self.collectionButton.selected = button.selected;
 		
 		if (button.selected == YES) {
-			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:model.customCode SaleCustomCode:_shopCode   success:^(id response) {
+			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:nil SaleCustomCode:nil   success:^(id response) {
 				NSNumber *status = response[@"status"];
 				if (status.integerValue == 1) {
 					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
@@ -394,7 +394,7 @@
 				
 			}];
 		} else {
-			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:model.customCode SaleCustomCode:_shopCode   success:^(id response) {
+			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:nil SaleCustomCode:nil   success:^(id response) {
 				NSNumber *status = response[@"status"];
 				if (status.integerValue == 1) {
 					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
@@ -408,7 +408,7 @@
 	} else {
 		self.collectionTitleButton.selected = button.selected;
 		if (button.selected == YES) {
-			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:model.customCode SaleCustomCode:_shopCode success:^(id response) {
+			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:nil SaleCustomCode:nil success:^(id response) {
 				NSNumber *status = response[@"status"];
 				if (status.integerValue == 1) {
 					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
@@ -417,7 +417,7 @@
 				
 			}];
 		} else {
-			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:model.customCode SaleCustomCode:_shopCode   success:^(id response) {
+			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:nil SaleCustomCode:nil   success:^(id response) {
 				NSNumber *status = response[@"status"];
 				if (status.integerValue == 1) {
 					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];

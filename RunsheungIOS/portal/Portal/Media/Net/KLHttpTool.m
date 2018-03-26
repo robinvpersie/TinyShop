@@ -714,8 +714,15 @@
     NSMutableDictionary *params = @{}.mutableCopy;
     [params setObject:goodID forKey:@"item_code"];
     [params setObject:divCode forKey:@"div_code"];
-	[params setObject:sale_custom_code forKey:@"sale_custom_code"];
-	[params setObject:custom_code forKey:@"custom_code"];
+	if (sale_custom_code.length) {
+		[params setObject:sale_custom_code forKey:@"sale_custom_code"];
+	}
+	if (custom_code.length) {
+		
+		[params setObject:custom_code forKey:@"custom_code"];
+
+	}
+
 
 //    [self getToken:^(id token) {
 	if ([YCAccountModel islogin]) {
