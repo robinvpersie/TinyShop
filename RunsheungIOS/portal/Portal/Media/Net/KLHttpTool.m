@@ -2680,16 +2680,13 @@
                 withParentId:(NSString *)parent_ID
                     success:(void (^)(id response))success
                     failure:(void (^)(NSError *err))failure{
-    NSString*url = @"http://member.dxbhtm.com:8800/api/Login/joinMember";
+    NSString *url = @"http://member.dxbhtm.com:8800/api/Login/joinMember";
     NSMutableDictionary *dic;
     if (parent_ID.length == 0) {
          dic = @{@"memid":memid,@"HPnum":memid,@"ver":@"2",@"mempwd":mempwd,@"AuthNum":AuthNum}.mutableCopy;
     }else{
-        
         [dic setObject:parent_ID forKey:@"parent_ID"];
     }
-    
-    
     //获得请求管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];

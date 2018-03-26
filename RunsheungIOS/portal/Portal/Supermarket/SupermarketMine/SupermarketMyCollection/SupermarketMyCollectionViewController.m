@@ -386,7 +386,7 @@
 #import "LZCartTableViewCell.h"
 #import <MJRefresh/MJRefresh.h>
 
-@interface SupermarketMyCollectionViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface SupermarketMyCollectionViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong,nonatomic)NSMutableArray *dataArray;
 @property (strong,nonatomic)NSMutableArray *selectedArray;
@@ -436,7 +436,7 @@
 
 - (void)loadData {
     if (self.controllerType == ControllerTypeSupermarket) {
-        NSMutableArray *dataArray = @[].mutableCopy;
+        NSMutableArray *dataArray = [NSMutableArray array];
         [KLHttpTool getMyCollectionListWithAppType:6 success:^(id response) {
             NSNumber *status = response[@"status"];
             if (status.integerValue == 1) {
@@ -475,7 +475,7 @@
         //
         //        }];
         
-        NSMutableArray *dataArray = @[].mutableCopy;
+        NSMutableArray *dataArray = [NSMutableArray array];
         [KLHttpTool getMyCollectionListWithAppType:8 success:^(id response) {
             NSNumber *status = response[@"status"];
             if (status.integerValue == 1) {
@@ -504,7 +504,6 @@
         if (view != nil) {
             [view removeFromSuperview];
         }
-        
         [self setupCartView];
     } else {
         UIView *bottomView = [self.view viewWithTag:TAG_CartEmptyView + 1];
@@ -547,7 +546,7 @@
     
     table.delegate = self;
     table.dataSource = self;
-    
+    [table registerClass:[LZCartTableViewCell class] forCellReuseIdentifier:@"LZCartReusableCell"];
     table.rowHeight = lz_CartRowHeight;
     table.separatorStyle = UITableViewCellSeparatorStyleNone;
     table.backgroundColor = LZColorFromRGB(245, 246, 248);
@@ -646,25 +645,14 @@
 
 #pragma mark --- UITableViewDataSource & UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.dataArray.count > 0) {
-        return self.dataArray.count;
-    }
-    return 0;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LZCartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LZCartReusableCell"];
-    
-    if (cell == nil) {
-        cell = [[LZCartTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"LZCartReusableCell"];
-    }
-    
+    LZCartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LZCartReusableCell" forIndexPath:indexPath];
     cell.isCollection = YES;
-    
     LZCartModel *model = self.dataArray[indexPath.row];
-    
     [cell cellSelectedWithBlock:^(BOOL select) {
-        
         model.select = select;
         if (select) {
             [self.selectedArray addObject:model];
@@ -715,7 +703,7 @@
     if (self.selectedArray.count > 0) {
         UIAlertController *deleteAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"SMAlertTitle", nil) message:NSLocalizedString(@"SMAlertDeleteCollectionMsg", nil) preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:NSLocalizedString(@"SMDeleteTitle", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            NSMutableArray *goodsIDs = @[].mutableCopy;
+            NSMutableArray *goodsIDs = [NSMutableArray array];
             for (LZCartModel *model in self.selectedArray) {
                 NSMutableDictionary *dic = @{}.mutableCopy;
                 [dic setObject:model.item_code forKey:@"item_code"];
@@ -725,8 +713,7 @@
             [KLHttpTool deleteCollectionGoods:goodsIDs success:^(id response) {
                 NSNumber *status = response[@"status"];
                 if (status.integerValue == 1) {
-                    [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
-                    
+                   [self showMessage:response[@"message"] interval:2 completionAction:nil];
                     for (LZCartModel *model in self.selectedArray) {
                         if ([self.dataArray containsObject:model]) {
                             [self.dataArray removeObject:model];
@@ -745,7 +732,8 @@
         [deleteAlert addAction:cancel];
         [self presentViewController:deleteAlert animated:YES completion:nil];
     } else {
-        [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:NSLocalizedString(@"SMNoChooseGoodsMsg", nil)];
+        [self showMessage:NSLocalizedString(@"SMNoChooseGoodsMsg", nil) interval:2 completionAction:nil];
+        //[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:NSLocalizedString(@"SMNoChooseGoodsMsg", nil)];
     }
 }
 
