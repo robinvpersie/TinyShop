@@ -38,6 +38,10 @@
 @property(nonatomic,assign)int pickerIndex2;
 @property(nonatomic,assign)int pickerIndex3;
 
+@property (nonatomic,retain)NSArray *showColors;
+@property (nonatomic,retain)NSArray *BigCategoresArray;
+
+
 
 
 @end

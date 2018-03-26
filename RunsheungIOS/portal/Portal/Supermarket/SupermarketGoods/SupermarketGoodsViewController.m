@@ -232,7 +232,7 @@
 		self.item_code = @"6901285991271";
 	}
 	
-	[KLHttpTool getSupermarketGoodsMsgWithItemCode:self.item_code shopCode:self.divCode salerCode:@"yc01" success:^(id response) {
+	[KLHttpTool getSupermarketGoodsMsgWithItemCode:self.item_code shopCode:@"2" saleCustomCode:self.divCode success:^(id response) {
 		[MBProgressHUD hideHUDForView:self.view animated:YES];
 		NSNumber *status = response[@"status"];
 		if (status.integerValue == 1) {

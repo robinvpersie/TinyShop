@@ -35,7 +35,7 @@
 	[self addSubview:firstView];
 	
 	UIButton *editBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.frame.size.width - 70, 0, 70, 50)];
-	[editBtn setTitle:@"更多" forState:UIControlStateNormal];
+	[editBtn setTitle:@"더보기" forState:UIControlStateNormal];
 	editBtn.backgroundColor = [UIColor whiteColor];
 	[editBtn setTitleColor:RGB(25, 35, 35) forState:UIControlStateNormal];
 	editBtn.titleLabel.font = [UIFont systemFontOfSize:14];

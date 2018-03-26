@@ -15,7 +15,7 @@
 	[self.Headavor sd_setImageWithURL:[NSURL URLWithString:_dic[@"shop_thumnail_image"]]];
 	[self.titleLab setText:_dic[@"custom_name"]];
 	
-	[self.detailedLab setText:[NSString stringWithFormat:@"评论:%d  回复:%d", [_dic[@"cnt"] intValue],[_dic[@"sale_custom_cnt"] intValue]]];
+	[self.detailedLab setText:[NSString stringWithFormat:@"주문수：%d만+  즐겨찾기 %d+", [_dic[@"cnt"] intValue],[_dic[@"sale_custom_cnt"] intValue]]];
 	
 	[self.distance setText:_dic[@"distance"]];
 		

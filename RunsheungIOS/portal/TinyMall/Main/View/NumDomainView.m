@@ -42,15 +42,16 @@
 	[self addSubview:pickbackImg];
 	
 	UIButton *ok = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(pickbackImg.frame), 0, self.frame.size.width - CGRectGetMaxX(pickbackImg.frame), 60)];
-	[ok setTitle:@"确定" forState:UIControlStateNormal];
+	[ok setTitle:@"선택" forState:UIControlStateNormal];
 	[ok setTitleColor:[UIColor colorWithRed:38/255.0f green:199/255.0f blue:48/255.0f alpha:1.0f] forState:UIControlStateNormal];
 	ok.layer.cornerRadius = 5;
 	ok.layer.masksToBounds = YES;
 	[ok addTarget:self action:@selector(okAction:) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview:ok];
-	
-	
+	self.BigCategoresArray= @[@"여행",@"가정",@"건축",@"교육",@"교통",@"금융",@"종교",@"미용",@"법률",@"쇼핑",@"언론",@"건강",@"음식",@"취미",@"컴퓨터"];
+	self.showColors = @[RGB(255, 86, 100),RGB(220, 211, 57),RGB(62, 220, 108),RGB(37, 126, 220),RGB(10, 34, 60)];
 	self.pickerNumbers = @[@"1", @"2", @"3",@"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16"];
+	
 	for (int i = 0; i<4; i++) {
 		UIPickerView *pickView = [[UIPickerView alloc]initWithFrame:CGRectMake(i*(CGFloat)CGRectGetWidth(pickbackImg.frame)/5.5,0, (CGFloat)CGRectGetWidth(pickbackImg.frame)/5.5, 60)];
 		pickView.dataSource = self;
@@ -79,6 +80,18 @@
 {
 	
 	return [self.pickerNumbers objectAtIndex:row];
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+	
+	UILabel *label = [[UILabel alloc] init];
+	label.text = [NSString stringWithFormat:@"%d",(int)row+1];
+	label.textAlignment= NSTextAlignmentCenter;
+	label.font = [UIFont systemFontOfSize:20 weight:1.2f];
+	label.textColor = self.showColors[pickerView.tag];
+
+	return label;
+	
 }
 
 // 当用户选中UIPickerViewDataSource中指定列和列表项时激发该方法
@@ -245,15 +258,22 @@
 
 	}else{
 		if ((int)indexPath.row < 9) {
-			topImgNamed = [NSString stringWithFormat:@"m_icon0%d.png",(int)indexPath.row+1];
+			topImgNamed = [NSString stringWithFormat:@"t_icon0%d.png",(int)indexPath.row+1];
 		}else{
-			topImgNamed = [NSString stringWithFormat:@"m_icon%d.png", (int)indexPath.row+1];
+			topImgNamed = [NSString stringWithFormat:@"t_icon%d.png", (int)indexPath.row+1];
 		}
 
 	}
 	UIImageView *numberImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:topImgNamed]];
-	numberImg.frame = CGRectMake(8, 8, ScrollviewHeight-16, ScrollviewHeight-16);
+	numberImg.frame = CGRectMake(15, 8, ScrollviewHeight-30, ScrollviewHeight-30);
 	[cell.contentView addSubview:numberImg];
+	
+	UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(numberImg.frame)+3, ScrollviewHeight, 15)];
+	title.text = self.BigCategoresArray[indexPath.row];
+	title.textAlignment = NSTextAlignmentCenter;
+	title.textColor = [UIColor whiteColor];
+	title.font = [UIFont systemFontOfSize:13];
+	[cell.contentView addSubview:title];
 	
 	return cell;
 }

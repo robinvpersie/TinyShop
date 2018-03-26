@@ -408,6 +408,7 @@
 	switch (index) {
 		case 0:
 		{
+			
 			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
 			[[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:@"joinKinds"];
 			[[NSUserDefaults standardUserDefaults]synchronize];

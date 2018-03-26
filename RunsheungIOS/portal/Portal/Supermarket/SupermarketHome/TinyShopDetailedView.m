@@ -58,7 +58,7 @@
 	self.backView = [[UIView alloc]initWithFrame:CGRectMake(0 ,self.frame.size.height - 30, SCREEN_WIDTH, 30)];
 	[self addSubview:self.backView];
 	
-	NSArray *btnarray = @[@"최근리뷰",@"사장님댓글"];
+	NSArray *btnarray = @[@"메뉴",@"정보"];
 	for (int i = 0; i<btnarray.count; i++) {
 		NSString *title = btnarray[i];
 		
