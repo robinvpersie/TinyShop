@@ -16,6 +16,8 @@
 #import "SupermarketHomeViewController.h"
 #import "ShowLocationView.h"
 #import "SingleSegmentView.h"
+#import "SupermarketSearchController.h"
+#import "TSearchViewController.h"
 
 
 
@@ -87,7 +89,6 @@
 	}
 	
 	self.extend = NO;
-	self.view.backgroundColor = RGB(250, 250, 250);
 	self.allDic = @{}.mutableCopy;
 	hudloading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 	[self location];
@@ -118,19 +119,25 @@
 	YCAccountModel *account = [YCAccountModel getAccount];
 	NSString *latitude = [[NSUserDefaults standardUserDefaults]objectForKey:@"latitude"];
 	NSString *longitude = [[NSUserDefaults standardUserDefaults]objectForKey:@"longtitude"];
+	hudloading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
 	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:account.customCode withpg:@"1" withtoken:account.token withcustom_lev1:leve1 withcustom_lev2:leve2 withcustom_lev3:leve3 withlatitude:latitude withlongitude:longitude withorder_by:order_by success:^(id response) {
 		if ([response[@"status"] intValue] == 1) {
-			[hudloading hideAnimated:YES afterDelay:2];
+			[hudloading hideAnimated:YES];
 			self.responseDit = response;
+			
 			[self transferResponse];
 			self.shoplistData = self.responseDit[@"storelist"];
 			[self.tableview reloadData];
+			
 		}
 		
 	} failure:^(NSError *err) {
+		
 		hudloading.mode = MBProgressHUDModeText;
 		hudloading.label.text = @"可能网络出现问题！";
-		[hudloading hideAnimated:YES afterDelay:2.0f];
+		[hudloading hideAnimated:YES];
+		
 		
 	}];
 }
@@ -384,10 +391,32 @@
 #pragma mark -- 右边点击方法
 - (void)rightAction:(UIButton*)sender{
         if (sender.tag == 2004) {
-            MemberEnrollController *memberEnroll = [[MemberEnrollController alloc] init];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:memberEnroll];
-            [self presentViewController:nav animated:YES completion:nil];
+			if ([YCAccountModel islogin]) {
+		
+				//创建热搜的数组
+				NSArray *hotSeaches = @[];
+				//创建搜索结果的控制器
+				PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"搜索关键字" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+					TSearchViewController *searchResultVC = [[TSearchViewController alloc] init];
+					searchResultVC.searchKeyWord = searchText;
+					searchResultVC.navigationItem.title = @"搜索结果";
+					[searchViewController.navigationController pushViewController:searchResultVC animated:YES];
+					
+					
+				}];
+				//创建搜索的控制器
+				
+				UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+				[self presentViewController:nav  animated:NO completion:nil];
+				
 
+			}else{
+				MemberEnrollController *memberEnroll = [[MemberEnrollController alloc] init];
+				UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:memberEnroll];
+				[self presentViewController:nav animated:YES completion:nil];
+				
+
+			}
         }
 
 }

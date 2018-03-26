@@ -19,6 +19,6 @@
 
 @property(nonatomic, assign) BOOL isScan;
 
-@property (nonatomic,retain)NSDictionary *shopDic;
-
 @end
+
+

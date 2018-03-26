@@ -814,7 +814,7 @@
 + (void)getSupermarketShoppintCartListWithAppType:(NSInteger)appType
                                           success:(void (^)(id response))success
                                       failure:(void (^)(NSError *err))failure {
-    NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/GetUserShopCartOfList",@"http://pay.dxbhtm.com:81/"];
+    NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/GetUserShopCartOfList",BaseUrl];
 	YCAccountModel *accountModel = [YCAccountModel getAccount];
 	
     NSMutableDictionary *params = [NSMutableDictionary dictionary];

@@ -53,19 +53,21 @@
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     self.navigationItem.hidesBackButton = YES;
     
-    naviBackView = [[UIView alloc]initWithFrame:CGRectMake(10, 10, APPScreenWidth-60, 24)];
+    naviBackView = [[UIView alloc]initWithFrame:CGRectMake(10, 4, APPScreenWidth-60, 34)];
     naviBackView.backgroundColor = RGB(227, 227, 227);
+	naviBackView.layer.cornerRadius = 4;
+	naviBackView.layer.masksToBounds = YES;
     [self.navigationController.navigationBar addSubview:naviBackView];
     
-    UIButton*baobei = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, CGRectGetHeight(naviBackView.frame))];
-    [baobei setTitle:@"宝贝名:" forState:UIControlStateNormal];
+    UIButton*baobei = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, CGRectGetHeight(naviBackView.frame))];
+    [baobei setTitle:@"关键字:" forState:UIControlStateNormal];
     [baobei setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [baobei setFont:[UIFont systemFontOfSize:14]];
+    [baobei.titleLabel setFont:[UIFont systemFontOfSize:15]];
     [naviBackView addSubview:baobei];
     
     UITextField *searchText = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(baobei.frame)+ 10, 0, CGRectGetWidth(naviBackView.frame)-CGRectGetMaxX(baobei.frame) - 10, CGRectGetHeight(naviBackView.frame))];
     self.fieldText = searchText;
-    searchText.placeholder = @"输入宝贝名字";
+    searchText.placeholder = @"请输入关键字";
     searchText.returnKeyType = UIReturnKeySearch;//变为搜索按钮
     [searchText setFont: [UIFont systemFontOfSize:14]];
     searchText.delegate = self;
@@ -74,7 +76,7 @@
     UIButton *backBtn =[[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth - 55, 0, 40, CGRectGetHeight(naviBackView.frame))];
     [backBtn setTitle:@"取消" forState:UIControlStateNormal];
     backBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-    [backBtn setFont:[UIFont systemFontOfSize:14]];
+    [backBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [backBtn setTitleColor:RGB(145, 145, 145) forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(backaction:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithCustomView:backBtn];
@@ -86,50 +88,55 @@
     BigbackView = [[UIView alloc]initWithFrame:self.view.bounds];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:BigbackView];
+	BigbackView.backgroundColor = [UIColor yellowColor];
+	
+	
+	delebackview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 40)];
+	delebackview.hidden = YES;
+	delebackview.backgroundColor = [UIColor purpleColor];
+	if (self.historyData.count != 0) {
+		delebackview.hidden = NO;
+	}
+	
+	[BigbackView addSubview:delebackview];
+
+	UILabel *histroyLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 20, 60, 20)];
+	histroyLab.text = @"历史搜索";
+	histroyLab.font = [UIFont systemFontOfSize:14];
+	histroyLab.textColor = [UIColor grayColor];
+	[delebackview addSubview:histroyLab];
     
-    
-    self.tagListView = [[AMTagListView alloc]initWithFrame:CGRectMake(6, 40, APPScreenWidth - 12, APPScreenHeight - 104)];
-    [BigbackView addSubview:self.tagListView];
-    
-    [[AMTagView appearance] setTagLength:10];
-    [[AMTagView appearance] setTextPadding:CGPointMake(14, 14)];
-    [[AMTagView appearance] setTextFont:[UIFont fontWithName:@"Futura" size:14]];
-    [[AMTagView appearance] setTagColor:UIColorFromRGB(0x1f8dd6)];
-    if (self.historyData.count > 0) {
-        NSLog(@"%@",self.historyData);
-        
-        [self.tagListView addTags:self.historyData];
-        
-    }
-    
-    self.tagListView.tagListDelegate = self;
-    
-    [self.tagListView setTapHandler:^(AMTagView *view) {
-        //        view.tag++;
-        //        NSString *text = [[view.tagText componentsSeparatedByString:@" +"] firstObject];
-        //        [view setTagText:[NSString stringWithFormat:@"%@ +%ld", text, view.tag]];
-    }];
-    
-    delebackview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 40)];
-    delebackview.hidden = YES;
-    if (self.historyData.count != 0) {
-        delebackview.hidden = NO;
-    }
-    
-    [BigbackView addSubview:delebackview];
-    
-    UILabel *histroyLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 20, 60, 20)];
-    histroyLab.text = @"历史搜索";
-    histroyLab.font = [UIFont systemFontOfSize:14];
-    histroyLab.textColor = [UIColor grayColor];
-    [delebackview addSubview:histroyLab];
-    
-    UIButton *delehistoryBtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth - 30, 22, 12, 12)];
-    [delehistoryBtn setImage:[UIImage imageNamed:@"truCan"] forState:UIControlStateNormal];
-    [delehistoryBtn addTarget:self action:@selector(deleteHistroy:) forControlEvents:UIControlEventTouchUpInside];
-    [delebackview addSubview:delehistoryBtn];
-    
-    
+//    self.tagListView = [[AMTagListView alloc]initWithFrame:CGRectMake(6, 64, APPScreenWidth - 12, APPScreenHeight - 104)];
+//    [BigbackView addSubview:self.tagListView];
+//	self.tagListView.backgroundColor = [UIColor blueColor];
+//
+//    [[AMTagView appearance] setTagLength:10];
+//    [[AMTagView appearance] setTextPadding:CGPointMake(14, 14)];
+//    [[AMTagView appearance] setTextFont:[UIFont fontWithName:@"Futura" size:14]];
+//    [[AMTagView appearance] setTagColor:UIColorFromRGB(0x1f8dd6)];
+//    if (self.historyData.count > 0) {
+//        NSLog(@"%@",self.historyData);
+//
+//        [self.tagListView addTags:self.historyData];
+//
+//    }
+//
+//    self.tagListView.tagListDelegate = self;
+//
+//    [self.tagListView setTapHandler:^(AMTagView *view) {
+//        //        view.tag++;
+//        //        NSString *text = [[view.tagText componentsSeparatedByString:@" +"] firstObject];
+//        //        [view setTagText:[NSString stringWithFormat:@"%@ +%ld", text, view.tag]];
+//    }];
+//
+//
+//
+//    UIButton *delehistoryBtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth - 30, 22, 12, 12)];
+//    [delehistoryBtn setImage:[UIImage imageNamed:@"truCan"] forState:UIControlStateNormal];
+//    [delehistoryBtn addTarget:self action:@selector(deleteHistroy:) forControlEvents:UIControlEventTouchUpInside];
+//    [delebackview addSubview:delehistoryBtn];
+//
+	
 }
 
 //删除搜索历史记录
@@ -164,6 +171,7 @@
     NSLog(@"返回");
     [NSUserDefaults SetSearchhistoryData:self.historyData];
     [[NSUserDefaults standardUserDefaults] synchronize];
+	[naviBackView removeFromSuperview];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -221,14 +229,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
