@@ -49,12 +49,24 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 	
-	NSDictionary *data = _dataArray[indexPath.item];
-	GoodsDetailController *vc = [GoodsDetailController new];
-	vc.item_code = data[@"item_code"];
-	vc.shopDic = self.shopDic;
-	[self.viewController.navigationController pushViewController:vc animated:YES];
+//	NSDictionary *data = _dataArray[indexPath.item];
+//	GoodsDetailController *vc = [GoodsDetailController new];
+//	vc.item_code = data[@"item_code"];
+//	[self.viewController.navigationController pushViewController:vc animated:YES];
+//
+	NSDictionary *dic = self.dataArray[indexPath.row];
 	
+	GoodsDetailController *goodsDetail = [[GoodsDetailController alloc] init];
+	goodsDetail.controllerType = 6;
+	goodsDetail.hidesBottomBarWhenPushed = YES;
+	
+//	LZShopModel *shop = self.dataArray[indexPath.section];
+//	LZCartModel *goods = shop.goodsArray[indexPath.row];
+//
+	goodsDetail.item_code = dic[@"item_code"];
+	goodsDetail.divCode = _shopDic[@"custom_code"];
+	
+	[self.viewController.navigationController pushViewController:goodsDetail animated:YES];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout

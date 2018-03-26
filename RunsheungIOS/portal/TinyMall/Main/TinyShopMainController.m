@@ -13,6 +13,9 @@
 #import "NumDomainView.h"
 #import "ShowLocationView.h"
 #import "SupermarketHomeViewController.h"
+#import "SupermarketSearchController.h"
+#import "TSearchViewController.h"
+
 
 
 @interface TinyShopMainController ()<UITableViewDelegate,UITableViewDataSource>{
@@ -115,6 +118,7 @@
 	
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+	
 	UITableViewCell *cell = [[UITableViewCell alloc]init];
 	NSDictionary *dic = self.mutaleData[indexPath.row];
 	UIImageView *showImg = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, APPScreenWidth - 20, 90)];
@@ -190,7 +194,25 @@
 
 
 - (void)leftBtn:(UIButton*)sender{
+
 	
+	//创建热搜的数组
+	NSArray *hotSeaches = @[];
+	//创建搜索结果的控制器
+	PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"搜索关键字" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+		TSearchViewController *searchResultVC = [[TSearchViewController alloc] init];
+		searchResultVC.searchKeyWord = searchText;
+		searchResultVC.navigationItem.title = @"搜索结果";
+		[searchViewController.navigationController pushViewController:searchResultVC animated:YES];
+		
+		
+	}];
+	//创建搜索的控制器
+	
+	UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+	[self presentViewController:nav  animated:NO completion:nil];
+	
+
 }
 
 #pragma mark -- 右边点击方法
@@ -206,11 +228,11 @@
 				
 			}else if (sender.tag == 2005){
 			
-				LZCartViewController *shoppingCart = [[LZCartViewController alloc] init];
-				//    shoppingCart.type = ShoppingCartController;
-				shoppingCart.isPush = YES;
-				shoppingCart.hidesBottomBarWhenPushed = YES;
-				[self.navigationController pushViewController:shoppingCart animated:YES];
+//				LZCartViewController *shoppingCart = [[LZCartViewController alloc] init];
+//				//    shoppingCart.type = ShoppingCartController;
+//				shoppingCart.isPush = YES;
+//				shoppingCart.hidesBottomBarWhenPushed = YES;
+//				[self.navigationController pushViewController:shoppingCart animated:YES];
 				
 				
 
@@ -223,6 +245,7 @@
 
 		}
 }
+
 #pragma mark -- 设置导航栏
 - (void)setNaviBar{
 	
@@ -235,7 +258,7 @@
 	UIBarButtonItem *right1Item = [[UIBarButtonItem alloc]initWithCustomView:right1Btn];
 	
 	UIButton *right2Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
-	[right2Btn setImage:[UIImage imageNamed:@"icon_scanss"] forState:UIControlStateNormal];
+	[right2Btn setImage:[UIImage imageNamed:@"icon_live_bottom"] forState:UIControlStateNormal];
 	UIBarButtonItem *right2Item = [[UIBarButtonItem alloc]initWithCustomView:right2Btn];
 	[right2Btn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
 	right2Btn.tag = 2005;
