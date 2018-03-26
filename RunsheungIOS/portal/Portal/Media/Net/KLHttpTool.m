@@ -920,7 +920,7 @@
     
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    NSMutableDictionary *params = @{}.mutableCopy;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:jsonString forKey:@"arrCardModel"];
     YCAccountModel *model = [YCAccountModel getAccount];
 //    if (model.token) {
@@ -3033,22 +3033,17 @@
 	
 	//获得请求管理者
 	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-	manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+	manager.responseSerializer = [AFJSONResponseSerializer serializer];
 	manager.requestSerializer = [AFJSONRequestSerializer serializer];
-	[manager POST:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-		
-		if (success) {
-			[MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
-			
-			id result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-			success(result);
-		}
-		
-	} failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-		if (failure) {
-			failure(error);
-		}
-	}];
+    manager.requestSerializer.timeoutInterval = 30;
+    [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+
 	
 
 	
