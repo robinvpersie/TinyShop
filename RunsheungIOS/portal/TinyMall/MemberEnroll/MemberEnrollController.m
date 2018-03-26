@@ -26,7 +26,7 @@
 #define AddMemberCodeBtnTag 3003
 #define ForgetPwdBtnTag 3004
 #define AddMemberRefTag 3005
-@interface MemberEnrollController ()<EnrollSheetViewDelegate,SegmentDelegate,TSMemberDelegate,UIScrollViewDelegate,UITextFieldDelegate>{
+@interface MemberEnrollController ()<EnrollSheetViewDelegate, SegmentDelegate, TSMemberDelegate, UIScrollViewDelegate, UITextFieldDelegate>{
 	UIView *loginBG;
 	TSMemberEnrollView *addmemberBG;
 	MBProgressHUD *hud;
@@ -103,7 +103,7 @@
 //                NSString *customCode = dic[@"custom_code"];
 //                NSString *deviceNo = dic[@"deviceNo"];
                 
-                NSString *finalToken = [NSString stringWithFormat:@"%@|%@|%@|%@",accountModel.token,accountModel.ssoId,accountModel.customCode,UUID];
+                NSString *finalToken = [NSString stringWithFormat:@"%@|%@|%@|%@", accountModel.token, accountModel.ssoId, accountModel.customCode, UUID];
                 accountModel.combineToken = finalToken;
 				NSData *objectTodata = [NSKeyedArchiver archivedDataWithRootObject:accountModel];
 				[[NSUserDefaults standardUserDefaults] setObject:objectTodata forKey:@"accountModel"];
@@ -421,63 +421,41 @@
 			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
 			[[NSUserDefaults standardUserDefaults]setObject:@"2" forKey:@"joinKinds"];
 			[[NSUserDefaults standardUserDefaults]synchronize];
-			
-
 			[self presentViewController:personalVC animated:YES completion:nil];
-			
-
-		}
+        }
 			break;
-
-		case 2:
+        case 2:
 		{
 			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
 			[[NSUserDefaults standardUserDefaults]setObject:@"5" forKey:@"joinKinds"];
 			[[NSUserDefaults standardUserDefaults]synchronize];
-			
-
 			[self presentViewController:personalVC animated:YES completion:nil];
-			
-
-		}
+        }
 			break;
-
-		case 3:
+        case 3:
 		{
 			[self showAlert];
 			[[NSUserDefaults standardUserDefaults]setObject:@"4" forKey:@"joinKinds"];
 			[[NSUserDefaults standardUserDefaults]synchronize];
-			
-
-		}
+        }
 			break;
-			
-		case 4:
+        case 4:
 		{
 			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
 			[self presentViewController:personalVC animated:YES completion:nil];
 			[[NSUserDefaults standardUserDefaults]setObject:@"6" forKey:@"joinKinds"];
 			[[NSUserDefaults standardUserDefaults]synchronize];
-			
-
-
-		}
+        }
 			break;
-
-		case 5:
+        case 5:
 		{
 			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
 			[self presentViewController:personalVC animated:YES completion:nil];
 			[[NSUserDefaults standardUserDefaults]setObject:@"8" forKey:@"joinKinds"];
 			[[NSUserDefaults standardUserDefaults]synchronize];
-			
-
-
-		}
+        }
 			break;
-
-			
-		default:
+        default:
 			break;
 	}
 }
@@ -493,26 +471,16 @@
 			
 		} else {
 			FindTeamViewController *findteamVC = [[FindTeamViewController alloc]init];
-			UINavigationController *navi = [[UINavigationController alloc]
-											initWithRootViewController:findteamVC];
+			UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:findteamVC];
 			[self presentViewController:navi animated:YES completion:nil];
-			
-			
-			
-		}
-		
-	} else {//点击第二个提示view
-		
+        }
+    } else {//点击第二个提示view
 		if (index == 1001) {
 			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
 			[self presentViewController:personalVC animated:YES completion:nil];
-			
-			
-		} else {
-		}
-		
-		
-	}
+        } else {
+      }
+    }
 }
 
 - (void)showAlert {
