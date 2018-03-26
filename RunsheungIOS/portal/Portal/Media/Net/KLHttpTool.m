@@ -2008,7 +2008,7 @@
                                       success:(void (^)(id response))success
                                       failure:(void (^)(NSError *err))failure {
     NSString *url = [NSString stringWithFormat:@"%@Order/UpdatePaymentStatusSync",BaseUrl];
-    NSMutableDictionary *params = @{}.mutableCopy;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     YCAccountModel *model = [YCAccountModel getAccount];
 //    if (model.token) {
 //        [params setObject:model.token forKey:@"token"];
@@ -2312,7 +2312,7 @@
                                           success:(void (^)(id response))success
                                           failure:(void (^)(NSError *err))failure {
     NSString *url = [NSString stringWithFormat:@"%@User/DelUserShopCart",ShopBaseUrl];
-    NSMutableDictionary *params = @{}.mutableCopy;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     //    [params setObject:IDs forKey:@"arrItemCode"];
     NSMutableString *itemCodesString = [[NSMutableString alloc] init];
     NSMutableString *divCodesString = [[NSMutableString alloc] init];
@@ -2587,7 +2587,7 @@
             success(response);
         }
     } failure:^(NSError *err) {
-        NSLog(@"%@",err);
+        failure(err);
     }];
 }
 

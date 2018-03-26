@@ -36,30 +36,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         proposeToAccess(.notifications(UIUserNotificationSettings(types: [.sound,.alert,.badge], categories: nil)), agreed: {}, rejected: {})
         proposeToAccess(.location(.whenInUse), agreed: { }) { }
         
-        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
       
-      
-            let pro = ProtocolController()
-            pro.startAction = { [weak self] in
-                guard let this = self else { return }
-                UIView.transition(with: this.window!,
-                                  duration: 0.5,
-                                  options: UIViewAnimationOptions.curveEaseIn,
-                                  animations:
-                    {
+        let pro = ProtocolController()
+        pro.startAction = { [weak self] in
+            guard let this = self else { return }
+            UIView.transition(with: this.window!, duration: 0.5, options: UIViewAnimationOptions.curveEaseIn, animations: {
                         let oldState = UIView.areAnimationsEnabled
                         UIView.setAnimationsEnabled(false)
                         let home = SupermarketMainController()
                         this.window?.rootViewController = home
                         UIView.setAnimationsEnabled(oldState)
-                }, completion: { finish in
+              }, completion: { finish in
                    
-                })
+              })
             }
-            window?.rootViewController = pro
-            window?.makeKeyAndVisible()
+        window?.rootViewController = pro
+        window?.makeKeyAndVisible()
         return true
     }
     
