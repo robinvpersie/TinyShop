@@ -50,12 +50,12 @@
         [_shareButton setImage:[UIImage imageNamed:@"icon_share"] forState:UIControlStateNormal];
         [_shareButton addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
     }
-    [self addSubview:_shareButton];
-    
+//    [self addSubview:_shareButton];
+	
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMinX(_shareButton.frame) - 15, _shareButton.frame.origin.y, 1, _shareButton.frame.size.height)];
     line.backgroundColor = [UIColor lightGrayColor];
-    [self addSubview:line];
-    
+//    [self addSubview:line];
+	
     if (_priceLabel == nil) {
         _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(_titleLabel.frame.origin.x, CGRectGetMaxY(_titleLabel.frame), 80, 35)];
         _priceLabel.textColor = RGB(246, 57, 55);

@@ -19,7 +19,7 @@
 #import "GoodsOptionModel.h"
 #import "CustomerServiceController.h"
 
-#define kButtonWidth APPScreenWidth/5*2/3
+#define kButtonWidth APPScreenWidth/5*2/2
 
 @interface SupermarketGoodsViewController ()<ChoseSizeViewDelegate>
 
@@ -70,9 +70,9 @@
 	
 	self.view.backgroundColor = [UIColor whiteColor];
 	
-	_bottomImageNames = @[@"icon_customerservice_n",@"icon-_collection_n",@"icon-_shoppingcart_n"];
-	_bottomSelectedImageNames = @[@"icon_customerservice_s",@"icon-_collection_s",@"icon-_shoppingcart_s"];
-	_bottomTitles = @[NSLocalizedString(@"SMGoodsDetailService", nil),NSLocalizedString(@"SMGoodsDetailCollection", nil),NSLocalizedString(@"SupermarketTabShoppingCart", nil)];
+	_bottomImageNames = @[@"icon-_collection_n",@"icon-_shoppingcart_n"];
+	_bottomSelectedImageNames = @[@"icon-_collection_s",@"icon-_shoppingcart_s"];
+	_bottomTitles = @[NSLocalizedString(@"SMGoodsDetailCollection", nil),NSLocalizedString(@"SupermarketTabShoppingCart", nil)];
 	
 	[self initView];
 	
@@ -171,7 +171,7 @@
 	self.addToShoppingCart = addShoppingCart;
 	[_bottom addSubview:addShoppingCart];
 	
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 2; i++) {
 		UIView *view = [self bottomButton:_bottomTitles[i] andimageName:_bottomImageNames[i] selectedImage:_bottomSelectedImageNames[i] index:i];
 		[_bottom addSubview:view];
 	}
@@ -196,7 +196,7 @@
 	[titleButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 	[view addSubview:titleButton];
 	
-	if (index == 1) {
+	if (index == 0) {
 		[titleButton setTitle:NSLocalizedString(@"SMGoodsCollectioned", nil) forState:UIControlStateSelected];
 		[titleButton setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
 		_collectionButton = button;
@@ -204,16 +204,16 @@
 	}
 	
 	switch (index) {
+//		case 0:
+//			[button addTarget:self action:@selector(goSever) forControlEvents:UIControlEventTouchUpInside];
+//			[titleButton addTarget:self action:@selector(goSever) forControlEvents:UIControlEventTouchUpInside];
+//			break;
 		case 0:
-			[button addTarget:self action:@selector(goSever) forControlEvents:UIControlEventTouchUpInside];
-			[titleButton addTarget:self action:@selector(goSever) forControlEvents:UIControlEventTouchUpInside];
-			break;
-		case 1:
 			[button addTarget:self action:@selector(collectionGoods:) forControlEvents:UIControlEventTouchUpInside];
 			[titleButton addTarget:self action:@selector(collectionGoods:) forControlEvents:UIControlEventTouchUpInside];
 			break;
 			
-		case 2:
+		case 1:
 			[button addTarget:self action:@selector(goShoppingCart) forControlEvents:UIControlEventTouchUpInside];
 			[titleButton addTarget:self action:@selector(goShoppingCart) forControlEvents:UIControlEventTouchUpInside];
 			break;
@@ -232,7 +232,7 @@
 		self.item_code = @"6901285991271";
 	}
 	
-	[KLHttpTool getSupermarketGoodsMsgWithItemCode:self.item_code shopCode:@"2" saleCustomCode:self.divCode success:^(id response) {
+	[KLHttpTool getSupermarketGoodsMsgWithItemCode:self.item_code shopCode:self.divCode saleCustomCode:self.shopCode success:^(id response) {
 		[MBProgressHUD hideHUDForView:self.view animated:YES];
 		NSNumber *status = response[@"status"];
 		if (status.integerValue == 1) {
@@ -380,11 +380,12 @@
 	//    [KLHttpTool getToken:^(id token) {
 	//        if (token) {
 	button.selected = !button.selected;
+	YCAccountModel *model = [YCAccountModel getAccount];
 	if (button == self.collectionTitleButton) {
 		self.collectionButton.selected = button.selected;
 		
 		if (button.selected == YES) {
-			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code success:^(id response) {
+			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:model.customCode SaleCustomCode:_shopCode   success:^(id response) {
 				NSNumber *status = response[@"status"];
 				if (status.integerValue == 1) {
 					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
@@ -393,7 +394,7 @@
 				
 			}];
 		} else {
-			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code success:^(id response) {
+			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:model.customCode SaleCustomCode:_shopCode   success:^(id response) {
 				NSNumber *status = response[@"status"];
 				if (status.integerValue == 1) {
 					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
@@ -407,7 +408,7 @@
 	} else {
 		self.collectionTitleButton.selected = button.selected;
 		if (button.selected == YES) {
-			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code success:^(id response) {
+			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:model.customCode SaleCustomCode:_shopCode success:^(id response) {
 				NSNumber *status = response[@"status"];
 				if (status.integerValue == 1) {
 					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
@@ -416,7 +417,7 @@
 				
 			}];
 		} else {
-			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code success:^(id response) {
+			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:model.customCode SaleCustomCode:_shopCode   success:^(id response) {
 				NSNumber *status = response[@"status"];
 				if (status.integerValue == 1) {
 					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];

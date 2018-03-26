@@ -62,7 +62,7 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = LZColorFromRGB(245, 246, 248);
+//        self.backgroundColor = LZColorFromRGB(245, 246, 248);
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self setupMainView];
     }
@@ -191,7 +191,7 @@
     //照片背景
     UIView *imageBgView = [[UIView alloc]init];
     imageBgView.frame = CGRectMake(selectBtn.right + 5, 5, bgView.height - 10, bgView.height - 10);
-    imageBgView.backgroundColor = LZColorFromHex(0xF3F3F3);
+//    imageBgView.backgroundColor = LZColorFromHex(0xF3F3F3);
     [bgView addSubview:imageBgView];
     
     //显示照片

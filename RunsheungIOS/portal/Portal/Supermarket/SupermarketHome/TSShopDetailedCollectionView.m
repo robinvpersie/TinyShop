@@ -64,8 +64,8 @@
 //	LZCartModel *goods = shop.goodsArray[indexPath.row];
 //
 	goodsDetail.item_code = dic[@"item_code"];
-	goodsDetail.divCode = _shopDic[@"custom_code"];
-	
+	goodsDetail.divCode = @"2";
+	goodsDetail.shopCode = self.shopDic[@"custom_code"];
 	[self.viewController.navigationController pushViewController:goodsDetail animated:YES];
 }
 

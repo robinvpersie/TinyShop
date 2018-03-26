@@ -81,6 +81,7 @@
 	goods.item_code = self.item_code;
 	goods.isScan = self.isScan;
 	goods.divCode = self.divCode;
+	goods.shopCode = self.shopCode;
 	goods.controllerType = self.controllerType;
 	SupermarketDetailViewController *detail = [[SupermarketDetailViewController alloc] init];
 	SupermarketCommentViewController *comment = [[SupermarketCommentViewController alloc] init];

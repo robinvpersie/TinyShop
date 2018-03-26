@@ -36,7 +36,7 @@
 #pragma mark -- 创建UIPickerView
 
 - (void)createPickerviews{
-	UIImageView*pickbackImg = [[UIImageView alloc]initWithFrame:CGRectMake(8, 0, self.frame.size.width-ScrollviewHeight, 60)];
+	UIImageView*pickbackImg = [[UIImageView alloc]initWithFrame:CGRectMake(15, 0, self.frame.size.width-ScrollviewHeight, 60)];
 	pickbackImg.userInteractionEnabled = YES;
 	pickbackImg.image = [UIImage imageNamed:@"dial_num"];
 	[self addSubview:pickbackImg];
