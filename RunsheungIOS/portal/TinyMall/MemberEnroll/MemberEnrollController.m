@@ -26,7 +26,7 @@
 #define AddMemberCodeBtnTag 3003
 #define ForgetPwdBtnTag 3004
 #define AddMemberRefTag 3005
-@interface MemberEnrollController ()<EnrollSheetViewDelegate,SegmentDelegate,TSMemberDelegate,UIScrollViewDelegate,UITextFieldDelegate>{
+@interface MemberEnrollController ()<EnrollSheetViewDelegate, SegmentDelegate, TSMemberDelegate, UIScrollViewDelegate, UITextFieldDelegate>{
 	UIView *loginBG;
 	TSMemberEnrollView *addmemberBG;
 	MBProgressHUD *hud;
@@ -103,7 +103,7 @@
 //                NSString *customCode = dic[@"custom_code"];
 //                NSString *deviceNo = dic[@"deviceNo"];
                 
-                NSString *finalToken = [NSString stringWithFormat:@"%@|%@|%@|%@",accountModel.token,accountModel.ssoId,accountModel.customCode,UUID];
+                NSString *finalToken = [NSString stringWithFormat:@"%@|%@|%@|%@", accountModel.token, accountModel.ssoId, accountModel.customCode, UUID];
                 accountModel.combineToken = finalToken;
 				NSData *objectTodata = [NSKeyedArchiver archivedDataWithRootObject:accountModel];
 				[[NSUserDefaults standardUserDefaults] setObject:objectTodata forKey:@"accountModel"];
