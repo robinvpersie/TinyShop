@@ -11,6 +11,7 @@
 #import "STPickerSingle.h"
 #import "STPickerArea.h"
 #import <CoreLocation/CoreLocation.h>
+#import <AFNetworking/AFNetworking.h>
 
 typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
 
@@ -244,6 +245,30 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
     
     return cell;
 }
+
+
+-(void)requestArea {
+    NSString *urlString = @"http://biz.epost.go.kr/KpostPortal/openapi";
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:@"4e161da3b4b3c7ff81520154121695" forKey:@"regkey"];
+    [parameters setObject:@"postNew" forKey:@"target"];
+    [parameters setObject:@"" forKey:@"query"];
+    [parameters setObject:@(10) forKey:@"countPerPage"];
+    [parameters setObject:@(1) forKey:@"currentPage"];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager POST:urlString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+    
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1 && indexPath.row == 0) {

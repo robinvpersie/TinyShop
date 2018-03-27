@@ -751,9 +751,8 @@
                       failure:(void (^)(NSError *err))failure {
     NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/DelUserFavorites",BaseUrl];
     
-    NSMutableDictionary *params = @{}.mutableCopy;
-    NSMutableArray *goods = @[].mutableCopy;
-    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSMutableArray *goods = [NSMutableArray array];
     for (NSDictionary *dic in goodsArray) {
         NSError *error;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
@@ -768,38 +767,46 @@
         {
             jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         }
-        
         jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
-        
-        //        [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        
         [goods addObject:jsonString];
     }
     
     NSData *data = [NSJSONSerialization dataWithJSONObject:goodsArray options:NSJSONWritingPrettyPrinted error:nil];
-    
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     [params setObject:jsonString forKey:@"jsonString"];
 
     
     YCAccountModel *model = [YCAccountModel getAccount];
+    [params setObject:model.combineToken forKey:@"token"];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
 //    if (model.token) {
 //        [params setObject:model.token forKey:@"token"];
 //    }
     
-    [self getToken:^(id token) {
-        [params setObject:token forKey:@"token"];
-        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-            if (success) {
-                success(response);
-            }
-        } failure:^(NSError *err) {
-            NSLog(@"%@",err);
-        }];
-
-    } failure:^(NSError *errToken) {
-        
-    }];
+    
+//    [self getToken:^(id token) {
+//        [params setObject:token forKey:@"token"];
+//        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+//            if (success) {
+//                success(response);
+//            }
+//        } failure:^(NSError *err) {
+//            NSLog(@"%@",err);
+//        }];
+//
+//    } failure:^(NSError *errToken) {
+//
+//    }];
 }
 
 + (void)getMyCollectionListWithOffSet:(NSInteger)offset
