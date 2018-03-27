@@ -238,10 +238,10 @@
 	//创建热搜的数组
 	NSArray *hotSeaches = @[];
 	//创建搜索结果的控制器
-	PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"搜索关键字" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+	PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"검색어 입력" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
 		TSearchViewController *searchResultVC = [[TSearchViewController alloc] init];
 		searchResultVC.searchKeyWord = searchText;
-		searchResultVC.navigationItem.title = @"搜索结果";
+		searchResultVC.navigationItem.title = @"검색결과";
 		[searchViewController.navigationController pushViewController:searchResultVC animated:YES];
 		
 		

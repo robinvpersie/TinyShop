@@ -8,6 +8,7 @@
 
 #import "TSearchViewController.h"
 #import "ChoiceTableViewCell.h"
+#import "SupermarketHomeViewController.h"
 
 @interface TSearchViewController ()<UITableViewDelegate,UITableViewDataSource>{
 	int paged;
@@ -93,11 +94,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	NSDictionary *dic = self.searchResultData[indexPath.row];
-//	SupermarketHomeViewController *shopDetailed = [[SupermarketHomeViewController alloc] init];
-//	shopDetailed.hidesBottomBarWhenPushed = YES;
-//
-//	shopDetailed.dic = dic;
-//	[self.navigationController pushViewController:shopDetailed animated:YES];
+	SupermarketHomeViewController *shopDetailed = [[SupermarketHomeViewController alloc] init];
+	shopDetailed.hidesBottomBarWhenPushed = YES;
+	shopDetailed.dic = dic;
+	[self.navigationController pushViewController:shopDetailed animated:YES];
 }
 
 

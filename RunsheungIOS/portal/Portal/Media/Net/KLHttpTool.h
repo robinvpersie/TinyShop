@@ -183,6 +183,7 @@
 //删除我的购物车
 + (void)deleteSupermarketShoppingCartGoodsWithIDs:(NSArray *)IDs
                                          divCodes:(NSArray *)divCodes
+								  SaleCustomCodes:(NSArray*)saleCustomCodes
                                           success:(void (^)(id response))success
                                           failure:(void (^)(NSError *err))failure;
 

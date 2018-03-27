@@ -16,7 +16,7 @@
 @property (copy,nonatomic)NSString *shopID;//对应divCode
 @property (copy,nonatomic)NSString *shopName;//对应divName
 @property (copy,nonatomic)NSString *sID;
-@property (strong,nonatomic,readonly)NSMutableArray *goodsArray;
+@property (strong,nonatomic)NSMutableArray *goodsArray;
 
 @property (strong,nonatomic)NSMutableArray *selectedGoodsArray;
 
