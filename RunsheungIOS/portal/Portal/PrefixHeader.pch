@@ -22,6 +22,7 @@
 #import "NSDictionary+YCHotel.h"
 #import "UIImageView+YCHotelImage.h"
 #import <AdSupport/AdSupport.h>
+#import "MJRefresh.h"
 
 
 // 屏幕高度

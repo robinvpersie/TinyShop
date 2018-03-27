@@ -25,4 +25,7 @@
 @property(nonatomic, assign) BOOL isScan;
 
 @property (nonatomic,retain)NSDictionary *shopDic;
+
+@property (nonatomic,copy)NSString *shopCode;//商家编码
+
 @end

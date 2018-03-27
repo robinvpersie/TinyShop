@@ -655,6 +655,7 @@ typedef void(^finishAction)();
 	
 	goodsDetail.item_code = goods.item_code;
 	goodsDetail.divCode = goods.divCode;
+	goodsDetail.shopCode = goods.sale_custom_code;
 	
 	[self.navigationController pushViewController:goodsDetail animated:YES];
 }
@@ -854,26 +855,26 @@ typedef void(^finishAction)();
 - (void)moveToCollection:(UIButton *)button {
 	for (LZCartModel *model in _selectedArray) {
 		NSString *code = [NSString stringWithFormat:@"%@",model.item_code];
-		if (self.controllerType == ControllerTypeDepartmentStores) {
-			[KLHttpTool addGoodsToMyCollection:code divCode:model.divCode success:^(id response) {
-				NSNumber *status = response[@"status"];
-				if (status.integerValue == 1) {
-					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
-				}
-			} failure:^(NSError *err) {
-				
-			}];
-			
-		} else {
-			[KLHttpTool addGoodsToMyCollection:code divCode:model.divCode success:^(id response) {
-				NSNumber *status = response[@"status"];
-				if (status.integerValue == 1) {
-					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
-				}
-			} failure:^(NSError *err) {
-				
-			}];
-		}
+//		if (self.controllerType == ControllerTypeDepartmentStores) {
+//			[KLHttpTool addGoodsToMyCollection:code divCode:model.divCode success:^(id response) {
+//				NSNumber *status = response[@"status"];
+//				if (status.integerValue == 1) {
+//					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
+//				}
+//			} failure:^(NSError *err) {
+//
+//			}];
+//
+//		} else {
+//			[KLHttpTool addGoodsToMyCollection:code divCode:model.divCode success:^(id response) {
+//				NSNumber *status = response[@"status"];
+//				if (status.integerValue == 1) {
+//					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
+//				}
+//			} failure:^(NSError *err) {
+//
+//			}];
+//		}
 	}
 }
 

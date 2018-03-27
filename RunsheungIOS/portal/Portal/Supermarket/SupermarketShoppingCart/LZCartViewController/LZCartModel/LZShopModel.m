@@ -24,6 +24,7 @@
 			model.price = dic[@"item_price"];
 			model.number = ((NSNumber *)dic[@"item_quantity"]).integerValue;
 			model.stock_unit = dic[@"stock_unit"];
+			model.sale_custom_code = dic[@"sale_custom_code"];
 			[dataArray addObject:model];
 		}
 		

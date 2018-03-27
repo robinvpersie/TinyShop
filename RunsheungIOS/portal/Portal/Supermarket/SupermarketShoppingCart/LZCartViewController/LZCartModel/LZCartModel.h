@@ -32,6 +32,7 @@
 @property(nonatomic, copy) NSString *image_url;
 @property(nonatomic, copy) NSString *stock_unit;
 @property(nonatomic, copy) NSString *ver;
+@property(nonatomic, copy) NSString *sale_custom_code;
 
 //@property (nonatomic, copy) NSString *shopImage;
 //@property (nonatomic, copy) NSString *customCode;

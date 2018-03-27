@@ -20,6 +20,7 @@
 
 @interface TinyShopMainController ()<UITableViewDelegate,UITableViewDataSource>{
 	UIView *blackView;
+	int paged;
 }
 
 @property (nonatomic,retain)UIScrollView *scrollview;
@@ -43,6 +44,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
+	paged = 1;
+	self.mutaleData = @[].mutableCopy;
 	[self setNaviBar];
 	[self location];
 
@@ -52,22 +55,33 @@
 	[self createScrollview];
 	
 }
-- (void)loadMainData{
+- (void)loadMainDataWith:(NSString*)pg withPageSize:(NSString*)pagesize{
 
-		[KLHttpTool TinyRequestMainDataUrl:@"StoreCate/requestStoreCateList" Withpg:@"2" WithPagesize:@"5" WithCustomlev1:@"13" WithCustomlev2:@"2" WithCustomlev3:@"1" Withlatitude:[[NSUserDefaults standardUserDefaults] objectForKey:@"latitude"] Withlongitude:[[NSUserDefaults standardUserDefaults] objectForKey:@"longtitude"] Withorder_by:@"1" success:^(id response) {
+	
+	__weak __typeof(self) weakSelf = self;
+		[KLHttpTool TinyRequestMainDataUrl:@"StoreCate/requestStoreCateList" Withpg:pg WithPagesize:pagesize WithCustomlev1:@"13" WithCustomlev2:@"2" WithCustomlev3:@"1" Withlatitude:[[NSUserDefaults standardUserDefaults] objectForKey:@"latitude"] Withlongitude:[[NSUserDefaults standardUserDefaults] objectForKey:@"longtitude"] Withorder_by:@"1" success:^(id response) {
 			if ([response[@"status"] intValue] == 1) {
-				self.mutaleData = @[].mutableCopy;
+				
 				NSArray *data = response[@"storelist"];
-				for (NSDictionary *dic in data) {
+				if (data.count) {
+					for (NSDictionary *dic in data) {
+						
+						[self.mutaleData  addObject:dic];
+						[self.tableView reloadData];
+						CGRect fram = self.tableView.frame;
+						fram.size.height = self.mutaleData.count *100+15;
+						self.tableView.frame = fram;
+						self.scrollview.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.tableView.frame));
+						++paged;
+					}
+					[weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
+
+				}else{
 					
-					[self.mutaleData  addObject:dic];
-					
+					[weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+
 				}
-				[self.tableView reloadData];
-				CGRect fram = self.tableView.frame;
-				fram.size.height = self.mutaleData.count *100+15;
-				self.tableView.frame = fram;
-				self.scrollview.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.tableView.frame));
+				
 			}
 			
 		} failure:^(NSError *err) {
@@ -78,6 +92,8 @@
 - (void)createScrollview{
 	if (self.scrollview ==nil) {
 		self.scrollview = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenHeight - 44)];
+		self.scrollview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
+//		[self.scrollview.mj_footer beginRefreshing];
 		[self.view addSubview:self.scrollview];
 		
 	}
@@ -107,10 +123,18 @@
 		self.tableView.estimatedSectionHeaderHeight = 0;
 		self.tableView.separatorColor = RGB(255, 255, 255);
 		self.tableView.backgroundColor = RGB(255, 255, 255);
+	
 		[self.scrollview addSubview:self.tableView];
 		
 	}
 }
+
+#pragma mark --上拉刷新
+- (void)footerRefresh{
+	
+	[self loadMainDataWith:[NSString stringWithFormat:@"%d",paged] withPageSize:@"5"];
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 	return 1;
@@ -159,6 +183,7 @@
 }
 
 -(void)location {
+	
 	[YCLocationService turnOn];
 	[YCLocationService singleUpdate:^(CLLocation * location) {
 		
@@ -170,7 +195,10 @@
 		[[NSUserDefaults standardUserDefaults] setObject:longtitude forKey:@"longtitude"];
 		[[NSUserDefaults standardUserDefaults]synchronize];
 		
-		[self loadMainData];
+		if (self.mutaleData.count == 0) {
+			[self loadMainDataWith:[NSString stringWithFormat:@"%d",paged] withPageSize:@"5"];
+
+		}
 
 		[YCLocationService turnOff];
 		CLGeocoder *geocoder = [[CLGeocoder alloc] init];

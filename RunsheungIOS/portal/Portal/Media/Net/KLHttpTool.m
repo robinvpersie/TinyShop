@@ -705,6 +705,8 @@
 //增加到我的收藏
 + (void)addGoodsToMyCollection:(NSString *)goodID
                        divCode:(NSString *)divCode
+					  shopCode:(NSString *)custom_code
+				SaleCustomCode:(NSString *)sale_custom_code
                        success:(void (^)(id response))success
                        failure:(void (^)(NSError *err))failure {
     NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/AddUserFavorites",BaseUrl];
@@ -712,9 +714,23 @@
     NSMutableDictionary *params = @{}.mutableCopy;
     [params setObject:goodID forKey:@"item_code"];
     [params setObject:divCode forKey:@"div_code"];
+	if (sale_custom_code.length) {
+		[params setObject:sale_custom_code forKey:@"sale_custom_code"];
+	}
+	if (custom_code.length) {
+		
+		[params setObject:custom_code forKey:@"custom_code"];
 
-    [self getToken:^(id token) {
-        [params setObject:token forKey:@"token"];
+	}
+
+
+//    [self getToken:^(id token) {
+	if ([YCAccountModel islogin]) {
+		YCAccountModel *accountModel = [YCAccountModel getAccount];
+		NSString *token = [NSString stringWithFormat:@"%@|%@|%@",accountModel.token,@"yygygyy",accountModel.customCode];
+		[params setObject:token forKey:@"token"];
+	}
+
         [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
             if (success) {
                 [self checkStatusWithResponse:response];
@@ -724,9 +740,9 @@
             NSLog(@"%@",err);
         }];
 
-    } failure:^(NSError *errToken) {
-        
-    }];
+//    } failure:^(NSError *errToken) {
+//
+//    }];
 }
 
 //从我的收藏删除

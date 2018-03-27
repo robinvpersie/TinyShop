@@ -19,6 +19,8 @@
 
 @property(nonatomic, assign) BOOL isScan;
 
+@property (nonatomic,copy)NSString *shopCode;//商家编码
+
 @end
 
 

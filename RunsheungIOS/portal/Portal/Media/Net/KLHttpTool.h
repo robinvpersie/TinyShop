@@ -154,6 +154,8 @@
 //增加到我的收藏
 + (void)addGoodsToMyCollection:(NSString *)goodID
                        divCode:(NSString *)divCode
+					  shopCode:(NSString *)custom_code
+				SaleCustomCode:(NSString *)sale_custom_code
                        success:(void (^)(id response))success
                        failure:(void (^)(NSError *err))failure;
 
