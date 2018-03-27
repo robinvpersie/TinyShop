@@ -54,7 +54,7 @@
 
 
 - (void)getAddressList {
-    [MBProgressHUD showWithView:KEYWINDOW];
+//    [MBProgressHUD showWithView:KEYWINDOW];暂时屏蔽
     NSString *divCode;
     if (self.controllerType == ControllerTypeDepartmentStores) {
         divCode = @"0";
@@ -62,11 +62,11 @@
         divCode = _checkOrderModel.divCode;
     }
     
-    [KLHttpTool getSupermarketUserAddressListWithDivCode:divCode success:^(id response) {
+    [KLHttpTool getSupermarketUserAddressListWithOffset:@"1" success:^(id response) {
         NSMutableArray *array = [NSMutableArray array];
         NSNumber *status = response[@"status"];
         if (status.integerValue == 1) {
-            NSArray *data = response[@"data"];
+            NSArray *data = response[@"bcm100ts"];
             if (data.count > 0) {
                 for (NSDictionary *dic in data) {
                     SupermarketAddressModel *model = [NSDictionary getAddressDataWithDic:dic];
@@ -75,7 +75,7 @@
                 NSInteger hasDefault = 0;
                 
                 for (SupermarketAddressModel *addressModel in array) {
-                    if (addressModel.isdefault.integerValue == 1) {
+                    if (addressModel.default_add) {
                         self.address = addressModel;
                         [self.tableView reloadData];
                         
@@ -220,6 +220,9 @@
 }
 
 - (void)checkOrder {
+	
+	[self getAddressList];//暂时添加
+
     NSMutableDictionary *parmas = @{}.mutableCopy;
     
     NSMutableArray *goods = @[].mutableCopy;
@@ -241,29 +244,7 @@
     
     [parmas setObject:goods forKey:@"goods"];
     
-//    NSMutableArray *projects = @[].mutableCopy;
-//    
-//    for (int i = 0; i < self.shopArray.count; i++) {
-//        NSMutableDictionary *shopDictionary = @{}.mutableCopy;
-//        LZShopModel *shopModel = self.shopArray[i];
-//        [shopDictionary setObject:shopModel.shopID forKey:@"key"];
-//        NSMutableArray *goods = @[].mutableCopy;
-//        for (LZCartModel *goodsModel in shopModel.selectedGoodsArray) {
-//            NSMutableDictionary *goodsDictionary = @{}.mutableCopy;
-//            [goodsDictionary setObject:goodsModel.item_code forKey:@"item_code"];
-//            [goodsDictionary setObject:@(goodsModel.number) forKey:@"count"];
-//            [goodsDictionary setObject:@"yc01" forKey:@"custom_code"];
-//            
-//            [goods addObject:goodsDictionary];
-//        }
-//        [shopDictionary setObject:goods forKey:@"goods"];
-//        
-//        [projects addObject:shopDictionary];
-//    }
-//    
-//    NSMutableDictionary *orderinfo = @{}.mutableCopy;
-//    [orderinfo setObject:projects forKey:@"Projects"];
-    
+
     [MBProgressHUD showWithView:KEYWINDOW];
     
     if (self.controllerType == ControllerTypeDepartmentStores) {
@@ -283,8 +264,12 @@
                 }
                 
             }else {
-                [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
-                [self.navigationController popViewControllerAnimated:YES];
+				/**
+				 *
+				 暂时隐藏
+				 [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
+				 [self.navigationController popViewControllerAnimated:YES];
+				 */
             }
 
             
@@ -308,8 +293,12 @@
                 }
                 
             } else {
-                [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
-                [self.navigationController popViewControllerAnimated:YES];
+				/**
+				 *
+				 暂时隐藏
+				 [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
+				 [self.navigationController popViewControllerAnimated:YES];
+				 */
             }
             
         } failure:^(NSError *err) {
@@ -320,6 +309,7 @@
 }
 
 - (void)createOrder {
+	[self paySuccess];
     if (_checkOrderModel.guid.length == 0) {
         return;
     }
@@ -331,7 +321,7 @@
 
     
     NSMutableDictionary *info = @{}.mutableCopy;
-    [info setObject:self.address.addressID forKey:@"locationId"];
+    [info setObject:self.address.seq_num forKey:@"locationId"];
     
     NSMutableString *couponIDs = [[NSMutableString alloc] init];
     for (int i = 0; i < _selectedCoupons.count; i++) {
@@ -531,86 +521,6 @@
 }
 
 
-#warning 创建订单,弃用
-//- (void)createOrderNew {
-//    [MBProgressHUD showWithView:KEYWINDOW];
-//    
-//    NSMutableDictionary *parmas = @{}.mutableCopy;
-//    if (self.address != nil) {
-//        [parmas setObject:self.address.addressID forKey:@"locationId"];
-//    }
-//    
-//    NSMutableArray *goods = @[].mutableCopy;
-//    
-//    for (int i = 0; i < self.dataArray.count; i++) {
-//        NSMutableDictionary *good = @{}.mutableCopy;
-//        
-//        LZCartModel *cartModel = _dataArray[i];
-//        
-//        [good setObject:@"yc01" forKey:@"supplier_code"];
-//        [good setObject:cartModel.item_code forKey:@"item_code"];
-//        [good setObject:@(cartModel.number) forKey:@"count"];
-//        [good setObject:@(cartModel.price.floatValue) forKey:@"unit_price"];
-//        [good setObject:@"1" forKey:@"business_code"];
-//        
-//        [goods addObject:good];
-//        
-//    }
-//    
-//    [parmas setObject:goods forKey:@"goods"];
-//
-//    [KLHttpTool supermarketCreateOrderWithOrderInfo:parmas isShoppingCart:YES success:^(id response) {
-//        [MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
-//        NSNumber *status = response[@"status"];
-//        if (status.integerValue == 1) {
-//            NSString *orderCode = response[@"order_code"];
-//            NSString *money = response[@"amount"];
-//            __weak SupermarketConfrimOrderByNumbersController *weakSelf = self;
-//            if (self.passwordView == nil) {
-//                self.passwordView = [[CYPasswordView alloc] init];
-//            }
-//            
-//            self.passwordView.title = @"输入交易密码";
-//            self.passwordView.loadingText = @"提交中...";
-//            [self.passwordView showInView:self.view.window];
-//            
-//            self.passwordView.finish = ^(NSString *password) {
-//                [weakSelf.passwordView hideKeyboard];
-//                [weakSelf.passwordView startLoading];
-//                
-//                YCAccountModel *model = [YCAccountModel getAccount];
-//                
-//                NSString *en512 = [weakSelf sha512:password];
-//                
-//                
-//                [KLHttpTool supermarketPayWithUserID:model.memid orderNumber:orderCode orderMoney:money password:en512 success:^(id response) {
-//                    NSLog(@"%@",response);
-//                    NSNumber *status = response[@"status"];
-//                    if (status.integerValue == 2) {
-//                        [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"msg"]];
-//                        [weakSelf.passwordView requestComplete:NO message:@"余额不足"];
-//                        [weakSelf performSelector:@selector(hidePassWordView) withObject:nil afterDelay:2.0];
-//                    } else if (status.integerValue == 1) {
-//                        [weakSelf.passwordView requestComplete:YES message:@"支付成功"];
-//                        [weakSelf performSelector:@selector(hidePassWordView) withObject:nil afterDelay:2.0];
-//                    } else {
-//                        [weakSelf.passwordView requestComplete:NO message:response[@"msg"]];
-//                        [weakSelf performSelector:@selector(hidePassWordView) withObject:nil afterDelay:2.0];
-//                    }
-//                    
-//                } failure:^(NSError *err) {
-//                    
-//                }];
-//                
-//            };
-//
-//        } else {
-//             [MBProgressHUD hideAfterDelayWithView:self.view interval:4 text:response[@"message"]];
-//        }
-//    } failure:^(NSError *err) {
-//        
-//    }];
-//}
 
 
 - (void)createBottomView {
@@ -811,9 +721,9 @@
         [cell.contentView addSubview:maskImageView];
         
         if (self.address != nil) {
-            name.text = self.address.realname;
-            phone.text = self.address.mobile;
-            place.text = [NSString stringWithFormat:@"%@%@",self.address.location,self.address.address];
+            name.text = self.address.delivery_name;
+            phone.text = self.address.mobilepho;
+            place.text = [NSString stringWithFormat:@"%@%@",self.address.zip_name,self.address.to_address];
             [place sizeToFit];
             
             if (_address.hasDelivery.integerValue == 0) {

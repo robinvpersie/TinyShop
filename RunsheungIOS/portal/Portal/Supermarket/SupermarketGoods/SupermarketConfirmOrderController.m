@@ -182,12 +182,12 @@
 		divCode = _checkOrderModel.divCode;
 	}
 	
-	[KLHttpTool getSupermarketUserAddressListWithDivCode:divCode success:^(id response) {
+	[KLHttpTool getSupermarketUserAddressListWithOffset:@"1" success:^(id response) {
 		NSLog(@"%@",response);
 		NSMutableArray *array = @[].mutableCopy;
 		NSNumber *status = response[@"status"];
 		if (status.integerValue == 1) {
-			NSArray *data = response[@"data"];
+			NSArray *data = response[@"bcm100ts"];
 			if (data.count > 0) {
 				for (NSDictionary *dic in data) {
 					SupermarketAddressModel *model = [NSDictionary getAddressDataWithDic:dic];
@@ -196,7 +196,7 @@
 				NSInteger hasDefault = 0;
 				
 				for (SupermarketAddressModel *addressModel in array) {
-					if (addressModel.isdefault.integerValue == 1) {
+					if (addressModel.default_add) {
 						self.address = addressModel;
 						[self.tableView reloadData];
 						
@@ -325,6 +325,8 @@
 		}];
 		
 	} else {
+		
+		[self getAddressList];
 		[KLHttpTool supermarketCheckBeforeCreateOrder:parmas isShoppingCart:false appType:6 success:^(id response) {
 			NSLog(@"%@",response);
 			[MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
@@ -383,6 +385,10 @@
 }
 
 - (void)createOrder {
+	
+	[self paySuccess];//暂时这么写，由于没有支付
+	
+	
 	if (_checkOrderModel.guid.length == 0) {
 		return;
 	}
@@ -399,7 +405,7 @@
 	}
 	
 	NSMutableDictionary *info = [NSMutableDictionary dictionary];
-	[info setObject:self.address.addressID forKey:@"locationId"];
+	[info setObject:self.address.seq_num forKey:@"locationId"];
 	
 	NSMutableString *couponIDs = [[NSMutableString alloc] init];
 	for (int i = 0; i < _selectedCoupons.count; i++) {
@@ -707,9 +713,9 @@
 		[cell.contentView addSubview:maskImageView];
 		
 		if (self.address != nil) {
-			name.text = _address.realname;
-			phone.text = _address.mobile;
-			place.text = [NSString stringWithFormat:@"%@%@",_address.location,_address.address];
+			name.text = _address.delivery_name;
+			phone.text = _address.mobilepho;
+			place.text = [NSString stringWithFormat:@"%@%@",_address.zip_name,_address.to_address];
 			[place sizeToFit];
 			
 			if (_address.hasDelivery.integerValue == 0) {
