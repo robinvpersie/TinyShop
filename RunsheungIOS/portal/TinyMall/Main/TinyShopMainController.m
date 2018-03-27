@@ -20,7 +20,7 @@
 
 @interface TinyShopMainController ()<UITableViewDelegate,UITableViewDataSource>{
 	UIView *blackView;
-	int  paged;
+	int paged;
 }
 
 @property (nonatomic,retain)UIScrollView *scrollview;
