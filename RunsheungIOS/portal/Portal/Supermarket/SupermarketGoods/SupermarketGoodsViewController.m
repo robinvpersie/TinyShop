@@ -385,7 +385,7 @@
 		self.collectionButton.selected = button.selected;
 		
 		if (button.selected == YES) {
-			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:nil SaleCustomCode:nil   success:^(id response) {
+			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:nil SaleCustomCode:self.shopCode   success:^(id response) {
 				NSNumber *status = response[@"status"];
 				if (status.integerValue == 1) {
 					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
@@ -394,7 +394,7 @@
 				
 			}];
 		} else {
-			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:nil SaleCustomCode:nil   success:^(id response) {
+			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:nil SaleCustomCode:self.shopCode   success:^(id response) {
 				NSNumber *status = response[@"status"];
 				if (status.integerValue == 1) {
 					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
@@ -408,7 +408,7 @@
 	} else {
 		self.collectionTitleButton.selected = button.selected;
 		if (button.selected == YES) {
-			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:nil SaleCustomCode:nil success:^(id response) {
+			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:nil SaleCustomCode:self.shopCode success:^(id response) {
 				NSNumber *status = response[@"status"];
 				if (status.integerValue == 1) {
 					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
@@ -417,7 +417,7 @@
 				
 			}];
 		} else {
-			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:nil SaleCustomCode:nil   success:^(id response) {
+			[KLHttpTool addGoodsToMyCollection:goods.itemCode divCode:goods.business_code shopCode:nil SaleCustomCode:self.shopCode   success:^(id response) {
 				NSNumber *status = response[@"status"];
 				if (status.integerValue == 1) {
 					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
@@ -489,8 +489,8 @@
 	
 	[self.choseSizeView removeView];
 	
-	[KLHttpTool getToken:^(id token) {
-		if (token) {
+//	[KLHttpTool getToken:^(id token) {
+//		if (token) {
 			if (self.actionType == 0) {
 				SupermarketConfirmOrderController *confirmOrder = [[SupermarketConfirmOrderController alloc] init];
 				confirmOrder.controllerType = self.controllerType;
@@ -548,10 +548,10 @@
 					
 				}];
 			}
-		}
-	} failure:^(NSError *errToken) {
-		
-	}];
+//		}
+//	} failure:^(NSError *errToken) {
+//
+//	}];
 }
 
 - (void)didReceiveMemoryWarning {
