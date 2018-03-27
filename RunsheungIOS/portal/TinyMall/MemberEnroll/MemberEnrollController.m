@@ -103,7 +103,8 @@
 //                NSString *customCode = dic[@"custom_code"];
 //                NSString *deviceNo = dic[@"deviceNo"];
                 
-                NSString *finalToken = [NSString stringWithFormat:@"%@|%@|%@|%@", accountModel.token, accountModel.ssoId, accountModel.customCode, UUID];
+//                NSString *finalToken = [NSString stringWithFormat:@"%@|%@|%@|%@", accountModel.token, accountModel.ssoId, accountModel.customCode, UUID];
+                NSString *finalToken = [NSString stringWithFormat:@"%@|%@|%@", accountModel.token, accountModel.ssoId, accountModel.customCode];
                 accountModel.combineToken = finalToken;
 				NSData *objectTodata = [NSKeyedArchiver archivedDataWithRootObject:accountModel];
 				[[NSUserDefaults standardUserDefaults] setObject:objectTodata forKey:@"accountModel"];

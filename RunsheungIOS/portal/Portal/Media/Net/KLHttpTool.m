@@ -1390,31 +1390,51 @@
 + (void)getMyCollectionListWithAppType:(NSInteger)appType
                                success:(void (^)(id response))success
                                failure:(void (^)(NSError *err))failure {
-    //NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/GetUserFavoritesOfList",BaseUrl];
-    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/FavoritesList", MallBaseUrl];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
+    NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/GetUserFavoritesOfList",BaseUrl];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     YCAccountModel *model = [YCAccountModel getAccount];
-    [params setObject:model.token forKey:@"token"];
-   // [params setObject:@(appType) forKey:@"appType"];
-    [params setObject:@"1" forKey:@"pg"];
-    [params setObject:@"kor" forKey:@"lang_type"];
-    [params setObject:model.customCode forKey:@"custom_code"];
-    [params setObject:@"10" forKey:@"pagesize"];
-    [params setObject:@"37.434668" forKey:@"latitude"];
-    [params setObject:@"122.160742" forKey:@"longitude"];
-    
+    [parameters setObject:@(appType) forKey:@"appType"];
+    [parameters setObject:model.combineToken forKey:@"token"];
+    [parameters setObject:@(10) forKey:@"pageSize"];
+    [parameters setObject:@(1) forKey:@"pageIndex"];
+
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer.timeoutInterval = 30;
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
-        
+
+    [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         success(responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure(error);
     }];
+//
+//    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/FavoritesList", MallBaseUrl];
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//
+//    YCAccountModel *model = [YCAccountModel getAccount];
+//    [params setObject:model.token forKey:@"token"];
+//   // [params setObject:@(appType) forKey:@"appType"];
+//    [params setObject:@"1" forKey:@"pg"];
+//    [params setObject:@"kor" forKey:@"lang_type"];
+//    [params setObject:model.customCode forKey:@"custom_code"];
+//    [params setObject:@"10" forKey:@"pagesize"];
+//    [params setObject:@"37.434668" forKey:@"latitude"];
+//    [params setObject:@"122.160742" forKey:@"longitude"];
+//
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    manager.requestSerializer.timeoutInterval = 30;
+//    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//    [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+//
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        success(responseObject);
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        failure(error);
+//    }];
     
 //    [self getToken:^(id token) {
 //        [params setObject:token forKey:@"token"];
@@ -1426,7 +1446,7 @@
 //        } failure:^(NSError *err) {
 //            NSLog(@"%@",err);
 //        }];
-    
+//
 //   } failure:^(NSError *errToken) {
 //
 //    }];

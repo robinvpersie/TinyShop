@@ -65,7 +65,8 @@
     phoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(avartarBgView.frame) + 15, avartarBgView.frame.origin.y+10, 250, 25)];
     phoneNumber.textColor = [UIColor whiteColor];
     phoneNumber.font = [UIFont systemFontOfSize:20];
-    phoneNumber.text = NSLocalizedString(@"SMMineLogInTitle", nil);
+    //phoneNumber.text = NSLocalizedString(@"SMMineLogInTitle", nil);
+    phoneNumber.text = @"로그인 하기";
     phoneNumber.userInteractionEnabled = YES;
     [bgView addSubview:phoneNumber];
 
