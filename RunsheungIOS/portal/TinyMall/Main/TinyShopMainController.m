@@ -45,13 +45,16 @@
 - (void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
 	paged = 1;
+	
 	self.mutaleData = @[].mutableCopy;
 	[self setNaviBar];
-	[self location];
+	
 
 }
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	[self location];
+	[self createLocationView];
 	[self createScrollview];
 	
 }
@@ -59,7 +62,9 @@
 
 	
 	__weak __typeof(self) weakSelf = self;
-		[KLHttpTool TinyRequestMainDataUrl:@"StoreCate/requestStoreCateList" Withpg:pg WithPagesize:pagesize WithCustomlev1:@"13" WithCustomlev2:@"2" WithCustomlev3:@"1" Withlatitude:[[NSUserDefaults standardUserDefaults] objectForKey:@"latitude"] Withlongitude:[[NSUserDefaults standardUserDefaults] objectForKey:@"longtitude"] Withorder_by:@"1" success:^(id response) {
+
+		[KLHttpTool TinyRequestMainDataUrl:@"StoreCate/requestStoreCateList" Withpg:pg WithPagesize:pagesize WithCustomlev1:@"13" WithCustomlev2:@"1" WithCustomlev3:@"1" Withlatitude:GetUserDefault(@"latitude") Withlongitude:GetUserDefault(@"longtitude") Withorder_by:@"1" success:^(id response) {
+			
 			if ([response[@"status"] intValue] == 1) {
 				
 				NSArray *data = response[@"storelist"];
@@ -72,13 +77,14 @@
 						fram.size.height = self.mutaleData.count *100+15;
 						self.tableView.frame = fram;
 						self.scrollview.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.tableView.frame));
-						++paged;
+						
 					}
-					[weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
+					++paged;
+					[weakSelf.scrollview.mj_footer setState:MJRefreshStateIdle];
 
 				}else{
 					
-					[weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+					[weakSelf.scrollview.mj_footer endRefreshingWithNoMoreData];
 
 				}
 				
@@ -93,7 +99,6 @@
 	if (self.scrollview ==nil) {
 		self.scrollview = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenHeight - 44)];
 		self.scrollview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
-//		[self.scrollview.mj_footer beginRefreshing];
 		[self.view addSubview:self.scrollview];
 		
 	}
@@ -104,8 +109,10 @@
 	self.numberDomainview = [[NumDomainView alloc]initWithFrame:CGRectMake(15, 10, self.view.frame.size.width - 30,3*(self.view.frame.size.width - 30)/5+60 )];
 	self.numberDomainview.backgroundColor = RGB(60, 60, 60);
 	[blackView addSubview:self.numberDomainview];
+
 	//创建标示图
 	[self createTableview];
+
 }
 
 - (void)createTableview{
@@ -125,6 +132,7 @@
 		self.tableView.backgroundColor = RGB(255, 255, 255);
 	
 		[self.scrollview addSubview:self.tableView];
+		[self.scrollview.mj_footer beginRefreshing];
 		
 	}
 }
@@ -140,6 +148,7 @@
 	return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+	
 	return self.mutaleData.count;
 	
 }
@@ -174,11 +183,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-	NSDictionary *dic = self.mutaleData[indexPath.row];
-	SupermarketHomeViewController *shopDetailed = [[SupermarketHomeViewController alloc] init];
-	shopDetailed.hidesBottomBarWhenPushed = YES;
-	shopDetailed.dic = dic;
-	[self.navigationController pushViewController:shopDetailed animated:YES];
+	if (self.mutaleData.count) {
+		NSDictionary *dic = self.mutaleData[indexPath.row];
+		SupermarketHomeViewController *shopDetailed = [[SupermarketHomeViewController alloc] init];
+		shopDetailed.hidesBottomBarWhenPushed = YES;
+		shopDetailed.dic = dic;
+		[self.navigationController pushViewController:shopDetailed animated:YES];
+
+	}
 
 }
 
@@ -191,20 +203,16 @@
 		CLLocationCoordinate2D location2d = location.coordinate;
 		NSString *latitude = [NSString stringWithFormat:@"%f",location2d.latitude] ;
 		NSString *longtitude =  [NSString stringWithFormat:@"%f",location2d.longitude];
-		[[NSUserDefaults standardUserDefaults] setObject:latitude forKey:@"latitude"];
-		[[NSUserDefaults standardUserDefaults] setObject:longtitude forKey:@"longtitude"];
-		[[NSUserDefaults standardUserDefaults]synchronize];
-		
-		if (self.mutaleData.count == 0) {
-			[self loadMainDataWith:[NSString stringWithFormat:@"%d",paged] withPageSize:@"5"];
-
-		}
+		SetUserDefault(@"latitude", latitude);
+		SetUserDefault(@"longtitude", longtitude);
 
 		[YCLocationService turnOff];
 		CLGeocoder *geocoder = [[CLGeocoder alloc] init];
 		[geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
 			if (placemarks.count > 0) {
 				NSString *address = placemarks.firstObject.name;
+			
+				SetUserDefault(@"Address", address);
 				self.choiceHeadView.addressName = address;
 			} else {
 				self.choiceHeadView.addressName = @"定位失败";
@@ -224,16 +232,16 @@
 }
 
 
-- (void)leftBtn:(UIButton*)sender{
+- (void)SearchBtn:(UIButton*)sender{
 
 	
 	//创建热搜的数组
 	NSArray *hotSeaches = @[];
 	//创建搜索结果的控制器
-	PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"搜索关键字" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+	PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"검색어 입력" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
 		TSearchViewController *searchResultVC = [[TSearchViewController alloc] init];
 		searchResultVC.searchKeyWord = searchText;
-		searchResultVC.navigationItem.title = @"搜索结果";
+		searchResultVC.navigationItem.title = @"검색결과";
 		[searchViewController.navigationController pushViewController:searchResultVC animated:YES];
 		
 		
@@ -298,9 +306,12 @@
 	UIButton *leftBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
 	[leftBtn setImage:[UIImage imageNamed:@"icon_searchhotel"] forState:UIControlStateNormal];
 	UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:leftBtn];
-	[leftBtn addTarget:self action:@selector(leftBtn:) forControlEvents:UIControlEventTouchUpInside];
+	[leftBtn addTarget:self action:@selector(SearchBtn:) forControlEvents:UIControlEventTouchUpInside];
 	[self.navigationItem setLeftBarButtonItems:@[leftItem]];
 	
+}
+
+- (void)createLocationView{
 	self.choiceHeadView = [[ChoiceHeadView alloc]initWithFrame:CGRectMake(0, 0, 200, 30) withTextColor:RGB(253, 253, 253) withData:@[@"icon_location",@"icon_arrow_bottom"]];
 	
 	
@@ -317,7 +328,6 @@
 		};
 	};
 	self.navigationItem.titleView = self.choiceHeadView;
-	
 	
 }
 

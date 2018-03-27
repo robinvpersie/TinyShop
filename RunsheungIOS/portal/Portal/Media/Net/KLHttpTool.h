@@ -183,6 +183,7 @@
 //删除我的购物车
 + (void)deleteSupermarketShoppingCartGoodsWithIDs:(NSArray *)IDs
                                          divCodes:(NSArray *)divCodes
+								  SaleCustomCodes:(NSArray*)saleCustomCodes
                                           success:(void (^)(id response))success
                                           failure:(void (^)(NSError *err))failure;
 
@@ -652,4 +653,16 @@
 				 Withorder_by:(NSString*)order_by
 					  success:(void (^)(id response))success
 					  failure:(void (^)(NSError *err))failure;
+
+/*
+ 主页搜索商家和商品
+ */
++(void)TinySearchShopMainDataUrl:(NSString *)urls
+					Withlatitude:(NSString*)latitude
+				   Withlongitude:(NSString*)longitude
+						  Withpg:(NSString *)pg
+					WithPagesize:(NSString*)pagesize
+				  WithSearchword:(NSString*)searchword
+						 success:(void (^)(id response))success
+						 failure:(void (^)(NSError *err))failure;
 @end

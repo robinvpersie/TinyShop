@@ -455,13 +455,34 @@ typedef void(^finishAction)();
 }
 
 - (void)reloadAllData {
-	if (self.selectedArray.count > 0) {
-		[self.selectedArray removeAllObjects];
-	}
-	if (self.dataArray.count > 0) {
-		[self.dataArray removeAllObjects];
-	}
-	[self.myTableView reloadData];
+	__weak typeof(self) weakself = self;
+
+	[weakself requestShoppingCartData:^{
+		
+	}];
+
+//	NSMutableArray *allShopModelArray = @[].mutableCopy;
+//	for (LZShopModel *shopModel in self.dataArray) {
+//		NSMutableArray *shopModelGoodsArray = shopModel.goodsArray;
+//
+//		NSMutableArray *shopModelSelectsArray = shopModel.selectedGoodsArray;
+//		[shopModelGoodsArray removeObjectsInArray:shopModelSelectsArray];
+//		shopModel.goodsArray = shopModelGoodsArray;
+//		[allShopModelArray addObject:shopModel];
+//
+//	}
+//	if (self.selectedArray.count > 0) {
+//		[self.selectedArray removeAllObjects];
+//
+//	}
+//
+//	if (self.dataArray.count >0) {
+//		[self.dataArray removeAllObjects];
+//	}
+//	if (allShopModelArray.count>0) {
+//		[self.dataArray removeObjectsInArray:allShopModelArray];
+//	}
+//	[self.myTableView reloadData];
 }
 
 #pragma mark --- UITableViewDataSource & UITableViewDelegate
@@ -667,6 +688,7 @@ typedef void(^finishAction)();
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	
+	__weak typeof(self) weakself = self;
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
 		
 		UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"SMAlertTitle", nil) message:NSLocalizedString(@"SMAlertDeleteCollectionMsg", nil) preferredStyle:1];
@@ -693,11 +715,11 @@ typedef void(^finishAction)();
 			}
 			
 			if (self.controllerType == ControllerTypeDepartmentStores) {
-				[KLHttpTool deleteSupermarketShoppingCartGoodsWithIDs:@[model.item_code] divCodes:@[model.divCode] success:^(id response) {
+				[KLHttpTool deleteSupermarketShoppingCartGoodsWithIDs:@[model.item_code] divCodes:@[model.divCode] SaleCustomCodes:@[model.sale_custom_code]  success:^(id response) {
 					NSNumber *status = response[@"status"];
 					if (status.integerValue == 1) {
 						[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
-						[self reloadAllData];
+						[weakself reloadAllData];
 					}
 					
 				} failure:^(NSError *err) {
@@ -706,11 +728,11 @@ typedef void(^finishAction)();
 				
 			}
 			else {
-				[KLHttpTool deleteSupermarketShoppingCartGoodsWithIDs:@[model.item_code] divCodes:@[model.divCode] success:^(id response) {
+				[KLHttpTool deleteSupermarketShoppingCartGoodsWithIDs:@[model.item_code] divCodes:@[model.divCode] SaleCustomCodes:@[model.sale_custom_code] success:^(id response) {
 					NSNumber *status = response[@"status"];
 					if (status.integerValue == 1) {
 						[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
-						[self reloadAllData];
+						[weakself reloadAllData];
 					}
 					
 				} failure:^(NSError *err) {
@@ -718,7 +740,7 @@ typedef void(^finishAction)();
 				}];
 			}
 			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (NSEC_PER_SEC * 0.3)), dispatch_get_main_queue(), ^{
-				[self.myTableView reloadData];
+				[weakself.myTableView reloadData];
 			});
 		}];
 		
@@ -881,6 +903,7 @@ typedef void(^finishAction)();
 #pragma mark - 批量删除
 //底部删除方法
 - (void)deleteGoods:(UIButton *)button {
+	
 	NSMutableArray *selectedGoodsIDs = @[].mutableCopy;
 	for (LZCartModel *model in self.selectedArray) {
 		[selectedGoodsIDs addObject:model.item_code];
@@ -889,6 +912,11 @@ typedef void(^finishAction)();
 	NSMutableArray *selctedGoodsDivCods = @[].mutableCopy;
 	for (LZCartModel *model in self.selectedArray) {
 		[selctedGoodsDivCods addObject:model.divCode];
+	}
+	
+	NSMutableArray *selctedGoodsSaleCustomCodes = @[].mutableCopy;
+	for (LZCartModel *model in self.selectedArray) {
+		[selctedGoodsSaleCustomCodes addObject:model.sale_custom_code];
 	}
 	
 	if (selectedGoodsIDs.count == 0) {
@@ -900,27 +928,27 @@ typedef void(^finishAction)();
 	
 	UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"SMAlertSureTitle", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 		
-		
+		__weak typeof(self) weakself = self;
 		if (self.controllerType == ControllerTypeDepartmentStores) {
-			[KLHttpTool deleteSupermarketShoppingCartGoodsWithIDs:selectedGoodsIDs divCodes:selctedGoodsDivCods success:^(id response) {
+			[KLHttpTool deleteSupermarketShoppingCartGoodsWithIDs:selectedGoodsIDs divCodes:selctedGoodsDivCods SaleCustomCodes:selctedGoodsSaleCustomCodes  success:^(id response) {
 				NSNumber *status = response[@"status"];
 				if (status.integerValue == 1) {
 					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
 				}
 				[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-					[self.myTableView reloadData];
+					[weakself reloadAllData];
 				}];
 			} failure:^(NSError *err) {
 				
 			}];
 			
 		} else {
-			[KLHttpTool deleteSupermarketShoppingCartGoodsWithIDs:selectedGoodsIDs divCodes:selctedGoodsDivCods success:^(id response) {
+			[KLHttpTool deleteSupermarketShoppingCartGoodsWithIDs:selectedGoodsIDs divCodes:selctedGoodsDivCods  SaleCustomCodes:selctedGoodsSaleCustomCodes success:^(id  response) {
 				NSNumber *status = response[@"status"];
 				if (status.integerValue == 1) {
 					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
 					[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-						[self.myTableView reloadData];
+						[weakself reloadAllData];
 					}];
 				}
 				

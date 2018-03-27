@@ -666,15 +666,15 @@
     [params setObject:[NSNumber numberWithInteger:goodsNumber] forKey:@"item_quantity"];
     [params setObject:goodsID forKey:@"item_code"];
     [params setObject:shopID forKey:@"div_code"];
-    [params setObject:applyID forKey:@"custom_code"];
+    [params setObject:applyID forKey:@"sale_custom_code"];
 	
     
 //    [self getToken:^(id token) {
 	if ([YCAccountModel islogin]) {
 		YCAccountModel *model = [YCAccountModel getAccount];
-		[params setObject:model.token forKey:@"token"];
+		
+		[params setObject:[NSString stringWithFormat:@"%@|%@|%@",model.token,@"jgkjgig",model.customCode] forKey:@"token"];
 		[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-			[self checkStatusWithResponse:response];
 			if (success) {
 				success(response);
 			}
@@ -876,28 +876,35 @@
 //删除我的购物车
 + (void)deleteSupermarketShoppingCartGoodsWithIDs:(NSArray *)IDs
                                          divCodes:(NSArray *)divCodes
+								   SaleCustomCodes:(NSArray*)saleCustomCodes
                                           success:(void (^)(id response))success
                                           failure:(void (^)(NSError *err))failure {
     NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/DelUserShopCart",BaseUrl];
     NSMutableDictionary *params = @{}.mutableCopy;
     NSMutableString *itemCodesString = [[NSMutableString alloc] init];
     NSMutableString *divCodesString = [[NSMutableString alloc] init];
+	NSMutableString *saleCustomCodesString = [[NSMutableString alloc] init];
     for (int i = 0; i < IDs.count; i++) {
         if (i == (IDs.count - 1)) {
             [itemCodesString appendString:IDs[i]];
             [divCodesString appendString:divCodes[i]];
+			[saleCustomCodesString appendString:saleCustomCodes[i]];
         } else {
             [itemCodesString appendString:[NSString stringWithFormat:@"%@,",IDs[i]]];
             [divCodesString appendString:[NSString stringWithFormat:@"%@,",divCodes[i]]];
+			[saleCustomCodesString appendString:[NSString stringWithFormat:@"%@,",saleCustomCodes[i]]];
+			
         }
     }
     
     [params setObject:itemCodesString forKey:@"arrItemCode"];
     [params setObject:divCodesString forKey:@"arrDivCode"];
+	[params setObject:saleCustomCodesString forKey:@"arrsale_custom_code"];
     
     YCAccountModel *model = [YCAccountModel getAccount];
     if (model.token) {
-        [params setObject:model.token forKey:@"token"];
+		
+        [params setObject:[NSString stringWithFormat:@"%@|%@|%@",model.token,@"hgjdkjg",model.customCode] forKey:@"token"];
     }
     [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
         if (success) {
@@ -3259,8 +3266,8 @@
 				 Withlatitude:(NSString*)latitude
 				 Withlongitude:(NSString*)longitude
 				 Withorder_by:(NSString*)order_by
-						success:(void (^)(id response))success
-						failure:(void (^)(NSError *err))failure{
+					  success:(void (^)(id response))success
+					  failure:(void (^)(NSError *err))failure{
 	
 	NSString *url =[NSString stringWithFormat:@"%@%@",TinyMallShopBaseURL,urls] ;
 	
@@ -3271,8 +3278,14 @@
 	NSString *custom_code = accountmodel.customCode;
 	NSString *token = accountmodel.token;
 	
-	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,pagesize,div_code,pg,custom_lev1,custom_lev2,custom_lev3,latitude,longitude,order_by).mutableCopy;
-	
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,pagesize,div_code,pg,custom_lev1,custom_lev2,custom_lev3,order_by).mutableCopy;
+	if (latitude.length) {
+		[params setObject:latitude forKey:@"latitude"];
+	}
+	if (longitude.length) {
+		[params setObject:longitude forKey:@"longitude"];
+	}
+
 	if (custom_code.length) {
 		[params setObject:custom_code forKey:@"custom_code"];
 	}
@@ -3291,6 +3304,43 @@
 	}];
 }
 
+/*
+ 主页搜索商家和商品
+ */
++(void)TinySearchShopMainDataUrl:(NSString *)urls
+				 Withlatitude:(NSString*)latitude
+				Withlongitude:(NSString*)longitude
+						  Withpg:(NSString *)pg
+					WithPagesize:(NSString*)PageSize
+				 WithSearchword:(NSString*)searchword
+					  success:(void (^)(id response))success
+					  failure:(void (^)(NSError *err))failure{
+	
+	NSString *url =[NSString stringWithFormat:@"%@%@",TinyMallShopBaseURL,urls];
+	NSString *lang_type = @"kor";
+	YCAccountModel *accountmodel = [YCAccountModel getAccount];
+	NSString *custom_code = accountmodel.customCode;
+	NSString *token = accountmodel.token;
+	
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,pg,PageSize,latitude,longitude,searchword).mutableCopy;
+	
+	if (custom_code.length) {
+		[params setObject:custom_code forKey:@"custom_code"];
+	}
+	if (token.length) {
+		[params setObject:token forKey:@"token"];
+	}
+	
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+	}];
+}
 
 @end
 
