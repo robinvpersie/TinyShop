@@ -249,21 +249,27 @@
         cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"我的地址";
+           // cell.textLabel.text = @"我的地址";
+            cell.textLabel.text = @"주소관리";
             //cell.textLabel.text = NSLocalizedString(@"SupermaketHomeMyAddress", nil);
         } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"我的直播";
+            cell.textLabel.text = @"나의방송";
+            //cell.textLabel.text = @"我的直播";
             //cell.textLabel.text = NSLocalizedString(@"SMOrderRefundTitle", nil);
         } else if (indexPath.row == 2) {
-            cell.textLabel.text = @"优惠券";
+            //cell.textLabel.text = @"优惠券";
+            cell.textLabel.text = @"할인권";
             //cell.textLabel.text = NSLocalizedString(@"SMMineAboutUs", nil);
         } else if (indexPath.row == 3) {
-            cell.textLabel.text = @"我的消息";
+            //cell.textLabel.text = @"我的消息";
+            cell.textLabel.text = @"리뷰관린";
            // cell.textLabel.text = NSLocalizedString(@"SMMineMyComment", nil);
         } else if (indexPath.row == 4) {
-            cell.textLabel.text = @"系统设置";
+            //cell.textLabel.text = @"系统设置";
+            cell.textLabel.text = @"환경설정";
         } else {
-            cell.textLabel.text = @"我的收藏";
+//            cell.textLabel.text = @"我的收藏";
+            cell.textLabel.text = @"찜하기";
         }
     }
     return cell;
