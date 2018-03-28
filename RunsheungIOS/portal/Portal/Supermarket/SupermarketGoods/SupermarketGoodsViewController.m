@@ -82,10 +82,10 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void)viewWillLayoutSubviews {
-	[super viewWillLayoutSubviews];
-	_bottom.hidden = NO;
-}
+//- (void)viewWillLayoutSubviews {
+//	[super viewWillLayoutSubviews];
+//	_bottom.hidden = NO;
+//}
 
 - (void)initView {
 	_mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenHeight)];

@@ -200,16 +200,23 @@
 + (SupermarketAddressModel *)getAddressDataWithDic:(NSDictionary *)dic {
     SupermarketAddressModel *data = [[SupermarketAddressModel alloc] init];
     if (dic != nil) {
-        data.address = dic[@"address"];
-        data.realname = dic[@"name"];
-        data.isdefault = dic[@"hasDefault"];
-        data.mobile = dic[@"mobile"];
-        data.addressID = dic[@"id"];
-        data.latitude = dic[@"latitude"];
-        data.longtitude = dic[@"longitude"];
-        data.location = dic[@"location"];
-        data.hasDelivery = dic[@"hasDelivery"];
-        data.zipcode = dic[@"zip_code"];
+//        data.address = dic[@"address"];
+//        data.realname = dic[@"name"];
+//        data.isdefault = dic[@"hasDefault"];
+//        data.mobile = dic[@"mobile"];
+//        data.addressID = dic[@"id"];
+//        data.latitude = dic[@"latitude"];
+//        data.longtitude = dic[@"longitude"];
+//        data.location = dic[@"location"];
+//        data.hasDelivery = dic[@"hasDelivery"];
+//        data.zipcode = dic[@"zip_code"];
+		data.to_address = dic[@"to_address"];
+		data.default_add = dic[@"default_add"];
+		data.delivery_name = dic[@"delivery_name"];
+		data.mobilepho = dic[@"mobilepho"];
+		data.zip_name = dic[@"zip_name"];
+		data.seq_num = dic[@"seq_num"];
+
     }
     return data;
 }

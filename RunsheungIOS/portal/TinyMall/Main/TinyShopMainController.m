@@ -36,6 +36,9 @@
 @end
 
 @implementation TinyShopMainController
+-(void)viewDidLayoutSubviews{
+	[super viewDidLayoutSubviews];
+}
 - (void)viewWillDisappear:(BOOL)animated{
 	[super viewWillDisappear:animated];
 	self.navigationController.navigationBar.barTintColor = RGB(253, 253, 253);
@@ -44,15 +47,15 @@
 
 - (void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
-	paged = 1;
 	
-	self.mutaleData = @[].mutableCopy;
 	[self setNaviBar];
 	
 
 }
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	paged = 1;
+	self.mutaleData = @[].mutableCopy;
 	[self location];
 	[self createLocationView];
 	[self createScrollview];
@@ -158,6 +161,7 @@
 	NSDictionary *dic = self.mutaleData[indexPath.row];
 	UIImageView *showImg = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, APPScreenWidth - 20, 90)];
 	[showImg sd_setImageWithURL:[NSURL URLWithString:dic[@"shop_thumnail_image"]] placeholderImage:[UIImage imageNamed:@"banner01"]];
+	showImg.userInteractionEnabled = YES;
 	[cell.contentView addSubview:showImg];
 	
 	return cell;
@@ -183,14 +187,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-	if (self.mutaleData.count) {
+//	if (self.mutaleData.count) {
 		NSDictionary *dic = self.mutaleData[indexPath.row];
 		SupermarketHomeViewController *shopDetailed = [[SupermarketHomeViewController alloc] init];
 		shopDetailed.hidesBottomBarWhenPushed = YES;
 		shopDetailed.dic = dic;
 		[self.navigationController pushViewController:shopDetailed animated:YES];
 
-	}
+//	}
 
 }
 
@@ -262,17 +266,13 @@
 				ZFScanViewController *scanVC = [ZFScanViewController new];
 				scanVC.returnScanBarCodeValue = ^(NSString *barCodeString) {
 					
+				
 				};
 				[self presentViewController:scanVC animated:YES completion:nil];
 				
 			}else if (sender.tag == 2005){
 			
-//				LZCartViewController *shoppingCart = [[LZCartViewController alloc] init];
-//				//    shoppingCart.type = ShoppingCartController;
-//				shoppingCart.isPush = YES;
-//				shoppingCart.hidesBottomBarWhenPushed = YES;
-//				[self.navigationController pushViewController:shoppingCart animated:YES];
-				
+
 				
 
 			}

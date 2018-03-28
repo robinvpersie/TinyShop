@@ -356,7 +356,7 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30;
     
-    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/MyinfoAddressList",BaseUrl];
+    NSString *url = [NSString stringWithFormat:@"%@api/MyInfo/MyinfoAddressList",BaseUrl];
     
     [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         

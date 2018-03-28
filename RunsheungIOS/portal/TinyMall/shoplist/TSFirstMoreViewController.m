@@ -7,6 +7,7 @@
 //
 
 #import "TSFirstMoreViewController.h"
+#import "TSCategoryController.h"
 
 @interface TSFirstMoreViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -15,6 +16,8 @@
 @property (nonatomic,retain)NSMutableDictionary *dict;
 @property (nonatomic,retain)NSArray *firstData;
 @property (nonatomic,retain)NSMutableArray *secondData;
+@property (nonatomic,copy)NSString *leve2;
+
 
 @end
 
@@ -144,14 +147,22 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	if (tableView.tag == 1001) {
 		NSDictionary *dic = self.firstData[indexPath.row];
-		[self loadDataClick:dic[@"lev"]];
+		self.leve2 = dic[@"lev"];
+		[self loadDataClick:self.leve2];
 
 	}else{
-		if (self.choiceBlock) {
-			
-			self.choiceBlock(self.secondData[indexPath.row]);
-			[self.navigationController popViewControllerAnimated:YES];
-		}
+		TSCategoryController *cateVC = [[TSCategoryController alloc]init];
+		cateVC.hidesBottomBarWhenPushed = YES;
+		NSDictionary *dicss = self.secondData[indexPath.row];
+		cateVC.leves = @[dicss[@"lev1"],dicss[@"lev"],@"1"].mutableCopy;
+		[self.navigationController pushViewController:cateVC animated:YES];
+		
+
+//		if (self.choiceBlock) {
+//
+//			self.choiceBlock(self.secondData[indexPath.row]);
+//			[self.navigationController popViewControllerAnimated:YES];
+//		}
 	}
 }
 
