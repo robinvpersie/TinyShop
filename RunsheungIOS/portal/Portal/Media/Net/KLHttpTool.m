@@ -662,26 +662,41 @@
                                   success:(void (^)(id response))success
                                   failure:(void (^)(NSError *err))failure {
     NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/AddUserShopCart",BaseUrl];
+    YCAccountModel *model = [YCAccountModel getAccount];
     NSMutableDictionary *params = @{}.mutableCopy;
     [params setObject:[NSNumber numberWithInteger:goodsNumber] forKey:@"item_quantity"];
     [params setObject:goodsID forKey:@"item_code"];
     [params setObject:shopID forKey:@"div_code"];
     [params setObject:applyID forKey:@"sale_custom_code"];
+    [params setObject:model.combineToken forKey:@"token"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
 	
     
 //    [self getToken:^(id token) {
-	if ([YCAccountModel islogin]) {
-		YCAccountModel *model = [YCAccountModel getAccount];
-		
-		[params setObject:[NSString stringWithFormat:@"%@|%@|%@",model.token,@"jgkjgig",model.customCode] forKey:@"token"];
-		[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-			if (success) {
-				success(response);
-			}
-		} failure:^(NSError *err) {
-			NSLog(@"%@",err);
-		}];
-	}
+//    if ([YCAccountModel islogin]) {
+//        YCAccountModel *model = [YCAccountModel getAccount];
+//
+//        [params setObject:[NSString stringWithFormat:@"%@|%@|%@",model.token,@"jgkjgig",model.customCode] forKey:@"token"];
+//        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+//            if (success) {
+//                success(response);
+//            }
+//        } failure:^(NSError *err) {
+//            NSLog(@"%@",err);
+//        }];
+//    }
 	
 //    } failure:^(NSError *errToken) {
 //
