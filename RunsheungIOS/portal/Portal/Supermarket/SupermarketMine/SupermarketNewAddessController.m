@@ -272,10 +272,19 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1 && indexPath.row == 0) {
-        [self dismissBoard];
-        STPickerArea *picker = [[STPickerArea alloc] init];
-        picker.delegate = self;
-        [picker show];
+//        [self dismissBoard];
+//        STPickerArea *picker = [[STPickerArea alloc] init];
+//        picker.delegate = self;
+//        [picker show];
+        SearchKoreaAddress *search = [[SearchKoreaAddress alloc] init];
+        search.selectAction = ^(NSDictionary * dic) {
+            _addressLabel.hidden = NO;
+            _msg.hidden = YES;
+             _addressLabel.text = dic[@"address"];
+            _gidField.text = dic[@"postcd"];
+        };
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:search];
+        [self presentViewController:nav animated:YES completion:nil];
     } else if (indexPath.section == 0 && indexPath.row == 2) {
         _defualtIcon.hidden = !_defualtIcon.hidden;
     }
