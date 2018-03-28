@@ -507,12 +507,13 @@ typedef void(^finishAction)();
 		[params setObject:model.item_code forKey:@"item_code"];
 		[params setObject:[NSString stringWithFormat:@"%ld",model.number] forKey:@"item_quantity"];
 		[params setObject:model.divCode forKey:@"div_code"];
+		[params setObject:model.sale_custom_code forKey:@"sale_custom_code"];
 		
 		NSArray *dataArr = [NSArray arrayWithObjects:params,nil];
 		
 		if (self.controllerType == ControllerTypeDepartmentStores) {
 			
-			[KLHttpTool editSupermarketShoppingCartWithDataArray:dataArr success:^(id response) {
+			[KLHttpTool editSupermarketShoppingCartWithDataArray:dataArr  success:^(id response) {
 			} failure:^(NSError *err) {
 				
 			}];
@@ -544,14 +545,15 @@ typedef void(^finishAction)();
 		[params setObject:model.item_code forKey:@"item_code"];
 		[params setObject:[NSString stringWithFormat:@"%ld",number] forKey:@"item_quantity"];
 		[params setObject:model.divCode forKey:@"div_code"];
+		[params setObject:model.sale_custom_code forKey:@"sale_custom_code"];
 		
 		if (self.controllerType == ControllerTypeDepartmentStores) {
-			[KLHttpTool editSupermarketShoppingCartWithDataArray:@[params] success:^(id response) {
+			[KLHttpTool editSupermarketShoppingCartWithDataArray:@[params]  success:^(id response) {
 			} failure:^(NSError *err) {
 				
 			}];
 		} else {
-			[KLHttpTool editSupermarketShoppingCartWithDataArray:@[params] success:^(id response) {
+			[KLHttpTool editSupermarketShoppingCartWithDataArray:@[params]  success:^(id response) {
 				
 			} failure:^(NSError *err) {
 				
@@ -751,9 +753,6 @@ typedef void(^finishAction)();
 	}
 }
 
-//- (void)reloadTable {
-//    [self.myTableView reloadData];
-//}
 #pragma mark --- 返回按钮点击事件
 - (void)backButtonClick:(UIButton*)button {
 	if (_isHasNavitationController == NO) {
@@ -851,7 +850,7 @@ typedef void(^finishAction)();
 		confirm.shopArray = self.selectedShopArray;
 		[self.navigationController pushViewController:confirm animated:YES];
 	} else {
-		[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"没有选择任何商品"];
+		[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:NSLocalizedString(@"没有选择任何商品", nil) ];
 	}
 	
 }

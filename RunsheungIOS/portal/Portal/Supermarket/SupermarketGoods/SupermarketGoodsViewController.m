@@ -515,7 +515,7 @@
 						
 						MBProgressHUD *hudsuccess = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 						hudsuccess.mode = MBProgressHUDModeText;
-						hudsuccess.label.text = @"加入购物车成功!";
+						hudsuccess.label.text = NSLocalizedString(@"加入购物车成功", nil) ;
 						[hudsuccess hideAnimated:YES afterDelay:1.0f];
 						
 						if (self.isScan) {

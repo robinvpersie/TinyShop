@@ -72,7 +72,6 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.edgesForExtendedLayout = UIRectEdgeNone;
 	[self setNaviBar];
 	[self setInitData];
 	[self location];

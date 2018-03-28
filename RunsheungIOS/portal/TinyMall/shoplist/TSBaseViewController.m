@@ -15,6 +15,8 @@
 @implementation TSBaseViewController
 - (void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
+	self.edgesForExtendedLayout = UIRectEdgeNone;
+
 	[self setNavi];
 	
 }
