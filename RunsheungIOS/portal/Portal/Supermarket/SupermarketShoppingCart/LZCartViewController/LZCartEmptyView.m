@@ -39,7 +39,7 @@
         self.emptylb = [[UILabel alloc]init];
         self.emptylb.textColor = LZColorFromHex(0x706F6F);
         self.emptylb.font = [UIFont systemFontOfSize:15];
-        self.emptylb.text = @"购物车为空";
+        self.emptylb.text = NSLocalizedString(@"购物车为空", nil);
         [self addSubview:self.emptylb];
         [self.emptylb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.imageView.mas_bottom).offset(10);

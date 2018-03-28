@@ -126,7 +126,7 @@ typedef void(^finishAction)();
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	self.navigationItem.title = @"购物车";
+	self.navigationItem.title = NSLocalizedString(@"购物车", nil);
 	self.isloading = YES;
 	[self setNavigationBar];
 	
@@ -316,24 +316,7 @@ typedef void(^finishAction)();
 	segment.tintColor = GreenColor;
 	segment.frame = CGRectMake(0, 0, 180, 25);
 	segment.center = CGPointMake(self.view.center.x, (LZNaigationBarHeight - 25)/2.0 + 20);
-	//    [self.view addSubview:segment];
 	
-	//    _edit = [UIButton buttonWithType:UIButtonTypeCustom];
-	//    [_edit setTitle:NSLocalizedString(@"SMShoppingCartEdit", nil) forState:UIControlStateNormal];
-	//    [_edit setTitle:NSLocalizedString(@"SMShoppingCartFinish", nil) forState:UIControlStateSelected];
-	//    _edit.titleLabel.font = [UIFont systemFontOfSize:14];
-	//    [_edit setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-	//    _edit.frame = CGRectMake(APPScreenWidth - 50, backgroundView.frame.size.height-33, 50, 25);
-	//    [_edit addTarget:self action:@selector(editAll:) forControlEvents:UIControlEventTouchUpInside];
-	//    [self.view addSubview:_edit];
-	
-	//    if (_isPush) {
-	//        UIButton *back = [UIButton buttonWithType:UIButtonTypeCustom];
-	//        back.frame = CGRectMake(15, backgroundView.frame.size.height-33, 25, 25);
-	//        [back setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
-	//        [back addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
-	//        [self.view addSubview:back];
-	//    }
 }
 
 - (void)popController {

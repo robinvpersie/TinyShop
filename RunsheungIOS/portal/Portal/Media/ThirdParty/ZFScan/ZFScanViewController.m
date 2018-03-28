@@ -84,7 +84,7 @@
     CGFloat backHint_height = 30;
     
     self.backHintLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, backHint_width, backHint_height)];
-    self.backHintLabel.text = @"返回";
+    self.backHintLabel.text =NSLocalizedString(@"返回", nil) ;
     self.backHintLabel.textAlignment = NSTextAlignmentCenter;
     self.backHintLabel.textColor = ZFWhite;
     [self.view addSubview:self.backHintLabel];
@@ -104,7 +104,7 @@
     CGFloat flashlightHint_height = 30;
     
     self.flashlightHintLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, flashlightHint_width, flashlightHint_height)];
-    self.flashlightHintLabel.text = @"手电筒";
+    self.flashlightHintLabel.text = NSLocalizedString(@"手电筒", nil);
     self.flashlightHintLabel.textAlignment = NSTextAlignmentCenter;
     self.flashlightHintLabel.textColor = ZFWhite;
     [self.view addSubview:self.flashlightHintLabel];

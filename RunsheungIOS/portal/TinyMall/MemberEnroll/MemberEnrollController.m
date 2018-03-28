@@ -119,7 +119,7 @@
 	}else{
 		MBProgressHUD *hude = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 		hude.mode = MBProgressHUDModeText;
-		hude.label.text = @"请输入账号和密码！";
+		hude.label.text = NSLocalizedString(@"请输入登录密码", nil) ;
 		[hude hideAnimated:YES afterDelay:1.0f];
 	}
 	
@@ -138,7 +138,7 @@
 			[hud hideAnimated:NO];
 			MBProgressHUD *hudd = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
 			hudd.mode = MBProgressHUDModeText;
-			hudd.label.text = @"注册成功！";
+			hudd.label.text = NSLocalizedString(@"注册成功", nil);
 			[hudd hideAnimated:YES afterDelay:1];
 			[self moveToleft];
 			[self moveToBottom];
@@ -234,20 +234,20 @@
 	[loginBG addSubview:loginpwdIcon];
 	
 	UITextField *loginPhonefield = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(loginPhoneIcon.frame) + 5, CGRectGetMinY(loginPhoneIcon.frame), CGRectGetWidth(loginBG.frame) - CGRectGetMaxX(loginPhoneIcon.frame) - 10, CGRectGetHeight(loginPhoneIcon.frame))];
-	loginPhonefield.placeholder = @"请输入电话号码";
+	loginPhonefield.placeholder = NSLocalizedString(@"请输入您的手机号码", nil) ;
 	loginPhonefield.keyboardType = UIKeyboardTypeDecimalPad;
 	loginPhonefield.tag = LoginPhoneTag;
 	[loginBG addSubview:loginPhonefield];
 	
 	UITextField *loginPwdfield = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(loginpwdIcon.frame) + 5, CGRectGetMinY(loginpwdIcon.frame), CGRectGetWidth(loginBG.frame) - CGRectGetMaxX(loginpwdIcon.frame) - 10, CGRectGetHeight(loginpwdIcon.frame))];
-	loginPwdfield.placeholder = @"请输密码";
+	loginPwdfield.placeholder = NSLocalizedString(@"请输入登录密码", nil);
 	loginPwdfield.keyboardType = UIKeyboardTypeDecimalPad;
 	loginPwdfield.secureTextEntry = YES;
 	loginPwdfield.tag = LoginPWDTag;
 	[loginBG addSubview:loginPwdfield];
 	
 	UIButton *loginBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMinX(loginBG.frame), CGRectGetMaxY(loginBG.frame)+ 30, CGRectGetWidth(loginBG.frame), 50)];
-	[loginBtn setTitle:@"登录" forState:UIControlStateNormal];
+	[loginBtn setTitle:NSLocalizedString(@"登录", nil) forState:UIControlStateNormal];
 	[loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	[loginBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
 	loginBtn.tag = LoginBtnTag;
@@ -260,7 +260,7 @@
 	UIButton *forgetBtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth/2 - 50, CGRectGetMaxY(loginBtn.frame)+ 10, 100, 50)];
 	forgetBtn.tag = ForgetPwdBtnTag;
 	forgetBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-	NSMutableAttributedString* tncString = [[NSMutableAttributedString alloc] initWithString:@"忘记密码?"];
+	NSMutableAttributedString* tncString = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"忘记密码", nil) ];
 	[tncString addAttribute:NSUnderlineStyleAttributeName value:@(NSUnderlineStyleSingle) range:(NSRange){0,[tncString length]}];
 	[tncString addAttribute:NSUnderlineColorAttributeName value:RGB(33, 192, 67) range:(NSRange){0,[tncString length]}];
 	[tncString addAttribute:NSForegroundColorAttributeName value:RGB(33, 192, 67) range:(NSRange){0,[tncString length]}];
@@ -326,7 +326,7 @@
 		
 		[_timer invalidate];
 		_timer = nil;
-		[getVerCode setTitle:@"获取验证码" forState:UIControlStateNormal];
+		[getVerCode setTitle:NSLocalizedString(@"接收验证码", nil) forState:UIControlStateNormal];
 	}
 	
 	
@@ -411,9 +411,7 @@
 		{
 			
 			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
-			[[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:@"joinKinds"];
-			[[NSUserDefaults standardUserDefaults]synchronize];
-
+			SetUserDefault(@"joinKinds", @"1");
 			[self presentViewController:personalVC animated:YES completion:nil];
 
 		}
@@ -421,40 +419,35 @@
 		case 1:
 		{
 			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
-			[[NSUserDefaults standardUserDefaults]setObject:@"2" forKey:@"joinKinds"];
-			[[NSUserDefaults standardUserDefaults]synchronize];
+			SetUserDefault(@"joinKinds", @"2");
 			[self presentViewController:personalVC animated:YES completion:nil];
         }
 			break;
         case 2:
 		{
 			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
-			[[NSUserDefaults standardUserDefaults]setObject:@"5" forKey:@"joinKinds"];
-			[[NSUserDefaults standardUserDefaults]synchronize];
+			SetUserDefault(@"joinKinds", @"5");
 			[self presentViewController:personalVC animated:YES completion:nil];
         }
 			break;
         case 3:
 		{
 			[self showAlert];
-			[[NSUserDefaults standardUserDefaults]setObject:@"4" forKey:@"joinKinds"];
-			[[NSUserDefaults standardUserDefaults]synchronize];
+			SetUserDefault(@"joinKinds", @"4");
         }
 			break;
         case 4:
 		{
 			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
 			[self presentViewController:personalVC animated:YES completion:nil];
-			[[NSUserDefaults standardUserDefaults]setObject:@"6" forKey:@"joinKinds"];
-			[[NSUserDefaults standardUserDefaults]synchronize];
+			SetUserDefault(@"joinKinds", @"6");
         }
 			break;
         case 5:
 		{
 			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
 			[self presentViewController:personalVC animated:YES completion:nil];
-			[[NSUserDefaults standardUserDefaults]setObject:@"8" forKey:@"joinKinds"];
-			[[NSUserDefaults standardUserDefaults]synchronize];
+			SetUserDefault(@"joinKinds", @"8");
         }
 			break;
         default:

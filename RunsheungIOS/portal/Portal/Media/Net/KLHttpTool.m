@@ -3076,11 +3076,18 @@
 											success:(void (^)(id response))success
 											failure:(void (^)(NSError *err))failure{
 	NSString *url = [NSString stringWithFormat:@"%@%@",TinyMallShopBaseURL,@"StoreCate/requestStoreCateList"];
-	NSMutableDictionary *params = NSDictionaryOfVariableBindings(custom_code,pg,token,custom_lev1,custom_lev2,custom_lev3,longitude,latitude,order_by).mutableCopy;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(pg,custom_lev1,custom_lev2,custom_lev3,longitude,latitude,order_by).mutableCopy;
 	[params setObject:@"2" forKey:@"div_code"];
 	[params setObject:@"5" forKey:@"pagesize"];
 	[params setObject:@"kor" forKey:@"lang_type"];
-	
+	if (custom_code.length) {
+		[params setObject:custom_code forKey:@"custom_code"];
+	}
+	if (token.length) {
+		[params setObject:token forKey:@"token"];
+	}
+
+
 	//获得请求管理者
 	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 	manager.responseSerializer = [AFJSONResponseSerializer serializer];

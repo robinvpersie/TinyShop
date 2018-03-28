@@ -10,6 +10,8 @@
 
 @interface InputFieldView : UIView
 
+- (instancetype)initWithFrame:(CGRect)frame;
+
 @property(nonatomic, copy) NSString * placeHolder;
 @property(nonatomic, strong) UIFont * font;
 @property(nonatomic, copy) NSString * text;

@@ -13,8 +13,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
 	self = [super initWithFrame:frame];
 	if (self) {
-		
-		self.Sourcedata =@[@[@"icon_personal_sp",@"icon_enterprise_sp",@"icon_producer_sp",@"icon_team_sp",@"icon_store_sp",@"icon_manager_sp"],@[@"个人注册",@"企业注册",@"生产者注册",@"团体注册",@"加盟商注册",@"管理者注册"]];
+		self.Sourcedata =@[@[@"icon_personal_sp",@"icon_enterprise_sp",@"icon_producer_sp",@"icon_team_sp",@"icon_store_sp",@"icon_manager_sp"],@[NSLocalizedString(@"个人会员", nil) ,NSLocalizedString(@"企业会员", nil),NSLocalizedString(@"生产者会员", nil),NSLocalizedString(@"团体会员", nil),NSLocalizedString(@"加盟商会员", nil),NSLocalizedString(@"管理者会员", nil)]];
 		[self createSubView];
 	}
 	return self;

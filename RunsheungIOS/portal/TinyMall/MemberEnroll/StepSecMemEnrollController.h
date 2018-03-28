@@ -10,6 +10,6 @@
 
 @interface StepSecMemEnrollController : TSBaseViewController
 
-@property (nonatomic,copy)NSString *phone;
-@property (nonatomic,copy)NSString *AuthNum;
+//@property (nonatomic,copy)NSString *phone;
+//@property (nonatomic,copy)NSString *AuthNum;
 @end
