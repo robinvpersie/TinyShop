@@ -149,9 +149,9 @@ static NSString *tempStr;
 
 - (void)requestComplete:(BOOL)state {
     if (state) {
-        [self requestComplete:state message:@"支付成功"];
+        [self requestComplete:state message:NSLocalizedString(@"支付成功", nil)];
     } else {
-        [self requestComplete:state message:@"支付失败"];
+        [self requestComplete:state message:NSLocalizedString(@"支付失败", nil)];
     }
 }
 - (void)requestComplete:(BOOL)state message:(NSString *)message {

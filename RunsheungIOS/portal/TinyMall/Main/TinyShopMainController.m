@@ -219,12 +219,12 @@
 				SetUserDefault(@"Address", address);
 				self.choiceHeadView.addressName = address;
 			} else {
-				self.choiceHeadView.addressName = @"定位失败";
+				self.choiceHeadView.addressName =  NSLocalizedString(@"定位失败", nil) ;
 			};
 		}];
 	} failure:^(NSError * error) {
 		[YCLocationService turnOff];
-		self.choiceHeadView.addressName = @"定位失败";
+		self.choiceHeadView.addressName = NSLocalizedString(@"定位失败", nil) ;
 	}];
 }
 

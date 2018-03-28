@@ -48,7 +48,7 @@
         
         self.refreshBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.refreshBtn addTarget:self action:@selector(didRefresh) forControlEvents:UIControlEventTouchUpInside];
-        [self.refreshBtn setTitle:@"立即刷新" forState:UIControlStateNormal];
+        [self.refreshBtn setTitle:NSLocalizedString(@"立即刷新", nil)  forState:UIControlStateNormal];
         [self.refreshBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.refreshBtn.layer.cornerRadius = 4;
         self.refreshBtn.layer.backgroundColor = [LZColorFromHex(0x21c043) CGColor];
