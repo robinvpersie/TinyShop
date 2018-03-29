@@ -10,19 +10,19 @@ import Foundation
 
 let language_set = "langeuageset"
 
-public class languageTool:NSObject {
+public class languageTool: NSObject {
     
     static let shared = languageTool()
-    var language:String?
-    var path:String?
-    var bundle:Bundle?
+    var language: String?
+    var path: String?
+    var bundle: Bundle?
     
     override init() {
         super.init()
         initLanguage()
     }
     
-    func set_SystemLanguage(_ language:String){
+    func set_SystemLanguage(_ language: String){
         let original = YCUserDefaults.language.value
         if let value = original {
             if language == value {
@@ -37,15 +37,15 @@ public class languageTool:NSObject {
     
     func initLanguage(){
         
-        let languageType:String? = YCUserDefaults.language.value
-        self.language = languageType
-        if let lan = languageType {
-            self.path = Bundle.main.path(forResource: lan, ofType: "lproj")
+//        let languageType: String? = YCUserDefaults.language.value
+//        self.language = languageType
+//        if let lan = languageType {
+            self.path = Bundle.main.path(forResource: "ko", ofType: "lproj")
             self.bundle = Bundle(path: self.path!)
-        }
+//        }
     }
     
-    func getString(_ original:String) ->String{
+    func getString(_ original: String) -> String{
         if let bud = self.bundle {
           return bud.localizedString(forKey: original, value: nil, table: nil)
         }

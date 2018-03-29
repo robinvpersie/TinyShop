@@ -144,7 +144,13 @@ extension YCBox where Base:UIImage {
         guard let selfCGImage = Base.cgImage else {
             return nil
         }
-        let context = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: selfCGImage.bitsPerComponent, bytesPerRow: 0, space: selfCGImage.colorSpace!, bitmapInfo: selfCGImage.bitmapInfo.rawValue);
+        let context = CGContext(data: nil,
+                                width: Int(width),
+                                height: Int(height),
+                                bitsPerComponent: selfCGImage.bitsPerComponent,
+                                bytesPerRow: 0,
+                                space: selfCGImage.colorSpace!,
+                                bitmapInfo: selfCGImage.bitmapInfo.rawValue);
         context?.concatenate(transform)
         switch Base.imageOrientation {
         case .left, .leftMirrored, .right, .rightMirrored:
@@ -152,7 +158,8 @@ extension YCBox where Base:UIImage {
         default:
             context?.draw(selfCGImage, in: CGRect(x: 0, y: 0, width: width, height: height))
          }
-        guard let con = context, let cgImage = con.makeImage() else {
+        guard let con = context,
+            let cgImage = con.makeImage() else {
             return nil
         }
         return UIImage(cgImage: cgImage)
@@ -172,12 +179,15 @@ extension YCBox where Base:UIImage {
          } else {
             return Base
          }
-        guard let cgImage = Base.cgImage,let cg = cgImage.cropping(to: rect) else { return nil }
+        guard let cgImage = Base.cgImage,
+            let cg = cgImage.cropping(to: rect) else {
+                return nil
+        }
         return UIImage(cgImage: cg)
     }
     
     
-    public func scaleWith(scale:CGFloat) -> UIImage? {
+    public func scaleWith(scale: CGFloat) -> UIImage? {
         let imagesize = CGSize(width: Base.size.width * scale, height: Base.size.height * scale)
         UIGraphicsBeginImageContext(imagesize)
         Base.draw(in: CGRect(x: 0, y: 0, width: imagesize.width, height: imagesize.height))
@@ -187,7 +197,7 @@ extension YCBox where Base:UIImage {
     }
     
     
-    public func compressionImageToDataTargetWH( targetWH:inout CGFloat,maxFilesize:NSInteger) -> Data?{
+    public func compressionImageToDataTargetWH( targetWH:inout CGFloat, maxFilesize: NSInteger) -> Data?{
         
         if targetWH <= 0 {
            targetWH = 1024
@@ -205,8 +215,8 @@ extension YCBox where Base:UIImage {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        var compression:CGFloat = 0.9
-        let maxCompression:CGFloat = 0.1
+        var compression: CGFloat = 0.9
+        let maxCompression: CGFloat = 0.1
         var imageData = UIImageJPEGRepresentation(newImage!, compression)
         while imageData!.count/1000 > maxFilesize && compression > maxCompression {
             compression -= 0.1
@@ -217,7 +227,6 @@ extension YCBox where Base:UIImage {
     }
     
     public func imageWithGradientTintColor(tintColor: UIColor) -> UIImage? {
-        
         return imageWithTintColor(tintColor: tintColor, blendMode: CGBlendMode.overlay)
     }
     
@@ -244,7 +253,8 @@ extension YCBox where Base:UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0) // key
         let context = UIGraphicsGetCurrentContext()
         Base.draw(in: CGRect(origin: CGPoint.zero, size: size))
-        guard let con = context,let cgImage = con.makeImage() else {
+        guard let con = context,
+            let cgImage = con.makeImage() else {
             return nil
         }
         let image = UIImage(cgImage: cgImage)

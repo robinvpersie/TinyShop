@@ -15,18 +15,18 @@ import Alamofire
 import Kingfisher
 import AdSupport
 
-class PersinalSetController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class PersinalSetController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var showflag:Float = 0
+    var showflag: Float = 0
     
-    lazy var imagePicker:UIImagePickerController = {
+    lazy var imagePicker: UIImagePickerController = {
           let imagePicker = UIImagePickerController()
           imagePicker.delegate = self
           imagePicker.allowsEditing = true
           return imagePicker
     }()
     
-    enum sectionType:Int {
+    enum sectionType: Int {
         case avatar
         case sexAndNickName
         case changePassword
@@ -34,11 +34,11 @@ class PersinalSetController: UITableViewController,UIImagePickerControllerDelega
         case changeLanguage
         case logOut
         
-        init(indexPath:IndexPath){
+        init(indexPath: IndexPath){
             self.init(rawValue: indexPath.section)!
         }
         
-        init(section:Int){
+        init(section: Int){
             self.init(rawValue: section)!
         }
         
@@ -79,7 +79,6 @@ class PersinalSetController: UITableViewController,UIImagePickerControllerDelega
     var operationQue = OperationQueue()
     
     func getAccountAvatarString() -> String? {
-        
         return YCAccountModel.getAccount()?.avatarPath
     }
     
@@ -106,16 +105,9 @@ class PersinalSetController: UITableViewController,UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(refreshLanguage(_:)),
-                                               name: NSNotification.Name.changeLanguage,
-                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshLanguage(_:)), name: NSNotification.Name.changeLanguage, object: nil)
         title = "设置".localized
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow,
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(yc_back))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.darkText
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(yc_back))
         view.backgroundColor = UIColor.BaseControllerBackgroundColor
         
         tableView.tableFooterView = UIView()
@@ -175,20 +167,19 @@ class PersinalSetController: UITableViewController,UIImagePickerControllerDelega
         if sectiontype == .avatar  {
             let cell:PersonalHeaderCell = tableView.dequeueReusableCell()
             cell.descriptionlb.text = "更换头像".localized
-            let avatarSize =  PersonalCenterAvatarSize
-            let avatarStyle:AvatarStyle = .roundedRectangle(size: CGSize(width:avatarSize,height:avatarSize),
+            let avatarSize = PersonalCenterAvatarSize
+            let avatarStyle: AvatarStyle = .roundedRectangle(size: CGSize(width: avatarSize, height: avatarSize),
                                                             cornerRadius: avatarSize * 0.5,
                                                             borderWidth: 0)
             let plainAvatar = PlainAvatar(avatarURLString: avatarString ?? "", avatarStyle: avatarStyle)
             cell.avatarImageView.navi_setAvatar(plainAvatar)
             cell.clickImage = { [weak self] in
-                guard let strongself = self else { return }
-                strongself.choosePhoto(cell: cell)
+               self?.choosePhoto(cell: cell)
              }
             return cell
         }else if sectiontype == .sexAndNickName {
-            let cell:PersonalSexCell = tableView.dequeueReusableCell()
-            if indexPath.row == 0{
+            let cell: PersonalSexCell = tableView.dequeueReusableCell()
+            if indexPath.row == 0 {
                cell.sex.text = "性别".localized
                cell.detail.text = Sex
             }else if indexPath.row == 1 {
@@ -197,13 +188,13 @@ class PersinalSetController: UITableViewController,UIImagePickerControllerDelega
             }
             return cell
         }else if sectiontype == .changePassword {
-            let cell:PersonalSexCell = tableView.dequeueReusableCell()
+            let cell: PersonalSexCell = tableView.dequeueReusableCell()
             cell.sex.text = "修改密码".localized
             cell.detail.text = nil
             cell.accessoryType = .disclosureIndicator
             return cell
         }else if sectiontype == .clearCache {
-            let cell:PersonalCleanCell = tableView.dequeueReusableCell()
+            let cell: PersonalCleanCell = tableView.dequeueReusableCell()
             cell.descritionlb.text = "清理缓存".localized
             KingfisherManager.shared.cache.calculateDiskCacheSize(completion: { size in
                 let floatSize = CGFloat(size/1024/1024)
@@ -212,7 +203,7 @@ class PersinalSetController: UITableViewController,UIImagePickerControllerDelega
             })
             return cell
         }else if sectiontype == .changeLanguage {
-            let cell:UITableViewCell = tableView.dequeueReusableCell()
+            let cell: UITableViewCell = tableView.dequeueReusableCell()
             cell.textLabel?.textColor = UIColor.darkcolor
             cell.textLabel?.text = "修改语言".localized
             cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
@@ -220,7 +211,7 @@ class PersinalSetController: UITableViewController,UIImagePickerControllerDelega
             return cell
         }else {
             
-            let cell:UITableViewCell = tableView.dequeueReusableCell()
+            let cell: UITableViewCell = tableView.dequeueReusableCell()
             cell.textLabel?.textColor = UIColor.navigationbarColor
             cell.textLabel?.text = "退出账号".localized
             cell.textLabel?.textAlignment = .center
@@ -249,8 +240,7 @@ class PersinalSetController: UITableViewController,UIImagePickerControllerDelega
                                     inViewController: self,
                                     withConfirmAction:
             { [weak self] in
-                guard let strongself = self else { return }
-                strongself.logout()
+                self?.logout()
             })
         case .sexAndNickName:
             if indexPath.row == 0 {
@@ -321,10 +311,7 @@ class PersinalSetController: UITableViewController,UIImagePickerControllerDelega
     }
     
     
-    func setUserAccount(nickname:String?,
-                        gender:String?,
-                        token:String?,
-                        imagePath:String? = nil)
+    func setUserAccount(nickname: String?, gender: String?, token: String?, imagePath: String? = nil)
     {
         
         CheckToken.chekcTokenAPI { [weak self] (result) in
@@ -364,7 +351,7 @@ class PersinalSetController: UITableViewController,UIImagePickerControllerDelega
     }
     
     
-    func choosePhoto(cell:PersonalHeaderCell){
+    func choosePhoto(cell: PersonalHeaderCell){
         
         let alertController = UIAlertController(title: "选择照片".localized, message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "取消".localized, style: .cancel) {_ in}
@@ -444,16 +431,9 @@ class PersinalSetController: UITableViewController,UIImagePickerControllerDelega
                         genderString = "M"
                     }
                     imagepath = BaseType.PortalBase.baseURL + "/MediaUploader/wsProfile/" + currentDateStr
-                    KingfisherManager.shared.cache.store(Image, original: imageData,
-                                                         forKey: imagepath!,
-                                                         toDisk: true,
-                                                         completionHandler: nil)
-                    this.setUserAccount(nickname: this.NickName,
-                                        gender: genderString,
-                                        token: this.token,
-                                        imagePath: imagepath)
-                  
-                   case .failed(errorMessage: let errormessage):
+                    KingfisherManager.shared.cache.store(Image, original: imageData, forKey: imagepath!, toDisk: true, completionHandler: nil)
+                    this.setUserAccount(nickname: this.NickName, gender: genderString, token: this.token, imagePath: imagepath)
+                  case .failed(errorMessage: let errormessage):
                     this.showMessage(errormessage)
                 }
              })
@@ -471,12 +451,12 @@ class PersinalSetController: UITableViewController,UIImagePickerControllerDelega
 
 extension PersinalSetController {
     
-    public func PersonalSetMemberProfile(memberId:String,
-                                         nickName:String?,
-                                         imagePath:String?,
-                                         gender:String?,
-                                         token:String?,
-                                         completion:@escaping (NetWorkResult<JSONDictionary>) -> Void)
+    public func PersonalSetMemberProfile(memberId: String,
+                                         nickName: String?,
+                                         imagePath: String?,
+                                         gender: String?,
+                                         token: String?,
+                                         completion: @escaping (NetWorkResult<JSONDictionary>) -> Void)
     {
           var requestParameters:[String:Any] = [:]
           requestParameters["memberID"] = memberId
