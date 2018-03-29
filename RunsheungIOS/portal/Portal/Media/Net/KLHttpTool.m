@@ -107,28 +107,59 @@
  */
 + (void)getToken:(void (^)(id token))success
          failure:(void (^)(NSError *errToken))failureToken {
-     NSMutableDictionary *dic = @{}.mutableCopy;
-    [dic setObject:UUID forKey:@"deviceNo"];
-    NSString *sign = [NSString stringWithFormat:@"%@ycssologin1212121212121",UUID];
-    NSString* encrySign = [YCShareAddress sha512:sign];
-    [dic setObject:encrySign forKey:@"sign"];
-			
+	
+	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+	manager.responseSerializer = [AFJSONResponseSerializer serializer];
+	manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+	manager.requestSerializer.timeoutInterval = 60;
+	manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"multipart/form-data", @"application/json", @"text/html", @"image/jpeg", @"image/png", @"application/octet-stream", @"text/json", nil];
+//	url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+	NSMutableDictionary *dic = @{}.mutableCopy;
+	[dic setObject:UUID forKey:@"deviceNo"];
+	NSString *sign = [NSString stringWithFormat:@"%@ycssologin1212121212121",UUID];
+	NSString* encrySign = [YCShareAddress sha512:sign];
+	[dic setObject:encrySign forKey:@"sign"];
+	
 
-	[[KLRequestManager shareManager]RYRequestWihtMethod2:KLRequestMethodTypeGet url:GetTokenUrl params:dic success:^(id response) {
-        if (success) {
-            NSNumber *status = response[@"status"];
-            if (status.integerValue == 1) {
-                NSString *finalToken = [self formatTokenWithResponse:response];
-                success(finalToken);
-            } else {
-                 [[NSNotificationCenter defaultCenter]postNotificationName:TokenWrong object:nil];
-            //没有token或者token失效 应该跳出登录界面
-            }
-        }
-    } failure:^(NSError *err) {
-        failureToken(err);
-    }];
-    
+			[manager GET:GetTokenUrl parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+				if (success) {
+					NSNumber *status = responseObject[@"status"];
+					if (status.integerValue == 1) {
+						NSString *finalToken = [self formatTokenWithResponse:responseObject];
+						success(finalToken);
+					} else {
+						[[NSNotificationCenter defaultCenter]postNotificationName:TokenWrong object:nil];
+						//没有token或者token失效 应该跳出登录界面
+					}
+				}
+//				if (success) {
+//					[MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
+//					success(responseObject);
+//				}
+			} failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+				failureToken(error);
+
+				//				if (failure) {
+//					failure(error);
+//				}
+			}];
+
+
+//	[[KLRequestManager shareManager]RYRequestWihtMethod2:KLRequestMethodTypeGet url:GetTokenUrl params:dic success:^(id response) {
+//        if (success) {
+//            NSNumber *status = response[@"status"];
+//            if (status.integerValue == 1) {
+//                NSString *finalToken = [self formatTokenWithResponse:response];
+//                success(finalToken);
+//            } else {
+//                 [[NSNotificationCenter defaultCenter]postNotificationName:TokenWrong object:nil];
+//            //没有token或者token失效 应该跳出登录界面
+//            }
+//        }
+//    } failure:^(NSError *err) {
+//        failureToken(err);
+//    }];
+	
 }
 
 + (NSString *)formatTokenWithResponse:(id)response {
@@ -861,14 +892,7 @@
 	YCAccountModel *accountModel = [YCAccountModel getAccount];
 	
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-////    YCAccountModel *model = [YCAccountModel getAccount];
-//////    if (model.token) {
-////        [params setObject:model.token forKey:@"token"];
-////    }
-//    [params setObject:@(appType) forKey:@"appType"];
-////    [params setObject:model.token forKey:@"token"];
-//
-//
+
     [self getToken:^(id token) {
 	NSString *Pintoken =[ NSString stringWithFormat:@"%@|%@|%@",accountModel.token,@"ghjgbjhhjjg",accountModel.customCode] ;
 	if (Pintoken.length) {
@@ -879,7 +903,8 @@
                                                           url:url
                                                        params:params
                                                       success:^(id response)
-    {
+		 
+		 {
             if (success) {
                 NSLog(@"%@",response);
                 [self checkStatusWithResponse:response];
@@ -1605,16 +1630,18 @@
     NSMutableDictionary *dic = @{}.mutableCopy;
     [dic setObject:mutStr forKey:@"orderInfo"];
 //    [dic setObject:mutStr forKey:@"Projects"];
-    YCAccountModel *model = [YCAccountModel getAccount];
+//    YCAccountModel *model = [YCAccountModel getAccount];
 //    if (model.token) {
 //        [dic setObject:model.token forKey:@"token"];
 //    }
-    [dic setObject:@(appType) forKey:@"appType"];
+//    [dic setObject:@(appType) forKey:@"appType"];
+	
+	
     
 //    [self getToken:^(id token) {
 		if ([YCAccountModel islogin]) {
-			YCAccountModel *accountmodel = [YCAccountModel getAccount];
-			[dic setObject:accountmodel.token forKey:@"token"];
+//			YCAccountModel *accountmodel = [YCAccountModel getAccount];
+//			[dic setObject:accountmodel.token forKey:@"token"];
 			[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:dic success:^(id response) {
 				NSLog(@"%@",response);
 				if (success) {
@@ -3312,14 +3339,21 @@
 		[params setObject:token forKey:@"token"];
 	}
 
-		[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-			NSLog(@"%@",response);
-			if (success) {
-				success(response);
-			}
-		} failure:^(NSError *err) {
-			NSLog(@"%@",err);
-		}];
+	[KLHttpTool getToken:^(id token) {
+		if (token) {
+			[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+				NSLog(@"%@",response);
+				if (success) {
+					success(response);
+				}
+			} failure:^(NSError *err) {
+				NSLog(@"%@",err);
+			}];
+
+		}
+	} failure:^(NSError *errToken) {
+		
+	}];
 	
 }
 
