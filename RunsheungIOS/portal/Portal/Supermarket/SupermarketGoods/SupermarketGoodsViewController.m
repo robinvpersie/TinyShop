@@ -232,7 +232,7 @@
 		self.item_code = @"6901285991271";
 	}
 	
-	[KLHttpTool getSupermarketGoodsMsgWithItemCode:self.item_code shopCode:self.divCode saleCustomCode:self.shopCode success:^(id response) {
+	[KLHttpTool getSupermarketGoodsMsgWithItemCode:self.item_code shopCode:self.divCode saleCustomCode:_shopCode success:^(id response) {
 		[MBProgressHUD hideHUDForView:self.view animated:YES];
 		NSNumber *status = response[@"status"];
 		if (status.integerValue == 1) {
@@ -377,8 +377,8 @@
 
 - (void)collectionGoods:(UIButton *)button {
 	
-	//    [KLHttpTool getToken:^(id token) {
-	//        if (token) {
+	    [KLHttpTool getToken:^(id token) {
+	        if (token) {
 	button.selected = !button.selected;
 	YCAccountModel *model = [YCAccountModel getAccount];
 	if (button == self.collectionTitleButton) {
@@ -427,28 +427,30 @@
 			}];
 		}
 	}
-	//        }
-	//    } failure:^(NSError *errToken) {
-	//
-	//    }];
+	        }
+	    } failure:^(NSError *errToken) {
+	
+	    }];
 }
 
 - (void)goShoppingCart {
 	
-	//    [KLHttpTool getToken:^(id token) {
-	//        if (token) {
-	LZCartViewController *shoppingCart = [[LZCartViewController alloc] init];
-	//    shoppingCart.type = ShoppingCartController;
-	shoppingCart.isPush = YES;
-	shoppingCart.hidesBottomBarWhenPushed = YES;
-	shoppingCart.controllerType = self.controllerType;
-	_bottom.hidden = YES;
-	[self.navigationController pushViewController:shoppingCart animated:YES];
 	
-	//        }
-	//    } failure:^(NSError *errToken) {
-	//
-	//    }];
+	[KLHttpTool getToken:^(id token) {
+		
+		if (token) {
+		LZCartViewController *shoppingCart = [[LZCartViewController alloc] init];
+		//    shoppingCart.type = ShoppingCartController;
+		shoppingCart.isPush = YES;
+		shoppingCart.hidesBottomBarWhenPushed = YES;
+		shoppingCart.controllerType = self.controllerType;
+		_bottom.hidden = YES;
+		[self.navigationController pushViewController:shoppingCart animated:YES];
+		
+	        }
+	    } failure:^(NSError *errToken) {
+	
+	    }];
 }
 
 
@@ -489,8 +491,8 @@
 	
 	[self.choseSizeView removeView];
 	
-//	[KLHttpTool getToken:^(id token) {
-//		if (token) {
+	[KLHttpTool getToken:^(id token) {
+		if (token) {
 			if (self.actionType == 0) {
 				SupermarketConfirmOrderController *confirmOrder = [[SupermarketConfirmOrderController alloc] init];
 				confirmOrder.controllerType = self.controllerType;
@@ -548,10 +550,10 @@
 					
 				}];
 			}
-//		}
-//	} failure:^(NSError *errToken) {
-//
-//	}];
+		}
+	} failure:^(NSError *errToken) {
+
+	}];
 }
 
 - (void)didReceiveMemoryWarning {

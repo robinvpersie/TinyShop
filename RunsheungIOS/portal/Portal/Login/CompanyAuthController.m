@@ -285,15 +285,15 @@
 }
 
 -(void)didBottom {
-	[self.presentingViewController.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+	
 	[KLHttpTool TinyResgisterwithPhone:[[NSUserDefaults standardUserDefaults] objectForKey:@"joinphone"] withmempwd:[self sha512:self.mempwd ] withnickname:self.nickname withemail:self.email witheAuthNum:[[NSUserDefaults standardUserDefaults] objectForKey:@"joinauthnum"] withcustom_name:self.custom_name withtop_zip_code:self.top_zip_code withtop_addr_head:self.top_addr_head withtop_addr_detail:self.top_addr_detail withbusiness_type:[[NSUserDefaults standardUserDefaults] objectForKey:@"joinKinds"] withlang_type:@"kor" withcomp_class:_input1.text withcomp_type:_input2.text  withcompany_num:_input3.text  withzip_code:_input4.text  withkor_addr:_input5.text  withkor_addr_detail:_input6.text  withtelephon:_input7.text  success:^(id response) {
 		
-		MBProgressHUD *hud12 = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+		MBProgressHUD *hud12 = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
 		hud12.mode = MBProgressHUDModeText;
 		
 		if ([response[@"status"] intValue] == 1) {
 			hud12.label.text = @"注册成功！";
-			[self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+			[self.presentingViewController.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 			
 			
 		}else{

@@ -177,9 +177,21 @@
 }
 
 - (void)goLogin:(UITapGestureRecognizer *)tap {
-    MemberEnrollController *logIN = [[MemberEnrollController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:logIN];
-    [self.viewController presentViewController:nav animated:YES completion:nil];
+
+	[KLHttpTool getToken:^(id token) {
+		if (token) {
+			
+		}else{
+			MemberEnrollController *logIN = [[MemberEnrollController alloc] init];
+			UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:logIN];
+			[self.viewController presentViewController:nav animated:YES completion:nil];
+
+		}
+		
+	} failure:^(NSError *errToken) {
+		
+	}];
+	
 }
 
 - (void)setData:(SupermarketMineData *)data {

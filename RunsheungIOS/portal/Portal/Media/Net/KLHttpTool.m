@@ -112,8 +112,9 @@
     NSString *sign = [NSString stringWithFormat:@"%@ycssologin1212121212121",UUID];
     NSString* encrySign = [YCShareAddress sha512:sign];
     [dic setObject:encrySign forKey:@"sign"];
-    
-    [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypeGet url:GetTokenUrl params:dic success:^(id response) {
+			
+
+	[[KLRequestManager shareManager]RYRequestWihtMethod2:KLRequestMethodTypeGet url:GetTokenUrl params:dic success:^(id response) {
         if (success) {
             NSNumber *status = response[@"status"];
             if (status.integerValue == 1) {
@@ -285,16 +286,20 @@
     NSMutableDictionary *params = @{}.mutableCopy;
     [params setObject:itemCode forKey:@"item_code"];
     [params setObject:shopCode forKey:@"div_code"];
-    [params setObject:sale_custom_code forKey:@"sale_custom_code"];
+	if (sale_custom_code.length) {
+		
+		[params setObject:sale_custom_code forKey:@"sale_custom_code"];
+	}
+
     
-    YCAccountModel *model = [YCAccountModel getAccount];
-    
-    if (model.customCode) {
-        [params setObject:model.customCode forKey:@"userId"];
-    } else {
+//    YCAccountModel *model = [YCAccountModel getAccount];
+	
+//    if (model.customCode) {
+//        [params setObject:model.customCode forKey:@"userId"];
+//    } else {
         [params setObject:@"" forKey:@"userId"];
-    }
-    
+//    }
+	
         [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
             if (success) {
                 success(response);
@@ -864,7 +869,7 @@
 ////    [params setObject:model.token forKey:@"token"];
 //
 //
-////    [self getToken:^(id token) {
+    [self getToken:^(id token) {
 	NSString *Pintoken =[ NSString stringWithFormat:@"%@|%@|%@",accountModel.token,@"ghjgbjhhjjg",accountModel.customCode] ;
 	if (Pintoken.length) {
 		[params setObject:Pintoken forKey:@"token"];
@@ -883,9 +888,9 @@
         } failure:^(NSError *err) {
             NSLog(@"%@",err);
         }];
-//    } failure:^(NSError *errToken) {
-//
-//    }];
+    } failure:^(NSError *errToken) {
+
+    }];
 }
 
 //删除我的购物车
@@ -3291,15 +3296,15 @@
 		[params setObject:token forKey:@"token"];
 	}
 
+		[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+			NSLog(@"%@",response);
+			if (success) {
+				success(response);
+			}
+		} failure:^(NSError *err) {
+			NSLog(@"%@",err);
+		}];
 	
-	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-		NSLog(@"%@",response);
-		if (success) {
-			success(response);
-		}
-	} failure:^(NSError *err) {
-		NSLog(@"%@",err);
-	}];
 }
 
 /*

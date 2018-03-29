@@ -11,6 +11,8 @@
 @interface ProtectItemsController ()
 
 @property (nonatomic,retain)NSMutableArray *choiceBtnArray;
+
+@property (nonatomic,retain)UIButton *allchoiceBtn;
 @end
 
 @implementation ProtectItemsController
@@ -48,13 +50,13 @@
 	allChoiceLab.textColor = [UIColor whiteColor];
 	[backImg addSubview:allChoiceLab];
 	
-	UIButton *allchoiceBtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth - 45, CGRectGetMinY(allChoiceLab.frame), 30, 30)];
-	[allchoiceBtn setImage:[UIImage imageNamed:@"btn_all_ok_default"] forState:UIControlStateNormal];
-	[allchoiceBtn setImage:[UIImage imageNamed:@"btn_all_ok_activation"] forState:UIControlStateSelected];
-	[allchoiceBtn addTarget:self action:@selector(allchoiceBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-	[backImg addSubview:allchoiceBtn];
+	self.allchoiceBtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth - 45, CGRectGetMinY(allChoiceLab.frame), 30, 30)];
+	[self.allchoiceBtn setImage:[UIImage imageNamed:@"btn_all_ok_default"] forState:UIControlStateNormal];
+	[self.allchoiceBtn setImage:[UIImage imageNamed:@"btn_all_ok_activation"] forState:UIControlStateSelected];
+	[self.allchoiceBtn addTarget:self action:@selector(allchoiceBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+	[backImg addSubview:self.allchoiceBtn];
 	
-	UILabel *butonTitleLab = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(allchoiceBtn.frame)-85, CGRectGetMinY(allChoiceLab.frame), 80, 30)];
+	UILabel *butonTitleLab = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(self.allchoiceBtn.frame)-85, CGRectGetMinY(allChoiceLab.frame), 80, 30)];
 	butonTitleLab.text = @"전체동의";
 	butonTitleLab.textAlignment = NSTextAlignmentRight;
 	butonTitleLab.font = [UIFont systemFontOfSize:12];
@@ -185,6 +187,21 @@
 
 - (void)SinglechoiceBtnAction:(UIButton*)sender{
 	sender.selected = !sender.selected;
+	BOOL IsEnter = YES;
+	for (UIButton *itemBtn in self.choiceBtnArray) {
+		if (!itemBtn.selected) {
+			
+			IsEnter = NO;
+			
+		}
+	}
+	
+	if (IsEnter) {
+		self.allchoiceBtn.selected = YES;
+	}else{
+		self.allchoiceBtn.selected = NO;
+	}
+
 }
 
 - (void)cancelaction:(UITapGestureRecognizer*)tap{

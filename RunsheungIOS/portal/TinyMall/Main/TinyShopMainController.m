@@ -77,7 +77,7 @@
 						[self.mutaleData  addObject:dic];
 						[self.tableView reloadData];
 						CGRect fram = self.tableView.frame;
-						fram.size.height = self.mutaleData.count *100+15;
+						fram.size.height = self.mutaleData.count *120+15;
 						self.tableView.frame = fram;
 						self.scrollview.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.tableView.frame));
 						
@@ -126,13 +126,14 @@
 		self.tableView.scrollEnabled = NO;
 		self.tableView.delegate = self;
 		self.tableView.dataSource = self;
+		
 		UIView *tableheadview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 10)];
 		self.tableView.tableHeaderView = tableheadview;
 		self.tableView.estimatedRowHeight = 0;
 		self.tableView.estimatedSectionFooterHeight = 0;
 		self.tableView.estimatedSectionHeaderHeight = 0;
-		self.tableView.separatorColor = RGB(255, 255, 255);
-		self.tableView.backgroundColor = RGB(255, 255, 255);
+		self.tableView.separatorColor = RGB(237, 237, 237);
+		self.tableView.backgroundColor = RGB(237, 237, 237);
 	
 		[self.scrollview addSubview:self.tableView];
 		[self.scrollview.mj_footer beginRefreshing];
@@ -158,8 +159,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
 	UITableViewCell *cell = [[UITableViewCell alloc]init];
+	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	NSDictionary *dic = self.mutaleData[indexPath.row];
-	UIImageView *showImg = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, APPScreenWidth - 20, 90)];
+	UIImageView *showImg = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, APPScreenWidth - 20, 110)];
 	[showImg sd_setImageWithURL:[NSURL URLWithString:dic[@"shop_thumnail_image"]] placeholderImage:[UIImage imageNamed:@"banner01"]];
 	showImg.userInteractionEnabled = YES;
 	[cell.contentView addSubview:showImg];
@@ -168,7 +170,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-	return 100;
+	return 120;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
 	
@@ -187,14 +189,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//	if (self.mutaleData.count) {
 		NSDictionary *dic = self.mutaleData[indexPath.row];
 		SupermarketHomeViewController *shopDetailed = [[SupermarketHomeViewController alloc] init];
 		shopDetailed.hidesBottomBarWhenPushed = YES;
 		shopDetailed.dic = dic;
 		[self.navigationController pushViewController:shopDetailed animated:YES];
 
-//	}
 
 }
 
@@ -242,10 +242,10 @@
 	//创建热搜的数组
 	NSArray *hotSeaches = @[];
 	//创建搜索结果的控制器
-	PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"검색어 입력" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+	PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"搜索关键字", nil)  didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
 		TSearchViewController *searchResultVC = [[TSearchViewController alloc] init];
 		searchResultVC.searchKeyWord = searchText;
-		searchResultVC.navigationItem.title = @"검색결과";
+		searchResultVC.navigationItem.title = NSLocalizedString(@"搜索结果", nil) ;
 		[searchViewController.navigationController pushViewController:searchResultVC animated:YES];
 		
 		
@@ -260,7 +260,7 @@
 
 #pragma mark -- 右边点击方法
 - (void)rightAction:(UIButton*)sender{
-		if ([YCAccountModel islogin]) {
+	
 			if (sender.tag == 2004) {
 				
 				ZFScanViewController *scanVC = [ZFScanViewController new];
@@ -276,13 +276,6 @@
 				
 
 			}
-		}else{
-			MemberEnrollController *memberEnroll = [[MemberEnrollController alloc] init];
-			UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:memberEnroll];
-			[self presentViewController:nav animated:YES completion:nil];
-			
-
-		}
 }
 
 #pragma mark -- 设置导航栏
