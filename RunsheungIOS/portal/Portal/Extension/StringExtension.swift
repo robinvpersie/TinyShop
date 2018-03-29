@@ -108,10 +108,6 @@ public extension String {
     }
 }
 
-extension Optional {
-    
-}
-
 
 public extension NSDate {
     

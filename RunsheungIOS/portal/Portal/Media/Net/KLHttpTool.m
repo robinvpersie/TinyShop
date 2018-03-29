@@ -241,7 +241,7 @@
                                                  success:(void (^)(id response))success
                                                  failure:(void (^)(NSError *err))failure {
     NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/SendLikes",BaseUrl];
-    NSMutableDictionary *params = @{}.mutableCopy;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:commentsID forKey:@"commentId"];
     
 //    YCAccountModel *model = [YCAccountModel getAccount];
