@@ -56,7 +56,7 @@
     
     //提示框
     self.hintLabel = [[UILabel alloc] init];
-    self.hintLabel.text = @"将 二维码/条形码 放入框内中央，即可自动扫描";
+    self.hintLabel.text = NSLocalizedString(@"将二维码/条形码 放入框内中央，即可自动扫描", nil);
     self.hintLabel.textColor = ZFFicelle;
     self.hintLabel.numberOfLines = 0;
     self.hintLabel.textAlignment = NSTextAlignmentCenter;

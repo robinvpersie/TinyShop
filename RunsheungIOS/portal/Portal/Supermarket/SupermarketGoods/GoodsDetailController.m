@@ -41,7 +41,7 @@
 	_segment = [[LGSegment alloc] initWithFrame:CGRectMake(0, 0, 150, 40)];
 	_segment.delegate = self;
 	
-	_segment.titleList = @[NSLocalizedString(@"SMGoodsDetailGoods", nil),NSLocalizedString(@"SMGoodsDetailDetail", nil),NSLocalizedString(@"SMGoodsDetailComments", nil)].mutableCopy;
+	_segment.titleList = @[NSLocalizedString(@"商品", nil),NSLocalizedString(@"详情", nil),NSLocalizedString(@"评价", nil)].mutableCopy;
 	
 	if (self.divCode.length == 0 || self.divCode == nil) {
 		self.divCode = [[NSUserDefaults standardUserDefaults] objectForKey:DivCodeDefault];

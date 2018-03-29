@@ -260,8 +260,8 @@
 
 - (void)requesTinyShopDetailData{
 	YCAccountModel *accountmodel = [YCAccountModel getAccount];
-	NSString *latitude = [[NSUserDefaults standardUserDefaults]objectForKey:@"latitude"];
-	NSString *longitude = [[NSUserDefaults standardUserDefaults]objectForKey:@"longtitude"];
+	NSString *latitude = GetUserDefault(@"latitude");
+	NSString *longitude = GetUserDefault(@"longtitude");
 	
 	[KLHttpTool TinyRequestStoreItemDetailwithsaleCustomCode:self.dic[@"custom_code"] withLatitude:latitude withLongitude:longitude withCustomCode:accountmodel.customCode withPagesize:@"10" withPg:@"1" success:^(id response) {
 		self.responseDic =  (NSDictionary *)response;

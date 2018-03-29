@@ -22,14 +22,14 @@
 - (void)initSubviews{
     
     UIButton *loginBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth/2.0f, CGRectGetHeight(self.frame) - 16)];
-    [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
+    [loginBtn setTitle:NSLocalizedString(@"登录", nil)  forState:UIControlStateNormal];
     [loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [loginBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     loginBtn.tag = 1001;
     [self addSubview:loginBtn];
     
     UIButton *addMemberBtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth/2.0f, 0, APPScreenWidth/2.0f, CGRectGetHeight(self.frame) - 16)];
-    [addMemberBtn setTitle:@"注册" forState:UIControlStateNormal];
+    [addMemberBtn setTitle:NSLocalizedString(@"新用户", nil)  forState:UIControlStateNormal];
     [addMemberBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [addMemberBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     addMemberBtn.tag = 1002;

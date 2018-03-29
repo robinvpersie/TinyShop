@@ -88,10 +88,12 @@
         switch (index) {
             case 0:
             {
+				
+
                 UIImage *image = [UIImage imageNamed:@"icon_home_bottom"];
                 UIImage *selectedImage = [UIImage imageNamed:@"icon_home_bottom_s"];
                 selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:image selectedImage:selectedImage];
+                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"SupermarketTabHome", nil) image:image selectedImage:selectedImage];
             }
                 break;
             case 1:
@@ -99,7 +101,7 @@
                 UIImage *image = [UIImage imageNamed:@"icon_shop_bottom"];
                 UIImage *selectedImage = [UIImage imageNamed:@"icon_shop_bottom_s"];
                 selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"附近商家" image:image selectedImage:selectedImage];
+                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"TinyMallNearlyShop", nil) image:image selectedImage:selectedImage];
             }
                 break;
             case 2:
@@ -107,7 +109,7 @@
                 UIImage *image = [UIImage imageNamed:@"icon_shoppingcart_n"];
                 UIImage *selectedImage = [UIImage imageNamed:@"icon_shoppingcart_s"];
                 selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"购物车" image:image selectedImage:selectedImage];
+                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"SupermarketTabShoppingCart", nil) image:image selectedImage:selectedImage];
             }
                 break;
             case 3:
@@ -115,7 +117,7 @@
                 UIImage *image = [UIImage imageNamed:@"icon_personal_bottom"];
                 UIImage *selectedImage = [UIImage imageNamed:@"icon_personal_bottom_s"];
                 selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:image selectedImage:selectedImage];
+                nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"SupermarketTabMine", nil) image:image selectedImage:selectedImage];
             }
                 break;
             default:

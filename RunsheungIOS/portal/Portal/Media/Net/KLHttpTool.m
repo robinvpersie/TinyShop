@@ -938,7 +938,6 @@
     NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/UpdateUserShopCart",BaseUrl];
     
     NSMutableArray *goods = @[].mutableCopy;
-    
     for (NSDictionary *dic in dataArray) {
         NSError *error;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
@@ -955,9 +954,7 @@
         }
     
         jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
-        
-//        [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        
+		
         [goods addObject:jsonString];
     }
 
@@ -967,15 +964,12 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:jsonString forKey:@"arrCardModel"];
-    YCAccountModel *model = [YCAccountModel getAccount];
-//    if (model.token) {
-//        [params setObject:model.token forKey:@"token"];
-//    }
-    
+	
+
 	if ([YCAccountModel islogin]) {
 		YCAccountModel *accoutmodel = [YCAccountModel getAccount];
 		
-		[params setObject:accoutmodel.token forKey:@"token"];
+		[params setObject:[NSString stringWithFormat:@"%@|%@|%@",accoutmodel.token,@"jglgjlgj",accoutmodel.customCode] forKey:@"token"];
 		[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
 			if (success) {
 				success(response);
@@ -1010,11 +1004,7 @@
         [params setObject:divCode forKey:@"div_code"];
     }
     
-//    YCAccountModel *model = [YCAccountModel getAccount];
-//    if (model.token) {
-//        [params setObject:model.token forKey:@"token"];
-//    }
-    
+	
     [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
         if (success) {
             success(response);
@@ -3091,11 +3081,18 @@
 											success:(void (^)(id response))success
 											failure:(void (^)(NSError *err))failure{
 	NSString *url = [NSString stringWithFormat:@"%@%@",TinyMallShopBaseURL,@"StoreCate/requestStoreCateList"];
-	NSMutableDictionary *params = NSDictionaryOfVariableBindings(custom_code,pg,token,custom_lev1,custom_lev2,custom_lev3,longitude,latitude,order_by).mutableCopy;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(pg,custom_lev1,custom_lev2,custom_lev3,longitude,latitude,order_by).mutableCopy;
 	[params setObject:@"2" forKey:@"div_code"];
 	[params setObject:@"5" forKey:@"pagesize"];
 	[params setObject:@"kor" forKey:@"lang_type"];
-	
+	if (custom_code.length) {
+		[params setObject:custom_code forKey:@"custom_code"];
+	}
+	if (token.length) {
+		[params setObject:token forKey:@"token"];
+	}
+
+
 	//获得请求管理者
 	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 	manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -3128,8 +3125,10 @@
 											failure:(void (^)(NSError *err))failure{
 	
 	NSString *url =[NSString stringWithFormat:@"%@%@",TinyMallShopBaseURL,@"StoreCate/requestStoreItemDetail"] ;
-	NSMutableDictionary *params = NSDictionaryOfVariableBindings(sale_custom_code,latitude,longitude,custom_code,pagesize,pg).mutableCopy;
-
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(sale_custom_code,latitude,longitude,pagesize,pg).mutableCopy;
+	if (custom_code.length) {
+		[params setObject:custom_code forKey:@"custom_code"];
+	}
 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
 		NSLog(@"%@",response);
 		if (success) {

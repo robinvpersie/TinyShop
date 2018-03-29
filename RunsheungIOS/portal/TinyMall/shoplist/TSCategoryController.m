@@ -86,12 +86,10 @@
 
 - (void)loadStoreListwithLeve1:(NSString*)leve1 withLeve2:(NSString*)leve2 withLeve3:(NSString*)leve3 withorderBy:(NSString*)order_by withPg:(NSString *)pg{
 	YCAccountModel *account = [YCAccountModel getAccount];
-	NSString *latitude = [[NSUserDefaults standardUserDefaults]objectForKey:@"latitude"];
-	NSString *longitude = [[NSUserDefaults standardUserDefaults]objectForKey:@"longtitude"];
 	hudloading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
 	
-	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:account.customCode withpg:pg withtoken:account.token withcustom_lev1:leve1 withcustom_lev2:leve2 withcustom_lev3:leve3 withlatitude:latitude withlongitude:longitude withorder_by:order_by success:^(id response) {
+	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:account.customCode withpg:pg withtoken:account.token withcustom_lev1:leve1 withcustom_lev2:leve2 withcustom_lev3:leve3 withlatitude:GetUserDefault(@"latitude") withlongitude:GetUserDefault(@"longtitude") withorder_by:order_by success:^(id response) {
 		if ([response[@"status"] intValue] == 1) {
 			[hudloading hideAnimated:YES];
 			self.responseDit = response;
@@ -362,12 +360,12 @@
 				NSString *address = placemarks.firstObject.name;
 				self.choiceHeadView.addressName = address;
 			} else {
-				self.choiceHeadView.addressName = @"定位失败";
+				self.choiceHeadView.addressName =  NSLocalizedString(@"定位失败", nil) ;
 			};
 		}];
 	} failure:^(NSError * error) {
 		[YCLocationService turnOff];
-		self.choiceHeadView.addressName = @"定位失败";
+		self.choiceHeadView.addressName =  NSLocalizedString(@"定位失败", nil) ;
 	}];
 }
 

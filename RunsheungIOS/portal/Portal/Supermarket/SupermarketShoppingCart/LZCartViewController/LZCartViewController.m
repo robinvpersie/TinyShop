@@ -126,7 +126,7 @@ typedef void(^finishAction)();
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	self.navigationItem.title = @"购物车";
+	self.navigationItem.title = NSLocalizedString(@"购物车", nil);
 	self.isloading = YES;
 	[self setNavigationBar];
 	
@@ -316,24 +316,7 @@ typedef void(^finishAction)();
 	segment.tintColor = GreenColor;
 	segment.frame = CGRectMake(0, 0, 180, 25);
 	segment.center = CGPointMake(self.view.center.x, (LZNaigationBarHeight - 25)/2.0 + 20);
-	//    [self.view addSubview:segment];
 	
-	//    _edit = [UIButton buttonWithType:UIButtonTypeCustom];
-	//    [_edit setTitle:NSLocalizedString(@"SMShoppingCartEdit", nil) forState:UIControlStateNormal];
-	//    [_edit setTitle:NSLocalizedString(@"SMShoppingCartFinish", nil) forState:UIControlStateSelected];
-	//    _edit.titleLabel.font = [UIFont systemFontOfSize:14];
-	//    [_edit setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-	//    _edit.frame = CGRectMake(APPScreenWidth - 50, backgroundView.frame.size.height-33, 50, 25);
-	//    [_edit addTarget:self action:@selector(editAll:) forControlEvents:UIControlEventTouchUpInside];
-	//    [self.view addSubview:_edit];
-	
-	//    if (_isPush) {
-	//        UIButton *back = [UIButton buttonWithType:UIButtonTypeCustom];
-	//        back.frame = CGRectMake(15, backgroundView.frame.size.height-33, 25, 25);
-	//        [back setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
-	//        [back addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
-	//        [self.view addSubview:back];
-	//    }
 }
 
 - (void)popController {
@@ -524,12 +507,13 @@ typedef void(^finishAction)();
 		[params setObject:model.item_code forKey:@"item_code"];
 		[params setObject:[NSString stringWithFormat:@"%ld",model.number] forKey:@"item_quantity"];
 		[params setObject:model.divCode forKey:@"div_code"];
+		[params setObject:model.sale_custom_code forKey:@"sale_custom_code"];
 		
 		NSArray *dataArr = [NSArray arrayWithObjects:params,nil];
 		
 		if (self.controllerType == ControllerTypeDepartmentStores) {
 			
-			[KLHttpTool editSupermarketShoppingCartWithDataArray:dataArr success:^(id response) {
+			[KLHttpTool editSupermarketShoppingCartWithDataArray:dataArr  success:^(id response) {
 			} failure:^(NSError *err) {
 				
 			}];
@@ -561,14 +545,15 @@ typedef void(^finishAction)();
 		[params setObject:model.item_code forKey:@"item_code"];
 		[params setObject:[NSString stringWithFormat:@"%ld",number] forKey:@"item_quantity"];
 		[params setObject:model.divCode forKey:@"div_code"];
+		[params setObject:model.sale_custom_code forKey:@"sale_custom_code"];
 		
 		if (self.controllerType == ControllerTypeDepartmentStores) {
-			[KLHttpTool editSupermarketShoppingCartWithDataArray:@[params] success:^(id response) {
+			[KLHttpTool editSupermarketShoppingCartWithDataArray:@[params]  success:^(id response) {
 			} failure:^(NSError *err) {
 				
 			}];
 		} else {
-			[KLHttpTool editSupermarketShoppingCartWithDataArray:@[params] success:^(id response) {
+			[KLHttpTool editSupermarketShoppingCartWithDataArray:@[params]  success:^(id response) {
 				
 			} failure:^(NSError *err) {
 				
@@ -768,9 +753,6 @@ typedef void(^finishAction)();
 	}
 }
 
-//- (void)reloadTable {
-//    [self.myTableView reloadData];
-//}
 #pragma mark --- 返回按钮点击事件
 - (void)backButtonClick:(UIButton*)button {
 	if (_isHasNavitationController == NO) {
@@ -868,7 +850,7 @@ typedef void(^finishAction)();
 		confirm.shopArray = self.selectedShopArray;
 		[self.navigationController pushViewController:confirm animated:YES];
 	} else {
-		[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"没有选择任何商品"];
+		[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:NSLocalizedString(@"没有选择任何商品", nil) ];
 	}
 	
 }

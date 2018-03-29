@@ -189,8 +189,8 @@
 
 //编辑购物车
 + (void)editSupermarketShoppingCartWithDataArray:(NSArray *)dataArray
-                                         success:(void (^)(id response))success
-                                         failure:(void (^)(NSError *err))failure;
+										 success:(void (^)(id response))success
+										 failure:(void (^)(NSError *err))failure ;
 
 //获取搜索列表  0降 1 升 apptype:6生鲜 8百货
 + (void)getSearchResultWithKeyWords:(NSString *)keyWord

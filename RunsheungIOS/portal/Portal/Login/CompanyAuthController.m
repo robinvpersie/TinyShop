@@ -14,6 +14,7 @@
 @interface CompanyAuthController ()
 
 @property (nonatomic, strong) TPKeyboardAvoidingScrollView * scrollView;
+@property (nonatomic,strong)UIImageView *backImgView;
 @property (nonatomic, strong) InputFieldView * input1;
 @property (nonatomic, strong) InputFieldView * input2;
 @property (nonatomic, strong) InputFieldView * input3;
@@ -38,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"";
+    self.title = @"개인회원가입";
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
     
@@ -63,12 +64,21 @@
 //    } else {
 //
 //    }
+	
     [self.view addSubview:self.scrollView];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
         make.width.equalTo(self.view);
     }];
-    
+	
+	self.backImgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"loginbackView"]];
+	self.backImgView.frame = CGRectMake(0, 0, APPScreenWidth, APPScreenHeight);
+//	UITapGestureRecognizer *taps = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapBack:)];
+	self.backImgView.userInteractionEnabled = YES;
+//	[self.backImgView addGestureRecognizer:taps];
+	[self.scrollView addSubview:self.backImgView];
+
+	
     self.input1 = [[InputFieldView alloc] init];
     self.input1.placeHolder = @"第一个输入框";
     self.input1.font = [UIFont systemFontOfSize:14];

@@ -113,9 +113,8 @@
 	[backImg addSubview:lastlabel];
 	
 	
-	UIButton *enterBtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth - 55,APPScreenHeight - 75, 40, 40)];
+	UIButton *enterBtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth - 55,APPScreenHeight - 70, 30, 30)];
 	[enterBtn setImage:[UIImage imageNamed:@"btn_next_activation"] forState:UIControlStateNormal];
-	[enterBtn setImage:[UIImage imageNamed:@"btn_next_activation"] forState:UIControlStateSelected];
 	[enterBtn addTarget:self action:@selector(enterBtn:) forControlEvents:UIControlEventTouchUpInside];
 	[backImg addSubview:enterBtn];
 
@@ -148,7 +147,7 @@
 	}else{
 		MBProgressHUD *hud1 = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 		hud1.mode = MBProgressHUDModeText;
-		hud1.labelText = @"请同意条款";
+		hud1.label.text = NSLocalizedString(@"全部同意", nil);
 		[hud1 hideAnimated:YES afterDelay:2];
 	}
 }

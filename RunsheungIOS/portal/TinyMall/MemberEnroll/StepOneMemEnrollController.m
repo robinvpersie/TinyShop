@@ -8,12 +8,13 @@
 
 #import "StepOneMemEnrollController.h"
 #import "StepSecMemEnrollController.h"
+#import "InputFieldView.h"
+
 
 @interface StepOneMemEnrollController ()
-{
-	UITextField *pwdfield;
-	UITextField *phonefield;
-}
+
+@property (nonatomic, strong) InputFieldView * phoneInput;
+@property (nonatomic, strong) InputFieldView * codeInput;
 @end
 
 @implementation StepOneMemEnrollController
@@ -25,53 +26,37 @@
 
 }
 - (void)createSubviews{
-	self.title = @"회원가입";
+	
+	UILabel *titleview = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 30)];
+	titleview.font = [UIFont systemFontOfSize:15];
+	titleview.text = @"회원가입";
+	titleview.textColor = [UIColor whiteColor];
+	self.navigationItem.titleView = titleview;
+	
 	UIImageView *backImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"loginbackView"]];
 	backImg.frame = self.view.frame;
 	backImg.userInteractionEnabled = YES;
 	[self.view addSubview:backImg];
 	
-	UILabel *phonetitle = [[UILabel alloc]initWithFrame:CGRectMake(40, 100, 200, 30)];
-	phonetitle.text = @"휴대전화";
-	phonetitle.font = [UIFont systemFontOfSize:14];
-	[backImg addSubview: phonetitle];
+	self.phoneInput = [[InputFieldView alloc] initWithFrame:CGRectMake(20, 100, APPScreenWidth- 40, 50)];
+	self.phoneInput.placeHolder = NSLocalizedString(@"请输入您的手机号码", nil) ;
+	self.phoneInput.font = [UIFont systemFontOfSize:14];
+	[backImg addSubview: self.phoneInput];
 	
-	UIView *backview1 = [[UIView alloc]initWithFrame:CGRectMake(40, CGRectGetMaxY(phonetitle.frame), APPScreenWidth - 80, 40)];
-	backview1.backgroundColor = [UIColor whiteColor];
-	[backImg addSubview:backview1];
+	self.codeInput = [[InputFieldView alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.phoneInput.frame), CGRectGetMaxY(self.phoneInput.frame)+15, APPScreenWidth- 180, 50)];
+	self.codeInput.placeHolder = NSLocalizedString(@"请输入短信验证码", nil);
+	self.codeInput.font = [UIFont systemFontOfSize:14];
+	[backImg addSubview: self.codeInput];
 	
-	phonefield = [[UITextField alloc]initWithFrame:CGRectMake(5, 0, CGRectGetWidth(backview1.frame)-45, 40)];
-	phonefield.placeholder = @"010-1234-5678";
-	[backview1 addSubview:phonefield];
+	UIButton *getVerfiyBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.codeInput.frame)+3, CGRectGetMinY(self.codeInput.frame), APPScreenWidth - CGRectGetMaxX(self.codeInput.frame)-23, 50)];
+	[getVerfiyBtn setBackgroundColor:RGB(33, 192, 67)];
+	[getVerfiyBtn setTitle:NSLocalizedString(@"接收验证码", nil)  forState:UIControlStateNormal];
+	[getVerfiyBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+	[getVerfiyBtn addTarget:self action:@selector(getVerfiyBtn:) forControlEvents:UIControlEventTouchUpInside];
+	[backImg addSubview:getVerfiyBtn];
+
 	
-	UIButton *phoneCheck = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(phonefield.frame), 0, 40, 40)];
-	[phoneCheck setImage:[UIImage imageNamed:@"checkgreen"] forState:UIControlStateNormal];
-	[phoneCheck setImage:[UIImage imageNamed:@"checkgreen"] forState:UIControlStateSelected];
-	[backview1 addSubview:phoneCheck];
-	
-	
-	UILabel *pwdtitle = [[UILabel alloc]initWithFrame:CGRectMake(40, CGRectGetMaxY(backview1.frame), 200, 30)];
-	pwdtitle.text = @"인증번호";
-	pwdtitle.font = [UIFont systemFontOfSize:14];
-	[backImg addSubview:pwdtitle];
-	
-	UIView *backview2 = [[UIView alloc]initWithFrame:CGRectMake(40, CGRectGetMaxY(pwdtitle.frame), APPScreenWidth - 80, 40)];
-	backview2.backgroundColor = [UIColor whiteColor];
-	[backImg addSubview:backview2];
-	
-	pwdfield = [[UITextField alloc]initWithFrame:CGRectMake(5, 0, CGRectGetWidth(backview2.frame)-45, 40)];
-	pwdfield.placeholder = @"1234";
-	[backview2 addSubview:pwdfield];
-	
-	UIButton *pwdCheck = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(pwdfield.frame), 0, 40, 40)];
-	[pwdCheck setImage:[UIImage imageNamed:@"checkgreen"] forState:UIControlStateNormal];
-	[pwdCheck setImage:[UIImage imageNamed:@"checkgreen"] forState:UIControlStateSelected];
-	[backview2 addSubview:pwdCheck];
-	
-	
-	UIButton *submitBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMinX(backview2.frame), CGRectGetMaxY(backview2.frame) +20, APPScreenWidth - 80, 40)];
-	submitBtn.layer.cornerRadius = 5;
-	submitBtn.layer.masksToBounds = YES;
+	UIButton *submitBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMinX(self.phoneInput.frame), CGRectGetMaxY(self.codeInput.frame) +20, APPScreenWidth - 40, 50)];
 	[submitBtn setBackgroundColor:RGB(33, 192, 67)];
 	[submitBtn setTitle:@"다음" forState:UIControlStateNormal];
 	[submitBtn addTarget:self action:@selector(submitAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -83,7 +68,7 @@
 	forget.layer.masksToBounds = YES;
 	forget.titleLabel.font = [UIFont systemFontOfSize:14];
 	[forget setTitle:@"인증번호 다시받기" forState:UIControlStateNormal];
-	[forget setTitleColor:RGB(45, 45, 45) forState:UIControlStateNormal];
+	[forget setTitleColor:RGB(254, 254, 254) forState:UIControlStateNormal];
 	[backImg addSubview:forget];
 	
 
@@ -92,11 +77,15 @@
 - (void)submitAction:(UIButton *)sender{
 	
 	StepSecMemEnrollController *step1 = [StepSecMemEnrollController new];
-	[[NSUserDefaults standardUserDefaults]setObject:phonefield.text forKey:@"joinphone"];
-	[[NSUserDefaults standardUserDefaults]setObject:pwdfield.text forKey:@"joinauthnum"];
+	SetUserDefault(@"joinphone", self.phoneInput.text);
+	SetUserDefault(@"joinauthnum", self.codeInput.text);
 	UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:step1];
 	
 	[self presentViewController:navi animated:YES completion:nil];
+	
+}
+
+- (void)getVerfiyBtn:(UIButton*)sender{
 	
 }
 

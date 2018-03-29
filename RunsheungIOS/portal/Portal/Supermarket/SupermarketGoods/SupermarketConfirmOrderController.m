@@ -570,7 +570,7 @@
 	
 	// 快速显示一个提示信息
 	MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:KEYWINDOW animated:YES];
-	hud.label.text = @"支付成功";
+	hud.label.text = NSLocalizedString(@"支付成功", nil)  ;
 	hud.label.textColor = [UIColor whiteColor];
 	// 设置图片
 	hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"payOK"]];

@@ -62,7 +62,6 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-//        self.backgroundColor = LZColorFromRGB(245, 246, 248);
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self setupMainView];
     }
@@ -76,9 +75,6 @@
     [UIImageView setimageWithImageView:self.lzImageView UrlString:model.image_url imageVersion:nil];
     
     self.nameLabel.text = model.nameStr;
-//    self.priceLabel.text = model.price;
-//    self.priceLabel.text = [NSString stringWithFormat:@"￥%@/%@",model.price,model.stock_unit];
-	//jake 170709
 	self.priceLabel.text = [NSString stringWithFormat:@"￥%@",model.price];
     self.dateLabel.text = model.dateStr;
     self.numberLabel.text = [NSString stringWithFormat:@"%ld",(long)model.number];

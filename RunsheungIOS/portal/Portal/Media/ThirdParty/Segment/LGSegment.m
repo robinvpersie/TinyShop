@@ -75,7 +75,7 @@
 
 -(void)commonInit {
     //按钮名称
-    titles = [[NSMutableArray alloc]initWithObjects:@"商品",@"详情",@"评价", nil];
+    titles = [[NSMutableArray alloc]initWithObjects:NSLocalizedString(@"商品", nil),NSLocalizedString(@"详情", nil),NSLocalizedString(@"评价", nil), nil];
 //    if (_type == 1) {
 //        [titleList removeAllObjects];
 //        [titleList addObjectsFromArray:@[@"全部明细",@"收入明细",@"支出明细"]];
