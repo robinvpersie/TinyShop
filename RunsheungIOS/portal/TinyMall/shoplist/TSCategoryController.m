@@ -24,7 +24,6 @@
 
 
 @interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource,WJClickItemsDelegate,SingleSegmentDelegate,SegmentItemDelegate>{
-	MBProgressHUD *hudloading;
 	NSString *Level1;
 	NSString *Level2;
 	NSString *Level3;
@@ -86,12 +85,10 @@
 
 - (void)loadStoreListwithLeve1:(NSString*)leve1 withLeve2:(NSString*)leve2 withLeve3:(NSString*)leve3 withorderBy:(NSString*)order_by withPg:(NSString *)pg{
 	YCAccountModel *account = [YCAccountModel getAccount];
-	hudloading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
 	
 	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:account.customCode withpg:pg withtoken:account.token withcustom_lev1:leve1 withcustom_lev2:leve2 withcustom_lev3:leve3 withlatitude:GetUserDefault(@"latitude") withlongitude:GetUserDefault(@"longtitude") withorder_by:order_by success:^(id response) {
 		if ([response[@"status"] intValue] == 1) {
-			[hudloading hideAnimated:YES];
 			self.responseDit = response;
 			
 			[self transferResponse];
@@ -115,9 +112,6 @@
 		
 	} failure:^(NSError *err) {
 		
-		hudloading.mode = MBProgressHUDModeText;
-		hudloading.label.text = @"可能网络出现问题！";
-		[hudloading hideAnimated:YES];
 		
 		
 	}];
@@ -306,6 +300,7 @@
 - (void)setNaviBar{
 	
 	self.view.backgroundColor = [UIColor whiteColor];
+	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.navigationItem.leftBarButtonItem = nil;
 	self.navigationController.navigationBar.translucent = NO;
 	UIButton *right1Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
@@ -485,7 +480,6 @@
 	
 	self.extend = NO;
 	self.allDic = @{}.mutableCopy;
-	hudloading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 	[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PushEditAction:) name:@"EDITACTIONNOTIFICATIONS" object:nil];
 	
 	if (![YCAccountModel islogin]) {

@@ -177,7 +177,7 @@
 - (UILabel *)searchHistoryHeader
 {
     if (!_searchHistoryHeader) {
-        UILabel *titleLabel = [self setupTitleLabel:PYSearchHistoryText];
+        UILabel *titleLabel = [self setupTitleLabel:NSLocalizedString(@"历史搜索", nil)];
         [self.headerContentView addSubview:titleLabel];
         _searchHistoryHeader = titleLabel;
     }
@@ -286,7 +286,7 @@
     searchBar.barStyle = UIBarStyleDefault;
 //    searchBar.tintColor = RGB(225, 225, 225);
     searchBar.py_width -= PYMargin * 1.5;
-    searchBar.placeholder = PYSearchPlaceholderText;
+    searchBar.placeholder = NSLocalizedString(@"搜索内容", nil);
     searchBar.backgroundColor = [UIColor clearColor];
     [searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"button_bg"] forState:UIControlStateNormal];
     searchBar.backgroundImage = [UIImage imageNamed:@"button_bg"];
@@ -302,7 +302,7 @@
     contentView.py_x = PYMargin * 1.5;
     contentView.py_width = PYScreenW - contentView.py_x * 2;
     [headerView addSubview:contentView];
-    UILabel *titleLabel = [self setupTitleLabel:PYHotSearchText];
+    UILabel *titleLabel = [self setupTitleLabel:NSLocalizedString(@"热门搜索", nil) ];
     self.hotSearchHeader = titleLabel;
     [contentView addSubview:titleLabel];
     //创建热门搜索标签容器
@@ -321,7 +321,7 @@
     emptySearchHistoryLabel.textColor = [UIColor darkGrayColor];
     emptySearchHistoryLabel.font = [UIFont systemFontOfSize:13];
     emptySearchHistoryLabel.userInteractionEnabled = YES;
-    emptySearchHistoryLabel.text = PYEmptySearchHistoryText;
+    emptySearchHistoryLabel.text = NSLocalizedString(@"清空搜索历史", nil);
     emptySearchHistoryLabel.textAlignment = NSTextAlignmentCenter;
     emptySearchHistoryLabel.py_height = 30;
     [emptySearchHistoryLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(emptySearchHistoryDidClick)]];
@@ -920,7 +920,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return self.searchHistories.count && self.searchHistoryStyle == PYSearchHistoryStyleCell ? PYSearchHistoryText : nil;
+    return self.searchHistories.count && self.searchHistoryStyle == PYSearchHistoryStyleCell ? NSLocalizedString(@"历史搜索", nil) : nil;
 }
 
 #pragma mark - UITableViewDelegate

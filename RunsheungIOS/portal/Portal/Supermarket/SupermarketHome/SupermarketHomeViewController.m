@@ -83,6 +83,10 @@
 @property (nonatomic,retain)NSDictionary *responseDic;
 
 @property (nonatomic,retain)UIButton *loveBtn;
+
+@property (nonatomic,assign)NSInteger paged;
+
+@property (nonatomic,retain)NSMutableArray *storeList;
 @end
 
 @implementation SupermarketHomeViewController {
@@ -126,16 +130,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginOk:) name:@"YCAccountIsLogin" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chooseDivCode:) name:@"ChooseDivCode" object:nil];
     _isRefresh = NO;
-    
+	_paged = 1;
+	_storeList = @[].mutableCopy;
     _islogIn = [YCAccountModel islogin];
     
     [self initNavigation];
     
     [self initView];
     
-//    [self requestData];
-	[self requesTinyShopDetailData];
-    
+//	[self requesTinyShopDetailData];
+	
     [self locationCityName];
 }
 //进入页面开始定位当前所在的城市
@@ -207,6 +211,7 @@
     _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, self.view.frame.size.height - 114)];
     _mainScrollView.contentSize = CGSizeMake(APPScreenWidth, APPScreenHeight*5);
     _mainScrollView.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
+	_mainScrollView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requesTinyShopDetailData)];
     [self.view addSubview:_mainScrollView];
     
     banner = [[ZHSCorllHeader alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenWidth/2)];
@@ -230,6 +235,7 @@
 		self.tsDetailedView.showsVerticalScrollIndicator = NO;
 		self.tsDetailedView.scrollEnabled = NO;
 		self.tsDetailedView.shopDic = self.dic;
+		
 		[self.view addSubview:self.tsDetailedView];
 		[_mainScrollView addSubview:self.tsDetailedView];
 		_mainScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, CGRectGetMaxY(self.tsDetailedView.frame));
@@ -256,22 +262,31 @@
 		}];
 
 	}
+	
+	[_mainScrollView.mj_footer beginRefreshing];
 }
 
 - (void)requesTinyShopDetailData{
 	YCAccountModel *accountmodel = [YCAccountModel getAccount];
-	NSString *latitude = GetUserDefault(@"latitude");
-	NSString *longitude = GetUserDefault(@"longtitude");
 	
-	[KLHttpTool TinyRequestStoreItemDetailwithsaleCustomCode:self.dic[@"custom_code"] withLatitude:latitude withLongitude:longitude withCustomCode:accountmodel.customCode withPagesize:@"10" withPg:@"1" success:^(id response) {
+	[KLHttpTool TinyRequestStoreItemDetailwithsaleCustomCode:self.dic[@"custom_code"] withLatitude:GetUserDefault(@"latitude") withLongitude:GetUserDefault(@"longtitude") withCustomCode:accountmodel.customCode withPagesize:@"10" withPg:[NSString stringWithFormat:@"%d",(int)_paged] success:^(id response) {
 		self.responseDic =  (NSDictionary *)response;
 
 		if ([self.responseDic[@"status"] intValue] == 1) {
 			self.tinyShopDetailView.hidden = NO;
 			NSArray *storeItem = self.responseDic[@"Storeitems"];
-			self.tsDetailedView.dataArray = storeItem;
-			[self.tsDetailedView reloadData];
-			
+			if (storeItem.count) {
+				[_storeList addObjectsFromArray:storeItem];
+				self.tsDetailedView.dataArray = _storeList;
+				[self.tsDetailedView reloadData];
+				++self.paged;
+				[self.mainScrollView.mj_footer setState:MJRefreshStateIdle];
+				
+			}else{
+				
+				[self.mainScrollView.mj_footer endRefreshingWithNoMoreData];
+			}
+
 			self.mainScrollView.contentSize = CGSizeMake(APPScreenWidth,CGRectGetMaxY(self.tsDetailedView.frame));
 			
 			if ([self.responseDic[@"favorites"] isEqualToString:@"False"]) {
@@ -296,8 +311,6 @@
         [MBProgressHUD showWithView:self.view];
     }
     NSString *div;
-//  NSString *divCode = [[NSUserDefaults standardUserDefaults] objectForKey:DivCodeDefault];
-	
 	NSString *divCode = @"2";
     if (divCode.length > 0) {
         div = divCode;
