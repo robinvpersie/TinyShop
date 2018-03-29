@@ -260,7 +260,7 @@
 
 #pragma mark -- 右边点击方法
 - (void)rightAction:(UIButton*)sender{
-		if ([YCAccountModel islogin]) {
+	
 			if (sender.tag == 2004) {
 				
 				ZFScanViewController *scanVC = [ZFScanViewController new];
@@ -276,13 +276,6 @@
 				
 
 			}
-		}else{
-			MemberEnrollController *memberEnroll = [[MemberEnrollController alloc] init];
-			UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:memberEnroll];
-			[self presentViewController:nav animated:YES completion:nil];
-			
-
-		}
 }
 
 #pragma mark -- 设置导航栏

@@ -374,7 +374,7 @@
 #pragma mark -- 右边点击方法
 - (void)rightAction:(UIButton*)sender{
         if (sender.tag == 2004) {
-			if ([YCAccountModel islogin]) {
+		
 		
 				//创建热搜的数组
 				NSArray *hotSeaches = @[];
@@ -393,13 +393,7 @@
 				[self presentViewController:nav  animated:NO completion:nil];
 				
 
-			}else{
-				MemberEnrollController *memberEnroll = [[MemberEnrollController alloc] init];
-				UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:memberEnroll];
-				[self presentViewController:nav animated:YES completion:nil];
-				
-
-			}
+		
         }
 
 }
@@ -482,11 +476,7 @@
 	self.allDic = @{}.mutableCopy;
 	[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PushEditAction:) name:@"EDITACTIONNOTIFICATIONS" object:nil];
 	
-	if (![YCAccountModel islogin]) {
-		MemberEnrollController *memberEnroll = [[MemberEnrollController alloc] init];
-		UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:memberEnroll];
-		[self presentViewController:nav animated:YES completion:nil];
-	}
+	
 
 }
 

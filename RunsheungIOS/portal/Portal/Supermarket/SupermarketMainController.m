@@ -70,7 +70,7 @@
 //    shopping_Cart.type = ShoppingCartController;
     
     SupermarketBaseNavigationController *nav0 = [[SupermarketBaseNavigationController alloc] initWithRootViewController:tinyShophome];
-//    SupermarketBaseNavigationController *nav1 = [[SupermarketBaseNavigationController alloc] initWithRootViewController:activity];
+
     SupermarketBaseNavigationController *nav2 = [[SupermarketBaseNavigationController alloc] initWithRootViewController:allKinds];
     SupermarketBaseNavigationController *nav3 = [[SupermarketBaseNavigationController alloc] initWithRootViewController:shopping_Cart];
     YCNavigationController *nav4 = [[YCNavigationController alloc] initWithRootViewController:mine];

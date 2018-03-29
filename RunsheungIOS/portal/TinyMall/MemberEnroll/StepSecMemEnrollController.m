@@ -125,17 +125,16 @@
 }
 
 - (void)submitAction:(UIButton *)sender{
-	NSString *joinkind = [[NSUserDefaults standardUserDefaults]objectForKey:@"joinKinds"];
+	NSString *joinkind = GetUserDefault(@"joinKinds");
 
-	if ([joinkind isEqualToString:@"0"]) {
-
+	if ([joinkind isEqualToString:@"1"]) {
 		[KLHttpTool TinyResgisterwithPhone:GetUserDefault(@"joinphone") withmempwd:[self sha512:self.passwordinput.text ] withnickname:self.nickinput.text withemail:self.emailedinput.text witheAuthNum:GetUserDefault(@"joinauthnum") withcustom_name:self.customernameinput.text withtop_zip_code:self.delegatecodeinput.text withtop_addr_head:self.delegatecityinput.text withtop_addr_detail:self.delegateAddressinput.text withbusiness_type:@"1" withlang_type:@"kor" withcomp_class:nil withcomp_type:nil withcompany_num:nil withzip_code:nil withkor_addr:nil withkor_addr_detail:nil withtelephon:nil success:^(id response) {
-			MBProgressHUD *hud12 = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+			MBProgressHUD *hud12 = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
 			hud12.mode = MBProgressHUDModeText;
 
 			if ([response[@"status"] intValue] == 1) {
 				hud12.label.text = @"注册成功！";
-				[self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+				[self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 			}else{
 
 				hud12.label.text = response[@"msg"];

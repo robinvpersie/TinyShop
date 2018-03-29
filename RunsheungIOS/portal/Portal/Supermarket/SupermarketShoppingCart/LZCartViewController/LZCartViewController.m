@@ -134,7 +134,7 @@ typedef void(^finishAction)();
 	self.dataArray = [NSMutableArray array];
 	self.selectedArray = [NSMutableArray array];
 	
-	//    [self checkLogStatus];
+//	    [self checkLogStatus];
 	
 	//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkLogStatus) name:SupermarketSelectTabBar object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess:) name:@"YCAccountIsLogin" object:nil];
