@@ -326,7 +326,7 @@ extension NetWorkManager {
 
 
 let PersonalSetStar = "/NewsView/SetRecommand"
-let uploadAvatarPath = "/Common/FileUploader.ashx"
+
 let canteen_commentUploadPath = "/Common/MultiFileUploader.ashx"
 let set_Order_ByQR = "/SetOrderByQR"
 let addFavoriteKey = "/AddFavorite"

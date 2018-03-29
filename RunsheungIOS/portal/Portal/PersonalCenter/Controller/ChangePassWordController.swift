@@ -13,12 +13,12 @@ import Alamofire
 import SwiftyJSON
 import CryptoSwift
 
-class ChangePassWordController: UIViewController {
+class ChangePassWordController: BaseViewController {
     
-    var newPasswordfield:YCTextField!
-    var newPasswordConfirmfield:YCTextField!
-    var oldPasswordfield:YCTextField!
-    var confirmBtn:UIButton!
+    var newPasswordfield: YCTextField!
+    var newPasswordConfirmfield: YCTextField!
+    var oldPasswordfield: YCTextField!
+    var confirmBtn: UIButton!
     
     let disposebag = DisposeBag()
 
@@ -26,14 +26,6 @@ class ChangePassWordController: UIViewController {
         super.viewDidLoad()
         
         title = "修改密码"
-        let leftItem = UIBarButtonItem()
-        leftItem.image = UIImage.leftarrow
-        leftItem.tintColor = UIColor.white
-        leftItem.rx.tap.subscribe(onNext: { [weak self] in
-            guard let strongself = self else { return }
-            strongself.yc_back()
-        }).addDisposableTo(disposebag)
-        navigationItem.leftBarButtonItem = leftItem
         view.backgroundColor = UIColor.BaseControllerBackgroundColor
         
         oldPasswordfield = YCTextField(frame: CGRect(x: leftEdges, y: toTopEdges+64, width: (screenWidth - leftEdges*2), height: textfieldHeight))
@@ -107,10 +99,10 @@ class ChangePassWordController: UIViewController {
                     strongself.showMessage(error.localizedDescription)
                   }
             })
-        }).addDisposableTo(disposebag)
+        }).disposed(by: disposebag)
         
         Observable.combineLatest(newPasswordfield.rx.text.orEmpty, oldPasswordfield.rx.text.orEmpty,newPasswordConfirmfield.rx.text.orEmpty) { newpassword, oldpassword ,confirmpassword -> Bool in
-            if newpassword.characters.count >= 6 && oldpassword.characters.count >= 6 && confirmpassword.characters.count >= 6{
+            if newpassword.count >= 6 && oldpassword.count >= 6 && confirmpassword.count >= 6{
                self.confirmBtn.layer.backgroundColor = UIColor.navigationbarColor.cgColor
                return true
             }else {
@@ -140,9 +132,7 @@ extension ChangePassWordController:UITextFieldDelegate {
 
 extension ChangePassWordController {
 
-    func changePassword(new:String,
-                        old:String,
-                        completion:@escaping (NetWorkResult<JSONDictionary>) ->Void){
+    func changePassword(new:String, old:String, completion:@escaping (NetWorkResult<JSONDictionary>) ->Void){
         
         let parse:(JSONDictionary) -> JSONDictionary? = { json in
             return json
@@ -150,7 +140,7 @@ extension ChangePassWordController {
         let newhash = new.sha512()
         let oldhash = old.sha512()
         let customId = YCAccountModel.getAccount()?.memid ?? ""
-        let requestParameter:[String:Any] = [
+        let requestParameter: [String:Any] = [
             "newPassword":newhash,
             "oriPassword":oldhash,
             "custom_code":customId

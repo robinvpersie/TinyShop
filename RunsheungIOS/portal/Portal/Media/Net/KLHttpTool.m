@@ -159,7 +159,7 @@
                        failure:(void (^)(NSError *err))failure {
     url = @"http://222.240.51.144:81/api/KLHome";
 
-    NSMutableDictionary *params = @{}.mutableCopy;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypeGet url:url params:nil success:^(id response) {
         if (success) {
@@ -2957,40 +2957,24 @@
                                    success:(void (^)(id response))success
                                    failure:(void (^)(NSError *err))failure{
 
-    NSMutableDictionary *josnParms = @{@"memberID":memberID,@"nickName":nickName,@"imagePath":imagePath,@"gender":gender,@"token":token}.mutableCopy;
-
-    // 1.创建请求
-    NSURL *url = [NSURL URLWithString:@"http://rsmember.dxbhtm.com:8800/api/member/editProfile"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    request.HTTPMethod = @"POST";
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    NSData *data1 = [NSJSONSerialization dataWithJSONObject:josnParms options:NSJSONWritingPrettyPrinted error:nil];
-    request.HTTPBody = data1;
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        id result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        success(result);
-        
-    }];
-    
-   /* //获得请求管理者
-    NSString*url = @"http://rsmember.dxbhtm.com:8800/api/member/editProfile";
+    NSMutableDictionary *josnParms = @{@"memberID":memberID,
+                                       @"nickName":nickName,
+                                       @"imageUrl":imagePath,
+                                       @"gender":gender,
+                                       @"token":token}.mutableCopy;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-
-    [manager POST:url parameters:josnParms success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (success) {
-            [MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
-            id result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-            success(result);
-        }
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
+ 
+    NSString *urlString = @"http://member.gigawon.co.kr:8808/api/member/editProfile";
+    [manager POST: urlString parameters:josnParms progress:^(NSProgress * _Nonnull uploadProgress) {
         
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (failure) {
-            failure(error);
-        }
+        failure(error);
     }];
-    */
 }
 
 

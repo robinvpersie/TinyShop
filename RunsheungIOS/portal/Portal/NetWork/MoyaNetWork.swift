@@ -59,7 +59,7 @@ public enum BaseType {
     case editProfile
     case recommend
     
-    var baseURL:String{
+    var baseURL: String{
         switch self {
         case .PortalBase:
             return portalBaseURL

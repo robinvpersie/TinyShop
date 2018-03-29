@@ -12,29 +12,29 @@ import Kingfisher
 private let screenScale = UIScreen.main.scale
 
 struct PlainAvatar {
-    let avatarURLString:String
-    let avatarStyle:AvatarStyle
+    let avatarURLString: String
+    let avatarStyle: AvatarStyle
 }
 
-extension PlainAvatar:Avatar{
+extension PlainAvatar: Avatar{
     
-    var url:URL?{
+    var url: URL?{
        return URL(string: avatarURLString)
     }
     
-    var style:AvatarStyle{
+    var style: AvatarStyle{
        return avatarStyle
     }
     
-    var placeholderImage:UIImage? {
+    var placeholderImage: UIImage? {
         return UIImage(named: "img_headphoto")
     }
     
-    var localOriginalImage:UIImage? {
+    var localOriginalImage: UIImage? {
         return UIImage(named:"")
     }
     
-    var localStyledImage:UIImage? {
+    var localStyledImage: UIImage? {
         return UIImage(named: "")
     }
     
