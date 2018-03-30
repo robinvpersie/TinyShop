@@ -153,30 +153,7 @@
     } failure:^(NSError *err) {
 
     }];
-//    if (self.controllerType == ControllerTypeDepartmentStores) {
-//       [KLHttpTool getSupermarketMineDataWithappType:8 success:^(id response) {
-//            NSNumber *status = response[@"status"];
-//            if (status.integerValue == 1) {
-//                NSDictionary *data = response[@"data"];
-//                mineData = [NSDictionary getMineDataWithDic:data];
-//                [self reloadUI];
-//            }
-//        } failure:^(NSError *err) {
-//
-//        }];
-//
-//    } else {
-//        [KLHttpTool getSupermarketMineDataWithappType:6 success:^(id response) {
-//            NSNumber *status = response[@"status"];
-//            if (status.integerValue == 1) {
-//                NSDictionary *data = response[@"data"];
-//                mineData = [NSDictionary getMineDataWithDic:data];
-//                [self reloadUI];
-//            }
-//        } failure:^(NSError *err) {
-//
-//        }];
-//    }
+
 }
 
 - (void)reloadUI {
@@ -387,7 +364,8 @@
 //    [self checkLoginStatus];
     BOOL islogIn = [YCAccountModel islogin];
     if (!islogIn) {
-        [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"您还未登录,请先登录!"];
+        //[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"您还未登录,请先登录!"];
+        [self goToLogin:^{ }];
         return;
     }
 
