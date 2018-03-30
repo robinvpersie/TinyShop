@@ -15,7 +15,7 @@
 #import "UILabel+WidthAndHeight.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "Masonry.h"
-#import "MarketModel.h"
+
 
 @interface SupermarketMyAddressViewController ()<UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource>
 
@@ -297,18 +297,14 @@
         UIImageView *imagview1;
         UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 120, 20)];
         if ([model.defaultadd isEqualToString:@"True"]) {
-            
             defaultBtn.selected = !defaultBtn.selected;
             imagview1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cart_selected_btn"]];
             title.text = @"默认地址";
             title.textColor = RGB(23, 206, 116);
-            
         }else{
-            
             imagview1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cart_unSelect_btn"]];
             title.text = @"设置为默认地址";
             title.textColor = [UIColor grayColor];
-            
         }
         
         if ([model.defaultadd isEqualToString:@"True"]) {
@@ -390,13 +386,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.delegate respondsToSelector:@selector(selectedAddress:)]) {
-        SupermarketAddressModel *model = self.data[indexPath.section];
-        if (model.hasDelivery.integerValue == 1) {
-            [_delegate selectedAddress:model];
+        MarketModel *model = self.data[indexPath.section];
+        if (self.delegate != nil && [self.delegate respondsToSelector:@selector(selectedAddress:)]) {
+            [self.delegate selectedAddress:model];
             [self.navigationController popViewControllerAnimated:YES];
-        } else {
-            [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2.0f text:@"地址超出配送范围"];
         }
+//        SupermarketAddressModel *model = self.data[indexPath.section];
+//        if (model.hasDelivery.integerValue == 1) {
+//            [_delegate selectedAddress:model];
+//            [self.navigationController popViewControllerAnimated:YES];
+//        } else {
+//            [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2.0f text:@"地址超出配送范围"];
+//        }
        
     }
 }
@@ -457,23 +458,36 @@
         NSIndexPath *indexPath = [_tableView indexPathForCell:cell];
         NSInteger section = indexPath.section;
         
-        for (SupermarketAddressModel *model in _data) {
-            model.isdefault = @0;
+        for (MarketModel *model in self.data) {
+            model.defaultadd = @"No";
         }
+        MarketModel *model = self.data[section];
+        model.defaultadd = @"True";
         
-        SupermarketAddressModel *model = _data[section];
-        model.isdefault = @1;
-        
-        [KLHttpTool setSupermarketDefaultAddressWithAddressID:model.addressID.stringValue success:^(id response) {
-            NSNumber *status = response[@"status"];
-            if (status.integerValue == 1) {
-                [_tableView reloadData];
-                [MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:response[@"message"]];
-            }
+//        for (SupermarketAddressModel *model in _data) {
+//            model.isdefault = @0;
+//        }
+//
+//        SupermarketAddressModel *model = _data[section];
+//        model.isdefault = @1;
+//
+        [KLHttpTool setSupermarketDefaultAddressWithAddressID:model.seqnum success:^(id response) {
             
         } failure:^(NSError *err) {
             
         }];
+        
+        [self.tableView reloadData];
+//        [KLHttpTool setSupermarketDefaultAddressWithAddressID:model.addressID.stringValue success:^(id response) {
+//            NSNumber *status = response[@"status"];
+//            if (status.integerValue == 1) {
+//                [_tableView reloadData];
+//                [MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:response[@"message"]];
+//            }
+//
+//        } failure:^(NSError *err) {
+//
+//        }];
     }
 }
 

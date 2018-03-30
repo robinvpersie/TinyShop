@@ -8,6 +8,7 @@
 
 #import "SupermarketBaseViewController.h"
 #import "SupermarketAddressModel.h"
+#import "MarketModel.h"
 
 @protocol MyAddressDelegete <NSObject>
 
@@ -15,9 +16,13 @@
 
 - (void)addNewAddressButtonPreessed;
 
-- (void)editAddressButtonPressed:(SupermarketAddressModel *)addressModel;
+//- (void)editAddressButtonPressed:(SupermarketAddressModel *)addressModel;
 
-- (void)selectedAddress:(SupermarketAddressModel *)address;
+- (void)editAddressButtonPressed:(MarketModel *)addressModel;
+
+//- (void)selectedAddress:(SupermarketAddressModel *)address;
+
+- (void)selectedAddress:(MarketModel *)address;
 
 @end
 
