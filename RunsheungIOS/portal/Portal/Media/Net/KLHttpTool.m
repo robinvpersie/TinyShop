@@ -587,27 +587,46 @@
 + (void)setSupermarketDefaultAddressWithAddressID:(NSString *)addressID
                                           success:(void (^)(id response))success
                                           failure:(void (^)(NSError *err))failure {
-    NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/SetDefaultShopAddress",BaseUrl];
-     NSMutableDictionary *params = @{}.mutableCopy;
-    [params setObject:addressID forKey:@"id"];
+   // NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/SetDefaultShopAddress",BaseUrl];
+    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/MyInfoAddressDefault", MallBaseUrl];
     YCAccountModel *model = [YCAccountModel getAccount];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    [params setObject:addressID forKey:@"id"];
+    [params setObject:@"kor" forKey:@"lang_type"];
+    [params setObject:model.customCode forKey:@"custom_code"];
+    [params setObject:model.token forKey:@"token"];
+    [params setObject:addressID forKey:@"del_seq_no"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+  
 //    if (model.token) {
 //        [params setObject:model.token forKey:@"token"];
 //    }
     
-    [self getToken:^(id token) {
-        [params setObject:token forKey:@"token"];
-        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-            if (success) {
-                success(response);
-            }
-        } failure:^(NSError *err) {
-            NSLog(@"%@",err);
-        }];
-
-    } failure:^(NSError *errToken) {
-        
-    }];
+//    [self getToken:^(id token) {
+//        [params setObject:token forKey:@"token"];
+//        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+//            if (success) {
+//                success(response);
+//            }
+//        } failure:^(NSError *err) {
+//            NSLog(@"%@",err);
+//        }];
+//
+//    } failure:^(NSError *errToken) {
+//
+//    }];
 }
 
 +(void)deleteSuperMarketAddressWithSeqNum:(NSString *)seqNum
