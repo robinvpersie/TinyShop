@@ -174,7 +174,7 @@
 }
 
 - (void)getAddressList {
-	[MBProgressHUD showWithView:KEYWINDOW];
+//	[MBProgressHUD showWithView:KEYWINDOW];
 	
 	NSString *divCode;
 	if (self.controllerType == ControllerTypeDepartmentStores) {
@@ -386,17 +386,16 @@
 
 - (void)createOrder {
 	
-//	[self paySuccess];//暂时这么写，由于没有支付
 	
 	
 	if (_checkOrderModel.guid.length == 0) {
 		return;
 	}
 	
-	if (self.address.hasDelivery.integerValue == 0) {
-		[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2.0f text:NSLocalizedString(@"SMConfirmOrderAddressOverRange", nil)];
-		return;
-	}
+//	if (self.address.hasDelivery.integerValue == 0) {
+//		[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2.0f text:NSLocalizedString(@"SMConfirmOrderAddressOverRange", nil)];
+//		return;
+//	}
 	
 	YCAccountModel *account = [YCAccountModel getAccount];
 	if (account.parentId == nil && account.parentId.length > 0) {
@@ -531,10 +530,12 @@
 				NSString *money = response[@"amount"];
 				NSString *point = response[@"pointAmount"];
 				NSString *actualMoney = response[@"real_amount"];
-				[KLHttpTool rsdrugstoreCreateOrderWithPayorderno:orderCode withPayorderamount:actualMoney withPaymenttype:paytype withPayOrderType:@"1" success:^(id response) {
-					if ([response[@"Status"] intValue] == 0) {//生成订单成功
-						NSString *dataS = response[@"Data"];
-						NSDictionary *dic1 = [NSJSONSerialization JSONObjectWithData: [dataS dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: nil];
+				[self paySuccess];//暂时这么写，由于没有支付
+
+//				[KLHttpTool rsdrugstoreCreateOrderWithPayorderno:orderCode withPayorderamount:actualMoney withPaymenttype:paytype withPayOrderType:@"1" success:^(id response) {
+//					if ([response[@"Status"] intValue] == 0) {//生成订单成功
+//						NSString *dataS = response[@"Data"];
+//						NSDictionary *dic1 = [NSJSONSerialization JSONObjectWithData: [dataS dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: nil];
 						if ([paytype isEqualToString:@"1"]) {
 							__weak SupermarketConfirmOrderController *weakSelf = self;
 							if (self.passwordView == nil) {
@@ -579,16 +580,16 @@
 							};
 							
 						}
-						if ([paytype isEqualToString:@"2"]) {
-							[PaymentWay wechatpay:dic1 viewController:weakself];
-							
-						}
-						if ([paytype isEqualToString:@"3"]) {
-							[PaymentWay alipay:dataS];
-						}
-						if ([paytype isEqualToString:@"4"]) {
-							[PaymentWay unionpay:dataS viewController:weakself];
-						}
+//						if ([paytype isEqualToString:@"2"]) {
+//							[PaymentWay wechatpay:dic1 viewController:weakself];
+//
+//						}
+//						if ([paytype isEqualToString:@"3"]) {
+//							[PaymentWay alipay:dataS];
+//						}
+//						if ([paytype isEqualToString:@"4"]) {
+//							[PaymentWay unionpay:dataS viewController:weakself];
+//						}
 						[hud1 hideAnimated:YES];
 						
 						
@@ -598,14 +599,14 @@
 				}];
 				
 				
-			} else {
-				[MBProgressHUD hideAfterDelayWithView:self.view interval:4 text:response[@"message"]];
-			}
-			
-		} failure:^(NSError *err) {
-			
-		}];
+//			} else {
+//				[MBProgressHUD hideAfterDelayWithView:self.view interval:4 text:response[@"message"]];
+//			}
 		
+//		} failure:^(NSError *err) {
+//
+//		}];
+	
 	}
 	
 }

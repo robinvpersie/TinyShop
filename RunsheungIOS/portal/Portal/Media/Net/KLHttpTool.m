@@ -108,57 +108,26 @@
 + (void)getToken:(void (^)(id token))success
          failure:(void (^)(NSError *errToken))failureToken {
 	
-	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-	manager.responseSerializer = [AFJSONResponseSerializer serializer];
-	manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-	manager.requestSerializer.timeoutInterval = 60;
-	manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"multipart/form-data", @"application/json", @"text/html", @"image/jpeg", @"image/png", @"application/octet-stream", @"text/json", nil];
-//	url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 	NSMutableDictionary *dic = @{}.mutableCopy;
 	[dic setObject:UUID forKey:@"deviceNo"];
 	NSString *sign = [NSString stringWithFormat:@"%@ycssologin1212121212121",UUID];
 	NSString* encrySign = [YCShareAddress sha512:sign];
 	[dic setObject:encrySign forKey:@"sign"];
-	
 
-			[manager GET:GetTokenUrl parameters:dic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-				if (success) {
-					NSNumber *status = responseObject[@"status"];
-					if (status.integerValue == 1) {
-						NSString *finalToken = [self formatTokenWithResponse:responseObject];
-						success(finalToken);
-					} else {
-						[[NSNotificationCenter defaultCenter]postNotificationName:TokenWrong object:nil];
-						//没有token或者token失效 应该跳出登录界面
-					}
-				}
-//				if (success) {
-//					[MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
-//					success(responseObject);
-//				}
-			} failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-				failureToken(error);
-
-				//				if (failure) {
-//					failure(error);
-//				}
-			}];
-
-
-//	[[KLRequestManager shareManager]RYRequestWihtMethod2:KLRequestMethodTypeGet url:GetTokenUrl params:dic success:^(id response) {
-//        if (success) {
-//            NSNumber *status = response[@"status"];
-//            if (status.integerValue == 1) {
-//                NSString *finalToken = [self formatTokenWithResponse:response];
-//                success(finalToken);
-//            } else {
-//                 [[NSNotificationCenter defaultCenter]postNotificationName:TokenWrong object:nil];
-//            //没有token或者token失效 应该跳出登录界面
-//            }
-//        }
-//    } failure:^(NSError *err) {
-//        failureToken(err);
-//    }];
+	[[KLRequestManager shareManager]RYRequestWihtMethod2:KLRequestMethodTypeGet url:GetTokenUrl params:dic success:^(id response) {
+        if (success) {
+            NSNumber *status = response[@"status"];
+            if (status.integerValue == 1) {
+                NSString *finalToken = [self formatTokenWithResponse:response];
+                success(finalToken);
+            } else {
+                 [[NSNotificationCenter defaultCenter]postNotificationName:TokenWrong object:nil];
+            //没有token或者token失效 应该跳出登录界面
+            }
+        }
+    } failure:^(NSError *err) {
+        failureToken(err);
+    }];
 	
 }
 
@@ -1578,93 +1547,78 @@
                            isShoppingCart:(BOOL)isShoppingCart
                                   appType:(NSInteger)appType
                                   success:(void (^)(id response))success
-                                  failure:(void (^)(NSError *err))failure {
-    NSString *url = [NSString stringWithFormat:@"%@Order/CheckBeforeCreateOrder",BaseUrl];
-    
-    NSError *error;
-    
-    NSMutableDictionary *mutableParams = params.mutableCopy;
-    
-    if (isShoppingCart) {
-        [mutableParams setObject:@"true" forKey:@"onCartProcess"];
-    } else {
-        [mutableParams setObject:@"false" forKey:@"onCartProcess"];
-    }
-    
-    NSString *divCode = [[NSUserDefaults standardUserDefaults] objectForKey:DivCodeDefault];
-    if (divCode.length > 0) {
-        [mutableParams setObject:divCode forKey:@"key"];
-    }
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:mutableParams
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:&error];
-    NSString *jsonString = @"";
-    
-    if (! jsonData)
-    {
-        NSLog(@"Got an error: %@", error);
-    }else
-    {
-        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    }
-    
-    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
-    
-    NSRange range = {0,jsonString.length};
-    
-    //去掉字符串中的空格
-    
-    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
-    
-    NSRange range2 = {0,mutStr.length};
-    
-    //去掉字符串中的换行符
-    
-    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
-    
-    jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
-    
-    [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    
-    NSMutableDictionary *dic = @{}.mutableCopy;
-    [dic setObject:mutStr forKey:@"orderInfo"];
-//    [dic setObject:mutStr forKey:@"Projects"];
-//    YCAccountModel *model = [YCAccountModel getAccount];
-//    if (model.token) {
-//        [dic setObject:model.token forKey:@"token"];
-//    }
-//    [dic setObject:@(appType) forKey:@"appType"];
+								  failure:(void (^)(NSError *err))failure {
+	NSString *url = [NSString stringWithFormat:@"%@Order/CheckBeforeCreateOrder",BaseUrl];
 	
+	NSError *error;
 	
-    
-//    [self getToken:^(id token) {
-		if ([YCAccountModel islogin]) {
-//			YCAccountModel *accountmodel = [YCAccountModel getAccount];
-//			[dic setObject:accountmodel.token forKey:@"token"];
-			[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:dic success:^(id response) {
-				NSLog(@"%@",response);
-				if (success) {
-					success(response);
-				}
-			} failure:^(NSError *err) {
-				NSLog(@"%@",err);
-			}];
-
-		}
-//        [dic setObject:token forKey:@"token"];
-//        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:dic success:^(id response) {
-//            NSLog(@"%@",response);
-//            if (success) {
-//                success(response);
-//            }
-//        } failure:^(NSError *err) {
-//            NSLog(@"%@",err);
-//        }];
-//
-//    } failure:^(NSError *errToken) {
-//
-//    }];
+	NSMutableDictionary *mutableParams = params.mutableCopy;
+	
+	if (isShoppingCart) {
+		[mutableParams setObject:@"true" forKey:@"onCartProcess"];
+	} else {
+		[mutableParams setObject:@"false" forKey:@"onCartProcess"];
+	}
+	
+	NSString *divCode = [[NSUserDefaults standardUserDefaults] objectForKey:DivCodeDefault];
+	if (divCode.length > 0) {
+		[mutableParams setObject:divCode forKey:@"key"];
+	}
+	
+	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:mutableParams
+													   options:NSJSONWritingPrettyPrinted
+														 error:&error];
+	NSString *jsonString = @"";
+	
+	if (! jsonData)
+	{
+		NSLog(@"Got an error: %@", error);
+	}else
+	{
+		jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+	}
+	
+	NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
+	
+	NSRange range = {0,jsonString.length};
+	
+	//去掉字符串中的空格
+	
+	[mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+	
+	NSRange range2 = {0,mutStr.length};
+	
+	//去掉字符串中的换行符
+	
+	[mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+	
+	jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+	
+	[jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+	
+	NSMutableDictionary *dic = @{}.mutableCopy;
+	[dic setObject:mutStr forKey:@"orderInfo"];
+	//    [dic setObject:mutStr forKey:@"Projects"];
+	YCAccountModel *model = [YCAccountModel getAccount];
+	//    if (model.token) {
+	//        [dic setObject:model.token forKey:@"token"];
+	//    }
+	[dic setObject:@(appType) forKey:@"appType"];
+	
+	[self getToken:^(id token) {
+		[dic setObject:token forKey:@"token"];
+		[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:dic success:^(id response) {
+			NSLog(@"%@",response);
+			if (success) {
+				success(response);
+			}
+		} failure:^(NSError *err) {
+			NSLog(@"%@",err);
+		}];
+		
+	} failure:^(NSError *errToken) {
+		
+	}];
 }
 
 
@@ -3323,21 +3277,21 @@
 		[params setObject:token forKey:@"token"];
 	}
 
-	[KLHttpTool getToken:^(id token) {
-		if (token) {
-			[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-				NSLog(@"%@",response);
-				if (success) {
-					success(response);
-				}
-			} failure:^(NSError *err) {
-				NSLog(@"%@",err);
-			}];
-
+//	[KLHttpTool getToken:^(id token) {
+//		if (token) {
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
 		}
-	} failure:^(NSError *errToken) {
-		
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
 	}];
+
+//		}
+//	} failure:^(NSError *errToken) {
+//
+//	}];
 	
 }
 
