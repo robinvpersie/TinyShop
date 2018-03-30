@@ -230,7 +230,7 @@
     UITableViewCell *cell = [[UITableViewCell alloc]init];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row == 0) {
-        UILabel *nameLab =[[UILabel alloc]initWithFrame:CGRectMake(15, 10 , 100, 30)];
+        UILabel *nameLab = [[UILabel alloc]initWithFrame:CGRectMake(15, 10 , 100, 30)];
         nameLab.font = [UIFont systemFontOfSize:14];
         nameLab.textColor = [UIColor darkGrayColor];
        // nameLab.text = [NSString stringWithFormat:@"%@",model.realname];
