@@ -123,14 +123,8 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
     var token: String? {
         get {
             let model = YCAccountModel.getAccount()
-            
-//            let tokens = models?.token ?? "ttttt".localized
-//            let tokenstr = tokens + "|" + models!.ssoId! + "|" + models!.customCode + "|" + models!.pointCardNo!
             return model?.combineToken
         }
-//        set {
-//            _token = newValue
-//        }
     }
     
     var operationQue = OperationQueue()
@@ -373,22 +367,17 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
     func logout(){
       showLoading()
       logOut { [weak self] result in
-        guard let strongself = self else { return }
-        strongself.hideLoading()
+        self?.hideLoading()
         switch result {
         case .success(let data):
             let json = JSON(data)
             let status = json["status"].string
             if status == "1" {
                YCUserDefaults.accountModel.value = nil
-               strongself.navigationController?.viewControllers.forEach({ x in
-                if x is YCHomeController {
-                  strongself.navigationController?.popToViewController(x, animated: true)
-                }
-               })
+               self?.navigationController?.popViewController(animated: true)
             }
         case .failure(let error):
-            strongself.showMessage(error.localizedDescription)
+            self?.showMessage(error.localizedDescription)
         }
       }
     }
@@ -435,14 +424,9 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
 
 extension PersinalSetController {
     
-    public func PersonalSetMemberProfile(memberId: String,
-                                         nickName: String?,
-                                         imagePath: String?,
-                                         gender: String?,
-                                         token: String?,
-                                         completion: @escaping (NetWorkResult<JSONDictionary>) -> Void)
+    public func PersonalSetMemberProfile(memberId: String, nickName: String?, imagePath: String?, gender: String?, token: String?, completion: @escaping (NetWorkResult<JSONDictionary>) -> Void)
     {
-          var requestParameters:[String:Any] = [:]
+          var requestParameters: [String:Any] = [:]
           requestParameters["memberID"] = memberId
           if let nickName = nickName {
               requestParameters["nickName"] = nickName
@@ -483,6 +467,7 @@ extension PersinalSetController {
             }
             return json
         }
+        
         let rsResource = RSEditProfileResource(path: "/api/member/editProfile",
                                                method: .post,
                                                parameters: requestParameters,
@@ -495,7 +480,6 @@ extension PersinalSetController {
     func logOut(completion:@escaping (NetWorkResult<JSONDictionary>) -> Void) {
         
           let account = YCAccountModel.getAccount()
-        
           let parse:(JSONDictionary) -> JSONDictionary? = { Data in
              return Data
           }
@@ -510,9 +494,9 @@ extension PersinalSetController {
              "siteCode": "yc",
              "deviceNo": idfa
           ]
-        
-          let url = URL(string: "http://portal.gigawon.co.kr:8488")!
-          let netResource =  NetResource(baseURL: url, path: "/api/apiSSO/setLogout", method: .post, parameters: requestParameters, parameterEncoding: JSONEncoding(), parse: parse)
+          let url = URL(string: "http://api1.gigawon.co.kr:8088")!
+    
+           let netResource =  NetResource(baseURL: url, path: "/api/apiSSO/setLogout", method: .post, parameters: requestParameters, parameterEncoding: JSONEncoding(), parse: parse)
            YCProvider.requestDecoded(netResource, completion: completion)
 
     }

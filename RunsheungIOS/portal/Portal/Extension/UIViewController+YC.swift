@@ -12,7 +12,8 @@ import MBProgressHUD
 
 extension UIViewController {
     
-    func goToLogin(completion: (()->Void)? = nil){
+    @objc (goToLogin:)
+    func goToLogin(completion: (() -> Void)? = nil) {
          let loginContainer = MemberEnrollController()
          let navi = UINavigationController(rootViewController: loginContainer)
          present(navi, animated: true, completion: nil)

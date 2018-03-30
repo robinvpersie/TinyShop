@@ -147,7 +147,7 @@
         if ([YCAccountModel islogin]){
             return YES;
         }else {
-            [tabBarController.selectedViewController goToLoginWithCompletion:^{
+            [tabBarController.selectedViewController goToLogin:^{
                 
             }];
             return NO;

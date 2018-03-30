@@ -16,7 +16,7 @@ fileprivate let callLogin = "callLogin"
 fileprivate let callScript = "callScript"
 fileprivate let callShare = "shareAsMessenger"
 
-class YCWebViewController: UIViewController {
+class YCWebViewController: BaseViewController {
     
     var webView: WKWebView!
     var url: URL!
@@ -27,6 +27,7 @@ class YCWebViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    @objc (initWithURL:)
     convenience init(url:URL) {
         self.init()
         self.url = url
@@ -40,13 +41,6 @@ class YCWebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow?.withRenderingMode(.alwaysOriginal),
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(yc_back))
-       
-
         let config = WKWebViewConfiguration()
         webView = WKWebView(frame:.zero, configuration: config)
         webView.navigationDelegate = self
