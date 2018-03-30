@@ -37,7 +37,7 @@
 
 @property(nonatomic, strong) UILabel *priceLabel;
 //三种支付方式
-@property(nonatomic, strong) UIButton *yuchiPay;
+@property(nonatomic, strong) UIButton *gigaPay;
 @property(nonatomic, strong) UIButton *wechatPay;
 @property(nonatomic, strong) UIButton *aliPay;
 @property(nonatomic, strong) UIButton *unionPay;
@@ -54,7 +54,7 @@
 
 
 - (void)getAddressList {
-//    [MBProgressHUD showWithView:KEYWINDOW];暂时屏蔽
+//    [MBProgressHUD showWithView:KEYWINDOW];
     NSString *divCode;
     if (self.controllerType == ControllerTypeDepartmentStores) {
         divCode = @"0";
@@ -118,13 +118,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _payWayTitle = @[NSLocalizedString(@"WechatPay", nil),
-                     NSLocalizedString(@"AliPay", nil),
-                     NSLocalizedString(@"UnionPay", nil)
-                     ];
-     _payWayIcons = @[@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
-    
-    /** 注册取消按钮点击的通知 */
+	_payWayTitle =  @[NSLocalizedString(@"GIGA支付", nil),NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"AliPay", nil),NSLocalizedString(@"UnionPay", nil)];
+	_payWayIcons = @[@"icon_weichatpay",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
+	
+	/** 注册取消按钮点击的通知 */
     [CYNotificationCenter addObserver:self selector:@selector(cancelInputPWD) name:CYPasswordViewCancleButtonClickNotification object:nil];
     [CYNotificationCenter addObserver:self selector:@selector(forgetPWD) name:CYPasswordViewForgetPWDButtonClickNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getCoupons:) name:CouponSureButtonClickedNotification object:nil];
@@ -221,10 +218,8 @@
 
 - (void)checkOrder {
 	
-	[self getAddressList];//暂时添加
 
     NSMutableDictionary *parmas = @{}.mutableCopy;
-    
     NSMutableArray *goods = @[].mutableCopy;
     
     for (int i = 0; i < self.dataArray.count; i++) {
@@ -232,18 +227,19 @@
         
         LZCartModel *cartModel = _dataArray[i];
         
-        [good setObject:@"yc01" forKey:@"custom_code"];
+        [good setObject:cartModel.sale_custom_code forKey:@"custom_code"];
         [good setObject:cartModel.item_code forKey:@"item_code"];
         [good setObject:@(cartModel.number) forKey:@"count"];
         [good setObject:@(cartModel.price.floatValue) forKey:@"unit_price"];
         [good setObject:cartModel.divCode forKey:@"div_code"];
-        
+		
         [goods addObject:good];
         
     }
     
     [parmas setObject:goods forKey:@"goods"];
-    
+	NSMutableArray *attchments = @[].mutableCopy;
+	[parmas setObject:attchments forKey:@"attachment"];
 
     [MBProgressHUD showWithView:KEYWINDOW];
     
@@ -264,12 +260,10 @@
                 }
                 
             }else {
-				/**
-				 *
-				 暂时隐藏
+				
 				 [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
 				 [self.navigationController popViewControllerAnimated:YES];
-				 */
+				
             }
 
             
@@ -280,6 +274,8 @@
     } else {
         [KLHttpTool supermarketCheckBeforeCreateOrder:parmas isShoppingCart:true appType:6 success:^(id response) {
             NSLog(@"%@",response);
+			[MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
+
             NSNumber *status = response[@"status"];
             if (status.integerValue == 1) {
                 NSDictionary *data = response[@"data"];
@@ -293,12 +289,9 @@
                 }
                 
             } else {
-				/**
-				 *
-				 暂时隐藏
 				 [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
 				 [self.navigationController popViewControllerAnimated:YES];
-				 */
+				
             }
             
         } failure:^(NSError *err) {
@@ -309,15 +302,14 @@
 }
 
 - (void)createOrder {
-	[self paySuccess];
     if (_checkOrderModel.guid.length == 0) {
         return;
     }
     
-    if (self.address.hasDelivery.integerValue == 0) {
-        [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2.0f text:NSLocalizedString(@"SMConfirmOrderAddressOverRange", nil)];
-        return;
-    }
+//    if (self.address.hasDelivery.integerValue == 0) {
+//        [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2.0f text:NSLocalizedString(@"SMConfirmOrderAddressOverRange", nil)];
+//        return;
+//    }
 
     
     NSMutableDictionary *info = @{}.mutableCopy;
@@ -335,7 +327,7 @@
     
     NSString *point;
     if (_canUsePoint.isOn == YES) {
-        point = _checkOrderModel.canMaxUsePoint;
+        point = [NSString stringWithFormat:@"%d",_checkOrderModel.canMaxUsePoint ] ;
     } else {
         point = @"0";
     }
@@ -357,6 +349,7 @@
                 NSString *actualMoney = response[@"real_amount"];
                 
                 if (_aliPay.selected == YES) {
+					
                     [KLHttpTool supermarketGetAlipayStrWithOrderNum:orderCode payAmount:actualMoney success:^(id response) {
                         NSLog(@"%@",response);
                         NSNumber *status = response[@"status"];
@@ -369,7 +362,8 @@
                         
                     }];
                     
-                } else if (_yuchiPay.selected == YES) {
+                } else if (_gigaPay.selected == YES) {
+					
                     __weak SupermarketConfrimOrderByNumbersController *weakSelf = self;
                     if (self.passwordView == nil) {
                         self.passwordView = [[CYPasswordView alloc] init];
@@ -378,7 +372,7 @@
                     self.passwordView.title = NSLocalizedString(@"PaymentHint", nil);
                     self.passwordView.loadingText = NSLocalizedString(@"PaymentLoadingMsg", nil);
                     [self.passwordView showInView:self.view.window];
-                    
+					
                     self.passwordView.finish = ^(NSString *password) {
                         [weakSelf.passwordView hideKeyboard];
                         [weakSelf.passwordView startLoading];
@@ -437,12 +431,14 @@
     } else {//人生药业的支付
         
         NSString *paytype;
-        if (_wechatPay.selected == YES) {//微信支付
-            paytype = @"1";
-        }else if (_aliPay.selected == YES){//支付宝
+		if (_gigaPay.selected == YES) {//giga支付
+			paytype = @"1";
+		}else if (_wechatPay.selected == YES) {//微信支付
             paytype = @"2";
-        }else if (_unionPay.selected == YES){//银联
+        }else if (_aliPay.selected == YES){//支付宝
             paytype = @"3";
+        }else if (_unionPay.selected == YES){//银联
+            paytype = @"4";
         }
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeText;
@@ -456,30 +452,64 @@
                 NSString *money = response[@"amount"];
                 NSString *point = response[@"pointAmount"];
                 NSString *actualMoney = response[@"real_amount"];
-                [KLHttpTool rsdrugstoreCreateOrderWithPayorderno:orderCode withPayorderamount:actualMoney withPaymenttype:paytype withPayOrderType:@"1" success:^(id response) {
-                    if ([response[@"Status"] intValue] == 0) {//生成订单成功
-                        NSString *dataS = response[@"Data"];
-                        NSDictionary *dic1 = [NSJSONSerialization JSONObjectWithData: [dataS dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: nil];
-                        
-                        
-                        if ([paytype isEqualToString:@"1"]) {
-                            [PaymentWay wechatpay:dic1 viewController:self];
-                        }
-                        if ([paytype isEqualToString:@"2"]) {
-                            [PaymentWay alipay:dataS];
-                        }
-                        if ([paytype isEqualToString:@"3"]) {
-                            [PaymentWay unionpay:dataS viewController:self];
-                        }
-                        [hud hideAnimated:YES];
+				if ([paytype isEqualToString:@"1"]) {
 
-                        
-                    }
-                } failure:^(NSError *err) {
-                    
-                }];
-                
-                
+					__weak SupermarketConfrimOrderByNumbersController *weakSelf = self;
+					if (self.passwordView == nil) {
+						self.passwordView = [[CYPasswordView alloc] init];
+					}
+					
+					self.passwordView.title = NSLocalizedString(@"PaymentHint", nil);
+					self.passwordView.loadingText = NSLocalizedString(@"PaymentLoadingMsg", nil);
+					[self.passwordView showInView:self.view.window];
+					
+					self.passwordView.finish = ^(NSString *password) {
+						[weakSelf.passwordView hideKeyboard];
+						[weakSelf.passwordView startLoading];
+						
+						YCAccountModel *model = [YCAccountModel getAccount];
+						
+						NSString *en512 = [weakSelf sha512:password];
+						
+						
+						[KLHttpTool supermarketPayWithUserID:model.customCode orderNumber:orderCode orderMoney:money actualMoney:actualMoney point:point couponCode:nil password:en512 success:^(id response) {
+							NSLog(@"%@",response);
+							NSNumber *status = response[@"status"];
+							
+							if (status.integerValue == 1) {
+								[weakSelf.passwordView requestComplete:YES message:NSLocalizedString(@"PaySucMsg", nil)];
+								NSDictionary *data = response[@"data"];
+								[KLHttpTool supermarketPaymentSuccessWithOrderNum:data[@"order_no"] success:^(id response) {
+									[weakSelf performSelector:@selector(hidePassWordView) withObject:nil afterDelay:2.0];
+								} failure:^(NSError *err) {
+									
+								}];
+								
+							}
+							else {
+								[weakSelf.passwordView requestComplete:NO message:response[@"msg"]];
+								[weakSelf performSelector:@selector(hidePassWordView) withObject:nil afterDelay:2.0];
+							}
+							
+						} failure:^(NSError *err) {
+							
+						}];
+						
+					};
+					
+				}
+
+//				if ([paytype isEqualToString:@"2"]) {
+//					[PaymentWay wechatpay:dic1 viewController:self];
+//				}
+//				if ([paytype isEqualToString:@"3"]) {
+//					[PaymentWay alipay:dataS];
+//				}
+//				if ([paytype isEqualToString:@"4"]) {
+//					[PaymentWay unionpay:dataS viewController:self];
+//				}
+				[hud hideAnimated:YES];
+
             } else {
                 [MBProgressHUD hideAfterDelayWithView:self.view interval:4 text:response[@"message"]];
             }
@@ -606,7 +636,7 @@
     if (section == 0) {
         return 1;
     } else if (section == 1) {
-        return _payWayTitle.count;
+        return 1;
     }
     else if (section == 2) {
         return self.dataArray.count;
@@ -647,14 +677,17 @@
         [check setImage:[UIImage imageNamed:@"icon_unselected"] forState:UIControlStateNormal];
         [check setImage:[UIImage imageNamed:@"icon_selected"] forState:UIControlStateSelected];
         [cell.contentView addSubview:check];
-        if (indexPath.row == 0) {
+		if (indexPath.row == 0) {
+			self.gigaPay = check;
+			self.gigaPay.selected = YES;
+		}
+		if (indexPath.row == 1) {
             self.wechatPay = check;
-            self.wechatPay.selected = YES;
-        }
-        if (indexPath.row == 1) {
-            self.aliPay = check;
         }
         if (indexPath.row == 2) {
+            self.aliPay = check;
+        }
+        if (indexPath.row == 3) {
             self.unionPay = check;
         }
         
@@ -896,17 +929,26 @@
 
 - (void)checkPayWay:(UIButton *)button {
     button.selected = YES;
+	if (button == self.gigaPay) {
+		_aliPay.selected = NO;
+		_unionPay.selected = NO;
+		_wechatPay.selected = NO;
+	}
+
     if (button == self.wechatPay) {
         _aliPay.selected = NO;
         _unionPay.selected = NO;
+		_gigaPay.selected = NO;
     }
     if (button == self.aliPay) {
         _wechatPay.selected = NO;
         _unionPay.selected = NO;
+		_gigaPay.selected = NO;
     }
     if (button == self.unionPay) {
         _wechatPay.selected = NO;
         _aliPay.selected = NO;
+		_gigaPay.selected = NO;
     }
 }
 

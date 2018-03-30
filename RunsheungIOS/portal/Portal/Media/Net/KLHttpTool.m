@@ -44,7 +44,9 @@
     #define BaseUrl  @"http://pay.gigawon.co.kr:81/"
     #define PaymentBaseURL @"http://pay.gigawon.co.kr:8088/"
     #define ShopBaseUrl @"http://api1.gigawon.co.kr:96/"
-    #define PaymentUrl @"https://api.gigawon.co.kr:8444/wPayment/api/wPayment"
+//    #define PaymentUrl @"https://api.gigawon.co.kr:8444/wPayment/api/wPayment"
+    #define PaymentUrl @"http://api.gigawon.co.kr:8083/wpayment/api/wPayment"
+
     #define PointListUrl @"https://api.gigawon.co.kr:8444/pl_Point/api/PointGetListAndBalance"
     #define CheckTokenUrl @"https://api.gigawon.co.kr:8444/appapi/userapi"
     #define GetZipcodeUrl @"http://api1.gigawon.co.kr:82/api/ycZipCode/getZipCode"
@@ -1567,7 +1569,7 @@
                                   appType:(NSInteger)appType
                                   success:(void (^)(id response))success
 								  failure:(void (^)(NSError *err))failure {
-	NSString *url = [NSString stringWithFormat:@"%@Order/CheckBeforeCreateOrder",BaseUrl];
+	NSString *url = [NSString stringWithFormat:@"%@FreshMart/Order/CheckBeforeCreateOrder",BaseUrl];
 	
 	NSError *error;
 	
@@ -1618,7 +1620,7 @@
 	NSMutableDictionary *dic = @{}.mutableCopy;
 	[dic setObject:mutStr forKey:@"orderInfo"];
 	//    [dic setObject:mutStr forKey:@"Projects"];
-	YCAccountModel *model = [YCAccountModel getAccount];
+//	YCAccountModel *model = [YCAccountModel getAccount];
 	//    if (model.token) {
 	//        [dic setObject:model.token forKey:@"token"];
 	//    }
@@ -1648,7 +1650,7 @@
                           validateInfo:(NSDictionary *)validateInfo
                                success:(void (^)(id response))success
                                failure:(void (^)(NSError *err))failure {
-    NSString *url = [NSString stringWithFormat:@"%@Order/CreateOrder",BaseUrl];
+    NSString *url = [NSString stringWithFormat:@"%@FreshMart/Order/CreateOrder",BaseUrl];
     
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:validateInfo
@@ -1839,7 +1841,7 @@
     }
     [params setObject:passWord forKey:@"spayPWD"];
     
-    YCAccountModel *model = [YCAccountModel getAccount];
+//    YCAccountModel *model = [YCAccountModel getAccount];
 //    if (model.token) {
 //        [params setObject:model.token forKey:@"token"];
 //    }

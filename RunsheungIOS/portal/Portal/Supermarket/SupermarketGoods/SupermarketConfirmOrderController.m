@@ -287,7 +287,7 @@
 	[good setObject:self.goodsModel.itemCode forKey:@"item_code"];
 	[good setObject:@(self.amout) forKey:@"count"];
 	[good setObject:self.goodsModel.price forKey:@"unit_price"];
-//	[good setObject:self.goodsModel.business_code forKey:@"DIV_CODE"];
+	[good setObject:self.goodsModel.business_code forKey:@"DIV_CODE"];
 	[goods addObject:good];
 	[parmas setObject:goods forKey:@"goods"];
 	NSMutableArray *attchments = @[].mutableCopy;
@@ -508,7 +508,7 @@
 			
 		}];
 		
-	} else {//人生药业的支付
+	} else {
 		__weak typeof(self) weakself = self;
 		NSString *paytype;
 		if (_gigaPay.selected == YES) {//宇成支付
@@ -530,56 +530,53 @@
 				NSString *money = response[@"amount"];
 				NSString *point = response[@"pointAmount"];
 				NSString *actualMoney = response[@"real_amount"];
-				[self paySuccess];//暂时这么写，由于没有支付
+				
 
-//				[KLHttpTool rsdrugstoreCreateOrderWithPayorderno:orderCode withPayorderamount:actualMoney withPaymenttype:paytype withPayOrderType:@"1" success:^(id response) {
-//					if ([response[@"Status"] intValue] == 0) {//生成订单成功
-//						NSString *dataS = response[@"Data"];
-//						NSDictionary *dic1 = [NSJSONSerialization JSONObjectWithData: [dataS dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: nil];
-						if ([paytype isEqualToString:@"1"]) {
-							__weak SupermarketConfirmOrderController *weakSelf = self;
-							if (self.passwordView == nil) {
-								self.passwordView = [[CYPasswordView alloc] init];
-							}
+//				[self paySuccess];//暂时这么写，由于没有支付
+				if ([paytype isEqualToString:@"1"]) {
+					__weak SupermarketConfirmOrderController *weakSelf = self;
+					if (self.passwordView == nil) {
+						self.passwordView = [[CYPasswordView alloc] init];
+					}
+					
+					self.passwordView.title = NSLocalizedString(@"PaymentHint", nil);
+					self.passwordView.loadingText = NSLocalizedString(@"PaymentLoadingMsg", nil);
+					[self.passwordView showInView:self.view.window];
+					
+					self.passwordView.finish = ^(NSString *password) {
+						[weakSelf.passwordView hideKeyboard];
+						[weakSelf.passwordView startLoading];
+						
+						YCAccountModel *model = [YCAccountModel getAccount];
+						
+						NSString *en512 = [weakSelf sha512:password];
+						
+						
+						[KLHttpTool supermarketPayWithUserID:model.customCode orderNumber:orderCode orderMoney:money actualMoney:actualMoney point:point couponCode:nil password:en512 success:^(id response) {
+							NSLog(@"%@",response);
+							NSNumber *status = response[@"status"];
 							
-							self.passwordView.title = NSLocalizedString(@"PaymentHint", nil);
-							self.passwordView.loadingText = NSLocalizedString(@"PaymentLoadingMsg", nil);
-							[self.passwordView showInView:self.view.window];
-							
-							self.passwordView.finish = ^(NSString *password) {
-								[weakSelf.passwordView hideKeyboard];
-								[weakSelf.passwordView startLoading];
-								
-								YCAccountModel *model = [YCAccountModel getAccount];
-								
-								NSString *en512 = [weakSelf sha512:password];
-								
-								
-								[KLHttpTool supermarketPayWithUserID:model.memid orderNumber:orderCode orderMoney:money actualMoney:actualMoney point:point couponCode:nil password:en512 success:^(id response) {
-									NSLog(@"%@",response);
-									NSNumber *status = response[@"status"];
-									
-									if (status.integerValue == 1) {
-										[weakSelf.passwordView requestComplete:YES message:NSLocalizedString(@"PaySucMsg", nil)];
-										NSDictionary *data = response[@"data"];
-										[KLHttpTool supermarketPaymentSuccessWithOrderNum:data[@"order_no"] success:^(id response) {
-											[weakSelf performSelector:@selector(hidePassWordView) withObject:nil afterDelay:2.0];
-										} failure:^(NSError *err) {
-											
-										}];
-									}
-									else {
-										[weakSelf.passwordView requestComplete:NO message:response[@"msg"]];
-										[weakSelf performSelector:@selector(hidePassWordView) withObject:nil afterDelay:2.0];
-									}
-									
+							if (status.integerValue == 1) {
+								[weakSelf.passwordView requestComplete:YES message:NSLocalizedString(@"PaySucMsg", nil)];
+								NSDictionary *data = response[@"data"];
+								[KLHttpTool supermarketPaymentSuccessWithOrderNum:data[@"order_no"] success:^(id response) {
+									[weakSelf performSelector:@selector(hidePassWordView) withObject:nil afterDelay:2.0];
 								} failure:^(NSError *err) {
 									
 								}];
-								
-							};
+							}
+							else {
+								[weakSelf.passwordView requestComplete:NO message:response[@"msg"]];
+								[weakSelf performSelector:@selector(hidePassWordView) withObject:nil afterDelay:2.0];
+							}
 							
-						}
+						} failure:^(NSError *err) {
+							
+						}];
+						
+					};
+					
+				}
 //						if ([paytype isEqualToString:@"2"]) {
 //							[PaymentWay wechatpay:dic1 viewController:weakself];
 //
@@ -590,23 +587,14 @@
 //						if ([paytype isEqualToString:@"4"]) {
 //							[PaymentWay unionpay:dataS viewController:weakself];
 //						}
-						[hud1 hideAnimated:YES];
-						
+				[hud1 hideAnimated:YES];
+				
 						
 					}
 				} failure:^(NSError *err) {
 					
 				}];
-				
-				
-//			} else {
-//				[MBProgressHUD hideAfterDelayWithView:self.view interval:4 text:response[@"message"]];
-//			}
 		
-//		} failure:^(NSError *err) {
-//
-//		}];
-	
 	}
 	
 }
