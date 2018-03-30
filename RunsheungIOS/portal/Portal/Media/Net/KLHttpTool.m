@@ -44,7 +44,9 @@
     #define BaseUrl  @"http://pay.gigawon.co.kr:81/"
     #define PaymentBaseURL @"http://pay.gigawon.co.kr:8088/"
     #define ShopBaseUrl @"http://api1.gigawon.co.kr:96/"
-    #define PaymentUrl @"https://api.gigawon.co.kr:8444/wPayment/api/wPayment"
+//    #define PaymentUrl @"https://api.gigawon.co.kr:8444/wPayment/api/wPayment"
+    #define PaymentUrl @"http://api.gigawon.co.kr:8083/wpayment/api/wPayment"
+
     #define PointListUrl @"https://api.gigawon.co.kr:8444/pl_Point/api/PointGetListAndBalance"
     #define CheckTokenUrl @"https://api.gigawon.co.kr:8444/appapi/userapi"
     #define GetZipcodeUrl @"http://api1.gigawon.co.kr:82/api/ycZipCode/getZipCode"

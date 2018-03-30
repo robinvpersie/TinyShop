@@ -43,7 +43,16 @@
 }
 
 - (void)pop:(UIButton*)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
+	
+	if (self.presentingViewController) {
+		[self dismissViewControllerAnimated:YES completion:nil];
+		
+	} else {
+		[self.navigationController popViewControllerAnimated:YES];
+		
+	}
+	
+	
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
