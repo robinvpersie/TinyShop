@@ -24,7 +24,7 @@
 @property(nonatomic, strong) UITableView *tableView;
 @property (strong, nonatomic)  CountDown *countDown;
 @property (nonatomic, strong) CYPasswordView *passwordView;
-
+@property(nonatomic, strong) UIButton *gigaPay;
 @property(nonatomic, strong) UIButton *wechatPay;
 @property(nonatomic, strong) UIButton *unionPay;
 @property(nonatomic, strong) UIButton *aliPay;
@@ -44,10 +44,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _payWayTitles = @[NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"UnionPay", nil),NSLocalizedString(@"AliPay", nil)];
-    _payWayImageNames = @[@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:AliPayCancleNotification object:nil];
+    _payWayTitles = @[NSLocalizedString(@"GIGA支付", nil),NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"UnionPay", nil),NSLocalizedString(@"AliPay", nil)];
+    _payWayImageNames = @[@"icon_weichatpay",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
+
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:AliPayCancleNotification object:nil];
     
     self.view.backgroundColor = BGColor;
     self.title = NSLocalizedString(@"SupermarketOrderDetailTitle", nil);
@@ -145,34 +145,83 @@
 
 - (void)payAction {
     NSString *payType;
-    if (_wechatPay.selected == YES) {
-        payType = @"1";
-    }else if (_aliPay.selected == YES) {
+	if (_gigaPay.selected == YES) {
+		payType = @"1";
+	}else if (_wechatPay.selected == YES) {
         payType = @"2";
-    }else if (_unionPay.selected == YES) {
+    }else if (_aliPay.selected == YES) {
         payType = @"3";
+    }else if (_unionPay.selected == YES) {
+        payType = @"4";
     }
     MBProgressHUD *payshow = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     payshow.mode = MBProgressHUDModeText;
     payshow.label.text = @"正在进入支付...";
     [payshow showAnimated:YES];
-    [KLHttpTool rsdrugstoreCreateOrderWithPayorderno:_data.order_code withPayorderamount:[NSString stringWithFormat:@"%@",_data.actualMoney] withPaymenttype:payType withPayOrderType:@"1" success:^(id response) {
-        NSString *OrderS = response[@"Data"];
-        if ([payType isEqualToString:@"1"]) {
-            NSDictionary *dic1 = [NSJSONSerialization JSONObjectWithData: [OrderS dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: nil];
-            
-            [PaymentWay wechatpay:dic1 viewController:self];
-        } else if ([payType isEqualToString:@"2"]) {
-            
-            [PaymentWay alipay:OrderS];
-        }else if ([payType isEqualToString:@"3"]){
-            
-            [PaymentWay unionpay:OrderS viewController:self];
-        }
-        [payshow hideAnimated:YES];
-    } failure:^(NSError *err) {
-        
-    }];
+	if ([payType isEqualToString:@"1"]) {
+		__weak SupermarketOrderWaitPayDetailController *weakSelf = self;
+		if (self.passwordView == nil) {
+			self.passwordView = [[CYPasswordView alloc] init];
+		}
+		self.passwordView.title = NSLocalizedString(@"PaymentHint", nil);
+		self.passwordView.loadingText = NSLocalizedString(@"PaymentLoadingMsg", nil);
+		[self.passwordView showInView:KEYWINDOW];
+		
+		NSString *order_num = _data.order_code;
+		
+		OrderDetailModel *orderDetail = _orderDetailData;
+		
+		self.passwordView.finish = ^(NSString *password) {
+			[weakSelf.passwordView hideKeyboard];
+			[weakSelf.passwordView startLoading];
+			
+			YCAccountModel *model = [YCAccountModel getAccount];
+			
+			NSString *en512 = [weakSelf sha512:password];
+			
+			[KLHttpTool supermarketPayWithUserID:model.customCode orderNumber:order_num orderMoney:[NSString stringWithFormat:@"%.2f", weakSelf.data.totalPrice]  actualMoney:orderDetail.realPrice point:weakSelf.data.point couponCode:nil  password:en512 success:^(id response) {
+				NSLog(@"%@",response);
+				NSNumber *status = response[@"status"];
+				
+				if (status.integerValue == 1) {
+					[weakSelf.passwordView requestComplete:YES message:@"支付成功"];
+					[[NSNotificationCenter defaultCenter] postNotificationName:SupermarketSelectTabBar object:nil];
+					NSDictionary *data = response[@"data"];
+					[KLHttpTool supermarketPaymentSuccessWithOrderNum:data[@"order_no"] success:^(id response) {
+						[weakSelf performSelector:@selector(hidePassWordView) withObject:nil afterDelay:2.0];
+					} failure:^(NSError *err) {
+						
+					}];
+					
+				}
+				else {
+					[weakSelf.passwordView requestComplete:NO message:response[@"msg"]];
+					[weakSelf performSelector:@selector(hidePassWordView) withObject:nil afterDelay:2.0];
+				}
+				
+			} failure:^(NSError *err) {
+				
+			}];
+		};
+		
+	}
+//    [KLHttpTool rsdrugstoreCreateOrderWithPayorderno:_data.order_code withPayorderamount:[NSString stringWithFormat:@"%@",_data.actualMoney] withPaymenttype:payType withPayOrderType:@"1" success:^(id response) {
+//        NSString *OrderS = response[@"Data"];
+//        if ([payType isEqualToString:@"1"]) {
+//            NSDictionary *dic1 = [NSJSONSerialization JSONObjectWithData: [OrderS dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: nil];
+//
+//            [PaymentWay wechatpay:dic1 viewController:self];
+//        } else if ([payType isEqualToString:@"2"]) {
+//
+//            [PaymentWay alipay:OrderS];
+//        }else if ([payType isEqualToString:@"3"]){
+//
+//            [PaymentWay unionpay:OrderS viewController:self];
+//        }
+//        [payshow hideAnimated:YES];
+//    } failure:^(NSError *err) {
+//
+//    }];
 }
 
 - (void)goWallet {
@@ -363,7 +412,7 @@
     if (section == 0) {
         return 3+_data.goodList.count;
     }
-    return 4;
+    return 2;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -513,47 +562,53 @@
         cell.detailTextLabel.font = cell.textLabel.font;
         cell.detailTextLabel.textColor = [UIColor darkcolor];
         if (indexPath.row < 3) {
-            UIImage *icon = [UIImage imageNamed:_payWayImageNames[indexPath.row]];
-            CGSize itemSize = CGSizeMake(20, 20);
-            UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0);
-            CGRect imageRect = CGRectMake(0, 0, itemSize.width, itemSize.height);
-            [icon drawInRect:imageRect];
-            cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            
-            UIButton *check = [UIButton buttonWithType:UIButtonTypeCustom];
-            check.frame = CGRectMake(APPScreenWidth - 10 - 35, 5, 35, 35);
-            [check setImage:[UIImage imageNamed:@"icon_unselected"] forState:UIControlStateNormal];
-            [check setImage:[UIImage imageNamed:@"icon_selected"] forState:UIControlStateSelected];
-            [cell.contentView addSubview:check];
-            
-            [check addTarget:self action:@selector(checkPayWay:) forControlEvents:UIControlEventTouchUpInside];
-            
-            if (indexPath.row == 0) {
-                self.wechatPay = check;
-                self.wechatPay.selected = YES;
-            }
-            if (indexPath.row == 1) {
-               self.aliPay = check;
-            }
-            if (indexPath.row == 2) {
-                
-                self.unionPay = check;
-            }
+			if (indexPath.row == 0) {
+				cell.textLabel.text = _payWayTitles[indexPath.row];
+				UIImage *icon = [UIImage imageNamed:_payWayImageNames[indexPath.row]];
+				CGSize itemSize = CGSizeMake(20, 20);
+				UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0);
+				CGRect imageRect = CGRectMake(0, 0, itemSize.width, itemSize.height);
+				[icon drawInRect:imageRect];
+				cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+				UIGraphicsEndImageContext();
+				
+				UIButton *check = [UIButton buttonWithType:UIButtonTypeCustom];
+				check.frame = CGRectMake(APPScreenWidth - 10 - 35, 5, 35, 35);
+				[check setImage:[UIImage imageNamed:@"icon_unselected"] forState:UIControlStateNormal];
+				[check setImage:[UIImage imageNamed:@"icon_selected"] forState:UIControlStateSelected];
+				[cell.contentView addSubview:check];
+				
+				[check addTarget:self action:@selector(checkPayWay:) forControlEvents:UIControlEventTouchUpInside];
+				if (indexPath.row == 0) {
+					self.gigaPay = check;
+					self.gigaPay.selected = YES;
+				}
+				if (indexPath.row == 1) {
+					self.wechatPay = check;
+				}
+				if (indexPath.row == 2) {
+					self.aliPay = check;
+				}
+				if (indexPath.row == 3) {
+					
+					self.unionPay = check;
+				}
+			}
+
+			
 
         }
-       
-        if (indexPath.row == 0) {
-            cell.textLabel.text = NSLocalizedString(@"WechatPay", nil);
-        }
-        if(indexPath.row == 1){
-           cell.textLabel.text = @"支付宝支付";
-        }
-        if (indexPath.row == 2) {
-            
-             cell.textLabel.text = @"银联支付";
-        }
-        if (indexPath.row == 3) {
+//        if (indexPath.row == 1) {
+//            cell.textLabel.text = NSLocalizedString(@"WechatPay", nil);
+//        }
+//        if(indexPath.row == 2){
+//           cell.textLabel.text = @"支付宝支付";
+//        }
+//        if (indexPath.row == 3) {
+//
+//             cell.textLabel.text = @"银联支付";
+//        }
+        if (indexPath.row == 1) {
             cell.textLabel.textColor = [UIColor grayColor];
             cell.textLabel.text = NSLocalizedString(@"SMExpressMsg", nil);
             
@@ -569,17 +624,26 @@
 
 - (void)checkPayWay:(UIButton *)button {
     button.selected = YES;
+	if (button == self.gigaPay) {
+		_unionPay.selected = NO;
+		_aliPay.selected = NO;
+		_wechatPay.selected = NO;
+	}
+
     if (button == self.wechatPay) {
         _unionPay.selected = NO;
         _aliPay.selected = NO;
+		_gigaPay.selected = NO;
     }
     if (button == self.unionPay) {
         _wechatPay.selected = NO;
         _aliPay.selected = NO;
+		_gigaPay.selected = NO;
     }
     if (button == self.aliPay) {
         _unionPay.selected = NO;
         _wechatPay.selected = NO;
+		_gigaPay.selected = NO;
     }
 }
 

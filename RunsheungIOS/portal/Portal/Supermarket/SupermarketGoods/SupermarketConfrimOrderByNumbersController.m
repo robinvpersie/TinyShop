@@ -54,7 +54,7 @@
 
 
 - (void)getAddressList {
-    [MBProgressHUD showWithView:KEYWINDOW];
+//    [MBProgressHUD showWithView:KEYWINDOW];
     NSString *divCode;
     if (self.controllerType == ControllerTypeDepartmentStores) {
         divCode = @"0";
@@ -220,7 +220,6 @@
 	
 
     NSMutableDictionary *parmas = @{}.mutableCopy;
-    
     NSMutableArray *goods = @[].mutableCopy;
     
     for (int i = 0; i < self.dataArray.count; i++) {
@@ -228,7 +227,7 @@
         
         LZCartModel *cartModel = _dataArray[i];
         
-        [good setObject:@"yc01" forKey:@"custom_code"];
+        [good setObject:cartModel.sale_custom_code forKey:@"custom_code"];
         [good setObject:cartModel.item_code forKey:@"item_code"];
         [good setObject:@(cartModel.number) forKey:@"count"];
         [good setObject:@(cartModel.price.floatValue) forKey:@"unit_price"];
@@ -240,14 +239,6 @@
     
     [parmas setObject:goods forKey:@"goods"];
 	NSMutableArray *attchments = @[].mutableCopy;
-//	for (GoodsOptionModel *option in self.attachGoods) {
-//		NSMutableDictionary *attch = [NSMutableDictionary dictionary];
-//		[attch setObject:self.goodsModel.supplier_code forKey:@"custom_code"];
-//		[attch setObject:option.item_code forKey:@"item_code"];
-//		[attch setObject:option.item_price forKey:@"unit_price"];
-//		[attch setObject:self.goodsModel.business_code forKey:@"div_code"];
-//		[attchments addObject:attch];
-//	}
 	[parmas setObject:attchments forKey:@"attachment"];
 
     [MBProgressHUD showWithView:KEYWINDOW];
@@ -283,6 +274,8 @@
     } else {
         [KLHttpTool supermarketCheckBeforeCreateOrder:parmas isShoppingCart:true appType:6 success:^(id response) {
             NSLog(@"%@",response);
+			[MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
+
             NSNumber *status = response[@"status"];
             if (status.integerValue == 1) {
                 NSDictionary *data = response[@"data"];
@@ -313,10 +306,10 @@
         return;
     }
     
-    if (self.address.hasDelivery.integerValue == 0) {
-        [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2.0f text:NSLocalizedString(@"SMConfirmOrderAddressOverRange", nil)];
-        return;
-    }
+//    if (self.address.hasDelivery.integerValue == 0) {
+//        [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2.0f text:NSLocalizedString(@"SMConfirmOrderAddressOverRange", nil)];
+//        return;
+//    }
 
     
     NSMutableDictionary *info = @{}.mutableCopy;
@@ -378,7 +371,7 @@
                     
                     self.passwordView.title = NSLocalizedString(@"PaymentHint", nil);
                     self.passwordView.loadingText = NSLocalizedString(@"PaymentLoadingMsg", nil);
-//                    [self.passwordView showInView:self.view.window];
+                    [self.passwordView showInView:self.view.window];
 					
                     self.passwordView.finish = ^(NSString *password) {
                         [weakSelf.passwordView hideKeyboard];
@@ -460,7 +453,6 @@
                 NSString *point = response[@"pointAmount"];
                 NSString *actualMoney = response[@"real_amount"];
 				if ([paytype isEqualToString:@"1"]) {
-					[self paySuccess];
 
 					__weak SupermarketConfrimOrderByNumbersController *weakSelf = self;
 					if (self.passwordView == nil) {
@@ -469,7 +461,7 @@
 					
 					self.passwordView.title = NSLocalizedString(@"PaymentHint", nil);
 					self.passwordView.loadingText = NSLocalizedString(@"PaymentLoadingMsg", nil);
-//					[self.passwordView showInView:self.view.window];
+					[self.passwordView showInView:self.view.window];
 					
 					self.passwordView.finish = ^(NSString *password) {
 						[weakSelf.passwordView hideKeyboard];
@@ -480,7 +472,7 @@
 						NSString *en512 = [weakSelf sha512:password];
 						
 						
-						[KLHttpTool supermarketPayWithUserID:model.memid orderNumber:orderCode orderMoney:money actualMoney:actualMoney point:point couponCode:nil password:en512 success:^(id response) {
+						[KLHttpTool supermarketPayWithUserID:model.customCode orderNumber:orderCode orderMoney:money actualMoney:actualMoney point:point couponCode:nil password:en512 success:^(id response) {
 							NSLog(@"%@",response);
 							NSNumber *status = response[@"status"];
 							

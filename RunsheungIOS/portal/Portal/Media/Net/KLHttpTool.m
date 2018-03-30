@@ -1569,7 +1569,7 @@
                                   appType:(NSInteger)appType
                                   success:(void (^)(id response))success
 								  failure:(void (^)(NSError *err))failure {
-	NSString *url = [NSString stringWithFormat:@"%@Order/CheckBeforeCreateOrder",BaseUrl];
+	NSString *url = [NSString stringWithFormat:@"%@FreshMart/Order/CheckBeforeCreateOrder",BaseUrl];
 	
 	NSError *error;
 	
@@ -1620,7 +1620,7 @@
 	NSMutableDictionary *dic = @{}.mutableCopy;
 	[dic setObject:mutStr forKey:@"orderInfo"];
 	//    [dic setObject:mutStr forKey:@"Projects"];
-	YCAccountModel *model = [YCAccountModel getAccount];
+//	YCAccountModel *model = [YCAccountModel getAccount];
 	//    if (model.token) {
 	//        [dic setObject:model.token forKey:@"token"];
 	//    }
@@ -1650,7 +1650,7 @@
                           validateInfo:(NSDictionary *)validateInfo
                                success:(void (^)(id response))success
                                failure:(void (^)(NSError *err))failure {
-    NSString *url = [NSString stringWithFormat:@"%@Order/CreateOrder",BaseUrl];
+    NSString *url = [NSString stringWithFormat:@"%@FreshMart/Order/CreateOrder",BaseUrl];
     
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:validateInfo
@@ -1841,7 +1841,7 @@
     }
     [params setObject:passWord forKey:@"spayPWD"];
     
-    YCAccountModel *model = [YCAccountModel getAccount];
+//    YCAccountModel *model = [YCAccountModel getAccount];
 //    if (model.token) {
 //        [params setObject:model.token forKey:@"token"];
 //    }
