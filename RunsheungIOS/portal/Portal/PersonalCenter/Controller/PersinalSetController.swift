@@ -367,17 +367,17 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
     func logout(){
       showLoading()
       logOut { [weak self] result in
-        guard let strongself = self else { return }
-        strongself.hideLoading()
+        self?.hideLoading()
         switch result {
         case .success(let data):
             let json = JSON(data)
             let status = json["status"].string
             if status == "1" {
                YCUserDefaults.accountModel.value = nil
+               self?.navigationController?.popViewController(animated: true)
             }
         case .failure(let error):
-            strongself.showMessage(error.localizedDescription)
+            self?.showMessage(error.localizedDescription)
         }
       }
     }

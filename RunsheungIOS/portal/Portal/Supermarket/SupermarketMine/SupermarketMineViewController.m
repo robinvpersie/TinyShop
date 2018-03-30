@@ -257,8 +257,9 @@
             //cell.textLabel.text = @"我的直播";
             //cell.textLabel.text = NSLocalizedString(@"SMOrderRefundTitle", nil);
         } else if (indexPath.row == 2) {
+            cell.textLabel.text = @"공고";
             //cell.textLabel.text = @"优惠券";
-            cell.textLabel.text = @"할인권";
+            //cell.textLabel.text = @"할인권";
             //cell.textLabel.text = NSLocalizedString(@"SMMineAboutUs", nil);
         } else if (indexPath.row == 3) {
             //cell.textLabel.text = @"我的消息";
@@ -330,7 +331,7 @@
 
     BOOL islogIn = [YCAccountModel islogin];
     if (!islogIn) {
-        [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"您还未登录,请先登录!"];
+        [self goToLogin:^{ }];
         return;
     }
 
@@ -342,7 +343,6 @@
             [self.navigationController pushViewController:vc animated:YES];
         } else if (indexPath.row == 1) {
             SupermarketRefundController *vc = [[SupermarketRefundController alloc] init];
-//            SupermarketRefundDetailController *vc = [[SupermarketRefundDetailController alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
             vc.controllerType = self.controllerType;
             [self.navigationController pushViewController:vc animated:YES];
@@ -351,9 +351,12 @@
 //            SupermarketAboutViewController *vc = [[SupermarketAboutViewController alloc] init];
 //            vc.hidesBottomBarWhenPushed = YES;
 //            [self.navigationController pushViewController:vc animated:YES];
-            AllCouponViewController *vc = [[AllCouponViewController alloc] init];
-            vc.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:vc animated:YES];
+            YCWebViewController *web = [[YCWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://www.gigawon.co.kr:1314/QnA/sub_01"]];
+            web.title = @"공고";
+//            AllCouponViewController *vc = [[AllCouponViewController alloc] init];
+//            vc.hidesBottomBarWhenPushed = YES;
+            web.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:web animated:YES];
         } else if (indexPath.row == 3) {
 //            return;
 //            SupermarketAboutViewController *vc = [[SupermarketAboutViewController alloc] init];
