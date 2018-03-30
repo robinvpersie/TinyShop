@@ -89,7 +89,8 @@
 	label.textAlignment= NSTextAlignmentCenter;
 	label.font = [UIFont systemFontOfSize:20 weight:1.2f];
 	label.textColor = self.showColors[pickerView.tag];
-
+	[[pickerView.subviews objectAtIndex:1] setHidden:TRUE];
+	[[pickerView.subviews objectAtIndex:2] setHidden:TRUE];
 	return label;
 	
 }

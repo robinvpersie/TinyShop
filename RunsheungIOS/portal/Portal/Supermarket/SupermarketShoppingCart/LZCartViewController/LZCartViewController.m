@@ -80,7 +80,6 @@ typedef void(^finishAction)();
 
 
 - (void)loadData {
-	//    [self requestShoppingCartData];
 	[self requestShoppingCartData:^{
 		
 	}];
@@ -200,7 +199,7 @@ typedef void(^finishAction)();
 	[self requestShoppingCartData:^{
 		
 	}];
-	//
+	
 }
 
 - (void)dealloc

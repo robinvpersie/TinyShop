@@ -287,7 +287,7 @@
 	[good setObject:self.goodsModel.itemCode forKey:@"item_code"];
 	[good setObject:@(self.amout) forKey:@"count"];
 	[good setObject:self.goodsModel.price forKey:@"unit_price"];
-	[good setObject:self.goodsModel.business_code forKey:@"DIV_CODE"];
+//	[good setObject:self.goodsModel.business_code forKey:@"DIV_CODE"];
 	[goods addObject:good];
 	[parmas setObject:goods forKey:@"goods"];
 	NSMutableArray *attchments = @[].mutableCopy;
