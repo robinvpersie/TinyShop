@@ -73,13 +73,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-
-//    NSArray *array = self.navigationController.navigationBar.subviews;
-//    UIView *view = array.firstObject;
-//    view.alpha = 1;
-//
-//    self.automaticallyAdjustsScrollViewInsets = YES;
-//    self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.hidden = NO;
 
 }
@@ -91,6 +84,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	_imageNames = @[@"icon_myaddress",@"icon_mylive",@"icon_coupon",@"icon_notice",@"icon_setting2",@"icon_collection2"];
+	_titles = @[NSLocalizedString(@"SupermarketMyOrderWaitPay", nil),/*@"待发货",@"待自提",*/NSLocalizedString(@"SupermarketMyOrderWaitReceive", nil),NSLocalizedString(@"SupermarketMyOrderWaitComment", nil)];
+	_footerImageNames = @[@"Icon_stay",/*@"Iocn_fh",@"Iocn_zt",*/@"Iocn_sh",@"Iocn_evaluate"];
+	
+	[self createSubViews];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkLogStatus) name:SupermarketSelectTabBar object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUIWithNotLogin) name:TokenWrong object:nil];
@@ -100,23 +98,28 @@
     self.navigationItem.title = @"我的";
     self.view.backgroundColor = [UIColor redColor];
 
-      [self checkLogStatus];
-
-    _imageNames = @[@"icon_myaddress",@"icon_mylive",@"icon_coupon",@"icon_notice",@"icon_setting2",@"icon_collection2"];
-    _titles = @[NSLocalizedString(@"SupermarketMyOrderWaitPay", nil),/*@"待发货",@"待自提",*/NSLocalizedString(@"SupermarketMyOrderWaitReceive", nil),NSLocalizedString(@"SupermarketMyOrderWaitComment", nil)];
-//    _titles = @[@"我的地址",@"我的直播",@"优惠券",@"我的消息",@"系统设置",@"我的收藏"];
-    _footerImageNames = @[@"Icon_stay",/*@"Iocn_fh",@"Iocn_zt",*/@"Iocn_sh",@"Iocn_evaluate"];
+//      [self checkLogStatus];
 
 
-
-    [self createSubViews];
-
-//    [self requestData];
+    [self requestData];
 
     // Do any additional setup after loading the view.
 }
 
 - (void)logInNotification:(NSNotification *)notification {
+	[KLHttpTool getToken:^(id token) {
+		if (token) {
+			YCAccountModel *accountmodel = [YCAccountModel getAccount];
+			NSLog(@"%@",accountmodel.avatarPath);
+			[headerView refreshUIWithPhone:accountmodel.customId nickName:accountmodel.userName avatarUrlString:accountmodel.avatarPath];
+
+		}else{
+			[headerView refreshUIWithPhone:@"电话号码" nickName:@"昵称" avatarUrlString:@""];
+		}
+	} failure:^(NSError *errToken) {
+		
+	}];
+	
     BOOL isLogin = [YCAccountModel islogin];
 
     if (isLogin) {
@@ -134,8 +137,18 @@
 
 
     headerView = [[SupermarketMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 250.0 * 2.0/3.0)];
-//    headerView.controllerType = self.controllerType;
-//    headerView.divCode = _divCode;
+	[KLHttpTool getToken:^(id token) {
+		if (token) {
+			YCAccountModel *accountmodel = [YCAccountModel getAccount];
+			NSLog(@"%@",accountmodel.avatarPath);
+			[headerView refreshUIWithPhone:accountmodel.customId nickName:accountmodel.userName avatarUrlString:accountmodel.avatarPath];
+			
+		}else{
+			[headerView refreshUIWithPhone:@"电话号码" nickName:@"昵称" avatarUrlString:@""];
+		}
+	} failure:^(NSError *errToken) {
+		
+	}];
     _tableView.tableHeaderView = headerView;
 
 }

@@ -131,8 +131,8 @@
 		self.tableView.estimatedRowHeight = 0;
 		self.tableView.estimatedSectionFooterHeight = 0;
 		self.tableView.estimatedSectionHeaderHeight = 0;
-		self.tableView.separatorColor = RGB(237, 237, 237);
-		self.tableView.backgroundColor = RGB(237, 237, 237);
+		self.tableView.separatorColor = RGB(245, 245, 245);
+		self.tableView.backgroundColor = RGB(245, 245, 245);
 	
 		[self.scrollview addSubview:self.tableView];
 		[self.scrollview.mj_footer beginRefreshing];
@@ -142,7 +142,7 @@
 
 #pragma mark --上拉刷新
 - (void)footerRefresh{
-	
+	[self.view endEditing:YES];
 	[self loadMainDataWith:[NSString stringWithFormat:@"%d",paged] withPageSize:@"5"];
 }
 
@@ -160,10 +160,12 @@
 	UITableViewCell *cell = [[UITableViewCell alloc]init];
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	NSDictionary *dic = self.mutaleData[indexPath.row];
+	cell.contentView.backgroundColor = RGB(245, 245, 245);
 	UIImageView *showImg = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, APPScreenWidth - 20, 110)];
 	[showImg sd_setImageWithURL:[NSURL URLWithString:dic[@"shop_thumnail_image"]] placeholderImage:[UIImage imageNamed:@"banner01"]];
 	showImg.userInteractionEnabled = YES;
 	[cell.contentView addSubview:showImg];
+	
 	
 	return cell;
 }
@@ -209,7 +211,7 @@
 		NSString *longtitude =  [NSString stringWithFormat:@"%f",location2d.longitude];
 		SetUserDefault(@"latitude", latitude);
 		SetUserDefault(@"longtitude", longtitude);
-
+		
 		[YCLocationService turnOff];
 		CLGeocoder *geocoder = [[CLGeocoder alloc] init];
 		[geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {

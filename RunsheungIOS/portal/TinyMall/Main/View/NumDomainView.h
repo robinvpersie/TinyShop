@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface NumDomainView : UIView<UICollectionViewDelegate,UICollectionViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource,UIScrollViewDelegate>
+@interface NumDomainView : UIView<UICollectionViewDelegate,UICollectionViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource,UIScrollViewDelegate,UITextFieldDelegate>
 
 /**
  滑动UICollectView
@@ -40,6 +40,9 @@
 
 @property (nonatomic,retain)NSArray *showColors;
 @property (nonatomic,retain)NSArray *BigCategoresArray;
+
+@property (nonatomic,retain)NSMutableArray *fieldArray;
+
 
 
 

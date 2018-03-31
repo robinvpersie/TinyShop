@@ -44,8 +44,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _payWayTitles = @[NSLocalizedString(@"GIGA支付", nil),NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"UnionPay", nil),NSLocalizedString(@"AliPay", nil)];
-    _payWayImageNames = @[@"icon_weichatpay",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
+    _payWayTitles = @[NSLocalizedString(@"宇成支付", nil),NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"UnionPay", nil),NSLocalizedString(@"AliPay", nil)];
+    _payWayImageNames = @[@"icon_ycpay",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:AliPayCancleNotification object:nil];
     
@@ -156,7 +156,7 @@
     }
     MBProgressHUD *payshow = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     payshow.mode = MBProgressHUDModeText;
-    payshow.label.text = @"正在进入支付...";
+//    payshow.label.text = @"正在进入支付...";
     [payshow showAnimated:YES];
 	if ([payType isEqualToString:@"1"]) {
 		__weak SupermarketOrderWaitPayDetailController *weakSelf = self;

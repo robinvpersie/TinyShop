@@ -9,6 +9,7 @@
 #import "NumDomainView.h"
 #import "TSCategoryController.h"
 #import "UIView+ViewController.h"
+#import "Masonry.h"
 #define ScrollviewHeight  (self.frame.size.width)/5.0f
 
 #define topLandScropeTag 1001
@@ -52,13 +53,58 @@
 	self.showColors = @[RGB(255, 86, 100),RGB(220, 211, 57),RGB(62, 220, 108),RGB(37, 126, 220),RGB(10, 34, 60)];
 	self.pickerNumbers = @[@"1", @"2", @"3",@"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16"];
 	
-	for (int i = 0; i<4; i++) {
-		UIPickerView *pickView = [[UIPickerView alloc]initWithFrame:CGRectMake(i*(CGFloat)CGRectGetWidth(pickbackImg.frame)/5.5,0, (CGFloat)CGRectGetWidth(pickbackImg.frame)/5.5, 60)];
-		pickView.dataSource = self;
-		pickView.delegate = self;
-		pickView.tag = i;
-		[pickbackImg addSubview:pickView];
+//	for (int i = 0; i<4; i++) {
+//		UIPickerView *pickView = [[UIPickerView alloc]initWithFrame:CGRectMake(i*(CGFloat)CGRectGetWidth(pickbackImg.frame)/5.5,0, (CGFloat)CGRectGetWidth(pickbackImg.frame)/5.5, 60)];
+//		pickView.dataSource = self;
+//		pickView.delegate = self;
+//		pickView.tag = i;
+//		[pickbackImg addSubview:pickView];
+//	}
+	
+	self.fieldArray = @[].mutableCopy;
+	for (int j= 0; j<4; j++) {
+		UITextField*inputview = [[UITextField alloc]initWithFrame:CGRectMake(j*(CGFloat)CGRectGetWidth(pickbackImg.frame)/5.5,0, (CGFloat)CGRectGetWidth(pickbackImg.frame)/5.5, 60)];
+		inputview.textColor = self.showColors[j];
+		inputview.textAlignment = NSTextAlignmentCenter;
+		inputview.font = [UIFont systemFontOfSize:20 weight:1.2f];
+		inputview.returnKeyType = UIReturnKeyDone;
+		inputview.delegate = self;
+		inputview.tag = j;
+		inputview.keyboardType =  UIKeyboardTypeNumberPad;
+		inputview.text = [NSString stringWithFormat:@"%d",self.pickerIndex1];
+		[pickbackImg addSubview:inputview];
+		[self.fieldArray addObject:inputview];
 	}
+	
+	
+	
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+	switch (textField.tag) {
+		case 0:
+		{
+			self.pickerIndex1 = [textField.text intValue];
+		}
+			break;
+		case 1:
+		{
+			self.pickerIndex2 = [textField.text intValue];
+		}
+			break;
+			
+		case 2:
+		{
+			self.pickerIndex3 = [textField.text intValue];
+		}
+			break;
+			
+			
+		default:
+			break;
+	}
+	
+
 }
 
 #pragma mark -- UIPickerView代理方法
@@ -116,10 +162,11 @@
 }
 - (void)okAction:(UIButton*)sender{
 	
-		TSCategoryController *cateVC = [[TSCategoryController alloc]init];
-		cateVC.hidesBottomBarWhenPushed = YES;
-		cateVC.leves = @[[NSString stringWithFormat:@"%d",self.pickerIndex1],[NSString stringWithFormat:@"%d",self.pickerIndex2],[NSString stringWithFormat:@"%d",self.pickerIndex3]].mutableCopy;
-		[self.viewController.navigationController pushViewController:cateVC animated:YES];
+	[self endEditing:NO];
+	TSCategoryController *cateVC = [[TSCategoryController alloc]init];
+	cateVC.hidesBottomBarWhenPushed = YES;
+	cateVC.leves = @[[NSString stringWithFormat:@"%d",self.pickerIndex1],[NSString stringWithFormat:@"%d",self.pickerIndex2],[NSString stringWithFormat:@"%d",self.pickerIndex3]].mutableCopy;
+	[self.viewController.navigationController pushViewController:cateVC animated:YES];
 		
 	
 }
@@ -142,8 +189,8 @@
 		self.topLandScopeCollectView.delegate = self;
 		self.topLandScopeCollectView.dataSource = self;
 		self.topLandScopeCollectView.backgroundColor = [UIColor colorWithRed:60/255.0f green:60/255.0f blue:60/255.0f alpha:1.0f];
+		
 //		[self addSubview:self.topLandScopeCollectView];
-
 	}
 	if (self.bottomLandScopeCollectView == nil) {
 		UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
@@ -191,7 +238,7 @@
 
 	if (self.centerShowCollectView == nil) {
 		UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-		layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+//		layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 		self.centerShowCollectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 60, 5* ScrollviewHeight,3* ScrollviewHeight) collectionViewLayout:layout];
 		self.centerShowCollectView.tag = centerScrollViewTag;
 		[self.centerShowCollectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCellID"];

@@ -1576,6 +1576,7 @@
 	NSMutableDictionary *mutableParams = params.mutableCopy;
 	
 	if (isShoppingCart) {
+		
 		[mutableParams setObject:@"true" forKey:@"onCartProcess"];
 	} else {
 		[mutableParams setObject:@"false" forKey:@"onCartProcess"];

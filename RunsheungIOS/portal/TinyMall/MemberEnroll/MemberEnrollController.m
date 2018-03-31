@@ -86,6 +86,7 @@
         [KLHttpTool LoginMemberWithMemid:phone.text withMempwd:[self sha512: pwd.text] withDeviceNo:UUID success:^(id response) {
             [weakself hideLoading];
 			if ([response[@"status"] intValue] == 1) {
+				
 				YCAccountModel *accountModel = [YCAccountModel new];
 				accountModel.memid = response[@"memid"];
 				//accountModel.token =[NSString stringWithFormat:@"%@|%@",response[@"token"],UUID] ;
@@ -98,18 +99,16 @@
 				accountModel.parentId = response[@"parent_id"];
 				accountModel.customlev = response[@"custom_lev1"];
 				accountModel.password = pwd.text;
-//                NSString *token = dic[@"token"];
-//                NSString *ssoid = dic[@"ssoId"];
-//                NSString *customCode = dic[@"custom_code"];
-//                NSString *deviceNo = dic[@"deviceNo"];
-                
-//                NSString *finalToken = [NSString stringWithFormat:@"%@|%@|%@|%@", accountModel.token, accountModel.ssoId, accountModel.customCode, UUID];
+				accountModel.avatarPath = response[@"profile_img"];
+				accountModel.userName = response[@"nick_name"];
                 NSString *finalToken = [NSString stringWithFormat:@"%@|%@|%@", accountModel.token, accountModel.ssoId, accountModel.customCode];
                 accountModel.combineToken = finalToken;
 				NSData *objectTodata = [NSKeyedArchiver archivedDataWithRootObject:accountModel];
+				
 				[[NSUserDefaults standardUserDefaults] setObject:objectTodata forKey:@"accountModel"];
 				[[NSNotificationCenter defaultCenter]postNotificationName:@"YCAccountIsLogin" object:nil];
                 [weakself dismissViewControllerAnimated:true completion:nil];
+				
             } else {
                 [weakself showMessage:response[@"msg"] interval:2 completionAction:^{ }];
             }
