@@ -254,11 +254,19 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        defer {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
         let sectiontype = sectionType(indexPath: indexPath)
         switch sectiontype {
         case .logOut:
-            YCAlert.confirmOrCancel(title: "提示".localized, message: "确定要退出账号吗？".localized, confirmTitle: "确定".localized, cancelTitle: "取消".localized, inViewController: self, withConfirmAction: { [weak self] in
+            YCAlert.confirmOrCancel(title: "提示".localized,
+                                    message: "确定要退出账号吗？".localized,
+                                    confirmTitle: "确定".localized,
+                                    cancelTitle: "取消".localized,
+                                    inViewController: self,
+                                    withConfirmAction:
+            { [weak self] in
                 self?.logout()
             })
         case .sexAndNickName:
@@ -279,7 +287,8 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
                 })
                 
                 YCAlert.alertWithModelArray([alertActionBoy,alerActionGirl], title: "选择性别", message: nil, style: .actionSheet, viewController: self)
-            }else {
+                
+            } else {
                 YCAlert.textInput(title:"更改昵称".localized, placeholder: "输入昵称".localized, oldText: nil, dismissTitle: "确定".localized, inViewController: self, withFinishedAction: { [weak self] str in
                      guard let strongself = self,
                         !str.isEmpty else {
@@ -326,41 +335,75 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
                                                            withToken: token,
                                                            success:
             { [weak self] result in
-                   self?.hideLoading()
+                account?.userName = nickname
+                account?.avatarPath = imagePath
+                let genderString = gender == "m" ? "女":"男"
+                account?.usersex = YCAccountModel.userSex(rawValue: genderString)
+                let archiveData = NSKeyedArchiver.archivedData(withRootObject: account!)
+                YCUserDefaults.accountModel.value = archiveData
+                self?.hideLoading()
             }) { [weak self] (error) in
-                   self?.hideLoading()
+                self?.hideLoading()
             }
     }
     
     
     func choosePhoto(cell: PersonalHeaderCell){
         
-        let alertController = UIAlertController(title: "选择照片".localized, message: nil, preferredStyle: .actionSheet)
-        
-        let cancelAction = UIAlertAction(title: "取消".localized, style: .cancel) {_ in}
-        alertController.addAction(cancelAction)
-        
-        let CameroAction = UIAlertAction(title: "拍照".localized, style: .default) { action in
-            proposeToAccess(.camera, agreed: { [weak self] in
-                guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
-                if let strongself = self {
-                   strongself.imagePicker.sourceType = .camera
-                   strongself.present(strongself.imagePicker, animated: true, completion: nil)
+        YCAlert.confirmOrCancel(title: "选择照片".localized, message: nil, confirmTitle: "拍照".localized, cancelTitle: "相册".localized, inViewController: self, withConfirmAction: { [weak self] in
+            proposeToAccess(.camera, agreed: {
+                guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+                    return
                 }
-            }, rejected: {})
-        }
-        alertController.addAction(CameroAction)
-        
-        let AlbumAction = UIAlertAction(title: "相册".localized, style: .default, handler: { action in
-            proposeToAccess(.photos, agreed: { [weak self] in
-                guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
                 if let strongself = self {
-                    strongself.imagePicker.sourceType = .photoLibrary
+                    strongself.imagePicker.sourceType = .camera
                     strongself.present(strongself.imagePicker, animated: true, completion: nil)
-                }}, rejected: {})
-        })
-        alertController.addAction(AlbumAction)
-        present(alertController, animated: true, completion: nil)
+                }
+            }, rejected: {
+                
+            })
+            
+        }) { [weak self] in
+            proposeToAccess(.photos, agreed: {
+                guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+                    return
+                }
+                if let this = self {
+                    this.imagePicker.sourceType = .photoLibrary
+                    this.present(this.imagePicker, animated: true, completion: nil)
+                }
+            }, rejected: {
+                
+            })
+            
+        }
+        
+//        let alertController = UIAlertController(title: "选择照片".localized, message: nil, preferredStyle: .actionSheet)
+//
+//        let cancelAction = UIAlertAction(title: "取消".localized, style: .cancel) {_ in}
+//        alertController.addAction(cancelAction)
+//
+//        let CameroAction = UIAlertAction(title: "拍照".localized, style: .default) { action in
+//            proposeToAccess(.camera, agreed: { [weak self] in
+//                guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+//                if let strongself = self {
+//                   strongself.imagePicker.sourceType = .camera
+//                   strongself.present(strongself.imagePicker, animated: true, completion: nil)
+//                }
+//            }, rejected: {})
+//        }
+//        alertController.addAction(CameroAction)
+//
+//        let AlbumAction = UIAlertAction(title: "相册".localized, style: .default, handler: { action in
+//            proposeToAccess(.photos, agreed: { [weak self] in
+//                guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
+//                if let strongself = self {
+//                    strongself.imagePicker.sourceType = .photoLibrary
+//                    strongself.present(strongself.imagePicker, animated: true, completion: nil)
+//                }}, rejected: {})
+//        })
+//        alertController.addAction(AlbumAction)
+//        present(alertController, animated: true, completion: nil)
     }
     
     
@@ -373,11 +416,8 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
             let json = JSON(data)
             let status = json["status"].string
             if status == "1" {
-			
-				
-				let notificationName = Notification.Name(rawValue: "YCAccountIsLogin")
-			
-				NotificationCenter.default.post(name: notificationName, object: nil, userInfo: nil)
+			   let notificationName = Notification.Name(rawValue: "YCAccountIsLogin")
+			   NotificationCenter.default.post(name: notificationName, object: nil, userInfo: nil)
                YCUserDefaults.accountModel.value = nil
                self?.navigationController?.popViewController(animated: true)
             }
@@ -397,6 +437,7 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
            let imageData = UIImageJPEGRepresentation(Image, 0.9)!
            let currentDateStr = "WPortal" +  Date().string(custom: "YYYYMMddhhmmss") + ".jpg"
            let uploadAttachment = UploadAttachment(attType: .avatar, source: .data(imageData), fileExtension: .jpeg, fileName: currentDateStr)
+            
            showLoading()
            let uploadOperation = UploadAttachmentOperation(uploadAttachment: uploadAttachment, completion: { [weak self] result in
                 guard let this = self else { return }
