@@ -12,16 +12,14 @@ import Kingfisher
 import MBProgressHUD
 import SwiftyJSON
 
-fileprivate let headerHeight:CGFloat = 184
+fileprivate let headerHeight: CGFloat = 184
 
-class PersonalCenterController: BaseController,UITableViewDelegate,UITableViewDataSource {
+class PersonalCenterController: BaseController, UITableViewDelegate, UITableViewDataSource {
     
     var isHotel = false
     
-    private lazy var headerview:UIView = {
+    private lazy var headerview: UIView = {
         let headerview = UIImageView()
-
-  
         if RSJudgeIsX.current.isX() {
             headerview.frame.size = CGSize(width: screenWidth, height: headerHeight + 32)
         }else{
@@ -29,57 +27,48 @@ class PersonalCenterController: BaseController,UITableViewDelegate,UITableViewDa
         }
         headerview.isUserInteractionEnabled = true
         headerview.image = UIImage(named: "img_personalcenter_bg")
-        headerview.addSubview(self.avatarBorderImageView)
-        headerview.addSubview(self.avatarImageView)
-        headerview.addSubview(self.namelabel)
-        headerview.addSubview(self.editbtn)
+        headerview.addSubview(avatarBorderImageView)
+        headerview.addSubview(avatarImageView)
+        headerview.addSubview(namelabel)
+        headerview.addSubview(editbtn)
         
-        self.avatarBorderImageView.snp.makeConstraints { (make) in
-            make.height.equalTo(65)
-            make.width.equalTo(65)
-          
+        avatarBorderImageView.snp.makeConstraints { (make) in
+            make.height.width.equalTo(65)
             if RSJudgeIsX.current.isX(){
                  make.top.equalTo(headerview).offset(headerHeight - 78)
             }else {
                  make.top.equalTo(headerview).offset(headerHeight - 110)
             }
-           
             make.right.equalTo(headerview).offset(-20)
         }
-        self.avatarImageView.snp.makeConstraints { (make) in
-            make.left.equalTo(self.avatarBorderImageView).offset(0)
-            make.right.equalTo(self.avatarBorderImageView).offset(0)
-            make.top.equalTo(self.avatarBorderImageView).offset(0)
-            make.bottom.equalTo(self.avatarBorderImageView).offset(0)
+        
+        avatarImageView.snp.makeConstraints { (make) in
+            make.edges.equalTo(avatarBorderImageView)
         }
         
-        self.namelabel.snp.makeConstraints { (make) in
+        namelabel.snp.makeConstraints { (make) in
             make.height.equalTo(35)
             make.left.equalTo(10)
-            make.bottom.equalTo(self.avatarBorderImageView.snp.bottom).offset(-15)
-            
+            make.bottom.equalTo(avatarBorderImageView).offset(-15)
         }
         
-        self.editbtn.snp.makeConstraints({ (make) in
-            make.height.equalTo(16)
-            make.width.equalTo(16)
-            make.top.equalTo(self.namelabel.snp.top).offset(10)
-            make.left.equalTo(self.namelabel.snp.right).offset(10)
-            
+        editbtn.snp.makeConstraints({ (make) in
+            make.height.width.equalTo(16)
+            make.top.equalTo(namelabel).offset(10)
+            make.left.equalTo(namelabel.snp.right).offset(10)
         })
-        
         return headerview
     }()
     
-    private lazy var avatarBorderImageView:UIImageView = {
+    private lazy var avatarBorderImageView: UIImageView = {
        let avatarBorderImageView = UIImageView()
-       avatarBorderImageView.backgroundColor = UIColor(red: 235/255.0, green: 98/255.0, blue: 105/255.0, alpha: 1)
+       avatarBorderImageView.backgroundColor = UIColor(red: 235, green: 98, blue: 105)
        avatarBorderImageView.layer.masksToBounds = true
        avatarBorderImageView.layer.cornerRadius = CGFloat(75.0/2.0)
        return avatarBorderImageView
     }()
     
-    private lazy var avatarImageView:UIImageView = {
+    private lazy var avatarImageView: UIImageView = {
        let avatarImageView = UIImageView()
        avatarImageView.image = UIImage(named: "img_headphoto")
        avatarImageView.layer.masksToBounds = true
@@ -88,26 +77,23 @@ class PersonalCenterController: BaseController,UITableViewDelegate,UITableViewDa
     }()
     
     
-    var tableview:UITableView!
+    var tableview: UITableView!
     
-    private lazy var namelabel:UILabel = {
+    private lazy var namelabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
         label.font = UIFont.systemFont(ofSize: 20)
         return label
     }()
     
-    private lazy var editbtn:UIButton = {
-        
+    private lazy var editbtn: UIButton = {
         let button = UIButton()
-        button.addTarget(self, action: #selector(editAction(sender:)), for:
-            .touchUpInside)
-        button.setBackgroundImage(UIImage.init(named: "editbtn"), for: .normal)
+        button.addTarget(self, action: #selector(editAction(sender:)), for: .touchUpInside)
+        button.setBackgroundImage(UIImage(named: "editbtn"), for: .normal)
         return button
-        
     }()
     
-    func editAction(sender:UIButton) -> () {
+    @objc func editAction(sender: UIButton) -> () {
 //        print("现在开始编辑个人的相关信息")
         let setvc = PersinalSetController()
         setvc.showflag = 1
@@ -121,12 +107,12 @@ class PersonalCenterController: BaseController,UITableViewDelegate,UITableViewDa
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
 
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.darkText]
-
     }
 
     
@@ -134,8 +120,6 @@ class PersonalCenterController: BaseController,UITableViewDelegate,UITableViewDa
         super.viewDidLoad()
         
         title = "我的".localized
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow, style: .plain, target: self, action: #selector(didback))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         view.backgroundColor = UIColor.groupTableViewBackground
         
         tableview = UITableView(frame: CGRect.zero, style: .plain)
@@ -154,11 +138,10 @@ class PersonalCenterController: BaseController,UITableViewDelegate,UITableViewDa
         } else {
             automaticallyAdjustsScrollViewInsets = false
         }
-        tableview.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableview.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableview.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableview.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
+        tableview.snp.makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
+     
         let versionLabel = UILabel()
         versionLabel.textColor = UIColor.gray
         versionLabel.font = UIFont.systemFont(ofSize: 14)
@@ -166,8 +149,11 @@ class PersonalCenterController: BaseController,UITableViewDelegate,UITableViewDa
         versionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(versionLabel)
         versionLabel.text = "人生药业Version:" + "1.0.0"
-        versionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        versionLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant:-40).isActive = true
+        versionLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(view)
+            make.bottom.equalTo(view).offset(-40)
+        }
+     
 
         initTheLocalData()
     }
@@ -209,8 +195,8 @@ class PersonalCenterController: BaseController,UITableViewDelegate,UITableViewDa
             }
         }
         
-        func GetWithToken(_ token:String,_ memid:String){
-            PersonalGetProfileModel.Get(memberID:memid,token: token){ [weak self] (result) in
+        func GetWithToken(_ token: String, _ memid: String) {
+            PersonalGetProfileModel.Get(memberID: memid,token: token){ [weak self] result in
                 guard let strongself = self else { return }
                 switch result {
                    case .success(let json):
@@ -244,13 +230,12 @@ class PersonalCenterController: BaseController,UITableViewDelegate,UITableViewDa
            return 2
     }
 
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1{
            return 5
         }
         return 1
-    
-    }
+     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
          return nil
@@ -264,7 +249,7 @@ class PersonalCenterController: BaseController,UITableViewDelegate,UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0{
+        if indexPath.section == 0 {
             return 80
         }
         return  50
@@ -293,7 +278,7 @@ class PersonalCenterController: BaseController,UITableViewDelegate,UITableViewDa
             cell.CellLable.text = "系统设置".localized
             }
         }else {
-            let cells:ProfileServiceCell = ProfileServiceCell()
+            let cells = ProfileServiceCell()
             cells.selectAction = { [weak self] type in
                 guard let this = self else { return }
                 switch type {
@@ -344,7 +329,7 @@ class PersonalCenterController: BaseController,UITableViewDelegate,UITableViewDa
             }
             return cells
             
-    }
+        }
         cell.CellLable.textColor = UIColor.darkcolor
         return cell
     }

@@ -8,17 +8,17 @@
 
 import UIKit
 
-class PersonalMessageController: BaseController {
+class PersonalMessageController: BaseViewController {
     
     
-    var tab:TYTabButtonPagerController!
+    var tab: TYTabButtonPagerController!
     
-    fileprivate var ControllerArray:[UIViewController]{
+    fileprivate var ControllerArray: [UIViewController] {
         get {
-         let star = PersonalStarController()
-         star.message = self
-         let personal = PersonalCommentController()
-         return [personal,star]
+            let star = PersonalStarController()
+            star.message = self
+            let personal = PersonalCommentController()
+            return [personal,star]
         }
     }
     
@@ -27,9 +27,7 @@ class PersonalMessageController: BaseController {
         super.viewDidLoad()
         
         title = "我的消息".localized
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow, style: .plain, target: self, action: #selector(yc_back))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.darkText
-                
+      
         tab = TYTabButtonPagerController()
         tab.showbadge = false
         tab.dataSource = self

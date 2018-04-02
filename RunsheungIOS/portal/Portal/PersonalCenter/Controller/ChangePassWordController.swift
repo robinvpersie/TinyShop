@@ -26,9 +26,9 @@ class ChangePassWordController: BaseViewController {
         super.viewDidLoad()
         
         title = "修改密码"
-        view.backgroundColor = UIColor.BaseControllerBackgroundColor
+        view.backgroundColor = UIColor.groupTableViewBackground
         
-        oldPasswordfield = YCTextField(frame: CGRect(x: leftEdges, y: toTopEdges+64, width: (screenWidth - leftEdges*2), height: textfieldHeight))
+        oldPasswordfield = YCTextField(frame: CGRect(x: leftEdges, y: toTopEdges + 64, width: (screenWidth - leftEdges*2), height: textfieldHeight))
         oldPasswordfield.placeholder = "输入旧密码"
         oldPasswordfield.layer.backgroundColor = UIColor.white.cgColor
         oldPasswordfield.cornerRadius = textfieldHeight/2
@@ -63,26 +63,21 @@ class ChangePassWordController: BaseViewController {
         confirmBtn.isEnabled = false
         view.addSubview(confirmBtn)
         confirmBtn.rx.tap.subscribe(onNext: { [weak self] in
-            guard let strongself = self else {
-                return
-            }
+            guard let strongself = self else { return }
             strongself.view.endEditing(true)
             if strongself.newPasswordConfirmfield.text != strongself.newPasswordfield.text {
                 YCAlert.alertSorry(message: "您设置的密码不相同", inViewController: strongself)
                 return
             }
             strongself.showLoading()
-            strongself.changePassword(new: strongself.newPasswordfield.text!,
-                                      old: strongself.oldPasswordfield.text!,
-                                      completion:
-            { result in
+            strongself.changePassword(new: strongself.newPasswordfield.text!, old: strongself.oldPasswordfield.text!, completion: { result in
                   strongself.hideLoading()
                   switch result {
                   case .success(let json):
                      let swiftjson = JSON(json)
                      let status = swiftjson["status"].intValue
                      if status == 1 {
-                         let account = YCAccountModel.getAccount()!
+                        let account = YCAccountModel.getAccount()!
                         account.password = strongself.newPasswordfield.text
                         let objectTodata = NSKeyedArchiver.archivedData(withRootObject: account)
                         YCUserDefaults.accountModel.value = objectTodata
@@ -91,17 +86,17 @@ class ChangePassWordController: BaseViewController {
                             strongself.view.endEditing(true)
                             strongself.yc_back()
                         })
-                        }else {
-                            let msg = swiftjson["msg"].stringValue
+                    }else {
+                        let msg = swiftjson["msg"].string
                         self?.showMessage(msg)
-                        }
+                    }
                   case .failure(let error):
                     strongself.showMessage(error.localizedDescription)
                   }
             })
         }).disposed(by: disposebag)
         
-        Observable.combineLatest(newPasswordfield.rx.text.orEmpty, oldPasswordfield.rx.text.orEmpty,newPasswordConfirmfield.rx.text.orEmpty) { newpassword, oldpassword ,confirmpassword -> Bool in
+        Observable.combineLatest(newPasswordfield.rx.text.orEmpty, oldPasswordfield.rx.text.orEmpty, newPasswordConfirmfield.rx.text.orEmpty) { newpassword, oldpassword ,confirmpassword -> Bool in
             if newpassword.count >= 6 && oldpassword.count >= 6 && confirmpassword.count >= 6{
                self.confirmBtn.layer.backgroundColor = UIColor.navigationbarColor.cgColor
                return true
@@ -122,7 +117,7 @@ class ChangePassWordController: BaseViewController {
     }
 }
 
-extension ChangePassWordController:UITextFieldDelegate {
+extension ChangePassWordController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -132,7 +127,7 @@ extension ChangePassWordController:UITextFieldDelegate {
 
 extension ChangePassWordController {
 
-    func changePassword(new:String, old:String, completion:@escaping (NetWorkResult<JSONDictionary>) ->Void){
+    func changePassword(new: String, old: String, completion: @escaping (NetWorkResult<JSONDictionary>) -> Void){
         
         let parse:(JSONDictionary) -> JSONDictionary? = { json in
             return json
@@ -140,11 +135,13 @@ extension ChangePassWordController {
         let newhash = new.sha512()
         let oldhash = old.sha512()
         let customId = YCAccountModel.getAccount()?.memid ?? ""
+        
         let requestParameter: [String:Any] = [
             "newPassword":newhash,
             "oriPassword":oldhash,
             "custom_code":customId
         ]
+        
         let netResource = NetResource(baseURL: BaseType.shop.URI,
                                       path: "/api/MemberInfo/changePassword",
                                       method: .post,

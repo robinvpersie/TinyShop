@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class MyQRController: UIViewController {
+class MyQRController: BaseViewController {
     
     var avatarImageView: UIImageView!
     var phonelb: UILabel!
@@ -21,10 +21,7 @@ class MyQRController: UIViewController {
         super.viewDidLoad()
         
         title = "我的QR"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow?.withRenderingMode(.alwaysOriginal),
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(yc_back))
+
         view.backgroundColor = UIColor.white
         
         let account = YCAccountModel.getAccount()
@@ -36,7 +33,7 @@ class MyQRController: UIViewController {
             make.width.equalTo(avatarImageView.snp.height)
             make.height.equalTo(70)
             if #available(iOS 11.0, *) {
-                make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
+                make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
             } else {
                 make.top.equalTo(topLayoutGuide.snp.bottom).offset(30)
             }
@@ -46,9 +43,11 @@ class MyQRController: UIViewController {
         
         let layoutGuide = UILayoutGuide()
         view.addLayoutGuide(layoutGuide)
-        layoutGuide.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20).isActive = true
-        layoutGuide.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor).isActive = true
-
+        layoutGuide.snp.makeConstraints { (make) in
+            make.leading.equalTo(avatarImageView.snp.trailing).offset(20)
+            make.centerY.equalTo(avatarImageView)
+        }
+      
         
         phonelb = UILabel()
         phonelb.textColor = UIColor.darkText
@@ -63,14 +62,12 @@ class MyQRController: UIViewController {
         view.addSubview(nicklb)
         
         nicklb.snp.makeConstraints { (make) in
-            make.leading.equalTo(layoutGuide.snp.leading)
-            make.bottom.equalTo(layoutGuide.snp.bottom)
+            make.leading.bottom.equalTo(layoutGuide)
             make.top.equalTo(phonelb.snp.bottom).offset(10)
         }
         
         phonelb.snp.makeConstraints { (make) in
-            make.leading.equalTo(layoutGuide.snp.leading)
-            make.top.equalTo(layoutGuide.snp.top)
+            make.leading.top.equalTo(layoutGuide)
             make.bottom.equalTo(nicklb.snp.top).offset(-10)
         }
         
@@ -84,8 +81,7 @@ class MyQRController: UIViewController {
         }
         
         DispatchQueue.global().async {
-            self.qrGenerate = DCQRCode(info: account?.customId ?? "",
-                                       size: CGSize(width: screenWidth * 0.8, height: screenWidth * 0.8))
+            self.qrGenerate = DCQRCode(info: account?.customId ?? "", size: CGSize(width: screenWidth * 0.8, height: screenWidth * 0.8))
             let qrImage = self.qrGenerate.image()
             DispatchQueue.main.async(execute: {
                  self.qrImgView.image = qrImage
