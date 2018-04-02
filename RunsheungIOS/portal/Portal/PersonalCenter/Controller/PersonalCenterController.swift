@@ -27,10 +27,10 @@ class PersonalCenterController: BaseController, UITableViewDelegate, UITableView
         }
         headerview.isUserInteractionEnabled = true
         headerview.image = UIImage(named: "img_personalcenter_bg")
-        headerview.addSubview(self.avatarBorderImageView)
-        headerview.addSubview(self.avatarImageView)
-        headerview.addSubview(self.namelabel)
-        headerview.addSubview(self.editbtn)
+        headerview.addSubview(avatarBorderImageView)
+        headerview.addSubview(avatarImageView)
+        headerview.addSubview(namelabel)
+        headerview.addSubview(editbtn)
         
         avatarBorderImageView.snp.makeConstraints { (make) in
             make.height.width.equalTo(65)
@@ -53,8 +53,7 @@ class PersonalCenterController: BaseController, UITableViewDelegate, UITableView
         }
         
         editbtn.snp.makeConstraints({ (make) in
-            make.height.equalTo(16)
-            make.width.equalTo(16)
+            make.height.width.equalTo(16)
             make.top.equalTo(namelabel).offset(10)
             make.left.equalTo(namelabel.snp.right).offset(10)
         })
@@ -89,9 +88,8 @@ class PersonalCenterController: BaseController, UITableViewDelegate, UITableView
     
     private lazy var editbtn: UIButton = {
         let button = UIButton()
-        button.addTarget(self, action: #selector(editAction(sender:)), for:
-            .touchUpInside)
-        button.setBackgroundImage(UIImage.init(named: "editbtn"), for: .normal)
+        button.addTarget(self, action: #selector(editAction(sender:)), for: .touchUpInside)
+        button.setBackgroundImage(UIImage(named: "editbtn"), for: .normal)
         return button
     }()
     
@@ -109,12 +107,12 @@ class PersonalCenterController: BaseController, UITableViewDelegate, UITableView
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
 
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.darkText]
-
     }
 
     
@@ -122,7 +120,6 @@ class PersonalCenterController: BaseController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         
         title = "我的".localized
-    
         view.backgroundColor = UIColor.groupTableViewBackground
         
         tableview = UITableView(frame: CGRect.zero, style: .plain)
@@ -198,8 +195,8 @@ class PersonalCenterController: BaseController, UITableViewDelegate, UITableView
             }
         }
         
-        func GetWithToken(_ token:String,_ memid:String){
-            PersonalGetProfileModel.Get(memberID:memid,token: token){ [weak self] result in
+        func GetWithToken(_ token: String, _ memid: String) {
+            PersonalGetProfileModel.Get(memberID: memid,token: token){ [weak self] result in
                 guard let strongself = self else { return }
                 switch result {
                    case .success(let json):
@@ -332,7 +329,7 @@ class PersonalCenterController: BaseController, UITableViewDelegate, UITableView
             }
             return cells
             
-    }
+        }
         cell.CellLable.textColor = UIColor.darkcolor
         return cell
     }
