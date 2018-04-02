@@ -20,11 +20,12 @@
 	
 }
 
+
 - (void)setNavi{
-	UIButton *popBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+	UIButton *popBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 30)];
 	[popBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
 	[popBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
-	[popBtn setImage:[UIImage imageNamed:@"icon_02_01"] forState:UIControlStateNormal];
+	[popBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
 	[popBtn addTarget:self action:@selector(pop:) forControlEvents:UIControlEventTouchUpInside];
 	UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:popBtn];
 	self.navigationItem.leftBarButtonItem = item;

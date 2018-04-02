@@ -63,6 +63,7 @@
 		[hud showAnimated:YES];
 		[self loginMember];
 	}else if (sender.tag == AddMemberBtnTag) {//注册
+		
 	}else if (sender.tag == AddMemberCodeBtnTag){//获取验证码
 		
 		[self getCode];

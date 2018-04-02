@@ -8,7 +8,6 @@
 //
 
 #import "ChoiceHeadView.h"
-#import "Masonry.h"
 
 static const CGFloat arrWidth = 11;
 static const CGFloat locationWidth = 12;

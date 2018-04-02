@@ -99,12 +99,15 @@
 - (UITableView *)baseSearchTableView
 {
     if (!_baseSearchTableView) {
-        UITableView *baseSearchTableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+        UITableView *baseSearchTableView = [UITableView new];
         baseSearchTableView.backgroundColor = PYBackgroundColor;
         baseSearchTableView.delegate = self;
         baseSearchTableView.dataSource = self;
         baseSearchTableView.backgroundColor = BGColor;
         [self.view addSubview:baseSearchTableView];
+		[baseSearchTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.edges.equalTo(self.view);
+		}];
         _baseSearchTableView = baseSearchTableView;
     }
     return _baseSearchTableView;
@@ -284,7 +287,6 @@
     titleView.py_height = 30;
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:titleView.bounds];
     searchBar.barStyle = UIBarStyleDefault;
-//    searchBar.tintColor = RGB(225, 225, 225);
     searchBar.py_width -= PYMargin * 1.5;
     searchBar.placeholder = NSLocalizedString(@"搜索内容", nil);
     searchBar.backgroundColor = [UIColor clearColor];

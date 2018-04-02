@@ -7,14 +7,13 @@
 //
 
 #import "CompanyAuthController.h"
-#import "Masonry.h"
 #import "InputFieldView.h"
 #import <TPKeyboardAvoiding/TPKeyboardAvoidingScrollView.h>
 #include <CommonCrypto/CommonDigest.h>
 @interface CompanyAuthController ()
 
 @property (nonatomic, strong) TPKeyboardAvoidingScrollView * scrollView;
-@property (nonatomic,strong)UIImageView *backImgView;
+@property (nonatomic,strong)  UIImageView *backImgView;
 @property (nonatomic, strong) InputFieldView * input1;
 @property (nonatomic, strong) InputFieldView * input2;
 @property (nonatomic, strong) InputFieldView * input3;
@@ -72,10 +71,8 @@
     }];
 	
 	self.backImgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"loginbackView"]];
-	self.backImgView.frame = CGRectMake(0, 0, APPScreenWidth, APPScreenHeight);
-//	UITapGestureRecognizer *taps = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapBack:)];
+	self.backImgView.frame = CGRectMake(0, 0, APPScreenWidth, 2*APPScreenHeight);
 	self.backImgView.userInteractionEnabled = YES;
-//	[self.backImgView addGestureRecognizer:taps];
 	[self.scrollView addSubview:self.backImgView];
 
 	

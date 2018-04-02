@@ -71,7 +71,7 @@
     [bgView addSubview:phoneNumber];
 
     userName = [UILabel createLabelWithFrame:CGRectMake(phoneNumber.frame.origin.x,
-                                             CGRectGetMaxY(avartarBgView.frame)-20-10, 250, 20) textColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:15] textAlignment:NSTextAlignmentLeft text:@"昵称"];
+                                             CGRectGetMaxY(avartarBgView.frame)-20-10, 250, 20) textColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:15] textAlignment:NSTextAlignmentLeft text:@""];
     [bgView addSubview:userName];
 
     goLogin = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goLogin:)];

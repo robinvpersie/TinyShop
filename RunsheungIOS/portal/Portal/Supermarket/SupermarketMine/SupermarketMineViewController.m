@@ -107,18 +107,7 @@
 }
 
 - (void)logInNotification:(NSNotification *)notification {
-	[KLHttpTool getToken:^(id token) {
-		if (token) {
-			YCAccountModel *accountmodel = [YCAccountModel getAccount];
-			NSLog(@"%@",accountmodel.avatarPath);
-			[headerView refreshUIWithPhone:accountmodel.customId nickName:accountmodel.userName avatarUrlString:accountmodel.avatarPath];
-
-		}else{
-			[headerView refreshUIWithPhone:@"电话号码" nickName:@"昵称" avatarUrlString:@""];
-		}
-	} failure:^(NSError *errToken) {
-		
-	}];
+	
 	
     BOOL isLogin = [YCAccountModel islogin];
 
@@ -137,18 +126,7 @@
 
 
     headerView = [[SupermarketMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 250.0 * 2.0/3.0)];
-	[KLHttpTool getToken:^(id token) {
-		if (token) {
-			YCAccountModel *accountmodel = [YCAccountModel getAccount];
-			NSLog(@"%@",accountmodel.avatarPath);
-			[headerView refreshUIWithPhone:accountmodel.customId nickName:accountmodel.userName avatarUrlString:accountmodel.avatarPath];
-			
-		}else{
-			[headerView refreshUIWithPhone:@"电话号码" nickName:@"昵称" avatarUrlString:@""];
-		}
-	} failure:^(NSError *errToken) {
-		
-	}];
+	
     _tableView.tableHeaderView = headerView;
 
 }

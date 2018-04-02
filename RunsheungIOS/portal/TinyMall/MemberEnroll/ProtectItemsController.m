@@ -26,108 +26,196 @@
 - (void)createSubviews{
 	
 	UIImageView *backImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"clause_bg"]];
-	backImg.frame = self.view.frame;
 	backImg.userInteractionEnabled = YES;
 	[self.view addSubview:backImg];
+	[backImg mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.equalTo(self.view);
+	}];
 	
 	UIImageView *cancel = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_deleteone"]];
-	cancel.frame = CGRectMake(APPScreenWidth - 30,25, 14, 14);
 	cancel.userInteractionEnabled = YES;
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(cancelaction:)];
 	[cancel addGestureRecognizer:tap];
 	[backImg addSubview:cancel];
+	[cancel mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.width.height.equalTo(@15);
+		make.top.equalTo(@30);
+		make.trailing.mas_equalTo(-15);
+	}];
 	
 	//disgreeItem
-	UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(15, APPScreenHeight *0.4, 200, 30)];
+	UILabel *titleLab = [UILabel new];
 	titleLab.text = @"어서오세요";
 	titleLab.font = [UIFont systemFontOfSize:20];
 	titleLab.textColor = [UIColor whiteColor];
 	[backImg addSubview:titleLab];
+	[titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.mas_equalTo(APPScreenHeight *0.4);
+		make.leading.mas_equalTo(15);
+		make.height.mas_equalTo(30);
+	}];
 	
-	UILabel *allChoiceLab = [[UILabel alloc]initWithFrame:CGRectMake(15, APPScreenHeight *0.4 +30, 200, 30)];
+	UILabel *allChoiceLab = [UILabel new];
 	allChoiceLab.text = @"약관동의가 필요합니다 ";
 	allChoiceLab.font = [UIFont systemFontOfSize:20];
 	allChoiceLab.textColor = [UIColor whiteColor];
 	[backImg addSubview:allChoiceLab];
+	[allChoiceLab mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.equalTo(titleLab.mas_bottom);
+		make.height.equalTo(@30);
+		make.leading.equalTo(titleLab.mas_leading);
+	}];
 	
-	self.allchoiceBtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth - 45, CGRectGetMinY(allChoiceLab.frame), 30, 30)];
+	self.allchoiceBtn = [UIButton new];
 	[self.allchoiceBtn setImage:[UIImage imageNamed:@"btn_all_ok_default"] forState:UIControlStateNormal];
 	[self.allchoiceBtn setImage:[UIImage imageNamed:@"btn_all_ok_activation"] forState:UIControlStateSelected];
 	[self.allchoiceBtn addTarget:self action:@selector(allchoiceBtnAction:) forControlEvents:UIControlEventTouchUpInside];
 	[backImg addSubview:self.allchoiceBtn];
+	[self.allchoiceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.width.height.mas_equalTo(30);
+		make.trailing.mas_equalTo(-15);
+		make.top.equalTo(allChoiceLab.mas_top);
+		
+	}];
 	
-	UILabel *butonTitleLab = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(self.allchoiceBtn.frame)-85, CGRectGetMinY(allChoiceLab.frame), 80, 30)];
+	UILabel *butonTitleLab = [UILabel new];
 	butonTitleLab.text = @"전체동의";
 	butonTitleLab.textAlignment = NSTextAlignmentRight;
 	butonTitleLab.font = [UIFont systemFontOfSize:12];
 	butonTitleLab.textColor = RGB(235, 235, 235);
 	[backImg addSubview:butonTitleLab];
+	[butonTitleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.height.equalTo(@30);
+		make.top.equalTo(allChoiceLab.mas_top);
+		make.trailing.equalTo(self.allchoiceBtn.mas_leading).offset(-4);
+	}];
 
+	NSArray*titleArray = @[@"함께가게이용약관동의",@"전자금융거래이용약관동의",@"개인정보수집이용동의",@"마케팅정보메일,SMS수신동의(선택)",@"만14세이상고객만가입가능합니다.",@"다음으로"];
 	
-	UIButton *item1 = [self bottomLinebutton:@"함께가게 이용약관 동의" withFrame:CGRectMake(15, CGRectGetMaxY(allChoiceLab.frame), 120, 30)];
+	const double w1 = [self getStringWidth:titleArray.firstObject];
+	UIButton *item1 = [self bottomLinebutton:titleArray.firstObject withFrame:CGRectZero];
 	[backImg addSubview: item1];
+	[item1 mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.leading.equalTo(@15);
+		make.top.equalTo(allChoiceLab.mas_bottom);
+		make.width.mas_equalTo(w1);
+		make.height.mas_equalTo(30);
+		
+	}];
 	
-	UIButton *check1 = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth - 45, CGRectGetMinY(item1.frame), 30, 30)];
+	UIButton *check1 = [UIButton new];
 	[check1 setImage:[UIImage imageNamed:@"icon_checkbox_default"] forState:UIControlStateNormal];
 	[check1 setImage:[UIImage imageNamed:@"icon_checkbox_green"] forState:UIControlStateSelected];
 	[check1 addTarget:self action:@selector(SinglechoiceBtnAction:) forControlEvents:UIControlEventTouchUpInside];
 	[backImg addSubview:check1];
+	[check1 mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.width.height.equalTo(@30);
+		make.trailing.mas_equalTo(-15);
+		make.top.equalTo(item1.mas_top);
+	}];
 	
-	
-	UIButton *item2 = [self bottomLinebutton:@"전자금융거래 이용약관 동의" withFrame:CGRectMake(15, CGRectGetMaxY(item1.frame), 145, 30)];
+	const double w2 = [self getStringWidth:titleArray[1]];
+	UIButton *item2 = [self bottomLinebutton:titleArray[1] withFrame:CGRectZero];
 	[backImg addSubview: item2];
-
-	UIButton *check2 = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth - 45, CGRectGetMinY(item2.frame), 30, 30)];
+	[item2 mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.leading.equalTo(@15);
+		make.top.equalTo(item1.mas_bottom);
+		make.width.mas_equalTo(w2);
+		make.height.mas_equalTo(30);
+		
+	}];
+	
+	UIButton *check2 = [UIButton new];
 	[check2 setImage:[UIImage imageNamed:@"icon_checkbox_default"] forState:UIControlStateNormal];
 	[check2 setImage:[UIImage imageNamed:@"icon_checkbox_green"] forState:UIControlStateSelected];
 	[check2 addTarget:self action:@selector(SinglechoiceBtnAction:) forControlEvents:UIControlEventTouchUpInside];
 	[backImg addSubview:check2];
+	[check2 mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.width.height.equalTo(@30);
+		make.trailing.mas_equalTo(-15);
+		make.top.equalTo(item2.mas_top);
+	}];
+
+	const double w3 = [self getStringWidth:titleArray[2]];
+	UIButton *item3 = [self bottomLinebutton:titleArray[2] withFrame:CGRectZero];
+	[backImg addSubview:item3];
+	[item3 mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.leading.equalTo(@15);
+		make.top.equalTo(item2.mas_bottom);
+		make.width.mas_equalTo(w3);
+		make.height.mas_equalTo(30);
+		
+	}];
 	
-	
-	UIButton *item3 = [self bottomLinebutton:@"개인정보 수집 이용동의" withFrame:CGRectMake(15, CGRectGetMaxY(item2.frame), 125, 30)];
-	[backImg addSubview: item3];
-	
-	UIButton *check3 = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth - 45, CGRectGetMinY(item3.frame), 30, 30)];
+	UIButton *check3 = [UIButton new];
 	[check3 setImage:[UIImage imageNamed:@"icon_checkbox_default"] forState:UIControlStateNormal];
 	[check3 setImage:[UIImage imageNamed:@"icon_checkbox_green"] forState:UIControlStateSelected];
 	[check3 addTarget:self action:@selector(SinglechoiceBtnAction:) forControlEvents:UIControlEventTouchUpInside];
 	[backImg addSubview:check3];
-
-
-	UIButton *item4 = [[UIButton alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(item3.frame), 210, 30)];
-	[item4 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	[item4 setTitle:@"마케팅 정보 메일, SMS 수신동의(선택)" forState:UIControlStateNormal];
-	item4.titleLabel.font = [UIFont systemFontOfSize:13];
-	[backImg addSubview:item4];
+	[check3 mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.width.height.equalTo(@30);
+		make.trailing.mas_equalTo(-15);
+		make.top.equalTo(item3.mas_top);
+	}];
 	
-	UIButton *check4 = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth - 45, CGRectGetMinY(item4.frame), 30, 30)];
+	UILabel *item4 = [UILabel new];
+	item4.text = titleArray[3];
+	item4.textColor  = [UIColor whiteColor];
+	[item4 setFont:[UIFont systemFontOfSize:13]];
+	[backImg addSubview:item4];
+	[item4 mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.leading.equalTo(@15);
+		make.top.equalTo(item3.mas_bottom);
+		make.width.mas_equalTo(200);
+		make.height.mas_equalTo(30);
+		
+	}];
+	
+	UIButton *check4 = [UIButton new];
 	[check4 setImage:[UIImage imageNamed:@"icon_checkbox_default"] forState:UIControlStateNormal];
 	[check4 setImage:[UIImage imageNamed:@"icon_checkbox_green"] forState:UIControlStateSelected];
 	[check4 addTarget:self action:@selector(SinglechoiceBtnAction:) forControlEvents:UIControlEventTouchUpInside];
 	[backImg addSubview:check4];
-
+	[check4 mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.width.height.equalTo(@30);
+		make.trailing.mas_equalTo(-15);
+		make.top.equalTo(item4.mas_top);
+	}];
 	
-	UILabel *lastlabel = [[UILabel alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(item4.frame), 200, 30)];
-	lastlabel.text = @"만 14세 이상 고객만 가입 가능합니다.";
-	lastlabel.textAlignment = NSTextAlignmentLeft;
+	UILabel *lastlabel = [UILabel new];
+	lastlabel.text = titleArray[4];
 	lastlabel.font = [UIFont systemFontOfSize:13];
 	lastlabel.textColor = [UIColor whiteColor];
 	[backImg addSubview:lastlabel];
+	[lastlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.leading.mas_equalTo(15);
+		make.top.equalTo(item4.mas_bottom);
+		make.height.equalTo(@30);
+	}];
 	
 	
-	UIButton *enterBtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth - 55,APPScreenHeight - 70, 30, 30)];
+	UIButton *enterBtn = [UIButton new];
 	[enterBtn setImage:[UIImage imageNamed:@"btn_next_activation"] forState:UIControlStateNormal];
 	[enterBtn addTarget:self action:@selector(enterBtn:) forControlEvents:UIControlEventTouchUpInside];
 	[backImg addSubview:enterBtn];
-
-	UILabel *enterlabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(enterBtn.frame) - 100,APPScreenHeight - 70, 90, 30)];
-	enterlabel.text = @"다음으로";
+	[enterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.height.width.equalTo(@30);
+		make.trailing.mas_equalTo(-15);
+		make.bottom.mas_equalTo(-40);
+	}];
+	
+	UILabel *enterlabel = [UILabel new];
+	enterlabel.text = titleArray.lastObject;
 	enterlabel.textAlignment = NSTextAlignmentRight;
 	enterlabel.textColor = RGB(232, 232, 232);
 	[backImg addSubview:enterlabel];
+	[enterlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.trailing.equalTo(enterBtn.mas_leading).offset(-5);
+		make.top.equalTo(enterBtn.mas_top);
+		make.bottom.equalTo(enterBtn.mas_bottom);
+	}];
 
 	self.choiceBtnArray = @[check1,check2,check3,check4].mutableCopy;
-
 
 
 }
@@ -156,7 +244,6 @@
 
 //创建下滑些
 -(UIButton*)bottomLinebutton:(NSString *)content withFrame:(CGRect)frame {
-	
 	UIButton *button = [[UIButton alloc]initWithFrame:frame];
 	button.titleLabel.textAlignment = NSTextAlignmentLeft;
 	[button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -166,11 +253,16 @@
 	[tncString addAttribute:NSUnderlineStyleAttributeName value:@(NSUnderlineStyleSingle) range:(NSRange){0,[tncString length]}];
 	[tncString addAttribute:NSUnderlineColorAttributeName value:[UIColor whiteColor] range:(NSRange){0,[tncString length]}];
 	[button setAttributedTitle:tncString forState:UIControlStateNormal];
-	
 
 	return button;
 }
 
+- (double )getStringWidth:(NSString *)content{
+	NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:13]};
+	CGSize contentSize = [content boundingRectWithSize:CGSizeMake(MAXFLOAT,30) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
+
+	return contentSize.width;
+}
 
 
 - (void)allchoiceBtnAction:(UIButton*)sender{

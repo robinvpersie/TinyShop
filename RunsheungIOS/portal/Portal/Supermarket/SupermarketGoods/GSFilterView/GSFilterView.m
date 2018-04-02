@@ -7,7 +7,6 @@
 
 #import "GSFilterView.h"
 #import "GSFilterCell.h"
-#import "Masonry.h"
 #import "DKFilterModel.h"
 @interface GSFilterView()<UITableViewDelegate,UITableViewDataSource>
 

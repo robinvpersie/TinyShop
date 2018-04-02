@@ -29,7 +29,7 @@
 
 - (void)createTableview{
 	if (self.tableView ==nil) {
-		self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+		self.tableView = [UITableView new];
 		self.tableView.tableFooterView = [UIView new];
 		self.tableView.delegate = self;
 		self.tableView.dataSource = self;
@@ -37,6 +37,9 @@
 		self.tableView.backgroundColor = RGB(255, 255, 255);
 		self.tableView.tableHeaderView = [[FindSearchView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 80)];
 		[self.view addSubview:self.tableView];
+		[self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.edges.mas_equalTo(self.view);
+		}];
 	}
 }
 
@@ -46,33 +49,61 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	UITableViewCell *cell = [[UITableViewCell alloc]init];
-	UILabel *noLab = [[UILabel alloc]initWithFrame:CGRectMake(25, 15, 50, 30)];
-	[cell.contentView addSubview:noLab];
 	
-	UILabel *name = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(noLab.frame), 15, 100, 30)];
+	UILabel *noLab = [UILabel new];
+	[cell.contentView addSubview:noLab];
+	[noLab mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.mas_equalTo(15);
+		make.leading.mas_equalTo(25);
+		make.bottom.mas_equalTo(-15);
+		make.width.mas_equalTo(50);
+		
+	}];
+	
+	UILabel *name = [UILabel new];
 	name.textAlignment = NSTextAlignmentCenter;
 	[cell.contentView addSubview:name];
+	[name mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.leading.mas_equalTo(noLab.mas_trailing).offset(15);
+		make.top.mas_equalTo(15);
+		make.width.mas_equalTo(100);
+		make.bottom.mas_equalTo(-15);
+		
+	}];
 	
-	UILabel *content = [[UILabel alloc]initWithFrame:CGRectMake(APPScreenWidth - 125, 15, 100, 30)];
+	UILabel *content = [UILabel new];
 	content.textAlignment = NSTextAlignmentRight;
 	[cell.contentView addSubview:content];
-	if (indexPath.row == 0) {
+	[content mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.trailing.mas_equalTo(-15);
+		make.top.mas_equalTo(15);
+		make.width.mas_equalTo(100);
+		make.bottom.mas_equalTo(-15);
 		
-		cell.contentView.backgroundColor = RGB(80, 80, 80);
-		noLab.text = @"NO. ";
-		noLab.textColor = [UIColor whiteColor];
-		name.text = @"단체명";
-		name.textColor = [UIColor whiteColor];
-		content.text = @"단체대표";
-		content.textColor = [UIColor whiteColor];
-
-
-	}else{
-		noLab.text = [NSString stringWithFormat:@"%d",(int)indexPath.row];
-		name.text = @"가발협회";
-		content.text = @"홍길동";
-	}
+	}];
 	
+	switch (indexPath.row) {
+		case 0:
+		{
+			cell.contentView.backgroundColor = RGB(80, 80, 80);
+			noLab.text = @"NO. ";
+			noLab.textColor = [UIColor whiteColor];
+			name.text = @"단체명";
+			name.textColor = [UIColor whiteColor];
+			content.text = @"단체대표";
+			content.textColor = [UIColor whiteColor];
+
+		}
+			break;
+		default:
+		{
+			noLab.text = [NSString stringWithFormat:@"%d",(int)indexPath.row];
+			name.text = @"가발협회";
+			content.text = @"홍길동";
+
+		}
+			break;
+	}
 	return cell;
 }
 
@@ -87,10 +118,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-	ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
-	[self presentViewController:personalVC animated:YES completion:nil];
-	
-
+	if (indexPath.row != 0) {
+		ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
+		[self presentViewController:personalVC animated:YES completion:nil];
+	}
 }
 
 - (void)pop:(UIButton *)sender{
@@ -98,8 +129,4 @@
 	
 }
 
-
-
-
-
-@end
+ @end

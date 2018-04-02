@@ -42,7 +42,6 @@
 #import "CustomerServiceController.h"
 #import "SupermarketMyCollectionViewController.h"
 #import "ZFScanViewController.h"
-#import "Masonry.h"
 
 #import "TinyShopDetailedView.h"
 #import "TSShopDetailedCollectionView.h"
@@ -657,12 +656,12 @@
 }
 
 - (void)scrollHeaderTapAtIndex:(NSInteger)index {
-    SupermarketHomeBannerData *data = _bannerDataArray[index];
-    
-    GoodsDetailController *vc = [GoodsDetailController new];
-    vc.item_code = data.item_code;
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+//    SupermarketHomeBannerData *data = _bannerDataArray[index];
+//
+//    GoodsDetailController *vc = [GoodsDetailController new];
+//    vc.item_code = data.item_code;
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark ---  DetailedDelegate

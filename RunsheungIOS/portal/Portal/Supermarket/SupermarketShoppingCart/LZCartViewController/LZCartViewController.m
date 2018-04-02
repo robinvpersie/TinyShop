@@ -12,7 +12,6 @@
 #import "LZTableHeaderView.h"
 #import "GoodsDetailController.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
-#import "Masonry.h"
 #import "LZCartEmptyView.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 
