@@ -47,7 +47,7 @@ class PersonalMessageController: BaseViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tab.view.frame = CGRect(x: 0, y: topLayoutGuide.length, width: screenWidth, height: screenHeight - topLayoutGuide.length)
+        tab.view.frame = CGRect(x: 0, y: topLayoutGuide.length, width: view.frame.width, height: view.frame.height - topLayoutGuide.length)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{

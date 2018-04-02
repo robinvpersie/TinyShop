@@ -11,36 +11,36 @@ import MBProgressHUD
 
 class PersonalStarController: YCBaseTableViewController {
     
+    var starData = [RecommanddatPersonalCenter]()
+    weak var message: PersonalMessageController?
     
-    var StarData:[RecommanddatPersonalCenter] = [RecommanddatPersonalCenter]()
-    weak var message:PersonalMessageController?
-    
-    func updateMainData(mode:UpdateMode,finish:(()->Void)? = nil){
-        
+    func updateMainData(mode: UpdateMode, finish: (() -> Void)? = nil){
         if isFetching {
             finish?()
             return
         }
         isFetching = true
         showCustomloading()
-        PersonalCenterMyRecommand { result in
-            self.hideLoading()
-            self.isFetching = false
-            let waytoUpdate:UITableView.WayToUpdate = .reloadData
+        PersonalCenterMyRecommand { [weak self] result in
+            self?.hideLoading()
+            self?.isFetching = false
             switch result {
-            case .failure(let error):
-                waytoUpdate.performWithTableView(tableview: self.tableView)
-                self.showMessage(error.localizedDescription)
+            case .failure:
+                OperationQueue.main.addOperation {
+                    self?.tableView.reloadEmptyDataSet()
+                }
             case .success(let value):
-                self.StarData = value
-                waytoUpdate.performWithTableView(tableview: self.tableView)
+                self?.starData = value
+                OperationQueue.main.addOperation {
+                    self?.tableView.reloadData()
+                }
             }
             finish?()
         }
     }
     
     
-    override func pullRefresher(sender:UIRefreshControl){
+    override func pullRefresher(sender: UIRefreshControl){
         updateMainData(mode: .TopRefresh, finish: {
             sender.endRefreshing()
         })
@@ -74,7 +74,7 @@ class PersonalStarController: YCBaseTableViewController {
         if section == 0 {
            return 1
         }else {
-          return StarData.count
+          return starData.count
         }
     }
     
@@ -82,7 +82,7 @@ class PersonalStarController: YCBaseTableViewController {
         if indexPath.section == 0 {
           return 40
         }else {
-          return PersonalStarContentCell.getHeightwithModel(model: StarData[indexPath.row])
+          return PersonalStarContentCell.getHeightwithModel(model: starData[indexPath.row])
         }
     }
     
@@ -101,10 +101,10 @@ class PersonalStarController: YCBaseTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell:PersonalStarHeaderCell = tableView.dequeueReusableCell()
+            let cell: PersonalStarHeaderCell = tableView.dequeueReusableCell()
             return cell
         }else {
-            let cell:PersonalStarContentCell = tableView.dequeueReusableCell()
+            let cell: PersonalStarContentCell = tableView.dequeueReusableCell()
             cell.HeaderView.starImageView.isHidden = true
             cell.HeaderView.starLabel.isHidden = true
             return cell
@@ -114,26 +114,25 @@ class PersonalStarController: YCBaseTableViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
           let cell = cell as? PersonalStarContentCell
-          cell?.updateWithModel(model: StarData[indexPath.row])
+          cell?.updateWithModel(model: starData[indexPath.row])
         
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        defer {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
         if indexPath.section == 0 {
           let myStar = PersonalMyStarController()
           navigationController?.pushViewController(myStar, animated: true)
         }else {
-          let urlstring = StarData[indexPath.row].url
-          guard let url = URL(string: urlstring!) else { return }
-          let webview = YCWebViewController(url: url)
-          present(webview, animated: true, completion: nil)
+          if let urlstring = starData[indexPath.row].url,
+            let url = URL(string: urlstring) {
+             let webview = YCWebViewController(url: url)
+             present(webview, animated: true, completion: nil)
+          }
         }
-        
-        tableView.deselectRow(at: indexPath, animated: true)
-
-        
-     }
+    }
 }
 
 extension PersonalStarController {
@@ -143,8 +142,7 @@ extension PersonalStarController {
         let parse:(JSONDictionary) -> [RecommanddatPersonalCenter] = { json in
             var jsonArray = [RecommanddatPersonalCenter]()
             if let reply = PersonalShareModel(json: json) {
-                jsonArray = reply.RecommandData
-                jsonArray = jsonArray.map({
+                jsonArray = reply.RecommandData.map({
                     var element = $0
                     element.isStar = true
                     return element
@@ -152,7 +150,7 @@ extension PersonalStarController {
             }
             return jsonArray
         }
-        let MemberID:String = YCAccountModel.getAccount()!.memid!
+        let MemberID: String = YCAccountModel.getAccount()!.memid!
         let requestParameters: [String:Any] = [
             "MemberID":MemberID
         ]

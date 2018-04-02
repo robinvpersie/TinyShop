@@ -9,28 +9,29 @@
 import UIKit
 import MBProgressHUD
 
-
 class PersonalCommentController: YCBaseTableViewController {
     
+    var dataArray = [Replydat]()
     
-    var DataArray = [Replydat]()
-    
-    func updateMainData(mode:UpdateMode,finish:(()->Void)? = nil){
+    func updateMainData(mode: UpdateMode, finish: (() -> Void)? = nil){
         if isFetching {
             finish?()
             return
         }
         isFetching = true
-        let waytoupdate:UITableView.WayToUpdate = .reloadData
-        PersonalCenterComment { result in
-            self.isFetching = false
-            self.isloading = false
+        PersonalCenterComment { [weak self] result in
+            self?.isFetching = false
+            self?.isloading = false
             switch result {
             case .success(let json):
-                self.DataArray = json
-                waytoupdate.performWithTableView(tableview: self.tableView)
-            case .failure(_):
-                waytoupdate.performWithTableView(tableview: self.tableView)
+                self?.dataArray = json
+                OperationQueue.main.addOperation {
+                    self?.tableView.reloadData()
+                }
+            case .failure:
+                OperationQueue.main.addOperation {
+                    self?.tableView.reloadEmptyDataSet()
+                }
             }
             finish?()
         }
@@ -41,12 +42,10 @@ class PersonalCommentController: YCBaseTableViewController {
     }
     
     override func fetchAgain() {
-        
         updateMainData(mode: .Static)
     }
     
-    
-    override func pullRefresher(sender:UIRefreshControl){
+    override func pullRefresher(sender: UIRefreshControl){
         updateMainData(mode: .TopRefresh, finish: {
             sender.endRefreshing()
         })
@@ -62,7 +61,7 @@ class PersonalCommentController: YCBaseTableViewController {
         tableView.registerClassOf(PersonalNewsCell.self)
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = UIColor.clear
-        view.backgroundColor = UIColor.BaseControllerBackgroundColor
+        view.backgroundColor = UIColor.groupTableViewBackground
         
         updateMainData(mode: .Static)
     }
@@ -75,25 +74,29 @@ class PersonalCommentController: YCBaseTableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return DataArray.count
+        return dataArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell:PersonalNewsCell = tableView.dequeueReusableCell()
+        let cell: PersonalNewsCell = tableView.dequeueReusableCell()
         cell.longPress = { [weak self] in
             guard let strongself = self else {
                 return
             }
-            YCAlert.confirmOrCancel(title: "提示".localized, message: "您确定要删除这条评论吗", confirmTitle: "确定".localized, cancelTitle: "取消", inViewController: strongself, withConfirmAction: {
-                    strongself.PersonalDeleteComment(newsReplySeq: strongself.DataArray[indexPath.row].ReplySeq)
-                    strongself.DataArray.remove(at: indexPath.row)
+            YCAlert.confirmOrCancel(title: "提示".localized,
+                                    message: "您确定要删除这条评论吗",
+                                    confirmTitle: "确定".localized,
+                                    cancelTitle: "取消",
+                                    inViewController: strongself,
+                                    withConfirmAction:
+                {
+                    strongself.PersonalDeleteComment(newsReplySeq: strongself.dataArray[indexPath.row].ReplySeq)
+                    strongself.dataArray.remove(at: indexPath.row)
                     tableView.reloadData()
                 })
         }
@@ -102,22 +105,23 @@ class PersonalCommentController: YCBaseTableViewController {
     
     
    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
         let cell = cell as! PersonalNewsCell
-        cell.updateWithModel(model: DataArray[indexPath.row])
+        cell.updateWithModel(model: dataArray[indexPath.row])
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let urlString = DataArray[indexPath.row].url,let url = URL(string: urlString) else {
-            return
+        defer {
+            tableView.deselectRow(at: indexPath, animated: true)
         }
-        let webview = YCWebViewController(url: url)
-        present(webview, animated: true, completion: nil)
-        tableView.deselectRow(at: indexPath, animated: true)
+        if let urlString = dataArray[indexPath.row].url,
+            let url = URL(string: urlString) {
+            let webview = YCWebViewController(url: url)
+            present(webview, animated: true, completion: nil)
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return PersonalNewsCell.getHeightWithModel(model: DataArray[indexPath.row])
+        return PersonalNewsCell.getHeightWithModel(model: dataArray[indexPath.row])
     }
     
 
@@ -134,9 +138,8 @@ extension PersonalCommentController {
                 jsonArray = reply.ReplyData
             }
             return jsonArray
-            
         }
-        let memberID:String = YCAccountModel.getAccount()!.memid ?? ""
+        let memberID = YCAccountModel.getAccount()?.memid ?? ""
         let netResource = NetResource(path: "/MyInfo/MyReply",
                                       method: .post,
                                       parameters: ["MemberID":memberID],
@@ -145,13 +148,13 @@ extension PersonalCommentController {
     }
     
     
-    func PersonalDeleteComment(newsReplySeq:Int){
+    func PersonalDeleteComment(newsReplySeq: Int){
         
-        let memberID:String = YCAccountModel.getAccount()?.memid ?? ""
-        let parse:(JSONDictionary) -> JSONDictionary? = { json in
+        let memberID = YCAccountModel.getAccount()?.memid ?? ""
+        let parse: (JSONDictionary) -> JSONDictionary? = { json in
             return json
         }
-        let requestParameters:[String:Any] = [
+        let requestParameters: [String:Any] = [
             "MemberID":memberID,
             "NewsReplySeq":newsReplySeq
         ]

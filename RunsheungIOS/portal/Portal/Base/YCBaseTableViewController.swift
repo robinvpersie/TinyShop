@@ -12,11 +12,10 @@ import DZNEmptyDataSet
 
 class YCBaseTableViewController: UITableViewController {
     
-    
-    var isFetching:Bool = false
-    var currentPage:Int = 0
-    var nextPage:Int = 1
-    var isloading:Bool = true
+    var isFetching: Bool = false
+    var currentPage: Int = 0
+    var nextPage: Int = 1
+    var isloading: Bool = true
     
     enum UpdateMode{
         case Static
@@ -24,7 +23,7 @@ class YCBaseTableViewController: UITableViewController {
         case LoadMore
     }
     
-    lazy var refreshController:UIRefreshControl = {
+    lazy var refreshController: UIRefreshControl = {
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(pullRefresher(sender:)), for: .valueChanged)
         refresh.tintColor = UIColor.lightGray
@@ -32,20 +31,18 @@ class YCBaseTableViewController: UITableViewController {
         return refresh
     }()
     
-    lazy var baseActivityIndicator:UIActivityIndicatorView = {
+    lazy var baseActivityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.center = self.view.center
+        activityIndicator.center = view.center
         return activityIndicator
     }()
 
     
-    lazy var requestFailView:YCInfoView = YCInfoView("请求失败")
+    lazy var requestFailView = YCInfoView("请求失败")
     
-    lazy var LoadMoreFooterView:YCInfoView = {
-        let footerView = YCInfoView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 44))
-        return footerView
-    }()
+    lazy var LoadMoreFooterView = YCInfoView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 44))
+    
 
     
     @objc func pullRefresher(sender:UIRefreshControl){}
@@ -61,6 +58,7 @@ class YCBaseTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
         tableView.addSubview(refreshController)
@@ -93,7 +91,7 @@ class YCBaseTableViewController: UITableViewController {
 
 }
 
-extension YCBaseTableViewController:DZNEmptyDataSetSource {
+extension YCBaseTableViewController: DZNEmptyDataSetSource {
     
     
     func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
@@ -104,15 +102,14 @@ extension YCBaseTableViewController:DZNEmptyDataSetSource {
         } else {
           let nodata = YCNoDataAlertView()
           nodata.freshAction = { [weak self] in
-            guard let strongself = self else { return }
-            strongself.fetchAgain()
+            self?.fetchAgain()
          }
           return nodata
         }
     }
 }
 
-extension YCBaseTableViewController:DZNEmptyDataSetDelegate {
+extension YCBaseTableViewController: DZNEmptyDataSetDelegate {
     
 }
 
