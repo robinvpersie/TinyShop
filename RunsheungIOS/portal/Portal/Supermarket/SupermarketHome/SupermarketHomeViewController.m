@@ -693,8 +693,61 @@
 		[self.mainScrollView addSubview:self.mallInfoView];
 		self.mainScrollView.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.mallInfoView.frame));
 		
+		//活动期限
+		UILabel *timelimit = [UILabel new];
+		timelimit.text = @"活动时间: 2018/03/23~2018/05/20";
+		timelimit.font = [UIFont systemFontOfSize:14];
+		[self.mallInfoView addSubview:timelimit];
+		[timelimit mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.leading.equalTo(@15);
+			make.height.equalTo(@30);
+			make.width.equalTo(_mallInfoView ).offset(-30);
+			
+		}];
 		
+		//商家电话
+		UILabel *phone = [UILabel new];
+		phone.text = @"商家电话: 13757578646";
+		phone.font = [UIFont systemFontOfSize:14];
+		phone.numberOfLines = 3;
+		[self.mallInfoView addSubview:phone];
+		[phone mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(timelimit.mas_bottom).with.offset(5);
+			make.leading.equalTo(@15);
+			make.height.equalTo(@30);
+			make.width.equalTo(_mallInfoView ).offset(-30);
+			
+		}];
+		
+		//活动内容
+		UILabel *activitycontent = [UILabel new];
+		activitycontent.text = @"活动内容: 活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容";
+		activitycontent.font = [UIFont systemFontOfSize:14];
+		activitycontent.numberOfLines = 3;
+		[self.mallInfoView addSubview:activitycontent];
+		[activitycontent mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(phone.mas_bottom).with.offset(5);
+			make.leading.equalTo(@15);
+			make.height.equalTo(@60);
+			make.width.equalTo(_mallInfoView ).offset(-30);
+			
+		}];
+		
+		//商家地址
+		UILabel *shopAddress = [UILabel new];
+		shopAddress.text = @"商家地址: 山东省威海市高区香港路118号智慧大厦21楼.";
+		shopAddress.font = [UIFont systemFontOfSize:14];
+		shopAddress.numberOfLines = 3;
+		[self.mallInfoView addSubview:shopAddress];
+		[shopAddress mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(activitycontent.mas_bottom).with.offset(5);
+			make.leading.equalTo(@15);
+			make.height.equalTo(@40);
+			make.width.equalTo(_mallInfoView ).offset(-30);
+			
+		}];
 
+		
 	}
 }
 

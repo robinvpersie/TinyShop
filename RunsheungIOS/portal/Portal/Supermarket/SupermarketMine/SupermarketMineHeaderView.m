@@ -36,6 +36,7 @@
         self.backgroundColor = BGColor;
         [self createSubview];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUIWithNotLogin) name:TokenWrong object:nil];
+
     }
     return self;
 }
@@ -61,7 +62,6 @@
     avartarBgView.layer.borderColor = [UIColor whiteColor].CGColor;
     [bgView insertSubview:avartarBgView belowSubview:avatar];
 
-//    phoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(avartarBgView.frame) + 15, avartarBgView.center.y - 12, 250, 25)];
     phoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(avartarBgView.frame) + 15, avartarBgView.frame.origin.y+10, 250, 25)];
     phoneNumber.textColor = [UIColor whiteColor];
     phoneNumber.font = [UIFont systemFontOfSize:20];
@@ -71,7 +71,7 @@
     [bgView addSubview:phoneNumber];
 
     userName = [UILabel createLabelWithFrame:CGRectMake(phoneNumber.frame.origin.x,
-                                             CGRectGetMaxY(avartarBgView.frame)-20-10, 250, 20) textColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:15] textAlignment:NSTextAlignmentLeft text:@""];
+                                             CGRectGetMaxY(avartarBgView.frame)-20-10, 250, 20) textColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:15] textAlignment:NSTextAlignmentLeft text:@"昵称"];
     [bgView addSubview:userName];
 
     goLogin = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goLogin:)];
@@ -199,10 +199,6 @@
 
     YCAccountModel *accout = [YCAccountModel getAccount];
 
-//    _coupon.text = [NSString stringWithFormat:@"%@",data.point];
-//    _point.text = data.collection_count.stringValue;
-//    [[NSUserDefaults standardUserDefaults] setObject:data.point forKey:@"SupermarketPointRemain"];
-//    _collection.text = data.collection_count.stringValue;
     [UIImageView setimageWithImageView:avatar UrlString:data.header_url imageVersion:nil];
     phoneNumber.text = accout.customId;
     userName.text = accout.userName;
