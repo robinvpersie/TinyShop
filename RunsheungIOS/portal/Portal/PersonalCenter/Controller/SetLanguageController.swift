@@ -8,22 +8,23 @@
 
 import UIKit
 
-class SetLanguageController: BaseController {
+class SetLanguageController: BaseViewController {
     
-    
-    var tableView:UITableView!
+    var tableView: UITableView!
     var selectlanType: languageType = .base{
         didSet{
-          tableView.reloadData()
+            OperationQueue.main.addOperation {
+                self.tableView.reloadData()
+            }
         }
     }
     
-    enum languageType:Int {
+    enum languageType: Int {
         case base
         case chinese
         case korea
         
-        var language:String{
+        var language: String {
             switch self {
             case .chinese:
                 return "zh-Hans"
@@ -32,7 +33,12 @@ class SetLanguageController: BaseController {
             case .korea:
                 return "ko"
             }
+        }
         
+        static let count = 3
+        
+        init(indexPath: IndexPath) {
+            self.init(rawValue: indexPath.row)!
         }
     }
     
@@ -43,19 +49,14 @@ class SetLanguageController: BaseController {
         
         title = "设置语言"
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow,
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(yc_back))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完成", style: .plain, target:self, action: #selector(didTrailing))
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.darkText
         
         tableView = UITableView(frame: .zero, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 44
+        tableView.estimatedRowHeight = 44
         tableView.tableFooterView = UIView()
         tableView.registerClassOf(UITableViewCell.self)
         view.addSubview(tableView)
@@ -71,13 +72,14 @@ class SetLanguageController: BaseController {
     }
     
     
-   @objc func didTrailing(){
-       let type = self.selectlanType.rawValue
-       YCUserDefaults.language.value = self.selectlanType.language
-       YCUserDefaults.languageType.value = self.selectlanType.rawValue
+    @objc
+    func didTrailing(){
+       let type = selectlanType.rawValue
+       YCUserDefaults.language.value = selectlanType.language
+       YCUserDefaults.languageType.value = selectlanType.rawValue
        languageTool.shared.initLanguage()
-       NotificationCenter.default.post(name:Notification.Name.changeLanguage, object: YCBox<Int>(type), userInfo: nil)
-       navigationController?.popViewController(animated:true)
+       NotificationCenter.default.post(name: Notification.Name.changeLanguage, object: YCBox<Int>(type), userInfo: nil)
+       yc_back()
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,28 +89,24 @@ class SetLanguageController: BaseController {
 }
 
 
-extension SetLanguageController:UITableViewDelegate{
+extension SetLanguageController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let type = languageType(rawValue: indexPath.row) else {
-            fatalError()
-        }
-        self.selectlanType = type
+        let type = languageType(indexPath: indexPath)
+        selectlanType = type
      }
 
 }
 
-extension SetLanguageController:UITableViewDataSource{
+extension SetLanguageController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return languageType.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = tableView.dequeueReusableCell()
-        guard let type = languageType(rawValue: indexPath.row) else {
-            fatalError()
-        }
+        let cell: UITableViewCell = tableView.dequeueReusableCell()
+        let type = languageType(indexPath: indexPath)
         switch type {
         case .base:
             cell.textLabel?.text = "默认"
@@ -117,7 +115,7 @@ extension SetLanguageController:UITableViewDataSource{
         case .korea:
             cell.textLabel?.text = "韩文"
         }
-        if self.selectlanType == type {
+        if selectlanType == type {
             cell.textLabel?.textColor = UIColor.navigationbarColor
         }else {
             cell.textLabel?.textColor = UIColor.darkcolor
