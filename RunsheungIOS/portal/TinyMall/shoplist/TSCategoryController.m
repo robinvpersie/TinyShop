@@ -18,7 +18,6 @@
 #import "SingleSegmentView.h"
 #import "SupermarketSearchController.h"
 #import "TSearchViewController.h"
-#import "Masonry.h"
 
 
 
@@ -394,7 +393,11 @@
 				
 
 		
-        }
+		}else{
+			AroundMapController * around = [[AroundMapController alloc] init];
+			around.hidesBottomBarWhenPushed = YES;
+			[self.navigationController pushViewController:around animated:YES];
+		}
 
 }
 

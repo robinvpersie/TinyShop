@@ -7,7 +7,6 @@
 //
 
 #import "InputFieldView.h"
-#import "Masonry.h"
 
 @interface InputFieldView () <UITextFieldDelegate>
 

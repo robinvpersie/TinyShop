@@ -23,35 +23,64 @@
 
 - (void)initUI{
 	
-	UIView *bg1 = [[UIView alloc]initWithFrame:CGRectMake(15, 20 , 120, 40)];
-	bg1.backgroundColor = [UIColor whiteColor];
-	[self addSubview:bg1];
+	UIView *backview1 = [UIView new];
+	backview1.backgroundColor = [UIColor whiteColor];
+	[self addSubview:backview1];
+	[backview1 mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.leading.top.mas_equalTo(20);
+		make.width.mas_equalTo(80);
+		make.height.mas_equalTo(40);
+	}];
 	
-	UILabel *locationName = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 80, 40)];
+	UILabel *locationName = [UILabel new];
 	locationName.text = @"단체명";
-	locationName.textAlignment = NSTextAlignmentCenter;
-	[bg1 addSubview:locationName];
-	
-	UIButton *locationarrow = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(bg1.frame)-25, 10, 20, 20)];
-	[locationarrow setImage:[UIImage imageNamed:@"icon_arrow_bottom"] forState:UIControlStateNormal];
-	[bg1 addSubview:locationarrow];
-	
-	
-	UIView *bg2 = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(bg1.frame)+10,20 , APPScreenWidth - CGRectGetWidth(bg1.frame) - 30, 40)];
-	bg2.backgroundColor = [UIColor whiteColor];
-	[self addSubview:bg2];
-	
-	UITextField *field = [[UITextField alloc]initWithFrame:CGRectMake(10, 0,CGRectGetWidth(bg2.frame) - 40, 40)];
-	field.placeholder = @"검색어를 입력해 주세요";
-	
-	[bg2 addSubview:field];
-	
-	UIButton *search = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(bg2.frame)- 50, 0, 40, 40)];
-	[search setImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
-	[bg2 addSubview:search];
+	[backview1 addSubview:locationName];
+	[locationName mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.leading.equalTo(@5);
+		make.bottom.mas_equalTo(-5);
+		make.width.equalTo(@55);
+		
+	}];
 
-	
-	
-	
+	UIButton *locationarrow = [UIButton new];
+	[locationarrow setImage:[UIImage imageNamed:@"icon_arrow_bottom"] forState:UIControlStateNormal];
+	[backview1 addSubview:locationarrow];
+	[locationarrow mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.leading.mas_equalTo(locationName.mas_trailing);
+		make.trailing.mas_equalTo(-5);
+		make.bottom.mas_equalTo(-10);
+		make.top.mas_equalTo(10);
+	}];
+
+	UIView *backview2 = [UIView new];
+	backview2.backgroundColor = [UIColor whiteColor];
+	[self addSubview:backview2];
+	[backview2 mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.leading.mas_equalTo(backview1.mas_trailing).offset(10);
+		make.top.bottom.mas_equalTo(backview1);
+		make.trailing.mas_equalTo(-20);
+	}];
+
+	UITextField *searchfield = [UITextField new];
+	searchfield.returnKeyType = UIReturnKeySearch;
+	searchfield.placeholder = @"검색어를 입력해 주세요";
+	searchfield.tintColor = RGB(132, 251, 232);
+	[backview2 addSubview:searchfield];
+	[searchfield mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.leading.top.equalTo(@10);
+		make.trailing.equalTo(@40);
+		make.bottom.mas_equalTo(-10);
+		
+	}];
+
+	UIButton *searchIcon = [UIButton new];
+	[searchIcon setImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
+	[backview2 addSubview:searchIcon];
+	[searchIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.trailing.mas_equalTo(-5);
+		make.top.mas_equalTo(5);
+		make.width.height.mas_equalTo(30);
+	}];
+
 }
 @end

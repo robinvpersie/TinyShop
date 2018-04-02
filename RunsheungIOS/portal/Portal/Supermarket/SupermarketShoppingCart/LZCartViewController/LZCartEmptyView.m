@@ -7,7 +7,6 @@
 //
 
 #import "LZCartEmptyView.h"
-#import "Masonry.h"
 #import "LZConfigFile.h"
 
 @interface LZCartEmptyView() {}

@@ -34,9 +34,11 @@
 	self.navigationItem.titleView = titleview;
 	
 	UIImageView *backImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"loginbackView"]];
-	backImg.frame = self.view.frame;
 	backImg.userInteractionEnabled = YES;
 	[self.view addSubview:backImg];
+	[backImg mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.equalTo(self.view);
+	}];
 	
 	self.phoneInput = [[InputFieldView alloc] initWithFrame:CGRectMake(20, 100, APPScreenWidth- 40, 50)];
 	self.phoneInput.placeHolder = NSLocalizedString(@"请输入您的手机号码", nil) ;
@@ -48,40 +50,68 @@
 	self.codeInput.font = [UIFont systemFontOfSize:14];
 	[backImg addSubview: self.codeInput];
 	
-	UIButton *getVerfiyBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.codeInput.frame)+3, CGRectGetMinY(self.codeInput.frame), APPScreenWidth - CGRectGetMaxX(self.codeInput.frame)-23, 50)];
+	UIButton *getVerfiyBtn = [UIButton new];
 	[getVerfiyBtn setBackgroundColor:RGB(33, 192, 67)];
 	[getVerfiyBtn setTitle:NSLocalizedString(@"接收验证码", nil)  forState:UIControlStateNormal];
 	[getVerfiyBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
 	[getVerfiyBtn addTarget:self action:@selector(getVerfiyBtn:) forControlEvents:UIControlEventTouchUpInside];
 	[backImg addSubview:getVerfiyBtn];
+	[getVerfiyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.height.mas_equalTo(self.codeInput.mas_height);
+		make.top.mas_equalTo(self.codeInput.mas_top);
+		make.trailing.mas_equalTo(-20);
+		make.leading.mas_equalTo(self.codeInput.mas_trailing).offset(3);
+		
+	}];
 
-	
-	UIButton *submitBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMinX(self.phoneInput.frame), CGRectGetMaxY(self.codeInput.frame) +20, APPScreenWidth - 40, 50)];
+	UIButton *submitBtn = [UIButton new];
 	[submitBtn setBackgroundColor:RGB(33, 192, 67)];
 	[submitBtn setTitle:@"다음" forState:UIControlStateNormal];
 	[submitBtn addTarget:self action:@selector(submitAction:) forControlEvents:UIControlEventTouchUpInside];
 	[backImg addSubview:submitBtn];
+	[submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.height.equalTo(@50);
+		make.leading.equalTo(self.phoneInput.mas_leading);
+		make.trailing.equalTo(self.phoneInput.mas_trailing);
+		make.top.equalTo(self.codeInput.mas_bottom).offset(20);
+		
+	}];
 	
 
-	UIButton *forget = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth/2 -100, CGRectGetMaxY(submitBtn.frame) +20, 200, 40)];
+	UIButton *forget = [UIButton new];
 	forget.layer.cornerRadius = 5;
 	forget.layer.masksToBounds = YES;
 	forget.titleLabel.font = [UIFont systemFontOfSize:14];
 	[forget setTitle:@"인증번호 다시받기" forState:UIControlStateNormal];
 	[forget setTitleColor:RGB(254, 254, 254) forState:UIControlStateNormal];
 	[backImg addSubview:forget];
+	[forget mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.height.equalTo(@40);
+		make.height.equalTo(@100);
+		make.top.equalTo(submitBtn.mas_bottom).offset(20);
+		make.centerX.equalTo(submitBtn.mas_centerX);
+	}];
 	
 
 }
 
 - (void)submitAction:(UIButton *)sender{
+	if (self.phoneInput.text.length&&self.codeInput.text.length) {
+		StepSecMemEnrollController *step1 = [StepSecMemEnrollController new];
+		SetUserDefault(@"joinphone", self.phoneInput.text);
+		SetUserDefault(@"joinauthnum", self.codeInput.text);
+		UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:step1];
+		
+		[self presentViewController:navi animated:YES completion:nil];
+
+	}else{
+		MBProgressHUD *hudview = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+		hudview.mode = MBProgressHUDModeText;
+		hudview.label.text = @"填写完整资料进入下一步";
+		[hudview hideAnimated:YES afterDelay:2.f];
+	}
+
 	
-	StepSecMemEnrollController *step1 = [StepSecMemEnrollController new];
-	SetUserDefault(@"joinphone", self.phoneInput.text);
-	SetUserDefault(@"joinauthnum", self.codeInput.text);
-	UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:step1];
-	
-	[self presentViewController:navi animated:YES completion:nil];
 	
 }
 

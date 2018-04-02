@@ -11,7 +11,6 @@
 #import "CompanyAuthController.h"
 #import "InputFieldView.h"
 #import <TPKeyboardAvoiding/TPKeyboardAvoidingScrollView.h>
-#import "Masonry.h"
 
 @interface StepSecMemEnrollController ()
 
@@ -34,7 +33,6 @@
 	[super viewDidLoad];
 	[self setNaviLineColor:self withColor:RGB(124, 251, 232)];
 	[self createInputView];
-	
 	
 }
 
@@ -126,39 +124,45 @@
 
 - (void)submitAction:(UIButton *)sender{
 	NSString *joinkind = GetUserDefault(@"joinKinds");
+	if (self.passwordinput.text.length&&self.nickinput.text.length&& self.nickinput.text.length&&self.emailedinput.text.length&&self.customernameinput.text.length&&self.delegatecodeinput.text.length&&self.delegatecityinput.text.length&&self.delegateAddressinput.text.length) {
+		
+		if ([joinkind isEqualToString:@"1"]) {
+			[KLHttpTool TinyResgisterwithPhone:GetUserDefault(@"joinphone") withmempwd:[self sha512:self.passwordinput.text ] withnickname:self.nickinput.text withemail:self.emailedinput.text witheAuthNum:GetUserDefault(@"joinauthnum") withcustom_name:self.customernameinput.text withtop_zip_code:self.delegatecodeinput.text withtop_addr_head:self.delegatecityinput.text withtop_addr_detail:self.delegateAddressinput.text withbusiness_type:@"1" withlang_type:@"kor" withcomp_class:nil withcomp_type:nil withcompany_num:nil withzip_code:nil withkor_addr:nil withkor_addr_detail:nil withtelephon:nil success:^(id response) {
+				MBProgressHUD *hud12 = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+				hud12.mode = MBProgressHUDModeText;
+				
+				if ([response[@"status"] intValue] == 1) {
+					hud12.label.text = @"注册成功！";
+					[self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+				}else{
+					
+					hud12.label.text = response[@"msg"];
+				}
+				[hud12 hideAnimated:YES afterDelay:2];
+			} failure:^(NSError *err) {
+				
+			} ];
+			
+		} else {
+			
+			CompanyAuthController *vc = [CompanyAuthController new];
+			vc.mempwd = self.passwordinput.text;
+			vc.nickname = self.nickinput.text;
+			vc.email = self.emailedinput.text;
+			vc.custom_name = self.customernameinput.text;
+			vc.top_zip_code = self.delegatecodeinput.text;
+			vc.top_addr_head = self.delegatecityinput.text;
+			vc.top_addr_detail = self.delegateAddressinput.text;
+			UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:vc];
+			[self presentViewController:navi animated:YES completion:nil];
+			
+		}
 
-	if ([joinkind isEqualToString:@"1"]) {
-		[KLHttpTool TinyResgisterwithPhone:GetUserDefault(@"joinphone") withmempwd:[self sha512:self.passwordinput.text ] withnickname:self.nickinput.text withemail:self.emailedinput.text witheAuthNum:GetUserDefault(@"joinauthnum") withcustom_name:self.customernameinput.text withtop_zip_code:self.delegatecodeinput.text withtop_addr_head:self.delegatecityinput.text withtop_addr_detail:self.delegateAddressinput.text withbusiness_type:@"1" withlang_type:@"kor" withcomp_class:nil withcomp_type:nil withcompany_num:nil withzip_code:nil withkor_addr:nil withkor_addr_detail:nil withtelephon:nil success:^(id response) {
-			MBProgressHUD *hud12 = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
-			hud12.mode = MBProgressHUDModeText;
-
-			if ([response[@"status"] intValue] == 1) {
-				hud12.label.text = @"注册成功！";
-				[self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-			}else{
-
-				hud12.label.text = response[@"msg"];
-			}
-			[hud12 hideAnimated:YES afterDelay:2];
-		} failure:^(NSError *err) {
-
-		} ];
-
-	} else {
-
-		CompanyAuthController *vc = [CompanyAuthController new];
-		vc.mempwd = self.passwordinput.text;
-		vc.nickname = self.nickinput.text;
-		vc.email = self.emailedinput.text;
-		vc.custom_name = self.customernameinput.text;
-		vc.top_zip_code = self.delegatecodeinput.text;
-		vc.top_addr_head = self.delegatecityinput.text;
-		vc.top_addr_detail = self.delegateAddressinput.text;
-		UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:vc];
-
-		[self presentViewController:navi animated:YES completion:nil];
-
-
+	}else{
+		MBProgressHUD *hudview = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+		hudview.mode = MBProgressHUDModeText;
+		hudview.label.text = @"填写完整资料进入下一步";
+		[hudview hideAnimated:YES afterDelay:2.f];
 	}
 }
 

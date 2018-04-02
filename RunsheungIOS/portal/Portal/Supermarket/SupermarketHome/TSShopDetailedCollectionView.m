@@ -59,10 +59,6 @@
 	GoodsDetailController *goodsDetail = [[GoodsDetailController alloc] init];
 	goodsDetail.controllerType = 6;
 	goodsDetail.hidesBottomBarWhenPushed = YES;
-	
-//	LZShopModel *shop = self.dataArray[indexPath.section];
-//	LZCartModel *goods = shop.goodsArray[indexPath.row];
-//
 	goodsDetail.item_code = dic[@"item_code"];
 	goodsDetail.divCode = @"2";
 	goodsDetail.shopCode = self.shopDic[@"custom_code"];

@@ -9,7 +9,7 @@
 #import "NumDomainView.h"
 #import "TSCategoryController.h"
 #import "UIView+ViewController.h"
-#import "Masonry.h"
+
 #define ScrollviewHeight  (self.frame.size.width)/5.0f
 
 #define topLandScropeTag 1001
@@ -70,6 +70,7 @@
 		inputview.returnKeyType = UIReturnKeyDone;
 		inputview.delegate = self;
 		inputview.tag = j;
+		inputview.tintColor = self.showColors[j];
 		inputview.keyboardType =  UIKeyboardTypeNumberPad;
 		inputview.text = [NSString stringWithFormat:@"%d",self.pickerIndex1];
 		[pickbackImg addSubview:inputview];
