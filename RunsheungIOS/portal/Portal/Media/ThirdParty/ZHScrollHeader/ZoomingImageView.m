@@ -7,7 +7,6 @@
 //
 
 #import "ZoomingImageView.h"
-#import "UIView+ViewController.h"
 
 #define kMaxZoom 3.0
 

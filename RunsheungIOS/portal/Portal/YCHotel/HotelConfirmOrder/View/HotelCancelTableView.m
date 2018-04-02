@@ -9,8 +9,6 @@
 #import "HotelCancelTableView.h"
 #import "YYTextView.h"
 #import "UIButton+CreateButton.h"
-#import "UIView+ViewController.h"
-
 @interface HotelCancelTableView() <UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, strong) YYTextView *textView;

@@ -8,7 +8,6 @@
 
 #import "NumDomainView.h"
 #import "TSCategoryController.h"
-#import "UIView+ViewController.h"
 
 #define ScrollviewHeight  (self.frame.size.width)/5.0f
 

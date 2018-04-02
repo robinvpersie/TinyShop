@@ -9,7 +9,6 @@
 #import "NinaPagerView.h"
 #import "UIParameter.h"
 #import "NinaBaseView.h"
-#import "UIView+ViewController.h"
 #define MaxNums  10
 
 @interface NinaPagerView()<NSCacheDelegate>

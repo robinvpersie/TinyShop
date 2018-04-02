@@ -9,6 +9,7 @@
 
 #import "FindSearchView.h"
 
+
 @implementation FindSearchView
 
 - (instancetype)initWithFrame:(CGRect)frame{
@@ -65,6 +66,8 @@
 	searchfield.returnKeyType = UIReturnKeySearch;
 	searchfield.placeholder = @"검색어를 입력해 주세요";
 	searchfield.tintColor = RGB(132, 251, 232);
+	searchfield.delegate = self;
+	searchfield.tag = 1001;
 	[backview2 addSubview:searchfield];
 	[searchfield mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.leading.top.equalTo(@10);
@@ -82,5 +85,21 @@
 		make.width.height.mas_equalTo(30);
 	}];
 
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+	if (textField.text.length) {
+		if (self.inputkeyworkBlock) {
+			UITextField *searchField = (UITextField*)[self viewWithTag:1001];
+			[searchField resignFirstResponder];
+			self.inputkeyworkBlock(textField.text);
+		}
+	}else{
+		MBProgressHUD *hd = [MBProgressHUD showHUDAddedTo:self.viewController.view animated:YES];
+		hd.mode = MBProgressHUDModeText;
+		hd.label.text = @"请输入搜索关键字";
+		[hd hideAnimated:YES afterDelay:1.2f];
+	}
+	return YES;
 }
 @end

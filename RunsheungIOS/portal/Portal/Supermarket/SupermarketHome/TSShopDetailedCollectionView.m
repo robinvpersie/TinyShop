@@ -8,7 +8,6 @@
 
 #import "TSShopDetailedCollectionView.h"
 #import "ShopDetailedCollectionCell.h"
-#import "UIView+ViewController.h"
 
 
 @implementation TSShopDetailedCollectionView{

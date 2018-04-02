@@ -9,7 +9,6 @@
 #import "SupermarketOrderTableView.h"
 #import "SupermarketOrderTableViewCell.h"
 #import "SupermarketOrderData.h"
-#import "UIView+ViewController.h"
 #import "SupermarketOrderDetaiController.h"
 
 #define CellHeight  110

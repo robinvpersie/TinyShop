@@ -665,4 +665,12 @@
 				  WithSearchword:(NSString*)searchword
 						 success:(void (^)(id response))success
 						 failure:(void (^)(NSError *err))failure;
+/*
+ 团队搜索团队
+ */
++(void)TinyLoginSearchTeamDataUrl:(NSString *)urls
+						WithSword:(NSString*)s_word
+						   WithPg:(NSString*)pg
+						  success:(void (^)(id response))success
+						  failure:(void (^)(NSError *err))failure;
 @end

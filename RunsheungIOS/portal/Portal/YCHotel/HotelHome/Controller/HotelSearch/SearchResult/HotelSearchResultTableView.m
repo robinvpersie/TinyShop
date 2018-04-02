@@ -9,7 +9,6 @@
 #import "HotelSearchResultTableView.h"
 #import "HotelSearchResultTableViewCell.h"
 #import "HotelPicsController.h"
-#import "UIView+ViewController.h"
 #import "HotelHomeListModel.h"
 #import "HotelSpecificSearchResultController.h"
 

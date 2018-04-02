@@ -9,7 +9,6 @@
 #import "SupermarketHomeWantBuyCollectionView.h"
 #import "SupermarketHomeWantBuyCollectionViewCell.h"
 #import "SupermarketHomePeopleLikeData.h"
-#import "UIView+ViewController.h"
 #import "GoodsDetailController.h"
 #import "UIImageView+ImageCache.h"
 

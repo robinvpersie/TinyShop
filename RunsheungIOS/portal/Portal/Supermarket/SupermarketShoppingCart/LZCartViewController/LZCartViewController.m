@@ -105,6 +105,8 @@ typedef void(^finishAction)();
 			NSArray *data = response[@"data"];
 			if (data.count > 0) {
 				self.dataArray = [NSDictionary getShoppingartListShopsWithData:data];
+			}else{
+				[self.dataArray removeAllObjects];
 			}
 		}else {
 			[MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:response[@"message"]];

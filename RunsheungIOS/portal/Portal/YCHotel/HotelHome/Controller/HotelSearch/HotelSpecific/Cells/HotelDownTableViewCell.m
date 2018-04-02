@@ -8,7 +8,6 @@
 
 #import "HotelDownTableViewCell.h"
 #import "HotelConfirmOrderViewController.h"
-#import "UIView+ViewController.h"
 
 @implementation HotelDownTableViewCell
 

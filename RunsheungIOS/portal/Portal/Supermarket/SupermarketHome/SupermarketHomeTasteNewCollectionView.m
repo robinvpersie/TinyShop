@@ -11,7 +11,6 @@
 #import "SupermarketHomeTasteFreshBannerData.h"
 #import "SupermarketHomeMostFreshData.h"
 #import "GoodsDetailController.h"
-#import "UIView+ViewController.h"
 #import "UIImageView+ImageCache.h"
 
 @implementation SupermarketHomeTasteNewCollectionView

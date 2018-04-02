@@ -13,7 +13,7 @@
 #import "HotelRatedModel.h"
 #import "HotelSupportServiceView.h"
 #import "HotelCommentViewController.h"
-#import "UIView+ViewController.h"
+
 
 @implementation HotelCommentAndDetailedView{
     UIView *DetailedbackView;

@@ -24,6 +24,7 @@
 #import <AdSupport/AdSupport.h>
 #import "MJRefresh.h"
 #import "Masonry.h"
+#import "UIView+ViewController.h"
 
 
 // 屏幕高度

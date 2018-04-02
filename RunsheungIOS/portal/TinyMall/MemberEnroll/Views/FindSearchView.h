@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FindSearchView : UIView
-
+typedef void(^inputKeyWordBlock)(NSString *keyword);
+@interface FindSearchView : UIView<UITextFieldDelegate>
+@property (nonatomic,copy)inputKeyWordBlock inputkeyworkBlock;
 @end
