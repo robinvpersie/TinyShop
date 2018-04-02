@@ -290,14 +290,14 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
                 
             } else {
                 YCAlert.textInput(title:"更改昵称".localized, placeholder: "输入昵称".localized, oldText: nil, dismissTitle: "确定".localized, inViewController: self, withFinishedAction: { [weak self] str in
-                     guard let strongself = self,
-                        !str.isEmpty else {
+                     guard let strongself = self, !str.isEmpty else {
                          self?.showMessage("昵称不能为空")
                          return
                      }
                         strongself.nickName = str
                         tableView.reloadSections([sectiontype.rawValue], with: .automatic)
-                        var genderString:String?
+                    
+                        var genderString: String?
                         if strongself.sex == "男".localized {
                            genderString = "f"
                         }else if strongself.sex == "女".localized {
@@ -470,7 +470,12 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
 
 extension PersinalSetController {
     
-    public func PersonalSetMemberProfile(memberId: String, nickName: String?, imagePath: String?, gender: String?, token: String?, completion: @escaping (NetWorkResult<JSONDictionary>) -> Void)
+    public func PersonalSetMemberProfile(memberId: String,
+                                         nickName: String?,
+                                         imagePath: String?,
+                                         gender: String?,
+                                         token: String?,
+                                         completion: @escaping (NetWorkResult<JSONDictionary>) -> Void)
     {
           var requestParameters: [String:Any] = [:]
           requestParameters["memberID"] = memberId
@@ -526,24 +531,26 @@ extension PersinalSetController {
     func logOut(completion:@escaping (NetWorkResult<JSONDictionary>) -> Void) {
         
           let account = YCAccountModel.getAccount()
-          let parse:(JSONDictionary) -> JSONDictionary? = { Data in
+          let parse: (JSONDictionary) -> JSONDictionary? = { Data in
              return Data
           }
         
-          var idfa:String = ""
+          var idfa: String = ""
           if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
             idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
           }
-
           let requestParameters: [String:Any] = [
              "id": account?.customCode ?? "",
              "siteCode": "yc",
              "deviceNo": idfa
           ]
           let url = URL(string: "http://api1.gigawon.co.kr:8088")!
-    
-           let netResource =  NetResource(baseURL: url, path: "/api/apiSSO/setLogout", method: .post, parameters: requestParameters, parameterEncoding: JSONEncoding(), parse: parse)
-           YCProvider.requestDecoded(netResource, completion: completion)
+          let netResource =  NetResource(baseURL: url, path: "/api/apiSSO/setLogout",
+                                          method: .post,
+                                          parameters: requestParameters,
+                                          parameterEncoding: JSONEncoding(),
+                                          parse: parse)
+          YCProvider.requestDecoded(netResource, completion: completion)
 
     }
 
