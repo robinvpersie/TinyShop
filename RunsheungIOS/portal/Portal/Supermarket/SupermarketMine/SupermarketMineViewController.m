@@ -125,7 +125,7 @@
     _tableView.contentInset = UIEdgeInsetsMake(-45, 0, 0, 0);
 
 
-    headerView = [[SupermarketMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 250.0 * 2.0/3.0)];
+    headerView = [[SupermarketMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 250.0*2.0/3.0)];
 	
     _tableView.tableHeaderView = headerView;
 
@@ -310,10 +310,10 @@
             vc.isPageView = NO;
             [self.navigationController pushViewController:vc animated:YES];
         } else if (indexPath.row == 1) {
-            SupermarketRefundController *vc = [[SupermarketRefundController alloc] init];
-            vc.hidesBottomBarWhenPushed = YES;
-            vc.controllerType = self.controllerType;
-            [self.navigationController pushViewController:vc animated:YES];
+//            SupermarketRefundController *vc = [[SupermarketRefundController alloc] init];
+//            vc.hidesBottomBarWhenPushed = YES;
+//            vc.controllerType = self.controllerType;
+//            [self.navigationController pushViewController:vc animated:YES];
         } else if (indexPath.row == 2) {
 //            [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"暂未开放"];
 //            SupermarketAboutViewController *vc = [[SupermarketAboutViewController alloc] init];

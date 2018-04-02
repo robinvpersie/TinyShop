@@ -538,10 +538,9 @@
 #pragma mark -- 有商品时的视图
 - (void)setupCartView {
     //创建底部视图
-    [self setupCustomBottomView];
+//    [self setupCustomBottomView];
     
     UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, LZNaigationBarHeight, LZSCREEN_WIDTH, LZSCREEN_HEIGHT - LZNaigationBarHeight - LZTabBarHeight) style:UITableViewStylePlain];
-    
     table.delegate = self;
     table.dataSource = self;
     [table registerClass:[LZCartTableViewCell class] forCellReuseIdentifier:@"LZCartReusableCell"];
@@ -549,6 +548,9 @@
     table.separatorStyle = UITableViewCellSeparatorStyleNone;
     table.backgroundColor = LZColorFromRGB(245, 246, 248);
     [self.view addSubview:table];
+    [table mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
     self.myTableView = table;
     
     self.myTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -614,21 +616,21 @@
 -(void)movetoCart{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"SMAlertMoveToCartMsg", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *confirm = [UIAlertAction actionWithTitle:NSLocalizedString(@"SMAlertSureTitle", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSString *div;
-        if (_divCode != nil){
-            div = _divCode;
-        }else {
-            div = [[NSUserDefaults standardUserDefaults] objectForKey:DivCodeDefault];
-        }
-        for (int i = 0; i < self.selectedArray.count; i++) {
-            LZCartModel *model = _selectedArray[i];
-            [KLHttpTool addGoodsToShoppingCartWithGoodsID:model.item_code shopID:div applyID:@"YC01" numbers:1 success:^(id response) {
-                NSNumber *status = response[@"status"];
-                if (status.integerValue == 1) {
-                    [self showMessage:response[@"message"] interval:2 completionAction:nil];
-                }
-            } failure:^(NSError *err) { }];
-        }
+//        NSString *div;
+//        if (_divCode != nil){
+//            div = _divCode;
+//        }else {
+//            div = [[NSUserDefaults standardUserDefaults] objectForKey:DivCodeDefault];
+//        }
+//        for (int i = 0; i < self.selectedArray.count; i++) {
+//            LZCartModel *model = _selectedArray[i];
+//            [KLHttpTool addGoodsToShoppingCartWithGoodsID:model.item_code shopID:div applyID:@"YC01" numbers:1 success:^(id response) {
+//                NSNumber *status = response[@"status"];
+//                if (status.integerValue == 1) {
+//                    [self showMessage:response[@"message"] interval:2 completionAction:nil];
+//                }
+//            } failure:^(NSError *err) { }];
+//        }
     }];
     UIAlertAction *cancle = [UIAlertAction actionWithTitle:NSLocalizedString(@"SMAlertCancelTitle", nil) style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:confirm];
