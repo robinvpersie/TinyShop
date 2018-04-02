@@ -9,9 +9,7 @@
 import UIKit
 import MBProgressHUD
 
-
 class PersonalCommentController: YCBaseTableViewController {
-    
     
     var dataArray = [Replydat]()
     
@@ -44,12 +42,10 @@ class PersonalCommentController: YCBaseTableViewController {
     }
     
     override func fetchAgain() {
-        
         updateMainData(mode: .Static)
     }
     
-    
-    override func pullRefresher(sender:UIRefreshControl){
+    override func pullRefresher(sender: UIRefreshControl){
         updateMainData(mode: .TopRefresh, finish: {
             sender.endRefreshing()
         })
@@ -92,7 +88,13 @@ class PersonalCommentController: YCBaseTableViewController {
             guard let strongself = self else {
                 return
             }
-            YCAlert.confirmOrCancel(title: "提示".localized, message: "您确定要删除这条评论吗", confirmTitle: "确定".localized, cancelTitle: "取消", inViewController: strongself, withConfirmAction: {
+            YCAlert.confirmOrCancel(title: "提示".localized,
+                                    message: "您确定要删除这条评论吗",
+                                    confirmTitle: "确定".localized,
+                                    cancelTitle: "取消",
+                                    inViewController: strongself,
+                                    withConfirmAction:
+                {
                     strongself.PersonalDeleteComment(newsReplySeq: strongself.dataArray[indexPath.row].ReplySeq)
                     strongself.dataArray.remove(at: indexPath.row)
                     tableView.reloadData()
@@ -108,13 +110,14 @@ class PersonalCommentController: YCBaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let urlString = dataArray[indexPath.row].url,
-            let url = URL(string: urlString) else {
-            return
+        defer {
+            tableView.deselectRow(at: indexPath, animated: true)
         }
-        let webview = YCWebViewController(url: url)
-        present(webview, animated: true, completion: nil)
-        tableView.deselectRow(at: indexPath, animated: true)
+        if let urlString = dataArray[indexPath.row].url,
+            let url = URL(string: urlString) {
+            let webview = YCWebViewController(url: url)
+            present(webview, animated: true, completion: nil)
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -135,9 +138,8 @@ extension PersonalCommentController {
                 jsonArray = reply.ReplyData
             }
             return jsonArray
-            
         }
-        let memberID = YCAccountModel.getAccount()!.memid ?? ""
+        let memberID = YCAccountModel.getAccount()?.memid ?? ""
         let netResource = NetResource(path: "/MyInfo/MyReply",
                                       method: .post,
                                       parameters: ["MemberID":memberID],
@@ -148,11 +150,11 @@ extension PersonalCommentController {
     
     func PersonalDeleteComment(newsReplySeq: Int){
         
-        let memberID: String = YCAccountModel.getAccount()?.memid ?? ""
-        let parse:(JSONDictionary) -> JSONDictionary? = { json in
+        let memberID = YCAccountModel.getAccount()?.memid ?? ""
+        let parse: (JSONDictionary) -> JSONDictionary? = { json in
             return json
         }
-        let requestParameters:[String:Any] = [
+        let requestParameters: [String:Any] = [
             "MemberID":memberID,
             "NewsReplySeq":newsReplySeq
         ]

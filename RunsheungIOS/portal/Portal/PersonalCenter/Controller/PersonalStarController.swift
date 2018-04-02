@@ -11,12 +11,10 @@ import MBProgressHUD
 
 class PersonalStarController: YCBaseTableViewController {
     
-    
     var starData = [RecommanddatPersonalCenter]()
     weak var message: PersonalMessageController?
     
     func updateMainData(mode: UpdateMode, finish: (() -> Void)? = nil){
-        
         if isFetching {
             finish?()
             return
@@ -121,21 +119,20 @@ class PersonalStarController: YCBaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        defer {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
         if indexPath.section == 0 {
           let myStar = PersonalMyStarController()
           navigationController?.pushViewController(myStar, animated: true)
         }else {
-          let urlstring = starData[indexPath.row].url
-          guard let url = URL(string: urlstring!) else { return }
-          let webview = YCWebViewController(url: url)
-          present(webview, animated: true, completion: nil)
+          if let urlstring = starData[indexPath.row].url,
+            let url = URL(string: urlstring) {
+             let webview = YCWebViewController(url: url)
+             present(webview, animated: true, completion: nil)
+          }
         }
-        
-        tableView.deselectRow(at: indexPath, animated: true)
-
-        
-     }
+    }
 }
 
 extension PersonalStarController {
@@ -145,8 +142,7 @@ extension PersonalStarController {
         let parse:(JSONDictionary) -> [RecommanddatPersonalCenter] = { json in
             var jsonArray = [RecommanddatPersonalCenter]()
             if let reply = PersonalShareModel(json: json) {
-                jsonArray = reply.RecommandData
-                jsonArray = jsonArray.map({
+                jsonArray = reply.RecommandData.map({
                     var element = $0
                     element.isStar = true
                     return element
