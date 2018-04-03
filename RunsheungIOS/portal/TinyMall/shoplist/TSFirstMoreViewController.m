@@ -63,7 +63,7 @@
 - (void)createTableview{
 	if (self.leftTableview == nil) {
 		
-		self.leftTableview =[[UITableView alloc]initWithFrame:CGRectMake(0,0, 140,APPScreenHeight-NAVIGATIONBAR_HEIGHT) style:UITableViewStylePlain];
+		self.leftTableview =[[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
 		self.leftTableview.tag = 1001;
 		[self.leftTableview registerNib:[UINib nibWithNibName:@"ChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChoiceTableViewCellID"];
 		self.leftTableview.delegate = self;
@@ -74,12 +74,16 @@
 		self.leftTableview.separatorColor = RGB(255, 255, 255);
 		self.leftTableview.tableFooterView = [[UIView alloc]init];
 		[self.view addSubview:self.leftTableview];
+		[self.leftTableview mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.leading.top.bottom.mas_equalTo(self.view);
+			make.width.mas_equalTo(140);
+		}];
 		
 	}
 	
 	if (self.rightTableview == nil) {
 		
-		self.rightTableview =[[UITableView alloc]initWithFrame:CGRectMake(140,0,APPScreenWidth - 80,APPScreenHeight-NAVIGATIONBAR_HEIGHT) style:UITableViewStylePlain];
+		self.rightTableview =[[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
 		self.rightTableview.tag = 1002;
 		[self.rightTableview registerNib:[UINib nibWithNibName:@"ChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChoiceTableViewCellID"];
 		self.rightTableview.delegate = self;
@@ -90,6 +94,10 @@
 		self.rightTableview.separatorColor = RGB(255, 255, 255);
 		self.rightTableview.tableFooterView = [[UIView alloc]init];
 		[self.view addSubview:self.rightTableview];
+		[self.rightTableview mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.bottom.trailing.mas_equalTo(self.view);
+			make.leading.mas_equalTo(self.leftTableview.mas_trailing);
+		}];
 		
 	}
 

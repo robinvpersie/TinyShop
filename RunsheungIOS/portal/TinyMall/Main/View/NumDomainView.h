@@ -43,6 +43,8 @@
 
 @property (nonatomic,retain)NSMutableArray *fieldArray;
 
+@property(nonatomic,retain)UIImageView *pickbackImg;
+
 
 
 

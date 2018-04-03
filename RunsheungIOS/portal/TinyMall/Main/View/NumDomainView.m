@@ -36,18 +36,35 @@
 #pragma mark -- 创建UIPickerView
 
 - (void)createPickerviews{
-	UIImageView*pickbackImg = [[UIImageView alloc]initWithFrame:CGRectMake(15, 0, self.frame.size.width-ScrollviewHeight, 60)];
-	pickbackImg.userInteractionEnabled = YES;
-	pickbackImg.image = [UIImage imageNamed:@"dial_num"];
-	[self addSubview:pickbackImg];
 	
-	UIButton *ok = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(pickbackImg.frame), 0, self.frame.size.width - CGRectGetMaxX(pickbackImg.frame), 60)];
+	self.pickbackImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"dial_num"]];
+	self.pickbackImg.userInteractionEnabled = YES;
+	self.pickbackImg.image = [UIImage imageNamed:@"dial_num"];
+	[self addSubview:self.pickbackImg];
+	const double width = self.frame.size.width-ScrollviewHeight;
+	[self.pickbackImg mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.height.equalTo(@60);
+		make.leading.equalTo(@15);
+		make.top.equalTo(self.mas_top);
+		make.width.mas_equalTo(width);
+	} ];
+	
+
+	UIButton *ok = [UIButton buttonWithType:UIButtonTypeCustom];
 	[ok setTitle:@"선택" forState:UIControlStateNormal];
+	[ok.titleLabel setFont:[UIFont systemFontOfSize:15]];
+	[ok setBackgroundImage:[UIImage imageNamed:@"dial_btn"] forState:UIControlStateNormal];
 	[ok setTitleColor:[UIColor colorWithRed:38/255.0f green:199/255.0f blue:48/255.0f alpha:1.0f] forState:UIControlStateNormal];
 	ok.layer.cornerRadius = 5;
 	ok.layer.masksToBounds = YES;
 	[ok addTarget:self action:@selector(okAction:) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview:ok];
+	[ok mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.bottom.mas_equalTo(self.pickbackImg);
+		make.leading.mas_equalTo(self.pickbackImg.mas_trailing);
+		make.trailing.mas_equalTo(-8);
+	}];
+	
 	self.BigCategoresArray= @[@"여행",@"가정",@"건축",@"교육",@"교통",@"금융",@"종교",@"미용",@"법률",@"쇼핑",@"언론",@"건강",@"음식",@"취미",@"컴퓨터"];
 	self.showColors = @[RGB(255, 86, 100),RGB(220, 211, 57),RGB(62, 220, 108),RGB(37, 126, 220),RGB(10, 34, 60)];
 	self.pickerNumbers = @[@"1", @"2", @"3",@"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16"];
@@ -61,8 +78,9 @@
 //	}
 	
 	self.fieldArray = @[].mutableCopy;
-	for (int j= 0; j<4; j++) {
-		UITextField*inputview = [[UITextField alloc]initWithFrame:CGRectMake(j*(CGFloat)CGRectGetWidth(pickbackImg.frame)/5.5,0, (CGFloat)CGRectGetWidth(pickbackImg.frame)/5.5, 60)];
+	for (int j= 0; j<5; j++) {
+		
+		UITextField*inputview = [UITextField new];
 		inputview.textColor = self.showColors[j];
 		inputview.textAlignment = NSTextAlignmentCenter;
 		inputview.font = [UIFont systemFontOfSize:20 weight:1.2f];
@@ -72,12 +90,27 @@
 		inputview.tintColor = self.showColors[j];
 		inputview.keyboardType =  UIKeyboardTypeNumberPad;
 		inputview.text = [NSString stringWithFormat:@"%d",self.pickerIndex1];
-		[pickbackImg addSubview:inputview];
+		[self.pickbackImg addSubview:inputview];
 		[self.fieldArray addObject:inputview];
+		[inputview mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.leading.mas_equalTo(j*(CGFloat)CGRectGetWidth(self.pickbackImg.frame)/5.5);
+			make.top.mas_equalTo(0);
+			make.width.mas_equalTo((j<4?(CGFloat)(CGRectGetWidth(self.pickbackImg.frame)/5.5):1.5*(CGFloat)CGRectGetWidth(self.pickbackImg.frame)/5.5));
+			make.height.mas_equalTo(60);
+		}];
 	}
 	
 	
 	
+}
+
+#pragma mark --- 代理
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+	
+	if (textField.text.length > 1) {
+		textField.text = [textField.text substringToIndex:1];
+	}
+	return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
@@ -238,17 +271,20 @@
 
 	if (self.centerShowCollectView == nil) {
 		UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-//		layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-		self.centerShowCollectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 60, 5* ScrollviewHeight,3* ScrollviewHeight) collectionViewLayout:layout];
+		self.centerShowCollectView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
+		[self.centerShowCollectView setCollectionViewLayout:layout];
 		self.centerShowCollectView.tag = centerScrollViewTag;
 		[self.centerShowCollectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCellID"];
-//		self.centerShowCollectView.scrollEnabled = NO;
 		self.centerShowCollectView.showsVerticalScrollIndicator = NO;
 		self.centerShowCollectView.showsHorizontalScrollIndicator = NO;
 		self.centerShowCollectView.delegate = self;
 		self.centerShowCollectView.dataSource = self;
 		self.centerShowCollectView.backgroundColor = [UIColor colorWithRed:60/255.0f green:60/255.0f blue:60/255.0f alpha:1.0f];
 		[self addSubview:self.centerShowCollectView];
+		[self.centerShowCollectView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.trailing.leading.bottom.equalTo(@0);
+			make.top.mas_equalTo(self.pickbackImg.mas_bottom);
+		}];
 		
 	}
 
