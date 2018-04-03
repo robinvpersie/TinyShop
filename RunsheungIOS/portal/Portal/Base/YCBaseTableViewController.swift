@@ -61,7 +61,8 @@ class YCBaseTableViewController: UITableViewController {
         
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
-        tableView.addSubview(refreshController)
+        //tableView.addSubview(refreshController)
+        tableView.refreshControl = refreshController
         tableView.keyboardDismissMode = .onDrag
         view.backgroundColor = UIColor.groupTableViewBackground
         tableView.tableFooterView = UIView()

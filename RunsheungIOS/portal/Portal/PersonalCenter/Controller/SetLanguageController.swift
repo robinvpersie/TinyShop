@@ -11,7 +11,7 @@ import UIKit
 class SetLanguageController: BaseViewController {
     
     var tableView: UITableView!
-    var selectlanType: languageType = .base{
+    var selectlanType: languageType = .base {
         didSet{
             OperationQueue.main.addOperation {
                 self.tableView.reloadData()
@@ -68,9 +68,7 @@ class SetLanguageController: BaseViewController {
             let type = languageType(rawValue: value) {
             selectlanType = type
         }
-        
     }
-    
     
     @objc
     func didTrailing(){

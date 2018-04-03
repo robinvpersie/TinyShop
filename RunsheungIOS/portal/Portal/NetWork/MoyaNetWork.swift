@@ -90,7 +90,7 @@ public enum BaseType {
         }
     }
     
-    var URI:URL {
+    var URI: URL {
         return URL(string: baseURL)!
     }
 }
@@ -108,7 +108,7 @@ let activityPlugin = NetworkActivityPlugin { type, _ in
     }
 }
 
-private func JSONResponseDataFormatter(_ data:Data) -> Data {
+private func JSONResponseDataFormatter(_ data: Data) -> Data {
     do {
       let dataAsJSON = try JSONSerialization.jsonObject(with: data)
       let prettyData = try JSONSerialization.data(withJSONObject: dataAsJSON, options: .prettyPrinted)
@@ -130,17 +130,17 @@ public typealias JSONDictionary = [String:Any]
 
 protocol DecodableTargetType: Moya.TargetType {
     associatedtype resultType
-    var parse:(_ object:JSONDictionary) -> resultType? {get}
+    var parse:(_ object: [String:Any]) -> resultType? {get}
 }
 
 
 protocol MapTargetType: Moya.TargetType {
     associatedtype resultType
-    var map:(_ object:JSONDictionary) throws -> resultType { get }
+    var map:(_ object: [String:Any]) throws -> resultType { get }
 }
 
 class DefaultAlamofireManager: Alamofire.SessionManager {
-    static let shareManager:DefaultAlamofireManager = {
+    static let shareManager: DefaultAlamofireManager = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 30
         configuration.timeoutIntervalForResource = 30
@@ -150,7 +150,7 @@ class DefaultAlamofireManager: Alamofire.SessionManager {
     }()
 }
 
-final class MultiMoyaProvider:MoyaProvider<MultiTarget> {
+final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
     
     typealias Target = MultiTarget
     
@@ -183,18 +183,13 @@ final class MultiMoyaProvider:MoyaProvider<MultiTarget> {
                 case .success(let response):
                     if let json: JSONDictionary = try? response.mapJSON() as! JSONDictionary,
                         let parsed = target.parse(json) {
-                        DispatchQueue.main.async(execute: {
-                             completion(.success(parsed))
-                        })
+                        completion(.success(parsed))
                     }else {
-                        DispatchQueue.main.async(execute: {
-                            completion(.failure(.jsonMapping(response)))
-                        })
+                        completion(.failure(.jsonMapping(response)))
+                        
                     }
                 case .failure(let error):
-                    DispatchQueue.main.async(execute: { 
-                        completion(.failure(error))
-                    })
+                  completion(.failure(error))
                 }
             }
         return cancellable
@@ -208,26 +203,18 @@ final class MultiMoyaProvider:MoyaProvider<MultiTarget> {
         let cancellable = request(MultiTarget(target)) { result in
             switch result {
             case .success(let response):
-                if let json: [String:Any] = try? response.mapJSON() as! JSONDictionary {
+                if let json: [String:Any] = try? response.mapJSON() as! [String:Any] {
                     do {
                         let parse = try target.map(json)
-                        DispatchQueue.main.async(execute: {
-                            completion(.success(parse))
-                        })
+                        completion(.success(parse))
                     }catch let error {
-                        DispatchQueue.main.async {
-                            completion(.failure(.objectMapping(error,response)))
-                        }
+                        completion(.failure(.objectMapping(error,response)))
                     }
                 }else {
-                    DispatchQueue.main.async(execute: {
-                        completion(.failure(.jsonMapping(response)))
-                    })
+                   completion(.failure(.jsonMapping(response)))
                 }
             case .failure(let error):
-                DispatchQueue.main.async(execute: {
-                    completion(.failure(error))
-                })
+                completion(.failure(error))
             }
        }
        return cancellable
@@ -238,19 +225,17 @@ final class MultiMoyaProvider:MoyaProvider<MultiTarget> {
 let YCProvider = MultiMoyaProvider()
 
 
-
-
 struct NetResource<T>: DecodableTargetType {
     typealias resultType = T
     var baseURL: URL
     var path: String
-    var method:Moya.Method
+    var method: Moya.Method
     var parameters: [String : Any]?
     var parameterEncoding: ParameterEncoding
     var sampleData: Data
     var task: Task
     var parse: (JSONDictionary) -> T?
-    var headers: [String : String]?
+    var headers: [String:String]?
 
     init(baseURL: URL = BaseType.PortalBase.URI,
          path: String,
@@ -324,13 +309,12 @@ struct RSEditProfileResource<T>: DecodableTargetType {
 
 
 class tokenResource<T>:DecodableTargetType {
+    
     var headers: [String : String]?
-    
-    
     typealias resultType = T
     var baseURL: URL
     var path: String
-    var method:Moya.Method
+    var method: Moya.Method
     var parameters: [String : Any]?
     var parameterEncoding: ParameterEncoding
     var sampleData: Data
@@ -363,7 +347,7 @@ class tokenResource<T>:DecodableTargetType {
        self.parse = parse
     }
     
-    func requestApi(completion:@escaping (TokenResult<T>)->Void,check:((CheckToken)->Void)? = nil){
+    func requestApi(completion:@escaping (TokenResult<T>) -> Void, check:( (CheckToken) -> Void)? = nil){
         CheckToken.chekcTokenAPI { (result) in
             switch result {
             case .failure(let error):

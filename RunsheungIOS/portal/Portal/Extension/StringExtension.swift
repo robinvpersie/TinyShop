@@ -39,14 +39,14 @@ public extension String {
         return boundingBox
     }
     
-    func fontHeight(font: UIFont, width: CGFloat? = 0.01) -> CGFloat {
-        let label = UILabel()
-        label.numberOfLines = 1
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.text = self
-        let newnameheight = label.sizeThatFits(CGSize(width: width!, height: CGFloat(MAXFLOAT))).height
-        return newnameheight
-    }
+//    func fontHeight(font: UIFont, width: CGFloat? = 0.01) -> CGFloat {
+//        let label = UILabel()
+//        label.numberOfLines = 1
+//        label.font = UIFont.systemFont(ofSize: 16)
+//        label.text = self
+//        let newnameheight = label.sizeThatFits(CGSize(width: width!, height: CGFloat(MAXFLOAT))).height
+//        return newnameheight
+//    }
     
     
     /// 获得Url里面的对应的参数名字的值
