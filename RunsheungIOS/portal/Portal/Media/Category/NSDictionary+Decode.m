@@ -317,6 +317,7 @@
         data.canDeleteOrder = dic[@"deletable"];
         data.divCode = dic[@"div_code"];
         data.canBuyAgain = dic[@"buyAgain"];
+		data.sale_custom_code = dic[@"sale_custom_code"];
         
         NSArray *list = dic[@"gourpGoodList"];
         if (list.count > 0) {

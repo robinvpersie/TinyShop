@@ -857,28 +857,19 @@ typedef void(^finishAction)();
 
 #pragma mark -- 移动到收藏夹
 - (void)moveToCollection:(UIButton *)button {
+	
 	for (LZCartModel *model in _selectedArray) {
-		NSString *code = [NSString stringWithFormat:@"%@",model.item_code];
-//		if (self.controllerType == ControllerTypeDepartmentStores) {
-//			[KLHttpTool addGoodsToMyCollection:code divCode:model.divCode success:^(id response) {
-//				NSNumber *status = response[@"status"];
-//				if (status.integerValue == 1) {
-//					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
-//				}
-//			} failure:^(NSError *err) {
-//
-//			}];
-//
-//		} else {
-//			[KLHttpTool addGoodsToMyCollection:code divCode:model.divCode success:^(id response) {
-//				NSNumber *status = response[@"status"];
-//				if (status.integerValue == 1) {
-//					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
-//				}
-//			} failure:^(NSError *err) {
-//
-//			}];
-//		}
+	
+			[KLHttpTool addGoodsToMyCollection:model.item_code divCode:model.divCode shopCode:nil SaleCustomCode:model.sale_custom_code   success:^(id response) {
+				NSNumber *status = response[@"status"];
+				if (status.integerValue == 1) {
+					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
+				}
+
+			} failure:^(NSError *err) {
+
+			}];
+
 	}
 }
 
