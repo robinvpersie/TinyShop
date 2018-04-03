@@ -83,7 +83,7 @@
                    userName:(NSString *)userName
                     success:(void (^)(id response))success
                     failure:(void (^)(NSError *err))failure{
-    NSMutableDictionary *dic = @{}.mutableCopy;
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:@"checktoken" forKey:@"action"];
     [dic setObject:userName forKey:@"username"];
     [dic setObject:token forKey:@"token"];
@@ -106,7 +106,7 @@
 + (void)getToken:(void (^)(id token))success
          failure:(void (^)(NSError *errToken))failureToken {
 	
-	NSMutableDictionary *dic = @{}.mutableCopy;
+	NSMutableDictionary *dic = [NSMutableDictionary dictionary];
 	[dic setObject:UUID forKey:@"deviceNo"];
 	NSString *sign = [NSString stringWithFormat:@"%@ycssologin1212121212121",UUID];
 	NSString* encrySign = [YCShareAddress sha512:sign];
@@ -158,7 +158,7 @@
                        failure:(void (^)(NSError *err))failure {
     url = @"http://222.240.51.144:81/api/KLHome";
 
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+   // NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypeGet url:url params:nil success:^(id response) {
         if (success) {
@@ -656,7 +656,7 @@
                                       success:(void (^)(id response))success
                                       failure:(void (^)(NSError *err))failure {
     NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/DelUserShopAddress",BaseUrl];
-    NSMutableDictionary *params = @{}.mutableCopy;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:addressID forKey:@"id"];
     YCAccountModel *model = [YCAccountModel getAccount];
 //    if (model.token) {
@@ -1341,7 +1341,7 @@
     NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/GetMyInfo", BaseUrl];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     YCAccountModel *model = [YCAccountModel getAccount];
-    [params setObject:model.token forKey:@"token"];
+    [params setObject:model.combineToken forKey:@"token"];
     [params setObject:model.customCode forKey:@"custom_code"];
     [params setObject:@"kor" forKey:@"lang_type"];
 
@@ -1349,7 +1349,7 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30;
-    url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
 
