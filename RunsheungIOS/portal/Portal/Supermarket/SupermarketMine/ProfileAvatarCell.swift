@@ -11,11 +11,11 @@ import Kingfisher
 
 class ProfileAvatarCell: UITableViewCell {
     
-    var backGroundImgView:UIImageView!
-    var namelb:UILabel!
-    var penBtn:UIButton!
-    var avatarImgView:UIImageView!
-    var penAction: (()->Void)?
+    var backGroundImgView: UIImageView!
+    var namelb: UILabel!
+    var penBtn: UIButton!
+    var avatarImgView: UIImageView!
+    var penAction: (() -> Void)?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,9 +36,8 @@ class ProfileAvatarCell: UITableViewCell {
         avatarImgView.layer.backgroundColor = UIColor.white.cgColor
         contentView.addSubview(avatarImgView)
         avatarImgView.snp.makeConstraints { (make) in
-            make.right.equalTo(contentView).offset(-15)
+            make.right.bottom.equalTo(contentView).offset(-15)
             make.width.height.equalTo(60)
-            make.bottom.equalTo(contentView).offset(-15)
         }
         
         namelb = UILabel()

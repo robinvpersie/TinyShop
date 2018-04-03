@@ -84,9 +84,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	_imageNames = @[@"icon_myaddress",/*@"icon_mylive",*/@"icon_coupon",@"icon_notice",@"icon_setting2",@"icon_collection2"];
-	_titles = @[NSLocalizedString(@"SupermarketMyOrderWaitPay", nil),/*@"待发货",@"待自提",*/NSLocalizedString(@"SupermarketMyOrderWaitReceive", nil),NSLocalizedString(@"SupermarketMyOrderWaitComment", nil)];
-	_footerImageNames = @[@"Icon_stay",/*@"Iocn_fh",@"Iocn_zt",*/@"Iocn_sh",@"Iocn_evaluate"];
+	_imageNames = @[@"icon_myaddress",
+    /*@"icon_mylive",*/@"icon_coupon",
+                    @"icon_notice",
+                    @"icon_setting2",
+                    @"icon_collection2"];
+	_titles = @[NSLocalizedString(@"SupermarketMyOrderWaitPay", nil),
+            NSLocalizedString(@"SupermarketMyOrderWaitReceive", nil),
+            NSLocalizedString(@"SupermarketMyOrderWaitComment", nil)];
+	_footerImageNames = @[@"Icon_stay",@"Iocn_sh",@"Iocn_evaluate"];
 	
 	[self createSubViews];
 
@@ -384,7 +390,8 @@
 //    [self checkLoginStatus];
     BOOL islogIn = [YCAccountModel islogin];
     if (!islogIn) {
-        [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"您还未登录,请先登录!"];
+        [self showMessage:@"您还未登陆，请先登陆" interval:1.2 completionAction:nil];
+        //[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"您还未登录,请先登录!"];
         return;
     }
 
@@ -400,7 +407,8 @@
 //    [self checkLoginStatus];
     BOOL islogIn = [YCAccountModel islogin];
     if (!islogIn) {
-        [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"您还未登录,请先登录!"];
+        [self showMessage:@"您还未登陆，请先登陆" interval:1.2 completionAction:nil];
+        //[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"您还未登录,请先登录!"];
         return;
     }
 
@@ -416,7 +424,8 @@
 //    [self checkLoginStatus];
     BOOL islogIn = [YCAccountModel islogin];
     if (!islogIn) {
-        [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"您还未登录,请先登录!"];
+        [self showMessage:@"您还未登陆，请先登录" interval:1.2 completionAction:nil];
+        //[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"您还未登录,请先登录!"];
         return;
 
     }
@@ -444,7 +453,8 @@
 
     BOOL islogIn = [YCAccountModel islogin];
     if (!islogIn) {
-        [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"您还未登录,请先登录!"];
+        [self showMessage:@"您还未登陆,请先登录" interval:1.2 completionAction:nil];
+        //[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"您还未登录,请先登录!"];
         return;
     }
 
@@ -467,7 +477,8 @@
 - (void)checkLoginStatus {
     BOOL islogIn = [YCAccountModel islogin];
     if (!islogIn) {
-        [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"您还未登录,请先登录!"];
+        [self showMessage:@"您还未登录,请先登录" interval:1.2 completionAction:nil];
+        //[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"您还未登录,请先登录!"];
         return;
     }
 }
