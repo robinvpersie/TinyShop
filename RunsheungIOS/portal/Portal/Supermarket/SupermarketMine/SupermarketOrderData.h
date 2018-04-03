@@ -68,6 +68,7 @@ typedef NS_ENUM(NSInteger, AssessStatus) {
 @property(nonatomic, strong) NSNumber *canBuyAgain;//是否能重新购买
 
 @property(nonatomic, copy) NSString *divCode;
+@property(nonatomic,copy)NSString *sale_custom_code;
 
 //@property(nonatomic, strong) NSArray *addtionalGoods;//附加商品
 

@@ -138,6 +138,7 @@
         model.number = goods.amount.integerValue;
         model.price = goods.price.stringValue;
         model.divCode = data.divCode;
+		model.sale_custom_code = data.sale_custom_code;
         [shopCartArr addObject:model];
     }
     confirmOrder.dataArray = shopCartArr.copy;

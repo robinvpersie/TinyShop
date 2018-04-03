@@ -147,7 +147,7 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             [cell.contentView addSubview:defaultAddressIcon];
             
             _defualtIcon = defaultAddressIcon;
-            if ([_addressModel.defaultadd isEqualToString:@"1"]) {
+            if ([_addressModel.default_add isEqualToString:@"1"]) {
                 _defualtIcon.hidden = NO;
             }else {
                 _defualtIcon.hidden = YES;
@@ -174,9 +174,9 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             address.font = [UIFont systemFontOfSize:15];
             _addressLabel = address;
             
-            if (_addressModel.toaddress.length > 0) {
+            if (_addressModel.to_address.length > 0) {
                 _addressLabel.hidden = NO;
-                _addressLabel.text = [NSString stringWithFormat:@"%@", _addressModel.toaddress];
+                _addressLabel.text = [NSString stringWithFormat:@"%@", _addressModel.to_address];
                 _msg.hidden = NO;
             } else {
                 _addressLabel.hidden = YES;
@@ -204,8 +204,8 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             _gidField.textColor = [UIColor darkGrayColor];
             _gidField.font = [UIFont systemFontOfSize:15];
             [cell.contentView addSubview:_gidField];
-            if (_addressModel.zipname.length > 0) {
-                _gidField.text = _addressModel.zipname;
+            if (_addressModel.zip_name.length > 0) {
+                _gidField.text = _addressModel.zip_name;
             }
 //            if (_addressModel.zipcode.length > 0) {
 //               // _gidField.userInteractionEnabled = NO;
@@ -228,8 +228,8 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
 //                //_haoaoField.text = _addressModel.address;
 //
 //            }
-            if (_addressModel.toaddress.length > 0) {
-                _haoaoField.text = _addressModel.toaddress;
+            if (_addressModel.to_address.length > 0) {
+                _haoaoField.text = _addressModel.to_address;
             }
 
         } else {
@@ -434,7 +434,7 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
         [KLHttpTool supermaketEditAddresswWithRealName:_nameField.text
                                               location:_addressLabel.text
                                                address:_haoaoField.text
-                                                seqNum:self.addressModel.seqnum
+                                                seqNum:self.addressModel.seq_num
                                              mobilepho:_phoneField.text
                                                zipCode:zipCode
                                                zipName:_addressLabel.text
