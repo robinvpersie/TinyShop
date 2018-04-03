@@ -199,9 +199,10 @@
 				for (SupermarketAddressModel *addressModel in array) {
 					if (addressModel.default_add) {
 						self.address = addressModel;
+						hasDefault = 1;
 						[self.tableView reloadData];
 						
-						hasDefault = 1;
+						
 					}
 				}
 				if (hasDefault == 0) {
@@ -708,7 +709,6 @@
 		phone.textAlignment = NSTextAlignmentRight;
 		phone.textColor = receivePerson.textColor;
 		phone.font = receivePerson.font;
-		//        phone.text = @"18300000000";
 		
 		UILabel *receivePlace = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(receivePerson.frame), CGRectGetMaxY(receivePerson.frame), 0, 20)];
 		receivePlace.font = [UIFont systemFontOfSize:13];
@@ -720,7 +720,6 @@
 		
 		UILabel *place = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(receivePlace.frame), CGRectGetMinY(receivePlace.frame), APPScreenWidth - 140, 40)];
 		place.numberOfLines = 2;
-		//        place.text = @"湖南省长沙市芙蓉区人民东路139号宇成国际酒店";
 		place.font = receivePlace.font;
 		place.textColor = receivePlace.textColor;
 		

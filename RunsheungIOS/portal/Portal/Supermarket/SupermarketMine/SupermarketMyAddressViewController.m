@@ -233,7 +233,7 @@
         nameLab.font = [UIFont systemFontOfSize:14];
         nameLab.textColor = [UIColor darkGrayColor];
        // nameLab.text = [NSString stringWithFormat:@"%@",model.realname];
-        nameLab.text = [NSString stringWithFormat:@"%@", model.deliveryname];
+        nameLab.text = [NSString stringWithFormat:@"%@", model.delivery_name];
         [cell.contentView addSubview:nameLab];
         
         UILabel *telephoneLab =[[UILabel alloc]initWithFrame:CGRectMake(APPScreenWidth - 115, 10 , 100, 30)];
@@ -259,7 +259,7 @@
         addressLab.textColor = [UIColor darkGrayColor];
         addressLab.font = [UIFont systemFontOfSize:14];
        // addressLab.text = [NSString stringWithFormat:@"%@%@",model.location,model.address];
-        addressLab.text = model.toaddress;
+        addressLab.text = model.to_address;
         addressLab.numberOfLines = 2;
         
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 43, APPScreenWidth, 1)];
@@ -295,7 +295,7 @@
         
         UIImageView *imagview1;
         UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 120, 20)];
-        if ([model.defaultadd isEqualToString:@"True"]) {
+        if ([model.default_add isEqualToString:@"True"]) {
             defaultBtn.selected = !defaultBtn.selected;
             imagview1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cart_selected_btn"]];
             title.text = @"默认地址";
@@ -306,7 +306,7 @@
             title.textColor = [UIColor grayColor];
         }
         
-        if ([model.defaultadd isEqualToString:@"True"]) {
+        if ([model.default_add isEqualToString:@"True"]) {
             defaultBtn.userInteractionEnabled = NO;
         } else {
             defaultBtn.userInteractionEnabled = YES;
@@ -458,10 +458,10 @@
         NSInteger section = indexPath.section;
         
         for (MarketModel *model in self.data) {
-            model.defaultadd = @"No";
+            model.default_add = @"No";
         }
         MarketModel *model = self.data[section];
-        model.defaultadd = @"True";
+        model.default_add = @"True";
         
 //        for (SupermarketAddressModel *model in _data) {
 //            model.isdefault = @0;
@@ -470,7 +470,7 @@
 //        SupermarketAddressModel *model = _data[section];
 //        model.isdefault = @1;
 //
-        [KLHttpTool setSupermarketDefaultAddressWithAddressID:model.seqnum success:^(id response) {
+        [KLHttpTool setSupermarketDefaultAddressWithAddressID:model.seq_num success:^(id response) {
             
         } failure:^(NSError *err) {
             
@@ -536,7 +536,7 @@
             NSIndexPath *indexPath = [_tableView indexPathForCell:cell];
             MarketModel *model = self.data[indexPath.section];
             [self showLoading];
-            [KLHttpTool deleteSuperMarketAddressWithSeqNum:model.seqnum success:^(id response) {
+            [KLHttpTool deleteSuperMarketAddressWithSeqNum:model.seq_num success:^(id response) {
                 [self hideLoading];
                 NSString *status = response[@"status"];
                 if ([status isEqualToString:@"1"]) {

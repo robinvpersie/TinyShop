@@ -13,12 +13,12 @@
 -(instancetype)initWithDic:(NSDictionary *)dic {
     self = [super init];
     if (self) {
-        self.defaultadd = [dic objectForKey:@"default_add"];
+        self.default_add = [dic objectForKey:@"default_add"];
         self.mobilepho = [dic objectForKey:@"mobilepho"];
-        self.seqnum = [dic objectForKey:@"seq_num"];
-        self.toaddress = [dic objectForKey:@"to_address"];
-        self.zipname = [dic objectForKey:@"zip_name"];
-        self.deliveryname = [dic objectForKey:@"delivery_name"];
+        self.seq_num = [dic objectForKey:@"seq_num"];
+        self.to_address = [dic objectForKey:@"to_address"];
+        self.zip_name = [dic objectForKey:@"zip_name"];
+        self.delivery_name = [dic objectForKey:@"delivery_name"];
     }
     return self;
 }
