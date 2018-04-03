@@ -377,33 +377,6 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
             })
             
         }
-        
-//        let alertController = UIAlertController(title: "选择照片".localized, message: nil, preferredStyle: .actionSheet)
-//
-//        let cancelAction = UIAlertAction(title: "取消".localized, style: .cancel) {_ in}
-//        alertController.addAction(cancelAction)
-//
-//        let CameroAction = UIAlertAction(title: "拍照".localized, style: .default) { action in
-//            proposeToAccess(.camera, agreed: { [weak self] in
-//                guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
-//                if let strongself = self {
-//                   strongself.imagePicker.sourceType = .camera
-//                   strongself.present(strongself.imagePicker, animated: true, completion: nil)
-//                }
-//            }, rejected: {})
-//        }
-//        alertController.addAction(CameroAction)
-//
-//        let AlbumAction = UIAlertAction(title: "相册".localized, style: .default, handler: { action in
-//            proposeToAccess(.photos, agreed: { [weak self] in
-//                guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
-//                if let strongself = self {
-//                    strongself.imagePicker.sourceType = .photoLibrary
-//                    strongself.present(strongself.imagePicker, animated: true, completion: nil)
-//                }}, rejected: {})
-//        })
-//        alertController.addAction(AlbumAction)
-//        present(alertController, animated: true, completion: nil)
     }
     
     
@@ -433,8 +406,14 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
         defer {
             dismiss(animated: true, completion: nil)
         }
-        if let Image = info[UIImagePickerControllerEditedImage] as? UIImage {
-           let imageData = UIImageJPEGRepresentation(Image, 0.9)!
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            
+           let editedImage = image.yc.resizeToTargetSize(targetSize: CGSize(width: 45, height: 45))
+           let indexpath = IndexPath(row: 0, section: 0)
+           let cell = tableView.cellForRow(at: indexpath) as? PersonalHeaderCell
+           cell?.avatarImageView.image = editedImage
+            
+           let imageData = UIImageJPEGRepresentation(editedImage!, 0.6)!
            let currentDateStr = "WPortal" +  Date().string(custom: "YYYYMMddhhmmss") + ".jpg"
            let uploadAttachment = UploadAttachment(attType: .avatar, source: .data(imageData), fileExtension: .jpeg, fileName: currentDateStr)
             
@@ -451,18 +430,13 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
                         genderString = "M"
                     }
                     let imagepath = "http://portal.gigawon.co.kr:8488/MediaUploader/wsProfile/" + currentDateStr
-                    KingfisherManager.shared.cache.store(Image, original: imageData, forKey: imagepath, toDisk: true, completionHandler: nil)
+                    KingfisherManager.shared.cache.store(image, original: imageData, forKey: imagepath, toDisk: true, completionHandler: nil)
                     this.setUserAccount(nickname: this.nickName, gender: genderString, token: this.token, imagePath: imagepath)
                   case .failed(errorMessage: let errormessage):
                     this.showMessage(errormessage)
                 }
              })
             operationQue.addOperation(uploadOperation)
-            
-            let EditedImage = Image.yc.resizeToTargetSize(targetSize: CGSize(width: 45, height: 45))
-            let indexpath = IndexPath(row: 0, section: 0)
-            let cell = tableView.cellForRow(at: indexpath) as? PersonalHeaderCell
-            cell?.avatarImageView.image = EditedImage
         }
     }
 }

@@ -683,10 +683,11 @@
                                   numbers:(NSInteger)goodsNumber
                                   success:(void (^)(id response))success
                                   failure:(void (^)(NSError *err))failure {
+    
     NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/AddUserShopCart",BaseUrl];
     YCAccountModel *model = [YCAccountModel getAccount];
-    NSMutableDictionary *params = @{}.mutableCopy;
-    [params setObject:[NSNumber numberWithInteger:goodsNumber] forKey:@"item_quantity"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSString stringWithFormat:@"%ld",(long)goodsNumber] forKey:@"item_quantity"];
     [params setObject:goodsID forKey:@"item_code"];
     [params setObject:shopID forKey:@"div_code"];
     [params setObject:applyID forKey:@"sale_custom_code"];
@@ -826,24 +827,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure(error);
     }];
-//    if (model.token) {
-//        [params setObject:model.token forKey:@"token"];
-//    }
-    
-    
-//    [self getToken:^(id token) {
-//        [params setObject:token forKey:@"token"];
-//        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-//            if (success) {
-//                success(response);
-//            }
-//        } failure:^(NSError *err) {
-//            NSLog(@"%@",err);
-//        }];
-//
-//    } failure:^(NSError *errToken) {
-//
-//    }];
 }
 
 + (void)getMyCollectionListWithOffSet:(NSInteger)offset

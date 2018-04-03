@@ -428,71 +428,29 @@
     [super viewDidLoad];
     self.title = NSLocalizedString(@"SMMyCollectionTitle", nil);
     self.view.backgroundColor = [UIColor whiteColor];
-    self.selectedArray = @[].mutableCopy;
-    [self loadData];
-    
+    self.selectedArray = [NSMutableArray array];
     [self setupCartView];
+    
+    [self.myTableView.mj_header beginRefreshing];
 }
 
 - (void)loadData {
-    if (self.controllerType == ControllerTypeSupermarket) {
         NSMutableArray *dataArray = [NSMutableArray array];
         [KLHttpTool getMyCollectionListWithAppType:6 success:^(id response) {
             NSNumber *status = response[@"status"];
             if (status.integerValue == 1) {
                 NSArray *data = response[@"data"];
-                if (data.count > 0) {
-                    for (NSDictionary *dic in data) {
-                        LZCartModel *model = [NSDictionary getLzCartModelWithDic:dic];
-                        [dataArray addObject:model];
-                    }
-                    self.dataArray = dataArray;
-                }
-                [self changeView];
-                [self.myTableView.mj_header endRefreshing];
-            }
-        } failure:^(NSError *err) {
-            
-        }];
-        
-    } else {
-        //        NSMutableArray *dataArray = @[].mutableCopy;
-        //        [KLHttpTool shopGetMyCollectionListsuccess:^(id response) {
-        //            NSNumber *status = response[@"status"];
-        //            if (status.integerValue == 1) {
-        //                NSArray *data = response[@"data"];
-        //                if (data.count > 0) {
-        //                    for (NSDictionary *dic in data) {
-        //                        LZCartModel *model = [NSDictionary getLzCartModelWithDic:dic];
-        //                        [dataArray addObject:model];
-        //                    }
-        //                    self.dataArray = dataArray;
-        //                }
-        //                [self changeView];
-        //                [self.myTableView.mj_header endRefreshing];
-        //            }
-        //        } failure:^(NSError *err) {
-        //
-        //        }];
-        
-        NSMutableArray *dataArray = [NSMutableArray array];
-        [KLHttpTool getMyCollectionListWithAppType:8 success:^(id response) {
-            NSNumber *status = response[@"status"];
-            if (status.integerValue == 1) {
-                NSArray *data = response[@"data"];
                 for (NSDictionary *dic in data) {
-                    LZCartModel *model = [NSDictionary getLzCartModelWithDic:dic];
-                    [dataArray addObject:model];
+                     LZCartModel *model = [NSDictionary getLzCartModelWithDic:dic];
+                     [dataArray addObject:model];
                 }
                 self.dataArray = dataArray;
                 [self changeView];
-                [self.myTableView.mj_header endRefreshing];
             }
+            [self.myTableView.mj_header endRefreshing];
         } failure:^(NSError *err) {
-            
+            [self.myTableView.mj_header endRefreshing];
         }];
-        
-    }
 }
 
 #pragma mark -- 购物车为空时的默认视图
@@ -538,9 +496,9 @@
 #pragma mark -- 有商品时的视图
 - (void)setupCartView {
     //创建底部视图
-//    [self setupCustomBottomView];
+    [self setupCustomBottomView];
     
-    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, LZNaigationBarHeight, LZSCREEN_WIDTH, LZSCREEN_HEIGHT - LZNaigationBarHeight - LZTabBarHeight) style:UITableViewStylePlain];
+    UITableView *table = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     table.delegate = self;
     table.dataSource = self;
     [table registerClass:[LZCartTableViewCell class] forCellReuseIdentifier:@"LZCartReusableCell"];
@@ -549,7 +507,8 @@
     table.backgroundColor = LZColorFromRGB(245, 246, 248);
     [self.view addSubview:table];
     [table mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.leading.trailing.top.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-49);
     }];
     self.myTableView = table;
     
@@ -561,6 +520,7 @@
 }
 
 - (void)setupCustomBottomView {
+    
     UIView *backgroundView = [[UIView alloc]init];
     backgroundView.backgroundColor = [UIColor whiteColor];
     backgroundView.tag = TAG_CartEmptyView + 1;
@@ -616,21 +576,20 @@
 -(void)movetoCart{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"SMAlertMoveToCartMsg", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *confirm = [UIAlertAction actionWithTitle:NSLocalizedString(@"SMAlertSureTitle", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        NSString *div;
-//        if (_divCode != nil){
-//            div = _divCode;
-//        }else {
-//            div = [[NSUserDefaults standardUserDefaults] objectForKey:DivCodeDefault];
-//        }
-//        for (int i = 0; i < self.selectedArray.count; i++) {
-//            LZCartModel *model = _selectedArray[i];
-//            [KLHttpTool addGoodsToShoppingCartWithGoodsID:model.item_code shopID:div applyID:@"YC01" numbers:1 success:^(id response) {
-//                NSNumber *status = response[@"status"];
-//                if (status.integerValue == 1) {
-//                    [self showMessage:response[@"message"] interval:2 completionAction:nil];
-//                }
-//            } failure:^(NSError *err) { }];
-//        }
+     
+        for (int i = 0; i < self.selectedArray.count; i++) {
+            LZCartModel *model = self.selectedArray[i];
+            [KLHttpTool addGoodsToShoppingCartWithGoodsID:model.item_code shopID:@"2" applyID:@"YC01" numbers:1 success:^(id response) {
+                NSNumber *status = response[@"status"];
+                if (status.integerValue == 1) {
+                    [self showMessage:response[@"message"] interval:1.2 completionAction:nil];
+                } else {
+                    [self showMessage:response[@"message"] interval:1.2 completionAction:nil];
+                }
+            } failure:^(NSError *err) {
+                [self showMessage:@"加入失败" interval:1.2 completionAction:nil];
+            }];
+        }
     }];
     UIAlertAction *cancle = [UIAlertAction actionWithTitle:NSLocalizedString(@"SMAlertCancelTitle", nil) style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:confirm];

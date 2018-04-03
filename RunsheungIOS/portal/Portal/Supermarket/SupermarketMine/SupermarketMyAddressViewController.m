@@ -548,22 +548,7 @@
                 } failure:^(NSError *err) {
                 
             }];
-
-//            SupermarketAddressModel *model = _data[indexPath.section];
-//
-//            [KLHttpTool deleteSupermarketAddressWithAddressID:model.addressID.stringValue success:^(id response) {
-//                NSNumber *status = response[@"status"];
-//                if (status.integerValue == 1) {
-//                    if ([_data containsObject:model]) {
-//                        [_data removeObject:model];
-//                    }
-//                    [_tableView reloadData];
-//                    [MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:response[@"message"]];
-//                }
-//            } failure:^(NSError *err) {
-//
-//            }];
-        }
+         }
     }];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
