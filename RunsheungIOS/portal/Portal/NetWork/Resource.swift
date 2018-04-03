@@ -18,10 +18,10 @@ struct TargetResource<T>: MapTargetType {
     var method: Moya.Method
     var sampleData: Data
     var task: Task
-    var headers: [String : String]?
+    var headers: [String:String]?
     var map: (JSONDictionary) throws -> T
     
-    init(baseURL:URL = BaseType.PortalBase.URI,
+    init(baseURL: URL = BaseType.PortalBase.URI,
          path: String,
          method: Moya.Method,
          parameters: [String:Any]?,

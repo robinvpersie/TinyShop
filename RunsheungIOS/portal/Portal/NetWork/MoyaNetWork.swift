@@ -130,13 +130,13 @@ public typealias JSONDictionary = [String:Any]
 
 protocol DecodableTargetType: Moya.TargetType {
     associatedtype resultType
-    var parse:(_ object: JSONDictionary) -> resultType? {get}
+    var parse:(_ object: [String:Any]) -> resultType? {get}
 }
 
 
 protocol MapTargetType: Moya.TargetType {
     associatedtype resultType
-    var map:(_ object: JSONDictionary) throws -> resultType { get }
+    var map:(_ object: [String:Any]) throws -> resultType { get }
 }
 
 class DefaultAlamofireManager: Alamofire.SessionManager {
@@ -203,26 +203,18 @@ final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
         let cancellable = request(MultiTarget(target)) { result in
             switch result {
             case .success(let response):
-                if let json: [String:Any] = try? response.mapJSON() as! JSONDictionary {
+                if let json: [String:Any] = try? response.mapJSON() as! [String:Any] {
                     do {
                         let parse = try target.map(json)
-                        DispatchQueue.main.async(execute: {
-                            completion(.success(parse))
-                        })
+                        completion(.success(parse))
                     }catch let error {
-                        DispatchQueue.main.async {
-                            completion(.failure(.objectMapping(error,response)))
-                        }
+                        completion(.failure(.objectMapping(error,response)))
                     }
                 }else {
-                    DispatchQueue.main.async(execute: {
-                        completion(.failure(.jsonMapping(response)))
-                    })
+                   completion(.failure(.jsonMapping(response)))
                 }
             case .failure(let error):
-                DispatchQueue.main.async(execute: {
-                    completion(.failure(error))
-                })
+                completion(.failure(error))
             }
        }
        return cancellable
@@ -355,7 +347,7 @@ class tokenResource<T>:DecodableTargetType {
        self.parse = parse
     }
     
-    func requestApi(completion:@escaping (TokenResult<T>)->Void,check:((CheckToken)->Void)? = nil){
+    func requestApi(completion:@escaping (TokenResult<T>) -> Void, check:( (CheckToken) -> Void)? = nil){
         CheckToken.chekcTokenAPI { (result) in
             switch result {
             case .failure(let error):
