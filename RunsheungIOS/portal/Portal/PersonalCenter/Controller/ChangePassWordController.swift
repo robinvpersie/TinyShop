@@ -37,7 +37,10 @@ class ChangePassWordController: BaseViewController {
         oldPasswordfield.delegate = self
         view.addSubview(oldPasswordfield)
 
-        newPasswordfield = YCTextField(frame:CGRect(x: leftEdges, y: oldPasswordfield.maxy + textfieldEdges, width: oldPasswordfield.width, height: oldPasswordfield.height))
+        newPasswordfield = YCTextField(frame:CGRect(x: leftEdges,
+                                                    y: oldPasswordfield.maxy + textfieldEdges,
+                                                    width: oldPasswordfield.width,
+                                                    height: oldPasswordfield.height))
         newPasswordfield.placeholder = "设置新密码"
         newPasswordfield.cornerRadius = textfieldHeight/2
         newPasswordfield.clearButtonMode = .whileEditing
@@ -46,7 +49,10 @@ class ChangePassWordController: BaseViewController {
         newPasswordfield.delegate = self
         view.addSubview(newPasswordfield)
         
-        newPasswordConfirmfield = YCTextField(frame:CGRect(x: leftEdges, y: newPasswordfield.maxy + textfieldEdges, width: oldPasswordfield.width, height: oldPasswordfield.height))
+        newPasswordConfirmfield = YCTextField(frame:CGRect(x: leftEdges,
+                                                           y: newPasswordfield.maxy + textfieldEdges,
+                                                           width: oldPasswordfield.width,
+                                                           height: oldPasswordfield.height))
         newPasswordConfirmfield.placeholder = "确认新密码"
         newPasswordConfirmfield.cornerRadius = textfieldHeight/2
         newPasswordConfirmfield.clearButtonMode = .whileEditing
@@ -63,40 +69,43 @@ class ChangePassWordController: BaseViewController {
         confirmBtn.isEnabled = false
         view.addSubview(confirmBtn)
         confirmBtn.rx.tap.subscribe(onNext: { [weak self] in
-            guard let strongself = self else { return }
-            strongself.view.endEditing(true)
-            if strongself.newPasswordConfirmfield.text != strongself.newPasswordfield.text {
-                YCAlert.alertSorry(message: "您设置的密码不相同", inViewController: strongself)
+            self?.view.endEditing(true)
+            if self?.newPasswordConfirmfield.text != self?.newPasswordfield.text {
+                YCAlert.alertSorry(message: "您设置的密码不相同", inViewController: self)
                 return
             }
-            strongself.showLoading()
-            strongself.changePassword(new: strongself.newPasswordfield.text!, old: strongself.oldPasswordfield.text!, completion: { result in
-                  strongself.hideLoading()
+            self?.showLoading()
+            guard let this = self else { return }
+            this.changePassword(new: this.newPasswordfield.text!, old: this.oldPasswordfield.text!, completion: { result in
+                  self?.hideLoading()
                   switch result {
                   case .success(let json):
                      let swiftjson = JSON(json)
                      let status = swiftjson["status"].intValue
                      if status == 1 {
                         let account = YCAccountModel.getAccount()!
-                        account.password = strongself.newPasswordfield.text
+                        account.password = self?.newPasswordfield.text
                         let objectTodata = NSKeyedArchiver.archivedData(withRootObject: account)
                         YCUserDefaults.accountModel.value = objectTodata
                         self?.showMessage("修改成功")
                         delay(1.5, work: {
-                            strongself.view.endEditing(true)
-                            strongself.yc_back()
+                            self?.view.endEditing(true)
+                            self?.yc_back()
                         })
                     }else {
                         let msg = swiftjson["msg"].string
                         self?.showMessage(msg)
                     }
-                  case .failure(let error):
-                    strongself.showMessage(error.localizedDescription)
-                  }
+                  case .failure:
+                    break
+                }
             })
         }).disposed(by: disposebag)
         
-        Observable.combineLatest(newPasswordfield.rx.text.orEmpty, oldPasswordfield.rx.text.orEmpty, newPasswordConfirmfield.rx.text.orEmpty) { newpassword, oldpassword ,confirmpassword -> Bool in
+        Observable.combineLatest(newPasswordfield.rx.text.orEmpty,
+                                 oldPasswordfield.rx.text.orEmpty,
+                                 newPasswordConfirmfield.rx.text.orEmpty)
+        { newpassword, oldpassword ,confirmpassword -> Bool in
             if newpassword.count >= 6 && oldpassword.count >= 6 && confirmpassword.count >= 6{
                self.confirmBtn.layer.backgroundColor = UIColor.navigationbarColor.cgColor
                return true
@@ -134,15 +143,15 @@ extension ChangePassWordController {
         }
         let newhash = new.sha512()
         let oldhash = old.sha512()
-        let customId = YCAccountModel.getAccount()?.memid ?? ""
+        let customId = YCAccountModel.getAccount()?.customCode
         
         let requestParameter: [String:Any] = [
             "newPassword":newhash,
             "oriPassword":oldhash,
-            "custom_code":customId
+            "custom_code":customId ?? ""
         ]
         
-        let netResource = NetResource(baseURL: BaseType.shop.URI,
+        let netResource = NetResource(baseURL: URL(string: "http://api1.gigawon.co.kr:82")!,
                                       path: "/api/MemberInfo/changePassword",
                                       method: .post,
                                       parameters: requestParameter,
