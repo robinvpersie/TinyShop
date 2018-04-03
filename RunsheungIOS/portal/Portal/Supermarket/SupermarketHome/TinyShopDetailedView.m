@@ -33,55 +33,98 @@
 	for (int i = 0;i<showtitles.count;i++) {
 		NSString *title = showtitles[i];
 		if (i == 0) {
-			UILabel *lbl = [self createwithtext:title withframe:CGRectMake(i*SCREEN_WIDTH/4, 10, SCREEN_WIDTH/4, 30) withfont:34 withtextColor:RGB(198, 0, 18)];
+		
+			UILabel *lbl = [self createwithtext:title withframe:CGRectZero withfont:34 withtextColor:RGB(198, 0, 18)];
 			[self addSubview:lbl];
+			[lbl mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.leading.mas_equalTo(i*SCREEN_WIDTH/4);
+				make.top.mas_equalTo(10);
+				make.width.mas_equalTo(SCREEN_WIDTH/4);
+				make.height.mas_equalTo(30);
+			}];
 			
-			UIView *starView = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/8- 35, CGRectGetMaxY(lbl.frame)+ 13, 70, 14)];
+			UIView *starView = [UIView new];
 			[self addSubview:starView];
+			[starView mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.leading.mas_equalTo(SCREEN_WIDTH/8- 35);
+				make.top.mas_equalTo(lbl.mas_bottom).offset(13);
+				make.width.mas_equalTo(70);
+				make.height.mas_equalTo(14);
+			}];
 			[self createStarScore:[_dic[@"score"] floatValue] withSuperView:starView];
 			
 		}else{
-			UILabel *lbl = [self createwithtext:title withframe:CGRectMake(i*SCREEN_WIDTH/4, 5, SCREEN_WIDTH/4, 30) withfont:15 withtextColor:RGB(178, 178, 178)];
+
+			UILabel *lbl = [self createwithtext:title withframe:CGRectZero withfont:15 withtextColor:RGB(178, 178, 178)];
 			[self addSubview:lbl];
+			[lbl mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.leading.mas_equalTo(i*SCREEN_WIDTH/4);
+				make.top.mas_equalTo(5);
+				make.width.mas_equalTo(SCREEN_WIDTH/4);
+				make.height.mas_equalTo(30);
+			}];
 			
 			NSString *text = showtext[i-1];
-			UILabel *lbl1 = [self createwithtext:text withframe:CGRectMake(i*SCREEN_WIDTH/4,CGRectGetMaxY(lbl.frame)+ 10, SCREEN_WIDTH/4, 30) withfont:15 withtextColor:RGB(15, 15, 15)];
+			UILabel *lbl1 = [self createwithtext:text withframe:CGRectZero withfont:15 withtextColor:RGB(15, 15, 15)];
 			[self addSubview:lbl1];
+			[lbl1 mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.leading.mas_equalTo(i*SCREEN_WIDTH/4);
+				make.top.mas_equalTo(lbl.mas_bottom).offset(10);
+				make.width.mas_equalTo(lbl.mas_width);
+				make.height.mas_equalTo(lbl.mas_height);
+			}];
+			
 			
 			
 			
 			
 		}
 	}
-	
-	//两个按钮
-	self.backView = [[UIView alloc]initWithFrame:CGRectMake(0 ,self.frame.size.height - 30, SCREEN_WIDTH, 30)];
-	[self addSubview:self.backView];
 	
 	NSArray *btnarray = @[@"메뉴",@"정보"];
-	for (int i = 0; i<btnarray.count; i++) {
-		NSString *title = btnarray[i];
+	UIButton *leftbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	leftbtn.selected = YES;
+	leftbtn.tag= 0;
+	leftbtn.layer.borderColor = RGB(221, 221, 221).CGColor;
+	leftbtn.layer.borderWidth = 1.0f;
+	[leftbtn setTitleColor:RGB(198, 0, 18) forState:UIControlStateSelected];
+	[leftbtn setTitleColor:RGB(15, 15, 15) forState:UIControlStateNormal];
+	[leftbtn setTitle:btnarray.firstObject forState:UIControlStateNormal];
+	[leftbtn setBackgroundImage:[UIImage imageNamed:@"selectbox_round"] forState:UIControlStateSelected];
+	[leftbtn setBackgroundImage:[UIImage imageNamed:@"bullet_grey"] forState:UIControlStateNormal];
+	[leftbtn addTarget:self action:@selector(selectionAction:) forControlEvents:UIControlEventTouchUpInside];
+	[self addSubview:leftbtn];
+	[leftbtn mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.bottom.equalTo(self.mas_bottom);
+		make.leading.mas_equalTo(30);
+		make.height.mas_equalTo(30);
+		make.trailing.mas_equalTo(self.mas_centerX).offset(-5);
 		
-		UIButton *selectBtn = [[UIButton alloc]initWithFrame:CGRectMake(30+i*(SCREEN_WIDTH/2 -20), 0, (SCREEN_WIDTH-80)/2, 30)];
-		if (i == 0) {
-			selectBtn.selected = YES;
-		}
-		[selectBtn setTitle:title forState:UIControlStateNormal];
-		selectBtn.tag= i;
-		selectBtn.layer.borderColor = RGB(221, 221, 221).CGColor;
-		selectBtn.layer.borderWidth = 1.0f;
-		[selectBtn setTitleColor:RGB(198, 0, 18) forState:UIControlStateSelected];
-		[selectBtn setTitleColor:RGB(15, 15, 15) forState:UIControlStateNormal];
-		[selectBtn setBackgroundImage:[UIImage imageNamed:@"selectbox_round"] forState:UIControlStateSelected];
-		[selectBtn setBackgroundImage:[UIImage imageNamed:@"bullet_grey"] forState:UIControlStateNormal];
-		[selectBtn addTarget:self action:@selector(selectionAction:) forControlEvents:UIControlEventTouchUpInside];
-		[self.backView addSubview:selectBtn];
-	}
+	}];
 	
+	UIButton *rightbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	rightbtn.tag= 1;
+	rightbtn.layer.borderColor = RGB(221, 221, 221).CGColor;
+	rightbtn.layer.borderWidth = 1.0f;
+	[rightbtn setTitleColor:RGB(198, 0, 18) forState:UIControlStateSelected];
+	[rightbtn setTitleColor:RGB(15, 15, 15) forState:UIControlStateNormal];
+	[rightbtn setTitle:btnarray.lastObject forState:UIControlStateNormal];
+	[rightbtn setBackgroundImage:[UIImage imageNamed:@"selectbox_round"] forState:UIControlStateSelected];
+	[rightbtn setBackgroundImage:[UIImage imageNamed:@"bullet_grey"] forState:UIControlStateNormal];
+	[rightbtn addTarget:self action:@selector(selectionAction:) forControlEvents:UIControlEventTouchUpInside];
+	[self addSubview:rightbtn];
+	[rightbtn mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.bottom.equalTo(self.mas_bottom);
+		make.trailing.mas_equalTo(self.mas_trailing).offset(-30);
+		make.height.mas_equalTo(leftbtn.mas_height);
+		make.leading.mas_equalTo(self.mas_centerX).offset(5);
+		
+	}];
+
 }
 - (void)selectionAction:(UIButton*)sender{
 	
-	NSArray *subviews = [self.backView subviews];
+	NSArray *subviews = [self subviews];
 	for (int i = 0; i<subviews.count; i ++) {
 		id viewss = subviews[i];
 		if ([viewss isMemberOfClass:[UIButton class]]) {
@@ -105,27 +148,45 @@
 - (void)createStarScore:(CGFloat)starValue withSuperView:(UIView*)superview {
 	CGFloat scale = starValue/5.0f;
 	
-	UIView *starViewdefault =[[UIView alloc]initWithFrame:CGRectMake(0, 0, 70, 14)];
-	for (int i = 0; i<5; i++) {
-		UIImageView*star = [[UIImageView alloc]initWithFrame:CGRectMake(i*15, 2, 10, 10)];
-		star.image =[UIImage imageNamed:@"icon_star_default_8"];
-		[superview addSubview:star];
-		
-	}
-	
+	UIView *starViewdefault =[UIView new];
 	[self addSubview:starViewdefault ];
-	
-	UIView *starViewyellow =[[UIView alloc]initWithFrame:CGRectMake(0, 0, 70 *scale, 14)];
-	starViewyellow.layer.masksToBounds = YES;
+	[starViewdefault mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.leading.top.equalTo(self);
+		make.width.mas_equalTo(70);
+		make.height.mas_equalTo(14);
+	}];
+
 	for (int i = 0; i<5; i++) {
-		UIImageView*star = [[UIImageView alloc]initWithFrame:CGRectMake(i*15, 2, 10, 10)];
-		star.image =[UIImage imageNamed:@"icon_star_yellow_8"];
-		[starViewyellow addSubview:star];
+		UIImageView*star = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_star_default_8"]];
+		[superview addSubview:star];
+		[star mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.leading.mas_equalTo(i*15);
+			make.height.width.mas_equalTo(10);
+			make.top.mas_equalTo(superview.mas_top).offset(2);
+		}];
 		
 	}
-	
+		
+	UIView *starViewyellow =[UIView new];
+	starViewyellow.layer.masksToBounds = YES;
 	[superview addSubview:starViewyellow ];
+	[starViewyellow mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.leading.top.equalTo(superview);
+		make.width.mas_equalTo(70 *scale);
+		make.height.mas_equalTo(14);
+	}];
+	for (int i = 0; i<5; i++) {
+		UIImageView*star = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_star_yellow_8"]];
+		[starViewyellow addSubview:star];
+		[star mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.leading.mas_equalTo(i*15);
+			make.height.width.mas_equalTo(10);
+			make.top.mas_equalTo(superview.mas_top).offset(2);
+		}];
+
+	}
 	
+
 	
 }
 
