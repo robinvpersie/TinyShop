@@ -25,7 +25,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.title = @"회원가입";
 	
 	self.searchResults = @[].mutableCopy;
 	[self InitUI];
@@ -33,6 +32,7 @@
 
 - (void)InitUI{
 	self.paged = 1;
+	self.title = @"회원가입";
 	[self createTableview];
 }
 

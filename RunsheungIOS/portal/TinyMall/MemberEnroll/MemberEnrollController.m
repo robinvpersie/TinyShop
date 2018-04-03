@@ -59,8 +59,6 @@
 #pragma mark -- 登录注册
 - (void)btnAction:(UIButton*)sender{
 	if (sender.tag == LoginBtnTag) {//登录
-		hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-		[hud showAnimated:YES];
 		[self loginMember];
 	}else if (sender.tag == AddMemberBtnTag) {//注册
 		
@@ -82,7 +80,8 @@
 	__weak typeof(self) weakself = self;
 	UITextField *phone = (UITextField*)[loginBG viewWithTag:LoginPhoneTag];
 	UITextField *pwd = (UITextField*)[loginBG viewWithTag:LoginPWDTag];
-
+	
+	
 	if (phone.text.length && pwd.text.length) {
         [KLHttpTool LoginMemberWithMemid:phone.text withMempwd:[self sha512: pwd.text] withDeviceNo:UUID success:^(id response) {
             [weakself hideLoading];
@@ -111,6 +110,7 @@
                 [weakself dismissViewControllerAnimated:true completion:nil];
 				
             } else {
+				
                 [weakself showMessage:response[@"msg"] interval:2 completionAction:^{ }];
             }
 		} failure:^(NSError *err) {
@@ -119,7 +119,7 @@
 	}else{
 		MBProgressHUD *hude = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 		hude.mode = MBProgressHUDModeText;
-		hude.label.text = NSLocalizedString(@"请输入登录密码", nil) ;
+		hude.label.text = NSLocalizedString(@"请输入登录账号密码", nil) ;
 		[hude hideAnimated:YES afterDelay:1.0f];
 	}
 	
@@ -279,6 +279,7 @@
 	
 }
 - (void)createScrollView{
+	
 	if (self.scrollview == nil) {
 		self.scrollview = [[UIScrollView alloc]initWithFrame:CGRectMake(0, APPScreenHeight *0.4, APPScreenWidth, APPScreenHeight *0.6)];
 		self.scrollview.delegate = self;
