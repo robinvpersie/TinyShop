@@ -82,11 +82,11 @@ class YCNavigationController: UINavigationController {
         }
     }
     
-    @objc func pushAnimation( viewcontroller :UIViewController){
+    @objc func pushAnimation(viewcontroller :UIViewController){
         self.view.layer.add(self.pushAnimation, forKey: kCATransition)
     }
     
-    @objc func popAnimation(viewController:UIViewController){
+    @objc func popAnimation(viewController: UIViewController){
         self.view.layer.add(self.popAnimation, forKey: kCATransition)
     }
     

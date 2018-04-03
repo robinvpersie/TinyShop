@@ -9,28 +9,28 @@
 import Foundation
 import UIKit
 
-public final class YCBox<Base> {
-    public let Base: Base
-    public init(_ base: Base) {
+final class YCBox<Base> {
+    let Base: Base
+    init(_ base: Base) {
         self.Base = base
     }
 }
 
-public protocol YCBaseCompatible{
-      associatedtype BaseType
-      var yc: BaseType {get}
+protocol YCBaseCompatible{
+    associatedtype BaseType
+    var yc: BaseType { get }
 }
 
-public extension YCBaseCompatible{
-    public var yc: YCBox<Self>{
+extension YCBaseCompatible {
+    var yc: YCBox<Self>{
         get {
             return YCBox(self)
         }
     }
 }
 
-extension UIImageView:YCBaseCompatible{}
-extension UIImage:YCBaseCompatible{}
+extension UIImageView: YCBaseCompatible{ }
+extension UIImage: YCBaseCompatible{ }
 
 
 

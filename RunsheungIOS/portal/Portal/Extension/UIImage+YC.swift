@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 
-extension YCBox where Base:UIImage {
+extension YCBox where Base: UIImage {
     
-    public var fixedSize:CGSize{
+     var fixedSize: CGSize{
        let imageWidth = Base.size.width
        let imageHeight = Base.size.height
-       let fixedImageWidth:CGFloat
-       let fixedImageHeight:CGFloat
+       let fixedImageWidth: CGFloat
+       let fixedImageHeight: CGFloat
        if imageWidth > imageHeight{
            fixedImageHeight = min(imageHeight, 1024)
            fixedImageWidth = imageWidth * (fixedImageHeight / imageHeight)
@@ -28,7 +28,7 @@ extension YCBox where Base:UIImage {
     }
     
     
-    public func largestCenteredSquareImage() -> UIImage? {
+    func largestCenteredSquareImage() -> UIImage? {
         let scale = Base.scale
         let originalWidth  = Base.size.width * scale
         let originalHeight = Base.size.height * scale
@@ -48,7 +48,7 @@ extension YCBox where Base:UIImage {
     }
     
     
-    public func resizeToTargetSize(targetSize: CGSize) -> UIImage? {
+    func resizeToTargetSize(targetSize: CGSize) -> UIImage? {
         let size = Base.size
         let widthRatio  = targetSize.width  / Base.size.width
         let heightRatio = targetSize.height / Base.size.height
@@ -68,7 +68,7 @@ extension YCBox where Base:UIImage {
     }
     
     
-    public func scaleToMinSideLength(sideLength: CGFloat) -> UIImage {
+    func scaleToMinSideLength(sideLength: CGFloat) -> UIImage {
         
         let pixelSideLength = sideLength * UIScreen.main.scale
         let pixelWidth = Base.size.width * Base.scale
@@ -108,7 +108,7 @@ extension YCBox where Base:UIImage {
       }
     
     
-    public func fixRotation() -> UIImage? {
+     func fixRotation() -> UIImage? {
         if Base.imageOrientation == .up { return Base }
         
         let width = Base.size.width
@@ -166,7 +166,7 @@ extension YCBox where Base:UIImage {
     }
     
     
-    public func cropToAspectRatio(aspectRatio: CGFloat) -> UIImage? {
+    func cropToAspectRatio(aspectRatio: CGFloat) -> UIImage? {
          let size = Base.size
          let originalAspectRatio = size.width / size.height
          var rect = CGRect.zero
@@ -187,7 +187,7 @@ extension YCBox where Base:UIImage {
     }
     
     
-    public func scaleWith(scale: CGFloat) -> UIImage? {
+    func scaleWith(scale: CGFloat) -> UIImage? {
         let imagesize = CGSize(width: Base.size.width * scale, height: Base.size.height * scale)
         UIGraphicsBeginImageContext(imagesize)
         Base.draw(in: CGRect(x: 0, y: 0, width: imagesize.width, height: imagesize.height))
@@ -197,7 +197,7 @@ extension YCBox where Base:UIImage {
     }
     
     
-    public func compressionImageToDataTargetWH( targetWH:inout CGFloat, maxFilesize: NSInteger) -> Data?{
+    func compressionImageToDataTargetWH( targetWH:inout CGFloat, maxFilesize: NSInteger) -> Data?{
         
         if targetWH <= 0 {
            targetWH = 1024
@@ -226,12 +226,12 @@ extension YCBox where Base:UIImage {
         
     }
     
-    public func imageWithGradientTintColor(tintColor: UIColor) -> UIImage? {
+    func imageWithGradientTintColor(tintColor: UIColor) -> UIImage? {
         return imageWithTintColor(tintColor: tintColor, blendMode: CGBlendMode.overlay)
     }
     
     
-    public func imageWithTintColor(tintColor: UIColor, blendMode: CGBlendMode) -> UIImage? {
+    func imageWithTintColor(tintColor: UIColor, blendMode: CGBlendMode) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(Base.size, false, 0)
         tintColor.setFill()
         let bounds = CGRect(origin: CGPoint.zero, size: Base.size)
@@ -246,7 +246,7 @@ extension YCBox where Base:UIImage {
     }
     
     
-    public func renderAtSize(size: CGSize) -> UIImage? {
+    func renderAtSize(size: CGSize) -> UIImage? {
         
         // 确保 size 为整数，防止 mask 里出现白线
         let size = CGSize(width: ceil(size.width), height: ceil(size.height))
@@ -263,11 +263,11 @@ extension YCBox where Base:UIImage {
     }
     
     
-    public func decodedImage() -> UIImage {
+    func decodedImage() -> UIImage {
         return decodedImage(scale: Base.scale)
     }
     
-    public func decodedImage(scale: CGFloat) -> UIImage {
+    func decodedImage(scale: CGFloat) -> UIImage {
         let imageRef = Base.cgImage
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
@@ -290,23 +290,23 @@ extension YCBox where Base:UIImage {
 
 public extension UIImage {
     
-    static var dropDown:UIImage {
+    static var dropDown: UIImage {
        return UIImage(named:"icon_dropdown")!
     }
     
-    static var My:UIImage{
+    static var My: UIImage{
        return UIImage(named: "My")!
     }
     
-    static var scan_net:UIImage{
+    static var scan_net: UIImage{
        return UIImage(named: "scan_net")!
     }
     
-    static var location:UIImage{
+    static var location: UIImage{
         return UIImage(named: "location")!
     }
     
-    static var discuss:UIImage{
+    static var discuss: UIImage{
         return UIImage(named: "icon_comment_002")!
     }
     
@@ -314,27 +314,27 @@ public extension UIImage {
         return UIImage(named: "icon_02_01")
     }
     
-    static var password:UIImage{
+    static var password: UIImage{
         return UIImage(named: "icon_password")!
     }
     
-    static var phone:UIImage{
+    static var phone: UIImage{
         return UIImage(named: "iocn_phone")!
     }
     
-    static var QRIcon:UIImage{
+    static var QRIcon: UIImage{
         return UIImage(named: "icon_qr")!
     }
     
-    static var Dragon:UIImage{
+    static var Dragon: UIImage{
      return UIImage(named: "Dragon")!
     }
     
-    static var redlike:UIImage{
+    static var redlike: UIImage{
       return UIImage(named: "icon_redlike")!
     }
     
-    static var nolike:UIImage{
+    static var nolike: UIImage{
       return UIImage(named: "icon_garylike")!
     }
     
@@ -342,51 +342,51 @@ public extension UIImage {
         return UIImage(named: "searchbar_textfield_background")!
     }
     
-    static var ycDateImg:UIImage {
+    static var ycDateImg: UIImage {
         return UIImage(named: "icon_date_001")!
     }
     
-    static var YCPlaceHolder:UIImage? {
+    static var YCPlaceHolder: UIImage? {
         return UIImage(named: "img_placeholder")
     }
     
-    static var YCAvatarPlaceHolderImage:UIImage {
+    static var YCAvatarPlaceHolderImage: UIImage {
         return UIImage(named: "img_defaultphoto")!
     }
     
-    static var ycpayImage:UIImage?{
+    static var ycpayImage: UIImage?{
         return UIImage(named: "icon_yuchengpay")
     }
     
-    static var wechatPayImage:UIImage?{
+    static var wechatPayImage: UIImage?{
         return UIImage(named: "icon_weichatpay")
     }
     
-    static var aliPayImage:UIImage?{
+    static var aliPayImage: UIImage?{
         return UIImage(named: "icon_alipay")
     }
     
-    static var bankPayImage:UIImage?{
+    static var bankPayImage: UIImage?{
         return UIImage(named: "icon_bank")
     }
     
-    static var selectedImage:UIImage?{
+    static var selectedImage: UIImage?{
         return UIImage(named: "icon_qq1")
     }
     
-    static var unselectedImage:UIImage?{
+    static var unselectedImage: UIImage?{
         return UIImage(named: "icon_qq1c")
     }
     
-    static var shareImage:UIImage?{
+    static var shareImage: UIImage?{
         return UIImage(named: "icon_fx")
     }
     
-    static var collectImage:UIImage?{
+    static var collectImage: UIImage?{
         return UIImage(named:"icon_scc")
     }
     
-    static var LaunchImage:UIImage?{
+    static var LaunchImage: UIImage?{
         var viewOrientation:String = "Portrait"
         if UIInterfaceOrientationIsLandscape(UIApplication.shared.statusBarOrientation) {
            viewOrientation = "Landscape"

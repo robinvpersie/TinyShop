@@ -17,9 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         DispatchQueue.global().async {
-            //设置微信支付wx98da3da69fcf2bcc
-            WXApi.registerApp("wx98da3da69fcf2bcc", withDescription: "人生药业充值")
-			
+           WXApi.registerApp("wx98da3da69fcf2bcc", withDescription: "人生药业充值")
         }
         
         proposeToAccess(.notifications(UIUserNotificationSettings(types: [.sound,.alert,.badge], categories: nil)), agreed: {}, rejected: {})
@@ -27,21 +25,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
-      
-        let pro = ProtocolController()
-        pro.startAction = { [weak self] in
+        
+        if YCUserDefaults.isFirstOpen {
+            let pro = ProtocolController()
+            pro.startAction = { [weak self] in
             guard let this = self else { return }
-            UIView.transition(with: this.window!, duration: 0.5, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            UIView.transition(with: this.window!,
+                              duration: 0.5,
+                              options: .curveEaseIn,
+                              animations:
+                {
                         let oldState = UIView.areAnimationsEnabled
                         UIView.setAnimationsEnabled(false)
                         let home = SupermarketMainController()
                         this.window?.rootViewController = home
                         UIView.setAnimationsEnabled(oldState)
-              }, completion: { finish in
-                   
-              })
+                }, completion: { finish in
+                    YCUserDefaults.FirstOpen.value = true
+                })
             }
-        window?.rootViewController = pro
+            window?.rootViewController = pro
+        } else {
+            let home = SupermarketMainController()
+            window?.rootViewController = home
+        }
         window?.makeKeyAndVisible()
         return true
     }
