@@ -121,14 +121,13 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             CGFloat width = [UILabel getWidthWithTitle:cell.textLabel.text font:cell.textLabel.font];
             _nameField = [[UITextField alloc] initWithFrame:CGRectMake(width + 40, CGRectGetHeight(cell.contentView.frame)/2 - 15, APPScreenWidth - width - 10 , 30)];
             _nameField.placeholder = NSLocalizedString(@"SMAdressReceiveNamePlaceHolder", nil);
-            _nameField.text = _addressModel.deliveryname;
+            _nameField.text = _addressModel.delivery_name;
             _nameField.font = [UIFont systemFontOfSize:15];
             _nameField.textColor = [UIColor darkGrayColor];
             [cell.contentView addSubview:_nameField];
     
         } else if (indexPath.row == 1) {
             cell.textLabel.text = NSLocalizedString(@"SMAdressPhone", nil);
-            
             CGFloat width = [UILabel getWidthWithTitle:cell.textLabel.text font:cell.textLabel.font];
             
             _phoneField = [[UITextField alloc]initWithFrame:CGRectMake(width + 25, CGRectGetHeight(cell.contentView.frame)/2 - 15, APPScreenWidth - width - 10, 30)];
@@ -305,7 +304,7 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
     
     _gidField.text = @"";
     [KLHttpTool checkAddressZipcodeWithProviceName:province cityName:city success:^(id response) {
-        NSLog(@"%@",response);
+     
         NSNumber *status = response[@"status"];
         if (status.integerValue == 1) {
             id zipCode = response[@"zip_code"];

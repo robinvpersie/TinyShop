@@ -84,7 +84,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	_imageNames = @[@"icon_myaddress",@"icon_mylive",@"icon_coupon",@"icon_notice",@"icon_setting2",@"icon_collection2"];
+	_imageNames = @[@"icon_myaddress",/*@"icon_mylive",*/@"icon_coupon",@"icon_notice",@"icon_setting2",@"icon_collection2"];
 	_titles = @[NSLocalizedString(@"SupermarketMyOrderWaitPay", nil),/*@"待发货",@"待自提",*/NSLocalizedString(@"SupermarketMyOrderWaitReceive", nil),NSLocalizedString(@"SupermarketMyOrderWaitComment", nil)];
 	_footerImageNames = @[@"Icon_stay",/*@"Iocn_fh",@"Iocn_zt",*/@"Iocn_sh",@"Iocn_evaluate"];
 	
@@ -180,7 +180,7 @@
     if (section == 0) {
         return 1;
     }
-    return 6;
+    return 5;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -220,20 +220,22 @@
            // cell.textLabel.text = @"我的地址";
             cell.textLabel.text = @"주소관리";
             //cell.textLabel.text = NSLocalizedString(@"SupermaketHomeMyAddress", nil);
-        } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"나의방송";
+        }
+       // else if (indexPath.row == 1) {
+           // cell.textLabel.text = @"나의방송";
             //cell.textLabel.text = @"我的直播";
             //cell.textLabel.text = NSLocalizedString(@"SMOrderRefundTitle", nil);
-        } else if (indexPath.row == 2) {
+        //}
+        else if (indexPath.row == 1) {
             cell.textLabel.text = @"공고";
             //cell.textLabel.text = @"优惠券";
             //cell.textLabel.text = @"할인권";
             //cell.textLabel.text = NSLocalizedString(@"SMMineAboutUs", nil);
-        } else if (indexPath.row == 3) {
+        } else if (indexPath.row == 2) {
             //cell.textLabel.text = @"我的消息";
             cell.textLabel.text = @"리뷰관린";
            // cell.textLabel.text = NSLocalizedString(@"SMMineMyComment", nil);
-        } else if (indexPath.row == 4) {
+        } else if (indexPath.row == 3) {
             //cell.textLabel.text = @"系统设置";
             cell.textLabel.text = @"환경설정";
         } else {
@@ -309,12 +311,14 @@
             vc.hidesBottomBarWhenPushed = YES;
             vc.isPageView = NO;
             [self.navigationController pushViewController:vc animated:YES];
-        } else if (indexPath.row == 1) {
+        }
+        //else if (indexPath.row == 1) {
 //            SupermarketRefundController *vc = [[SupermarketRefundController alloc] init];
 //            vc.hidesBottomBarWhenPushed = YES;
 //            vc.controllerType = self.controllerType;
 //            [self.navigationController pushViewController:vc animated:YES];
-        } else if (indexPath.row == 2) {
+      //  }
+        else if (indexPath.row == 1) {
 //            [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"暂未开放"];
 //            SupermarketAboutViewController *vc = [[SupermarketAboutViewController alloc] init];
 //            vc.hidesBottomBarWhenPushed = YES;
@@ -325,7 +329,7 @@
 //            vc.hidesBottomBarWhenPushed = YES;
             web.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:web animated:YES];
-        } else if (indexPath.row == 3) {
+        } else if (indexPath.row == 2) {
 //            return;
 //            SupermarketAboutViewController *vc = [[SupermarketAboutViewController alloc] init];
 //            vc.hidesBottomBarWhenPushed = YES;
@@ -333,7 +337,7 @@
             SupermarketMyCommentController *myComment = [[SupermarketMyCommentController alloc] init];
             myComment.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:myComment animated:YES];
-        } else if (indexPath.row == 4) {
+        } else if (indexPath.row == 3) {
             PersinalSetController *personal = [[PersinalSetController alloc] init];
             personal.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:personal animated:YES];
