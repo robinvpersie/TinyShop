@@ -9,7 +9,6 @@
 #import "SupermarketGoodsMessageView.h"
 #import "SupermarketGoodsModel.h"
 #import "UILabel+WidthAndHeight.h"
-#import "UIView+ViewController.h"
 #import "UILabel+WidthAndHeight.h"
 
 @implementation SupermarketGoodsMessageView

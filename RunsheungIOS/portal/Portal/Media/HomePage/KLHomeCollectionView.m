@@ -10,7 +10,6 @@
 #import "KLHomeCollectionViewCell.h"
 #import "MovieData.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "UIView+ViewController.h"
 
 @implementation KLHomeCollectionView
 

@@ -7,7 +7,6 @@
 //
 
 #import "HotelSpecificTableCell.h"
-#import "UIView+ViewController.h"
 #import "HotelRoomTypeModel.h"
 #import "HotelConfirmOrderViewController.h"
 

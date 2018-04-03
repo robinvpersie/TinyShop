@@ -9,7 +9,7 @@
 #import "HotelOrderTableView.h"
 #import "HotelOrderTableViewCell.h"
 #import "HotelReserveResultDetailController.h"
-#import "UIView+ViewController.h"
+
 
 @interface HotelOrderTableView ()<UITableViewDataSource, UITableViewDelegate>
 

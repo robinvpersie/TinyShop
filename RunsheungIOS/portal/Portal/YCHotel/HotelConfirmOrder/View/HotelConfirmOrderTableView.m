@@ -12,7 +12,7 @@
 #import "HotelConfirmOrderEditTableViewCell.h"
 #import <Contacts/Contacts.h>
 #import <ContactsUI/ContactsUI.h>
-#import "UIView+ViewController.h"
+
 #import "UILabel+CreateLabel.h"
 #import "HotelReseveCustomerModel.h"
 #import "HotelRetainTimeModel.h"

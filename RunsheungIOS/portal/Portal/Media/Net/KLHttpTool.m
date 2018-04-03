@@ -64,10 +64,6 @@
     NSMutableDictionary *dic = @{}.mutableCopy;
     [dic setObject:proviceName forKey:@"zip_name1"];
     [dic setObject:cityName forKey:@"zip_name2"];
-//    YCAccountModel *model = [YCAccountModel getAccount];
-//    if (model.token) {
-//        [dic setObject:model.token forKey:@"token"];
-//    }
     [self getToken:^(id token) {
         [dic setObject:token forKey:@"token"];
         [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:GetZipcodeUrl params:dic success:^(id response) {
@@ -3354,6 +3350,32 @@
 		NSLog(@"%@",err);
 	}];
 }
+
+/*
+ 团队搜索团队
+ */
++(void)TinyLoginSearchTeamDataUrl:(NSString *)urls
+					WithSword:(NSString*)s_word
+						   WithPg:(NSString*)pg
+						 success:(void (^)(id response))success
+						 failure:(void (^)(NSError *err))failure{
+	
+	NSString *url =[NSString stringWithFormat:@"%@%@",TinyMemberShopBaseURL,urls];
+	NSString *lang_type = @"kor";
+	NSString *pagesize = @"5";
+	
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,pg,pagesize,s_word).mutableCopy;
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+	}];
+}
+
 
 @end
 

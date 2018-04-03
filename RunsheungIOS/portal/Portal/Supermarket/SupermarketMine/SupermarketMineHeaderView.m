@@ -8,7 +8,6 @@
 //
 #import "SupermarketMineHeaderView.h"
 #import "UILabel+WidthAndHeight.h"
-#import "UIView+ViewController.h"
 #import "SupermarketMyOrderController.h"
 #import "SupermarketCouponController.h"
 #import "IntergrationController.h"

@@ -8,7 +8,6 @@
 
 #import "SupermarketConfirmOrderGoodsCell.h"
 #import "SupermarketApplyRefundController.h"
-#import "UIView+ViewController.h"
 #import "UIButton+CreateButton.h"
 #import "UIImageView+ImageCache.h"
 

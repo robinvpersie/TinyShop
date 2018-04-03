@@ -8,8 +8,6 @@
 
 #import "HotelDateView.h"
 
-#import "UIView+ViewController.h"
-
 @implementation HotelDateView{
     NSString *dateyear;
 }

@@ -10,7 +10,6 @@
 #import "KLRecommendCollectionViewCell.h"
 #import "BroadcastData.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "UIView+ViewController.h"
 
 @implementation KLRecommendCollectionView
 

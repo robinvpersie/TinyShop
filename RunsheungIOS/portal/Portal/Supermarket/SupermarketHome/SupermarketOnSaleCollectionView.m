@@ -9,7 +9,6 @@
 #import "SupermarketOnSaleCollectionView.h"
 #import "SupermarketOnSaleCell.h"
 #import "SupermarketOnSaleModel.h"
-#import "UIView+ViewController.h"
 #import "GoodsDetailController.h"
 #import "UIImageView+ImageCache.h"
 
