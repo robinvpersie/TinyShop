@@ -467,7 +467,6 @@
             NSLog(@"refresh end");
             _isRefresh = YES;
 			[self requesTinyShopDetailData];
-//            [self requestData];
         });
     });
     
@@ -670,7 +669,7 @@
 		self.tsDetailedView.hidden = NO;
 		self.mallInfoView.hidden = YES;
 		self.mainScrollView.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.tsDetailedView.frame)+50);
-		
+		[self.mainScrollView.mj_footer setState:MJRefreshStateIdle];
 	}else{
 		
 		self.tsDetailedView.hidden = YES;
@@ -678,8 +677,11 @@
 			[self createShopInfomations];
 
 		}else{
-			self.mainScrollView.hidden = NO;
+			self.mallInfoView.hidden = NO;
 		}
+		self.mainScrollView.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.mallInfoView.frame));
+		[self.mainScrollView.mj_footer setState:MJRefreshStateNoMoreData];
+		
 	}
 	
 }

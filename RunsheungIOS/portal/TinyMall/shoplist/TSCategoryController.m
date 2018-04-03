@@ -80,6 +80,8 @@
 
 - (void)setLeves:(NSMutableArray *)leves{
     _leves = leves;
+	[self location];
+
 }
 
 - (void)loadStoreListwithLeve1:(NSString*)leve1 withLeve2:(NSString*)leve2 withLeve3:(NSString*)leve3 withorderBy:(NSString*)order_by withPg:(NSString *)pg{
