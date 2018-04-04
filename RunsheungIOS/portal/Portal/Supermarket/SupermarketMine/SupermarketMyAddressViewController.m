@@ -142,7 +142,7 @@
     self.navigationItem.leftBarButtonItem = back;
     
     UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 80, 30)];
-    titleLab.text = @"我的地址";
+    titleLab.text = @"나의 주소";
     titleLab.textColor = [UIColor blackColor];
     titleLab.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView = titleLab;
@@ -187,7 +187,7 @@
 //        button.frame = CGRectMake(15, self.view.frame.size.height - 45 - 110, APPScreenWidth - 30, 35);
 //    }
     [self.bottomBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.bottomBtn setTitle:@"+ 新增地址" forState:UIControlStateNormal];
+    [self.bottomBtn setTitle:@"+ 주소 추가" forState:UIControlStateNormal];
     self.bottomBtn.layer.cornerRadius = 2.0f;
     [self.bottomBtn addTarget:self action:@selector(addNewAddress:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.bottomBtn];
@@ -239,7 +239,6 @@
         UILabel *telephoneLab =[[UILabel alloc]initWithFrame:CGRectMake(APPScreenWidth - 115, 10 , 100, 30)];
         telephoneLab.font = [UIFont systemFontOfSize:14];
         telephoneLab.textColor = [UIColor darkGrayColor];
-        //telephoneLab.text = model.mobile;
         telephoneLab.text = model.mobilepho;
         telephoneLab.textAlignment = NSTextAlignmentRight;
         [cell.contentView addSubview:telephoneLab];
@@ -264,7 +263,6 @@
         
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 43, APPScreenWidth, 1)];
         line.backgroundColor = RGB(241, 242, 243);
-        
         [cell.contentView addSubview:line];
         [cell.contentView addSubview:addressLab];
         
@@ -298,11 +296,11 @@
         if ([model.default_add isEqualToString:@"True"]) {
             defaultBtn.selected = !defaultBtn.selected;
             imagview1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cart_selected_btn"]];
-            title.text = @"默认地址";
+            title.text = @"디폴트 주소";
             title.textColor = RGB(23, 206, 116);
         }else{
             imagview1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cart_unSelect_btn"]];
-            title.text = @"设置为默认地址";
+            title.text = @"디폴트 주소 설정";
             title.textColor = [UIColor grayColor];
         }
         
@@ -351,7 +349,7 @@
         [deleBtn addSubview:imagview2];
         
         UILabel *title2 = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 40, 20)];
-        title2.text = @"删除";
+        title2.text = @"삭제";
         title2.font = [UIFont systemFontOfSize:12];
         title2.textColor = [UIColor grayColor];
         [deleBtn addSubview:title2];
@@ -367,7 +365,7 @@
         [editBtn addSubview:imagview3];
         
         UILabel *title3 = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 40, 20)];
-        title3.text = @"编辑";
+        title3.text = @"편집";
         title3.font = [UIFont systemFontOfSize:12];
         title3.textColor = [UIColor grayColor];
         [editBtn addSubview:title3];
@@ -440,13 +438,13 @@
     UIImageView*imageview = (UIImageView*)[sender viewWithTag:1002];
     if (sender.selected) {
         
-        label1.text = @"默认地址";
+        label1.text = @"디폴트 주소";
         label1.textColor = RGB(23, 206, 116);
         imageview.image = [UIImage imageNamed:@"cart_selected_btn"];
         
     }else{
         
-        label1.text = @"设置为默认地址";
+        label1.text = @"디폴트 주소 설정";
         label1.textColor = [UIColor grayColor];
         imageview.image = [UIImage imageNamed:@"cart_unSelect_btn"];
     }
@@ -528,8 +526,8 @@
 }
 
 - (void)deleteAction:(UIButton *)sender {
-    UIAlertController *deleteAlert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认删除该地址?" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *deleteAlert = [UIAlertController alertControllerWithTitle:@"Alert" message:@"Are you sure to delete the place?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UIView *view = sender.superview.superview;
         if ([view isKindOfClass:[UITableViewCell class]]) {
             UITableViewCell *cell = (UITableViewCell *)view;
@@ -551,7 +549,7 @@
          }
     }];
     
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancle" style:UIAlertActionStyleDefault handler:nil];
     [deleteAlert addAction:ok];
     [deleteAlert addAction:cancel];
     
@@ -559,7 +557,7 @@
 }
 
 -(NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
-    return [[NSAttributedString alloc] initWithString:@"你还未添加地址"];
+    return [[NSAttributedString alloc] initWithString:@"Add a place"];
 }
 
 - (void)didReceiveMemoryWarning {
