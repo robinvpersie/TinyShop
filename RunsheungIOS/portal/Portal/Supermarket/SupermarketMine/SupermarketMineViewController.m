@@ -53,9 +53,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
     self.navigationController.navigationBar.hidden = YES;
-   
 }
 
 - (void)checkLogStatus {
@@ -204,7 +202,7 @@
         cell.textLabel.text = NSLocalizedString(@"SupermarketHomeMyOrder", nil);
         
     } else if (indexPath.section == 1) {
-        UIImage *icon = [UIImage imageNamed:_imageNames[indexPath.row]];
+        UIImage *icon = [UIImage imageNamed: _imageNames[indexPath.row]];
         CGSize itemSize = CGSizeMake(18, 20);
         UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0);
         CGRect imageRect = CGRectMake(0, 0, itemSize.width, itemSize.height);

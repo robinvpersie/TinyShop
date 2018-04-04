@@ -59,7 +59,7 @@ extension YCBox where Base: UIImage {
         } else {
             newSize = CGSize(width: scale * floor(size.width * widthRatio), height:scale * floor(size.height * widthRatio))
         }
-        let rect = CGRect(x:0,y:0, width:floor(newSize.width), height:floor(newSize.height))
+        let rect = CGRect(x:0, y:0, width: floor(newSize.width), height: floor(newSize.height))
         UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
         Base.draw(in: rect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
