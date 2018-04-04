@@ -197,7 +197,6 @@
     _data = data;
 
     YCAccountModel *accout = [YCAccountModel getAccount];
-
     [UIImageView setimageWithImageView:avatar UrlString:data.header_url imageVersion:nil];
     phoneNumber.text = accout.customId;
     userName.text = accout.userName;

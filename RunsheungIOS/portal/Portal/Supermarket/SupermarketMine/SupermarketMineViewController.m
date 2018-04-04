@@ -53,8 +53,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    self.navigationController.navigationBar.hidden = YES;
+    [self.navigationController setNavigationBarHidden:YES];
+    //self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)checkLogStatus {
