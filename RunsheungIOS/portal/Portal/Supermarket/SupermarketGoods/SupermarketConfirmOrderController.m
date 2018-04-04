@@ -751,8 +751,8 @@
 			[place sizeToFit];
 			
 			if (_address.hasDelivery.integerValue == 0) {
-				maskLabal.hidden = NO;
-				maskImageView.hidden = NO;
+//				maskLabal.hidden = NO;
+//				maskImageView.hidden = NO;
 			}
 		}
 	}

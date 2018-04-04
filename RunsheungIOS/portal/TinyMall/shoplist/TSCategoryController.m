@@ -52,6 +52,7 @@
 
 @property (nonatomic,retain)NSMutableArray *shoplistData;
 
+@property (nonatomic,strong)NSMutableArray *dic3sArray;
 
 
 @end
@@ -73,7 +74,6 @@
 	[self setNaviBar];
 	[self setInitData];
 	[self location];
-
 	[self createTableview];
 	
 }
@@ -186,11 +186,11 @@
 - (void)loadThirdData{
     [KLHttpTool TinyRequestGetCategory3ListWithCustom_lev1:Level1 WithCustom_lev2:Level2 WithLangtype:@"kor" success:^(id response) {
         if ([response[@"status"] intValue] == 1) {
-            NSArray *dicArray = response[@"lev3s"];
+            _dic3sArray = response[@"lev3s"];
             NSMutableArray *lev3sArray = [NSMutableArray array];
             
-            for (int i =0; i<dicArray.count; i++) {
-                NSDictionary *dic = dicArray[i];
+            for (int i =0; i<_dic3sArray.count; i++) {
+                NSDictionary *dic = _dic3sArray[i];
                 [lev3sArray addObject:dic[@"lev_name"]];
                 
             }
@@ -435,7 +435,16 @@
 
 //点击单个的项目响应
 - (void)wjClickItems:(NSString*)item{
-
+	for (NSDictionary*dic in self.dic3sArray) {
+		if ([item isEqualToString:dic[@"lev_name"]]) {
+			Level3 = dic[@"lev"];
+		}
+	}
+	self.SegmentItem.hidden = NO;
+	self.ItemView.hidden = YES;
+	self.ItemView = nil;
+	[self.shoplistData removeAllObjects];
+	[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:@"1" withPg:@"1"];
 }
 
 
