@@ -41,6 +41,7 @@
 	UILabel *titleview = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 30)];
 	titleview.font = [UIFont systemFontOfSize:15];
 	titleview.text = @"회원가입";
+	titleview.textAlignment = NSTextAlignmentCenter;
 	titleview.textColor = [UIColor whiteColor];
 	self.navigationItem.titleView = titleview;
 
@@ -62,7 +63,9 @@
 	
 	self.passwordinput = [[InputFieldView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.nickinput.frame)+10, APPScreenWidth- 40, 50)];
 	self.passwordinput.placeHolder = NSLocalizedString(@"请输入密码", nil) ;
+	self.passwordinput.secureEntry = YES;
 	self.passwordinput.font = [UIFont systemFontOfSize:14];
+	
 	[self.scrollView addSubview: self.passwordinput];
 	
 	self.emailedinput = [[InputFieldView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.passwordinput.frame)+10, APPScreenWidth- 40, 50)];

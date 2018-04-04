@@ -51,6 +51,9 @@
 -(NSString *)text {
     return self.field.text;
 }
+-(void)setSecureEntry:(BOOL)secureEntry{
+	self.field.secureTextEntry = secureEntry;
+}
 
 #pragma textFieldDelegate
 

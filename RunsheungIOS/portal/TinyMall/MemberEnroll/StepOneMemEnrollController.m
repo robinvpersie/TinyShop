@@ -31,6 +31,7 @@
 	titleview.font = [UIFont systemFontOfSize:15];
 	titleview.text = @"회원가입";
 	titleview.textColor = [UIColor whiteColor];
+	titleview.textAlignment = NSTextAlignmentCenter;
 	self.navigationItem.titleView = titleview;
 	
 	UIImageView *backImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"loginbackView"]];

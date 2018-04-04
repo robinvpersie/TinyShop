@@ -93,9 +93,9 @@
 		[self.pickbackImg addSubview:inputview];
 		[self.fieldArray addObject:inputview];
 		[inputview mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.leading.mas_equalTo(j*(CGFloat)CGRectGetWidth(self.pickbackImg.frame)/5.5);
+			make.leading.mas_equalTo(j*width/5.5);
 			make.top.mas_equalTo(0);
-			make.width.mas_equalTo((j<4?(CGFloat)(CGRectGetWidth(self.pickbackImg.frame)/5.5):1.5*(CGFloat)CGRectGetWidth(self.pickbackImg.frame)/5.5));
+			make.width.mas_equalTo((j<4?(width/5.5):1.5*width/5.5));
 			make.height.mas_equalTo(60);
 		}];
 	}
