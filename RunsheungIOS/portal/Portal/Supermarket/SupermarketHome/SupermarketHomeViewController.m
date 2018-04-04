@@ -647,7 +647,6 @@
 
 - (void)scanViewController:(HNScanViewController *)scanViewController didScanResult:(NSString *)result {
     NSLog(@"%@",result);
-    //    [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2.0 text:result];
     GoodsDetailController *goodDetail = [[GoodsDetailController alloc] init];
     goodDetail.item_code = result;
     goodDetail.hidesBottomBarWhenPushed = YES;
