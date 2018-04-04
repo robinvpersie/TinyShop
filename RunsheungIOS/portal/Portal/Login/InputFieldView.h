@@ -15,5 +15,6 @@
 @property(nonatomic, copy) NSString * placeHolder;
 @property(nonatomic, strong) UIFont * font;
 @property(nonatomic, copy) NSString * text;
+@property (nonatomic,assign)BOOL secureEntry;
 
 @end
