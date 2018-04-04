@@ -1338,12 +1338,19 @@
 + (void)getSupermarketMineDataWithappType:(NSInteger)appType
                                   success:(void (^)(id response))success
                               failure:(void (^)(NSError *err))failure {
-    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/GetMyInfo", BaseUrl];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    
+    NSString *url = [NSString stringWithFormat:@"%@member/requestProfileInfo", TinyMemberShopBaseURL];
+   // NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/GetMyInfo", BaseUrl];
     YCAccountModel *model = [YCAccountModel getAccount];
-    [params setObject:model.combineToken forKey:@"token"];
-    [params setObject:model.customCode forKey:@"custom_code"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@"kor" forKey:@"lang_type"];
+    [params setObject:model.customCode forKey:@"MemberID"];
+    [params setObject:model.combineToken forKey:@"token"];
+//    YCAccountModel *model = [YCAccountModel getAccount];
+//    [params setObject:model.combineToken forKey:@"token"];
+//    [params setObject:model.customCode forKey:@"custom_code"];
+//    [params setObject:@"kor" forKey:@"lang_type"];
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -1355,8 +1362,7 @@
 
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success) {
-            [self checkStatusWithResponse:responseObject];
-            success(responseObject);
+           success(responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {

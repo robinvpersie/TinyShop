@@ -53,8 +53,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    self.navigationController.navigationBar.hidden = YES;
+    [self.navigationController setNavigationBarHidden:YES];
+    //self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)checkLogStatus {
@@ -142,9 +142,10 @@
     [KLHttpTool getSupermarketMineDataWithappType:8 success:^(id response) {
         NSString * status = response[@"status"];
         if ([status isEqualToString:@"1"]) {
-            NSString *nickname = response[@"nick_name"];
-            NSString *phone = response[@"custom_id"];
-            NSString *avatarUrl = response[@"img_path"];
+            NSDictionary *dic = response[@"data"];
+            NSString *nickname = dic[@"nickName"];
+            NSString *phone = response[@"memberID"];
+            NSString *avatarUrl = response[@"imagePath"];
             [headerView refreshUIWithPhone:phone nickName:nickname avatarUrlString:avatarUrl];
         }
     } failure:^(NSError *err) {
@@ -343,14 +344,19 @@
             SupermarketMyCommentController *myComment = [[SupermarketMyCommentController alloc] init];
             myComment.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:myComment animated:YES];
+            
         } else if (indexPath.row == 3) {
+            
             PersinalSetController *personal = [[PersinalSetController alloc] init];
             personal.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:personal animated:YES];
+            
         } else {
+            
             SupermarketMyCollectionViewController *mycollection = [[SupermarketMyCollectionViewController alloc] init];
             mycollection.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:mycollection animated:YES];
+            
         }
     } else {
         SupermarketMyOrderController *vc = [[SupermarketMyOrderController alloc] init];
