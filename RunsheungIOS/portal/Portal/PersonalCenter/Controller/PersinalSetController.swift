@@ -519,11 +519,12 @@ extension PersinalSetController {
              "deviceNo": idfa
           ]
           let url = URL(string: "http://api1.gigawon.co.kr:8088")!
-          let netResource =  NetResource(baseURL: url, path: "/api/apiSSO/setLogout",
-                                          method: .post,
-                                          parameters: requestParameters,
-                                          parameterEncoding: JSONEncoding(),
-                                          parse: parse)
+          let netResource =  NetResource(baseURL: url,
+                                         path: "/api/apiSSO/setLogout",
+                                         method: .post,
+                                         parameters: requestParameters,
+                                         parameterEncoding: JSONEncoding(),
+                                         parse: parse)
           YCProvider.requestDecoded(netResource, completion: completion)
 
     }
