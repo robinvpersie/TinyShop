@@ -344,14 +344,19 @@
             SupermarketMyCommentController *myComment = [[SupermarketMyCommentController alloc] init];
             myComment.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:myComment animated:YES];
+            
         } else if (indexPath.row == 3) {
+            
             PersinalSetController *personal = [[PersinalSetController alloc] init];
             personal.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:personal animated:YES];
+            
         } else {
+            
             SupermarketMyCollectionViewController *mycollection = [[SupermarketMyCollectionViewController alloc] init];
             mycollection.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:mycollection animated:YES];
+            
         }
     } else {
         SupermarketMyOrderController *vc = [[SupermarketMyOrderController alloc] init];
