@@ -219,10 +219,14 @@
     avatar.image = [UIImage imageNamed:@""];
 }
 
--(void)refreshUIWithPhone:(NSString *)phone nickName:(NSString *)nickName avatarUrlString:(NSString *)url {
+-(void)refreshUIWithPhone:(NSString *)phone
+                 nickName:(NSString *)nickName
+          avatarUrlString:(NSString *)url
+{
+   
     phoneNumber.text = phone;
     userName.text = nickName;
-    [UIImageView setimageWithImageView:avatar UrlString:url imageVersion:nil];
+    [avatar sd_setImageWithURL:[NSURL URLWithString:url]];
 }
 
 

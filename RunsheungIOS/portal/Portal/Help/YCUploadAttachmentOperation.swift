@@ -71,6 +71,7 @@ public struct UploadAttachment {
     public let source: source
     public let fileExtension: FileExtension
     public let metaDataString: String?
+    
     public init(attType: UploadAttachmentType = .avatar,
                 source: source,
                 fileExtension: FileExtension,
@@ -102,12 +103,8 @@ public enum FileExtension: String {
 
 
 
-public func tryUploadAttachment(parameters: [String:Any]? = nil,
-                                uploadAttachment: UploadAttachment,
-                                failureHandler: FailureHandler?,
-                                completion: @escaping (Any) -> Void)
+public func tryUploadAttachment(parameters: [String:Any]? = nil, uploadAttachment: UploadAttachment, failureHandler: FailureHandler?, completion: @escaping (Any) -> Void)
 {
-
     let fileName = uploadAttachment.fileName
     let mineType = uploadAttachment.fileExtension.mimeType
     let name = uploadAttachment.name
