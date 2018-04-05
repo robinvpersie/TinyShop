@@ -54,6 +54,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    [self requestData];
 }
 
 - (void)checkLogStatus {
@@ -99,7 +100,7 @@
     self.navigationItem.title = @"我的";
     self.view.backgroundColor = [UIColor redColor];
     
-    [self requestData];
+   // [self requestData];
 }
 
 - (void)logInNotification:(NSNotification *)notification {
