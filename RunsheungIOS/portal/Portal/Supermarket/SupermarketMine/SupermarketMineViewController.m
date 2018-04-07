@@ -53,9 +53,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
     self.navigationController.navigationBar.hidden = YES;
-   
+    [self requestData];
 }
 
 - (void)checkLogStatus {
@@ -101,7 +100,7 @@
     self.navigationItem.title = @"我的";
     self.view.backgroundColor = [UIColor redColor];
     
-    [self requestData];
+   // [self requestData];
 }
 
 - (void)logInNotification:(NSNotification *)notification {
@@ -204,7 +203,7 @@
         cell.textLabel.text = NSLocalizedString(@"SupermarketHomeMyOrder", nil);
         
     } else if (indexPath.section == 1) {
-        UIImage *icon = [UIImage imageNamed:_imageNames[indexPath.row]];
+        UIImage *icon = [UIImage imageNamed: _imageNames[indexPath.row]];
         CGSize itemSize = CGSizeMake(18, 20);
         UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0);
         CGRect imageRect = CGRectMake(0, 0, itemSize.width, itemSize.height);

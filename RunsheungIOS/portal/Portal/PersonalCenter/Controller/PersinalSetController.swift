@@ -231,7 +231,7 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
         } else if sectiontype == .changeLanguage {
             let cell: UITableViewCell = tableView.dequeueReusableCell()
             cell.textLabel?.textColor = UIColor.darkcolor
-            cell.textLabel?.text = "修改语言".localized
+            cell.textLabel?.text = "언어변경".localized
             cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
             cell.textLabel?.textAlignment = .left
             return cell
@@ -272,14 +272,14 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
         case .sexAndNickName:
             if indexPath.row == 0 {
                 
-                let alertActionBoy = AlertActionModel(title: "男".localized, action: { [weak self] (action) in
+                let alertActionBoy = AlertActionModel(title: "男".localized, action: { [weak self] action in
                     guard let strongself = self else { return }
                     strongself.sex = "男".localized
                     strongself.tableView.reloadSections([1], with: .automatic)
                     strongself.setUserAccount(nickname: strongself.nickName, gender: "f", token: strongself.token, imagePath:strongself.avatarString)
                 })
                 
-                let alerActionGirl = AlertActionModel(title: "女".localized, action: { [weak self] (action) in
+                let alerActionGirl = AlertActionModel(title: "女".localized, action: { [weak self] action in
                     guard let strongself = self else { return }
                     strongself.sex = "女".localized
                     strongself.tableView.reloadSections([1], with: .automatic)
@@ -294,18 +294,18 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
                          self?.showMessage("昵称不能为空")
                          return
                      }
-                        strongself.nickName = str
-                        tableView.reloadSections([sectiontype.rawValue], with: .automatic)
+                     strongself.nickName = str
+                     tableView.reloadSections([sectiontype.rawValue], with: .automatic)
                     
-                        var genderString: String?
-                        if strongself.sex == "男".localized {
-                           genderString = "f"
-                        }else if strongself.sex == "女".localized {
-                           genderString = "m"
-                        }else {
-                           genderString = nil
-                        }
-                        strongself.setUserAccount(nickname: str, gender: genderString, token: strongself.token, imagePath: strongself.avatarString)
+                     var genderString: String?
+                     if strongself.sex == "男".localized {
+                        genderString = "f"
+                     }else if strongself.sex == "女".localized {
+                        genderString = "m"
+                     }else {
+                        genderString = nil
+                     }
+                     strongself.setUserAccount(nickname: str, gender: genderString, token: strongself.token, imagePath: strongself.avatarString)
                 })
             }
         case .clearCache:
@@ -328,13 +328,7 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
     {
         let account = YCAccountModel.getAccount()
         showLoading()
-        KLHttpTool.rsSetPersonalInfomationwithMemberId(account?.customCode ?? "",
-                                                           withNickName: nickname ?? "",
-                                                           withImagePath: imagePath ?? "",
-                                                           withGender: gender ?? "",
-                                                           withToken: token,
-                                                           success:
-            { [weak self] result in
+        KLHttpTool.rsSetPersonalInfomationwithMemberId(account?.customCode ?? "", withNickName: nickname ?? "", withImagePath: imagePath ?? "", withGender: gender ?? "", withToken: token, success: { [weak self] result in
                 account?.userName = nickname
                 account?.avatarPath = imagePath
                 let genderString = gender == "m" ? "女":"男"
@@ -350,33 +344,29 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
     
     func choosePhoto(cell: PersonalHeaderCell){
         
-        YCAlert.confirmOrCancel(title: "选择照片".localized, message: nil, confirmTitle: "拍照".localized, cancelTitle: "相册".localized, inViewController: self, withConfirmAction: { [weak self] in
-            proposeToAccess(.camera, agreed: {
-                guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-                    return
-                }
-                if let strongself = self {
+        YCAlert.confirmOrCancel(title: "选择照片".localized,
+                                message: nil,
+                                confirmTitle: "拍照".localized,
+                                cancelTitle: "相册".localized,
+                                inViewController: self,
+                                withConfirmAction:
+            { [weak self] in
+                proposeToAccess(.camera, agreed: {
+                  guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+                  if let strongself = self {
                     strongself.imagePicker.sourceType = .camera
                     strongself.present(strongself.imagePicker, animated: true, completion: nil)
-                }
-            }, rejected: {
-                
-            })
-            
-        }) { [weak self] in
-            proposeToAccess(.photos, agreed: {
-                guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
-                    return
-                }
+                  }
+                }, rejected: { })
+           }) { [weak self] in
+               proposeToAccess(.photos, agreed: {
+                guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
                 if let this = self {
                     this.imagePicker.sourceType = .photoLibrary
                     this.present(this.imagePicker, animated: true, completion: nil)
                 }
-            }, rejected: {
-                
-            })
-            
-        }
+              }, rejected: { })
+          }
     }
     
     
