@@ -215,9 +215,9 @@
         if (indexPath.row == 0) {
             cell.textLabel.text = @"주소관리";
         } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"공고";
+            cell.textLabel.text = @"공지사항";
         } else if (indexPath.row == 2) {
-            cell.textLabel.text = @"리뷰관린";
+            cell.textLabel.text = @"리뷰관리";
         } else if (indexPath.row == 3) {
             cell.textLabel.text = @"환경설정";
         } else {
