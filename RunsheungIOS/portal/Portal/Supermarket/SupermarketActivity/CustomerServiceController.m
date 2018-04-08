@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSURL *url = [NSURL URLWithString:@"http://www.renshengyaoye.com:8993/Mobile/index.aspx"];
+    NSURL *url = [NSURL URLWithString:@"http://ssadmin.shelongwang.com:8090/20_CM/cmList.aspx"];
     webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     
     webView.backgroundColor = [UIColor whiteColor];
@@ -73,7 +73,8 @@
     NSLog(@"i am dealloc");
 }
 - (void)pop:(UIButton*)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 - (void)setFlag:(float )flag{
     _flag = flag;
