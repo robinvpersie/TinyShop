@@ -1343,6 +1343,9 @@
     NSString *url = [NSString stringWithFormat:@"%@member/requestProfileInfo", TinyMemberShopBaseURL];
    // NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/GetMyInfo", BaseUrl];
     YCAccountModel *model = [YCAccountModel getAccount];
+    if (model == nil) {
+        return;
+    }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@"kor" forKey:@"lang_type"];
     [params setObject:model.customCode forKey:@"MemberID"];
