@@ -79,7 +79,7 @@
 "SMOrderDetailShouldPay" = "결제금액";
 "SMOrderDetailActualPay" = "총결제 금액";
 "SMGoodsDetailAddtionMsg" = "당일24:00전 주문은 다음날 수령가능";
-"SMGoosDetailMarketPrice" = "가격:￥";
+"SMGoosDetailMarketPrice" = "가격:";
 "SMGoodsStockAmount" = "재고:";
 "SMGoodsSaleAmount" = "판매량";
 "SMGoodsExpressMoney" = "배송비:";

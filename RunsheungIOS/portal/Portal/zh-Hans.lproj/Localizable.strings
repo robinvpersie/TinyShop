@@ -79,7 +79,7 @@
 "SMOrderDetailShouldPay" = "应付";
 "SMOrderDetailActualPay" = "实付";
 "SMGoodsDetailAddtionMsg" = "当日24:00前下单,次日可达";
-"SMGoosDetailMarketPrice" = "市场价格:￥";
+"SMGoosDetailMarketPrice" = "市场价格:";
 "SMGoodsStockAmount" = "库存:";
 "SMGoodsSaleAmount" = "已售";
 "SMGoodsExpressMoney" = "配送费:";
