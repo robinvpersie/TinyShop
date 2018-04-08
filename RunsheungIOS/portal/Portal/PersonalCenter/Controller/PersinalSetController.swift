@@ -400,16 +400,16 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
                 this.hideLoading()
                 switch result {
                    case .success:
-                    var genderString: String?
+                    var gender: String?
                     if this.sex == "男".localized {
-                        genderString = "F"
+                        gender = "F"
                     }else if this.sex == "女".localized {
-                        genderString = "M"
+                        gender = "M"
                     }
                     let imagepath = "http://portal.gigawon.co.kr:8488/MediaUploader/wsProfile/" + currentDateStr
                     KingfisherManager.shared.cache.store(image, original: imageData, forKey: imagepath, toDisk: true, completionHandler: nil)
-                    this.setUserAccount(nickname: this.nickName, gender: genderString, token: this.token, imagePath: imagepath)
-                  case .failed(errorMessage: let errormessage):
+                    this.setUserAccount(nickname: this.nickName, gender: gender, token: this.token, imagePath: imagepath)
+                  case let .failed(errorMessage: errormessage):
                     this.showMessage(errormessage)
                 }
              })

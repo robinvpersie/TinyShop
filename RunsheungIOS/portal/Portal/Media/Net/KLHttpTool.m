@@ -1350,17 +1350,12 @@
     [params setObject:@"kor" forKey:@"lang_type"];
     [params setObject:model.customCode forKey:@"MemberID"];
     [params setObject:model.combineToken forKey:@"token"];
-//    YCAccountModel *model = [YCAccountModel getAccount];
-//    [params setObject:model.combineToken forKey:@"token"];
-//    [params setObject:model.customCode forKey:@"custom_code"];
-//    [params setObject:@"kor" forKey:@"lang_type"];
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30;
-    //url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-
+   
     [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
 
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -1396,7 +1391,7 @@
     
     
 //
-////    [self getToken:^(id token) {
+//    [self getToken:^(id token) {
 //        [params setObject:model.token forKey:@"token"];
 //        [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
 //            NSLog(@"%@",response);
@@ -1407,7 +1402,7 @@
 //        } failure:^(NSError *err) {
 //            NSLog(@"%@",err);
 //        }];
-    
+//
 //    } failure:^(NSError *errToken) {
 //
 //    }];
