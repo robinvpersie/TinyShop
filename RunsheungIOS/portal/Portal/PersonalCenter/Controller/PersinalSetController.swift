@@ -31,7 +31,7 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
         case sexAndNickName
         case changePassword
         case clearCache
-        case changeLanguage
+//        case changeLanguage
         case logOut
         
         init(indexPath: IndexPath){
@@ -42,7 +42,7 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
             self.init(rawValue: section)!
         }
         
-        static let count = 6
+        static let count = 5
         
         var numberOfRows: Int {
             switch self {
@@ -228,14 +228,16 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
                 cell.cachesize.text = "\(cacheSize)MB"
             })
             return cell
-        } else if sectiontype == .changeLanguage {
-            let cell: UITableViewCell = tableView.dequeueReusableCell()
-            cell.textLabel?.textColor = UIColor.darkcolor
-            cell.textLabel?.text = "언어변경".localized
-            cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
-            cell.textLabel?.textAlignment = .left
-            return cell
-        } else {
+        }
+//        else if sectiontype == .changeLanguage {
+//            let cell: UITableViewCell = tableView.dequeueReusableCell()
+//            cell.textLabel?.textColor = UIColor.darkcolor
+//            cell.textLabel?.text = "언어변경".localized
+//            cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
+//            cell.textLabel?.textAlignment = .left
+//            return cell
+//        }
+        else {
             let cell: UITableViewCell = tableView.dequeueReusableCell()
             cell.textLabel?.textColor = UIColor.navigationbarColor
             cell.textLabel?.text = "退出账号".localized
@@ -260,18 +262,11 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
         let sectiontype = sectionType(indexPath: indexPath)
         switch sectiontype {
         case .logOut:
-            YCAlert.confirmOrCancel(title: "提示".localized,
-                                    message: "确定要退出账号吗？".localized,
-                                    confirmTitle: "确定".localized,
-                                    cancelTitle: "取消".localized,
-                                    inViewController: self,
-                                    withConfirmAction:
-            { [weak self] in
+            YCAlert.confirmOrCancel(title: "提示".localized, message: "确定要退出账号吗？".localized, confirmTitle: "确定".localized, cancelTitle: "取消".localized, inViewController: self, withConfirmAction: { [weak self] in
                 self?.logout()
             })
         case .sexAndNickName:
             if indexPath.row == 0 {
-                
                 let alertActionBoy = AlertActionModel(title: "男".localized, action: { [weak self] action in
                     guard let strongself = self else { return }
                     strongself.sex = "男".localized
@@ -315,17 +310,16 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
         case .changePassword:
             let changePassword = ChangePassWordController()
             navigationController?.pushViewController(changePassword, animated: true)
-        case .changeLanguage:
-            let language = SetLanguageController()
-            navigationController?.pushViewController(language, animated: true)
+//        case .changeLanguage:
+//            let language = SetLanguageController()
+//            navigationController?.pushViewController(language, animated: true)
         default:
             break
         }
     }
     
     
-    func setUserAccount(nickname: String?, gender: String?, token: String?, imagePath: String? = nil)
-    {
+    func setUserAccount(nickname: String?, gender: String?, token: String?, imagePath: String? = nil) {
         let account = YCAccountModel.getAccount()
         showLoading()
         KLHttpTool.rsSetPersonalInfomationwithMemberId(account?.customCode ?? "", withNickName: nickname ?? "", withImagePath: imagePath ?? "", withGender: gender ?? "", withToken: token, success: { [weak self] result in
@@ -344,13 +338,7 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
     
     func choosePhoto(cell: PersonalHeaderCell){
         
-        YCAlert.confirmOrCancel(title: "选择照片".localized,
-                                message: nil,
-                                confirmTitle: "拍照".localized,
-                                cancelTitle: "相册".localized,
-                                inViewController: self,
-                                withConfirmAction:
-            { [weak self] in
+        YCAlert.confirmOrCancel(title: "选择照片".localized, message: nil, confirmTitle: "拍照".localized, cancelTitle: "相册".localized, inViewController: self, withConfirmAction: { [weak self] in
                 proposeToAccess(.camera, agreed: {
                   guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
                   if let strongself = self {
@@ -397,7 +385,6 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
             dismiss(animated: true, completion: nil)
         }
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
-            
            let editedImage = image.yc.resizeToTargetSize(targetSize: CGSize(width: 45, height: 45))
            let indexpath = IndexPath(row: 0, section: 0)
            let cell = tableView.cellForRow(at: indexpath) as? PersonalHeaderCell
