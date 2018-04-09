@@ -182,11 +182,11 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             cell.textLabel.text = NSLocalizedString(@"SMAdressZipCode", nil);
             CGFloat width = [UILabel getWidthWithTitle:cell.textLabel.text font:cell.textLabel.font];
             
-            _gidField = [[UITextField alloc]initWithFrame:CGRectMake(width + 25, CGRectGetHeight(cell.contentView.frame)/2 - 15, APPScreenWidth - width - 45, 30)];
+            _gidField = [[UITextField alloc] initWithFrame:CGRectMake(width + 25, CGRectGetHeight(cell.contentView.frame)/2 - 15, APPScreenWidth - width - 45, 30)];
             _gidField.placeholder = NSLocalizedString(@"SMAdressZipCode", nil);
             _gidField.textColor = [UIColor darkGrayColor];
             _gidField.font = [UIFont systemFontOfSize:15];
-            [cell.contentView addSubview:_gidField];
+            [cell.contentView addSubview: _gidField];
 //            if (_addressModel.zip_name.length > 0) {
 //                _gidField.text = _addressModel.zip_name;
 //            }
@@ -206,7 +206,6 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             
         }
     }
-    
     return cell;
 }
 
@@ -257,7 +256,8 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
 
             
         } else {
-            [MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:response[@"msg"]];
+            [self showMessage:response[@"msg"] interval:2 completionAction:nil];
+            //[MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:response[@"msg"]];
         }
     } failure:^(NSError *err) {
         
@@ -272,18 +272,16 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
 
 - (void)saveAddress {
     if (_nameField.text.length == 0) {
-        [MBProgressHUD hideAfterDelayWithView:self.view interval:1 text:NSLocalizedString(@"SMAdressNoNameMsg", nil)];
+        [self showMessage:NSLocalizedString(@"SMAdressNoNameMsg", nil) interval:1 completionAction:nil];
         return ;
     }else if (_phoneField.text.length == 0){
-        
-        [MBProgressHUD hideAfterDelayWithView:self.view interval:1 text:NSLocalizedString(@"SMAdressNoPhoneMsg", nil)];
+        [self showMessage:NSLocalizedString(@"SMAdressNoPhoneMsg", nil) interval:1 completionAction:nil];
         return ;
     }else if (_addressLabel.text.length == 0){
-        
-        [MBProgressHUD hideAfterDelayWithView:self.view interval:1 text:NSLocalizedString(@"SMAdressNoLocationMsg", nil)];
+        [self showMessage:NSLocalizedString(@"SMAdressNoLocationMsg", nil) interval:1 completionAction:nil];
         return ;
     }else if(_haoaoField.text.length == 0){
-        [MBProgressHUD hideAfterDelayWithView:self.view interval:1 text:NSLocalizedString(@"SMAdressNoAdressMsg", nil)];
+        [self showMessage:NSLocalizedString(@"SMAdressNoAdressMsg", nil) interval:1 completionAction:nil];
         return ;
     }
     
@@ -311,14 +309,13 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             isDefault = YES;
         }
         if (_longtitude == 0 || _latitude == 0) {
-            [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:1 text:NSLocalizedString(@"SMAdressGetPointMsg", nil)];
+            [self showMessage:NSLocalizedString(@"SMAdressGetPointMsg", nil) interval:1 completionAction:nil];
             return;
         }
         
         NSString *zipCode = _gidField.text;
         if (zipCode.length == 0) {
-//            zipCode = @"410000";
-            [MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:NSLocalizedString(@"SMAdressNoZipCodeMsg", nil)];
+           [self showMessage:NSLocalizedString(@"SMAdressNoZipCodeMsg", nil) interval:2 completionAction:nil];
             return;
         }
         [self showLoading];
@@ -347,12 +344,13 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
 
     } else {
         if (_longtitude == 0 || _latitude == 0) {
-            [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:1 text:NSLocalizedString(@"SMAdressGetPointMsg", nil)];
+            [self showMessage:NSLocalizedString(@"SMAdressGetPointMsg", nil) interval:1 completionAction:nil];
             return;
         }
         NSString *zipCode = _gidField.text;
         if (zipCode.length == 0) {
-            [MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:NSLocalizedString(@"SMAdressNoZipCodeMsg", nil)];
+            [self showMessage:NSLocalizedString(@"SMAdressNoZipCodeMsg", nil) interval:1 completionAction:nil];
+            //[MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:NSLocalizedString(@"SMAdressNoZipCodeMsg", nil)];
             return;
         }
         

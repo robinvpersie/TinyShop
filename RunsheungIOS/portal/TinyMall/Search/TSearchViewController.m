@@ -10,12 +10,12 @@
 #import "ChoiceTableViewCell.h"
 #import "SupermarketHomeViewController.h"
 
-@interface TSearchViewController ()<UITableViewDelegate,UITableViewDataSource>{
+@interface TSearchViewController ()<UITableViewDelegate, UITableViewDataSource>{
 	int paged;
 }
 
-@property (nonatomic,retain)UITableView *searchResultTableView;
-@property (nonatomic,strong)NSMutableArray *searchResultData;
+@property (nonatomic, strong)UITableView *searchResultTableView;
+@property (nonatomic, strong)NSMutableArray *searchResultData;
 @end
 
 @implementation TSearchViewController
@@ -29,14 +29,20 @@
 #pragma mark -- 加载数据
 - (void)loadSearchResultData{
 	
-	[KLHttpTool TinySearchShopMainDataUrl:@"StoreCate/requestSearchWordStoreList" Withlatitude:GetUserDefault(@"latitude") Withlongitude:GetUserDefault(@"longtitude")  Withpg:[NSString stringWithFormat:@"%d",paged] WithPagesize:@"5" WithSearchword:self.searchKeyWord success:^(id response) {
-		self.searchResultData = @[].mutableCopy;
+	[KLHttpTool TinySearchShopMainDataUrl:@"StoreCate/requestSearchWordStoreList"
+                             Withlatitude:GetUserDefault(@"latitude")
+                            Withlongitude:GetUserDefault(@"longtitude")
+                                   Withpg:[NSString stringWithFormat:@"%d",paged]
+                             WithPagesize:@"5"
+                           WithSearchword:self.searchKeyWord
+                                  success:^(id response)
+    {
+		self.searchResultData = [NSMutableArray array];
 		if ([response[@"status"] intValue] == 1) {
 			[self.searchResultData addObjectsFromArray:response[@"storelist"]];
 			[self.searchResultTableView reloadData];
 		}
-		
-	} failure:^(NSError *err) {
+    } failure:^(NSError *err) {
 		
 	}];
 	
@@ -65,7 +71,6 @@
 	return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-	
 	return self.searchResultData.count;
 }
 
@@ -78,10 +83,8 @@
 	return cell;
 }
 
-
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-	return  120.0f;
+	return 120.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
