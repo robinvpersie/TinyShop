@@ -335,8 +335,36 @@
 }
 
 - (void)contactCustomerService {
-    CustomerServiceController *vc = [[CustomerServiceController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+	YCAccountModel *accountmodel = [YCAccountModel getAccount];
+	NSString *UrlStr = [NSString stringWithFormat:@"ycapp://Customer$%@$%@$%@",accountmodel.customCode,@"12099999999",accountmodel.token] ;
+	
+	dispatch_async(dispatch_get_main_queue(), ^{
+
+		if ([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:UrlStr]]) {
+
+			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:UrlStr]];
+
+		}else{
+			UIAlertController* _alters = [UIAlertController alertControllerWithTitle:@"马上下载龙聊？" message:nil preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+			}];
+
+			UIAlertAction *okaction = [UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+				NSString *str =  @"itms-apps:https://itunes.apple.com/us/app/%E9%BE%99%E8%81%8A/id1225896079?l=zh&ls=1&mt=8";
+				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+
+			}];
+
+
+			[_alters addAction:cancel];
+			[_alters addAction:okaction];
+			[self presentViewController:_alters animated:YES completion:nil];
+
+		}
+
+	});
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

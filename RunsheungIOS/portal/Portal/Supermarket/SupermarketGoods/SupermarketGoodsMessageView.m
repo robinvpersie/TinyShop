@@ -206,7 +206,7 @@
     _titleLabel.text = goodsModel.title;
 //    _priceLabel.text = [NSString stringWithFormat:@"¥%@/%@",goodsModel.price,goodsModel.unit];
 	//jake 170709
-	_priceLabel.text = [NSString stringWithFormat:@"¥%@",goodsModel.price];
+	_priceLabel.text = [NSString stringWithFormat:@"%.0f",[goodsModel.price doubleValue]];
     
     CGFloat priceWidth = [UILabel getWidthWithTitle:_priceLabel.text font:_priceLabel.font];
     CGRect priceFrame = _priceLabel.frame;
@@ -215,7 +215,7 @@
     
 //    _marketPriceLabel.text = [NSString stringWithFormat:@"市场价格:￥%@/%@",goodsModel.marketPrice,goodsModel.unit];
 	//jake 170709
-	_marketPriceLabel.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"SMGoosDetailMarketPrice", nil),goodsModel.marketPrice];
+	_marketPriceLabel.text = [NSString stringWithFormat:@"%@%.0f",NSLocalizedString(@"SMGoosDetailMarketPrice", nil),[goodsModel.marketPrice doubleValue]];
     _marketPriceLabel.frame = CGRectMake(CGRectGetMaxX(_priceLabel.frame), CGRectGetMaxY(_priceLabel.frame)-23, 150, 20);
     
     _stockAmountLabel.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"SMGoodsStockAmount", nil),goodsModel.stock];
