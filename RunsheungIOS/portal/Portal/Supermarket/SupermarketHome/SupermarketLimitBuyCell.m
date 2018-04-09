@@ -14,7 +14,7 @@
     [super awakeFromNib];
     self.buyRightNow.layer.cornerRadius = 3.0f;
     
-    NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:@"￥ 20.00"
+    NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:@" 20.00"
                                                                   attributes:@{
                                                                                NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
                                                                                NSFontAttributeName:[UIFont systemFontOfSize:14.f],

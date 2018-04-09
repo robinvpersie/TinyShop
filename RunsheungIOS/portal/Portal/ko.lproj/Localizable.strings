@@ -209,7 +209,7 @@
 "SMGoodsStocks" = "재고";
 "SMGoodsShowMsg" = "상품 옵션을 선택하세요";
 "SMGoodsNoZeroMsg" = "수량을 확인 해주세요";
-"SMDeleteOrder" = "删除订单";
+"SMDeleteOrder" = "주문삭제";
 
 
 //호텔
@@ -237,7 +237,7 @@
 "HotealQRName" = "호텔 QR코드";
 "HotelQRUpdate" = "분마다 업데이트";
 "HotelPaymentTitle" = "예약 결제";
-"HotelConfirmPay" = "결제확인￥";
+"HotelConfirmPay" = "결제확인";
 "HotelPayRemainTime" = "남은 결제 시간: ";
 "HotelZhi" = "에서";
 "HotelTotal" = "총";

@@ -45,16 +45,20 @@
 	titleview.textColor = [UIColor whiteColor];
 	self.navigationItem.titleView = titleview;
 
-	self.scrollView = [[TPKeyboardAvoidingScrollView alloc]initWithFrame:CGRectMake(0,-64, APPScreenWidth, APPScreenHeight+64)];
+	self.scrollView = [[TPKeyboardAvoidingScrollView alloc]initWithFrame:CGRectZero];
 	[self.view addSubview:self.scrollView];
-	
+	[self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.equalTo(self.view);
+	}];
 	
 	self.backImgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"loginbackView"]];
-	self.backImgView.frame = self.scrollView.bounds;
 	UITapGestureRecognizer *taps = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapBack:)];
 	self.backImgView.userInteractionEnabled = YES;
 	[self.backImgView addGestureRecognizer:taps];
 	[self.scrollView addSubview:self.backImgView];
+	[self.backImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.equalTo(self.view);
+	}];
 	
 	self.nickinput = [[InputFieldView alloc] initWithFrame:CGRectMake(20, 80, APPScreenWidth- 40, 50)];
 	self.nickinput.placeHolder = NSLocalizedString(@"请输入昵称", nil);
@@ -105,7 +109,7 @@
 	[submitBtn setBackgroundColor:RGB(33, 192, 67)];
 	[submitBtn setTitle:@"다음" forState:UIControlStateNormal];
 	[submitBtn addTarget:self action:@selector(submitAction:) forControlEvents:UIControlEventTouchUpInside];
-	[self.backImgView addSubview:submitBtn];
+	[self.scrollView addSubview:submitBtn];
 
 
 	
@@ -122,7 +126,14 @@
 }
 
 - (void)findAddressBtn:(UIButton*)sender{
-	
+	SearchKoreaAddress *search = [[SearchKoreaAddress alloc] init];
+	search.selectAction = ^(NSDictionary * dic) {
+		self.delegatecodeinput.text = dic[@"postcd"];
+		self.delegateAddressinput.text = dic[@"address"];
+	};
+	UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:search];
+	[self presentViewController:nav animated:YES completion:nil];
+
 }
 
 - (void)submitAction:(UIButton *)sender{

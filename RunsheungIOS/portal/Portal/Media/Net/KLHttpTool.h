@@ -638,7 +638,14 @@
 						   WithItemCode:(NSString*)item_code
 								success:(void (^)(id response))success
 								failure:(void (^)(NSError *err))failure;
-
+/*商家商品详情
+*/
++(void)TinyRequestStoreDetail:(NSString *)urls
+		   WithSaleCustomCode:(NSString *)sale_custom_code
+				 WithLatitude:(NSString*)latitude
+				WithLongitude:(NSString*)longitude
+					  success:(void (^)(id response))success
+					  failure:(void (^)(NSError *err))failure;
 /*
  加载主页数据
  */

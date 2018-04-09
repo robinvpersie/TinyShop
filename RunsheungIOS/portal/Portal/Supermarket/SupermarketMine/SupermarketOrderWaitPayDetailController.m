@@ -443,12 +443,12 @@
         shouldPay.frame = CGRectMake(15, 5, shouldPayWidth, 25);
         [bgView addSubview:shouldPay];
         
-        UILabel *shouldPayMoney = [UILabel createLabelWithFrame:CGRectMake(CGRectGetMaxX(shouldPay.frame)+5, shouldPay.frame.origin.y, 100, CGRectGetHeight(shouldPay.frame)) textColor:[UIColor darkcolor] font:shouldPay.font textAlignment:NSTextAlignmentLeft text:@"￥15.800"];
-        shouldPayMoney.text = [NSString stringWithFormat:@"￥%@",_orderDetailData.order_price];
+        UILabel *shouldPayMoney = [UILabel createLabelWithFrame:CGRectMake(CGRectGetMaxX(shouldPay.frame)+5, shouldPay.frame.origin.y, 100, CGRectGetHeight(shouldPay.frame)) textColor:[UIColor darkcolor] font:shouldPay.font textAlignment:NSTextAlignmentLeft text:@"15.800"];
+        shouldPayMoney.text = [NSString stringWithFormat:@"%.f",[_orderDetailData.order_price doubleValue]];
         [bgView addSubview:shouldPayMoney];
         
-        UILabel *actuallyPayMoney = [UILabel createLabelWithFrame:CGRectMake(0, shouldPayMoney.frame.origin.y, 0, shouldPayMoney.frame.size.height) textColor:[UIColor darkcolor] font:shouldPayMoney.font textAlignment:NSTextAlignmentRight text:@"￥15.800"];
-        actuallyPayMoney.text = [NSString stringWithFormat:@"￥%@",_orderDetailData.realPrice];
+        UILabel *actuallyPayMoney = [UILabel createLabelWithFrame:CGRectMake(0, shouldPayMoney.frame.origin.y, 0, shouldPayMoney.frame.size.height) textColor:[UIColor darkcolor] font:shouldPayMoney.font textAlignment:NSTextAlignmentRight text:@"15.800"];
+        actuallyPayMoney.text = [NSString stringWithFormat:@"%.f",[_orderDetailData.realPrice doubleValue]];
         CGFloat actuallyPayMoneyWidth = [UILabel getWidthWithTitle:actuallyPayMoney.text font:actuallyPayMoney.font];
         actuallyPayMoney.frame = CGRectMake(APPScreenWidth - 10 - actuallyPayMoneyWidth, shouldPayMoney.frame.origin.y, actuallyPayMoneyWidth, shouldPayMoney.frame.size.height);
         [bgView addSubview:actuallyPayMoney];

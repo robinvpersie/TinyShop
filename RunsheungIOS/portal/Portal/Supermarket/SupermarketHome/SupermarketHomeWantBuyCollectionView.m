@@ -64,7 +64,7 @@
         cell.titleLabel.text = data.item_name;
         float price = data.item_price.floatValue;
 
-		cell.priceLabel.text = [NSString stringWithFormat:@"￥%.2f",price];
+		cell.priceLabel.text = [NSString stringWithFormat:@"%.f",price];
        [UIImageView setimageWithImageView:cell.imageView UrlString:data.imageUrl imageVersion:data.ver];
     }
     

@@ -351,7 +351,7 @@
 	NSLog(@"多选%@",_mutiChoseArr);
 	[_choseSizeView showInView:KEYWINDOW];
 	[UIImageView setimageWithImageView:_choseSizeView.iconImgView UrlString:goods.images.firstObject[@"url"] imageVersion:nil];
-	_choseSizeView.goodsPriceLabel.text = [NSString stringWithFormat:@"￥ %@",goods.price];
+	_choseSizeView.goodsPriceLabel.text = [NSString stringWithFormat:@" %.f",[goods.price doubleValue]];
 	_choseSizeView.goodsStockLabel.text = [NSString stringWithFormat:@"库存 %@%@",goods.stock,goods.unit];
 	_choseSizeView.dataSource = @[_singleChooseArr,_mutiChoseArr];
 	self.actionType = 0;
@@ -361,7 +361,7 @@
 - (void)addShoppingCart {
 	[_choseSizeView showInView:KEYWINDOW];
 	[UIImageView setimageWithImageView:_choseSizeView.iconImgView UrlString:goods.images.firstObject[@"url"] imageVersion:nil];
-	_choseSizeView.goodsPriceLabel.text = [NSString stringWithFormat:@"￥ %@",goods.price];
+	_choseSizeView.goodsPriceLabel.text = [NSString stringWithFormat:@" %.f",[goods.price doubleValue]];
 	_choseSizeView.goodsStockLabel.text = [NSString stringWithFormat:@"%@ %@%@",NSLocalizedString(@"SMGoodsStocks", nil),goods.stock,goods.unit];
 	_choseSizeView.dataSource = @[_singleChooseArr,_mutiChoseArr];
 	self.actionType = 1;
