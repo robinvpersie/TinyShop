@@ -477,7 +477,7 @@
 - (void)remindSend:(UIButton *)button {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"已提醒发货" preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"SMAlertSureTitle", nil) style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:okAction];
     [self.viewController presentViewController:alert animated:YES completion:nil];
 }

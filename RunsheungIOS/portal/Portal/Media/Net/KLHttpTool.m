@@ -1222,7 +1222,6 @@
     [param setObject:content forKey:@"content"];
     [param setObject:orderID forKey:@"order_code"];
     [param setObject:divCode forKey:@"div_code"];
-//	[param setObject:picArray forKey:@"files"];
 	
     YCAccountModel *model = [YCAccountModel getAccount];
 //    if (model.token) {

@@ -59,7 +59,7 @@
     [reset addTarget:self action:@selector(resetAllButton) forControlEvents:UIControlEventTouchUpInside];
     [contentView addSubview:reset];
     
-    UIButton *sure = [UIButton createButtonWithFrame:CGRectMake(CGRectGetMaxX(reset.frame)+10, reset.frame.origin.y, reset.frame.size.width*5, reset.frame.size.height) title:@"确定" titleColor:[UIColor whiteColor] titleFont:reset.titleLabel.font backgroundColor:PurpleColor];
+    UIButton *sure = [UIButton createButtonWithFrame:CGRectMake(CGRectGetMaxX(reset.frame)+10, reset.frame.origin.y, reset.frame.size.width*5, reset.frame.size.height) title:NSLocalizedString(@"SMAlertSureTitle", nil) titleColor:[UIColor whiteColor] titleFont:reset.titleLabel.font backgroundColor:PurpleColor];
     sure.layer.cornerRadius = 4;
     [contentView addSubview:sure];
     

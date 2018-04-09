@@ -29,7 +29,7 @@
     UIButton *sureButton = [UIButton buttonWithType:UIButtonTypeCustom];
     sureButton.frame = CGRectMake(0, self.view.frame.size.height - 148, APPScreenWidth, 40);
     sureButton.backgroundColor = [UIColor redColor];
-    [sureButton setTitle:@"确定" forState:UIControlStateNormal];
+    [sureButton setTitle:NSLocalizedString(@"SMAlertSureTitle", nil) forState:UIControlStateNormal];
     [sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     sureButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [sureButton addTarget:self action:@selector(getSelectedResult) forControlEvents:UIControlEventTouchUpInside];
