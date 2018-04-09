@@ -72,7 +72,7 @@
     if (_moneyLabel == nil) {
         _moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(bgView.frame.size.width - 15 - 80 + 5, _titleLabel.frame.origin.y, 80, 40)];
         _moneyLabel.textColor = [UIColor whiteColor];
-        _moneyLabel.text = @"￥15";
+        _moneyLabel.text = @"15";
         _moneyLabel.font = [UIFont systemFontOfSize:32];
         _moneyLabel.textAlignment = NSTextAlignmentCenter;
     }

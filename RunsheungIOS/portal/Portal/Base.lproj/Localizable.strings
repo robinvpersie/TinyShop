@@ -61,7 +61,7 @@
 "SMActualPay" = "实付款";
 "SMOrderTime" = "下单时间:";
 "SMOderCountTotal_0" = "共";
-"SMOrderCountTotal_1" = "件商品,总计:¥";
+"SMOrderCountTotal_1" = "件商品,总计:";
 "SMOrderWaitPayStatus" = "等待买家付款";
 "SMOrderPayedStatus" = "买家已付款";
 "SMOrderOverTimeStatus" = "订单超时";
@@ -237,7 +237,7 @@
 "HotealQRName" = "开房二维码";
 "HotelQRUpdate" = "  每分钟自动刷新";
 "HotelPaymentTitle" = "订单支付";
-"HotelConfirmPay" = "确认支付    ￥";
+"HotelConfirmPay" = "确认支付    ";
 "HotelPayRemainTime" = "支付剩余时间: ";
 "HotelZhi" = "至";
 "HotelTotal" = "共";

@@ -182,7 +182,7 @@
     [self.contentView addSubview:_checkProgress];
     
     if (_deleteOrder == nil) {
-        _deleteOrder = [self createButtonWithFrame:CGRectMake(APPScreenWidth - ButtonWidth - 15, _checklogistics.frame.origin.y, ButtonWidth, _checklogistics.frame.size.height) title:@"删除订单" layerColor:[UIColor darkGrayColor]];
+        _deleteOrder = [self createButtonWithFrame:CGRectMake(APPScreenWidth - ButtonWidth - 15, _checklogistics.frame.origin.y, ButtonWidth, _checklogistics.frame.size.height) title:NSLocalizedString(@"SMDeleteOrder", nil) layerColor:[UIColor darkGrayColor]];
         [_deleteOrder addTarget:self action:@selector(deleteOrder) forControlEvents:UIControlEventTouchUpInside];
         _deleteOrder.hidden = YES;
     }
@@ -203,7 +203,7 @@
     _goodListView.goodsListArray = list;
     
     _timeLabel.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"SMOrderTime", nil),data.time];
-    _countAmountLabel.text = [NSString stringWithFormat:@"%@ %ld %@ %.2f",NSLocalizedString(@"SMOderCountTotal_0", nil),data.goodsCount,NSLocalizedString(@"SMOrderCountTotal_1", nil),data.totalPrice];
+    _countAmountLabel.text = [NSString stringWithFormat:@"%@ %ld %@ %.f",NSLocalizedString(@"SMOderCountTotal_0", nil),data.goodsCount,NSLocalizedString(@"SMOrderCountTotal_1", nil),data.totalPrice];
 
     
     CGRect listFrame = _goodListView.frame;
@@ -334,7 +334,7 @@
         case OrderFinished:
             if (data.assessStatus == AssessStatusNO) {
 //                _statusLabel.text = NSLocalizedString(@"SMOrderWaitCommentStatus", nil);
-                _statusLabel.text = @"交易完成";
+                _statusLabel.text =  NSLocalizedString(@"SMOrderFinishStatus", nil);;
                 _comment.hidden = NO;
                 if (_buyAgain.hidden == NO) {
                     _buyAgain.frame = CGRectMake(CGRectGetMinX(_comment.frame) - 15 - ButtonWidth, _comment.frame.origin.y, ButtonWidth, _comment.frame.size.height);

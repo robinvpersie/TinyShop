@@ -821,7 +821,7 @@
 			UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(title.frame), 110 - 10 - 20, 120, 20)];
 			priceLabel.textColor = [UIColor redColor];
 			priceLabel.font = [UIFont systemFontOfSize:14];
-			priceLabel.text = @"￥8.9/kg";
+			priceLabel.text = @"8.9/kg";
 			[cell.contentView addSubview:priceLabel];
 			
 			UILabel *amount = [[UILabel alloc] initWithFrame:CGRectMake(APPScreenWidth - 10 - 80, priceLabel.frame.origin.y, 80, 20)];
@@ -837,7 +837,7 @@
 				NSString *url = urlDic[@"url"];
 				[UIImageView setimageWithImageView:goodsImage UrlString:url imageVersion:nil];
 				title.text = self.goodsModel.title;
-				priceLabel.text = [NSString stringWithFormat:@"￥%@",self.goodsModel.price];
+				priceLabel.text = [NSString stringWithFormat:@"%.f",[self.goodsModel.price doubleValue]];
 				amount.text = [NSString stringWithFormat:@"X%ld",self.amout];
 			}
 		}
@@ -999,7 +999,7 @@
 	
 	float money = self.buyAmount.text.integerValue * self.goodsModel.price.floatValue;
 	
-	price.text = [NSString stringWithFormat:@"￥%.2f",money+8];
+	price.text = [NSString stringWithFormat:@"%.f",money+8];
 }
 
 - (void)cutButtonPress:(UIButton *)button {
@@ -1016,14 +1016,14 @@
 	
 	float money = self.buyAmount.text.integerValue * self.goodsModel.price.floatValue;
 	
-	price.text = [NSString stringWithFormat:@"￥%.2f",money+8];
+	price.text = [NSString stringWithFormat:@"%.f",money+8];
 }
 
 - (void)switchChange:(UISwitch *)switchButton {
 	if (_canUsePoint.isOn == YES) {
-		price.text = [NSString stringWithFormat:@"¥%.2f",self.totalPrice+_checkOrderModel.expressPrice.floatValue - _checkOrderModel.canMaxUsePoint.floatValue];
+		price.text = [NSString stringWithFormat:@"%.f",self.totalPrice+_checkOrderModel.expressPrice.floatValue - _checkOrderModel.canMaxUsePoint.floatValue];
 	} else {
-		price.text = [NSString stringWithFormat:@"¥%.2f",self.totalPrice+_checkOrderModel.expressPrice.floatValue];
+		price.text = [NSString stringWithFormat:@"%.f",self.totalPrice+_checkOrderModel.expressPrice.floatValue];
 	}
 }
 

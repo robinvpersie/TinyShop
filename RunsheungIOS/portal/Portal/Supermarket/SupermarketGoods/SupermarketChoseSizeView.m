@@ -95,7 +95,7 @@
     
     //实际上用来显示价格
     UILabel *priceLabel = [[UILabel alloc] init];
-    priceLabel.text = @"￥ 51555.00";
+    priceLabel.text = @" 51555.00";
     priceLabel.textColor = [UIColor redColor];
     priceLabel.font = [UIFont systemFontOfSize:18];
     CGFloat goodsNameLblX = CGRectGetMaxX(iconBackView.frame) + 10;
@@ -339,7 +339,7 @@
     
     _totalPrice = _mutiTotalPrice + _itemPrice;
     //    NSArray *result = [self.filterView.filterModels.firstObject getFilterResult];
-    self.goodsPriceLabel.text = [NSString stringWithFormat:@"￥ %.2f",_totalPrice];
+    self.goodsPriceLabel.text = [NSString stringWithFormat:@" %.0f",_totalPrice];
 }
 
 

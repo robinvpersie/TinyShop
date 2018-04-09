@@ -1213,7 +1213,6 @@
                         failure:(void (^)(NSError *err))failure {
     
     [MBProgressHUD showWithView:KEYWINDOW];
-    
     NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/SendComment",BaseUrl];
    
     NSMutableDictionary *param = @{}.mutableCopy;
@@ -1223,6 +1222,7 @@
     [param setObject:content forKey:@"content"];
     [param setObject:orderID forKey:@"order_code"];
     [param setObject:divCode forKey:@"div_code"];
+//	[param setObject:picArray forKey:@"files"];
 	
     YCAccountModel *model = [YCAccountModel getAccount];
 //    if (model.token) {
@@ -3242,6 +3242,47 @@
 		NSLog(@"%@",err);
 	}];
 }
+
+/*
+ *商家商品详情
+ */
++(void)TinyRequestStoreDetail:(NSString *)urls
+		   WithSaleCustomCode:(NSString *)sale_custom_code
+				 WithLatitude:(NSString*)latitude
+				WithLongitude:(NSString*)longitude
+					  success:(void (^)(id response))success
+					  failure:(void (^)(NSError *err))failure{
+	
+	NSString *url =[NSString stringWithFormat:@"%@%@",TinyMallShopBaseURL,urls] ;
+	
+	NSString *lang_type = @"kor";
+	
+	YCAccountModel *accountmodel = [YCAccountModel getAccount];
+	NSString *custom_code = accountmodel.customCode;
+	
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,sale_custom_code).mutableCopy;
+	if (custom_code.length) {
+		[params setObject:custom_code forKey:@"custom_code"];
+	}
+	
+	if (latitude.length) {
+		[params setObject:latitude forKey:@"latitude"];
+	}
+	if (longitude.length) {
+		[params setObject:longitude forKey:@"longitude"];
+	}
+
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+	}];
+}
+
 
 /*
  加载主页数据

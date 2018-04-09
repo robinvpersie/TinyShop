@@ -64,7 +64,7 @@
         cell.titleLabel.text = data.item_name;
 //        cell.priceLabel.text = [NSString stringWithFormat:@"¥%@/%@",data.item_price,data.stock_unit];
 		//jake 170709
-		cell.priceLabel.text = [NSString stringWithFormat:@"￥%@",data.item_price];
+		cell.priceLabel.text = [NSString stringWithFormat:@"%.f",[data.item_price doubleValue]];
         [UIImageView setimageWithImageView:cell.imageView UrlString:data.imageUrl imageVersion:data.ver];
     }
     

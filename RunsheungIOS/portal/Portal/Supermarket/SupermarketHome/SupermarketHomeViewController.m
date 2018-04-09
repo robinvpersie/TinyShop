@@ -45,6 +45,7 @@
 
 #import "TinyShopDetailedView.h"
 #import "TSShopDetailedCollectionView.h"
+#import "UILabel+WidthAndHeight.h"
 
 //#pragma mark -- 人生
 #import "SuperMarketAddView.h"
@@ -114,6 +115,9 @@
     SupermarketClassfictionView *classfictionView;
 	
 	UIButton *callPhoneBtn;
+	
+	NSDictionary *shopInfoesDic;
+	UILabel *shopAddress;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -136,10 +140,23 @@
     [self initNavigation];
     
     [self initView];
+	[self loadShopBaseInfoes];
     
 //	[self requesTinyShopDetailData];
 	
     [self locationCityName];
+}
+
+- (void)loadShopBaseInfoes{
+	[KLHttpTool TinyRequestStoreDetail:@"StoreCate/requestStoreDetail" WithSaleCustomCode:self.dic[@"custom_code"] WithLatitude:GetUserDefault(@"latitude") WithLongitude:GetUserDefault(@"longitude") success:^(id response) {
+		if ([response[@"status"] intValue] == 1) {
+			shopInfoesDic = response;
+			
+		}
+		
+	} failure:^(NSError *err) {
+		
+	}];
 }
 //进入页面开始定位当前所在的城市
 - (void)locationCityName{
@@ -686,33 +703,50 @@
 }
 
 - (void)createShopInfomations{
-	
+	float h1;
 	if (self.mallInfoView == nil) {
-		self.mallInfoView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tinyShopDetailView.frame), APPScreenWidth, APPScreenHeight - CGRectGetMaxY(self.tinyShopDetailView.frame))];
+		
+		self.mallInfoView = [[UIView alloc]initWithFrame:CGRectZero];
 		self.mallInfoView.backgroundColor = [UIColor whiteColor];
 		[self.mainScrollView addSubview:self.mallInfoView];
-		self.mainScrollView.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.mallInfoView.frame));
-		
-		//活动期限
+//		[self.mallInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
+//			make.trailing.leading.equalTo(self.view);
+//			make.top.equalTo(self.tinyShopDetailView.mas_bottom);
+//			make.height.equalTo(@100);
+//		}];
+
+		//商家名称
+		UILabel *shopname = [UILabel new];
+		shopname.text = [NSString stringWithFormat:@"商家名称: %@",shopInfoesDic[@"custom_name"]];
+		shopname.font = [UIFont systemFontOfSize:14];
+		[self.mallInfoView addSubview:shopname];
+		[shopname mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.leading.equalTo(@15);
+			make.height.equalTo(@30);
+			make.width.equalTo(_mallInfoView ).offset(-30);
+			
+		}];
+
+		//营业时间
 		UILabel *timelimit = [UILabel new];
-		timelimit.text = @"活动时间: 2018/03/23~2018/05/20";
+		timelimit.text = [NSString stringWithFormat:@"营业时间: %@",shopInfoesDic[@"working_hour"]];
 		timelimit.font = [UIFont systemFontOfSize:14];
 		[self.mallInfoView addSubview:timelimit];
 		[timelimit mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.leading.equalTo(@15);
-			make.height.equalTo(@30);
+			make.top.equalTo(shopname.mas_bottom);
+			make.leading.equalTo(@15);
+			make.height.equalTo(@20);
 			make.width.equalTo(_mallInfoView ).offset(-30);
 			
 		}];
 		
 		//商家电话
 		UILabel *phone = [UILabel new];
-		phone.text = @"商家电话: 13757578646";
+		phone.text = [NSString stringWithFormat:@"联系电话: %@",shopInfoesDic[@"telephon"]];
 		phone.font = [UIFont systemFontOfSize:14];
-		phone.numberOfLines = 3;
 		[self.mallInfoView addSubview:phone];
 		[phone mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.equalTo(timelimit.mas_bottom).with.offset(5);
+			make.top.equalTo(timelimit.mas_bottom);
 			make.leading.equalTo(@15);
 			make.height.equalTo(@30);
 			make.width.equalTo(_mallInfoView ).offset(-30);
@@ -720,45 +754,66 @@
 		}];
 		
 		//活动内容
+		float height = [self getWJHeightwithContent:shopInfoesDic[@"shop_info"] withWidth:APPScreenWidth - 30 withFont:14];
 		UILabel *activitycontent = [UILabel new];
-		activitycontent.text = @"活动内容: 活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容";
+		activitycontent.text = [NSString stringWithFormat:@"商家简介: %@",shopInfoesDic[@"shop_info"]];
 		activitycontent.font = [UIFont systemFontOfSize:14];
-		activitycontent.numberOfLines = 3;
+		activitycontent.numberOfLines = 0;
 		[self.mallInfoView addSubview:activitycontent];
 		[activitycontent mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.equalTo(phone.mas_bottom).with.offset(5);
+			make.top.equalTo(phone.mas_bottom);
 			make.leading.equalTo(@15);
-			make.height.equalTo(@60);
-			make.width.equalTo(_mallInfoView ).offset(-30);
-			
+			make.height.mas_equalTo(height);
+			make.width.equalTo(self.view.mas_width ).offset(-30);
 		}];
 		
 		//商家地址
-		UILabel *shopAddress = [UILabel new];
+		shopAddress = [UILabel new];
 		shopAddress.text = @"商家地址: 山东省威海市高区香港路118号智慧大厦21楼.";
 		shopAddress.font = [UIFont systemFontOfSize:14];
-		shopAddress.numberOfLines = 3;
 		[self.mallInfoView addSubview:shopAddress];
 		[shopAddress mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.equalTo(activitycontent.mas_bottom).with.offset(5);
+			make.top.equalTo(activitycontent.mas_bottom);
 			make.leading.equalTo(@15);
-			make.height.equalTo(@40);
+			make.height.equalTo(@20);
 			make.width.equalTo(_mallInfoView ).offset(-30);
 			
 		}];
+		
+		
+		h1 = height + 180;
+		[self.mallInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.trailing.leading.equalTo(self.view);
+			make.top.equalTo(self.tinyShopDetailView.mas_bottom);
+			make.height.mas_equalTo(h1);
+			
+		}];
 
+		self.mainScrollView.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.tinyShopDetailView.frame)+h1);
 		
 	}
+
+	
 }
 
 - (void)callPhoneBtn:(UIButton*)sender{
-	NSURL *url = [NSURL URLWithString:@"telprompt://13142252288"];
-	[[UIApplication sharedApplication] openURL:url];
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@",shopInfoesDic[@"telephon"]]];
+	[[UIApplication sharedApplication]openURL:url];
 }
 
 - (void)LoveAction:(UIButton*)sender{
 	sender.selected = !sender.selected;
 	
+}
+
+- (float )getWJHeightwithContent:(NSString *)content
+					   withWidth:(float)width
+						withFont:(float)fontValue {
+	
+	NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:fontValue]};
+	CGSize contentSize = [content boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
+	
+	return contentSize.height;
 }
 @end
 

@@ -75,7 +75,7 @@
     [UIImageView setimageWithImageView:self.lzImageView UrlString:model.image_url imageVersion:nil];
     
     self.nameLabel.text = model.nameStr;
-	self.priceLabel.text = [NSString stringWithFormat:@"￥%@",model.price];
+	self.priceLabel.text = [NSString stringWithFormat:@"%.f",[model.price doubleValue]];
     self.dateLabel.text = model.dateStr;
     self.numberLabel.text = [NSString stringWithFormat:@"%ld",(long)model.number];
     self.sizeLabel.text = model.sizeStr;

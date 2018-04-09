@@ -67,7 +67,7 @@
         cell.titleLabel.text = model.item_name;
 //        cell.priceLabel.text = [NSString stringWithFormat:@"%.2f/%@",model.price.floatValue,model.stock_unit];
 		//jake 170709
-		cell.priceLabel.text = [NSString stringWithFormat:@"￥%.2f",model.price.floatValue];
+		cell.priceLabel.text = [NSString stringWithFormat:@"%.f",model.price.floatValue];
         cell.addShoppingCart.tag = indexPath.item;
         [cell.addShoppingCart addTarget:self action:@selector(addtoShoppingCart:) forControlEvents:UIControlEventTouchUpInside];
     }

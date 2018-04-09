@@ -71,7 +71,7 @@ typedef void(^finishAction)();
 	}
 	
 	_allSellectedButton.selected = NO;
-	_totlePriceLabel.attributedText = [self LZSetString:@"￥0.00"];
+	_totlePriceLabel.attributedText = [self LZSetString:@"0"];
 	
 	[self.myTableView reloadData];
 	
@@ -264,7 +264,7 @@ typedef void(^finishAction)();
 		
 		totlePrice += price*model.number;
 	}
-	NSString *string = [NSString stringWithFormat:@"￥%.2f",totlePrice];
+	NSString *string = [NSString stringWithFormat:@"%.f",totlePrice];
 	self.totlePriceLabel.attributedText = [self LZSetString:string];
 	
 	return totlePrice;

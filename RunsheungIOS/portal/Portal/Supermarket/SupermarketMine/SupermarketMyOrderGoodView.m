@@ -53,7 +53,7 @@
         _price = [[UILabel alloc] initWithFrame:CGRectMake(_title.frame.origin.x, CGRectGetMaxY(_icon.frame)-25, 100, 25)];
         _price.textColor = [UIColor darkGrayColor];
         _price.font = [UIFont systemFontOfSize:15];
-        _price.text = @"¥8.9/Kg";
+        _price.text = @"8.9/Kg";
     }
     [self addSubview:_price];
     
@@ -68,7 +68,6 @@
     
     if (_reFundButton == nil) {
         _reFundButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _reFundButton.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
     }
     
     if (_refundLabel == nil) {
@@ -85,7 +84,7 @@
         }
         
         if (data.stockUnit != nil) {
-            _price.text = [NSString stringWithFormat:@"¥%.2f%@",data.price.floatValue,data.stockUnit];
+            _price.text = [NSString stringWithFormat:@"%.f%@",data.price.floatValue,data.stockUnit];
         }
         
         if (data.title != nil) {

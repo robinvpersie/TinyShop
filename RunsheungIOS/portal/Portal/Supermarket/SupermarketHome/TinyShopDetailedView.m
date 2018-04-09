@@ -28,8 +28,11 @@
 	self.layer.borderColor = RGB(221, 221, 221).CGColor;
 	self.layer.borderWidth = 1;
 	//文字显示
-	NSArray *showtitles = @[_dic[@"score"],@"최근리뷰",@"사장님댓글",@"거리"];
-	NSArray *showtext = @[_dic[@"sale_custom_cnt"],_dic[@"cnt"],[NSString stringWithFormat:@"%@km",_dic[@"distance"]]];
+//	NSArray *showtitles = @[_dic[@"score"],@"최근리뷰",@"사장님댓글",@"거리"];
+//	NSArray *showtext = @[_dic[@"sale_custom_cnt"],_dic[@"cnt"],[NSString stringWithFormat:@"%@km",_dic[@"distance"]]];
+	NSArray *showtitles = @[_dic[@"score"],@"",@"",@"거리"];
+	NSArray *showtext = @[@"",@"",[NSString stringWithFormat:@"%@km",_dic[@"distance"]]];
+
 	for (int i = 0;i<showtitles.count;i++) {
 		NSString *title = showtitles[i];
 		if (i == 0) {

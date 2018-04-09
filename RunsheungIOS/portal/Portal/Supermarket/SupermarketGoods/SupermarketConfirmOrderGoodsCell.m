@@ -59,7 +59,7 @@
     price = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(title.frame), 110 - 10 - 20, 120, 20)];
     price.textColor = [UIColor redColor];
     price.font = [UIFont systemFontOfSize:14];
-    price.text = @"￥8.9/kg";
+    price.text = @"8.9/kg";
     [self.contentView addSubview:price];
     
     amount = [[UILabel alloc] initWithFrame:CGRectMake(APPScreenWidth - 10 - 80, price.frame.origin.y, 80, 20)];
