@@ -36,8 +36,6 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
     
     CGFloat _latitude;
     CGFloat _longtitude;
-    
-//    NSString *_zipCode;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -72,6 +70,7 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
 }
 
 - (void)createTableView {
+    
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     _tableView.dataSource = self;
     _tableView.delegate = self;
@@ -87,10 +86,7 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
     [footer addGestureRecognizer:dismissKeyboard];
 }
 
-//- (void)setAddressModel:(SupermarketAddressModel *)addressModel {
-//    _addressModel = addressModel;
-//    [self.tableView reloadData];
-//}
+
 
 -(void)setAddressModel:(MarketModel *)addressModel {
     _addressModel = addressModel;
@@ -117,7 +113,6 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             cell.textLabel.text = NSLocalizedString(@"SMAdressReceiveName", nil);
-            
             CGFloat width = [UILabel getWidthWithTitle:cell.textLabel.text font:cell.textLabel.font];
             _nameField = [[UITextField alloc] initWithFrame:CGRectMake(width + 40, CGRectGetHeight(cell.contentView.frame)/2 - 15, APPScreenWidth - width - 10 , 30)];
             _nameField.placeholder = NSLocalizedString(@"SMAdressReceiveNamePlaceHolder", nil);
@@ -181,56 +176,32 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
                 _addressLabel.hidden = YES;
                 _msg.hidden = NO;
             }
-//            if (_addressModel.location.length > 0) {
-//                _addressLabel.hidden = NO;
-//                _addressLabel.text = [NSString stringWithFormat:@"%@",_addressModel.location];
-//                _msg.hidden = YES;
-//            } else {
-//                _addressLabel.hidden = YES;
-//                _msg.hidden = NO;
-//            }
-            
             [cell.contentView addSubview:address];
             
         } else if (indexPath.row == 1) {
             cell.textLabel.text = NSLocalizedString(@"SMAdressZipCode", nil);
-            
             CGFloat width = [UILabel getWidthWithTitle:cell.textLabel.text font:cell.textLabel.font];
             
             _gidField = [[UITextField alloc]initWithFrame:CGRectMake(width + 25, CGRectGetHeight(cell.contentView.frame)/2 - 15, APPScreenWidth - width - 45, 30)];
-          
             _gidField.placeholder = NSLocalizedString(@"SMAdressZipCode", nil);
             _gidField.textColor = [UIColor darkGrayColor];
             _gidField.font = [UIFont systemFontOfSize:15];
             [cell.contentView addSubview:_gidField];
-            if (_addressModel.zip_name.length > 0) {
-                _gidField.text = _addressModel.zip_name;
-            }
-//            if (_addressModel.zipcode.length > 0) {
-//               // _gidField.userInteractionEnabled = NO;
-//                _gidField.text = _addressModel.zipcode;
+//            if (_addressModel.zip_name.length > 0) {
+//                _gidField.text = _addressModel.zip_name;
 //            }
         } else if (indexPath.row == 2) {
             cell.textLabel.text = NSLocalizedString(@"SMAdressDetail", nil);
-            
             CGFloat width = [UILabel getWidthWithTitle:cell.textLabel.text font:cell.textLabel.font];
-            
-            
             _haoaoField = [[UITextField alloc]initWithFrame:CGRectMake(width + 25, CGRectGetHeight(cell.contentView.frame)/2 - 15, APPScreenWidth - width - 45, 30)];
             _haoaoField.placeholder = NSLocalizedString(@"SMAdressDetailPlaceHolder", nil);
             _haoaoField.font =[UIFont systemFontOfSize:15];
             _haoaoField.textColor = [UIColor darkGrayColor];
             _haoaoField.delegate = self;
             [cell.contentView addSubview:_haoaoField];
-            
-//            if (_addressModel.address.length > 0) {
-//                //_haoaoField.text = _addressModel.address;
-//
-//            }
             if (_addressModel.to_address.length > 0) {
                 _haoaoField.text = _addressModel.to_address;
             }
-
         } else {
             
         }
@@ -240,35 +211,9 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
 }
 
 
--(void)requestArea {
-    NSString *urlString = @"http://biz.epost.go.kr/KpostPortal/openapi";
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:@"4e161da3b4b3c7ff81520154121695" forKey:@"regkey"];
-    [parameters setObject:@"postNew" forKey:@"target"];
-    [parameters setObject:@"" forKey:@"query"];
-    [parameters setObject:@(10) forKey:@"countPerPage"];
-    [parameters setObject:@(1) forKey:@"currentPage"];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.requestSerializer.timeoutInterval = 30;
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager POST:urlString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-    }];
-    
-}
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1 && indexPath.row == 0) {
-//        [self dismissBoard];
-//        STPickerArea *picker = [[STPickerArea alloc] init];
-//        picker.delegate = self;
-//        [picker show];
         SearchKoreaAddress *search = [[SearchKoreaAddress alloc] init];
         search.selectAction = ^(NSDictionary * dic) {
             _addressLabel.hidden = NO;
@@ -399,20 +344,7 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
                                                      failure:^(NSError *err) {
                                                          [self hideLoading];
                                                      }];
-//        [KLHttpTool supermarketAddNewAddressWithName:_nameField.text location:_addressLabel.text address:_haoaoField.text mobile:_phoneField.text longtitude:[NSString stringWithFormat:@"%f",_longtitude] latitude:[NSString stringWithFormat:@"%f",_latitude] zipCode:zipCode isDefault:isDefault success:^(id response) {
-//            NSLog(@"%@",response);
-//            NSNumber *status = response[@"status"];
-//            if (status.integerValue == 1) {
-//                [MBProgressHUD hideAfterDelayWithView:keyWindow interval:2 text:response[@"message"]];
-//                [[NSNotificationCenter defaultCenter] postNotificationName:RefreshMyAddressListNotification object:nil];
-//                [self.navigationController popViewControllerAnimated:YES];
-//            } else {
-//                [MBProgressHUD hideAfterDelayWithView:keyWindow interval:2 text:response[@"message"]];
-//            }
-//
-//        } failure:^(NSError *err) {
-//
-//        }];
+
     } else {
         if (_longtitude == 0 || _latitude == 0) {
             [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:1 text:NSLocalizedString(@"SMAdressGetPointMsg", nil)];
@@ -420,16 +352,11 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
         }
         NSString *zipCode = _gidField.text;
         if (zipCode.length == 0) {
-//            zipCode = @"410000";
             [MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:NSLocalizedString(@"SMAdressNoZipCodeMsg", nil)];
             return;
         }
         
-//        [KLHttpTool supermarketEditAddressWithName:@"" location:@"" address:@"" mobile:@"" longtitude:@"" latitude:@"" addressID:@"" zipCode:@"" isDefault:YES success:^(id response) {
-//
-//        } failure:^(NSError *err) {
-//
-//        }];
+
         [KLHttpTool supermaketEditAddresswWithRealName:_nameField.text
                                               location:_addressLabel.text
                                                address:_haoaoField.text
@@ -448,18 +375,7 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
                                                    
                                                }];
     
-//        [KLHttpTool supermarketEditAddressWithName:_nameField.text location:_addressLabel.text address:_haoaoField.text mobile:_phoneField.text longtitude:[NSString stringWithFormat:@"%f",_longtitude] latitude:[NSString stringWithFormat:@"%f",_latitude] addressID:self.addressModel.addressID.stringValue zipCode:zipCode isDefault:!_defualtIcon.hidden success:^(id response) {
-//            NSNumber *status = response[@"status"];
-//            if (status.integerValue == 1) {
-//                [MBProgressHUD hideAfterDelayWithView:keyWindow interval:2 text:response[@"message"]];
-//                [[NSNotificationCenter defaultCenter] postNotificationName:RefreshMyAddressListNotification object:nil];
-//                [self.navigationController popViewControllerAnimated:YES];
-//            }
-//
-//        } failure:^(NSError *err) {
-//
-//        }];
-    }
+       }
     
 }
 
@@ -468,14 +384,5 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -46,22 +46,6 @@
     
 }
 
-//- (void)createData {
-//    NSMutableArray *data = @[].mutableCopy;
-//    for (int i = 0; i < 10; i++) {
-//        SupermarketAddressModel *addressModel = [[SupermarketAddressModel alloc] init];
-//        addressModel.realname = @"左梓豪";
-//        addressModel.area = @"天心区";
-//        addressModel.city = @"长沙市";
-//        addressModel.province = @"湖南省";
-//        addressModel.isdefault = @"1";
-//        addressModel.mobile = @"18390802762";
-//        addressModel.address = @"人民东路宇成酒店人民东路宇成酒店人民东路宇成酒店";
-//        [data addObject:addressModel];
-//    }
-//    self.data = data;
-//
-//}
 
 - (void)requestData {
     [self showLoading];
@@ -79,58 +63,9 @@
             self.data = array;
             [self.tableView.mj_header endRefreshing];
         }
-        
-        NSLog(@"%@",response);
-        
     } failure:^(NSError *err) {
         [weakself hideLoading];
-        NSLog(@"%@",err);
     }];
-    
-//    KLHttpTool getSupermarketUserAddressListWithDivCode:<#(NSString *)#> success:<#^(id response)success#> failure:<#^(NSError *err)failure#>
-//    if (_loadHud == nil) {
-//        _loadHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        _loadHud.tintColor = [UIColor lightGrayColor];
-//    }
-//
-//    if (_isCreateOrder == YES) {
-//        [KLHttpTool getSupermarketUserAddressListWithDivCode:@"2" success:^(id response) {
-//            NSLog(@"%@",response);
-//            NSMutableArray *array = @[].mutableCopy;
-//            NSNumber *status = response[@"status"];
-//            if (status.integerValue == 1) {
-//                [_loadHud hideAnimated:YES];
-//                NSArray *data = response[@"data"];
-//                for (NSDictionary *dic in data) {
-//                    SupermarketAddressModel *model = [NSDictionary getAddressDataWithDic:dic];
-//                    [array addObject:model];
-//                }
-//                self.data = array;
-//                [self.tableView.mj_header endRefreshing];
-//            }
-//        } failure:^(NSError *err) {
-//
-//        }];
-//
-//    } else {
-//        [KLHttpTool getSupermarketUserAddressListWithDivCode:@"0" success:^(id response) {
-//            NSMutableArray *array = [NSMutableArray array];
-//            NSNumber *status = response[@"status"];
-//            if (status.integerValue == 1) {
-//                [_loadHud hideAnimated:YES];
-//                NSArray *data = response[@"data"];
-//                for (NSDictionary *dic in data) {
-//                    SupermarketAddressModel *model = [NSDictionary getAddressDataWithDic:dic];
-//                    [array addObject:model];
-//                }
-//                self.data = array;
-//                [self.tableView.mj_header endRefreshing];
-//            }
-//        } failure:^(NSError *err) {
-//
-//        }];
-//
-//    }
 }
 
 - (void)setNavi{
@@ -151,13 +86,11 @@
 
 - (void)popController{
     [self.navigationController popViewControllerAnimated:YES];
-    //[self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (void)createTableView{
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
     self.tableView.delegate = self;
     self.tableView.dataSource  = self;
     self.tableView.tableFooterView = [[UIView alloc] init];
@@ -169,43 +102,16 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-    
-  
-    
-//    if (_isPageView) {
-//        self.tableView.frame = CGRectMake(0, 0, APPScreenWidth, self.view.frame.size.height - 55);
-//        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
-//    }
-    
 }
 
 - (void)createBottom{
     self.bottomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-   // UIButton *button =[[UIButton alloc]initWithFrame:CGRectMake(15, self.view.frame.size.height - 45, APPScreenWidth - 30, 35)];
     self.bottomBtn.backgroundColor = RGB(23, 206, 116);
-//    if (_isPageView) {
-//        button.frame = CGRectMake(15, self.view.frame.size.height - 45 - 110, APPScreenWidth - 30, 35);
-//    }
     [self.bottomBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.bottomBtn setTitle:@"+ 주소 추가" forState:UIControlStateNormal];
     self.bottomBtn.layer.cornerRadius = 2.0f;
     [self.bottomBtn addTarget:self action:@selector(addNewAddress:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.bottomBtn];
-
-//    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(self.view);
-//        make.height.equalTo(@35)
-//        make.width.equalTo(@(APPScreenWidth-30))
-//        make.bottom.equalTo
-////        make.centerX.equalTo(self.view);
-////        make.height.equalTo(@35);
-////        make.width.equalTo(@(APPScreenWidth-30));
-////        if (@available(iOS 11.0, *)) {
-////            make.bottom.equalTo(self.view.safeAreaLayoutGuide).with.offset(10);
-////        } else {
-////            make.bottom.equalTo(self.bottomLayoutGuide).with.offset(10);
-////        }
-//    }];
 }
 
 -(void)viewDidLayoutSubviews {
@@ -225,14 +131,12 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MarketModel *model = self.data[indexPath.section];
-    //SupermarketAddressModel *model = self.data[indexPath.section];
     UITableViewCell *cell = [[UITableViewCell alloc]init];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row == 0) {
         UILabel *nameLab = [[UILabel alloc]initWithFrame:CGRectMake(15, 10 , 100, 30)];
         nameLab.font = [UIFont systemFontOfSize:14];
         nameLab.textColor = [UIColor darkGrayColor];
-       // nameLab.text = [NSString stringWithFormat:@"%@",model.realname];
         nameLab.text = [NSString stringWithFormat:@"%@", model.delivery_name];
         [cell.contentView addSubview:nameLab];
         
@@ -246,18 +150,12 @@
         UIView *maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 35)];
         maskView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.7];
         maskView.hidden = YES;
-//        [cell.contentView addSubview:maskView];
-//        if (model.hasDelivery.integerValue == 0) {
-//            maskView.hidden = NO;
-//        }
-//        if (model.)
-        
+    
     }else if (indexPath.row == 1){
         
         UILabel *addressLab =[[UILabel alloc]initWithFrame:CGRectMake(15, 0 , APPScreenWidth - 30 , CGRectGetHeight(cell.frame))];
         addressLab.textColor = [UIColor darkGrayColor];
         addressLab.font = [UIFont systemFontOfSize:14];
-       // addressLab.text = [NSString stringWithFormat:@"%@%@",model.location,model.address];
         addressLab.text = model.to_address;
         addressLab.numberOfLines = 2;
         
@@ -279,11 +177,7 @@
         [cell.contentView addSubview:maskImageView];
         
         [cell.contentView addSubview:maskLabel];
-//        if (model.hasDelivery.integerValue == 0) {
-//            maskLabel.hidden = NO;
-//            maskImageView.hidden = NO;
-//        }
-        
+
     }else if (indexPath.row == 2){
         
         UIButton *defaultBtn = [[UIButton alloc]initWithFrame:CGRectMake(15,5, 100 ,20)];
@@ -309,28 +203,7 @@
         } else {
             defaultBtn.userInteractionEnabled = YES;
         }
-//        if (model.isdefault.integerValue == 1) {
-//
-//            defaultBtn.selected = !defaultBtn.selected;
-//            imagview1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cart_selected_btn"]];
-//            title.text = @"默认地址";
-//            title.textColor = RGB(23, 206, 116);
-//
-//        }else{
-//
-//            imagview1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cart_unSelect_btn"]];
-//            title.text = @"设置为默认地址";
-//            title.textColor = [UIColor grayColor];
-//
-//        }
-        
-//        if (model.isdefault.integerValue == 1) {
-//            defaultBtn.userInteractionEnabled = NO;
-//        } else {
-//            defaultBtn.userInteractionEnabled = YES;
-//        }
-        
-        
+
         imagview1.tag = 1002;
         imagview1.frame = CGRectMake(0, 3, 14,14);
         [defaultBtn addSubview:imagview1];
@@ -338,8 +211,6 @@
         title.tag = 1001;
         title.font = [UIFont systemFontOfSize:12];
         [defaultBtn addSubview:title];
-        
-        
         
         UIButton *deleBtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth - 60, 5, 60 ,20)];
         [cell.contentView addSubview:deleBtn];
@@ -353,7 +224,6 @@
         title2.font = [UIFont systemFontOfSize:12];
         title2.textColor = [UIColor grayColor];
         [deleBtn addSubview:title2];
-        
         
         UIButton *editBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMinX(deleBtn.frame) - 65, 5, 60 ,20)];
         [editBtn addTarget:self action:@selector(editBtnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -373,10 +243,6 @@
         UIView *maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 30)];
         maskView.hidden = YES;
         maskView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.7];
-//        [cell.contentView addSubview:maskView];
-//        if (model.hasDelivery.integerValue == 0) {
-//            maskView.hidden = NO;
-//        }
     }
     return cell;
 }
@@ -388,14 +254,6 @@
             [self.delegate selectedAddress:model];
             [self.navigationController popViewControllerAnimated:YES];
         }
-//        SupermarketAddressModel *model = self.data[indexPath.section];
-//        if (model.hasDelivery.integerValue == 1) {
-//            [_delegate selectedAddress:model];
-//            [self.navigationController popViewControllerAnimated:YES];
-//        } else {
-//            [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2.0f text:@"地址超出配送范围"];
-//        }
-       
     }
 }
 
@@ -461,13 +319,7 @@
         MarketModel *model = self.data[section];
         model.default_add = @"True";
         
-//        for (SupermarketAddressModel *model in _data) {
-//            model.isdefault = @0;
-//        }
-//
-//        SupermarketAddressModel *model = _data[section];
-//        model.isdefault = @1;
-//
+
         [KLHttpTool setSupermarketDefaultAddressWithAddressID:model.seq_num success:^(id response) {
             
         } failure:^(NSError *err) {
@@ -475,24 +327,10 @@
         }];
         
         [self.tableView reloadData];
-//        [KLHttpTool setSupermarketDefaultAddressWithAddressID:model.addressID.stringValue success:^(id response) {
-//            NSNumber *status = response[@"status"];
-//            if (status.integerValue == 1) {
-//                [_tableView reloadData];
-//                [MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:response[@"message"]];
-//            }
-//
-//        } failure:^(NSError *err) {
-//
-//        }];
     }
 }
 
 - (void)editBtnAction:(UIButton *)sender{
-    
-//    SupermarketEditAddressController *EditVC = [[SupermarketEditAddressController alloc]init];
-//    EditVC.model = self.data[sender.tag];
-//    [self.navigationController pushViewController:EditVC animated:YES];
     SupermarketNewAddessController *newAddress = [[SupermarketNewAddessController alloc] init];
     newAddress.addressModel = self.data[sender.tag];
     if (_isPageView) {
@@ -509,8 +347,6 @@
 
 
 - (void)addNewAddress:(UIButton*)sender{
-//    SupermarketEditAddressController *EditVC = [[SupermarketEditAddressController alloc]init];
-//    [self.navigationController pushViewController:EditVC animated:YES];
     SupermarketNewAddessController *newAddress = [[SupermarketNewAddessController alloc] init];
     if (_isPageView) {
         newAddress.isMyAddress = NO;

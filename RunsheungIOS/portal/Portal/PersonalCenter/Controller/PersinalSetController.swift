@@ -281,27 +281,45 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
                     strongself.setUserAccount(nickname: strongself.nickName, gender: "m", token: strongself.token, imagePath: strongself.avatarString)
                 })
                 
-                YCAlert.alertWithModelArray([alertActionBoy,alerActionGirl], title: "选择性别", message: nil, style: .actionSheet, viewController: self)
+                let cancleAction = AlertActionModel(title: "取消".localized, style: .cancel, action: nil)
+                YCAlert.alertWithModelArray([alertActionBoy, alerActionGirl, cancleAction], title: "选择性别".localized, message: nil, style: .actionSheet, viewController: self)
                 
             } else {
-                YCAlert.textInput(title:"更改昵称".localized, placeholder: "输入昵称".localized, oldText: nil, dismissTitle: "确定".localized, inViewController: self, withFinishedAction: { [weak self] str in
-                     guard let strongself = self, !str.isEmpty else {
-                         self?.showMessage("昵称不能为空")
-                         return
-                     }
-                     strongself.nickName = str
-                     tableView.reloadSections([sectiontype.rawValue], with: .automatic)
-                    
-                     var genderString: String?
-                     if strongself.sex == "男".localized {
-                        genderString = "f"
-                     }else if strongself.sex == "女".localized {
-                        genderString = "m"
-                     }else {
-                        genderString = nil
-                     }
-                     strongself.setUserAccount(nickname: str, gender: genderString, token: strongself.token, imagePath: strongself.avatarString)
-                })
+                
+                let alertController = UIAlertController(title: "更改昵称".localized, message: nil, preferredStyle: .alert)
+                alertController.addTextField { textField in
+                    textField.placeholder = "输入昵称".localized
+                    textField.text = nil
+                }
+                
+                let sureAction = UIAlertAction(title: "确定".localized, style: .default) { [weak self] action in
+                    guard let this = self else { return }
+                    if let textField = alertController.textFields?.first,
+                        let text = textField.text,
+                        !text.isEmpty
+                    {
+                        this.nickName = text
+                    } else {
+                        return
+                    }
+                    OperationQueue.main.addOperation {
+                        this.tableView.reloadSections([sectiontype.rawValue], with: .none)
+                    }
+                    var gender: String?
+                    if this.sex == "男".localized {
+                        gender = "f"
+                    } else if this.sex == "女".localized {
+                        gender = "m"
+                    } else {
+                        gender = nil
+                    }
+                    this.setUserAccount(nickname: this.nickName, gender: gender, token: this.token, imagePath: this.avatarString)
+                }
+                
+                let cancleAction = UIAlertAction(title: "取消".localized, style: .cancel, handler: nil)
+                alertController.addAction(cancleAction)
+                alertController.addAction(sureAction)
+                self.present(alertController, animated: true, completion: nil)
             }
         case .clearCache:
             KingfisherManager.shared.cache.clearDiskCache()
@@ -310,9 +328,6 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
         case .changePassword:
             let changePassword = ChangePassWordController()
             navigationController?.pushViewController(changePassword, animated: true)
-//        case .changeLanguage:
-//            let language = SetLanguageController()
-//            navigationController?.pushViewController(language, animated: true)
         default:
             break
         }
@@ -337,24 +352,34 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
     
     
     func choosePhoto(cell: PersonalHeaderCell){
-        
-        YCAlert.confirmOrCancel(title: "选择照片".localized, message: nil, confirmTitle: "拍照".localized, cancelTitle: "相册".localized, inViewController: self, withConfirmAction: { [weak self] in
-                proposeToAccess(.camera, agreed: {
-                  guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
-                  if let strongself = self {
-                    strongself.imagePicker.sourceType = .camera
-                    strongself.present(strongself.imagePicker, animated: true, completion: nil)
-                  }
-                }, rejected: { })
-           }) { [weak self] in
-               proposeToAccess(.photos, agreed: {
-                guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
-                if let this = self {
-                    this.imagePicker.sourceType = .photoLibrary
+        let photoAction = AlertActionModel(title: "拍照".localized, style: .default) { _ in
+            proposeToAccess(.camera, agreed: { [weak self] in
+                guard let this = self, UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+                this.imagePicker.sourceType = .camera
+                OperationQueue.main.addOperation {
                     this.present(this.imagePicker, animated: true, completion: nil)
                 }
-              }, rejected: { })
-          }
+            }, rejected: {
+                
+            })
+        }
+        
+        let albumAction = AlertActionModel(title: "相册".localized, style: .default) { _ in
+            proposeToAccess(.photos, agreed: { [weak self] in
+                guard let this = self, UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
+                this.imagePicker.sourceType = .photoLibrary
+                this.present(this.imagePicker, animated: true, completion: nil)
+                
+            }, rejected: {
+                
+            })
+        }
+        
+        let cancleAction = AlertActionModel(title: "取消".localized, style: .cancel, action: nil)
+        
+        YCAlert.alertWithModelArray([photoAction, albumAction, cancleAction],style: .actionSheet, viewController: self)
+        
+
     }
     
     

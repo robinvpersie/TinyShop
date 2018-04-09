@@ -12,8 +12,6 @@
 
 @interface SupermarketNewAddessController : SupermarketBaseViewController
 
-//@property(nonatomic, strong) SupermarketAddressModel *addressModel;
-
 @property(nonatomic, strong) MarketModel *addressModel;
 @property(nonatomic, assign) BOOL isMyAddress;
 
