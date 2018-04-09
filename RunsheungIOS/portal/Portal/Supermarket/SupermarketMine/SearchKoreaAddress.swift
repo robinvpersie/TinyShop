@@ -67,8 +67,6 @@ class SearchKoreaAddress: BaseViewController {
 }
 
 
-
-
 extension SearchKoreaAddress: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -132,7 +130,7 @@ extension SearchKoreaAddress: UITableViewDelegate {
             tableView.deselectRow(at: indexPath, animated: true)
         }
         let dic = self.dataArray[indexPath.row] as! NSDictionary
-       self.navigationController?.dismiss(animated: true, completion: {
+        self.navigationController?.dismiss(animated: true, completion: {
             self.selectAction?(dic)
         })
     }

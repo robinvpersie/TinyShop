@@ -292,13 +292,11 @@
 }
 //UITextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-	
 	[self moveToTop];
-	return  YES;
+	return YES;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-	
 	float offX = scrollView.contentOffset.x;
 	int index = (int)(offX/APPScreenWidth);
 	if ((offX - APPScreenWidth*index) > (APPScreenWidth/2.0) ) {

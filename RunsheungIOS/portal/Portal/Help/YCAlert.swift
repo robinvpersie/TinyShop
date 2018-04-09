@@ -176,9 +176,7 @@ final class YCAlert {
                 let alertAction = UIAlertAction(title: model.title, style: model.style, handler: model.action)
                 alertController.addAction(alertAction)
             }
-            let cancleAction = UIAlertAction(title: "取消", style: .cancel) { action in }
-            alertController.addAction(cancleAction)
-            viewController?.present(alertController, animated: true, completion: nil)
+           viewController?.present(alertController, animated: true, completion: nil)
         }
     }
 }
