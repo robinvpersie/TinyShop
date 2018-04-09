@@ -79,22 +79,7 @@
         
     }];
     
-//    [KLHttpTool getMyCommentListWithPageInde:_pageIndex success:^(id response) {
-//        NSNumber *status = response[@"status"];
-//        if (status.integerValue == 1) {
-//            NSArray *data = response[@"data"];
-//            if (data.count > 0) {
-//                for (NSDictionary *dic in data) {
-//                    SupermarketCommentData *data = [NSDictionary getCommentDataWithDic:dic];
-//                    [_dataArr addObject:data];
-//                }
-//                 [_myCommentTableView.mj_footer endRefreshing];
-//                _myCommentTableView.dataArray = _dataArr;
-//            }
-//        }
-//    } failure:^(NSError *err) {
-//
-//    }];
+
 }
 
 

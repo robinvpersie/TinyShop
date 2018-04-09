@@ -168,9 +168,9 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             address.font = [UIFont systemFontOfSize:15];
             _addressLabel = address;
             
-            if (_addressModel.to_address.length > 0) {
+            if (_addressModel.zip_name.length > 0) {
                 _addressLabel.hidden = NO;
-                _addressLabel.text = [NSString stringWithFormat:@"%@", _addressModel.to_address];
+                _addressLabel.text = [NSString stringWithFormat:@"%@", _addressModel.zip_name];
                 _msg.hidden = NO;
             } else {
                 _addressLabel.hidden = YES;

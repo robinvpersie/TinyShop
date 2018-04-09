@@ -53,7 +53,6 @@
     SupermarketCommentCell *cell = [[SupermarketCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Comment_Cell"];
     cell.commentControllerType = self.commentControllerType;
     cell.model = self.dataArray[indexPath.section];
-    //cell.commentData = self.dataArray[indexPath.section];
     return cell;
 }
 
@@ -71,16 +70,12 @@
     CGFloat contentHeight = [UILabel getHeightByWidth:LabelWidth title:data.saleContent font:[UIFont systemFontOfSize:14]];
     return  contentHeight + 105;
     
-//    if (self.commentControllerType == 0) {
-//        return data.height;
-//    } else {
-//        return data.height + 80;
-//    }
+
     
 }
 
 -(NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
-    return  [[NSAttributedString alloc] initWithString:@"暂无评论"];
+    return  [[NSAttributedString alloc] initWithString:@"현재 평가가 없습니다"];
 }
 
 @end
