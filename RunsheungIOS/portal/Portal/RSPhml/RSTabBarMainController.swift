@@ -10,13 +10,13 @@ import UIKit
 
 class RSTabBarMainController: UITabBarController {
     
-    enum tab:Int {
+    enum tab: Int {
         case home
         case category
         case shopcart
         case mine
         
-        var tabName:String {
+        var tabName: String {
             switch self {
             case .home:
                 return "首页"
@@ -29,7 +29,7 @@ class RSTabBarMainController: UITabBarController {
             }
         }
         
-        var normalImage:UIImage? {
+        var normalImage: UIImage? {
             switch self {
             case .home:
                 return UIImage(named: "icon_home_bottom")
@@ -43,7 +43,7 @@ class RSTabBarMainController: UITabBarController {
             }
         }
         
-        var selectImage:UIImage? {
+        var selectImage: UIImage? {
             switch self {
             case .home:
                 return UIImage(named: "icon_home_bottom_s")?.withRenderingMode(.alwaysOriginal)

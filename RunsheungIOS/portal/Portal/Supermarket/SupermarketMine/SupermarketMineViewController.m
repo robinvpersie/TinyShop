@@ -169,6 +169,7 @@
     _waitSend.badgeValue = nil;
     _waitReceive.badgeValue = nil;
     _waitCommet.badgeValue = nil;
+    [self goToLogin:nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -237,51 +238,60 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    BOOL islogIn = [YCAccountModel islogin];
-    if (!islogIn) {
-        [self goToLogin:^{ }];
-        return;
-    }
-
-    if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            SupermarketMyAddressViewController *vc = [[SupermarketMyAddressViewController alloc] init];
-            vc.hidesBottomBarWhenPushed = YES;
-            vc.isPageView = NO;
-            [self.navigationController pushViewController:vc animated:YES];
-            
-        } else if (indexPath.row == 1) {
-            
-            YCWebViewController *web = [[YCWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://www.gigawon.co.kr:1314/QnA/sub_01"]];
-            web.title = @"공고";
-            web.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:web animated:YES];
-            
-        } else if (indexPath.row == 2) {
-            
-            SupermarketMyCommentController *myComment = [[SupermarketMyCommentController alloc] init];
-            myComment.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:myComment animated:YES];
-            
-        } else if (indexPath.row == 3) {
-            
-            PersinalSetController *personal = [[PersinalSetController alloc] init];
-            personal.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:personal animated:YES];
-            
+    [self showLoading];
+    __weak typeof(self) weakself = self;
+    [KLHttpTool getToken:^(id token) {
+        [weakself hideLoading];
+        if (indexPath.section == 1) {
+            if (indexPath.row == 0) {
+                SupermarketMyAddressViewController *vc = [[SupermarketMyAddressViewController alloc] init];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.isPageView = NO;
+                [weakself.navigationController pushViewController:vc animated:YES];
+                
+            } else if (indexPath.row == 1) {
+                
+                YCWebViewController *web = [[YCWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://www.gigawon.co.kr:1314/QnA/sub_01"]];
+                web.title = @"공고";
+                web.hidesBottomBarWhenPushed = YES;
+                [weakself.navigationController pushViewController:web animated:YES];
+                
+            } else if (indexPath.row == 2) {
+                
+                SupermarketMyCommentController *myComment = [[SupermarketMyCommentController alloc] init];
+                myComment.hidesBottomBarWhenPushed = YES;
+                [weakself.navigationController pushViewController:myComment animated:YES];
+                
+            } else if (indexPath.row == 3) {
+                
+                PersinalSetController *personal = [[PersinalSetController alloc] init];
+                personal.hidesBottomBarWhenPushed = YES;
+                [weakself.navigationController pushViewController:personal animated:YES];
+                
+            } else {
+                
+                SupermarketMyCollectionViewController *mycollection = [[SupermarketMyCollectionViewController alloc] init];
+                mycollection.hidesBottomBarWhenPushed = YES;
+                [weakself.navigationController pushViewController:mycollection animated:YES];
+                
+            }
         } else {
-            
-            SupermarketMyCollectionViewController *mycollection = [[SupermarketMyCollectionViewController alloc] init];
-            mycollection.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:mycollection animated:YES];
-            
+            SupermarketMyOrderController *vc = [[SupermarketMyOrderController alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            vc.controllerType = weakself.controllerType;
+            [weakself.navigationController pushViewController:vc animated:YES];
         }
-    } else {
-        SupermarketMyOrderController *vc = [[SupermarketMyOrderController alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        vc.controllerType = self.controllerType;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+    } failure:^(NSError *errToken) {
+        [weakself hideLoading];
+    }];
+//
+//    BOOL islogIn = [YCAccountModel islogin];
+//    if (!islogIn) {
+//        [self goToLogin:^{ }];
+//        return;
+//    }
+
+
 }
 
 
