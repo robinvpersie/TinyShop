@@ -32,7 +32,7 @@
  */
 + (void)getToken:(void (^)(id token))success
          failure:(void (^)(NSError *errToken))failureToken {
-    NSMutableDictionary *dic = @{}.mutableCopy;
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:UUID forKey:@"deviceNo"];
     NSString *sign = [NSString stringWithFormat:@"%@ycssologin1212121212121",UUID];
     NSString* encrySign = [YCShareAddress sha512:sign];
