@@ -464,13 +464,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 2 && indexPath.row == 5) {
         UIAlertController *guestName = [UIAlertController alertControllerWithTitle:@"入住人" message:_orderDetail.guestName preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"SMAlertSureTitle", nil) style:UIAlertActionStyleCancel handler:nil];
         [guestName addAction:cancel];
         [self presentViewController:guestName animated:YES completion:nil];
     }
     if (indexPath.section == 2 && indexPath.row == 6) {
         UIAlertController *guestPhone = [UIAlertController alertControllerWithTitle:@"入住人电话" message:_orderDetail.guestPhone preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"SMAlertSureTitle", nil) style:UIAlertActionStyleCancel handler:nil];
         [guestPhone addAction:cancel];
         [self presentViewController:guestPhone animated:YES completion:nil];
     }

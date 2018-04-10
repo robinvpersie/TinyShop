@@ -193,7 +193,7 @@
 	}else{
 		MBProgressHUD *hudview = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 		hudview.mode = MBProgressHUDModeText;
-		hudview.label.text = @"填写完整资料进入下一步";
+		hudview.label.text =  NSLocalizedString(@"填写完整资料进入下一步", nil);
 		[hudview hideAnimated:YES afterDelay:2.f];
 	}
 }

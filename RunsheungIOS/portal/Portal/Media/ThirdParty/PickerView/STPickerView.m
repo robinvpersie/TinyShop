@@ -219,7 +219,7 @@
         CGFloat leftX = STMarginBig;
         CGFloat leftY = (self.lineView.top - leftH) / 2;
         _buttonLeft = [[UIButton alloc]initWithFrame:CGRectMake(leftX, leftY, leftW, leftH)];
-        [_buttonLeft setTitle:@"取消" forState:UIControlStateNormal];
+        [_buttonLeft setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
         [_buttonLeft setTitleColor:RGB(0, 207, 121) forState:UIControlStateNormal];
 //        [_buttonLeft addBorderColor:self.borderButtonColor];
         [_buttonLeft.titleLabel setFont:self.font];
@@ -236,7 +236,7 @@
         CGFloat rightX = self.contentView.width - rightW - self.buttonLeft.x;
         CGFloat rightY = self.buttonLeft.y;
         _buttonRight = [[UIButton alloc]initWithFrame:CGRectMake(rightX, rightY, rightW, rightH)];
-        [_buttonRight setTitle:@"确定" forState:UIControlStateNormal];
+        [_buttonRight setTitle:NSLocalizedString(@"SMAlertSureTitle", nil) forState:UIControlStateNormal];
 //        [_buttonRight setTitleColor:self.titleColor forState:UIControlStateNormal];
         [_buttonRight setTitleColor:RGB(0, 207, 121) forState:UIControlStateNormal];
 //        [_buttonRight addBorderColor:self.borderButtonColor];

@@ -261,7 +261,7 @@
     UIButton *forgetBtn = [[UIButton alloc]initWithFrame:CGRectMake(APPScreenWidth/2 - 50, CGRectGetMaxY(loginBtn.frame)+ 10, 100, 50)];
     forgetBtn.tag = ForgetPwdBtnTag;
     forgetBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    NSMutableAttributedString* tncString = [[NSMutableAttributedString alloc] initWithString:@"忘记密码?"];
+    NSMutableAttributedString* tncString = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"忘记密码", nil) ];
     [tncString addAttribute:NSUnderlineStyleAttributeName value:@(NSUnderlineStyleSingle) range:(NSRange){0,[tncString length]}];
     [tncString addAttribute:NSUnderlineColorAttributeName value:RGB(33, 192, 67) range:(NSRange){0,[tncString length]}];
     [tncString addAttribute:NSForegroundColorAttributeName value:RGB(33, 192, 67) range:(NSRange){0,[tncString length]}];

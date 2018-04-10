@@ -564,7 +564,7 @@
            
             }else{
                 
-                UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                UIAlertAction *sure = [UIAlertAction actionWithTitle:NSLocalizedString(@"SMAlertSureTitle", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps:https://itunes.apple.com/us/app/%E9%BE%99%E8%81%8A/id1225896079?l=zh&ls=1&mt=8"]];
                     }];
@@ -703,52 +703,21 @@
 }
 
 - (void)createShopInfomations{
-	float h1;
 	if (self.mallInfoView == nil) {
 		
-		self.mallInfoView = [[UIView alloc]initWithFrame:CGRectZero];
+		self.mallInfoView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tinyShopDetailView.frame), APPScreenWidth, 400)];
 		self.mallInfoView.backgroundColor = [UIColor whiteColor];
 		[self.mainScrollView addSubview:self.mallInfoView];
-//		[self.mallInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
-//			make.trailing.leading.equalTo(self.view);
-//			make.top.equalTo(self.tinyShopDetailView.mas_bottom);
-//			make.height.equalTo(@100);
-//		}];
-
-		//商家名称
-		UILabel *shopname = [UILabel new];
-		shopname.text = [NSString stringWithFormat:@"商家名称: %@",shopInfoesDic[@"custom_name"]];
-		shopname.font = [UIFont systemFontOfSize:14];
-		[self.mallInfoView addSubview:shopname];
-		[shopname mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.leading.equalTo(@15);
-			make.height.equalTo(@30);
-			make.width.equalTo(_mallInfoView ).offset(-30);
-			
-		}];
 
 		//营业时间
 		UILabel *timelimit = [UILabel new];
-		timelimit.text = [NSString stringWithFormat:@"营业时间: %@",shopInfoesDic[@"working_hour"]];
+		timelimit.text = [NSString stringWithFormat:@"working_hour: %@",shopInfoesDic[@"working_hour"]];
 		timelimit.font = [UIFont systemFontOfSize:14];
 		[self.mallInfoView addSubview:timelimit];
 		[timelimit mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.equalTo(shopname.mas_bottom);
+			make.top.equalTo(@15);
 			make.leading.equalTo(@15);
 			make.height.equalTo(@20);
-			make.width.equalTo(_mallInfoView ).offset(-30);
-			
-		}];
-		
-		//商家电话
-		UILabel *phone = [UILabel new];
-		phone.text = [NSString stringWithFormat:@"联系电话: %@",shopInfoesDic[@"telephon"]];
-		phone.font = [UIFont systemFontOfSize:14];
-		[self.mallInfoView addSubview:phone];
-		[phone mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.equalTo(timelimit.mas_bottom);
-			make.leading.equalTo(@15);
-			make.height.equalTo(@30);
 			make.width.equalTo(_mallInfoView ).offset(-30);
 			
 		}];
@@ -756,40 +725,186 @@
 		//活动内容
 		float height = [self getWJHeightwithContent:shopInfoesDic[@"shop_info"] withWidth:APPScreenWidth - 30 withFont:14];
 		UILabel *activitycontent = [UILabel new];
-		activitycontent.text = [NSString stringWithFormat:@"商家简介: %@",shopInfoesDic[@"shop_info"]];
+		activitycontent.text = [NSString stringWithFormat:@"Shop Info: %@",shopInfoesDic[@"shop_info"]];
 		activitycontent.font = [UIFont systemFontOfSize:14];
 		activitycontent.numberOfLines = 0;
 		[self.mallInfoView addSubview:activitycontent];
 		[activitycontent mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.equalTo(phone.mas_bottom);
+			make.top.equalTo(timelimit.mas_bottom);
 			make.leading.equalTo(@15);
 			make.height.mas_equalTo(height);
 			make.width.equalTo(self.view.mas_width ).offset(-30);
 		}];
 		
-		//商家地址
-		shopAddress = [UILabel new];
-		shopAddress.text = @"商家地址: 山东省威海市高区香港路118号智慧大厦21楼.";
-		shopAddress.font = [UIFont systemFontOfSize:14];
-		[self.mallInfoView addSubview:shopAddress];
-		[shopAddress mas_makeConstraints:^(MASConstraintMaker *make) {
+		
+		//折扣信息
+		UILabel *zhekoutitle = [UILabel new];
+		zhekoutitle.text = [NSString stringWithFormat:@"요금할인"];
+		zhekoutitle.font = [UIFont systemFontOfSize:14];
+		zhekoutitle.textColor = RGB(0,128, 48);
+		[self.mallInfoView addSubview:zhekoutitle];
+		[zhekoutitle mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.equalTo(activitycontent.mas_bottom);
 			make.leading.equalTo(@15);
-			make.height.equalTo(@20);
+			make.height.equalTo(@30);
+			make.width.equalTo(_mallInfoView ).offset(-30);
+			
+		}];
+		//折扣信息内容
+		float height1 = [self getWJHeightwithContent:@"" withWidth:APPScreenWidth - 30 withFont:14];
+		UILabel *zhekouContent = [UILabel new];
+		zhekouContent.text = @"";
+		zhekouContent.font = [UIFont systemFontOfSize:13];
+		[self.mallInfoView addSubview:zhekouContent];
+		[zhekouContent mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(zhekoutitle.mas_bottom).offset(5);
+			make.leading.equalTo(@15);
+			make.height.mas_equalTo(height1);
 			make.width.equalTo(_mallInfoView ).offset(-30);
 			
 		}];
 		
-		
-		h1 = height + 180;
-		[self.mallInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.trailing.leading.equalTo(self.view);
-			make.top.equalTo(self.tinyShopDetailView.mas_bottom);
-			make.height.mas_equalTo(h1);
+		//停车场信息
+		UILabel *tingchetitle = [UILabel new];
+		tingchetitle.text = [NSString stringWithFormat:@"주차장정보"];
+		tingchetitle.font = [UIFont systemFontOfSize:14];
+		tingchetitle.textColor = RGB(0,128, 48);
+		[self.mallInfoView addSubview:tingchetitle];
+		[tingchetitle mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(zhekouContent.mas_bottom);
+			make.leading.equalTo(@15);
+			make.height.equalTo(@30);
+			make.width.equalTo(_mallInfoView ).offset(-30);
+			
+		}];
+		//停车场内容
+		float height2 = [self getWJHeightwithContent:@"" withWidth:APPScreenWidth - 30 withFont:14];
+		UILabel *tingcheContent = [UILabel new];
+		tingcheContent.text = @"";
+		tingcheContent.font = [UIFont systemFontOfSize:13];
+		[self.mallInfoView addSubview:tingcheContent];
+		[tingcheContent mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(tingchetitle.mas_bottom).offset(5);
+			make.leading.equalTo(@15);
+			make.height.mas_equalTo(height2);
+			make.width.equalTo(_mallInfoView ).offset(-30);
 			
 		}];
 
-		self.mainScrollView.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.tinyShopDetailView.frame)+h1);
+
+		//地铁信息
+		UILabel *ditietitle = [UILabel new];
+		ditietitle.text = [NSString stringWithFormat:@"지하철역 정보"];
+		ditietitle.font = [UIFont systemFontOfSize:14];
+		ditietitle.textColor = RGB(0,128, 48);
+		[self.mallInfoView addSubview:ditietitle];
+		[ditietitle mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(tingcheContent.mas_bottom);
+			make.leading.equalTo(@15);
+			make.height.equalTo(@30);
+			make.width.equalTo(_mallInfoView ).offset(-30);
+			
+		}];
+		//地铁信息内容
+		float height3 = [self getWJHeightwithContent:@"" withWidth:APPScreenWidth - 30 withFont:14];
+		UILabel *ditieContent = [UILabel new];
+		ditieContent.text = @"";
+		ditieContent.font = [UIFont systemFontOfSize:13];
+		[self.mallInfoView addSubview:ditieContent];
+		[ditieContent mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(ditietitle.mas_bottom).offset(5);
+			make.leading.equalTo(@15);
+			make.height.mas_equalTo(height3);
+			make.width.equalTo(_mallInfoView ).offset(-30);
+			
+		}];
+		
+		//附加信息
+		UILabel *fujiatitle = [UILabel new];
+		fujiatitle.text = [NSString stringWithFormat:@"프런트 및 그 외 시설"];
+		fujiatitle.font = [UIFont systemFontOfSize:14];
+		fujiatitle.textColor = RGB(0,128, 48);
+		[self.mallInfoView addSubview:fujiatitle];
+		[fujiatitle mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(ditieContent.mas_bottom);
+			make.leading.equalTo(@15);
+			make.height.equalTo(@30);
+			make.width.equalTo(_mallInfoView ).offset(-30);
+			
+		}];
+		//附加信息内容
+		float height4 = [self getWJHeightwithContent:@"" withWidth:APPScreenWidth - 30 withFont:14];
+		UILabel *fujiaContent = [UILabel new];
+		fujiaContent.text = @"";
+		fujiaContent.font = [UIFont systemFontOfSize:13];
+		[self.mallInfoView addSubview:fujiaContent];
+		[fujiaContent mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(fujiatitle.mas_bottom).offset(5);
+			make.leading.equalTo(@15);
+			make.height.mas_equalTo(height4);
+			make.width.equalTo(_mallInfoView ).offset(-30);
+			
+		}];
+
+		//附加介绍信息
+		UILabel *fujiajieshaotitle = [UILabel new];
+		fujiajieshaotitle.text = [NSString stringWithFormat:@"추가 안내 사항"];
+		fujiajieshaotitle.font = [UIFont systemFontOfSize:14];
+		fujiajieshaotitle.textColor = RGB(0,128, 48);
+		[self.mallInfoView addSubview:fujiajieshaotitle];
+		[fujiajieshaotitle mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(fujiaContent.mas_bottom);
+			make.leading.equalTo(@15);
+			make.height.equalTo(@30);
+			make.width.equalTo(_mallInfoView ).offset(-30);
+			
+		}];
+		//附加介绍信息内容
+		float height5 = [self getWJHeightwithContent:@"" withWidth:APPScreenWidth - 30 withFont:14];
+		UILabel *fujiajieshaoContent = [UILabel new];
+		fujiajieshaoContent.text = @"";
+		fujiajieshaoContent.font = [UIFont systemFontOfSize:13];
+		[self.mallInfoView addSubview:fujiajieshaoContent];
+		[fujiajieshaoContent mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(fujiajieshaotitle.mas_bottom).offset(5);
+			make.leading.equalTo(@15);
+			make.height.mas_equalTo(height5);
+			make.width.equalTo(_mallInfoView ).offset(-30);
+			
+		}];
+
+		
+		//预约信息
+		UILabel *yuyuetitle = [UILabel new];
+		yuyuetitle.text = [NSString stringWithFormat:@"예약안내"];
+		yuyuetitle.font = [UIFont systemFontOfSize:14];
+		yuyuetitle.textColor = RGB(0,128, 48);
+		[self.mallInfoView addSubview:yuyuetitle];
+		[yuyuetitle mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(fujiajieshaoContent.mas_bottom);
+			make.leading.equalTo(@15);
+			make.height.equalTo(@30);
+			make.width.equalTo(_mallInfoView ).offset(-30);
+			
+		}];
+		//附加介绍信息内容
+		float height6 = [self getWJHeightwithContent:@"" withWidth:APPScreenWidth - 30 withFont:14];
+		UILabel *yuyueContent = [UILabel new];
+		yuyueContent.text = @"";
+		yuyueContent.font = [UIFont systemFontOfSize:13];
+		[self.mallInfoView addSubview:yuyueContent];
+		[yuyueContent mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.equalTo(yuyuetitle.mas_bottom).offset(5);
+			make.leading.equalTo(@15);
+			make.height.mas_equalTo(height6);
+			make.width.equalTo(_mallInfoView ).offset(-30);
+			
+		}];
+		
+		CGRect frams = self.mallInfoView.frame;
+		frams.size.height = height +height1 +height2 +height3 +height4 +height5 +height6 +250;
+		self.mallInfoView.frame = frams;
+		self.mainScrollView.contentSize = CGSizeMake(APPScreenWidth,CGRectGetMaxY(self.mallInfoView.frame));
 		
 	}
 

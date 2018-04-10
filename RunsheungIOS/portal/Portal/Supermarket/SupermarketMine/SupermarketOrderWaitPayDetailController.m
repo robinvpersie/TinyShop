@@ -259,7 +259,7 @@
 
 - (void)cancelOrder {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认取消订单?" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"SMAlertSureTitle", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [KLHttpTool supermarketCancelOrderWithOrderID:_data.order_code success:^(id response) {
             NSNumber *status = response[@"status"];
             if (status.integerValue == 1) {
@@ -271,7 +271,7 @@
             
         }];
     }];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:okAction];
     [alert addAction:cancel];
     

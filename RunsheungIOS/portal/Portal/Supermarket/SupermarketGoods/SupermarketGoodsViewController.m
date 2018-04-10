@@ -88,13 +88,13 @@
 //}
 
 - (void)initView {
+	
 	_mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenHeight)];
 	_mainScrollView.contentSize = CGSizeMake(APPScreenWidth, APPScreenHeight*1.5);
 	_mainScrollView.backgroundColor = RGB(242, 242, 242);
 	[self.view addSubview:_mainScrollView];
 	
 	_banner = [[ZHSCorllHeader alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenWidth-50)];
-	
 	[_mainScrollView addSubview:_banner];
 	
 	UIImageView *shawdow = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_banner.frame), APPScreenWidth, 4)];

@@ -72,7 +72,7 @@
     /** 忘记密码按钮 */
     UIButton *btnForgetPWD = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:btnForgetPWD];
-    [btnForgetPWD setTitle:@"忘记密码？" forState:UIControlStateNormal];
+    [btnForgetPWD setTitle:NSLocalizedString(@"忘记密码", nil)  forState:UIControlStateNormal];
     [btnForgetPWD setTitleColor:CYColor(0, 125, 227) forState:UIControlStateNormal];
     btnForgetPWD.titleLabel.font = CYFont(13);
     [btnForgetPWD sizeToFit];
