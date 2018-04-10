@@ -18,7 +18,7 @@
     NSString *key = [NSString stringWithFormat:@"%@%@",urlString,version];
     UIImage *storeImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:key];
     if (storeImage == nil) {
-        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",urlString]] placeholderImage:[UIImage imageNamed:@"supermarket_defaultIcon"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",urlString]] placeholderImage:[UIImage imageNamed:@"no_search"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 
             [[SDImageCache sharedImageCache] storeImage:image forKey:key completion:^{
                 

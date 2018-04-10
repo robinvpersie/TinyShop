@@ -168,7 +168,7 @@
     [self.contentView addSubview:_comment];
     
     if (_buyAgain == nil) {
-        _buyAgain = [self createButtonWithFrame:CGRectMake(0, 0, ButtonWidth, _checklogistics.frame.size.height) title:@"再次购买" layerColor:[UIColor redColor]];
+        _buyAgain = [self createButtonWithFrame:CGRectMake(0, 0, ButtonWidth, _checklogistics.frame.size.height) title:NSLocalizedString(@"再次购买", nil)  layerColor:[UIColor redColor]];
         [_buyAgain addTarget:self action:@selector(buyAgain) forControlEvents:UIControlEventTouchUpInside];
         _buyAgain.hidden = YES;
     }
@@ -267,7 +267,7 @@
                 } else {
                     [_pay setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
                     [_pay setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-                    [_pay setTitle:@"再次购买" forState:UIControlStateNormal];
+                    [_pay setTitle:NSLocalizedString(@"再次购买", nil) forState:UIControlStateNormal];
                     _pay.hidden = YES;
                     _buyAgain.frame = _pay.frame;
                     [_pay removeTarget:self action:@selector(payAction) forControlEvents:UIControlEventTouchUpInside];
