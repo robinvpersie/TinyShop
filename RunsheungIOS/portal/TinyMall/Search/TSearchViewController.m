@@ -52,14 +52,14 @@
 - (void)createSearchResultTableView{
 	if (self.searchResultTableView == nil) {
 	
-		self.searchResultTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+		self.searchResultTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
 		[self.searchResultTableView registerNib:[UINib nibWithNibName:@"ChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChoiceTableViewCellID"];
 		self.searchResultTableView.delegate = self;
 		self.searchResultTableView.dataSource = self;
 		self.searchResultTableView.estimatedRowHeight = 0;
 		self.searchResultTableView.estimatedSectionHeaderHeight = 0;
 		self.searchResultTableView.estimatedSectionFooterHeight = 0;
-		self.searchResultTableView.tableFooterView = [[UIView alloc]init];
+		self.searchResultTableView.tableFooterView = [[UIView alloc] init];
 		[self.view addSubview:self.searchResultTableView];
 
 	}

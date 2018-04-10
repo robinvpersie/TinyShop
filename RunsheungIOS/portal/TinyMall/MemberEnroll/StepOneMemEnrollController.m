@@ -97,7 +97,7 @@
 }
 
 - (void)submitAction:(UIButton *)sender{
-	if (self.phoneInput.text.length&&self.codeInput.text.length) {
+	if (self.phoneInput.text.length && self.codeInput.text.length) {
 		StepSecMemEnrollController *step1 = [StepSecMemEnrollController new];
 		SetUserDefault(@"joinphone", self.phoneInput.text);
 		SetUserDefault(@"joinauthnum", self.codeInput.text);

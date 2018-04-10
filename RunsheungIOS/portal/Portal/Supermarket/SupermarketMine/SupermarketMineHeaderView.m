@@ -141,7 +141,7 @@
 
     BOOL islogIn = [YCAccountModel islogin];
     if (!islogIn) {
-        [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:NSLocalizedString(@"SMMineNoLogInMsg", nil)];
+        [self.viewController showMessage:NSLocalizedString(@"SMMineNoLogInMsg", nil) interval:2 completionAction:nil];
         return;
     }
 
