@@ -1215,7 +1215,7 @@
     [MBProgressHUD showWithView:KEYWINDOW];
     NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/SendComment",BaseUrl];
    
-    NSMutableDictionary *param = @{}.mutableCopy;
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:itemCode forKey:@"item_code"];
     [param setObject:@(rate) forKey:@"score"];
     [param setObject:@(level) forKey:@"level"];

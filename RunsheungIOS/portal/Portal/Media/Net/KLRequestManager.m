@@ -97,7 +97,16 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.requestSerializer.timeoutInterval = 60;
-	manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"multipart/form-data", @"application/json", @"text/html", @"image/jpeg", @"image/png", @"application/octet-stream", @"text/json", nil];
+	manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                         @"text/plain",
+                                                         @"multipart/form-data",
+                                                         @"application/json",
+                                                         @"text/html",
+                                                         @"image/jpeg",
+                                                         @"image/png",
+                                                         @"application/octet-stream",
+                                                         @"text/json",
+                                                         nil];
     url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
     switch (methodType) {

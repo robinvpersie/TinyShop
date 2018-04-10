@@ -138,10 +138,28 @@
 
 - (void)submitAction:(UIButton *)sender{
 	NSString *joinkind = GetUserDefault(@"joinKinds");
-	if (self.passwordinput.text.length&&self.nickinput.text.length&& self.nickinput.text.length&&self.emailedinput.text.length&&self.customernameinput.text.length&&self.delegatecodeinput.text.length&&self.delegatecityinput.text.length&&self.delegateAddressinput.text.length) {
+	if (self.passwordinput.text.length && self.nickinput.text.length && self.nickinput.text.length && self.emailedinput.text.length && self.customernameinput.text.length && self.delegatecodeinput.text.length && self.delegatecityinput.text.length && self.delegateAddressinput.text.length) {
 		
 		if ([joinkind isEqualToString:@"1"]) {
-			[KLHttpTool TinyResgisterwithPhone:GetUserDefault(@"joinphone") withmempwd:[self sha512:self.passwordinput.text ] withnickname:self.nickinput.text withemail:self.emailedinput.text witheAuthNum:GetUserDefault(@"joinauthnum") withcustom_name:self.customernameinput.text withtop_zip_code:self.delegatecodeinput.text withtop_addr_head:self.delegatecityinput.text withtop_addr_detail:self.delegateAddressinput.text withbusiness_type:@"1" withlang_type:@"kor" withcomp_class:nil withcomp_type:nil withcompany_num:nil withzip_code:nil withkor_addr:nil withkor_addr_detail:nil withtelephon:nil success:^(id response) {
+			[KLHttpTool TinyResgisterwithPhone:GetUserDefault(@"joinphone")
+                                    withmempwd:[self sha512:self.passwordinput.text ]
+                                  withnickname:self.nickinput.text
+                                     withemail:self.emailedinput.text
+                                  witheAuthNum:GetUserDefault(@"joinauthnum")
+                               withcustom_name:self.customernameinput.text
+                              withtop_zip_code:self.delegatecodeinput.text
+                             withtop_addr_head:self.delegatecityinput.text
+                           withtop_addr_detail:self.delegateAddressinput.text
+                             withbusiness_type:@"1"
+                                 withlang_type:@"kor"
+                                withcomp_class:nil
+                                 withcomp_type:nil
+                               withcompany_num:nil
+                                  withzip_code:nil
+                                  withkor_addr:nil
+                           withkor_addr_detail:nil
+                                  withtelephon:nil
+                                       success:^(id response) {
 				MBProgressHUD *hud12 = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
 				hud12.mode = MBProgressHUDModeText;
 				
