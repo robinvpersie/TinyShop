@@ -519,6 +519,7 @@
 						hudsuccess.mode = MBProgressHUDModeText;
 						hudsuccess.label.text = NSLocalizedString(@"加入购物车成功", nil) ;
 						[hudsuccess hideAnimated:YES afterDelay:1.0f];
+						[[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadShoppingCartNotification" object:nil];
 						
 						if (self.isScan) {
 							UIAlertAction *continueBuy = [UIAlertAction actionWithTitle:@"继续购物" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
