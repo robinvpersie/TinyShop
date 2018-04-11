@@ -416,7 +416,7 @@ typedef void(^finishAction)();
 	label.textColor = [UIColor redColor];
 	[backgroundView addSubview:label];
 	
-	label.attributedText = [self LZSetString:@"¥0.00"];
+	label.attributedText = [self LZSetString:@"0"];
 	CGFloat maxWidth = LZSCREEN_WIDTH - selectAll.bounds.size.width - btn.bounds.size.width - 25;
 	//    CGSize size = [label sizeThatFits:CGSizeMake(maxWidth, LZTabBarHeight)];
 	label.frame = CGRectMake(selectAll.bounds.size.width + 20, 0, maxWidth - 10, LZTabBarHeight);
@@ -632,6 +632,7 @@ typedef void(^finishAction)();
 		if (select) {
 			for (LZCartModel *good in model.goodsArray) {
 				good.isEditing = YES;
+				
 			}
 		}
 		else {
@@ -919,6 +920,9 @@ typedef void(^finishAction)();
 			[KLHttpTool deleteSupermarketShoppingCartGoodsWithIDs:selectedGoodsIDs divCodes:selctedGoodsDivCods  SaleCustomCodes:selctedGoodsSaleCustomCodes success:^(id  response) {
 				NSNumber *status = response[@"status"];
 				if (status.integerValue == 1) {
+					[self.selectedArray removeAllObjects];
+					[self countPrice];
+
 					[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
 					[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 						[weakself reloadAllData];
