@@ -262,22 +262,24 @@
 
 #pragma mark -- 右边点击方法
 - (void)rightAction:(UIButton*)sender{
-	
-			if (sender.tag == 2004) {
-				
-				ZFScanViewController *scanVC = [ZFScanViewController new];
-				scanVC.returnScanBarCodeValue = ^(NSString *barCodeString) {
-					
-				
-				};
-				[self presentViewController:scanVC animated:YES completion:nil];
-				
-			}else if (sender.tag == 2005){
-			
+//    InputAmountController *input = [[InputAmountController alloc] init];
+//    [self.navigationController pushViewController:input animated:YES];
+    //[self presentViewController:input animated:true completion:nil];
+            if (sender.tag == 2004) {
 
-				
+                ZFScanViewController *scanVC = [ZFScanViewController new];
+                scanVC.returnScanBarCodeValue = ^(NSString *barCodeString) {
 
-			}
+
+                };
+                [self presentViewController:scanVC animated:YES completion:nil];
+
+            }else if (sender.tag == 2005){
+
+
+
+
+            }
 }
 
 #pragma mark -- 设置导航栏
