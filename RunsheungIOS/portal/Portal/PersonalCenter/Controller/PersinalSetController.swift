@@ -200,10 +200,10 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
             cell.avatarImageView.navi_setAvatar(plainAvatar)
             cell.clickImage = { [weak self] in
                self?.choosePhoto(cell: cell)
-             }
+            }
             return cell
             
-        }else if sectiontype == .sexAndNickName {
+        } else if sectiontype == .sexAndNickName {
             let cell: PersonalSexCell = tableView.dequeueReusableCell()
             if indexPath.row == 0 {
                 cell.sex.text = "性别".localized

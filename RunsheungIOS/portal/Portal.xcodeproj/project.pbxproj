@@ -27,6 +27,8 @@
 		011EC0D5206A4F2600334165 /* SearchKoreaAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011EC0D4206A4F2600334165 /* SearchKoreaAddress.swift */; };
 		011EC0D7206A532A00334165 /* KoreaPlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011EC0D6206A532A00334165 /* KoreaPlaceModel.swift */; };
 		011EC0DA206A615600334165 /* ECU.m in Sources */ = {isa = PBXBuildFile; fileRef = 011EC0D9206A615600334165 /* ECU.m */; };
+		012530A1207DF22800663180 /* InputAmountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012530A0207DF22800663180 /* InputAmountController.swift */; };
+		012530A4207DF4A600663180 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012530A3207DF4A600663180 /* Constant.swift */; };
 		013297E7205E53CC007735B4 /* CompanyAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013297E6205E53CC007735B4 /* CompanyAuthController.m */; };
 		013297EA205E55F4007735B4 /* InputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 013297E9205E55F4007735B4 /* InputFieldView.m */; };
 		01637E57205F9C6000C59F30 /* ShowLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01637E56205F9C6000C59F30 /* ShowLocationView.m */; };
@@ -839,6 +841,8 @@
 		011EC0D6206A532A00334165 /* KoreaPlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreaPlaceModel.swift; sourceTree = "<group>"; };
 		011EC0D8206A615600334165 /* ECU.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECU.h; sourceTree = "<group>"; };
 		011EC0D9206A615600334165 /* ECU.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ECU.m; sourceTree = "<group>"; };
+		012530A0207DF22800663180 /* InputAmountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputAmountController.swift; sourceTree = "<group>"; };
+		012530A3207DF4A600663180 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		013297E5205E53CC007735B4 /* CompanyAuthController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyAuthController.h; sourceTree = "<group>"; };
 		013297E6205E53CC007735B4 /* CompanyAuthController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyAuthController.m; sourceTree = "<group>"; };
 		013297E8205E55F4007735B4 /* InputFieldView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputFieldView.h; sourceTree = "<group>"; };
@@ -5256,6 +5260,7 @@
 				5B19AF2D1E4BFB800093D97F /* YCNoDataAlertView.swift */,
 				5B19AF2F1E4BFB9E0093D97F /* YCNoDataAlertView.xib */,
 				5BC25E151E8F432D00732DA9 /* YCGenericTableView.swift */,
+				012530A3207DF4A600663180 /* Constant.swift */,
 			);
 			name = PublicTool;
 			path = Portal/PublicTool;
@@ -5609,6 +5614,7 @@
 				D5D01F3C205FD5BE002263CC /* View */,
 				D5D01F39205FB3FF002263CC /* TinyShopMainController.h */,
 				D5D01F3A205FB3FF002263CC /* TinyShopMainController.m */,
+				012530A0207DF22800663180 /* InputAmountController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -6167,6 +6173,7 @@
 				D5D01F4820610C0A002263CC /* TinyShopDetailedView.m in Sources */,
 				1B392D521E28D0E500F70981 /* CFLabelOnLeftButton.m in Sources */,
 				1BC876A01E9885C700BB38D7 /* YCHotelHomeController.m in Sources */,
+				012530A1207DF22800663180 /* InputAmountController.swift in Sources */,
 				1BDDA0F01EB9798F005E8409 /* HotelCommentTableViewCell.m in Sources */,
 				1B392F581E28D14E00F70981 /* SupermarketWaitReceiveController.m in Sources */,
 				6296F45B201B244900976C21 /* MatchParentModel.swift in Sources */,
@@ -6535,6 +6542,7 @@
 				5B57ED6E1FB55EDC00598252 /* FunctionalCoreImage.swift in Sources */,
 				1B392D621E28D0E500F70981 /* STPickerSingle.m in Sources */,
 				1B392F341E28D14E00F70981 /* CouponTableViewCell.m in Sources */,
+				012530A4207DF4A600663180 /* Constant.swift in Sources */,
 				5BEF65AE1F208C0500817141 /* CosmosTouchTarget.swift in Sources */,
 				1B9546FA1F1DF147006DCB6C /* ZFConst.m in Sources */,
 				1B510E671EA0790400B77F14 /* HotelReserveResultDetailController.m in Sources */,
