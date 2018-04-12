@@ -13,7 +13,7 @@ typedef enum {
 } SDWaitingViewMode;
 
 // 图片保存成功提示文字
-#define SDPhotoBrowserSaveImageSuccessText @"保存成功 ";
+#define SDPhotoBrowserSaveImageSuccessText @"저장완료 ";
 
 // 图片保存失败提示文字
 #define SDPhotoBrowserSaveImageFailText @"保存失败 ";

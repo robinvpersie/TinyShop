@@ -25,11 +25,11 @@ class ChangePassWordController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "修改密码"
+		title = "비밀번호 변경";
         view.backgroundColor = UIColor.groupTableViewBackground
         
         oldPasswordfield = YCTextField(frame: CGRect(x: leftEdges, y: toTopEdges + 64, width: (screenWidth - leftEdges*2), height: textfieldHeight))
-        oldPasswordfield.placeholder = "输入旧密码"
+        oldPasswordfield.placeholder = "기존비밀번호"
         oldPasswordfield.layer.backgroundColor = UIColor.white.cgColor
         oldPasswordfield.cornerRadius = textfieldHeight/2
         oldPasswordfield.clearButtonMode = .whileEditing
@@ -41,7 +41,7 @@ class ChangePassWordController: BaseViewController {
                                                     y: oldPasswordfield.maxy + textfieldEdges,
                                                     width: oldPasswordfield.width,
                                                     height: oldPasswordfield.height))
-        newPasswordfield.placeholder = "设置新密码"
+        newPasswordfield.placeholder = "새 비밀번호"
         newPasswordfield.cornerRadius = textfieldHeight/2
         newPasswordfield.clearButtonMode = .whileEditing
         newPasswordfield.isSecureTextEntry = true
@@ -53,7 +53,7 @@ class ChangePassWordController: BaseViewController {
                                                            y: newPasswordfield.maxy + textfieldEdges,
                                                            width: oldPasswordfield.width,
                                                            height: oldPasswordfield.height))
-        newPasswordConfirmfield.placeholder = "确认新密码"
+        newPasswordConfirmfield.placeholder = "새 비밀번호 확인"
         newPasswordConfirmfield.cornerRadius = textfieldHeight/2
         newPasswordConfirmfield.clearButtonMode = .whileEditing
         newPasswordConfirmfield.isSecureTextEntry = true
