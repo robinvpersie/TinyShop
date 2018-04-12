@@ -3403,6 +3403,42 @@
 	}];
 }
 
+/*
+ 获取短信验证码
+ */
++ (void)TinySMSloginWithPhone:(NSString*)phone
+					  Success:(void (^)(id response))success
+					  failure:(void (^)(NSError *err))failure{
+	//获得请求管理者
+	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+	manager.responseSerializer = [AFJSONResponseSerializer serializer];
+	manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+	manager.requestSerializer.timeoutInterval = 60;
+	manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+														 @"text/plain",
+														 @"multipart/form-data",
+														 @"application/json",
+														 @"text/html",
+														 @"image/jpeg",
+														 @"image/png",
+														 @"application/octet-stream",
+														 @"text/json",
+														 nil];
+	
+	NSString*url = [NSString stringWithFormat:@"http://sms.gigawon.co.kr:8083/api/SSonda/%@",phone];
+	
+	[manager GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+		if (success) {
+			[MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
+			success(responseObject);
+		}
+	} failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+		if (failure) {
+			failure(error);
+		}
+	}];
+	
+}
 
 @end
 

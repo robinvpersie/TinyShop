@@ -65,7 +65,9 @@
 		make.trailing.mas_equalTo(-8);
 	}];
 	
-	self.BigCategoresArray= @[@"여행",@"가정",@"건축",@"교육",@"교통",@"금융",@"종교",@"미용",@"법률",@"쇼핑",@"언론",@"건강",@"음식",@"취미",@"컴퓨터"];
+//	self.BigCategoresArray= @[@"여행",@"가정",@"건축",@"교육",@"교통",@"금융",@"종교",@"미용",@"법률",@"쇼핑",@"언론",@"건강",@"음식",@"취미",@"컴퓨터"];
+	self.BigCategoresArray= @[@"음식",@"미용",@"여행",@"금융",@"건강",@"취미",@"쇼핑",@"컴퓨터"];
+	self.BigCategoresImgs = @[@"m_icon12.png",@"m_icon07.png",@"t_icon01.png",@"m_icon04.png",@"m_icon11.png",@"m_icon13.png",@"m_icon09.png",@"m_icon14.png"];
 	self.showColors = @[RGB(255, 86, 100),RGB(220, 211, 57),RGB(62, 220, 108),RGB(37, 126, 220),RGB(10, 34, 60)];
 	self.pickerNumbers = @[@"1", @"2", @"3",@"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16"];
 	
@@ -304,7 +306,7 @@
 	}else if (collectionView.tag == leftPortraitTag||collectionView.tag == rightPortraitTag){
 		return 10;
 	}
-	return 15;
+	return self.BigCategoresArray.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -333,12 +335,12 @@
 		}
 
 	}else{
-		if ((int)indexPath.row < 9) {
-			topImgNamed = [NSString stringWithFormat:@"t_icon0%d.png",(int)indexPath.row+1];
-		}else{
-			topImgNamed = [NSString stringWithFormat:@"t_icon%d.png", (int)indexPath.row+1];
-		}
-
+//		if ((int)indexPath.row < 9) {
+//			topImgNamed = [NSString stringWithFormat:@"t_icon0%d.png",(int)indexPath.row+1];
+//		}else{
+//			topImgNamed = [NSString stringWithFormat:@"t_icon%d.png", (int)indexPath.row+1];
+//		}
+		topImgNamed = self.BigCategoresImgs[indexPath.row];
 	}
 	UIImageView *numberImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:topImgNamed]];
 	numberImg.frame = CGRectMake(15, 8, ScrollviewHeight-30, ScrollviewHeight-30);
@@ -368,6 +370,13 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
 				  layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+	if (collectionView.tag == centerScrollViewTag) {
+		
+		float width = (self.frame.size.width)/4.0f ;
+		float height = (self.frame.size.width)/5.0f ;
+		return CGSizeMake(width, height);
+
+	}
 	float width = ScrollviewHeight ;
 	float height = width ;
 	

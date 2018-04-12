@@ -40,7 +40,7 @@
 
 @property (nonatomic,retain)NSArray *showColors;
 @property (nonatomic,retain)NSArray *BigCategoresArray;
-
+@property (nonatomic,retain)NSArray *BigCategoresImgs;
 @property (nonatomic,retain)NSMutableArray *fieldArray;
 
 @property(nonatomic,retain)UIImageView *pickbackImg;

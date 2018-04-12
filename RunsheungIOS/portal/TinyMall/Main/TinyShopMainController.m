@@ -104,11 +104,11 @@
 		[self.view addSubview:self.scrollview];
 		
 	}
-	blackView  = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width ,3*(self.view.frame.size.width - 30)/5+70 )];
+	blackView  = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width ,2*(self.view.frame.size.width - 30)/5+70 )];
 	blackView.backgroundColor = RGB(60, 60, 60);
 	[self.scrollview addSubview:blackView];
 
-	self.numberDomainview = [[NumDomainView alloc]initWithFrame:CGRectMake(15, 10, self.view.frame.size.width - 30,3*(self.view.frame.size.width - 30)/5+60 )];
+	self.numberDomainview = [[NumDomainView alloc]initWithFrame:CGRectMake(15, 10, self.view.frame.size.width - 30,2*(self.view.frame.size.width - 30)/5+60 )];
 	self.numberDomainview.backgroundColor = RGB(60, 60, 60);
 	[blackView addSubview:self.numberDomainview];
 
@@ -276,6 +276,11 @@
 
             }else if (sender.tag == 2005){
 
+				LGwebViewController *lgupay = [LGwebViewController new];
+				lgupay.hidesBottomBarWhenPushed = YES;
+				[lgupay loadRequestUrlWithOrderNumber:@"1021804110000000011W" OrderMoney:@"18.00" OrderUserName:@"%EA%B9%80%EB%8F%84%EC%84%B1" GiftInfo:@"api%EC%83%88%EB%A1%9C%20%EB%B0%9B%EC%9D%84%EA%B2%83"];
+				[self.navigationController pushViewController:lgupay animated:YES];
+				
 
 
 
