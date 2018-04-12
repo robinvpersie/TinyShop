@@ -117,7 +117,12 @@
 }
 
 - (void)getVerfiyBtn:(UIButton*)sender{
-	
+	[KLHttpTool TinySMSloginWithPhone:@"01092792712" Success:^(id response) {
+		
+	} failure:^(NSError *err) {
+		
+	}];
+
 }
 
 - (void)pop:(UIButton *)sender{

@@ -786,6 +786,7 @@
 		D5D01F5120612870002263CC /* TSShopDetailedCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F4C2061286D002263CC /* TSShopDetailedCollectionView.m */; };
 		D5D01F5220612870002263CC /* ShopDetailedCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F4E2061286F002263CC /* ShopDetailedCollectionCell.m */; };
 		D5D01F58206213E8002263CC /* NumDomainView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F57206213E6002263CC /* NumDomainView.m */; };
+		D5D5BB04207F523000A27ABF /* LGwebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D5BB03207F523000A27ABF /* LGwebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2231,6 +2232,7 @@
 		D5D01F4F2061286F002263CC /* TSShopDetailedCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSShopDetailedCollectionView.h; sourceTree = "<group>"; };
 		D5D01F56206213E4002263CC /* NumDomainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumDomainView.h; sourceTree = "<group>"; };
 		D5D01F57206213E6002263CC /* NumDomainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumDomainView.m; sourceTree = "<group>"; };
+		D5D5BB03207F523000A27ABF /* LGwebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LGwebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5547,6 +5549,7 @@
 		D59D3A1B205BE42E0074F0E8 /* TinyMall */ = {
 			isa = PBXGroup;
 			children = (
+				D5D5BB00207F31AC00A27ABF /* LG+ Pay */,
 				D51B046D20689C4500D8D6D2 /* Search */,
 				D5D01F38205FB3D1002263CC /* Main */,
 				D53093C5205E483600427350 /* MemberEnroll */,
@@ -5646,6 +5649,14 @@
 				D5D01F4720610C0A002263CC /* TinyShopDetailedView.m */,
 			);
 			name = TinyShopDetails;
+			sourceTree = "<group>";
+		};
+		D5D5BB00207F31AC00A27ABF /* LG+ Pay */ = {
+			isa = PBXGroup;
+			children = (
+				D5D5BB03207F523000A27ABF /* LGwebViewController.swift */,
+			);
+			path = "LG+ Pay";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -6238,6 +6249,7 @@
 				1B392EED1E28D14E00F70981 /* PYTempViewController.m in Sources */,
 				1B392F551E28D14E00F70981 /* SupermarketWaitCommentController.m in Sources */,
 				1BC876741E973AA300BB38D7 /* Order.m in Sources */,
+				D5D5BB04207F523000A27ABF /* LGwebViewController.swift in Sources */,
 				1B392F0C1E28D14E00F70981 /* SupermarketOnSaleCollectionView.m in Sources */,
 				1B1971BE1E20803300E54D95 /* MovieData.m in Sources */,
 				1B392D8C1E28D0E500F70981 /* YYTextRubyAnnotation.m in Sources */,

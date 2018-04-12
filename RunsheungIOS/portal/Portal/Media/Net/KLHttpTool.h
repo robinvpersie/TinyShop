@@ -680,4 +680,12 @@
 						   WithPg:(NSString*)pg
 						  success:(void (^)(id response))success
 						  failure:(void (^)(NSError *err))failure;
+
+/*
+ 获取短信验证码
+ */
++ (void)TinySMSloginWithPhone:(NSString*)phone
+					  Success:(void (^)(id response))success
+					  failure:(void (^)(NSError *err))failure;
+
 @end
