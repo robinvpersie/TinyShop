@@ -205,13 +205,14 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
             
         } else if sectiontype == .sexAndNickName {
             let cell: PersonalSexCell = tableView.dequeueReusableCell()
-            if indexPath.row == 0 {
-                cell.sex.text = "性别".localized
-                cell.detail.text = sex
-            }else if indexPath.row == 1 {
+//            if indexPath.row == 0 {
+//                cell.sex.text = "性别".localized
+//                cell.detail.text = sex
+//            }else
+//                if indexPath.row == 1 {
                 cell.sex.text = "昵称".localized
                 cell.detail.text = nickName
-            }
+            
             return cell
         } else if sectiontype == .changePassword {
             let cell: PersonalSexCell = tableView.dequeueReusableCell()
@@ -266,26 +267,26 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
                 self?.logout()
             })
         case .sexAndNickName:
-            if indexPath.row == 0 {
-                let alertActionBoy = AlertActionModel(title: "男".localized, action: { [weak self] action in
-                    guard let strongself = self else { return }
-                    strongself.sex = "男".localized
-                    strongself.tableView.reloadSections([1], with: .automatic)
-                    strongself.setUserAccount(nickname: strongself.nickName, gender: "f", token: strongself.token, imagePath:strongself.avatarString)
-                })
-                
-                let alerActionGirl = AlertActionModel(title: "女".localized, action: { [weak self] action in
-                    guard let strongself = self else { return }
-                    strongself.sex = "女".localized
-                    strongself.tableView.reloadSections([1], with: .automatic)
-                    strongself.setUserAccount(nickname: strongself.nickName, gender: "m", token: strongself.token, imagePath: strongself.avatarString)
-                })
-                
-                let cancleAction = AlertActionModel(title: "取消".localized, style: .cancel, action: nil)
-                YCAlert.alertWithModelArray([alertActionBoy, alerActionGirl, cancleAction], title: "选择性别".localized, message: nil, style: .actionSheet, viewController: self)
-                
-            } else {
-                
+//            if indexPath.row == 0 {
+//                let alertActionBoy = AlertActionModel(title: "男".localized, action: { [weak self] action in
+//                    guard let strongself = self else { return }
+//                    strongself.sex = "男".localized
+//                    strongself.tableView.reloadSections([1], with: .automatic)
+//                    strongself.setUserAccount(nickname: strongself.nickName, gender: "f", token: strongself.token, imagePath:strongself.avatarString)
+//                })
+//
+//                let alerActionGirl = AlertActionModel(title: "女".localized, action: { [weak self] action in
+//                    guard let strongself = self else { return }
+//                    strongself.sex = "女".localized
+//                    strongself.tableView.reloadSections([1], with: .automatic)
+//                    strongself.setUserAccount(nickname: strongself.nickName, gender: "m", token: strongself.token, imagePath: strongself.avatarString)
+//                })
+//
+//                let cancleAction = AlertActionModel(title: "取消".localized, style: .cancel, action: nil)
+//                YCAlert.alertWithModelArray([alertActionBoy, alerActionGirl, cancleAction], title: "选择性别".localized, message: nil, style: .actionSheet, viewController: self)
+//
+//            } else {
+            
                 let alertController = UIAlertController(title: "更改昵称".localized, message: nil, preferredStyle: .alert)
                 alertController.addTextField { textField in
                     textField.placeholder = "输入昵称".localized
@@ -320,7 +321,7 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
                 alertController.addAction(cancleAction)
                 alertController.addAction(sureAction)
                 self.present(alertController, animated: true, completion: nil)
-            }
+//            }
         case .clearCache:
             KingfisherManager.shared.cache.clearDiskCache()
             showMessage("删除缓存成功".localized)
