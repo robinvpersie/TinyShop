@@ -262,24 +262,27 @@
 
 #pragma mark -- 右边点击方法
 - (void)rightAction:(UIButton*)sender{
-//    InputAmountController *input = [[InputAmountController alloc] init];
-//    [self.navigationController pushViewController:input animated:YES];
-    //[self presentViewController:input animated:true completion:nil];
-            if (sender.tag == 2004) {
 
-                ZFScanViewController *scanVC = [ZFScanViewController new];
+             if (sender.tag == 2004) {
+
+                ZFScanViewController *scanVC = [[ZFScanViewController alloc] init];
+                __weak typeof(self) weakself = self;
                 scanVC.returnScanBarCodeValue = ^(NSString *barCodeString) {
-
+                    __strong typeof(self) strongself = weakself;
+                    NSURLComponents *components = [[NSURLComponents alloc] initWithString:barCodeString];
+                    if ([components.scheme isEqualToString:@"giga"]) {
+                        if ([components.host isEqualToString:@"qrPay"]) {
+                            NSString *numcode = components.query;
+                            InputAmountController *input = [[InputAmountController alloc] init];
+                            input.numcode = numcode;
+                            [strongself.navigationController pushViewController:input animated:YES];
+                        }
+                    }
 
                 };
                 [self presentViewController:scanVC animated:YES completion:nil];
 
-            }else if (sender.tag == 2005){
-
-
-
-
-            }
+            }else if (sender.tag == 2005){ }
 }
 
 #pragma mark -- 设置导航栏

@@ -108,10 +108,12 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1) {
-        CGFloat width = [UILabel getWidthWithTitle:NSLocalizedString(@"SMAdressLocation", nil) font:[UIFont systemFontOfSize:15]];
-        CGFloat height = [UILabel getHeightByWidth:APPScreenWidth - width - 10 title:self.region font:[UIFont systemFontOfSize:15]];
-        return height + 20;
+    if (indexPath.section == 1 && indexPath.row == 0) {
+        if (self.region != nil) {
+          CGFloat width = [UILabel getWidthWithTitle:NSLocalizedString(@"SMAdressLocation", nil) font:[UIFont systemFontOfSize:15]];
+          CGFloat height = [UILabel getHeightByWidth:APPScreenWidth - width - 10 title:self.region font:[UIFont systemFontOfSize:15]];
+          return height + 20;
+        }
     }
     return 45;
 }
@@ -317,7 +319,8 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
     CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
     [geoCoder geocodeAddressString:[NSString stringWithFormat:@"%@%@",_addressLabel.text,_haoaoField.text] completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         if (error != nil || placemarks.count == 0) {
-            [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:NSLocalizedString(@"SMAdressWrongAdressMsg", nil)];
+            //[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:NSLocalizedString(@"SMAdressWrongAdressMsg", nil)];
+            [self showMessage:NSLocalizedString(@"SMAdressWrongAdressMsg", nil) interval:2 completionAction:nil];
         } else {
             CLPlacemark *placeMark = [placemarks firstObject];
             _longtitude = placeMark.location.coordinate.longitude;
