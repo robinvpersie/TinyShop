@@ -18,7 +18,7 @@
 
 
 
-@interface TinyShopMainController ()<UITableViewDelegate,UITableViewDataSource>{
+@interface TinyShopMainController ()<UITableViewDelegate, UITableViewDataSource>{
 	UIView *blackView;
 	int paged;
 }
@@ -118,7 +118,7 @@
 }
 
 - (void)createTableview{
-	if (self.tableView ==nil) {
+	if (self.tableView == nil) {
 		self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(blackView.frame), APPScreenWidth, 0) style:UITableViewStyleGrouped];
 		self.tableView.tableFooterView = [UIView new];
 		[self.tableView registerNib:[UINib nibWithNibName:@"MainTableViewCell" bundle:nil] forCellReuseIdentifier:@"MainTableViewCell"];
@@ -242,9 +242,12 @@
 
 	
 	//创建热搜的数组
-	NSArray *hotSeaches = @[];
+	NSArray *hotSeaches = [NSArray array];
 	//创建搜索结果的控制器
-	PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"搜索关键字", nil)  didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+	PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches
+                                                                                          searchBarPlaceholder:NSLocalizedString(@"搜索关键字", nil)  didSearchBlock:
+                                                    ^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText)
+    {
 		TSearchViewController *searchResultVC = [[TSearchViewController alloc] init];
 		searchResultVC.searchKeyWord = searchText;
 		searchResultVC.navigationItem.title = NSLocalizedString(@"搜索结果", nil) ;
@@ -268,7 +271,6 @@
                 ZFScanViewController *scanVC = [[ZFScanViewController alloc] init];
                 __weak typeof(self) weakself = self;
                 scanVC.returnScanBarCodeValue = ^(NSString *barCodeString) {
-                    __strong typeof(self) strongself = weakself;
                     NSURLComponents *components = [[NSURLComponents alloc] initWithString:barCodeString];
                     if ([components.scheme isEqualToString:@"giga"]) {
                         if ([components.host isEqualToString:@"qrPay"]) {
@@ -280,7 +282,7 @@
                                     [weakself.navigationController popViewControllerAnimated:YES];
                                 }
                             };
-                            [strongself.navigationController pushViewController:input animated:YES];
+                            [weakself.navigationController pushViewController:input animated:YES];
                         }
                     }
 

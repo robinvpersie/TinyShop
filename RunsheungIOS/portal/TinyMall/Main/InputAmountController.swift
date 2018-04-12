@@ -34,7 +34,7 @@ class InputAmountController: BaseViewController {
         scrollView.addSubview(whiteWarrperView)
         
         let topImageView = UIImageView()
-        topImageView.image = UIImage(named: "")
+        topImageView.image = UIImage(named: "img_default_business")
         scrollView.addSubview(topImageView)
         
         let titlelb = UILabel()
