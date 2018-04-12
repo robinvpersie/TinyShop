@@ -275,6 +275,11 @@
                             NSString *numcode = components.query;
                             InputAmountController *input = [[InputAmountController alloc] init];
                             input.numcode = numcode;
+                            input.payCompletion = ^(BOOL state) {
+                                if (state) {
+                                    [weakself.navigationController popViewControllerAnimated:YES];
+                                }
+                            };
                             [strongself.navigationController pushViewController:input animated:YES];
                         }
                     }

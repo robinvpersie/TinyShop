@@ -16,6 +16,7 @@ class InputAmountController: BaseViewController {
     var scrollView: TPKeyboardAvoidingScrollView!
     var amountField: UITextField!
     @objc var numcode: String!
+    @objc var payCompletion: ((Bool) -> ())?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,11 +140,14 @@ class InputAmountController: BaseViewController {
                             let json = JSON(json)
                             if json["status"].string == "1" {
                                 passwordView.requestComplete(true, message: "success")
+                                this.payCompletion?(true)
                             } else {
                                 passwordView.requestComplete(false, message: json["msg"].string)
+                                this.payCompletion?(false)
                             }
                         case .failure(let error):
                             passwordView.requestComplete(false, message: error.localizedDescription)
+                            this.payCompletion?(false)
                         }
                     }
                 } else {
