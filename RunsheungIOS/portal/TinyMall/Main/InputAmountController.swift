@@ -9,11 +9,14 @@
 import UIKit
 import TPKeyboardAvoiding
 import SnapKit
+import SwiftyJSON
 
 class InputAmountController: BaseViewController {
     
     var scrollView: TPKeyboardAvoidingScrollView!
     var amountField: UITextField!
+    @objc var numcode: String!
+    @objc var payCompletion: ((Bool) -> ())?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +34,7 @@ class InputAmountController: BaseViewController {
         scrollView.addSubview(whiteWarrperView)
         
         let topImageView = UIImageView()
-        topImageView.image = UIImage(named: "")
+        topImageView.image = UIImage(named: "img_default_business")
         scrollView.addSubview(topImageView)
         
         let titlelb = UILabel()
@@ -108,20 +111,54 @@ class InputAmountController: BaseViewController {
         
         
         whiteWarrperView.snp.makeConstraints { (make) in
-//            make.leading.equalTo(scrollView).offset(ratioWidth(15))
-//            make.trailing.equalTo(scrollView).offset(-ratioWidth(15))
             make.width.equalTo(scrollView).offset(-ratioWidth(30))
             make.centerX.equalTo(scrollView)
             make.top.equalTo(scrollView).offset(ratioHeight(15))
             make.bottom.equalTo(payBtn).offset(20)
             make.bottom.equalTo(scrollView).offset(-20)
         }
-    
     }
     
     @objc func pay() {
+        guard let amount = amountField.text,
+            !amount.isEmpty else {
+            showMessage("금액을 입력하세요")
+            return
+        }
         
+        let passwordView = CYPasswordView()
+        passwordView.title = "결제 비밀번호를 입력해주세요"
+        passwordView.loadingText = "결제중..."
+        passwordView.show(in: view.window!)
+        passwordView.finish = { [weak self] password in
+            guard let this = self else { return }
+            if let password = password, let account = YCAccountModel.getAccount() {
+                    let target = PayTarget(password: password, customCode: account.customCode, storeCustomCode: this.numcode, amount: this.amountField.text!)
+                    target.pay { result in
+                        switch result {
+                        case .success(let json):
+                            let json = JSON(json)
+                            if json["status"].string == "1" {
+                                passwordView.requestComplete(true, message: "success")
+                                this.payCompletion?(true)
+                            } else {
+                                passwordView.requestComplete(false, message: json["msg"].string)
+                                this.payCompletion?(false)
+                            }
+                        case .failure(let error):
+                            passwordView.requestComplete(false, message: error.localizedDescription)
+                            this.payCompletion?(false)
+                        }
+                    }
+                } else {
+                    this.goToLogin(completion: nil)
+                }
+            
+        }
+    
     }
+    
+   
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

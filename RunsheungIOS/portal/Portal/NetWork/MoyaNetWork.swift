@@ -13,34 +13,35 @@ import Alamofire
 
 #if !DEBUG // 判断是否在测试环境下
     
-let portalBaseURL = "http://portal.dxbhtm.com:8488"
-let mediaBaseURL = "http://klcm.dxbhtm.com:81"
-let MediaPlayVideoURL = "http://klcm.dxbhtm.com:89"
-let PortalAddressURL = "https://portal.dxbhtm.com"
-let canteenURL = "http://foodapi.dxbhtm.com:843"
-let superMarketURL = "http://pay.dxbhtm.com:81"
-let shopURL = "http://api1.dxbhtm.com:82"
-let shopbURL = "http://pay.dxbhtm.com:81"
-let cancleURI = "http://api1.dxbhtm.com:8088"
-let offURI = "http://editapi.dxbhtm.com:8866"
-let pointURI = "http://api.dxbhtm.com:8083"
-let recommendURI = "http://api1.dxbhtm.com:7778"
-
+private let portalBaseURL = "http://portal.dxbhtm.com:8488"
+private let mediaBaseURL = "http://klcm.dxbhtm.com:81"
+private let MediaPlayVideoURL = "http://klcm.dxbhtm.com:89"
+private let PortalAddressURL = "https://portal.dxbhtm.com"
+private let canteenURL = "http://foodapi.dxbhtm.com:843"
+private let superMarketURL = "http://pay.dxbhtm.com:81"
+private let shopURL = "http://api1.dxbhtm.com:82"
+private let shopbURL = "http://pay.dxbhtm.com:81"
+private let cancleURI = "http://api1.dxbhtm.com:8088"
+private let offURI = "http://editapi.dxbhtm.com:8866"
+private let pointURI = "http://api.dxbhtm.com:8083"
+private let recommendURI = "http://api1.dxbhtm.com:7778"
+private let payURL = "http://api1.gigawon.co.kr:82"
 #else
 
-let portalBaseURL = "http://portal.gigawon.co.kr:8488"
-let mediaBaseURL = "http://klcm.dxbhtm.com:81"
-let MediaPlayVideoURL = "http://klcm.dxbhtm.com:89"
-let PortalAddressURL = "https://portal.dxbhtm.com"
-let canteenURL = "http://foodapi.dxbhtm.com:843"
-let superMarketURL = "http://pay.dxbhtm.com:81"
-let shopURL = "http://api1.dxbhtm.com:82"
-let shopbURL = "http://pay.dxbhtm.com:81"
-let cancleURI = "http://api1.dxbhtm.com:8088"
-let offURI = "http://editapi.dxbhtm.com:8866"
-let pointURI = "http://api.dxbhtm.com:8083"
-let editProileURI = "http://rsmember.dxbhtm.com:8800"
-let recommendURI = "http://api1.dxbhtm.com:7778"
+private let portalBaseURL = "http://portal.gigawon.co.kr:8488"
+private let mediaBaseURL = "http://klcm.dxbhtm.com:81"
+private let MediaPlayVideoURL = "http://klcm.dxbhtm.com:89"
+private let PortalAddressURL = "https://portal.dxbhtm.com"
+private let canteenURL = "http://foodapi.dxbhtm.com:843"
+private let superMarketURL = "http://pay.dxbhtm.com:81"
+private let shopURL = "http://api1.dxbhtm.com:82"
+private let shopbURL = "http://pay.dxbhtm.com:81"
+private let cancleURI = "http://api1.dxbhtm.com:8088"
+private let offURI = "http://editapi.dxbhtm.com:8866"
+private let pointURI = "http://api.dxbhtm.com:8083"
+private let editProileURI = "http://rsmember.dxbhtm.com:8800"
+private let recommendURI = "http://api1.dxbhtm.com:7778"
+private let payURL = "http://api1.gigawon.co.kr:82"
 #endif
 
 
@@ -58,6 +59,7 @@ public enum BaseType {
     case point
     case editProfile
     case recommend
+    case pay
     
     var baseURL: String{
         switch self {
@@ -87,6 +89,8 @@ public enum BaseType {
             return editProileURI
         case .recommend:
             return recommendURI
+        case .pay:
+            return payURL
         }
     }
     

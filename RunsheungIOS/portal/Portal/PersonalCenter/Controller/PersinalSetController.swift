@@ -47,7 +47,7 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
         var numberOfRows: Int {
             switch self {
             case .sexAndNickName:
-                return 2
+                return 1
             default:
                 return 1
             }
