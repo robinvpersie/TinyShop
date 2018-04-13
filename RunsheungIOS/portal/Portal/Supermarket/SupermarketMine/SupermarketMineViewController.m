@@ -82,8 +82,11 @@
 	_imageNames = @[@"icon_myaddress",
                     @"icon_coupon",
                     @"icon_notice",
-                    @"icon_setting2",
-                    @"icon_collection2"];
+//                    @"icon_setting2",
+//                    @"icon_collection2"
+                    @"icon_collection2",
+                    @"icon_setting2"
+                    ];
     
 	_titles = @[NSLocalizedString(@"SupermarketMyOrderWaitPay", nil),
             NSLocalizedString(@"SupermarketMyOrderWaitReceive", nil),
@@ -219,9 +222,11 @@
         } else if (indexPath.row == 2) {
             cell.textLabel.text = @"리뷰관리";
         } else if (indexPath.row == 3) {
-            cell.textLabel.text = @"환경설정";
+             cell.textLabel.text = @"찜하기";
+//            cell.textLabel.text = @"환경설정";
         } else {
-            cell.textLabel.text = @"찜하기";
+             cell.textLabel.text = @"환경설정";
+//            cell.textLabel.text = @"찜하기";
         }
     }
     return cell;
@@ -264,15 +269,22 @@
                 
             } else if (indexPath.row == 3) {
                 
+//                PersinalSetController *personal = [[PersinalSetController alloc] init];
+//                personal.hidesBottomBarWhenPushed = YES;
+//                [weakself.navigationController pushViewController:personal animated:YES];
+                SupermarketMyCollectionViewController *mycollection = [[SupermarketMyCollectionViewController alloc] init];
+                mycollection.hidesBottomBarWhenPushed = YES;
+                [weakself.navigationController pushViewController:mycollection animated:YES];
+                
+            } else {
+                
                 PersinalSetController *personal = [[PersinalSetController alloc] init];
                 personal.hidesBottomBarWhenPushed = YES;
                 [weakself.navigationController pushViewController:personal animated:YES];
                 
-            } else {
-                
-                SupermarketMyCollectionViewController *mycollection = [[SupermarketMyCollectionViewController alloc] init];
-                mycollection.hidesBottomBarWhenPushed = YES;
-                [weakself.navigationController pushViewController:mycollection animated:YES];
+//                SupermarketMyCollectionViewController *mycollection = [[SupermarketMyCollectionViewController alloc] init];
+//                mycollection.hidesBottomBarWhenPushed = YES;
+//                [weakself.navigationController pushViewController:mycollection animated:YES];
                 
             }
         } else {
