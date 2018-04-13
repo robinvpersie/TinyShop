@@ -540,33 +540,58 @@
     self.allSellectedButton = selectAll;
     
     collectionMoveShoppingCart = [UIButton buttonWithType:UIButtonTypeCustom];
-    collectionMoveShoppingCart.frame = CGRectMake(backgroundView.frame.size.width - 15 - 30, 4, 30, 30);
+   // collectionMoveShoppingCart.frame = CGRectMake(backgroundView.frame.size.width - 15 - 30, 4, 30, 30);
     [collectionMoveShoppingCart setImage:[UIImage imageNamed:@"shopping_cart"] forState:UIControlStateNormal];
     collectionMoveShoppingCart.imageEdgeInsets = UIEdgeInsetsMake(0,0,0,0);
     [collectionMoveShoppingCart addTarget:self action:@selector(movetoCart) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:collectionMoveShoppingCart];
     
     collectionMoveShoppingCartTitle = [UIButton buttonWithType:UIButtonTypeCustom];
-    collectionMoveShoppingCartTitle.frame = CGRectMake(collectionMoveShoppingCart.frame.origin.x - 3, CGRectGetMaxY(collectionMoveShoppingCart.frame)-5, collectionMoveShoppingCart.frame.size.width+8, 20);
+    //collectionMoveShoppingCartTitle.frame = CGRectMake(collectionMoveShoppingCart.frame.origin.x - 3, CGRectGetMaxY(collectionMoveShoppingCart.frame)-5, collectionMoveShoppingCart.frame.size.width+8, 20);
     [collectionMoveShoppingCartTitle setTitle:NSLocalizedString(@"SupermarketTabShoppingCart", nil) forState:UIControlStateNormal];
     [collectionMoveShoppingCartTitle setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     collectionMoveShoppingCartTitle.titleLabel.font = [UIFont systemFontOfSize:10];
     [backgroundView addSubview:collectionMoveShoppingCartTitle];
     
+  
+    [collectionMoveShoppingCart mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(collectionMoveShoppingCartTitle);
+        make.top.equalTo(backgroundView).offset(5);
+        make.width.height.equalTo(@20);
+    }];
+    
+    [collectionMoveShoppingCartTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(backgroundView).offset(-3);
+      
+        // make.bottom.equalTo(backgroundView).offset(-5);
+        make.top.equalTo(collectionMoveShoppingCart.mas_bottom).offset(3);
+    }];
+    
     collectionDelete = [UIButton buttonWithType:UIButtonTypeCustom];
-    collectionDelete.frame = CGRectMake(CGRectGetMinX(collectionMoveShoppingCart.frame) - 10 - 30, collectionMoveShoppingCart.frame.origin.y, 22, 30);
+    //collectionDelete.frame = CGRectMake(CGRectGetMinX(collectionMoveShoppingCart.frame) - 10 - 30, collectionMoveShoppingCart.frame.origin.y, 22, 30);
     collectionDelete.imageEdgeInsets = UIEdgeInsetsMake(0,0,0,0);
     [collectionDelete addTarget:self action:@selector(deleteCollection) forControlEvents:UIControlEventTouchUpInside];
     [collectionDelete setImage:[UIImage imageNamed:@"collection_delete"] forState:UIControlStateNormal];
     [backgroundView addSubview:collectionDelete];
     
     collectionDeleteTile = [UIButton buttonWithType:UIButtonTypeCustom];
-    collectionDeleteTile.frame = CGRectMake(collectionDelete.frame.origin.x - 2, CGRectGetMaxY(collectionDelete.frame)-5, CGRectGetWidth(collectionDelete.frame) + 5, 20);
+   // collectionDeleteTile.frame = CGRectMake(collectionDelete.frame.origin.x - 2, CGRectGetMaxY(collectionDelete.frame)-5, CGRectGetWidth(collectionDelete.frame) + 5, 20);
     [collectionDeleteTile addTarget:self action:@selector(deleteCollection) forControlEvents:UIControlEventTouchUpInside];
     [collectionDeleteTile setTitle:NSLocalizedString(@"SMDeleteTitle", nil) forState:UIControlStateNormal];
     [collectionDeleteTile setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     collectionDeleteTile.titleLabel.font = [UIFont systemFontOfSize:10];
     [backgroundView addSubview:collectionDeleteTile];
+    
+    [collectionDelete mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(collectionDeleteTile);
+        make.width.height.equalTo(@20);
+        make.top.equalTo(backgroundView).offset(5);
+    }];
+    
+    [collectionDeleteTile mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(collectionMoveShoppingCartTitle.mas_left).offset(-10);
+        make.bottom.equalTo(collectionMoveShoppingCartTitle);
+    }];
 }
 
 -(void)setDivCode:(NSString *)divCode{
