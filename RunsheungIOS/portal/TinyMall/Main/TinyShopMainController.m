@@ -305,21 +305,21 @@
 - (void)setNaviBar{
 	
 	self.navigationController.navigationBar.barTintColor = RGB(60, 60, 60);
-	UIButton *right1Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 15, 10)];
+	UIButton *right1Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
 	[right1Btn setImage:[UIImage imageNamed:@"icon_scanss"] forState:UIControlStateNormal];
 	right1Btn.imageEdgeInsets = UIEdgeInsetsMake(0, 7, 0, -7);
 	right1Btn.tag = 2004;
 	[right1Btn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
 	UIBarButtonItem *right1Item = [[UIBarButtonItem alloc]initWithCustomView:right1Btn];
 	
-	UIButton *right2Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 15, 10)];
+	UIButton *right2Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
 	[right2Btn setImage:[UIImage imageNamed:@"icon_live_bottom"] forState:UIControlStateNormal];
 	UIBarButtonItem *right2Item = [[UIBarButtonItem alloc]initWithCustomView:right2Btn];
 	[right2Btn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
 	right2Btn.tag = 2005;
 	[self.navigationItem setRightBarButtonItems:@[right1Item,right2Item]];
 	
-	UIButton *leftBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+	UIButton *leftBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
 	[leftBtn setImage:[UIImage imageNamed:@"icon_searchhotel"] forState:UIControlStateNormal];
 	UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:leftBtn];
 	[leftBtn addTarget:self action:@selector(SearchBtn:) forControlEvents:UIControlEventTouchUpInside];

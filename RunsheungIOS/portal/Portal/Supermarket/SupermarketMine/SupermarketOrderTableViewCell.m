@@ -256,7 +256,7 @@
                 if (day > 0 || hour > 0 || minute > 0 || second > 0) {
                     [_pay setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
                     _pay.frame = CGRectMake(APPScreenWidth - 160 - 15, _checklogistics.frame.origin.y, 160, _checklogistics.frame.size.height);
-                    [_pay setTitle:[NSString stringWithFormat:@"%@%ld分%ld秒)",NSLocalizedString(@"SMGoPayMsg", nil),minute,second] forState:UIControlStateNormal];
+                    [_pay setTitle:[NSString stringWithFormat:@"%@%ld분%ld초)",NSLocalizedString(@"SMGoPayMsg", nil),minute,second] forState:UIControlStateNormal];
                     _statusLabel.text = NSLocalizedString(@"SMOrderWaitPayStatus", nil);
                     _deleteOrder.frame = CGRectMake(CGRectGetMinX(_pay.frame)-15 - ButtonWidth, _pay.frame.origin.y, ButtonWidth, _pay.frame.size.height);
 

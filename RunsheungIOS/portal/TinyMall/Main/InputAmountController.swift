@@ -22,7 +22,7 @@ class InputAmountController: BaseViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.groupTableViewBackground
-        title = "付款".localized
+        title = "결제".localized
         
         scrollView = TPKeyboardAvoidingScrollView()
         scrollView.keyboardDismissMode = .onDrag
@@ -39,7 +39,7 @@ class InputAmountController: BaseViewController {
         
         let titlelb = UILabel()
         titlelb.textColor = UIColor.darkText
-        titlelb.text = "向商家付款".localized
+        titlelb.text = "금액을 입력해주십시요".localized
         titlelb.font = UIFont.systemFont(ofSize: 18)
         scrollView.addSubview(titlelb)
         
@@ -54,14 +54,14 @@ class InputAmountController: BaseViewController {
         inputWrapper.addSubview(moneylb)
         
         amountField = UITextField()
-        amountField.placeholder = "请输入付款金额".localized
+        amountField.placeholder = "상가에게 결제".localized
         amountField.delegate = self
         amountField.keyboardType = .numberPad
         amountField.textAlignment = .right
         inputWrapper.addSubview(amountField)
         
         let payBtn = UIButton(type: .custom)
-        payBtn.setTitle("付款".localized, for: .normal)
+        payBtn.setTitle("결제".localized, for: .normal)
         payBtn.setTitleColor(UIColor.white, for: .normal)
         payBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         payBtn.layer.backgroundColor = UIColor(red: 32, green: 183, blue: 58).cgColor
@@ -132,25 +132,39 @@ class InputAmountController: BaseViewController {
         passwordView.show(in: view.window!)
         passwordView.finish = { [weak self] password in
             guard let this = self else { return }
-            if let password = password, let account = YCAccountModel.getAccount() {
+            passwordView.hideKeyboard()
+            if let password = password,
+               let account = YCAccountModel.getAccount() {
                     let target = PayTarget(password: password, customCode: account.customCode, storeCustomCode: this.numcode, amount: this.amountField.text!)
+                    passwordView.startLoading()
                     target.pay { result in
+                        passwordView.stopLoading()
                         switch result {
                         case .success(let json):
                             let json = JSON(json)
                             if json["status"].string == "1" {
                                 passwordView.requestComplete(true, message: "success")
-                                this.payCompletion?(true)
+                                delay(2, work: {
+                                    passwordView.hide()
+                                    this.payCompletion?(true)
+                                })
                             } else {
                                 passwordView.requestComplete(false, message: json["msg"].string)
-                                this.payCompletion?(false)
-                            }
-                        case .failure(let error):
+                                delay(2, work: {
+                                    passwordView.hide()
+                                    this.payCompletion?(false)
+                                })
+                              }
+                          case .failure(let error):
                             passwordView.requestComplete(false, message: error.localizedDescription)
-                            this.payCompletion?(false)
-                        }
+                            delay(1.5, work: {
+                                passwordView.hide()
+                                this.payCompletion?(false)
+                            })
+                         }
                     }
                 } else {
+                    passwordView.hide()
                     this.goToLogin(completion: nil)
                 }
             

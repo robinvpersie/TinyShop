@@ -9,13 +9,13 @@
 import Foundation
 
 
-public typealias CancelableTask = (_ cancel:Bool) -> Void
+public typealias CancelableTask = (_ cancel: Bool) -> Void
 public typealias WorkBlock = () -> Void
 
 @discardableResult
-public func delay(_ time:TimeInterval,work:@escaping WorkBlock) -> CancelableTask? {
-    var finalTask:CancelableTask?
-    let cancelTask:CancelableTask = { cancel in
+public func delay(_ time: TimeInterval, work:@escaping WorkBlock) -> CancelableTask? {
+    var finalTask: CancelableTask?
+    let cancelTask: CancelableTask = { cancel in
         if cancel {
            finalTask = nil
         }else {

@@ -19,8 +19,9 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
 
 @interface SupermarketNewAddessController ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, STPickerAreaDelegate>
 
-@property(nonatomic, strong) UITableView *tableView;
-@property(nonatomic, assign) NSString *region;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, assign) NSString *region;
+@property (nonatomic, assign) NSString *postcd;
 
 @end
 
@@ -92,6 +93,7 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
 -(void)setAddressModel:(MarketModel *)addressModel {
     _addressModel = addressModel;
     _region = addressModel.zip_name;
+     
     [self.tableView reloadData];
 }
 
@@ -165,14 +167,14 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             cell.textLabel.text = NSLocalizedString(@"SMAdressLocation", nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
           
-            UILabel *msg = [[UILabel alloc] initWithFrame:CGRectMake(APPScreenWidth - 100 - 40,  CGRectGetHeight(cell.contentView.frame)/2 - 15, 100, 30)];
-            msg.textColor = [UIColor lightGrayColor];
-            msg.font = [UIFont systemFontOfSize:13];
-            msg.text = NSLocalizedString(@"SMAdressChoose", nil);
-            msg.textAlignment = NSTextAlignmentRight;
-            [cell.contentView addSubview:msg];
-            
-            _msg = msg;
+//            UILabel *msg = [[UILabel alloc] initWithFrame:CGRectMake(APPScreenWidth - 100 - 40,  CGRectGetHeight(cell.contentView.frame)/2 - 15, 100, 30)];
+//            msg.textColor = [UIColor lightGrayColor];
+//            msg.font = [UIFont systemFontOfSize:13];
+//            msg.text = NSLocalizedString(@"SMAdressChoose", nil);
+//            msg.textAlignment = NSTextAlignmentRight;
+//            [cell.contentView addSubview:msg];
+//
+//            _msg = msg;
             
             CGFloat width = [UILabel getWidthWithTitle:cell.textLabel.text font:cell.textLabel.font];
             
@@ -183,14 +185,14 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             address.font = [UIFont systemFontOfSize:15];
             _addressLabel = address;
             
-            if (self.region.length > 0) {
-                _addressLabel.hidden = NO;
+//            if (self.region != nil && self.region.length > 0) {
+         
                 _addressLabel.text = self.region;
-                _msg.hidden = NO;
-            } else {
-                _addressLabel.hidden = YES;
-                _msg.hidden = NO;
-            }
+//                _msg.hidden = NO;
+//            } else {
+//                _addressLabel.hidden = YES;
+//                _msg.hidden = NO;
+//            }
             
 //            if (_addressModel.zip_name.length > 0) {
 //                _addressLabel.hidden = NO;
@@ -204,7 +206,7 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             [address mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(cell.contentView);
                 make.leading.equalTo(cell.contentView).offset(width + 25);
-                make.width.equalTo(@(APPScreenWidth - width - 10));
+                make.width.equalTo(@(APPScreenWidth - width - 40));
             }];
             
         } else if (indexPath.row == 1) {
@@ -215,6 +217,7 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             _gidField.placeholder = NSLocalizedString(@"SMAdressZipCode", nil);
             _gidField.textColor = [UIColor darkGrayColor];
             _gidField.font = [UIFont systemFontOfSize:15];
+            _gidField.text = self.postcd;
             [cell.contentView addSubview: _gidField];
 //            if (_addressModel.zip_name.length > 0) {
 //                _gidField.text = _addressModel.zip_name;
@@ -241,15 +244,18 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.section == 1 && indexPath.row == 0) {
         SearchKoreaAddress *search = [[SearchKoreaAddress alloc] init];
-        __weak typeof(self) weakself = self;
+     
         search.selectAction = ^(NSDictionary * dic) {
-            _addressLabel.hidden = NO;
-            _msg.hidden = YES;
-            weakself.region = dic[@"address"];
-           _gidField.text = dic[@"postcd"];
-            [weakself.tableView reloadData];
+//            _addressLabel.hidden = NO;
+//            _msg.hidden = YES;
+//             _gidField.text = dic[@"postcd"];
+//             _addressLabel.text = dic[@"address"];
+            self.region = dic[@"address"];
+            self.postcd = dic[@"postcd"];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
         };
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:search];
         [self presentViewController:nav animated:YES completion:nil];
