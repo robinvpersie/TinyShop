@@ -183,14 +183,14 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             address.font = [UIFont systemFontOfSize:15];
             _addressLabel = address;
             
-            if (self.region.length > 0) {
+//            if (self.region != nil && self.region.length > 0) {
                 _addressLabel.hidden = NO;
                 _addressLabel.text = self.region;
                 _msg.hidden = NO;
-            } else {
-                _addressLabel.hidden = YES;
-                _msg.hidden = NO;
-            }
+//            } else {
+//                _addressLabel.hidden = YES;
+//                _msg.hidden = NO;
+//            }
             
 //            if (_addressModel.zip_name.length > 0) {
 //                _addressLabel.hidden = NO;
@@ -241,15 +241,15 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.section == 1 && indexPath.row == 0) {
         SearchKoreaAddress *search = [[SearchKoreaAddress alloc] init];
-        __weak typeof(self) weakself = self;
+     
         search.selectAction = ^(NSDictionary * dic) {
             _addressLabel.hidden = NO;
             _msg.hidden = YES;
-            weakself.region = dic[@"address"];
-           _gidField.text = dic[@"postcd"];
-            [weakself.tableView reloadData];
+             _gidField.text = dic[@"postcd"];
+             _addressLabel.text = dic[@"address"];
         };
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:search];
         [self presentViewController:nav animated:YES completion:nil];
