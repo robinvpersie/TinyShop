@@ -587,7 +587,7 @@
                     [self showMessage:response[@"message"] interval:1.2 completionAction:nil];
                 }
             } failure:^(NSError *err) {
-                [self showMessage:@"加入失败" interval:1.2 completionAction:nil];
+                [self showMessage:@"add failure" interval:1.2 completionAction:nil];
             }];
         }
     }];

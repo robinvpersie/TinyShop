@@ -269,6 +269,7 @@
              if (sender.tag == 2004) {
 
                 ZFScanViewController *scanVC = [[ZFScanViewController alloc] init];
+                 scanVC.autoGoBack = YES;
                 __weak typeof(self) weakself = self;
                 scanVC.returnScanBarCodeValue = ^(NSString *barCodeString) {
                     NSURLComponents *components = [[NSURLComponents alloc] initWithString:barCodeString];
