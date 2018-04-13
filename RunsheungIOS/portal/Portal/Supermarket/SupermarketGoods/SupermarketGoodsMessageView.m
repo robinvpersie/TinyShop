@@ -98,8 +98,8 @@
         _location.textColor = [UIColor lightGrayColor];
         _location.font = [UIFont systemFontOfSize:12];
     }
-    [self addSubview:_location];
-    
+//    [self addSubview:_location];
+	
     if (_additonalLabel == nil) {
         _additonalLabel = [[UILabel alloc] initWithFrame:CGRectMake(_titleLabel.frame.origin.x, CGRectGetMaxY(_saleAmountLabel.frame)+5, 150, 20)];
         _additonalLabel.textColor = RGB(246, 57, 55);

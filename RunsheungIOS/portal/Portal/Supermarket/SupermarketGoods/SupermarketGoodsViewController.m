@@ -307,6 +307,7 @@
 	_checkView.msgArray = goods.features;
 	
 	store.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"SMGoodsStockWay", nil),goods.storage];
+	store.hidden = YES;
 	number.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"SMGoodsGoodsCode", nil),goods.itemCode];
 	
 	if (goods.stock.integerValue == 0) {
