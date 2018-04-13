@@ -277,6 +277,7 @@
                         if ([components.host isEqualToString:@"qrPay"]) {
                             NSString *numcode = components.query;
                             InputAmountController *input = [[InputAmountController alloc] init];
+                            input.hidesBottomBarWhenPushed = YES;
                             input.numcode = numcode;
                             input.payCompletion = ^(BOOL state) {
                                 if (state) {
