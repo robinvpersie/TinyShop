@@ -88,9 +88,11 @@
                     @"icon_setting2"
                     ];
     
-	_titles = @[NSLocalizedString(@"SupermarketMyOrderWaitPay", nil),
+	_titles = @[
+                NSLocalizedString(@"SupermarketMyOrderWaitPay", nil),
             NSLocalizedString(@"SupermarketMyOrderWaitReceive", nil),
-            NSLocalizedString(@"SupermarketMyOrderWaitComment", nil)];
+            NSLocalizedString(@"SupermarketMyOrderWaitComment", nil)
+                ];
     
 	_footerImageNames = @[@"Icon_stay", @"Iocn_sh", @"Iocn_evaluate"];
 	
