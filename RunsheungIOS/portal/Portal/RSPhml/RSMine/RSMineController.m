@@ -34,6 +34,7 @@
     titleView.text = @"我";
     titleView.textAlignment = NSTextAlignmentCenter;
     self.tabBarController.navigationItem.titleView = titleView;
+	
     
 }
 @end

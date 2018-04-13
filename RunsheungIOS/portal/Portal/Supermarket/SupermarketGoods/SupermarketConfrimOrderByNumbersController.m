@@ -38,6 +38,7 @@
 @property(nonatomic, strong) UILabel *priceLabel;
 //三种支付方式
 @property(nonatomic, strong) UIButton *gigaPay;
+@property (nonatomic, strong)UIButton *lgplusPay;
 @property(nonatomic, strong) UIButton *wechatPay;
 @property(nonatomic, strong) UIButton *aliPay;
 @property(nonatomic, strong) UIButton *unionPay;
@@ -118,8 +119,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-	_payWayTitle =  @[NSLocalizedString(@"宇成支付", nil),NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"AliPay", nil),NSLocalizedString(@"UnionPay", nil)];
-	_payWayIcons = @[@"ico_gigapay",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
+	_payWayTitle =  @[NSLocalizedString(@"气加支付", nil),@"U+",NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"AliPay", nil),NSLocalizedString(@"UnionPay", nil)];
+	_payWayIcons = @[@"ico_gigapay",@"uplus",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
 	
 	/** 注册取消按钮点击的通知 */
     [CYNotificationCenter addObserver:self selector:@selector(cancelInputPWD) name:CYPasswordViewCancleButtonClickNotification object:nil];
@@ -433,13 +434,15 @@
         NSString *paytype;
 		if (_gigaPay.selected == YES) {//giga支付
 			paytype = @"1";
+		}else if (_lgplusPay.selected == YES) {//lg+ 支付
+			paytype = @"2";
 		}else if (_wechatPay.selected == YES) {//微信支付
-            paytype = @"2";
-        }else if (_aliPay.selected == YES){//支付宝
-            paytype = @"3";
-        }else if (_unionPay.selected == YES){//银联
-            paytype = @"4";
-        }
+			paytype = @"3";
+		}else if (_aliPay.selected == YES){//支付宝
+			paytype = @"4";
+		}else if (_unionPay.selected == YES){//银联
+			paytype = @"5";
+		}
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeText;
         hud.label.text = @"正在生成订单...";
@@ -497,6 +500,12 @@
 						
 					};
 					
+				}else if ([paytype isEqualToString:@"2"]){
+					LGwebViewController *lgupay = [LGwebViewController new];
+					lgupay.hidesBottomBarWhenPushed = YES;
+					[lgupay loadRequestUrlWithOrderNumber:orderCode OrderMoney:actualMoney OrderUserName:@"%EA%B9%80%EB%8F%84%EC%84%B1" GiftInfo:@"api%EC%83%88%EB%A1%9C%20%EB%B0%9B%EC%9D%84%EA%B2%83"];
+					[self.navigationController pushViewController:lgupay animated:YES];
+
 				}
 
 //				if ([paytype isEqualToString:@"2"]) {
@@ -682,15 +691,18 @@
 			self.gigaPay.selected = YES;
 		}
 		if (indexPath.row == 1) {
-            self.wechatPay = check;
-        }
-        if (indexPath.row == 2) {
-            self.aliPay = check;
-        }
-        if (indexPath.row == 3) {
-            self.unionPay = check;
-        }
-        
+			self.lgplusPay = check;
+		}
+		if (indexPath.row == 2) {
+			self.wechatPay = check;
+		}
+		if (indexPath.row == 3) {
+			self.aliPay = check;
+		}
+		if (indexPath.row == 4) {
+			self.unionPay = check;
+		}
+
         [check addTarget:self action:@selector(checkPayWay:) forControlEvents:UIControlEventTouchUpInside];
         
         return cell;
@@ -930,26 +942,36 @@
 - (void)checkPayWay:(UIButton *)button {
     button.selected = YES;
 	if (button == self.gigaPay) {
-		_aliPay.selected = NO;
 		_unionPay.selected = NO;
+		_aliPay.selected = NO;
+		_wechatPay.selected = NO;
+		_lgplusPay.selected = NO;
+	}
+	if (button == self.lgplusPay) {
+		_unionPay.selected = NO;
+		_aliPay.selected = NO;
+		_gigaPay.selected = NO;
 		_wechatPay.selected = NO;
 	}
-
-    if (button == self.wechatPay) {
-        _aliPay.selected = NO;
-        _unionPay.selected = NO;
+	
+	if (button == self.wechatPay) {
+		_unionPay.selected = NO;
+		_aliPay.selected = NO;
 		_gigaPay.selected = NO;
-    }
-    if (button == self.aliPay) {
-        _wechatPay.selected = NO;
-        _unionPay.selected = NO;
+		_lgplusPay.selected = NO;
+	}
+	if (button == self.aliPay) {
+		_wechatPay.selected = NO;
+		_unionPay.selected = NO;
 		_gigaPay.selected = NO;
-    }
-    if (button == self.unionPay) {
-        _wechatPay.selected = NO;
-        _aliPay.selected = NO;
+		_lgplusPay.selected = NO;
+	}
+	if (button == self.unionPay) {
+		_wechatPay.selected = NO;
+		_aliPay.selected = NO;
 		_gigaPay.selected = NO;
-    }
+		_lgplusPay.selected = NO;
+	}
 }
 
 - (void)selectedAddress:(SupermarketAddressModel *)address {

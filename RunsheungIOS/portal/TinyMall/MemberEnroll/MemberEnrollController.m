@@ -473,6 +473,9 @@
 			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
 			[self presentViewController:personalVC animated:YES completion:nil];
         } else {
+			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
+			SetUserDefault(@"joinKinds", @"2");
+			[self presentViewController:personalVC animated:YES completion:nil];
       }
     }
 }

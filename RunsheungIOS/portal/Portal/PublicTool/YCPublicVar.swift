@@ -83,7 +83,7 @@ public enum payType:Int {
     var cellTitle:String {
         switch self {
         case .yuchengPay:
-            return "宇成支付"
+            return "气加支付"
         case .wechatPay:
             return "微信支付"
         case .aliPay:
