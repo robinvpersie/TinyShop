@@ -63,7 +63,7 @@ class ChangePassWordController: BaseViewController {
             
         confirmBtn = UIButton(type: .custom)
         confirmBtn.frame = CGRect(x: leftEdges, y: newPasswordConfirmfield.maxy + textfieldEdges, width: oldPasswordfield.width, height: oldPasswordfield.height)
-        confirmBtn.setTitle("수정 하시겠습니까", for: .normal)
+        confirmBtn.setTitle("확인", for: .normal)
         confirmBtn.layer.cornerRadius = textfieldHeight/2
         confirmBtn.layer.backgroundColor = UIColor.YClightGrayColor.cgColor
         confirmBtn.isEnabled = false

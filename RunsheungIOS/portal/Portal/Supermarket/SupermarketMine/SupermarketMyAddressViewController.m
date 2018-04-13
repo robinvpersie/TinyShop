@@ -190,7 +190,7 @@
         if ([model.default_add isEqualToString:@"True"]) {
             defaultBtn.selected = !defaultBtn.selected;
             imagview1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cart_selected_btn"]];
-            title.text = @"디폴트 주소";
+            title.text = @"기본 배송지";
             title.textColor = RGB(23, 206, 116);
         }else{
             imagview1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cart_unSelect_btn"]];
@@ -296,7 +296,7 @@
     UIImageView*imageview = (UIImageView*)[sender viewWithTag:1002];
     if (sender.selected) {
         
-        label1.text = @"디폴트 주소";
+        label1.text = @"기본 배송지";
         label1.textColor = RGB(23, 206, 116);
         imageview.image = [UIImage imageNamed:@"cart_selected_btn"];
         
