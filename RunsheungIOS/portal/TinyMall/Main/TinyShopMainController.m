@@ -293,10 +293,10 @@
 
             }else if (sender.tag == 2005){
 
-//				LGwebViewController *lgupay = [LGwebViewController new];
-//				lgupay.hidesBottomBarWhenPushed = YES;
-//				[lgupay loadRequestUrlWithOrderNumber:@"1021804110000000011W" OrderMoney:@"18.00" OrderUserName:@"%EA%B9%80%EB%8F%84%EC%84%B1" GiftInfo:@"api%EC%83%88%EB%A1%9C%20%EB%B0%9B%EC%9D%84%EA%B2%83"];
-//				[self.navigationController pushViewController:lgupay animated:YES];
+				LGwebViewController *lgupay = [LGwebViewController new];
+				lgupay.hidesBottomBarWhenPushed = YES;
+				[lgupay loadRequestUrlWithOrderNumber:@"1021804110000000011W" OrderMoney:@"18.00" OrderUserName:@"%EA%B9%80%EB%8F%84%EC%84%B1" GiftInfo:@"api%EC%83%88%EB%A1%9C%20%EB%B0%9B%EC%9D%84%EA%B2%83"];
+				[self.navigationController pushViewController:lgupay animated:YES];
 				
 
 
@@ -308,14 +308,14 @@
 - (void)setNaviBar{
 	
 	self.navigationController.navigationBar.barTintColor = RGB(60, 60, 60);
-	UIButton *right1Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
+	UIButton *right1Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 15, 10)];
 	[right1Btn setImage:[UIImage imageNamed:@"icon_scanss"] forState:UIControlStateNormal];
 	right1Btn.imageEdgeInsets = UIEdgeInsetsMake(0, 7, 0, -7);
 	right1Btn.tag = 2004;
 	[right1Btn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
 	UIBarButtonItem *right1Item = [[UIBarButtonItem alloc]initWithCustomView:right1Btn];
 	
-	UIButton *right2Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
+	UIButton *right2Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 15, 10)];
 	[right2Btn setImage:[UIImage imageNamed:@"icon_live_bottom"] forState:UIControlStateNormal];
 	UIBarButtonItem *right2Item = [[UIBarButtonItem alloc]initWithCustomView:right2Btn];
 	[right2Btn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];

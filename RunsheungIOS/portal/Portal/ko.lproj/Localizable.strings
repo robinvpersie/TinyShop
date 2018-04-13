@@ -71,6 +71,7 @@
 "SMOrderFinishStatus" = "주문완료";
 "SMOrderCloseTitle" = "주문마감";
 "SMGoPayMsg" = "결제하기(남은 시간)";
+"还剩"="남은시간";
 "SMOrderUseless" = "주문 취소";
 "SMExpressMsg" = "배송비(택배)";
 "SMExpressFree" = "무료배송";

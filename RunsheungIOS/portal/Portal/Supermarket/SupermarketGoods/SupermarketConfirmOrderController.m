@@ -75,7 +75,7 @@
 	self.title = NSLocalizedString(@"SMConfirmOrderTitle", nil);
 	
 	_payWayTitle =  @[NSLocalizedString(@"宇成支付", nil),NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"AliPay", nil),NSLocalizedString(@"UnionPay", nil)];
-	_payWayIcons = @[@"icon_ycpay",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
+	_payWayIcons = @[@"ico_gigapay",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
 	UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_back"] style:UIBarButtonItemStylePlain target:self action:@selector(popController2)];
 	back.tintColor = [UIColor darkGrayColor];
 	self.navigationItem.leftBarButtonItem = back;

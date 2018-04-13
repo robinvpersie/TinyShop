@@ -119,7 +119,7 @@
     [super viewDidLoad];
     
 	_payWayTitle =  @[NSLocalizedString(@"宇成支付", nil),NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"AliPay", nil),NSLocalizedString(@"UnionPay", nil)];
-	_payWayIcons = @[@"icon_ycpay",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
+	_payWayIcons = @[@"ico_gigapay",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
 	
 	/** 注册取消按钮点击的通知 */
     [CYNotificationCenter addObserver:self selector:@selector(cancelInputPWD) name:CYPasswordViewCancleButtonClickNotification object:nil];
