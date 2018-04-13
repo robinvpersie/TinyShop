@@ -165,14 +165,14 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             cell.textLabel.text = NSLocalizedString(@"SMAdressLocation", nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
           
-            UILabel *msg = [[UILabel alloc] initWithFrame:CGRectMake(APPScreenWidth - 100 - 40,  CGRectGetHeight(cell.contentView.frame)/2 - 15, 100, 30)];
-            msg.textColor = [UIColor lightGrayColor];
-            msg.font = [UIFont systemFontOfSize:13];
-            msg.text = NSLocalizedString(@"SMAdressChoose", nil);
-            msg.textAlignment = NSTextAlignmentRight;
-            [cell.contentView addSubview:msg];
-            
-            _msg = msg;
+//            UILabel *msg = [[UILabel alloc] initWithFrame:CGRectMake(APPScreenWidth - 100 - 40,  CGRectGetHeight(cell.contentView.frame)/2 - 15, 100, 30)];
+//            msg.textColor = [UIColor lightGrayColor];
+//            msg.font = [UIFont systemFontOfSize:13];
+//            msg.text = NSLocalizedString(@"SMAdressChoose", nil);
+//            msg.textAlignment = NSTextAlignmentRight;
+//            [cell.contentView addSubview:msg];
+//            
+//            _msg = msg;
             
             CGFloat width = [UILabel getWidthWithTitle:cell.textLabel.text font:cell.textLabel.font];
             
@@ -184,9 +184,9 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             _addressLabel = address;
             
 //            if (self.region != nil && self.region.length > 0) {
-                _addressLabel.hidden = NO;
+         
                 _addressLabel.text = self.region;
-                _msg.hidden = NO;
+//                _msg.hidden = NO;
 //            } else {
 //                _addressLabel.hidden = YES;
 //                _msg.hidden = NO;
@@ -204,7 +204,7 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             [address mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(cell.contentView);
                 make.leading.equalTo(cell.contentView).offset(width + 25);
-                make.width.equalTo(@(APPScreenWidth - width - 10));
+                make.width.equalTo(@(APPScreenWidth - width - 40));
             }];
             
         } else if (indexPath.row == 1) {
@@ -250,6 +250,7 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             _msg.hidden = YES;
              _gidField.text = dic[@"postcd"];
              _addressLabel.text = dic[@"address"];
+       
         };
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:search];
         [self presentViewController:nav animated:YES completion:nil];
