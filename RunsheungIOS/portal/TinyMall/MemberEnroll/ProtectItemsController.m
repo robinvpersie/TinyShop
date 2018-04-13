@@ -38,7 +38,7 @@
 	[cancel addGestureRecognizer:tap];
 	[backImg addSubview:cancel];
 	[cancel mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.width.height.equalTo(@15);
+		make.width.height.equalTo(@20);
 		make.top.equalTo(@30);
 		make.trailing.mas_equalTo(-15);
 	}];

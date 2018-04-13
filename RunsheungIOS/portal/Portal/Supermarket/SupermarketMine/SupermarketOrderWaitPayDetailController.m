@@ -44,7 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _payWayTitles = @[NSLocalizedString(@"宇成支付", nil),NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"UnionPay", nil),NSLocalizedString(@"AliPay", nil)];
+    _payWayTitles = @[NSLocalizedString(@"气加支付", nil),NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"UnionPay", nil),NSLocalizedString(@"AliPay", nil)];
     _payWayImageNames = @[@"ico_gigapay",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:AliPayCancleNotification object:nil];

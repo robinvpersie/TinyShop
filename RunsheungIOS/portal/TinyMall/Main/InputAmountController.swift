@@ -48,7 +48,7 @@ class InputAmountController: BaseViewController {
         scrollView.addSubview(inputWrapper)
         
         let moneylb = UILabel()
-        moneylb.text = "￥"
+        moneylb.text = ""
         moneylb.textColor = UIColor.darkText
         moneylb.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         inputWrapper.addSubview(moneylb)

@@ -52,7 +52,7 @@ class ForgetPassWotdController: BaseViewController {
         
         phoneField = InputFieldView()
         phoneField.font = UIFont.systemFont(ofSize: 14)
-        phoneField.placeHolder = "请输入您的手机号码"
+		phoneField.placeHolder = "휴대전화 번호를 입력해 주세요"
         scrollView.addSubview(phoneField)
         phoneField.snp.makeConstraints { (make) in
             make.centerX.equalTo(scrollView)
@@ -63,7 +63,7 @@ class ForgetPassWotdController: BaseViewController {
         
         messagefield = InputFieldView()
         messagefield.font = UIFont.systemFont(ofSize: 14)
-        messagefield.placeHolder = "请输入短信验证码"
+		messagefield.placeHolder = "인증번호를 입력해 주세요"
         scrollView.addSubview(messagefield)
         messagefield.snp.makeConstraints { (make) in
             make.leading.width.height.equalTo(phoneField)
@@ -72,7 +72,7 @@ class ForgetPassWotdController: BaseViewController {
         
         resetBtn = UIButton(type: .custom)
         resetBtn.addTarget(self, action: #selector(didReset), for: .touchUpInside)
-        resetBtn.setTitle("重置", for: .normal)
+        resetBtn.setTitle("확인", for: .normal)
         resetBtn.setTitleColor(UIColor.white, for: .normal)
         resetBtn.backgroundColor = UIColor(red: 28, green: 141, blue: 36)
         scrollView.addSubview(resetBtn)

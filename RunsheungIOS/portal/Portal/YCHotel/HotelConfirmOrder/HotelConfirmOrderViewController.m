@@ -122,12 +122,12 @@
     NSNumber *isOn = notification.object;
     BOOL usePoint = isOn.boolValue;
     if (usePoint) {
-        self.totalPrice.text = [NSString stringWithFormat:@"￥%@",self.actuaMoney];
+        self.totalPrice.text = [NSString stringWithFormat:@"%@",self.actuaMoney];
         _orderDetailView.point = self.point;
         _orderDetailView.realMoney = self.actuaMoney;
         _orderDetailView.orderMoney = self.orderMoney;
     } else {
-        self.totalPrice.text = [NSString stringWithFormat:@"￥%@",self.orderMoney];
+        self.totalPrice.text = [NSString stringWithFormat:@"%@",self.orderMoney];
         _orderDetailView.point = @"0";
         _orderDetailView.realMoney = self.orderMoney;
         _orderDetailView.orderMoney = self.orderMoney;

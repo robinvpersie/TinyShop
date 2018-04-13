@@ -42,6 +42,7 @@
 @property(nonatomic, strong) NSArray *payWayTitle;
 @property(nonatomic, strong) UIButton *wechatPay;
 @property(nonatomic, strong) UIButton *gigaPay;
+@property (nonatomic, strong)UIButton *lgplusPay;
 @property(nonatomic, strong) UIButton *aliPay;
 @property(nonatomic, strong) UIButton *unionPay;
 @property(nonatomic, strong) UISwitch *canUsePoint;
@@ -74,8 +75,8 @@
 	
 	self.title = NSLocalizedString(@"SMConfirmOrderTitle", nil);
 	
-	_payWayTitle =  @[NSLocalizedString(@"宇成支付", nil),NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"AliPay", nil),NSLocalizedString(@"UnionPay", nil)];
-	_payWayIcons = @[@"ico_gigapay",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
+	_payWayTitle =  @[NSLocalizedString(@"气加支付", nil),@"U+",NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"AliPay", nil),NSLocalizedString(@"UnionPay", nil)];
+	_payWayIcons = @[@"ico_gigapay",@"uplus",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
 	UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_back"] style:UIBarButtonItemStylePlain target:self action:@selector(popController2)];
 	back.tintColor = [UIColor darkGrayColor];
 	self.navigationItem.leftBarButtonItem = back;
@@ -147,9 +148,9 @@
 	}
 	
 	if (_canUsePoint.isOn) {
-		price.text = [NSString stringWithFormat:@"¥%.2f",self.totalPrice+_checkOrderModel.expressPrice.floatValue - _checkOrderModel.canMaxUsePoint.floatValue - totalDecentMoney];
+		price.text = [NSString stringWithFormat:@"%.f",self.totalPrice+_checkOrderModel.expressPrice.floatValue - _checkOrderModel.canMaxUsePoint.floatValue - totalDecentMoney];
 	} else {
-		price.text = [NSString stringWithFormat:@"¥%.2f",self.totalPrice+_checkOrderModel.expressPrice.floatValue - totalDecentMoney];
+		price.text = [NSString stringWithFormat:@"%.f",self.totalPrice+_checkOrderModel.expressPrice.floatValue - totalDecentMoney];
 	}
 	
 	
@@ -316,9 +317,9 @@
 				float totalMoney = self.goodsModel.price.floatValue * _amout;
 				self.totalPrice = totalMoney;
 				if (_canUsePoint.isOn == YES) {
-					price.text = [NSString stringWithFormat:@"¥%.2f",self.totalPrice+_checkOrderModel.expressPrice.floatValue - _checkOrderModel.canMaxUsePoint.floatValue];
+					price.text = [NSString stringWithFormat:@"%.f",self.totalPrice+_checkOrderModel.expressPrice.floatValue - _checkOrderModel.canMaxUsePoint.floatValue];
 				} else {
-					price.text = [NSString stringWithFormat:@"¥%.2f",self.totalPrice+_checkOrderModel.expressPrice.floatValue];
+					price.text = [NSString stringWithFormat:@"%.f",self.totalPrice+_checkOrderModel.expressPrice.floatValue];
 				}
 				
 			}
@@ -340,9 +341,9 @@
 				float totalMoney = self.goodsModel.price.floatValue * _amout;
 				self.totalPrice = totalMoney;
 				if (_canUsePoint.isOn == YES) {
-					price.text = [NSString stringWithFormat:@"¥%.2f",self.totalPrice+_checkOrderModel.expressPrice.floatValue - _checkOrderModel.canMaxUsePoint.floatValue];
+					price.text = [NSString stringWithFormat:@"%.f",self.totalPrice+_checkOrderModel.expressPrice.floatValue - _checkOrderModel.canMaxUsePoint.floatValue];
 				} else {
-					price.text = [NSString stringWithFormat:@"¥%.2f",self.totalPrice+_checkOrderModel.expressPrice.floatValue];
+					price.text = [NSString stringWithFormat:@"%.f",self.totalPrice+_checkOrderModel.expressPrice.floatValue];
 				}
 				
 			}
@@ -514,13 +515,16 @@
 		NSString *paytype;
 		if (_gigaPay.selected == YES) {//宇成支付
 			paytype = @"1";
-		}else if (_wechatPay.selected == YES) {//微信支付
+		}else if (_lgplusPay.selected == YES) {//lg+ 支付
 			paytype = @"2";
-		}else if (_aliPay.selected == YES){//支付宝
+		}else if (_wechatPay.selected == YES) {//微信支付
 			paytype = @"3";
-		}else if (_unionPay.selected == YES){//银联
+		}else if (_aliPay.selected == YES){//支付宝
 			paytype = @"4";
+		}else if (_unionPay.selected == YES){//银联
+			paytype = @"5";
 		}
+		
 		MBProgressHUD *hud1 = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 		[hud1 showAnimated:YES];
 		
@@ -576,6 +580,12 @@
 						
 					};
 					
+				}else if ([paytype isEqualToString:@"2"]){
+					LGwebViewController *lgupay = [LGwebViewController new];
+					lgupay.hidesBottomBarWhenPushed = YES;
+					[lgupay loadRequestUrlWithOrderNumber:orderCode OrderMoney:actualMoney OrderUserName:@"%EA%B9%80%EB%8F%84%EC%84%B1" GiftInfo:@"api%EC%83%88%EB%A1%9C%20%EB%B0%9B%EC%9D%84%EA%B2%83"];
+					[self.navigationController pushViewController:lgupay animated:YES];
+
 				}
 //						if ([paytype isEqualToString:@"2"]) {
 //							[PaymentWay wechatpay:dic1 viewController:weakself];
@@ -677,7 +687,7 @@
 	} else if (section == 2) {
 		return 2;
 	} else if (section == 1) {
-		return 1;
+		return 2;
 	} else {
 		return 2;
 	}
@@ -772,15 +782,16 @@
 			self.gigaPay = check;
 			self.gigaPay.selected = YES;
 		}
-
 		if (indexPath.row == 1) {
-			self.wechatPay = check;
+			self.lgplusPay = check;
 		}
 		if (indexPath.row == 2) {
-			self.aliPay = check;
-			
+			self.wechatPay = check;
 		}
 		if (indexPath.row == 3) {
+			self.aliPay = check;
+		}
+		if (indexPath.row == 4) {
 			self.unionPay = check;
 		}
 		
@@ -1034,21 +1045,32 @@
 		_unionPay.selected = NO;
 		_aliPay.selected = NO;
 		_wechatPay.selected = NO;
+		_lgplusPay.selected = NO;
 	}
+	if (button == self.lgplusPay) {
+		_unionPay.selected = NO;
+		_aliPay.selected = NO;
+		_gigaPay.selected = NO;
+		_wechatPay.selected = NO;
+	}
+
 	if (button == self.wechatPay) {
 		_unionPay.selected = NO;
 		_aliPay.selected = NO;
 		_gigaPay.selected = NO;
+		_lgplusPay.selected = NO;
 	}
 	if (button == self.aliPay) {
 		_wechatPay.selected = NO;
 		_unionPay.selected = NO;
 		_gigaPay.selected = NO;
+		_lgplusPay.selected = NO;
 	}
 	if (button == self.unionPay) {
 		_wechatPay.selected = NO;
 		_aliPay.selected = NO;
 		_gigaPay.selected = NO;
+		_lgplusPay.selected = NO;
 	}
 }
 

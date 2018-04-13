@@ -93,6 +93,9 @@
 	<string>30</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>ispmobile</string>
+		<string>smartxpay-transfer</string>
+		<string>lguthepay</string>
 		<string>comgooglemaps</string>
 		<string>ycapp</string>
 		<string>iosamap</string>
