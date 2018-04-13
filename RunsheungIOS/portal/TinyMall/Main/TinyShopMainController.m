@@ -269,6 +269,7 @@
              if (sender.tag == 2004) {
 
                 ZFScanViewController *scanVC = [[ZFScanViewController alloc] init];
+                 scanVC.autoGoBack = YES;
                 __weak typeof(self) weakself = self;
                 scanVC.returnScanBarCodeValue = ^(NSString *barCodeString) {
                     NSURLComponents *components = [[NSURLComponents alloc] initWithString:barCodeString];
@@ -276,6 +277,7 @@
                         if ([components.host isEqualToString:@"qrPay"]) {
                             NSString *numcode = components.query;
                             InputAmountController *input = [[InputAmountController alloc] init];
+                            input.hidesBottomBarWhenPushed = YES;
                             input.numcode = numcode;
                             input.payCompletion = ^(BOOL state) {
                                 if (state) {
