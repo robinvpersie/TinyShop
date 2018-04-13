@@ -52,8 +52,8 @@ class LGwebViewController: BaseViewController,UIWebViewDelegate {
 extension LGwebViewController{
 	
 	func webViewDidStartLoad(_ webView: UIWebView) {
-		
-		hud.show(animated: true)
+		hud = MBProgressHUD .showAdded(to: self.view, animated: true)
+	    
 	}
 	
 	func webViewDidFinishLoad(_ webView: UIWebView) {

@@ -15,6 +15,9 @@
 
 @property (nonatomic, strong) InputFieldView * phoneInput;
 @property (nonatomic, strong) InputFieldView * codeInput;
+@property (nonatomic, strong) UIButton *getVerfiyBtn;
+@property (nonatomic, assign)int countNumber;
+@property (nonatomic ,strong) NSTimer *timer;
 @end
 
 @implementation StepOneMemEnrollController
@@ -51,13 +54,13 @@
 	self.codeInput.font = [UIFont systemFontOfSize:14];
 	[backImg addSubview: self.codeInput];
 	
-	UIButton *getVerfiyBtn = [UIButton new];
-	[getVerfiyBtn setBackgroundColor:RGB(33, 192, 67)];
-	[getVerfiyBtn setTitle:NSLocalizedString(@"接收验证码", nil)  forState:UIControlStateNormal];
-	[getVerfiyBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
-	[getVerfiyBtn addTarget:self action:@selector(getVerfiyBtn:) forControlEvents:UIControlEventTouchUpInside];
-	[backImg addSubview:getVerfiyBtn];
-	[getVerfiyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+	self.getVerfiyBtn = [UIButton new];
+	[self.getVerfiyBtn setBackgroundColor:RGB(33, 192, 67)];
+	[self.getVerfiyBtn setTitle:NSLocalizedString(@"接收验证码", nil)  forState:UIControlStateNormal];
+	[self.getVerfiyBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+	[self.getVerfiyBtn addTarget:self action:@selector(getVerfiyBtn:) forControlEvents:UIControlEventTouchUpInside];
+	[backImg addSubview:self.getVerfiyBtn];
+	[self.getVerfiyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.height.mas_equalTo(self.codeInput.mas_height);
 		make.top.mas_equalTo(self.codeInput.mas_top);
 		make.trailing.mas_equalTo(-20);
@@ -117,12 +120,38 @@
 }
 
 - (void)getVerfiyBtn:(UIButton*)sender{
-	[KLHttpTool TinySMSloginWithPhone:@"01092792712" Success:^(id response) {
-		
-	} failure:^(NSError *err) {
-		
-	}];
+	if (self.phoneInput.text.length) {
+		[KLHttpTool TinySMSloginWithPhone:self.phoneInput.text Success:^(id response) {
+			if ([response[@"status"] intValue] == 1) {
+				
+				self.countNumber = 60;
+				_timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reverseCount) userInfo:nil  repeats:YES];
+				[_timer fireDate];
+				[self.getVerfiyBtn setTitle:[NSString stringWithFormat:@"%@%ds",NSLocalizedString(@"还剩", nil),self.countNumber] forState:UIControlStateNormal];
+			}
+			
+		} failure:^(NSError *err) {
+			
+		}];
 
+	}else{
+		MBProgressHUD*code = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+		code.mode = MBProgressHUDModeText;
+		code.label.text = NSLocalizedString(@"请输入您的手机号码", nil);
+		[code hideAnimated:YES afterDelay:1.2f];
+	}
+
+}
+
+- (void)reverseCount{
+	if (_countNumber > 1) {
+		--_countNumber ;
+		[self.getVerfiyBtn setTitle:[NSString stringWithFormat:@"%@%ds",NSLocalizedString(@"还剩", nil),self.countNumber] forState:UIControlStateNormal];
+		
+	}else {
+		[self.getVerfiyBtn setTitle:NSLocalizedString(@"接收验证码", nil) forState:UIControlStateNormal];
+		[_timer invalidate];
+	}
 }
 
 - (void)pop:(UIButton *)sender{

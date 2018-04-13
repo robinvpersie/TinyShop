@@ -319,7 +319,7 @@
 	UIButton *getVerCode = (UIButton*)[addmemberBG viewWithTag:AddMemberCodeBtnTag];
 	if (_count>0) {
 		
-		[getVerCode setTitle:[NSString stringWithFormat:@"还剩%ds",_count] forState:UIControlStateNormal];
+		[getVerCode setTitle:[NSString stringWithFormat:@"남은 시간%ds",_count] forState:UIControlStateNormal];
 		_count--;
 	}else{
 		

@@ -71,6 +71,7 @@
 "SMOrderFinishStatus" = "交易完成";
 "SMOrderCloseTitle" = "订单关闭";
 "SMGoPayMsg" = "去付款(还剩";
+"还剩"="还剩";
 "SMOrderUseless" = "订单失效";
 "SMExpressMsg" = "配送费(快递)";
 "SMExpressFree" = "免邮";

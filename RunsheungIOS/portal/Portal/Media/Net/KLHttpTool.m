@@ -3425,7 +3425,7 @@
 														 @"text/json",
 														 nil];
 	
-	NSString*url = [NSString stringWithFormat:@"http://sms.gigawon.co.kr:8083/api/SSonda/%@",phone];
+	NSString*url = [NSString stringWithFormat:@"http://sms.gigawon.co.kr:8082/api/SSonda/%@",phone];
 	
 	[manager GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 		if (success) {
