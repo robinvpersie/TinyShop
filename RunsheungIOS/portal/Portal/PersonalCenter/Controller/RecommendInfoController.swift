@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class RecommendInfoController: UIViewController {
     
@@ -21,7 +22,10 @@ class RecommendInfoController: UIViewController {
         super.viewDidLoad()
         
         title = "我的推荐人信息"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(yc_back))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow?.withRenderingMode(.alwaysOriginal),
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(yc_back))
         view.backgroundColor = UIColor.white
         
         tableView = UITableView(frame: .zero, style: .plain)
@@ -39,7 +43,9 @@ class RecommendInfoController: UIViewController {
     }
     
     func checkParent() {
-        guard let parentId = YCAccountModel.getAccount()?.parentId else { return }
+        guard let parentId = YCAccountModel.getAccount()?.parentId else {
+            return
+        }
         showLoading()
         CheckParentModel.checkParentWithParentId(parentId, completion: { [weak self] result in
             guard let this = self else { return }
@@ -52,7 +58,6 @@ class RecommendInfoController: UIViewController {
                 break
               }
            })
-
         
     }
 

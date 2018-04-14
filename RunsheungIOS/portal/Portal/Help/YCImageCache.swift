@@ -78,13 +78,15 @@ protocol YCURLConvertible {
     func asURL() -> URL?
 }
 
-extension URL:YCURLConvertible {
+extension URL: YCURLConvertible {
+    
     public func asURL() -> URL? {
         return self
     }
 }
 
-extension String:YCURLConvertible {
+extension String: YCURLConvertible {
+    
     public func asURL() -> URL? {
         return URL(string: self)
     }

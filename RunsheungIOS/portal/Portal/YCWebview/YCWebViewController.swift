@@ -18,6 +18,12 @@ fileprivate let callShare = "shareAsMessenger"
 
 class YCWebViewController: BaseViewController {
     
+    enum backType {
+        case pop
+        case dismiss
+    }
+    
+    var backtype: backType = .pop
     var webView: WKWebView!
     var url: URL!
     var progressView: UIProgressView!
@@ -31,6 +37,11 @@ class YCWebViewController: BaseViewController {
     convenience init(url:URL) {
         self.init()
         self.url = url
+    }
+    
+    convenience init(urlConvertible: YCURLConvertible) {
+        self.init()
+        self.url = urlConvertible.asURL()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -80,6 +91,15 @@ class YCWebViewController: BaseViewController {
     
     func refresh(){
         webView.load(URLRequest(url: url))
+    }
+    
+    override func yc_back() {
+        switch backtype {
+        case .pop:
+            navigationController?.popViewController(animated: true)
+        case .dismiss:
+            dismiss(animated: true, completion: nil)
+        }
     }
 
     

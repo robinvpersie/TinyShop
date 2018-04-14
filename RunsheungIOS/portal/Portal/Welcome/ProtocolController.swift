@@ -309,16 +309,24 @@ class ProtocolController: UIViewController {
 
 extension ProtocolController: UITextViewDelegate {
     
+    
+    
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        if (URL.scheme == "location") {
-            print("location")
-            return false
-        } else if (URL.scheme == "live") {
-            return false
-        } else if (URL.scheme == "noti") {
-            return false
-        }
-        return true
+      
+        let web = YCWebViewController(urlConvertible: "http://www.gigawon.co.kr:1314/CS/CS00")
+        web.backtype = .dismiss
+        let nav = UINavigationController(rootViewController: web)
+        self.present(nav, animated: true, completion: nil)
+   
+//        if (URL.scheme == "location") {
+//
+//            return false
+//        } else if (URL.scheme == "live") {
+//            return false
+//        } else if (URL.scheme == "noti") {
+//            return false
+//        }
+        return false
     }
     
 }
