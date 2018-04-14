@@ -25,6 +25,7 @@
 @property (strong, nonatomic)  CountDown *countDown;
 @property (nonatomic, strong) CYPasswordView *passwordView;
 @property(nonatomic, strong) UIButton *gigaPay;
+@property (nonatomic, strong)UIButton *lgplusPay;
 @property(nonatomic, strong) UIButton *wechatPay;
 @property(nonatomic, strong) UIButton *unionPay;
 @property(nonatomic, strong) UIButton *aliPay;
@@ -44,8 +45,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _payWayTitles = @[NSLocalizedString(@"气加支付", nil),NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"UnionPay", nil),NSLocalizedString(@"AliPay", nil)];
-    _payWayImageNames = @[@"ico_gigapay",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
+    _payWayTitles = @[NSLocalizedString(@"气加支付", nil),@"U+",NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"AliPay", nil),NSLocalizedString(@"UnionPay", nil)];
+    _payWayImageNames = @[@"ico_gigapay",@"uplus",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:AliPayCancleNotification object:nil];
     
@@ -147,17 +148,23 @@
     NSString *payType;
 	if (_gigaPay.selected == YES) {
 		payType = @"1";
+	}else if (_lgplusPay.selected == YES) {
+		payType = @"2";
 	}else if (_wechatPay.selected == YES) {
-        payType = @"2";
-    }else if (_aliPay.selected == YES) {
         payType = @"3";
-    }else if (_unionPay.selected == YES) {
+    }else if (_aliPay.selected == YES) {
         payType = @"4";
+    }else if (_unionPay.selected == YES) {
+        payType = @"5";
     }
     MBProgressHUD *payshow = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     payshow.mode = MBProgressHUDModeText;
 //    payshow.label.text = @"正在进入支付...";
     [payshow showAnimated:YES];
+	NSString *order_num = _data.order_code;
+	
+	OrderDetailModel *orderDetail = _orderDetailData;
+	
 	if ([payType isEqualToString:@"1"]) {
 		__weak SupermarketOrderWaitPayDetailController *weakSelf = self;
 		if (self.passwordView == nil) {
@@ -167,9 +174,6 @@
 		self.passwordView.loadingText = NSLocalizedString(@"PaymentLoadingMsg", nil);
 		[self.passwordView showInView:KEYWINDOW];
 		
-		NSString *order_num = _data.order_code;
-		
-		OrderDetailModel *orderDetail = _orderDetailData;
 		
 		self.passwordView.finish = ^(NSString *password) {
 			[weakSelf.passwordView hideKeyboard];
@@ -204,7 +208,14 @@
 			}];
 		};
 		
+	}else if ([payType isEqualToString:@"2"]){
+		LGwebViewController *lgupay = [LGwebViewController new];
+		lgupay.hidesBottomBarWhenPushed = YES;
+		[lgupay loadRequestUrlWithOrderNumber:order_num OrderMoney:orderDetail.realPrice OrderUserName:@"%EA%B9%80%EB%8F%84%EC%84%B1" GiftInfo:@"api%EC%83%88%EB%A1%9C%20%EB%B0%9B%EC%9D%84%EA%B2%83"];
+		[self.navigationController pushViewController:lgupay animated:YES];
+		
 	}
+
 //    [KLHttpTool rsdrugstoreCreateOrderWithPayorderno:_data.order_code withPayorderamount:[NSString stringWithFormat:@"%@",_data.actualMoney] withPaymenttype:payType withPayOrderType:@"1" success:^(id response) {
 //        NSString *OrderS = response[@"Data"];
 //        if ([payType isEqualToString:@"1"]) {
@@ -412,7 +423,7 @@
     if (section == 0) {
         return 3+_data.goodList.count;
     }
-    return 2;
+    return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -441,21 +452,25 @@
         UILabel *shouldPay = [UILabel createLabelWithFrame:CGRectMake(15, 10, 0, 25) textColor:[UIColor grayColor] font:[UIFont systemFontOfSize:15] textAlignment:NSTextAlignmentLeft text:NSLocalizedString(@"SMOrderDetailShouldPay", nil)];
         CGFloat shouldPayWidth = [UILabel getWidthWithTitle:shouldPay.text font:shouldPay.font];
         shouldPay.frame = CGRectMake(15, 5, shouldPayWidth, 25);
-        [bgView addSubview:shouldPay];
-        
+//        [bgView addSubview:shouldPay];
+		
         UILabel *shouldPayMoney = [UILabel createLabelWithFrame:CGRectMake(CGRectGetMaxX(shouldPay.frame)+5, shouldPay.frame.origin.y, 100, CGRectGetHeight(shouldPay.frame)) textColor:[UIColor darkcolor] font:shouldPay.font textAlignment:NSTextAlignmentLeft text:@"15.800"];
         shouldPayMoney.text = [NSString stringWithFormat:@"%.f",[_orderDetailData.order_price doubleValue]];
-        [bgView addSubview:shouldPayMoney];
-        
+//        [bgView addSubview:shouldPayMoney];
+		
         UILabel *actuallyPayMoney = [UILabel createLabelWithFrame:CGRectMake(0, shouldPayMoney.frame.origin.y, 0, shouldPayMoney.frame.size.height) textColor:[UIColor darkcolor] font:shouldPayMoney.font textAlignment:NSTextAlignmentRight text:@"15.800"];
         actuallyPayMoney.text = [NSString stringWithFormat:@"%.f",[_orderDetailData.realPrice doubleValue]];
         CGFloat actuallyPayMoneyWidth = [UILabel getWidthWithTitle:actuallyPayMoney.text font:actuallyPayMoney.font];
         actuallyPayMoney.frame = CGRectMake(APPScreenWidth - 10 - actuallyPayMoneyWidth, shouldPayMoney.frame.origin.y, actuallyPayMoneyWidth, shouldPayMoney.frame.size.height);
-        [bgView addSubview:actuallyPayMoney];
-        
-        UILabel *actuallyPay = [UILabel createLabelWithFrame:CGRectMake(CGRectGetMinX(actuallyPayMoney.frame)-50, actuallyPayMoney.frame.origin.y, 50, actuallyPayMoney.frame.size.height) textColor:[UIColor grayColor] font:actuallyPayMoney.font textAlignment:NSTextAlignmentRight text:NSLocalizedString(@"SMOrderDetailActualPay", nil)];
-        [bgView addSubview:actuallyPay];
-        
+//        [bgView addSubview:actuallyPayMoney];
+		
+//        UILabel *actuallyPay = [UILabel createLabelWithFrame:CGRectMake(CGRectGetMinX(actuallyPayMoney.frame)-50, actuallyPayMoney.frame.origin.y, 50, actuallyPayMoney.frame.size.height) textColor:[UIColor grayColor] font:actuallyPayMoney.font textAlignment:NSTextAlignmentRight text:NSLocalizedString(@"SMOrderDetailActualPay", nil)];
+//        [bgView addSubview:actuallyPay];
+		
+		UILabel *actuallyPay = [UILabel createLabelWithFrame:CGRectMake(APPScreenWidth - 208, actuallyPayMoney.frame.origin.y, 200, actuallyPayMoney.frame.size.height) textColor:[UIColor grayColor] font:actuallyPayMoney.font textAlignment:NSTextAlignmentRight text:[NSString stringWithFormat:@"%@:%.f",NSLocalizedString(@"SMOrderDetailActualPay", nil),[_orderDetailData.realPrice doubleValue]]];
+		[bgView addSubview:actuallyPay];
+
+		
         return header;
     }
     return nil;
@@ -561,43 +576,48 @@
         cell.textLabel.font = [UIFont systemFontOfSize:15];
         cell.detailTextLabel.font = cell.textLabel.font;
         cell.detailTextLabel.textColor = [UIColor darkcolor];
-        if (indexPath.row < 3) {
+        if (indexPath.row < 2) {
+			cell.textLabel.text = _payWayTitles[indexPath.row];
+			UIImage *icon = [UIImage imageNamed:_payWayImageNames[indexPath.row]];
+			CGSize itemSize = CGSizeMake(20, 20);
+			UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0);
+			CGRect imageRect = CGRectMake(0, 0, itemSize.width, itemSize.height);
+			[icon drawInRect:imageRect];
+			cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+			UIGraphicsEndImageContext();
+			
+			UIButton *check = [UIButton buttonWithType:UIButtonTypeCustom];
+			check.frame = CGRectMake(APPScreenWidth - 10 - 35, 5, 35, 35);
+			[check setImage:[UIImage imageNamed:@"icon_unselected"] forState:UIControlStateNormal];
+			[check setImage:[UIImage imageNamed:@"icon_selected"] forState:UIControlStateSelected];
+			
+			[cell.contentView addSubview:check];
+			
 			if (indexPath.row == 0) {
-				cell.textLabel.text = _payWayTitles[indexPath.row];
-				UIImage *icon = [UIImage imageNamed:_payWayImageNames[indexPath.row]];
-				CGSize itemSize = CGSizeMake(20, 20);
-				UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0);
-				CGRect imageRect = CGRectMake(0, 0, itemSize.width, itemSize.height);
-				[icon drawInRect:imageRect];
-				cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
-				UIGraphicsEndImageContext();
 				
-				UIButton *check = [UIButton buttonWithType:UIButtonTypeCustom];
-				check.frame = CGRectMake(APPScreenWidth - 10 - 35, 5, 35, 35);
-				[check setImage:[UIImage imageNamed:@"icon_unselected"] forState:UIControlStateNormal];
-				[check setImage:[UIImage imageNamed:@"icon_selected"] forState:UIControlStateSelected];
-				[cell.contentView addSubview:check];
 				
-				[check addTarget:self action:@selector(checkPayWay:) forControlEvents:UIControlEventTouchUpInside];
-				if (indexPath.row == 0) {
-					self.gigaPay = check;
-					self.gigaPay.selected = YES;
-				}
-				if (indexPath.row == 1) {
-					self.wechatPay = check;
-				}
-				if (indexPath.row == 2) {
-					self.aliPay = check;
-				}
-				if (indexPath.row == 3) {
-					
-					self.unionPay = check;
-				}
+				self.gigaPay = check;
+				self.gigaPay.selected = YES;
+			}else if (indexPath.row == 1) {
+				self.lgplusPay = check;
 			}
+			[check addTarget:self action:@selector(checkPayWay:) forControlEvents:UIControlEventTouchUpInside];
+
 
 			
 
-        }
+		}
+//		if (indexPath.row == 2) {
+//			self.wechatPay = check;
+//		}
+//		if (indexPath.row == 3) {
+//			self.aliPay = check;
+//		}
+//		if (indexPath.row == 4) {
+//
+//			self.unionPay = check;
+//		}
+
 //        if (indexPath.row == 1) {
 //            cell.textLabel.text = NSLocalizedString(@"WechatPay", nil);
 //        }
@@ -608,7 +628,7 @@
 //
 //             cell.textLabel.text = @"银联支付";
 //        }
-        if (indexPath.row == 1) {
+       else if (indexPath.row == 2) {
             cell.textLabel.textColor = [UIColor grayColor];
             cell.textLabel.text = NSLocalizedString(@"SMExpressMsg", nil);
             
@@ -628,22 +648,34 @@
 		_unionPay.selected = NO;
 		_aliPay.selected = NO;
 		_wechatPay.selected = NO;
+		_lgplusPay.selected = NO;
 	}
+	if (button == self.lgplusPay) {
+		_unionPay.selected = NO;
+		_aliPay.selected = NO;
+		_wechatPay.selected = NO;
+		_gigaPay.selected = NO;
+	}
+
 
     if (button == self.wechatPay) {
         _unionPay.selected = NO;
         _aliPay.selected = NO;
 		_gigaPay.selected = NO;
+		_lgplusPay.selected = NO;
+		
     }
     if (button == self.unionPay) {
         _wechatPay.selected = NO;
         _aliPay.selected = NO;
 		_gigaPay.selected = NO;
+		_lgplusPay.selected = NO;
     }
     if (button == self.aliPay) {
         _unionPay.selected = NO;
         _wechatPay.selected = NO;
 		_gigaPay.selected = NO;
+		_lgplusPay.selected = NO;
     }
 }
 

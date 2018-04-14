@@ -894,7 +894,7 @@ typedef void(^finishAction)();
 	}
 	
 	if (selectedGoodsIDs.count == 0) {
-		[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:@"没有选择任何商品"];
+		[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:NSLocalizedString(@"没有选择任何商品", nil)];
 		return;
 	}
 	

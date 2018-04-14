@@ -284,9 +284,9 @@
                 [_tableView reloadData];
                 [self getAddressList];
                 if (_canUsePoint.isOn == YES) {
-                    self.priceLabel.text = [NSString stringWithFormat:@"¥%.2f",self.totalPrice+_checkOrderModel.expressPrice.floatValue - _checkOrderModel.canMaxUsePoint.floatValue];
+                    self.priceLabel.text = [NSString stringWithFormat:@"%.f",self.totalPrice+_checkOrderModel.expressPrice.floatValue - _checkOrderModel.canMaxUsePoint.floatValue];
                 } else {
-                    self.priceLabel.text = [NSString stringWithFormat:@"¥%.2f",self.totalPrice+_checkOrderModel.expressPrice.floatValue];
+                    self.priceLabel.text = [NSString stringWithFormat:@"%.f",self.totalPrice+_checkOrderModel.expressPrice.floatValue];
                 }
                 
             } else {
@@ -444,8 +444,8 @@
 			paytype = @"5";
 		}
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.mode = MBProgressHUDModeText;
-        hud.label.text = @"正在生成订单...";
+//        hud.mode = MBProgressHUDModeText;
+//        hud.label.text = @"正在生成订单...";
         [hud showAnimated:YES];
         
         [KLHttpTool supermarketCreateOrderWithGUID:_checkOrderModel.guid points:point coupons:couponIDs validateInfo:info success:^(id response) {
@@ -645,7 +645,7 @@
     if (section == 0) {
         return 1;
     } else if (section == 1) {
-        return 1;
+        return 2;
     }
     else if (section == 2) {
         return self.dataArray.count;

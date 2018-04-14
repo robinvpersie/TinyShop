@@ -19,7 +19,7 @@
 - (void)setDic:(NSDictionary *)dic{
 	_dic = dic;
 	[self.shopImg sd_setImageWithURL:[NSURL URLWithString:_dic[@"image_url"]]];
-	[self.money setText:[NSString stringWithFormat:@"售价:%.f",[_dic[@"item_p"] doubleValue]]];
+	[self.money setText:[NSString stringWithFormat:@"가격:%.f",[_dic[@"item_p"] doubleValue]]];
 	[self.shopname setText:_dic[@"item_name"]];
 }
 @end
