@@ -353,7 +353,7 @@
 	[_choseSizeView showInView:KEYWINDOW];
 	[UIImageView setimageWithImageView:_choseSizeView.iconImgView UrlString:goods.images.firstObject[@"url"] imageVersion:nil];
 	_choseSizeView.goodsPriceLabel.text = [NSString stringWithFormat:@" %.f",[goods.price doubleValue]];
-	_choseSizeView.goodsStockLabel.text = [NSString stringWithFormat:@"库存 %@%@",goods.stock,goods.unit];
+	_choseSizeView.goodsStockLabel.text = [NSString stringWithFormat:@"재고 %@%@",goods.stock,goods.unit];
 	_choseSizeView.dataSource = @[_singleChooseArr,_mutiChoseArr];
 	self.actionType = 0;
 	
@@ -500,7 +500,7 @@
 				if (goods != nil) {
 					
 					if (goods.stock.integerValue == 0) {
-						[MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:@"库存为0"];
+						[MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:@"재고:0"];
 						return;
 					}
 					goods.itemCode = singleChosedOneModel.item_code;

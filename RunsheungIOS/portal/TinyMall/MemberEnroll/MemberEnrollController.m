@@ -119,7 +119,7 @@
 	}else{
 		MBProgressHUD *hude = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 		hude.mode = MBProgressHUDModeText;
-		hude.label.text = NSLocalizedString(@"请输入登录账号密码", nil) ;
+		hude.label.text = NSLocalizedString(@"정보를 기입하십시요", nil) ;
 		[hude hideAnimated:YES afterDelay:1.0f];
 	}
 	

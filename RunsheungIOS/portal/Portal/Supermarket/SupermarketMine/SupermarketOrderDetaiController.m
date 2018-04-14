@@ -151,9 +151,9 @@
 }
 
 - (void)delteOrder {
-    UIAlertController *delteAlert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认删除订单?" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    UIAlertAction *delete = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+	UIAlertController *delteAlert = [UIAlertController alertControllerWithTitle:@"제시" message:@"주문을 삭제하시겠습니까?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *delete = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [KLHttpTool supermarketDeleteOrderWithOrderID:self.data.order_code success:^(id response) {
             NSLog(@"%@",response);
             NSNumber *status = response[@"status"];
@@ -345,12 +345,12 @@
 			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:UrlStr]];
 
 		}else{
-			UIAlertController* _alters = [UIAlertController alertControllerWithTitle:@"马上下载龙聊？" message:nil preferredStyle:UIAlertControllerStyleAlert];
-			UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+			UIAlertController* _alters = [UIAlertController alertControllerWithTitle:@"메신저를 다운로드 하시겠습니까？" message:nil preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
 
 			}];
 
-			UIAlertAction *okaction = [UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+			UIAlertAction *okaction = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
 				NSString *str =  @"itms-apps:https://itunes.apple.com/us/app/%E9%BE%99%E8%81%8A/id1225896079?l=zh&ls=1&mt=8";
 				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
@@ -519,35 +519,35 @@
             priceR.textAlignment = NSTextAlignmentRight;
             priceR.font = price.font;
             priceR.textColor = [UIColor redColor];
-            priceR.text = [NSString stringWithFormat:@"%@%@",_orderDetailData.order_price,NSLocalizedString(@"SMYuan", nil)];
+            priceR.text = [NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%.f",[_orderDetailData.order_price doubleValue]] ],NSLocalizedString(@"SMYuan", nil)];
             [cell.contentView addSubview:priceR];
             
             UILabel *expPriceR = [[UILabel alloc] initWithFrame:CGRectMake(APPScreenWidth - 15 - 150, expPrice.frame.origin.y, 150, expPrice.frame.size.height)];
             expPriceR.textColor = priceR.textColor;
             expPriceR.textAlignment = NSTextAlignmentRight;
             expPriceR.font = expPrice.font;
-            expPriceR.text = [NSString stringWithFormat:@"%@%@",_orderDetailData.freight,NSLocalizedString(@"SMYuan", nil)];
+            expPriceR.text = [NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%.f",[_orderDetailData.freight doubleValue]] ],NSLocalizedString(@"SMYuan", nil)];
             [cell.contentView addSubview:expPriceR];
             
             UILabel *preferenceR = [[UILabel alloc] initWithFrame:CGRectMake(APPScreenWidth - 15 - 150, preference.frame.origin.y, 150, expPrice.frame.size.height)];
             preferenceR.textColor = priceR.textColor;
             preferenceR.textAlignment = NSTextAlignmentRight;
             preferenceR.font = expPrice.font;
-            preferenceR.text = [NSString stringWithFormat:@"%@%@",_orderDetailData.couponAmout,NSLocalizedString(@"SMYuan", nil)];
+            preferenceR.text = [NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%.f",[_orderDetailData.couponAmout doubleValue]] ],NSLocalizedString(@"SMYuan", nil)];
             [cell.contentView addSubview:preferenceR];
             
             UILabel *beanR = [[UILabel alloc] initWithFrame:CGRectMake(APPScreenWidth - 15 - 150, bean.frame.origin.y, 150, expPrice.frame.size.height)];
             beanR.textColor = priceR.textColor;
             beanR.textAlignment = NSTextAlignmentRight;
             beanR.font = expPrice.font;
-            beanR.text = [NSString stringWithFormat:@"%@%@",_orderDetailData.point,NSLocalizedString(@"SMYuan", nil)];
+            beanR.text = [NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%.f",[_orderDetailData.point doubleValue]] ],NSLocalizedString(@"SMYuan", nil)];
             [cell.contentView addSubview:beanR];
 
         } else if (indexPath.row == 1) {
 
             
             UILabel *money = [[UILabel alloc] initWithFrame:CGRectMake(APPScreenWidth - 15, 10, 0, 25)];
-            money.text = [NSString stringWithFormat:@"%@%@",_orderDetailData.realPrice,NSLocalizedString(@"SMYuan", nil)];
+            money.text = [NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%.f",[_orderDetailData.realPrice doubleValue]] ],NSLocalizedString(@"SMYuan", nil)];
             CGFloat width = [UILabel getWidthWithTitle:money.text font:[UIFont systemFontOfSize:25]];
             money.frame = CGRectMake(APPScreenWidth - 15 - width, 10, width, 25);
             money.font = [UIFont systemFontOfSize:25];
@@ -583,7 +583,7 @@
         }
         return 0;
     } else if (section == 2) {
-        return 2;
+        return 1;
     }
     return 2;
 }

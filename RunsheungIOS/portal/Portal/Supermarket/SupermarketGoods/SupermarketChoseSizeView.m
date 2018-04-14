@@ -107,7 +107,7 @@
     
     //实际用来显示库存
     UILabel *remainLabel = [[UILabel alloc] initWithFrame:(CGRect){priceLabel.frame.origin.x, CGRectGetMaxY(priceLabel.frame)+5, 150, 15}];
-    remainLabel.text = @"库存12345件";
+    remainLabel.text = @"재고12345件";
     remainLabel.font = [UIFont systemFontOfSize:13];
     remainLabel.textColor = [UIColor darkcolor];
     [contentView addSubview:remainLabel];

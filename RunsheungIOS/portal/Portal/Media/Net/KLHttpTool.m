@@ -863,7 +863,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
     [self getToken:^(id token) {
-	NSString *Pintoken =[ NSString stringWithFormat:@"%@|%@|%@",accountModel.token,@"ghjgbjhhjjg",accountModel.customCode] ;
+	NSString *Pintoken =[NSString stringWithFormat:@"%@|%@|%@",accountModel.token,@"ghjgbjhhjjg",accountModel.customCode] ;
 	if (Pintoken.length) {
 		[params setObject:Pintoken forKey:@"token"];
 

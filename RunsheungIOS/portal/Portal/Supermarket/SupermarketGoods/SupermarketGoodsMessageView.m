@@ -103,7 +103,6 @@
     if (_additonalLabel == nil) {
         _additonalLabel = [[UILabel alloc] initWithFrame:CGRectMake(_titleLabel.frame.origin.x, CGRectGetMaxY(_saleAmountLabel.frame)+5, 150, 20)];
         _additonalLabel.textColor = RGB(246, 57, 55);
-        _additonalLabel.text = NSLocalizedString(@"SMGoodsDetailAddtionMsg", nil);
         _additonalLabel.font = [UIFont systemFontOfSize:12];
     }
     [self addSubview:_additonalLabel];
@@ -204,6 +203,7 @@
 - (void)setGoodsModel:(SupermarketGoodsModel *)goodsModel {
     _goodsModel = goodsModel;
     _titleLabel.text = goodsModel.title;
+//	_additonalLabel.text = NSLocalizedString(@"SMGoodsDetailAddtionMsg", nil);
 //    _priceLabel.text = [NSString stringWithFormat:@"¥%@/%@",goodsModel.price,goodsModel.unit];
 	//jake 170709
 	_priceLabel.text = [NSString stringWithFormat:@"%.0f",[goodsModel.price doubleValue]];

@@ -112,7 +112,7 @@
     [UIImageView setimageWithImageView:goodsImage UrlString:_goods.image_url imageVersion:_goods.ver];
     title.text = goods.title;
 //    price.text = [NSString stringWithFormat:@"¥%@/%@",goods.price,goods.stockUnit];
-    price.text = [NSString stringWithFormat:@"¥%@",goods.price];
+    price.text = [NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%.f",[goods.price doubleValue]] ];
     amount.text = [NSString stringWithFormat:@"x%@",goods.amount];
     
     switch (goods.refundStatus) {
