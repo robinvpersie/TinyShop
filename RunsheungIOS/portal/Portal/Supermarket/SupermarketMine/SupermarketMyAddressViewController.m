@@ -191,7 +191,8 @@
             title.textColor = RGB(23, 206, 116);
         }else{
             imagview1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cart_unSelect_btn"]];
-            title.text = @"디폴트 주소 설정";
+            //title.text = @"디폴트 주소 설정";
+            title.text = @"기본 배송지";
             title.textColor = [UIColor grayColor];
         }
         
