@@ -114,7 +114,7 @@ class YCWebViewController: BaseViewController {
         }
     }
     
-    func shareWithArray(_ valueArray:[String]){
+    func shareWithArray(_ valueArray: [String]){
         
         if valueArray.isEmpty {
             return
@@ -196,22 +196,19 @@ extension YCWebViewController:WKNavigationDelegate{
        let requestUrlHost = navigationAction.request.url?.host
        if requestUrlHost == callback {
            decisionHandler(.allow)
-        if self.presentingViewController != nil {
-          dismiss(animated: true, completion: nil)
-        }else {
-          navigationController?.popViewController(animated: true)
-        }
+           if self.presentingViewController != nil {
+            dismiss(animated: true, completion: nil)
+           }else {
+            navigationController?.popViewController(animated: true)
+           }
        }else if requestUrlHost == callLogin{
              decisionHandler(.allow)
              let login = MemberEnrollController()
-//             login.longinSuccess = { [weak self] in
-//                self?.refresh()
-//             }
              let navi = UINavigationController(rootViewController: login)
              present(navi, animated: true, completion: nil)
         }else if requestUrlHost == callScript {
            decisionHandler(.cancel)
-          DispatchQueue.global().async(execute: {
+           DispatchQueue.global().async(execute: {
             var script:String!
             let aboString = navigationAction.request.url?.absoluteString
             let valueArray = aboString?.getValurArray()
@@ -227,13 +224,12 @@ extension YCWebViewController:WKNavigationDelegate{
                         script = script + ",'" + value! + "'"
                     }
             }
-                script = script + ")"
-                DispatchQueue.main.async(execute: {
-                    webView.evaluateJavaScript(script, completionHandler: nil)
-                })
-              }
+            script = script + ")"
+            DispatchQueue.main.async(execute: {
+                webView.evaluateJavaScript(script, completionHandler: nil)
+            })
+        }
         })
-          
        }else if requestUrlHost == callShare {
             decisionHandler(.allow)
             if let aboString = navigationAction.request.url?.absoluteString {
@@ -241,10 +237,10 @@ extension YCWebViewController:WKNavigationDelegate{
               let valueArray = utf8.getValurArray()
               shareWithArray(valueArray)
             }else {
-             self.showMessage("分享错误")
+              self.showMessage("分享错误")
             }
         }else {
-             decisionHandler(.allow)
+            decisionHandler(.allow)
         }
     }
 

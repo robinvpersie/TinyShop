@@ -76,11 +76,8 @@
     back.tintColor = [UIColor blackColor];
     self.navigationItem.leftBarButtonItem = back;
     
-    UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 80, 30)];
-    titleLab.text = @"나의 주소";
-    titleLab.textColor = [UIColor blackColor];
-    titleLab.textAlignment = NSTextAlignmentCenter;
-    self.navigationItem.titleView = titleLab;
+    
+    self.navigationItem.title = @"나의 주소";
 
 }
 
