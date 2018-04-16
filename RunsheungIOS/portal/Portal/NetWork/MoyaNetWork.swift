@@ -9,7 +9,6 @@
 import Foundation
 import Moya
 import Result
-import Alamofire
 
 #if !DEBUG // 判断是否在测试环境下
     
@@ -143,16 +142,7 @@ protocol MapTargetType: Moya.TargetType {
     var map:(_ object: [String:Any]) throws -> resultType { get }
 }
 
-class DefaultAlamofireManager: Alamofire.SessionManager {
-    static let shareManager: DefaultAlamofireManager = {
-        let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 30
-        configuration.timeoutIntervalForResource = 30
-        configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
-        configuration.requestCachePolicy = .useProtocolCachePolicy
-        return DefaultAlamofireManager(configuration: configuration)
-    }()
-}
+
 
 final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
     
@@ -197,11 +187,12 @@ final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
                 }
             }
         return cancellable
-      }
+    }
+    
     
     @discardableResult
     func requestTarget<T: MapTargetType>(target:T,
-                                         completion: @escaping (_ result:NetWorkResult<T.resultType>) -> Void)
+                                         completion: @escaping (_ result: NetWorkResult<T.resultType>) -> Void)
                                          -> Cancellable
     {
         let cancellable = request(MultiTarget(target)) { result in
@@ -223,6 +214,9 @@ final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
        }
        return cancellable
     }
+    
+    
+
 }
 
 

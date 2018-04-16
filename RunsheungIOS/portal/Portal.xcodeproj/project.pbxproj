@@ -723,6 +723,7 @@
 		5BFB700B1DEBD51E0004ED83 /* YCHomeNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFB700A1DEBD51D0004ED83 /* YCHomeNewsCell.swift */; };
 		621DB37920060F3400EE3F63 /* ProfileServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621DB37820060F3300EE3F63 /* ProfileServiceCell.swift */; };
 		621DB37B2006342A00EE3F63 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621DB37A2006342A00EE3F63 /* ProfileModel.swift */; };
+		62503F7F2084931700D9FED3 /* AlManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62503F7E2084931700D9FED3 /* AlManager.swift */; };
 		6272BE631DDC6AD60075EA1C /* NetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6272BE611DDC6AD60075EA1C /* NetWorkManager.swift */; };
 		6272BE641DDC6AD60075EA1C /* NetWorking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6272BE621DDC6AD60075EA1C /* NetWorking.swift */; };
 		6272BE691DDC6C320075EA1C /* YCAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6272BE681DDC6C320075EA1C /* YCAlert.swift */; };
@@ -2132,6 +2133,7 @@
 		5BFB700A1DEBD51D0004ED83 /* YCHomeNewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCHomeNewsCell.swift; sourceTree = "<group>"; };
 		621DB37820060F3300EE3F63 /* ProfileServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServiceCell.swift; sourceTree = "<group>"; };
 		621DB37A2006342A00EE3F63 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		62503F7E2084931700D9FED3 /* AlManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlManager.swift; sourceTree = "<group>"; };
 		6272BE611DDC6AD60075EA1C /* NetWorkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkManager.swift; sourceTree = "<group>"; };
 		6272BE621DDC6AD60075EA1C /* NetWorking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorking.swift; sourceTree = "<group>"; };
 		6272BE681DDC6C320075EA1C /* YCAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCAlert.swift; sourceTree = "<group>"; };
@@ -5280,6 +5282,7 @@
 				018AE84A20594CC60018F854 /* Resource.swift */,
 				018AE84C20594D210018F854 /* NetWorkResult.swift */,
 				018AE84E20594DC90018F854 /* NetIndicator.swift */,
+				62503F7E2084931700D9FED3 /* AlManager.swift */,
 			);
 			name = NetWork;
 			path = Portal/NetWork;
@@ -6666,6 +6669,7 @@
 				1B5B6BDB1E9B7F24009D5C75 /* NSDictionary+YCHotel.m in Sources */,
 				D53093CE205E520C00427350 /* ProtectItemsController.m in Sources */,
 				D5D01F2E205F6412002263CC /* TSMemberEnrollView.m in Sources */,
+				62503F7F2084931700D9FED3 /* AlManager.swift in Sources */,
 				5BE1528B1F137DDF00FC74C2 /* PhotoTransitonController.swift in Sources */,
 				1BFEF34C1E5BE54900D1CA0C /* YCShareAddress.m in Sources */,
 				1B1971B91E20803300E54D95 /* KLHomeViewController.m in Sources */,

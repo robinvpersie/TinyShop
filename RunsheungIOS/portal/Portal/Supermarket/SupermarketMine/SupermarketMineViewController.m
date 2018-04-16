@@ -249,6 +249,7 @@
     __weak typeof(self) weakself = self;
     [KLHttpTool getToken:^(id token) {
         [weakself hideLoading];
+        if (token != nil) {
         if (indexPath.section == 1) {
             if (indexPath.row == 0) {
                 SupermarketMyAddressViewController *vc = [[SupermarketMyAddressViewController alloc] init];
@@ -294,6 +295,7 @@
             vc.hidesBottomBarWhenPushed = YES;
             vc.controllerType = weakself.controllerType;
             [weakself.navigationController pushViewController:vc animated:YES];
+        }
         }
     } failure:^(NSError *errToken) {
         [weakself hideLoading];
