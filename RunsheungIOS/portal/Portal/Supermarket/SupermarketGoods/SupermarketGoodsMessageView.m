@@ -143,7 +143,7 @@
 	
 	if (itemCodelabel == nil) {
 		itemCodelabel = [UILabel new];
-		itemCodelabel.textColor = RGB(171, 171, 171);
+		itemCodelabel.textColor = RGB(171, 171, 201);
 		itemCodelabel.font = [UIFont systemFontOfSize:12];
 		[self addSubview:itemCodelabel];
 		[itemCodelabel mas_makeConstraints:^(MASConstraintMaker *make) {

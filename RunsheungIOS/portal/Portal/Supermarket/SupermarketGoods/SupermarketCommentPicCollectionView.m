@@ -40,8 +40,11 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     SupermarketCommentPicCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SupermarketCommentPicCell" forIndexPath:indexPath];
-    [UIImageView setimageWithImageView:cell.imageView UrlString:_imageArray[indexPath.row] imageVersion:nil];
-    cell.backgroundColor = [UIColor whiteColor];
+	UIImageView *picture = [[UIImageView alloc]initWithFrame:cell.contentView.bounds];
+	[picture sd_setImageWithURL:[NSURL URLWithString:_imageArray[indexPath.row]]];
+	[cell.contentView addSubview:picture];
+//    [UIImageView setimageWithImageView:cell.imageView UrlString:_imageArray[indexPath.row] imageVersion:nil];
+    cell.backgroundColor = [UIColor blueColor];
     
     return cell;
 }

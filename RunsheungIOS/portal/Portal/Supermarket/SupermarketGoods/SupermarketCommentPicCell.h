@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SupermarketCommentPicCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (retain, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
