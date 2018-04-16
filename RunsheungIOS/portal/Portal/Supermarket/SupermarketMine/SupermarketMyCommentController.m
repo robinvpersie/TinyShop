@@ -29,7 +29,7 @@
     self.title = NSLocalizedString(@"SMMineMyComment", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     
-  
+    [self commonInit];
     [self createView];
     [self requetDaata];
     // Do any additional setup after loading the view.
@@ -64,15 +64,15 @@
 
 - (void)requetDaata {
     [KLHttpTool getMyCommentWithOffSet:self.pageIndex success:^(id response) {
-        NSString *status = response[@"status"];
-        if ([status isEqualToString:@"1"]) {
-            NSArray *data = response[@"MyinfoAssesses"];
+        NSNumber *status = response[@"status"];
+        if (status.longValue == 1) {
+            NSArray *data = response[@"data"];
             for (NSDictionary *dic in data) {
                 SPCommentModel *model = [[SPCommentModel alloc]initWithDic:dic];
                 [self.dataArr addObject:model];
             }
             [_myCommentTableView.mj_footer endRefreshing];
-            _myCommentTableView.dataArray = _dataArr;
+            _myCommentTableView.dataArray = self.dataArr;
         }
         
     } failure:^(NSError *err) {

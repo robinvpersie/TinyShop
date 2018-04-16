@@ -41,7 +41,7 @@
 }
 
 - (void)setDataArray:(NSArray *)dataArray {
-    _dataArray = dataArray;
+    _dataArray = [dataArray mutableCopy];
     [self reloadData];
 }
 
@@ -67,7 +67,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SPCommentModel *data = self.dataArray[indexPath.section];
-    CGFloat contentHeight = [UILabel getHeightByWidth:LabelWidth title:data.saleContent font:[UIFont systemFontOfSize:14]];
+    CGFloat contentHeight = [UILabel getHeightByWidth:LabelWidth title:data.text font:[UIFont systemFontOfSize:14]];
     return  contentHeight + 105;
     
 

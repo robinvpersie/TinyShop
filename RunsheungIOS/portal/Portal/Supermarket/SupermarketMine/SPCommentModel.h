@@ -10,17 +10,19 @@
 
 @interface SPCommentModel : NSObject
 
-@property (nonatomic, copy)NSString *imagePath;
+@property (nonatomic, copy)NSString *imageUrl;
+@property (nonatomic, copy)NSString *commentTime;
+@property (nonatomic, copy)NSString *itemcode;
+@property (nonatomic, copy)NSString *itemname;
 @property (nonatomic, copy)NSString *nickname;
-@property (nonatomic, copy)NSString *customname;
-@property (nonatomic, copy)NSString *score;
-@property (nonatomic, copy)NSString *identifier;
-@property (nonatomic, copy)NSString *customCode;
-@property (nonatomic, copy)NSString *repContent;
-@property (nonatomic, copy)NSString *saleContent;
-@property (nonatomic, copy)NSString *regdate;
-@property (nonatomic, copy)NSString *num;
-@property (nonatomic, copy)NSString *rnm;
+@property (nonatomic, assign)long level;
+@property (nonatomic, copy)NSString *haslikes;
+@property (nonatomic, copy)NSString *text;
+@property (nonatomic, copy)NSString *commentid;
+@property (nonatomic, copy)NSString *hasimgs;
+@property (nonatomic, assign)long likescount;
+@property (nonatomic, copy)NSString *headUrl;
+@property (nonatomic, assign)long score;
 
 -(instancetype)initWithDic:(NSDictionary*)dic;
 
