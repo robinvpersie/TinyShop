@@ -34,10 +34,9 @@
     #define GetZipcodeUrl @"http://192.168.2.179:82/api/ycZipCode/getZipCode"
     #define GetTokenUrl @"http://192.168.2.165:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
     #define MallBaseUrl @"http://mall.gigawon.co.kr:8800"
+    #define TinyMemberShopBaseURL @"http://member.gigawon.co.kr:8808/api/"
+    #define TinyMallShopBaseURL @"http://mall.gigawon.co.kr:8800/api/"
 #else
-
-
-
     #define TinyMemberShopBaseURL @"http://member.gigawon.co.kr:8808/api/"
     #define TinyMallShopBaseURL @"http://mall.gigawon.co.kr:8800/api/"
 
@@ -119,7 +118,8 @@
                 NSString *finalToken = [self formatTokenWithResponse:response];
                 success(finalToken);
             } else {
-                 [[NSNotificationCenter defaultCenter]postNotificationName:TokenWrong object:nil];
+                success(nil);
+                [[NSNotificationCenter defaultCenter]postNotificationName:TokenWrong object:nil];
             //没有token或者token失效 应该跳出登录界面
             }
         }
@@ -1285,13 +1285,12 @@
                       failure:(void (^)(NSError *err))failure
 {
     YCAccountModel *account = [YCAccountModel getAccount];
-    NSString *url = [NSString stringWithFormat:@"%@/api/Assess/requestMyInfoAssessList", MallBaseUrl];
+    NSString *url = [NSString stringWithFormat:@"%@User/GetUserOfComment", BaseUrl];
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:[NSString stringWithFormat:@"%ld", (long)offset] forKey:@"pg"];
-    [parameters setObject:@"kor" forKey:@"lang_type"];
-    [parameters setObject:account.customCode forKey:@"custom_code"];
-    [parameters setObject:@"10" forKey:@"pagesize"];
-    
+    [parameters setObject:[NSString stringWithFormat:@"%ld", (long)offset] forKey:@"pageIndex"];
+    [parameters setObject:@"20" forKey:@"pageSize"];
+    [parameters setObject:account.combineToken forKey:@"token"];
+ 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30;

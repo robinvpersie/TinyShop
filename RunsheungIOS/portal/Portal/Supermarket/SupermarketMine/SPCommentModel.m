@@ -13,18 +13,18 @@
 -(instancetype)initWithDic:(NSDictionary *)dic {
     self = [super init];
     if (self) {
-        self.imagePath = dic[@"img_path"];
+        self.commentTime = dic[@"comment_time"];
         self.nickname = dic[@"nick_name"];
-        self.customname = dic[@"custom_name"];
-        self.score = dic[@"score"];
-        self.identifier = dic[@"id"];
-        self.customCode = dic[@"custom_code"];
-        self.repContent = dic[@"rep_content"];
-        self.saleContent = dic[@"sale_content"];
-        self.regdate = dic[@"reg_date"];
-        self.num = dic[@"num"];
-        self.rnm = dic[@"rum"];
-    }
+        self.itemcode = dic[@"item_code"];
+        self.score = [(NSNumber *)dic[@"score"] longValue];
+        self.imageUrl = dic[@"image_url"];
+        self.level = [(NSNumber *)dic[@"level"] longValue];
+        self.haslikes = dic[@"hasLikes"];
+        self.text = dic[@"text"];
+        self.commentid = dic[@"comment_id"];
+        self.likescount = [(NSNumber *)dic[@"rum"] longValue];
+        self.headUrl = dic[@"head_url"];
+   }
     return self;
 }
 

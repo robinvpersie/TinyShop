@@ -59,8 +59,8 @@ class ProfileAvatarCell: UITableViewCell {
         }
     }
 
-    func configureWithModel(_ model:ProfileModel?){
-        namelb.text = (model?.nick_name)
+    func configureWithModel(_ model: ProfileModel?){
+        namelb.text = model?.nick_name
         avatarImgView.kf.setImage(with: model?.head_url)
     }
    
@@ -72,6 +72,7 @@ class ProfileAvatarCell: UITableViewCell {
     class func getHeight() -> CGFloat {
         return Ruler.iPhoneVertical(180, 180, 200, 190).value
     }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

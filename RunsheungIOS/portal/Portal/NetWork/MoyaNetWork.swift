@@ -9,7 +9,6 @@
 import Foundation
 import Moya
 import Result
-import Alamofire
 
 #if !DEBUG // 判断是否在测试环境下
     
@@ -24,6 +23,8 @@ private let shopbURL = "http://pay.dxbhtm.com:81"
 private let cancleURI = "http://api1.dxbhtm.com:8088"
 private let offURI = "http://editapi.dxbhtm.com:8866"
 private let pointURI = "http://api.dxbhtm.com:8083"
+private let editProileURI = "http://rsmember.dxbhtm.com:8800"
+
 private let recommendURI = "http://api1.dxbhtm.com:7778"
 private let payURL = "http://api1.gigawon.co.kr:82"
 #else
@@ -143,16 +144,7 @@ protocol MapTargetType: Moya.TargetType {
     var map:(_ object: [String:Any]) throws -> resultType { get }
 }
 
-class DefaultAlamofireManager: Alamofire.SessionManager {
-    static let shareManager: DefaultAlamofireManager = {
-        let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 30
-        configuration.timeoutIntervalForResource = 30
-        configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
-        configuration.requestCachePolicy = .useProtocolCachePolicy
-        return DefaultAlamofireManager(configuration: configuration)
-    }()
-}
+
 
 final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
     
@@ -197,11 +189,12 @@ final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
                 }
             }
         return cancellable
-      }
+    }
+    
     
     @discardableResult
     func requestTarget<T: MapTargetType>(target:T,
-                                         completion: @escaping (_ result:NetWorkResult<T.resultType>) -> Void)
+                                         completion: @escaping (_ result: NetWorkResult<T.resultType>) -> Void)
                                          -> Cancellable
     {
         let cancellable = request(MultiTarget(target)) { result in
@@ -223,6 +216,9 @@ final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
        }
        return cancellable
     }
+    
+    
+
 }
 
 

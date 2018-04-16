@@ -44,7 +44,7 @@
 }
 
 - (void)setDataArray:(NSArray *)dataArray {
-    _dataArray = dataArray;
+    _dataArray = [dataArray mutableCopy];
     [self reloadData];
 }
 

@@ -166,12 +166,12 @@
 }
 
 -(void)setModel:(SPCommentModel *)model {
-    _contentLabel.text = model.saleContent;
+    _contentLabel.text = model.text;
     _nickNameLabel.text = model.nickname;
-    _timeLabel.text = model.regdate;
-    [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:model.imagePath]];
-    [_likeContentButton setTitle:model.rnm forState:UIControlStateNormal];
-    _goodsName.text = model.customname;
+    _timeLabel.text = model.commentTime;
+    [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:model.headUrl]];
+    [_likeContentButton setTitle:[NSString stringWithFormat:@"%ld", model.likescount] forState:UIControlStateNormal];
+    _goodsName.text = model.itemname;
 }
 
 - (void)setCommentData:(SupermarketCommentData *)commentData {

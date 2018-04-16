@@ -10,38 +10,44 @@ import UIKit
 
 class SuperMarketProfileController: UIViewController {
     
-    enum sectionType:Int {
+    enum sectionType: Int {
         case header
         case bottom
+        
         static let count = 2
-        init(indexPath:IndexPath){
+        
+        init(indexPath: IndexPath){
             self.init(rawValue: indexPath.section)!
         }
         
-        init(section:Int){
+        init(section: Int){
             self.init(rawValue: section)!
         }
     }
     
-    enum headerType:Int {
+    enum headerType: Int {
         case avatar
         case service
+        
         static let count = 2
-        init(indexPath:IndexPath){
+        
+        init(indexPath: IndexPath){
             self.init(rawValue: indexPath.row)!
         }
     }
     
-    enum bottomType:Int {
+    enum bottomType: Int {
         case message
         case collect
         case share
         case systemSet
+        
         static let count = 4
-        init(indexPath:IndexPath){
+        
+        init(indexPath: IndexPath){
             self.init(rawValue: indexPath.row)!
         }
-        var image:UIImage? {
+        var image: UIImage? {
             switch self {
             case .message:
                 return UIImage(named: "icon_notice2")?.withRenderingMode(.alwaysOriginal)
@@ -54,7 +60,7 @@ class SuperMarketProfileController: UIViewController {
             }
         }
         
-        var title:String? {
+        var title: String? {
             switch self {
             case .message:
                 return "我的消息"
@@ -68,8 +74,8 @@ class SuperMarketProfileController: UIViewController {
         }
     }
     
-    var profileModel:ProfileModel?
-    var tableView:UITableView!
+    var profileModel: ProfileModel?
+    var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -90,12 +96,12 @@ class SuperMarketProfileController: UIViewController {
         ProfileModel.requestWith(6) { [weak self] result in
             guard let this = self else { return }
             switch result {
-            case .success(let model):
+            case let .success(model):
                 this.profileModel = model
                 OperationQueue.main.addOperation({
                     this.tableView.reloadData()
                 })
-            case .failure(let error):
+            case let .failure(error):
                 this.showMessage(error.localizedDescription)
             case .tokenError:
                 this.goToLogin(completion: nil)
