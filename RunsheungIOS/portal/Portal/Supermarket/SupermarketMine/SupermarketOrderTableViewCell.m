@@ -256,7 +256,7 @@
                 if (day > 0 || hour > 0 || minute > 0 || second > 0) {
                     [_pay setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
                     _pay.frame = CGRectMake(APPScreenWidth - 160 - 15, _checklogistics.frame.origin.y, 160, _checklogistics.frame.size.height);
-                    [_pay setTitle:[NSString stringWithFormat:@"%@%ld분%ld초)",NSLocalizedString(@"SMGoPayMsg", nil),minute,second] forState:UIControlStateNormal];
+                    [_pay setTitle:[NSString stringWithFormat:@"%@%ld분%ld초",NSLocalizedString(@"SMGoPayMsg", nil),minute,second] forState:UIControlStateNormal];
                     _statusLabel.text = NSLocalizedString(@"SMOrderWaitPayStatus", nil);
                     _deleteOrder.frame = CGRectMake(CGRectGetMinX(_pay.frame)-15 - ButtonWidth, _pay.frame.origin.y, ButtonWidth, _pay.frame.size.height);
 
@@ -544,9 +544,9 @@
  删除订单
  */
 - (void)deleteOrder {
-    UIAlertController *delteAlert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认删除订单?" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    UIAlertAction *delete = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+	UIAlertController *delteAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil) message:NSLocalizedString(@"确定删除订单？",nil ) preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *delete = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [KLHttpTool supermarketDeleteOrderWithOrderID:self.data.order_code success:^(id response) {
             NSNumber *status = response[@"status"];
             if (status.integerValue == 1) {

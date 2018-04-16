@@ -8,7 +8,9 @@
 
 #import "ProtectItemsController.h"
 #import "StepOneMemEnrollController.h"
-@interface ProtectItemsController ()
+@interface ProtectItemsController (){
+	NSArray*titleArray;
+}
 
 @property (nonatomic,retain)NSMutableArray *choiceBtnArray;
 
@@ -90,10 +92,12 @@
 		make.trailing.equalTo(self.allchoiceBtn.mas_leading).offset(-4);
 	}];
 
-	NSArray*titleArray = @[@"함께가게이용약관동의",@"전자금융거래이용약관동의",@"개인정보수집이용동의",@"마케팅정보메일,SMS수신동의(선택)",@"만14세이상고객만가입가능합니다.",@"다음으로"];
+	titleArray = @[@"함께가게이용약관동의",@"전자금융거래이용약관동의",@"개인정보수집이용동의",@"마케팅정보메일,SMS수신동의(선택)",@"만14세이상고객만가입가능합니다.",@"다음으로"];
 	
 	const double w1 = [self getStringWidth:titleArray.firstObject];
 	UIButton *item1 = [self bottomLinebutton:titleArray.firstObject withFrame:CGRectZero];
+	item1.tag = 1;
+	[item1 addTarget:self action:@selector(rulesAction:) forControlEvents:UIControlEventTouchUpInside];
 	[backImg addSubview: item1];
 	[item1 mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.leading.equalTo(@15);
@@ -116,6 +120,8 @@
 	
 	const double w2 = [self getStringWidth:titleArray[1]];
 	UIButton *item2 = [self bottomLinebutton:titleArray[1] withFrame:CGRectZero];
+	[item2 addTarget:self action:@selector(rulesAction:) forControlEvents:UIControlEventTouchUpInside];
+	item2.tag = 2;
 	[backImg addSubview: item2];
 	[item2 mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.leading.equalTo(@15);
@@ -138,6 +144,8 @@
 
 	const double w3 = [self getStringWidth:titleArray[2]];
 	UIButton *item3 = [self bottomLinebutton:titleArray[2] withFrame:CGRectZero];
+	item3.tag = 3;
+	[item3 addTarget:self action:@selector(rulesAction:) forControlEvents:UIControlEventTouchUpInside];
 	[backImg addSubview:item3];
 	[item3 mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.leading.equalTo(@15);
@@ -158,17 +166,16 @@
 		make.top.equalTo(item3.mas_top);
 	}];
 	
-	UILabel *item4 = [UILabel new];
-	item4.text = titleArray[3];
-	item4.textColor  = [UIColor whiteColor];
-	[item4 setFont:[UIFont systemFontOfSize:13]];
+	const double w4 = [self getStringWidth:titleArray[3]] + 5;
+	UIButton *item4 = [self bottomLinebutton:titleArray[3] withFrame:CGRectZero];
+	item4.tag = 4;
+	[item4 addTarget:self action:@selector(rulesAction:) forControlEvents:UIControlEventTouchUpInside];
 	[backImg addSubview:item4];
 	[item4 mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.leading.equalTo(@15);
 		make.top.equalTo(item3.mas_bottom);
-		make.width.mas_equalTo(200);
+		make.width.mas_equalTo(w4);
 		make.height.mas_equalTo(30);
-		
 	}];
 	
 	UIButton *check4 = [UIButton new];
@@ -255,6 +262,17 @@
 	[button setAttributedTitle:tncString forState:UIControlStateNormal];
 
 	return button;
+}
+
+- (void)rulesAction:(UIButton*)sender{
+	NSString *loadurl = [NSString stringWithFormat:@"http://www.gigawon.co.kr:1314/CS/CS%d0?%@", (int)sender.tag,@"nsukey=QBKUVmy8o2zJyFtOXCvCcd0lYWd8bZZWbwpjmDwN%2BFnIpbBYujuecZ94LBXLgc3dEQgcNPuBrsrjtup5moLzeaGCdh57CUcRip%2BXGB0Dtd42eeeR6wn0jS2hwKcZvOkBLEKI%2BVRNFUAb%2FSYeCU99miBvNgqNFYIEz%2Bc68FJU3nbAAmBapjI9rv91lJYL4wP0eEu5KKL5aKuSB7YVuAPgPQ%3D%3D"];
+	WebRulesViewController *rulevc = [WebRulesViewController new];
+	UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:rulevc];
+	[rulevc loadRulesWebWithLoadurl:loadurl];
+	rulevc.title = titleArray[(int)sender.tag-1];
+	[self presentViewController:navi animated:YES completion:nil];
+	
+
 }
 
 - (double )getStringWidth:(NSString *)content{

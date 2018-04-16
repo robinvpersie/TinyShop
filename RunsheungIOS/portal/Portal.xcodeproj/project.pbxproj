@@ -756,6 +756,7 @@
 		62C417D02005FE29005571D4 /* SuperMarketProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C417CF2005FE29005571D4 /* SuperMarketProfileController.swift */; };
 		62C417D220060698005571D4 /* ProfileAvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C417D120060698005571D4 /* ProfileAvatarCell.swift */; };
 		838F8B76C110A40044A207B0 /* Pods_Portal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256438E4A531EA452632FC34 /* Pods_Portal.framework */; };
+		B7BAC5182084458100A6D1C1 /* strip-frameworks.sh in Resources */ = {isa = PBXBuildFile; fileRef = B7BAC5172084458000A6D1C1 /* strip-frameworks.sh */; };
 		C433F8242E4FA5BC81AF8004 /* Pods_PortalUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8179359380611AE76CEE55B2 /* Pods_PortalUITests.framework */; };
 		D0CF005259FA3D3921BC6052 /* Pods_PortalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13D323634F062064C36589E /* Pods_PortalTests.framework */; };
 		D51B047020689C8A00D8D6D2 /* TSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51B046F20689C8A00D8D6D2 /* TSearchViewController.m */; };
@@ -771,6 +772,7 @@
 		D53093CA205E483700427350 /* MemberEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093C8205E483700427350 /* MemberEnrollController.m */; };
 		D53093CE205E520C00427350 /* ProtectItemsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093CD205E520C00427350 /* ProtectItemsController.m */; };
 		D53093D1205E683D00427350 /* StepOneMemEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093D0205E683D00427350 /* StepOneMemEnrollController.m */; };
+		D5359DBC20848748008A62A9 /* WebRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5359DBB20848748008A62A9 /* WebRulesViewController.swift */; };
 		D59D3A2C205BE42E0074F0E8 /* TSCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */; };
 		D59D3A2F205BF1030074F0E8 /* TSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */; };
 		D5D01F2A205F5606002263CC /* TeamEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F29205F5606002263CC /* TeamEnrollController.m */; };
@@ -2179,6 +2181,7 @@
 		8A0C308058E3D70509C7E41F /* Pods-PortalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PortalTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PortalTests/Pods-PortalTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B13D323634F062064C36589E /* Pods_PortalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PortalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59A1C094918F79D66DBED79 /* Pods-PortalUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PortalUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PortalUITests/Pods-PortalUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B7BAC5172084458000A6D1C1 /* strip-frameworks.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "strip-frameworks.sh"; sourceTree = "<group>"; };
 		D51B046E20689C8A00D8D6D2 /* TSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSearchViewController.h; sourceTree = "<group>"; };
 		D51B046F20689C8A00D8D6D2 /* TSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSearchViewController.m; sourceTree = "<group>"; };
 		D53093AB205E445100427350 /* ChoiceSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceSegmentView.h; sourceTree = "<group>"; };
@@ -2204,6 +2207,7 @@
 		D53093CD205E520C00427350 /* ProtectItemsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProtectItemsController.m; sourceTree = "<group>"; };
 		D53093CF205E683D00427350 /* StepOneMemEnrollController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StepOneMemEnrollController.h; sourceTree = "<group>"; };
 		D53093D0205E683D00427350 /* StepOneMemEnrollController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StepOneMemEnrollController.m; sourceTree = "<group>"; };
+		D5359DBB20848748008A62A9 /* WebRulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRulesViewController.swift; sourceTree = "<group>"; };
 		D59D3A26205BE42E0074F0E8 /* TSCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCategoryController.h; sourceTree = "<group>"; };
 		D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCategoryController.m; sourceTree = "<group>"; };
 		D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBaseViewController.m; sourceTree = "<group>"; };
@@ -5336,6 +5340,7 @@
 		6275E84D1DDC692000656E2D = {
 			isa = PBXGroup;
 			children = (
+				B7BAC5162084458000A6D1C1 /* Scripts */,
 				D59D3A1B205BE42E0074F0E8 /* TinyMall */,
 				2608A1471FF5D74D0072FB91 /* RSPhml */,
 				5B0744D01F6FCA2700C66C2A /* Base.lproj */,
@@ -5473,6 +5478,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B7BAC5162084458000A6D1C1 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				B7BAC5172084458000A6D1C1 /* strip-frameworks.sh */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
 		BF83E793403F5FF9916CC2EA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -5545,6 +5558,7 @@
 				D5D01F29205F5606002263CC /* TeamEnrollController.m */,
 				D5D01F32205FA3EB002263CC /* FindTeamViewController.h */,
 				D5D01F33205FA3EB002263CC /* FindTeamViewController.m */,
+				D5359DBB20848748008A62A9 /* WebRulesViewController.swift */,
 			);
 			path = MemberEnroll;
 			sourceTree = "<group>";
@@ -5676,7 +5690,7 @@
 				93EE4C66145F6573B731DEDE /* [CP] Embed Pods Frameworks */,
 				5273F39E96138C69A79A6E85 /* [CP] Copy Pods Resources */,
 				01099A12205D4A9A00FCC6B6 /* Embed Frameworks */,
-				6203ECF320843F6500094C6E /* ShellScript */,
+				B7BAC5152084442E00A6D1C1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -5741,7 +5755,7 @@
 				TargetAttributes = {
 					6275E8551DDC692000656E2D = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 9A8T4DFUB8;
+						DevelopmentTeam = W6JK3FHE8S;
 						ProvisioningStyle = Automatic;
 					};
 					6275E8691DDC692100656E2D = {
@@ -5803,6 +5817,7 @@
 				1B392F071E28D14E00F70981 /* SupermarketMostFreshCell.xib in Resources */,
 				1BC876901E977A0200BB38D7 /* HotelSearchLeftTableViewCell.xib in Resources */,
 				1B392F1B1E28D14E00F70981 /* IntergrationTableViewCell.xib in Resources */,
+				B7BAC5182084458100A6D1C1 /* strip-frameworks.sh in Resources */,
 				267DAA921EA213EE00299E74 /* HotelDownTableViewCell.xib in Resources */,
 				1B9546FD1F1DF147006DCB6C /* Flashlight_N@2x.png in Resources */,
 				1B392D501E28D0E500F70981 /* CFDropDownMenuView.bundle in Resources */,
@@ -6039,6 +6054,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PortalTests/Pods-PortalTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B7BAC5152084442E00A6D1C1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh $(SRCROOT)Scripts/strip-frameworks.sh";
 		};
 		D00D4DEA9005C54E4DA7E486 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -6723,6 +6751,7 @@
 				1B0CD2C01E8B5B8D008AF162 /* YCHoltelBaseViewController.m in Sources */,
 				1B392EDD1E28D14E00F70981 /* SupermarketCommentViewController.m in Sources */,
 				1B392F181E28D14E00F70981 /* IntergrationController.m in Sources */,
+				D5359DBC20848748008A62A9 /* WebRulesViewController.swift in Sources */,
 				1B392D5D1E28D0E500F70981 /* STConst.m in Sources */,
 				1B72C4281EA1ED2800FA361E /* HotelCancelTableView.m in Sources */,
 				1B392D6D1E28D0E500F70981 /* AMTagListView.m in Sources */,
@@ -7004,11 +7033,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
-				CODE_SIGN_IDENTITY = "iPhone Developer: 1260896224@qq.com (587EWH4655)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 9A8T4DFUB8;
+				DEVELOPMENT_TEAM = W6JK3FHE8S;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7067,7 +7096,7 @@
 					"-lxml2",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gigakorea.gigakfme;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gigakorea.kfme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -7087,11 +7116,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Shelong Technology Co. Ltd. (WCXQF945HN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 9A8T4DFUB8;
+				DEVELOPMENT_TEAM = W6JK3FHE8S;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7149,7 +7178,7 @@
 					"-lxml2",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gigakorea.gigakfme;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gigakorea.kfme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

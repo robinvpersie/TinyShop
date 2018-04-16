@@ -34,10 +34,9 @@
     #define GetZipcodeUrl @"http://192.168.2.179:82/api/ycZipCode/getZipCode"
     #define GetTokenUrl @"http://192.168.2.165:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
     #define MallBaseUrl @"http://mall.gigawon.co.kr:8800"
+    #define TinyMemberShopBaseURL @"http://member.gigawon.co.kr:8808/api/"
+    #define TinyMallShopBaseURL @"http://mall.gigawon.co.kr:8800/api/"
 #else
-
-
-
     #define TinyMemberShopBaseURL @"http://member.gigawon.co.kr:8808/api/"
     #define TinyMallShopBaseURL @"http://mall.gigawon.co.kr:8800/api/"
 

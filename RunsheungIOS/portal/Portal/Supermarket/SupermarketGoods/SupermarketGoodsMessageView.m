@@ -24,6 +24,7 @@
     UIButton *_addButton;
     UIButton *_cutButton;
     UIButton *_shareButton;
+	UILabel *itemCodelabel;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -139,6 +140,19 @@
     indictor.textColor = [UIColor lightGrayColor];
     indictor.text = @"购买数量:";
 //    [self addSubview:indictor];
+	
+	if (itemCodelabel == nil) {
+		itemCodelabel = [UILabel new];
+		itemCodelabel.textColor = RGB(171, 171, 171);
+		itemCodelabel.font = [UIFont systemFontOfSize:12];
+		[self addSubview:itemCodelabel];
+		[itemCodelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.leading.mas_equalTo(_expressPriceLabel.mas_leading);
+			make.height.mas_equalTo(30);
+			make.top.mas_equalTo(_expressPriceLabel.mas_bottom);
+			
+		}];
+	}
     
     CGRect frame = self.frame;
     frame.size.height = CGRectGetMaxY(_additonalLabel.frame)+20;
@@ -222,6 +236,8 @@
     _saleAmountLabel.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"SMGoodsSaleAmount", nil),goodsModel.sold];
     _expressPriceLabel.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"SMGoodsExpressMoney", nil),goodsModel.expressAmount];
     _location.text = goodsModel.city;
+	
+	itemCodelabel.text = [NSString stringWithFormat:@"商品编号:%@",_goodsModel.itemCode];
 }
 
 @end
