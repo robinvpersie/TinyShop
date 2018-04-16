@@ -102,7 +102,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUIWithNotLogin) name:TokenWrong object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logInNotification:) name:@"YCAccountIsLogin" object:nil];
     
-    self.navigationItem.title = @"我的";
+//    self.navigationItem.title = @"我的";
     self.view.backgroundColor = [UIColor redColor];
     
    // [self requestData];
