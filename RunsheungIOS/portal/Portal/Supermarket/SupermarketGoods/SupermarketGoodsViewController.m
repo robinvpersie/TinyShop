@@ -309,7 +309,7 @@
 	store.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"SMGoodsStockWay", nil),goods.storage];
 	store.hidden = YES;
 	number.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"SMGoodsGoodsCode", nil),goods.itemCode];
-	
+	number.hidden = YES;
 	if (goods.stock.integerValue == 0) {
 		self.buy.backgroundColor = [UIColor lightGrayColor];
 		[self.buy setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
