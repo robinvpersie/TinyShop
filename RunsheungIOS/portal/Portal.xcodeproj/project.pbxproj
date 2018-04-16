@@ -771,6 +771,7 @@
 		D53093CA205E483700427350 /* MemberEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093C8205E483700427350 /* MemberEnrollController.m */; };
 		D53093CE205E520C00427350 /* ProtectItemsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093CD205E520C00427350 /* ProtectItemsController.m */; };
 		D53093D1205E683D00427350 /* StepOneMemEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093D0205E683D00427350 /* StepOneMemEnrollController.m */; };
+		D5359DBC20848748008A62A9 /* WebRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5359DBB20848748008A62A9 /* WebRulesViewController.swift */; };
 		D59D3A2C205BE42E0074F0E8 /* TSCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */; };
 		D59D3A2F205BF1030074F0E8 /* TSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */; };
 		D5D01F2A205F5606002263CC /* TeamEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F29205F5606002263CC /* TeamEnrollController.m */; };
@@ -2204,6 +2205,7 @@
 		D53093CD205E520C00427350 /* ProtectItemsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProtectItemsController.m; sourceTree = "<group>"; };
 		D53093CF205E683D00427350 /* StepOneMemEnrollController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StepOneMemEnrollController.h; sourceTree = "<group>"; };
 		D53093D0205E683D00427350 /* StepOneMemEnrollController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StepOneMemEnrollController.m; sourceTree = "<group>"; };
+		D5359DBB20848748008A62A9 /* WebRulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRulesViewController.swift; sourceTree = "<group>"; };
 		D59D3A26205BE42E0074F0E8 /* TSCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCategoryController.h; sourceTree = "<group>"; };
 		D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCategoryController.m; sourceTree = "<group>"; };
 		D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBaseViewController.m; sourceTree = "<group>"; };
@@ -5553,6 +5555,7 @@
 				D5D01F29205F5606002263CC /* TeamEnrollController.m */,
 				D5D01F32205FA3EB002263CC /* FindTeamViewController.h */,
 				D5D01F33205FA3EB002263CC /* FindTeamViewController.m */,
+				D5359DBB20848748008A62A9 /* WebRulesViewController.swift */,
 			);
 			path = MemberEnroll;
 			sourceTree = "<group>";
@@ -6744,6 +6747,7 @@
 				1B0CD2C01E8B5B8D008AF162 /* YCHoltelBaseViewController.m in Sources */,
 				1B392EDD1E28D14E00F70981 /* SupermarketCommentViewController.m in Sources */,
 				1B392F181E28D14E00F70981 /* IntergrationController.m in Sources */,
+				D5359DBC20848748008A62A9 /* WebRulesViewController.swift in Sources */,
 				1B392D5D1E28D0E500F70981 /* STConst.m in Sources */,
 				1B72C4281EA1ED2800FA361E /* HotelCancelTableView.m in Sources */,
 				1B392D6D1E28D0E500F70981 /* AMTagListView.m in Sources */,
@@ -7025,7 +7029,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
-				CODE_SIGN_IDENTITY = "iPhone Developer: 1260896224@qq.com (587EWH4655)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -7108,7 +7112,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Shelong Technology Co. Ltd. (WCXQF945HN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
