@@ -12,35 +12,35 @@ import UIKit
 
 extension UIColor{
     
-    static var navigationbarColor:UIColor{
+    static var navigationbarColor: UIColor{
         return UIColor(hex:0xf23c48)
     }
     
-    static var textfieldColor:UIColor{
+    static var textfieldColor: UIColor{
         return UIColor(hex:0xffffff)
     }
     
-    static var classBackGroundColor:UIColor{
+    static var classBackGroundColor: UIColor{
         return UIColor(hex:0xf2f2f2)
     }
     
-    @objc static var darkcolor:UIColor{
+    @objc static var darkcolor: UIColor{
         return UIColor(hex: 0x333333)
     }
     
-    static var BaseControllerBackgroundColor:UIColor{
+    static var BaseControllerBackgroundColor: UIColor{
         return UIColor(hex: 0xf2f2f2)
     }
     
-    static var YClightGrayColor:UIColor{
+    static var YClightGrayColor: UIColor{
         return UIColor(hex: 0x999999)
     }
     
-    static var YClightBlueColor:UIColor{
+    static var YClightBlueColor: UIColor{
         return UIColor(hex:0x3dbcf1)
     }
     
-    static var YCGrayColor:UIColor {
+    static var YCGrayColor: UIColor {
         return UIColor(hex:0xe6e6e6)
     }
     
