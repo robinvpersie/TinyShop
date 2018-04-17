@@ -72,18 +72,16 @@ class RSTabBarMainController: UITabBarController {
         }
     }
 
-    var divName: String?{
+    var divName: String? {
         didSet{
         }
     }
 
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         delegate = self
-        view.backgroundColor = UIColor.white
         
         let homeNav = UINavigationController(rootViewController: homeController)
         let cateNav = UINavigationController(rootViewController: cateController)
@@ -93,7 +91,6 @@ class RSTabBarMainController: UITabBarController {
         viewControllers = [homeNav, cateNav, shopcartNav, minNav]
         
         viewControllers?.enumerated().forEach({ offset, controller in
-           // let nav = controller as! UINavigationController
             let tab = Tab(index: offset)
             controller.tabBarItem = UITabBarItem(title: tab.tabName, image: tab.normalImage, selectedImage: tab.selectImage)
         })
@@ -102,13 +99,8 @@ class RSTabBarMainController: UITabBarController {
         tabBar.barStyle = .default
         
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor(red: 33, green: 192, blue: 67)], for: .selected)
-
-        
     }
     
-    var isTabBarVisible: Bool {
-        return tabBar.frame.origin.y < view.frame.maxY
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -116,7 +108,7 @@ class RSTabBarMainController: UITabBarController {
     }
 }
 
-extension RSTabBarMainController:UITabBarControllerDelegate {
+extension RSTabBarMainController: UITabBarControllerDelegate {
     
     
     

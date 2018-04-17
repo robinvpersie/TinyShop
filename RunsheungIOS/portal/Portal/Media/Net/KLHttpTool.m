@@ -502,18 +502,27 @@
                                   failure:(void (^)(NSError *err))failure
 {
     YCAccountModel *account = [YCAccountModel getAccount];
-    NSString *url = [NSString stringWithFormat:@"%@/api/MyInfo/MyinfoAddressEdit", MallBaseUrl];
+    NSString *url = [NSString stringWithFormat:@"%@FreshMart/User/UpdateUserShopAddress", BaseUrl];
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:@"kor" forKey:@"lang_type"];
-    [parameters setObject:account.customCode forKey:@"custom_code"];
-    [parameters setObject:account.token forKey:@"token"];
-    [parameters setObject:seqNum forKey:@"seq_num"];
-    [parameters setObject:name forKey:@"delivery_name"];
-    [parameters setObject:address forKey:@"to_address"];
-    [parameters setObject:mobilepho forKey:@"mobilepho"];
-    [parameters setObject:zipcode forKey:@"zip_code"];
-    [parameters setObject:zipname forKey:@"zip_name"];
+//    [parameters setObject:@"kor" forKey:@"lang_type"];
+//    [parameters setObject:account.customCode forKey:@"custom_code"];
+//    [parameters setObject:account.token forKey:@"token"];
+//    [parameters setObject:seqNum forKey:@"seq_num"];
+//    [parameters setObject:name forKey:@"delivery_name"];
+//    [parameters setObject:address forKey:@"to_address"];
+//    [parameters setObject:mobilepho forKey:@"mobilepho"];
+//    [parameters setObject:zipcode forKey:@"zip_code"];
+//    [parameters setObject:zipname forKey:@"zip_name"];
     [parameters setObject:defaultAdd forKey:@"default_add"];
+    [parameters setObject:seqNum forKey:@"id"];
+    [parameters setObject:zipcode forKey:@"zip_code"];
+    [parameters setObject:@0 forKey:@"longitude"];
+    [parameters setObject:account.combineToken forKey:@"token"];
+    [parameters setObject:mobilepho forKey:@"mobile"];
+    [parameters setObject:@0 forKey:@"latitude"];
+    [parameters setObject:name forKey:@"deliver_name"];
+    [parameters setObject:zipname forKey:@"deliver_id"];
+    [parameters setObject:address forKey:@"to_address"];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];

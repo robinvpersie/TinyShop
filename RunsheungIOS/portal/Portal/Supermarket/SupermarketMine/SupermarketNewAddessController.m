@@ -15,8 +15,6 @@
 
 typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
 
-#define WEAKSELF typeof(self) __weak weakSelf = self;
-
 @interface SupermarketNewAddessController ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, STPickerAreaDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -294,7 +292,6 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             
         } else {
             [self showMessage:response[@"msg"] interval:2 completionAction:nil];
-            //[MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:response[@"msg"]];
         }
     } failure:^(NSError *err) {
         
@@ -324,31 +321,27 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
     
     CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
     [geoCoder geocodeAddressString:[NSString stringWithFormat:@"%@%@",_addressLabel.text,_haoaoField.text] completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        if (error != nil || placemarks.count == 0) {
-            //[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:NSLocalizedString(@"SMAdressWrongAdressMsg", nil)];
-            [self showMessage:NSLocalizedString(@"SMAdressWrongAdressMsg", nil) interval:2 completionAction:nil];
-        } else {
+
+        if (placemarks.count != 0) {
             CLPlacemark *placeMark = [placemarks firstObject];
             _longtitude = placeMark.location.coordinate.longitude;
             _latitude = placeMark.location.coordinate.latitude;
-            [self saveAddressAction];
+        } else {
+            _longtitude = 0;
+            _latitude = 0;
         }
+        [self saveAddressAction];
     }];
     
     
 }
 
 - (void)saveAddressAction {
-    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
     
     if (self.addressModel == nil) {
         BOOL isDefault = NO;
         if (_defualtIcon.hidden == NO) {
             isDefault = YES;
-        }
-        if (_longtitude == 0 || _latitude == 0) {
-            [self showMessage:NSLocalizedString(@"SMAdressGetPointMsg", nil) interval:1 completionAction:nil];
-            return;
         }
         
         NSString *zipCode = _gidField.text;
@@ -381,18 +374,13 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
                                                      }];
 
     } else {
-        if (_longtitude == 0 || _latitude == 0) {
-            [self showMessage:NSLocalizedString(@"SMAdressGetPointMsg", nil) interval:1 completionAction:nil];
-            return;
-        }
         NSString *zipCode = _gidField.text;
         if (zipCode.length == 0) {
             [self showMessage:NSLocalizedString(@"SMAdressNoZipCodeMsg", nil) interval:1 completionAction:nil];
-            //[MBProgressHUD hideAfterDelayWithView:self.view interval:2 text:NSLocalizedString(@"SMAdressNoZipCodeMsg", nil)];
             return;
         }
         
-
+        [self showLoading];
         [KLHttpTool supermaketEditAddresswWithRealName:_nameField.text
                                               location:_addressLabel.text
                                                address:_haoaoField.text
@@ -402,13 +390,14 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
                                                zipName:_addressLabel.text
                                             defaultAdd: (!_defualtIcon.hidden ? @"1":@"0")
                                                success:^(id response) {
-                                                   NSString *status = response[@"status"];
-                                                   if ([status isEqualToString:@"1"]) {
+                                                   [self hideLoading];
+                                                   NSNumber *status = response[@"status"];
+                                                   if (status.integerValue == 1) {
                                                        [[NSNotificationCenter defaultCenter] postNotificationName:RefreshMyAddressListNotification object:nil];
                                                        [self.navigationController popViewControllerAnimated:YES];
                                                    }
                                                } failure:^(NSError *err) {
-                                                   
+                                                   [self hideLoading];
                                                }];
     
        }
