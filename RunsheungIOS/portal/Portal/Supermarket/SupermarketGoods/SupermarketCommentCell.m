@@ -225,6 +225,15 @@
     _viewTimeLabel.frame = CGRectMake(Space, CGRectGetMaxY(_commentCollectionView.frame)+10, 120, 20);
     _likeButton.frame = CGRectMake(APPScreenWidth - 10 - 20, _viewTimeLabel.frame.origin.y, 20, _viewTimeLabel.frame.size.height);
     _likeContentButton.frame = CGRectMake(CGRectGetMinX(_likeButton.frame)-40-10, _likeButton.frame.origin.y, 40, _likeButton.frame.size.height);
+	CGRect timeFrame = _timeLabel.frame;
+	timeFrame.origin.y = CGRectGetMaxY(_commentWithPicBgView.frame) - 30;
+	_timeLabel.frame = timeFrame;
+	
+	UILabel *timelabel = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetHeight(_commentWithPicBgView.frame) - 36, 200, 30)];
+	timelabel.textColor = RGB(171, 171, 171);
+	timelabel.font = [UIFont systemFontOfSize:12];
+	timelabel.text = commentData.sendTime;
+	[_commentWithPicBgView addSubview:timelabel];
 }
 
 - (void)clikeLikeButton:(UIButton *)button {

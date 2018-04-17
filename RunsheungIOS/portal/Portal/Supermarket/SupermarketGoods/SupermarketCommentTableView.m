@@ -28,6 +28,9 @@
     if (self) {
         [self registerClass:[SupermarketCommentCell class] forCellReuseIdentifier:@"Comment_Cell"];
         self.dataSource = self;
+		self.estimatedRowHeight = 0;
+		self.estimatedSectionFooterHeight = 0;
+		self.estimatedSectionHeaderHeight = 0;
         self.delegate = self;
         self.emptyDataSetSource = self;
         self.tableFooterView = [[UIView alloc] init];
@@ -52,7 +55,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SupermarketCommentCell *cell = [[SupermarketCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Comment_Cell"];
     cell.commentControllerType = self.commentControllerType;
-    cell.model = self.dataArray[indexPath.section];
+    cell.commentData = self.dataArray[indexPath.section];
     return cell;
 }
 
@@ -66,8 +69,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    SPCommentModel *data = self.dataArray[indexPath.section];
-    CGFloat contentHeight = [UILabel getHeightByWidth:LabelWidth title:data.text font:[UIFont systemFontOfSize:14]];
+    SupermarketCommentData *data = self.dataArray[indexPath.section];
+    CGFloat contentHeight = [UILabel getHeightByWidth:LabelWidth title:data.content font:[UIFont systemFontOfSize:14]];
     return  contentHeight + 105;
     
 
