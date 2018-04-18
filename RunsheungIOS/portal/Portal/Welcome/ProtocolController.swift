@@ -273,7 +273,8 @@ class ProtocolController: UIViewController {
     }
     
     @objc func didStart() {
-        if locationChooseBtn.isSelected && liveChooseBtn.isSelected {
+        if locationChooseBtn.isSelected {
+        //&& liveChooseBtn.isSelected {
             startAction?()
         }
         
@@ -315,7 +316,7 @@ extension ProtocolController: UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
       
-        let web = YCWebViewController(urlConvertible: "http://www.gigawon.co.kr:1314/CS2/CS00")
+        let web = YCWebViewController(urlConvertible: "http://www.gigawon.co.kr:1314/CS2/CS10")
         web.backtype = .dismiss
         let nav = UINavigationController(rootViewController: web)
         self.present(nav, animated: true, completion: nil)
