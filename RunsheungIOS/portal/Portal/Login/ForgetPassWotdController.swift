@@ -17,6 +17,7 @@ class ForgetPassWotdController: BaseViewController {
 
     var phoneField: InputFieldView!
     var messagefield: InputFieldView!
+	var getVerifyCode: UIButton!
     var scrollView: TPKeyboardAvoidingScrollView!
 //    var newPasswordField:YCTextField!
 //    var confirmPasswordField:YCTextField!
@@ -66,7 +67,7 @@ class ForgetPassWotdController: BaseViewController {
 		messagefield.placeHolder = "인증번호를 입력해 주세요"
         scrollView.addSubview(messagefield)
         messagefield.snp.makeConstraints { (make) in
-            make.leading.width.height.equalTo(phoneField)
+            make.leading.height.equalTo(phoneField)
             make.top.equalTo(phoneField.snp.bottom).offset(20)
         }
         

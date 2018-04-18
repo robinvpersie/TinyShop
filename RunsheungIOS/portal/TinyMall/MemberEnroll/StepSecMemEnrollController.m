@@ -84,7 +84,7 @@
 	
 	self.delegatecodeinput = [[InputFieldView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.customernameinput.frame)+10, APPScreenWidth- 160, 50)];
 	self.delegatecodeinput.enEdit = NO;
-	self.delegatecodeinput.textcolor = RGB(169, 169, 169);
+	self.delegatecodeinput.textcolor = RGB(79, 79, 79);
 	self.delegatecodeinput.placeHolder =  NSLocalizedString(@"请输入代理编码", nil);
 	self.delegatecodeinput.font = [UIFont systemFontOfSize:14];
 	[self.scrollView addSubview: self.delegatecodeinput];
@@ -98,7 +98,7 @@
 	
 	self.delegatecityinput = [[InputFieldView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.delegatecodeinput.frame)+10, APPScreenWidth- 40, 50)];
 	self.delegatecityinput.enEdit = NO;
-	self.delegatecityinput.textcolor = RGB(169, 169, 169);
+	self.delegatecityinput.textcolor = RGB(79, 79, 79);
 	self.delegatecityinput.placeHolder =  NSLocalizedString(@"请输入编码地址", nil);
 	self.delegatecityinput.font = [UIFont systemFontOfSize:14];
 	[self.scrollView addSubview: self.delegatecityinput];
@@ -133,7 +133,7 @@
 	SearchKoreaAddress *search = [[SearchKoreaAddress alloc] init];
 	search.selectAction = ^(KoreaPlaceModel * dic) {
         self.delegatecodeinput.text = dic.postcd;
-		self.delegateAddressinput.text = dic.address;
+		self.delegatecityinput.text = dic.address;
 	};
 	UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:search];
 	[self presentViewController:nav animated:YES completion:nil];
