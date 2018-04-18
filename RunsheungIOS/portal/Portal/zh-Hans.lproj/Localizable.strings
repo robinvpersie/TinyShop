@@ -21,9 +21,9 @@
 "SupermarketTasteFresh" = "신상";
 "SupermarketMyOrderAll" = "전부";
 "SupermarketMyOrderWaitPay" = "결제대기";
-"SupermarketMyOrderWaitDeliver" = "발송대기";
-"SupermarketMyOrderWaitReceive" = "수령대기";
-"SupermarketMyOrderWaitComment" = "평가대기";
+"SupermarketMyOrderWaitDeliver" = "배송준비";
+"SupermarketMyOrderWaitReceive" = "배송중";
+"SupermarketMyOrderWaitComment" = "배송완료";
 "SupermarketNoOrder" = "관련된 상품이 없습니다";
 "SupermarketOrderDetailTitle" = "주문내역";
 "SupermarketConfirmReceiveButtonTitle" = "수령확인";

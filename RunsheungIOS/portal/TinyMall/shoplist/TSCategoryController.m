@@ -475,7 +475,7 @@
 		orderBy = @"1";
 		
 	}else{
-		Level1 = @"13";
+		Level1 = @"1";
 		Level2 = @"1";
 		Level3 = @"1";
 		orderBy = @"1";

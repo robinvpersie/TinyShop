@@ -84,7 +84,7 @@
         }
         
         if (data.stockUnit != nil) {
-            _price.text = [NSString stringWithFormat:@"%.f%@",data.price.floatValue,data.stockUnit];
+            _price.text = [NSString stringWithFormat:@"%.f",data.price.floatValue];
         }
         
         if (data.title != nil) {

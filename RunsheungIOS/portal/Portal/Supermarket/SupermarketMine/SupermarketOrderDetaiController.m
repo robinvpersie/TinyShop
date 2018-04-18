@@ -479,7 +479,7 @@
         }
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
-            cell.textLabel.text = NSLocalizedString(@"气加支付", nil);
+            cell.textLabel.text = NSLocalizedString(@"결제방식", nil);
             cell.textLabel.font = [UIFont systemFontOfSize:15];
             cell.textLabel.textColor = [UIColor grayColor];
 			NSLog(@"%@",_orderDetailData.payment);

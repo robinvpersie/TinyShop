@@ -41,7 +41,6 @@
 	if (self.searchKeyWord.length) {
 		keysearchword = self.searchKeyWord;
 	}
-	keysearchword = @"";
 	
 	[KLHttpTool TinyLoginSearchTeamDataUrl:@"Group/requestGroupList" WithSword:keysearchword WithPg:[NSString stringWithFormat:@"%d",self.paged] success:^(id response) {
 		if([response[@"status"] intValue] == 1){
@@ -136,6 +135,7 @@
 			name.textColor = [UIColor whiteColor];
 			content.text = @"단체대표";
 			content.textColor = [UIColor whiteColor];
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
 		}
 			break;

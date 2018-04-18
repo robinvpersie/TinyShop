@@ -45,8 +45,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _payWayTitles = @[NSLocalizedString(@"气加支付", nil),@"U+",NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"AliPay", nil),NSLocalizedString(@"UnionPay", nil)];
-    _payWayImageNames = @[@"ico_gigapay",@"uplus",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
+    _payWayTitles = @[@"LG U+",NSLocalizedString(@"气加支付", nil),NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"AliPay", nil),NSLocalizedString(@"UnionPay", nil)];
+    _payWayImageNames = @[@"uplus",@"ico_gigapay",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:AliPayCancleNotification object:nil];
     
@@ -132,7 +132,7 @@
     ///每秒回调一次
     [_countDown countDownWithStratDate:startDate finishDate:endDate completeBlock:^(NSInteger day, NSInteger hour, NSInteger minute, NSInteger second) {
         if (day > 0 || hour > 0 || minute > 0 || second > 0) {
-            [goPay setTitle:[NSString stringWithFormat:@"%@%ld分%ld秒)",NSLocalizedString(@"SMGoPayMsg", nil),minute,second] forState:UIControlStateNormal];
+            [goPay setTitle:[NSString stringWithFormat:@"%@%ld분%ld초",NSLocalizedString(@"SMGoPayMsg", nil),minute,second] forState:UIControlStateNormal];
             [goPay addTarget:self action:@selector(payAction) forControlEvents:UIControlEventTouchUpInside];
         } else {
             [goPay setTitle:NSLocalizedString(@"SMOrderUseless", nil) forState:UIControlStateNormal];
@@ -146,9 +146,9 @@
 
 - (void)payAction {
     NSString *payType;
-	if (_gigaPay.selected == YES) {
+	if (_lgplusPay.selected == YES) {
 		payType = @"1";
-	}else if (_lgplusPay.selected == YES) {
+	}else if (_gigaPay.selected == YES) {
 		payType = @"2";
 	}else if (_wechatPay.selected == YES) {
         payType = @"3";
@@ -165,7 +165,7 @@
 	
 	OrderDetailModel *orderDetail = _orderDetailData;
 	
-	if ([payType isEqualToString:@"1"]) {
+	if ([payType isEqualToString:@"2"]) {
 		__weak SupermarketOrderWaitPayDetailController *weakSelf = self;
 		if (self.passwordView == nil) {
 			self.passwordView = [[CYPasswordView alloc] init];
@@ -188,7 +188,7 @@
 				NSNumber *status = response[@"status"];
 				
 				if (status.integerValue == 1) {
-					[weakSelf.passwordView requestComplete:YES message:@"支付成功"];
+					[weakSelf.passwordView requestComplete:YES message:NSLocalizedString(@"결제 완료", nil)];
 					[[NSNotificationCenter defaultCenter] postNotificationName:SupermarketSelectTabBar object:nil];
 					NSDictionary *data = response[@"data"];
 					[KLHttpTool supermarketPaymentSuccessWithOrderNum:data[@"order_no"] success:^(id response) {
@@ -208,7 +208,7 @@
 			}];
 		};
 		
-	}else if ([payType isEqualToString:@"2"]){
+	}else if ([payType isEqualToString:@"1"]){
 		LGwebViewController *lgupay = [LGwebViewController new];
 		lgupay.hidesBottomBarWhenPushed = YES;
 		[lgupay loadRequestUrlWithOrderNumber:order_num OrderMoney:orderDetail.realPrice OrderUserName:@"%EA%B9%80%EB%8F%84%EC%84%B1" GiftInfo:@"api%EC%83%88%EB%A1%9C%20%EB%B0%9B%EC%9D%84%EA%B2%83"];
@@ -596,10 +596,10 @@
 			if (indexPath.row == 0) {
 				
 				
-				self.gigaPay = check;
-				self.gigaPay.selected = YES;
-			}else if (indexPath.row == 1) {
 				self.lgplusPay = check;
+				self.lgplusPay.selected = YES;
+			}else if (indexPath.row == 1) {
+				self.gigaPay = check;
 			}
 			[check addTarget:self action:@selector(checkPayWay:) forControlEvents:UIControlEventTouchUpInside];
 
