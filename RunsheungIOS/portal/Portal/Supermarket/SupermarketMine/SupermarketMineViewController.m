@@ -111,6 +111,8 @@
 	BOOL isLogin = [YCAccountModel islogin];
     if (isLogin) {
         [self requestData];
+    } else {
+        [headerView refreshUIWithPhone:nil nickName:nil avatarUrlString:nil];
     }
 }
 
