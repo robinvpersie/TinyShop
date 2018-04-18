@@ -22,6 +22,8 @@
 #import "SupermarketWaitDeliverOrderController.h"
 #import "SupermarketConfrimOrderByNumbersController.h"
 #import "SupermarketOrderGoodsData.h"
+#import "SupermarketHomeViewController.h"
+#import "LZCartViewController.h"
 #import "LZCartModel.h"
 
 @interface SupermarketMyOrderController ()
@@ -48,7 +50,18 @@
 		[self dismissViewControllerAnimated:YES completion:nil];
 		
 	} else {
-		[self.navigationController popViewControllerAnimated:YES];
+		NSArray *controllers = self.navigationController.viewControllers;
+		if (controllers.count>2) {
+			for (UIViewController *vc in controllers) {
+				if ([vc isMemberOfClass:[SupermarketHomeViewController class]]||[vc isMemberOfClass:[LZCartViewController class]]) {
+					[self.navigationController popToViewController:vc animated:YES];
+					
+				}
+			}
+
+		} else {
+			[self.navigationController popViewControllerAnimated:YES];
+		}
 		
 	}
 	

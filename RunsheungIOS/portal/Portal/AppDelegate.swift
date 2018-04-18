@@ -20,9 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            WXApi.registerApp("wx98da3da69fcf2bcc", withDescription: "人生药业充值")
         }
         
-        proposeToAccess(.notifications(UIUserNotificationSettings(types: [.sound,.alert,.badge], categories: nil)), agreed: {}, rejected: {})
-        proposeToAccess(.location(.whenInUse), agreed: { }) { }
-        
+//        proposeToAccess(.notifications(UIUserNotificationSettings(types: [.sound,.alert,.badge], categories: nil)), agreed: {}, rejected: {})
+//        proposeToAccess(.location(.whenInUse), agreed: { }) { }
+//        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
         

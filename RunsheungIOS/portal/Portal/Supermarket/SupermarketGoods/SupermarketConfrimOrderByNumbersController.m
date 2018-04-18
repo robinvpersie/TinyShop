@@ -628,6 +628,7 @@
 //    [self.navigationController popViewControllerAnimated:YES];
     SupermarketMyOrderController *myOrder = [[SupermarketMyOrderController alloc] init];
     myOrder.controllerType = self.controllerType;
+	[[NSNotificationCenter defaultCenter] postNotificationName:ReloadShoppingCartNotification object:nil];
     [self.navigationController pushViewController:myOrder animated:YES];
 
 }

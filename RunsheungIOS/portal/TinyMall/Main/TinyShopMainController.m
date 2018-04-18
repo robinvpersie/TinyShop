@@ -18,9 +18,11 @@
 
 
 
+
 @interface TinyShopMainController ()<UITableViewDelegate, UITableViewDataSource>{
 	UIView *blackView;
 	int paged;
+	BOOL first;
 }
 
 @property (nonatomic,retain)UIScrollView *scrollview;
@@ -47,7 +49,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
-	
+	first= YES;
 	[self setNaviBar];
 	
 
@@ -68,13 +70,13 @@
 	[KLHttpTool TinyRequestMainDataUrl:@"StoreCate/requestStoreCateList" Withpg:pg WithPagesize:pagesize WithCustomlev1:@"13" WithCustomlev2:@"1" WithCustomlev3:@"1" Withlatitude:GetUserDefault(@"latitude") Withlongitude:GetUserDefault(@"longtitude") Withorder_by:@"1" success:^(id response) {
 			
 			if ([response[@"status"] intValue] == 1) {
-				
 				NSArray *data = response[@"storelist"];
 				if (data.count) {
 					for (NSDictionary *dic in data) {
 						
 						[self.mutaleData  addObject:dic];
 						[self.tableView reloadData];
+						
 						CGRect fram = self.tableView.frame;
 						fram.size.height = self.mutaleData.count *120+15;
 						self.tableView.frame = fram;
@@ -135,7 +137,7 @@
 		self.tableView.backgroundColor = RGB(245, 245, 245);
 	
 		[self.scrollview addSubview:self.tableView];
-		[self.scrollview.mj_footer beginRefreshing];
+//		[self.scrollview.mj_footer beginRefreshing];
 		
 	}
 }
@@ -197,7 +199,6 @@
 		shopDetailed.dic = dic;
 		[self.navigationController pushViewController:shopDetailed animated:YES];
 
-
 }
 
 -(void)location {
@@ -220,6 +221,10 @@
 			
 				SetUserDefault(@"Address", address);
 				self.choiceHeadView.addressName = address;
+				if (first) {
+					[self footerRefresh];
+					first = NO;
+				}
 			} else {
 				self.choiceHeadView.addressName =  NSLocalizedString(@"定位失败", nil) ;
 			};
@@ -244,9 +249,7 @@
 	//创建热搜的数组
 	NSArray *hotSeaches = [NSArray array];
 	//创建搜索结果的控制器
-	PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches
-                                                                                          searchBarPlaceholder:NSLocalizedString(@"搜索关键字", nil)  didSearchBlock:
-                                                    ^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText)
+	PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"搜索关键字", nil)  didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText)
     {
 		TSearchViewController *searchResultVC = [[TSearchViewController alloc] init];
 		searchResultVC.searchKeyWord = searchText;
@@ -335,7 +338,7 @@
 	self.choiceHeadView.showAction = ^{
 		[weakSelf.locationView showInView:weakSelf.view.window];
 		weakSelf.locationView.location = ^{
-			[weakSelf location];
+//			[weakSelf location];
 		};
 		weakSelf.locationView.map = ^{
 			AroundMapController * around = [[AroundMapController alloc] init];

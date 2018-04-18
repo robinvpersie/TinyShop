@@ -39,8 +39,17 @@
     {
 		self.searchResultData = [NSMutableArray array];
 		if ([response[@"status"] intValue] == 1) {
+			
 			[self.searchResultData addObjectsFromArray:response[@"storelist"]];
-			[self.searchResultTableView reloadData];
+			if (self.searchResultData.count) {
+				[self.searchResultTableView reloadData];
+
+			}
+		}else {
+			MBProgressHUD *NoDataShow = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+			NoDataShow.mode = MBProgressHUDModeText;
+			NoDataShow.label.text = @"검색 내역이 없습니다.";
+			[NoDataShow hideAnimated:YES afterDelay:1.2];
 		}
     } failure:^(NSError *err) {
 		

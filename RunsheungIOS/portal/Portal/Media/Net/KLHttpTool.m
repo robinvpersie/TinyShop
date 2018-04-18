@@ -43,7 +43,6 @@
     #define BaseUrl  @"http://pay.gigawon.co.kr:81/"
     #define PaymentBaseURL @"http://pay.gigawon.co.kr:8088/"
     #define ShopBaseUrl @"http://api1.gigawon.co.kr:96/"
-//    #define PaymentUrl @"https://api.gigawon.co.kr:8444/wPayment/api/wPayment"
     #define PaymentUrl @"http://api.gigawon.co.kr:8083/wpayment/api/wPayment"
 
     #define PointListUrl @"https://api.gigawon.co.kr:8444/pl_Point/api/PointGetListAndBalance"
@@ -315,8 +314,11 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     YCAccountModel *model = [YCAccountModel getAccount];
     [params setObject:@"kor" forKey:@"lang_type"];
-    [params setObject:model.customCode forKey:@"custom_code"];
-    [params setObject:model.token forKey:@"token"];
+	if (model.customCode.length) {
+		[params setObject:model.customCode forKey:@"custom_code"];
+		[params setObject:model.token forKey:@"token"];
+	}
+	
     [params setObject:[NSString stringWithFormat:@"%@", offset] forKey:@"pg"];
     [params setObject:@"20" forKey:@"pagesize"];
     
@@ -1070,7 +1072,10 @@
     YCAccountModel *model = [YCAccountModel getAccount];
 
     [self getToken:^(id token) {
-        [params setObject:token forKey:@"token"];
+		if (token !=nil) {
+			[params setObject:token forKey:@"token"];
+		}
+		
         [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
             if (success) {
                 [self checkStatusWithResponse:response];
@@ -1752,9 +1757,7 @@
     
     NSMutableDictionary *params = @{}.mutableCopy;
     [params setObject:orderNumber forKey:@"order_num"];
-    
-    YCAccountModel *model = [YCAccountModel getAccount];
-    
+	
     [self getToken:^(id token) {
         [params setObject:token forKey:@"token"];
         [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
@@ -3438,6 +3441,27 @@
 	}];
 	
 }
+
+//投递token
++ (void)deliveryTokenToServer:(NSString *)token
+					  Success:(void (^)(id response))success
+					  failure:(void (^)(NSError *err))failure{
+	NSString *url =[NSString stringWithFormat:@"%@%@",BaseUrl,@"FreshMart/Main/SendToken"];
+	
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(token).mutableCopy;
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+	}];
+
+}
+
+
 
 @end
 

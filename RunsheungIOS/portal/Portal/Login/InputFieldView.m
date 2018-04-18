@@ -38,6 +38,17 @@
     return self;
 }
 
+- (void)setTextcolor:(UIColor *)textcolor{
+	self.field.textColor = textcolor;
+}
+
+- (void)setEnEdit:(BOOL)enEdit{
+	self.field.enabled = enEdit;
+}
+
+-(void)setText:(NSString *)text{
+	self.field.text = text;
+}
 
 -(void)setFont:(UIFont *)font {
     self.field.font = font;

@@ -360,8 +360,8 @@
 }
 
 - (void)deleteAction:(UIButton *)sender {
-    UIAlertController *deleteAlert = [UIAlertController alertControllerWithTitle:@"Alert" message:@"Are you sure to delete the place?" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *deleteAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil) message:NSLocalizedString(@"배송지를 삭제하시겠습니까?", nil) preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UIView *view = sender.superview.superview;
         if ([view isKindOfClass:[UITableViewCell class]]) {
             UITableViewCell *cell = (UITableViewCell *)view;
@@ -383,7 +383,7 @@
          }
     }];
     
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancle" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleDefault handler:nil];
     [deleteAlert addAction:ok];
     [deleteAlert addAction:cancel];
     
