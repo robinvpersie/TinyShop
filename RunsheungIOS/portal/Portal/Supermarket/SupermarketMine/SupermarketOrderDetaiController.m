@@ -382,19 +382,19 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if (section == 1) {
-        UITableViewHeaderFooterView *footer = [[UITableViewHeaderFooterView alloc] init];
-        
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(0, 0, APPScreenWidth, 40);
-        [button setTitle:NSLocalizedString(@"SMContactServiceButtonTitle", nil) forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        button.backgroundColor = [UIColor whiteColor];
-        [button addTarget:self action:@selector(contactCustomerService) forControlEvents:UIControlEventTouchUpInside];
-        
-        [footer addSubview:button];
-        return footer;
-    }
+//    if (section == 1) {
+//        UITableViewHeaderFooterView *footer = [[UITableViewHeaderFooterView alloc] init];
+//
+//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        button.frame = CGRectMake(0, 0, APPScreenWidth, 40);
+//        [button setTitle:NSLocalizedString(@"SMContactServiceButtonTitle", nil) forState:UIControlStateNormal];
+//        [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+//        button.backgroundColor = [UIColor whiteColor];
+//        [button addTarget:self action:@selector(contactCustomerService) forControlEvents:UIControlEventTouchUpInside];
+//
+//        [footer addSubview:button];
+//        return footer;
+//    }
     return nil;
 }
 
@@ -482,6 +482,7 @@
             cell.textLabel.text = NSLocalizedString(@"气加支付", nil);
             cell.textLabel.font = [UIFont systemFontOfSize:15];
             cell.textLabel.textColor = [UIColor grayColor];
+			NSLog(@"%@",_orderDetailData.payment);
             cell.detailTextLabel.text = _orderDetailData.payment;
             cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
             cell.detailTextLabel.textColor = [UIColor darkcolor];
@@ -590,7 +591,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if (section == 1) {
-        return 50;
+        return 10;
     }
     return 10;
 }
