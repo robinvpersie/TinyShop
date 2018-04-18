@@ -56,8 +56,10 @@ class SearchKoreaAddress: BaseViewController {
                // self.dataArray.addObjects(from: array as! [Any])
             }
             OperationQueue.main.addOperation {
+                self.tableView.mj_footer.endRefreshing()
                 self.tableView.reloadData()
             }
+            
         }
     }
     
@@ -92,7 +94,7 @@ extension SearchKoreaAddress: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.searchText = searchBar.text
-        self.offset = 5
+        self.offset = 1
         KoreaPlaceModel.fetchWithQuery(searchBar.text, offset: offset) { (array) in
             if let array = array {
                 self.dataArray = array
