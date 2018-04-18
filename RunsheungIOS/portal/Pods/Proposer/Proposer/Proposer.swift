@@ -13,6 +13,7 @@ import AddressBook
 import Contacts
 import EventKit
 import CoreLocation
+import UserNotifications
 
 public enum PrivateResource {
     case photos
@@ -148,26 +149,9 @@ private func proposeToAccessContacts(agreed successAction: @escaping ProposerAct
             failureAction()
         }
     } else {
-        switch ABAddressBookGetAuthorizationStatus() {
-        case .authorized:
-            successAction()
-        case .notDetermined:
-            if let addressBook: ABAddressBook = ABAddressBookCreateWithOptions(nil, nil)?.takeRetainedValue() {
-                ABAddressBookRequestAccessWithCompletion(addressBook) { granted, error in
-                    DispatchQueue.main.async {
-                        if granted {
-                            successAction()
-                        } else {
-                            failureAction()
-                        }
-                    }
-                }
-            }
-        default:
-            failureAction()
-        }
+        // Fallback on earlier versions
     }
-}
+    }
 
 private func proposeToAccessEventForEntityType(_ entityYype: EKEntityType, agreed successAction: @escaping ProposerAction, rejected failureAction: @escaping ProposerAction) {
     switch EKEventStore.authorizationStatus(for: entityYype) {

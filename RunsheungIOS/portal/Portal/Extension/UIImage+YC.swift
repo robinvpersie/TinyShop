@@ -75,12 +75,16 @@ extension YCBox where Base: UIImage {
         let pixelHeight = Base.size.height * Base.scale
         let newSize: CGSize
         if pixelWidth > pixelHeight {
-            guard pixelHeight > pixelSideLength else { return Base }
+            guard pixelHeight > pixelSideLength else {
+                return Base
+            }
             let newHeight = pixelSideLength
             let newWidth = (pixelSideLength / pixelHeight) * pixelWidth
             newSize = CGSize(width: floor(newWidth), height: floor(newHeight))
         } else {
-            guard pixelWidth > pixelSideLength else { return  Base }
+            guard pixelWidth > pixelSideLength else {
+                return  Base
+            }
             let newWidth = pixelSideLength
             let newHeight = (pixelSideLength / pixelWidth) * pixelHeight
             newSize = CGSize(width: floor(newWidth), height: floor(newHeight))
@@ -93,7 +97,9 @@ extension YCBox where Base: UIImage {
             Base.draw(in: rect)
             let newImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
-            if let image = newImage { return image }
+            if let image = newImage {
+                return image
+            }
             return Base
         } else {
             UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
@@ -101,7 +107,9 @@ extension YCBox where Base: UIImage {
             Base.draw(in: rect)
             let newImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
-            if let image = newImage { return image }
+            if let image = newImage {
+                return image
+            }
             return Base
         }
 
@@ -109,7 +117,9 @@ extension YCBox where Base: UIImage {
     
     
      func fixRotation() -> UIImage? {
-        if Base.imageOrientation == .up { return Base }
+        if Base.imageOrientation == .up {
+            return Base
+        }
         
         let width = Base.size.width
         let height = Base.size.height
@@ -154,7 +164,7 @@ extension YCBox where Base: UIImage {
         context?.concatenate(transform)
         switch Base.imageOrientation {
         case .left, .leftMirrored, .right, .rightMirrored:
-            context?.draw(selfCGImage, in: CGRect(x:0,y:0, width:height, height:width))
+            context?.draw(selfCGImage, in: CGRect(x:0, y:0, width:height, height:width))
         default:
             context?.draw(selfCGImage, in: CGRect(x: 0, y: 0, width: width, height: height))
          }
@@ -198,7 +208,6 @@ extension YCBox where Base: UIImage {
     
     
     func compressionImageToDataTargetWH( targetWH:inout CGFloat, maxFilesize: NSInteger) -> Data?{
-        
         if targetWH <= 0 {
            targetWH = 1024
         }
@@ -386,13 +395,13 @@ public extension UIImage {
         return UIImage(named:"icon_scc")
     }
     
-    static var LaunchImage: UIImage?{
-        var viewOrientation:String = "Portrait"
+    static var LaunchImage: UIImage? {
+        var viewOrientation = "Portrait"
         if UIInterfaceOrientationIsLandscape(UIApplication.shared.statusBarOrientation) {
            viewOrientation = "Landscape"
         }
-        var launchImageName:String = ""
-        let imagesDict:[[String:Any]] = Bundle.main.infoDictionary?["UILaunchImages"] as! [[String : Any]]
+        var launchImageName = ""
+        let imagesDict: [[String:Any]] = Bundle.main.infoDictionary?["UILaunchImages"] as! [[String : Any]]
         let viewSize = UIApplication.shared.windows.first!.bounds.size
         for dict in imagesDict {
             let imageSize = CGSizeFromString(dict["UILaunchImageSize"] as! String)

@@ -10,11 +10,15 @@ import UIKit
 
 class RSTabBarMainController: UITabBarController {
     
-    enum tab: Int {
+    enum Tab: Int {
         case home
         case category
         case shopcart
         case mine
+        
+        init(index: Int) {
+            self.init(rawValue: index)!
+        }
         
         var tabName: String {
             switch self {
@@ -37,7 +41,6 @@ class RSTabBarMainController: UITabBarController {
                 return UIImage(named: "icon_shop_bottom")
             case .shopcart:
                 return UIImage(named: "icon_sale_bottom")
-               
             case .mine:
                 return UIImage(named: "icon_personal_bottom")
             }
@@ -64,50 +67,40 @@ class RSTabBarMainController: UITabBarController {
     private var mineController = RSMineController()
     
     
-    var divCode:String? {
+    var divCode: String? {
         didSet{
-            guard let divCode = divCode else { return }
-//            homeController.divCode = divCode
-//            orderController.divCode = divCode
-//            profileController.divCode = divCode
         }
     }
 
-    var divName:String?{
+    var divName: String? {
         didSet{
-            guard let divName = divName else { return }
-//            homeController.divName = divName
         }
     }
 
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         delegate = self
-        view.backgroundColor = UIColor.white
+        
         let homeNav = UINavigationController(rootViewController: homeController)
         let cateNav = UINavigationController(rootViewController: cateController)
         let shopcartNav = UINavigationController(rootViewController:shopcartController)
         let minNav = UINavigationController(rootViewController: mineController)
-        viewControllers = [homeNav,cateNav,shopcartNav,minNav]
+        
+        viewControllers = [homeNav, cateNav, shopcartNav, minNav]
+        
+        viewControllers?.enumerated().forEach({ offset, controller in
+            let tab = Tab(index: offset)
+            controller.tabBarItem = UITabBarItem(title: tab.tabName, image: tab.normalImage, selectedImage: tab.selectImage)
+        })
+        
         tabBar.barTintColor = UIColor.white
         tabBar.barStyle = .default
-        UITabBarItem.appearance().setTitleTextAttributes(
-        [
-            NSAttributedStringKey.foregroundColor: UIColor(red: 33/255.0, green: 192/255.0, blue: 67/255.0, alpha: CGFloat(1))], for: .selected
-        )
-        for (index,value) in viewControllers!.enumerated(){
-            let nav = value as! UINavigationController
-            guard let tab = tab(rawValue: index) else { return }
-            nav.tabBarItem = UITabBarItem(title: tab.tabName, image: tab.normalImage, selectedImage: tab.selectImage)
-        }
+        
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor(red: 33, green: 192, blue: 67)], for: .selected)
     }
     
-    var isTabBarVisible:Bool {
-        return tabBar.frame.origin.y < view.frame.maxY
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -115,7 +108,7 @@ class RSTabBarMainController: UITabBarController {
     }
 }
 
-extension RSTabBarMainController:UITabBarControllerDelegate {
+extension RSTabBarMainController: UITabBarControllerDelegate {
     
     
     
