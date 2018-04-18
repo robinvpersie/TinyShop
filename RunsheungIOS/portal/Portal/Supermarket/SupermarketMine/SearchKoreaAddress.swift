@@ -18,7 +18,7 @@ class SearchKoreaAddress: BaseViewController {
     var dataArray = NSMutableArray()
     var offset: Int = 1
     var searchText: String?
-    @objc var selectAction: ((NSDictionary) -> Void)?
+    @objc var selectAction: ((KoreaPlaceModel) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +53,7 @@ class SearchKoreaAddress: BaseViewController {
         KoreaPlaceModel.fetchWithQuery(self.searchText, offset: self.offset) { (array) in
             if let array = array {
                 self.dataArray.addObjects(from: array as! [Any])
+               // self.dataArray.addObjects(from: array as! [Any])
             }
             OperationQueue.main.addOperation {
                 self.tableView.reloadData()
@@ -129,7 +130,7 @@ extension SearchKoreaAddress: UITableViewDelegate {
         defer {
             tableView.deselectRow(at: indexPath, animated: true)
         }
-        let dic = self.dataArray[indexPath.row] as! NSDictionary
+        let dic = self.dataArray[indexPath.row] as! KoreaPlaceModel
         self.navigationController?.dismiss(animated: true, completion: {
             self.selectAction?(dic)
         })
@@ -141,9 +142,9 @@ extension SearchKoreaAddress: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell()
-        let dic = self.dataArray[indexPath.row] as! NSDictionary
-        cell.textLabel?.text = dic["address"] as? String
-        cell.detailTextLabel?.text = dic["postcd"] as? String
+        let dic = self.dataArray[indexPath.row] as! KoreaPlaceModel
+        cell.textLabel?.text = dic.address
+        cell.detailTextLabel?.text = dic.postcd
         return cell
     }
     

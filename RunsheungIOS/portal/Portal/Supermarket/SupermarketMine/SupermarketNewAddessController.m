@@ -217,13 +217,13 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
     if (indexPath.section == 1 && indexPath.row == 0) {
         SearchKoreaAddress *search = [[SearchKoreaAddress alloc] init];
      
-        search.selectAction = ^(NSDictionary * dic) {
+        search.selectAction = ^(KoreaPlaceModel * dic) {
 //            _addressLabel.hidden = NO;
 //            _msg.hidden = YES;
 //             _gidField.text = dic[@"postcd"];
 //             _addressLabel.text = dic[@"address"];
-            self.region = dic[@"address"];
-            self.postcd = dic[@"postcd"];
+            self.region = dic.address;
+            self.postcd = dic.postcd;
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
         };
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:search];
