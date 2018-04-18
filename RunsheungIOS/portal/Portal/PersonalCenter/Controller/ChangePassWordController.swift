@@ -87,7 +87,7 @@ class ChangePassWordController: BaseViewController {
                         account.password = self?.newPasswordfield.text
                         let objectTodata = NSKeyedArchiver.archivedData(withRootObject: account)
                         YCUserDefaults.accountModel.value = objectTodata
-                        self?.showMessage("修改成功")
+                        self?.showMessage("변경완료")
                         delay(1.5, work: {
                             self?.view.endEditing(true)
                             self?.yc_back()

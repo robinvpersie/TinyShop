@@ -237,7 +237,7 @@
     _expressPriceLabel.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"SMGoodsExpressMoney", nil),goodsModel.expressAmount];
     _location.text = goodsModel.city;
 	
-	itemCodelabel.text = [NSString stringWithFormat:@"商品编号:%@",_goodsModel.itemCode];
+	itemCodelabel.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"SMGoodsGoodsCode", nil),_goodsModel.itemCode];
 }
 
 @end

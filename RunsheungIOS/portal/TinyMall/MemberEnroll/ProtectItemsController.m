@@ -92,11 +92,11 @@
 		make.trailing.equalTo(self.allchoiceBtn.mas_leading).offset(-4);
 	}];
 
-	titleArray = @[@"함께가게이용약관동의",@"전자금융거래이용약관동의",@"개인정보수집이용동의",@"마케팅정보메일,SMS수신동의(선택)",@"만14세이상고객만가입가능합니다.",@"다음으로"];
+	titleArray = @[@"함께가게 이용약관(필수)",@"전자금융거래 이용약관 동의(필수)",@"개인정보수집 및 이용에 대한 안내(필수)",@"만14세이상고객만가입가능합니다.",@"다음으로"];
 	
-	const double w1 = [self getStringWidth:titleArray.firstObject];
+	const double w1 = [self getStringWidth:titleArray.firstObject]+5;
 	UIButton *item1 = [self bottomLinebutton:titleArray.firstObject withFrame:CGRectZero];
-	item1.tag = 1;
+	item1.tag = 5;
 	[item1 addTarget:self action:@selector(rulesAction:) forControlEvents:UIControlEventTouchUpInside];
 	[backImg addSubview: item1];
 	[item1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -118,10 +118,10 @@
 		make.top.equalTo(item1.mas_top);
 	}];
 	
-	const double w2 = [self getStringWidth:titleArray[1]];
+	const double w2 = [self getStringWidth:titleArray[1]]+5;
 	UIButton *item2 = [self bottomLinebutton:titleArray[1] withFrame:CGRectZero];
 	[item2 addTarget:self action:@selector(rulesAction:) forControlEvents:UIControlEventTouchUpInside];
-	item2.tag = 2;
+	item2.tag = 4;
 	[backImg addSubview: item2];
 	[item2 mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.leading.equalTo(@15);
@@ -142,9 +142,9 @@
 		make.top.equalTo(item2.mas_top);
 	}];
 
-	const double w3 = [self getStringWidth:titleArray[2]];
+	const double w3 = [self getStringWidth:titleArray[2]]+5;
 	UIButton *item3 = [self bottomLinebutton:titleArray[2] withFrame:CGRectZero];
-	item3.tag = 3;
+	item3.tag = 2;
 	[item3 addTarget:self action:@selector(rulesAction:) forControlEvents:UIControlEventTouchUpInside];
 	[backImg addSubview:item3];
 	[item3 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -152,9 +152,9 @@
 		make.top.equalTo(item2.mas_bottom);
 		make.width.mas_equalTo(w3);
 		make.height.mas_equalTo(30);
-		
+
 	}];
-	
+
 	UIButton *check3 = [UIButton new];
 	[check3 setImage:[UIImage imageNamed:@"icon_checkbox_default"] forState:UIControlStateNormal];
 	[check3 setImage:[UIImage imageNamed:@"icon_checkbox_green"] forState:UIControlStateSelected];
@@ -166,40 +166,51 @@
 		make.top.equalTo(item3.mas_top);
 	}];
 	
-	const double w4 = [self getStringWidth:titleArray[3]] + 5;
-	UIButton *item4 = [self bottomLinebutton:titleArray[3] withFrame:CGRectZero];
-	item4.tag = 4;
-	[item4 addTarget:self action:@selector(rulesAction:) forControlEvents:UIControlEventTouchUpInside];
-	[backImg addSubview:item4];
-	[item4 mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.leading.equalTo(@15);
-		make.top.equalTo(item3.mas_bottom);
-		make.width.mas_equalTo(w4);
-		make.height.mas_equalTo(30);
-	}];
+//	const double w4 = [self getStringWidth:titleArray[3]] + 5;
+//	UIButton *item4 = [self bottomLinebutton:titleArray[3] withFrame:CGRectZero];
+//	item4.tag = 4;
+//	[item4 addTarget:self action:@selector(rulesAction:) forControlEvents:UIControlEventTouchUpInside];
+//	[backImg addSubview:item4];
+//	[item4 mas_makeConstraints:^(MASConstraintMaker *make) {
+//		make.leading.equalTo(@15);
+//		make.top.equalTo(item3.mas_bottom);
+//		make.width.mas_equalTo(w4);
+//		make.height.mas_equalTo(30);
+//	}];
+//
+//	UIButton *check4 = [UIButton new];
+//	[check4 setImage:[UIImage imageNamed:@"icon_checkbox_default"] forState:UIControlStateNormal];
+//	[check4 setImage:[UIImage imageNamed:@"icon_checkbox_green"] forState:UIControlStateSelected];
+//	[check4 addTarget:self action:@selector(SinglechoiceBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+//	[backImg addSubview:check4];
+//	[check4 mas_makeConstraints:^(MASConstraintMaker *make) {
+//		make.width.height.equalTo(@30);
+//		make.trailing.mas_equalTo(-15);
+//		make.top.equalTo(item4.mas_top);
+//	}];
 	
-	UIButton *check4 = [UIButton new];
-	[check4 setImage:[UIImage imageNamed:@"icon_checkbox_default"] forState:UIControlStateNormal];
-	[check4 setImage:[UIImage imageNamed:@"icon_checkbox_green"] forState:UIControlStateSelected];
-	[check4 addTarget:self action:@selector(SinglechoiceBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-	[backImg addSubview:check4];
-	[check4 mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.width.height.equalTo(@30);
-		make.trailing.mas_equalTo(-15);
-		make.top.equalTo(item4.mas_top);
-	}];
+//	UILabel *lastlabel = [UILabel new];
+//	lastlabel.text = titleArray[3];
+//	lastlabel.font = [UIFont systemFontOfSize:13];
+//	lastlabel.textColor = [UIColor whiteColor];
+//	[backImg addSubview:lastlabel];
+//	[lastlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//		make.leading.mas_equalTo(15);
+//		make.top.equalTo(item3.mas_bottom);
+//		make.height.equalTo(@30);
+//	}];
 	
-	UILabel *lastlabel = [UILabel new];
-	lastlabel.text = titleArray[4];
-	lastlabel.font = [UIFont systemFontOfSize:13];
-	lastlabel.textColor = [UIColor whiteColor];
-	[backImg addSubview:lastlabel];
-	[lastlabel mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.leading.mas_equalTo(15);
-		make.top.equalTo(item4.mas_bottom);
-		make.height.equalTo(@30);
-	}];
-	
+//	UILabel *lastlabel1 = [UILabel new];
+//	lastlabel1.text = titleArray[3];
+//	lastlabel1.font = [UIFont systemFontOfSize:13];
+//	lastlabel1.textColor = [UIColor whiteColor];
+//	[backImg addSubview:lastlabel1];
+//	[lastlabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
+//		make.leading.mas_equalTo(15);
+//		make.top.equalTo(lastlabel.mas_bottom);
+//		make.height.equalTo(@20);
+//	}];
+
 	
 	UIButton *enterBtn = [UIButton new];
 	[enterBtn setImage:[UIImage imageNamed:@"btn_next_activation"] forState:UIControlStateNormal];
@@ -222,7 +233,7 @@
 		make.bottom.equalTo(enterBtn.mas_bottom);
 	}];
 
-	self.choiceBtnArray = @[check1,check2,check3,check4].mutableCopy;
+	self.choiceBtnArray = @[check1,check2,check3].mutableCopy;
 
 
 }
@@ -265,11 +276,11 @@
 }
 
 - (void)rulesAction:(UIButton*)sender{
-	NSString *loadurl = [NSString stringWithFormat:@"http://www.gigawon.co.kr:1314/CS/CS%d0?%@", (int)sender.tag,@"nsukey=QBKUVmy8o2zJyFtOXCvCcd0lYWd8bZZWbwpjmDwN%2BFnIpbBYujuecZ94LBXLgc3dEQgcNPuBrsrjtup5moLzeaGCdh57CUcRip%2BXGB0Dtd42eeeR6wn0jS2hwKcZvOkBLEKI%2BVRNFUAb%2FSYeCU99miBvNgqNFYIEz%2Bc68FJU3nbAAmBapjI9rv91lJYL4wP0eEu5KKL5aKuSB7YVuAPgPQ%3D%3D"];
+	NSString *loadurl = [NSString stringWithFormat:@"http://www.gigawon.co.kr:1314/CS2/CS%d0?%@", (int)sender.tag,@"nsukey=QBKUVmy8o2zJyFtOXCvCcd0lYWd8bZZWbwpjmDwN%2BFnIpbBYujuecZ94LBXLgc3dEQgcNPuBrsrjtup5moLzeaGCdh57CUcRip%2BXGB0Dtd42eeeR6wn0jS2hwKcZvOkBLEKI%2BVRNFUAb%2FSYeCU99miBvNgqNFYIEz%2Bc68FJU3nbAAmBapjI9rv91lJYL4wP0eEu5KKL5aKuSB7YVuAPgPQ%3D%3D"];
 	WebRulesViewController *rulevc = [WebRulesViewController new];
 	UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:rulevc];
 	[rulevc loadRulesWebWithLoadurl:loadurl];
-	rulevc.title = titleArray[(int)sender.tag-1];
+//	rulevc.title = titleArray[(int)sender.tag-1];
 	[self presentViewController:navi animated:YES completion:nil];
 	
 

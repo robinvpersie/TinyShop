@@ -109,6 +109,10 @@
 				[[NSNotificationCenter defaultCenter]postNotificationName:@"YCAccountIsLogin" object:nil];
                 [weakself dismissViewControllerAnimated:true completion:nil];
 				
+				NSString *uionToken = [NSString stringWithFormat:@"%@|%@|%@|%@",accountModel.token,accountModel.ssoId,accountModel.customCode,UUID];
+				[self performSelector:@selector(deliveryTokenToServer:) withObject:uionToken afterDelay:1];
+				
+				
             } else {
 				
                 [weakself showMessage:response[@"msg"] interval:2 completionAction:^{ }];
@@ -125,6 +129,15 @@
 	
 }
 
+- (void)deliveryTokenToServer:(NSString*)tokenString{
+	NSLog(@"%@",tokenString);
+	[KLHttpTool deliveryTokenToServer:tokenString Success:^(id response) {
+		
+	} failure:^(NSError *err) {
+		
+	}];
+}
+
 //注册
 - (void)addNewMember{
 	
@@ -138,7 +151,7 @@
 			[hud hideAnimated:NO];
 			MBProgressHUD *hudd = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
 			hudd.mode = MBProgressHUDModeText;
-			hudd.label.text = NSLocalizedString(@"注册成功", nil);
+			hudd.label.text = NSLocalizedString(@"가입을 환영합니다!", nil);
 			[hudd hideAnimated:YES afterDelay:1];
 			[self moveToleft];
 			[self moveToBottom];

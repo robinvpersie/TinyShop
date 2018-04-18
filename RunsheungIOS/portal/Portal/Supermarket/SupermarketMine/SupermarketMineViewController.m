@@ -82,8 +82,7 @@
 	_imageNames = @[@"icon_myaddress",
                     @"icon_coupon",
                     @"icon_notice",
-//                    @"icon_setting2",
-//                    @"icon_collection2"
+
                     @"icon_collection2",
                     @"icon_setting2"
                     ];

@@ -289,7 +289,7 @@
 		hud12.mode = MBProgressHUDModeText;
 		
 		if ([response[@"status"] intValue] == 1) {
-			hud12.label.text = @"注册成功！";
+			hud12.label.text = NSLocalizedString(@"注册成功", nil);
 			[self.presentingViewController.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 			
 			

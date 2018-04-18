@@ -687,5 +687,8 @@
 + (void)TinySMSloginWithPhone:(NSString*)phone
 					  Success:(void (^)(id response))success
 					  failure:(void (^)(NSError *err))failure;
-
+//投递token
++ (void)deliveryTokenToServer:(NSString *)token
+					  Success:(void (^)(id response))success
+					  failure:(void (^)(NSError *err))failure;
 @end

@@ -137,8 +137,8 @@
             [hud hideAnimated:NO];
             MBProgressHUD *hudd = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
             hudd.mode = MBProgressHUDModeText;
-            hudd.label.text = @"注册成功！";
-            [hudd hideAnimated:YES afterDelay:1];
+            hudd.label.text = NSLocalizedString(@"注册成功", nil);
+			[hudd hideAnimated:YES afterDelay:1];
             [self moveToleft];
             [self moveToBottom];
         }

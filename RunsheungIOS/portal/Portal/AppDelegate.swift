@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
 //        proposeToAccess(.notifications(UIUserNotificationSettings(types: [.sound,.alert,.badge], categories: nil)), agreed: {}, rejected: {})
-        proposeToAccess(.location(.whenInUse), agreed: { }) { }
-        
+//        proposeToAccess(.location(.whenInUse), agreed: { }) { }
+//        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
         

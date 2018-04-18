@@ -82,23 +82,27 @@
 	self.customernameinput.font = [UIFont systemFontOfSize:14];
 	[self.scrollView addSubview: self.customernameinput];
 	
-	self.delegatecodeinput = [[InputFieldView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.customernameinput.frame)+10, APPScreenWidth- 40, 50)];
+	self.delegatecodeinput = [[InputFieldView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.customernameinput.frame)+10, APPScreenWidth- 160, 50)];
+	self.delegatecodeinput.enEdit = NO;
+	self.delegatecodeinput.textcolor = RGB(169, 169, 169);
 	self.delegatecodeinput.placeHolder =  NSLocalizedString(@"请输入代理编码", nil);
 	self.delegatecodeinput.font = [UIFont systemFontOfSize:14];
 	[self.scrollView addSubview: self.delegatecodeinput];
 	
-	self.delegatecityinput = [[InputFieldView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.delegatecodeinput.frame)+10, APPScreenWidth- 160, 50)];
-	self.delegatecityinput.placeHolder =  NSLocalizedString(@"请输入编码地址", nil);
-	self.delegatecityinput.font = [UIFont systemFontOfSize:14];
-	[self.scrollView addSubview: self.delegatecityinput];
-	
-	UIButton *findAddressBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.delegatecityinput.frame)+3, CGRectGetMinY(self.delegatecityinput.frame), APPScreenWidth - CGRectGetMaxX(self.delegatecityinput.frame)-23, 50)];
+	UIButton *findAddressBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.delegatecodeinput.frame)+3, CGRectGetMinY(self.delegatecodeinput.frame), APPScreenWidth - CGRectGetMaxX(self.delegatecodeinput.frame)-23, 50)];
 	[findAddressBtn setBackgroundColor:RGB(33, 192, 67)];
 	[findAddressBtn setTitle:NSLocalizedString(@"查找地址", nil)  forState:UIControlStateNormal];
 	[findAddressBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
 	[findAddressBtn addTarget:self action:@selector(findAddressBtn:) forControlEvents:UIControlEventTouchUpInside];
 	[self.scrollView addSubview:findAddressBtn];
-
+	
+	self.delegatecityinput = [[InputFieldView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.delegatecodeinput.frame)+10, APPScreenWidth- 40, 50)];
+	self.delegatecityinput.enEdit = NO;
+	self.delegatecityinput.textcolor = RGB(169, 169, 169);
+	self.delegatecityinput.placeHolder =  NSLocalizedString(@"请输入编码地址", nil);
+	self.delegatecityinput.font = [UIFont systemFontOfSize:14];
+	[self.scrollView addSubview: self.delegatecityinput];
+	
 	
 	self.delegateAddressinput = [[InputFieldView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.delegatecityinput.frame)+10, APPScreenWidth- 40, 50)];
 	self.delegateAddressinput.placeHolder = NSLocalizedString(@"请输入详细地址", nil);
@@ -164,7 +168,7 @@
 				hud12.mode = MBProgressHUDModeText;
 				
 				if ([response[@"status"] intValue] == 1) {
-					hud12.label.text = @"注册成功！";
+					hud12.label.text = NSLocalizedString(@"注册成功", nil);
 					[self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 				}else{
 					

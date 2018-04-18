@@ -92,7 +92,7 @@ extension SearchKoreaAddress: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.searchText = searchBar.text
-        self.offset = 1
+        self.offset = 5
         KoreaPlaceModel.fetchWithQuery(searchBar.text, offset: offset) { (array) in
             if let array = array {
                 self.dataArray = array

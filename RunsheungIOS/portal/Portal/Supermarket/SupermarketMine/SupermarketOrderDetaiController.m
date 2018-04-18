@@ -84,7 +84,7 @@
     UIButton *refund = [self createButtonWithTitle:NSLocalizedString(@"SupermarketRefundButtonTitle", nil) frame:CGRectMake(APPScreenWidth - 2*ButtonWidth - 2*ButtonSpace, 10, ButtonWidth, 25) color:[UIColor darkGrayColor]];
     [refund addTarget:self action:@selector(refundAction) forControlEvents:UIControlEventTouchUpInside];
     refund.hidden = YES;
-//    [bottomView addSubview:refund];
+//  [bottomView addSubview:refund];
     self.refund = refund;
     
     UIButton *cancelOrder = [self createButtonWithTitle:NSLocalizedString(@"SMCancelOrderButtonTitle", nil) frame:CGRectMake(APPScreenWidth - 2*ButtonWidth - 2*ButtonSpace, 10, ButtonWidth, 25) color:[UIColor darkGrayColor]];
@@ -479,7 +479,7 @@
         }
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
-            cell.textLabel.text = NSLocalizedString(@"SMPaymentway", nil);
+            cell.textLabel.text = NSLocalizedString(@"气加支付", nil);
             cell.textLabel.font = [UIFont systemFontOfSize:15];
             cell.textLabel.textColor = [UIColor grayColor];
             cell.detailTextLabel.text = _orderDetailData.payment;
@@ -652,19 +652,5 @@
     return button;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

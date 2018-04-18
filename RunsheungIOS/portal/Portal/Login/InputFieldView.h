@@ -16,5 +16,7 @@
 @property(nonatomic, strong) UIFont * font;
 @property(nonatomic, copy) NSString * text;
 @property (nonatomic,assign)BOOL secureEntry;
+@property (nonatomic,assign)BOOL enEdit;
+@property(nonatomic,strong)UIColor *textcolor;
 
 @end
