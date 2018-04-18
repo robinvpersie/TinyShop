@@ -24,15 +24,15 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
 @end
 
 @implementation SupermarketNewAddessController {
-    UILabel     *_addressLabel;
-    UILabel     *_msg;
+    UILabel * _addressLabel;
+    UILabel * _msg;
     
-    UITextField *_nameField;
-    UITextField *_phoneField;
-    UITextField *_haoaoField;
-    UITextField  *_gidField;
-    NSString    *_isDefualt;
-    UIImageView *_defualtIcon;
+    UITextField * _nameField;
+    UITextField * _phoneField;
+    UITextField * _haoaoField;
+    UITextField * _gidField;
+    NSString    * _isDefualt;
+    UIImageView * _defualtIcon;
     
     CGFloat _latitude;
     CGFloat _longtitude;
@@ -142,7 +142,6 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             _phoneField.textColor = [UIColor darkGrayColor];
             _phoneField.keyboardType = UIKeyboardTypePhonePad;
             _phoneField.placeholder = NSLocalizedString(@"SMAdressPhonePlaceHolder", nil);
-           // _phoneField.text = _addressModel.mobile;
             _phoneField.text = _addressModel.mobilepho;
             _phoneField.font =[UIFont systemFontOfSize:15];
             [cell.contentView addSubview:_phoneField];
@@ -165,41 +164,15 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             cell.textLabel.text = NSLocalizedString(@"SMAdressLocation", nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
           
-//            UILabel *msg = [[UILabel alloc] initWithFrame:CGRectMake(APPScreenWidth - 100 - 40,  CGRectGetHeight(cell.contentView.frame)/2 - 15, 100, 30)];
-//            msg.textColor = [UIColor lightGrayColor];
-//            msg.font = [UIFont systemFontOfSize:13];
-//            msg.text = NSLocalizedString(@"SMAdressChoose", nil);
-//            msg.textAlignment = NSTextAlignmentRight;
-//            [cell.contentView addSubview:msg];
-//
-//            _msg = msg;
             
             CGFloat width = [UILabel getWidthWithTitle:cell.textLabel.text font:cell.textLabel.font];
             
-//            UILabel *address = [[UILabel alloc] initWithFrame:CGRectMake(width + 25, CGRectGetHeight(cell.contentView.frame)/2 - 15, APPScreenWidth - width - 10, 30)];
             UILabel *address = [[UILabel alloc] init];
             address.numberOfLines = 0;
             address.textColor = [UIColor darkGrayColor];
             address.font = [UIFont systemFontOfSize:15];
             _addressLabel = address;
-            
-//            if (self.region != nil && self.region.length > 0) {
-         
-                _addressLabel.text = self.region;
-//                _msg.hidden = NO;
-//            } else {
-//                _addressLabel.hidden = YES;
-//                _msg.hidden = NO;
-//            }
-            
-//            if (_addressModel.zip_name.length > 0) {
-//                _addressLabel.hidden = NO;
-//                _addressLabel.text = [NSString stringWithFormat:@"%@", _addressModel.zip_name];
-//                _msg.hidden = NO;
-//            } else {
-//                _addressLabel.hidden = YES;
-//                _msg.hidden = NO;
-//            }
+            _addressLabel.text = self.region;
             [cell.contentView addSubview:address];
             [address mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(cell.contentView);
@@ -217,9 +190,7 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             _gidField.font = [UIFont systemFontOfSize:15];
             _gidField.text = self.postcd;
             [cell.contentView addSubview: _gidField];
-//            if (_addressModel.zip_name.length > 0) {
-//                _gidField.text = _addressModel.zip_name;
-//            }
+            
         } else if (indexPath.row == 2) {
             cell.textLabel.text = NSLocalizedString(@"SMAdressDetail", nil);
             CGFloat width = [UILabel getWidthWithTitle:cell.textLabel.text font:cell.textLabel.font];
@@ -381,24 +352,16 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
         }
         
         [self showLoading];
-        [KLHttpTool supermaketEditAddresswWithRealName:_nameField.text
-                                              location:_addressLabel.text
-                                               address:_haoaoField.text
-                                                seqNum:self.addressModel.seq_num
-                                             mobilepho:_phoneField.text
-                                               zipCode:zipCode
-                                               zipName:_addressLabel.text
-                                            defaultAdd: (!_defualtIcon.hidden ? @"1":@"0")
-                                               success:^(id response) {
-                                                   [self hideLoading];
-                                                   NSNumber *status = response[@"status"];
-                                                   if (status.integerValue == 1) {
-                                                       [[NSNotificationCenter defaultCenter] postNotificationName:RefreshMyAddressListNotification object:nil];
-                                                       [self.navigationController popViewControllerAnimated:YES];
-                                                   }
-                                               } failure:^(NSError *err) {
-                                                   [self hideLoading];
-                                               }];
+        [KLHttpTool supermaketEditAddresswWithRealName:_nameField.text location:_addressLabel.text address:_haoaoField.text seqNum:self.addressModel.seq_num mobilepho:_phoneField.text zipCode:zipCode zipName:_addressLabel.text defaultAdd: (!_defualtIcon.hidden ? @"1":@"0") success:^(id response) {
+                [self hideLoading];
+                NSNumber *status = response[@"status"];
+                if (status.integerValue == 1) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:RefreshMyAddressListNotification object:nil];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            } failure:^(NSError *err) {
+                    [self hideLoading];
+            }];
     
        }
     
