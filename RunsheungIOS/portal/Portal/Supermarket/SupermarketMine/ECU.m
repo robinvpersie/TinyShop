@@ -11,9 +11,10 @@
 
 @interface ECU () <NSXMLParserDelegate>
 
-@property (nonatomic, strong) NSMutableArray<NSDictionary *> *dataArray;
+@property (nonatomic, strong) NSMutableArray<KoreaPlaceModel *> *dataArray;
 @property (nonatomic, copy) NSString *currentTagName;
 @property (nonatomic, strong)NSMutableDictionary *mutableDic;
+@property (nonatomic, strong)KoreaPlaceModel *place;
 
 @end
 
@@ -75,23 +76,26 @@
   
     self.currentTagName = elementName;
     if ([self.currentTagName isEqualToString:@"itemlist"]) {
-        self.mutableDic = [NSMutableDictionary dictionary];
+//        self.mutableDic = [NSMutableDictionary dictionary];
+        self.place = [[KoreaPlaceModel alloc] init];
     }
 }
 
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     if ([elementName isEqualToString:@"itemlist"]) {
-        NSDictionary *dic = [self.mutableDic copy];
-        [self.dataArray addObject:dic];
+//        NSDictionary *dic = [self.mutableDic copy];
+        [self.dataArray addObject:self.place];
     }
     self.currentTagName = nil;
 }
 
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
     if ([self.currentTagName isEqualToString:@"postcd"]) {
-        [self.mutableDic setObject:string forKey:@"postcd"];
+        self.place.postcd = string;
+        //[self.mutableDic setObject:string forKey:@"postcd"];
     }else if ([self.currentTagName isEqualToString:@"address"]) {
-        [self.mutableDic setObject:string forKey:@"address"];
+//        [self.mutableDic setObject:string forKey:@"address"];
+        self.place.address = string;
     }
  
 }

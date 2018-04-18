@@ -131,10 +131,9 @@
 
 - (void)findAddressBtn:(UIButton*)sender{
 	SearchKoreaAddress *search = [[SearchKoreaAddress alloc] init];
-	search.selectAction = ^(NSDictionary * dic) {
-		NSLog(@"%@  %@",dic[@"postcd"],dic[@"address"]);
-		self.delegatecodeinput.text = dic[@"postcd"];
-		self.delegatecityinput.text = dic[@"address"];
+	search.selectAction = ^(KoreaPlaceModel * dic) {
+        self.delegatecodeinput.text = dic.postcd;
+		self.delegateAddressinput.text = dic.address;
 	};
 	UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:search];
 	[self presentViewController:nav animated:YES completion:nil];

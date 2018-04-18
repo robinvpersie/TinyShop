@@ -10,15 +10,19 @@ import Foundation
 import Moya
 import Alamofire
 
-struct KoreaPlaceModel {
+class KoreaPlaceModel: NSObject {
     
-    var address: String
-    var postcd: String
+    @objc var address: String!
+    @objc var postcd: String!
     
-    init(dic: NSDictionary) {
-        self.address = dic["address"] as! String
-        self.postcd = dic["postcd"] as! String
+    override init() {
+        super.init()
     }
+    
+//    init(dic: NSDictionary) {
+//        self.address = dic["address"] as! String
+//        self.postcd = dic["postcd"] as! String
+//    }
     
     static let callbackQueue = DispatchQueue(label: "robin v persie")
     
