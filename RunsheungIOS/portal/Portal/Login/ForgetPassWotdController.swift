@@ -18,7 +18,12 @@ class ForgetPassWotdController: BaseViewController {
     var phoneField: InputFieldView!
     var messagefield: InputFieldView!
 	var getVerifyCode: UIButton!
+	var newpwdField:InputFieldView!
+	var timer:Timer!
+	var countInt:Int!
+	
     var scrollView: TPKeyboardAvoidingScrollView!
+	
 //    var newPasswordField:YCTextField!
 //    var confirmPasswordField:YCTextField!
     var resetBtn: UIButton!
@@ -27,7 +32,7 @@ class ForgetPassWotdController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        countInt = 60
         title = "忘记密码".localized
         
         makeUI()
@@ -68,9 +73,32 @@ class ForgetPassWotdController: BaseViewController {
         scrollView.addSubview(messagefield)
         messagefield.snp.makeConstraints { (make) in
             make.leading.height.equalTo(phoneField)
+			make.trailing.equalTo(phoneField.snp.trailing).offset(-120)
             make.top.equalTo(phoneField.snp.bottom).offset(20)
         }
-        
+		
+		getVerifyCode = UIButton()
+		getVerifyCode.titleLabel?.font=UIFont.systemFont(ofSize: 14)
+		getVerifyCode.setTitle("接受验证码".localized, for: .normal)
+		getVerifyCode.setBackgroundImage(UIImage(named: "green"), for: .normal)
+		getVerifyCode.addTarget(self, action: #selector(getVerifyCodeBtn), for: .touchUpInside)
+		scrollView.addSubview(getVerifyCode)
+		getVerifyCode.snp.makeConstraints { (make) in
+			make.bottom.top.equalTo(messagefield)
+			make.leading.equalTo(messagefield.snp.trailing).offset(8)
+			make.trailing.equalTo(phoneField.snp.trailing)
+		}
+		
+		newpwdField = InputFieldView()
+		newpwdField.font = UIFont.systemFont(ofSize: 14)
+		newpwdField.placeHolder = "휴대전화 번호를 입력해 주세요"
+		scrollView.addSubview(newpwdField)
+		newpwdField.snp.makeConstraints { (make) in
+			make.leading.trailing.height.equalTo(phoneField)
+			make.top.equalTo(messagefield.snp.bottom).offset(20)
+			
+		}
+
         resetBtn = UIButton(type: .custom)
         resetBtn.addTarget(self, action: #selector(didReset), for: .touchUpInside)
         resetBtn.setTitle("확인", for: .normal)
@@ -79,7 +107,7 @@ class ForgetPassWotdController: BaseViewController {
         scrollView.addSubview(resetBtn)
         resetBtn.snp.makeConstraints { (make) in
             make.leading.width.height.equalTo(phoneField)
-            make.top.equalTo(messagefield.snp.bottom).offset(20)
+            make.top.equalTo(newpwdField.snp.bottom).offset(20)
             make.bottom.equalTo(scrollView).offset(-20)
         }
         
@@ -88,12 +116,60 @@ class ForgetPassWotdController: BaseViewController {
     override func yc_back() {
         navigationController?.dismiss(animated: true, completion: nil)
     }
-    
+
+	@objc private func getVerifyCodeBtn(){
+//		self.getVerifyCode.setTitle("还剩".localized + "60"+"s", for: .normal)
+		self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.reverseCountTime), userInfo: nil, repeats: true)
+		self.timer.fire()
+		if phoneField.text.count>0 {
+			
+			KLHttpTool.tinySMSlogin(withPhone: phoneField.text, success: { (response) in
+				let dic:NSDictionary = response as! NSDictionary
+				let status:String = dic["status"] as! String
+				if Int(status) == 1 {
+					self.getVerifyCode.setTitle("还剩".localized + "60"+"s", for: .normal)
+					self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.reverseCountTime), userInfo: nil, repeats: true)
+					self.timer.fire()
+				}
+				
+			}) { (error) in
+				
+			}
+
+		}
+	}
+	@objc private func reverseCountTime(){
+		
+		if countInt > 0{
+			self.getVerifyCode.setTitle("还剩".localized + String(self.countInt)+"s", for: .normal)
+			countInt = countInt-1
+		}else {
+			self.getVerifyCode.setTitle("接受验证码".localized , for: .normal)
+			timer.invalidate()
+		}
+		
+	}
     
     @objc func didReset() {
-        
-    }
-    
+		
+		self.resetPassword(phone: self.phoneField.text,password: self.newpwdField.text,authNum: self.messagefield.text,failureHandler: { reason, errormessage in
+			self.hideLoading()
+			self.showMessage(errormessage)
+		}, completion: { json in
+			self.hideLoading()
+			let json = JSON(json!)
+			let status = json["status"].intValue
+			let msg = json["msg"].string
+			if status == 1 {
+				self.showMessage("成功")
+				delay(1.5, work: {
+					self.navigationController?.popViewController(animated: true)
+				})
+			}else {
+			   self.showMessage(msg)
+			}
+		})
+	}
 //    func addObserve(){
 //
 //        Observable.combineLatest(phoneField.rx.text.orEmpty, messagefield.rx.text.orEmpty,newPasswordField.rx.text.orEmpty) { [weak self] phone,sms,newpassword -> Bool in

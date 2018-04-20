@@ -84,7 +84,7 @@
 	
 	self.delegatecodeinput = [[InputFieldView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.customernameinput.frame)+10, APPScreenWidth- 160, 50)];
 	self.delegatecodeinput.enEdit = NO;
-	self.delegatecodeinput.textcolor = RGB(79, 79, 79);
+	self.delegatecodeinput.textcolor = RGB(120, 120, 120);
 	self.delegatecodeinput.placeHolder =  NSLocalizedString(@"请输入代理编码", nil);
 	self.delegatecodeinput.font = [UIFont systemFontOfSize:14];
 	[self.scrollView addSubview: self.delegatecodeinput];
@@ -98,7 +98,7 @@
 	
 	self.delegatecityinput = [[InputFieldView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.delegatecodeinput.frame)+10, APPScreenWidth- 40, 50)];
 	self.delegatecityinput.enEdit = NO;
-	self.delegatecityinput.textcolor = RGB(79, 79, 79);
+	self.delegatecityinput.textcolor = RGB(120, 120, 120);
 	self.delegatecityinput.placeHolder =  NSLocalizedString(@"请输入编码地址", nil);
 	self.delegatecityinput.font = [UIFont systemFontOfSize:14];
 	[self.scrollView addSubview: self.delegatecityinput];
