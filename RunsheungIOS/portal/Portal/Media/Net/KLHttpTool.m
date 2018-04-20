@@ -1669,8 +1669,7 @@
     [params setObject:points forKey:@"point_amount"];
     [params setObject:jsonString forKey:@"validateInfo"];
     [params setObject:coupons forKey:@"useCouponsIds"];
-    YCAccountModel *model = [YCAccountModel getAccount];
-    
+	
     [self getToken:^(id token) {
         [params setObject:token forKey:@"token"];
         [[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
@@ -1738,7 +1737,7 @@
         [dic setObject:@"false" forKey:@"onCartProcess"];
     }
     
-    YCAccountModel *model = [YCAccountModel getAccount];
+//    YCAccountModel *model = [YCAccountModel getAccount];
 //    if (model.token) {
 //        [dic setObject:model.token forKey:@"token"];
 //    }
@@ -3341,7 +3340,11 @@
 			success(response);
 		}
 	} failure:^(NSError *err) {
-		NSLog(@"%@",err);
+		if (err != nil) {
+			failure(err);
+			NSLog(@"%@",err);
+
+		}
 	}];
 
 //		}

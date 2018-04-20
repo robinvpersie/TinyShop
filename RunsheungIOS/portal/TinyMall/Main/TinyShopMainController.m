@@ -95,7 +95,10 @@
 			}
 			
 		} failure:^(NSError *err) {
-			
+			UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil) message:@"인터넷 연결 또는 서버에 문제 있습니다." preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertAction *ok = [UIAlertAction actionWithTitle:NSLocalizedString(@"SMAlertSureTitle", nil) style:UIAlertActionStyleCancel handler:nil];
+			[alertController addAction:ok];
+			[self presentViewController:alertController animated:YES completion:nil];
 		}];
 
 }

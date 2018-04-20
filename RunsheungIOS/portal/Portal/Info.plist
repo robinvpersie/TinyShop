@@ -127,7 +127,7 @@
 	<string>앱 설치시 연락처 사용을 허락하시겠습니까?
 </string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>위치기반정보 수집에 동의하시겠습니까?</string>
+	<string>약관:위치기반 정책정보는 “나의 정보” 에서 화원가입후 확인이 가능합니다.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>앱 설치시 마이크 사용을 허락하시겠습니까?
 </string>

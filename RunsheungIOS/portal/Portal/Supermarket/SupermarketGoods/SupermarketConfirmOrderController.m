@@ -583,7 +583,11 @@
 				}else if ([paytype isEqualToString:@"1"]){
 					LGwebViewController *lgupay = [LGwebViewController new];
 					lgupay.hidesBottomBarWhenPushed = YES;
-					[lgupay loadRequestUrlWithOrderNumber:orderCode OrderMoney:actualMoney OrderUserName:@"%EA%B9%80%EB%8F%84%EC%84%B1" GiftInfo:@"api%EC%83%88%EB%A1%9C%20%EB%B0%9B%EC%9D%84%EA%B2%83"];
+
+					NSString *charactersToEscape = @"?!@#$^&%*+,:;='\"`<>()[]{}/\\| ";
+					NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:charactersToEscape] invertedSet];
+					NSString *orderNameS = [_goodsModel.title stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
+					[lgupay loadRequestUrlWithOrderNumber:orderCode OrderMoney:actualMoney OrderUserName:orderNameS GiftInfo:@"api%EC%83%88%EB%A1%9C%20%EB%B0%9B%EC%9D%84%EA%B2%83"];
 					[self.navigationController pushViewController:lgupay animated:YES];
 
 				}
