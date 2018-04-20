@@ -75,8 +75,8 @@
 	
 	self.title = NSLocalizedString(@"SMConfirmOrderTitle", nil);
 	
-	_payWayTitle =  @[NSLocalizedString(@"气加支付", nil),@"U+",NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"AliPay", nil),NSLocalizedString(@"UnionPay", nil)];
-	_payWayIcons = @[@"ico_gigapay",@"uplus",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
+	_payWayTitle =  @[@"LG U+",NSLocalizedString(@"气加支付", nil),NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"AliPay", nil),NSLocalizedString(@"UnionPay", nil)];
+	_payWayIcons = @[@"uplus",@"ico_gigapay",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
 	UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_back"] style:UIBarButtonItemStylePlain target:self action:@selector(popController2)];
 	back.tintColor = [UIColor darkGrayColor];
 	self.navigationItem.leftBarButtonItem = back;
@@ -513,9 +513,9 @@
 	} else {
 		__weak typeof(self) weakself = self;
 		NSString *paytype;
-		if (_gigaPay.selected == YES) {//宇成支付
+		if (_lgplusPay.selected == YES) {//lg+ 支付
 			paytype = @"1";
-		}else if (_lgplusPay.selected == YES) {//lg+ 支付
+		}else if (_gigaPay.selected == YES) {
 			paytype = @"2";
 		}else if (_wechatPay.selected == YES) {//微信支付
 			paytype = @"3";
@@ -537,7 +537,7 @@
 				NSString *actualMoney = response[@"real_amount"];
 				
 
-				if ([paytype isEqualToString:@"1"]) {
+				if ([paytype isEqualToString:@"2"]) {
 					__weak SupermarketConfirmOrderController *weakSelf = self;
 					if (self.passwordView == nil) {
 						self.passwordView = [[CYPasswordView alloc] init];
@@ -580,10 +580,14 @@
 						
 					};
 					
-				}else if ([paytype isEqualToString:@"2"]){
+				}else if ([paytype isEqualToString:@"1"]){
 					LGwebViewController *lgupay = [LGwebViewController new];
 					lgupay.hidesBottomBarWhenPushed = YES;
-					[lgupay loadRequestUrlWithOrderNumber:orderCode OrderMoney:actualMoney OrderUserName:@"%EA%B9%80%EB%8F%84%EC%84%B1" GiftInfo:@"api%EC%83%88%EB%A1%9C%20%EB%B0%9B%EC%9D%84%EA%B2%83"];
+
+					NSString *charactersToEscape = @"?!@#$^&%*+,:;='\"`<>()[]{}/\\| ";
+					NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:charactersToEscape] invertedSet];
+					NSString *orderNameS = [_goodsModel.title stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
+					[lgupay loadRequestUrlWithOrderNumber:orderCode OrderMoney:actualMoney OrderUserName:orderNameS GiftInfo:@"api%EC%83%88%EB%A1%9C%20%EB%B0%9B%EC%9D%84%EA%B2%83"];
 					[self.navigationController pushViewController:lgupay animated:YES];
 
 				}
@@ -773,17 +777,17 @@
 		cell.textLabel.textColor = [UIColor darkcolor];
 		
 		UIButton *check = [UIButton buttonWithType:UIButtonTypeCustom];
-		check.frame = CGRectMake(APPScreenWidth - 15 - 15, 15, 15, 15);
+		check.frame = CGRectMake(APPScreenWidth - 15 - 15, 10, 25, 25);
 		[check setImage:[UIImage imageNamed:@"icon_unselected"] forState:UIControlStateNormal];
 		[check setImage:[UIImage imageNamed:@"icon_selected"] forState:UIControlStateSelected];
 		[cell.contentView addSubview:check];
 	
 		if (indexPath.row == 0) {
-			self.gigaPay = check;
-			self.gigaPay.selected = YES;
+			self.lgplusPay = check;
+			self.lgplusPay.selected = YES;
 		}
 		if (indexPath.row == 1) {
-			self.lgplusPay = check;
+			self.gigaPay = check;
 		}
 		if (indexPath.row == 2) {
 			self.wechatPay = check;

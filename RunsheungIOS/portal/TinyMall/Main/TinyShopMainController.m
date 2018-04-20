@@ -67,7 +67,7 @@
 
 	__weak __typeof(self) weakSelf = self;
 	
-	[KLHttpTool TinyRequestMainDataUrl:@"StoreCate/requestStoreCateList" Withpg:pg WithPagesize:pagesize WithCustomlev1:@"13" WithCustomlev2:@"1" WithCustomlev3:@"1" Withlatitude:GetUserDefault(@"latitude") Withlongitude:GetUserDefault(@"longtitude") Withorder_by:@"1" success:^(id response) {
+	[KLHttpTool TinyRequestMainDataUrl:@"StoreCate/requestStoreCateList" Withpg:pg WithPagesize:pagesize WithCustomlev1:@"1" WithCustomlev2:@"1" WithCustomlev3:@"1" Withlatitude:GetUserDefault(@"latitude") Withlongitude:GetUserDefault(@"longtitude") Withorder_by:@"1" success:^(id response) {
 			
 			if ([response[@"status"] intValue] == 1) {
 				NSArray *data = response[@"storelist"];
@@ -95,7 +95,10 @@
 			}
 			
 		} failure:^(NSError *err) {
-			
+			UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil) message:@"인터넷 연결 또는 서버에 문제 있습니다." preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertAction *ok = [UIAlertAction actionWithTitle:NSLocalizedString(@"SMAlertSureTitle", nil) style:UIAlertActionStyleCancel handler:nil];
+			[alertController addAction:ok];
+			[self presentViewController:alertController animated:YES completion:nil];
 		}];
 
 }
@@ -164,7 +167,7 @@
 	NSDictionary *dic = self.mutaleData[indexPath.row];
 	cell.contentView.backgroundColor = RGB(245, 245, 245);
 	UIImageView *showImg = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, APPScreenWidth - 20, 110)];
-	[showImg sd_setImageWithURL:[NSURL URLWithString:dic[@"shop_thumnail_image"]] placeholderImage:[UIImage imageNamed:@"banner01"]];
+	[showImg sd_setImageWithURL:[NSURL URLWithString:dic[@"shop_thumnail_image"]] placeholderImage:[UIImage imageNamed:@"no_search"]];
 	showImg.userInteractionEnabled = YES;
 	[cell.contentView addSubview:showImg];
 	

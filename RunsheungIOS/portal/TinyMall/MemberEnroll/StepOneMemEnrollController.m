@@ -82,19 +82,19 @@
 	}];
 	
 
-	UIButton *forget = [UIButton new];
-	forget.layer.cornerRadius = 5;
-	forget.layer.masksToBounds = YES;
-	forget.titleLabel.font = [UIFont systemFontOfSize:14];
-	[forget setTitle:@"인증번호 다시받기" forState:UIControlStateNormal];
-	[forget setTitleColor:RGB(254, 254, 254) forState:UIControlStateNormal];
-	[backImg addSubview:forget];
-	[forget mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.height.equalTo(@40);
-		make.height.equalTo(@100);
-		make.top.equalTo(submitBtn.mas_bottom).offset(20);
-		make.centerX.equalTo(submitBtn.mas_centerX);
-	}];
+//	UIButton *forget = [UIButton new];
+//	forget.layer.cornerRadius = 5;
+//	forget.layer.masksToBounds = YES;
+//	forget.titleLabel.font = [UIFont systemFontOfSize:14];
+//	[forget setTitle:@"인증번호 다시받기" forState:UIControlStateNormal];
+//	[forget setTitleColor:RGB(254, 254, 254) forState:UIControlStateNormal];
+//	[backImg addSubview:forget];
+//	[forget mas_makeConstraints:^(MASConstraintMaker *make) {
+//		make.height.equalTo(@40);
+//		make.height.equalTo(@100);
+//		make.top.equalTo(submitBtn.mas_bottom).offset(20);
+//		make.centerX.equalTo(submitBtn.mas_centerX);
+//	}];
 	
 
 }

@@ -119,8 +119,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-	_payWayTitle =  @[NSLocalizedString(@"气加支付", nil),@"U+",NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"AliPay", nil),NSLocalizedString(@"UnionPay", nil)];
-	_payWayIcons = @[@"ico_gigapay",@"uplus",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
+	_payWayTitle =  @[@"LG U+",NSLocalizedString(@"气加支付", nil),NSLocalizedString(@"WechatPay", nil),NSLocalizedString(@"AliPay", nil),NSLocalizedString(@"UnionPay", nil)];
+	_payWayIcons = @[@"uplus",@"ico_gigapay",@"icon_weichatpay",@"icon_alipay",@"icon_bank"];
 	
 	/** 注册取消按钮点击的通知 */
     [CYNotificationCenter addObserver:self selector:@selector(cancelInputPWD) name:CYPasswordViewCancleButtonClickNotification object:nil];
@@ -432,9 +432,9 @@
     } else {//人生药业的支付
         
         NSString *paytype;
-		if (_gigaPay.selected == YES) {//giga支付
+		if (_lgplusPay.selected == YES) {//lg+ 支付
 			paytype = @"1";
-		}else if (_lgplusPay.selected == YES) {//lg+ 支付
+		}else if (_gigaPay.selected == YES) {//giga支付
 			paytype = @"2";
 		}else if (_wechatPay.selected == YES) {//微信支付
 			paytype = @"3";
@@ -455,7 +455,7 @@
                 NSString *money = response[@"amount"];
                 NSString *point = response[@"pointAmount"];
                 NSString *actualMoney = response[@"real_amount"];
-				if ([paytype isEqualToString:@"1"]) {
+				if ([paytype isEqualToString:@"2"]) {
 
 					__weak SupermarketConfrimOrderByNumbersController *weakSelf = self;
 					if (self.passwordView == nil) {
@@ -500,7 +500,7 @@
 						
 					};
 					
-				}else if ([paytype isEqualToString:@"2"]){
+				}else if ([paytype isEqualToString:@"1"]){
 					LGwebViewController *lgupay = [LGwebViewController new];
 					lgupay.hidesBottomBarWhenPushed = YES;
 					[lgupay loadRequestUrlWithOrderNumber:orderCode OrderMoney:actualMoney OrderUserName:@"%EA%B9%80%EB%8F%84%EC%84%B1" GiftInfo:@"api%EC%83%88%EB%A1%9C%20%EB%B0%9B%EC%9D%84%EA%B2%83"];
@@ -683,16 +683,16 @@
         cell.textLabel.textColor = [UIColor darkcolor];
         
         UIButton *check = [UIButton buttonWithType:UIButtonTypeCustom];
-        check.frame = CGRectMake(APPScreenWidth - 15 - 15, 15, 15, 15);
+        check.frame = CGRectMake(APPScreenWidth - 15 - 15, 10, 25, 25);
         [check setImage:[UIImage imageNamed:@"icon_unselected"] forState:UIControlStateNormal];
         [check setImage:[UIImage imageNamed:@"icon_selected"] forState:UIControlStateSelected];
         [cell.contentView addSubview:check];
 		if (indexPath.row == 0) {
-			self.gigaPay = check;
-			self.gigaPay.selected = YES;
+			self.lgplusPay = check;
+			self.lgplusPay.selected = YES;
 		}
 		if (indexPath.row == 1) {
-			self.lgplusPay = check;
+			self.gigaPay = check;
 		}
 		if (indexPath.row == 2) {
 			self.wechatPay = check;

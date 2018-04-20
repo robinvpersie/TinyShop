@@ -279,7 +279,7 @@
 	[tncString addAttribute:NSForegroundColorAttributeName value:RGB(33, 192, 67) range:(NSRange){0,[tncString length]}];
 	[forgetBtn setAttributedTitle:tncString forState:UIControlStateNormal];
 	[forgetBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-	[self.scrollview addSubview:forgetBtn];
+//	[self.scrollview addSubview:forgetBtn];
 	
 	//注册
 	addmemberBG =[[TSMemberEnrollView alloc]initWithFrame:CGRectMake(APPScreenWidth+15, 50, APPScreenWidth- 30, 230)];
