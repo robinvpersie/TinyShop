@@ -16,9 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        DispatchQueue.global().async {
-           WXApi.registerApp("wx98da3da69fcf2bcc", withDescription: "人生药业充值")
-        }
+//        DispatchQueue.global().async {
+//           WXApi.registerApp("wx98da3da69fcf2bcc", withDescription: "人生药业充值")
+//        }
         
 //        proposeToAccess(.notifications(UIUserNotificationSettings(types: [.sound,.alert,.badge], categories: nil)), agreed: {}, rejected: {})
 //        proposeToAccess(.location(.whenInUse), agreed: { }) { }
@@ -46,8 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             window?.rootViewController = pro
         } else {
-            //let home = ProtocolController()
-            let home = SupermarketMainController()
+            let home = ProtocolController()
+            //let home = SupermarketMainController()
             window?.rootViewController = home
         }
         window?.makeKeyAndVisible()
