@@ -1078,7 +1078,7 @@
     [params setObject:@"20" forKey:@"pagesize"];
     [params setObject:@(appType) forKey:@"appType"];
     
-    YCAccountModel *model = [YCAccountModel getAccount];
+//    YCAccountModel *model = [YCAccountModel getAccount];
 
     [self getToken:^(id token) {
 		if (token !=nil) {

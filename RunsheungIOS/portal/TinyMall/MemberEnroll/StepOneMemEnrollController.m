@@ -14,7 +14,7 @@
 @interface StepOneMemEnrollController ()
 
 @property (nonatomic, strong) InputFieldView * phoneInput;
-@property (nonatomic, strong) InputFieldView * codeInput;
+//@property (nonatomic, strong) InputFieldView * codeInput;
 @property (nonatomic, strong) UIButton *getVerfiyBtn;
 @property (nonatomic, assign)int countNumber;
 @property (nonatomic ,strong) NSTimer *timer;
@@ -49,24 +49,24 @@
 	self.phoneInput.font = [UIFont systemFontOfSize:14];
 	[backImg addSubview: self.phoneInput];
 	
-	self.codeInput = [[InputFieldView alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.phoneInput.frame), CGRectGetMaxY(self.phoneInput.frame)+15, APPScreenWidth- 180, 50)];
-	self.codeInput.placeHolder = NSLocalizedString(@"请输入短信验证码", nil);
-	self.codeInput.font = [UIFont systemFontOfSize:14];
-	[backImg addSubview: self.codeInput];
+//    self.codeInput = [[InputFieldView alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.phoneInput.frame), CGRectGetMaxY(self.phoneInput.frame)+15, APPScreenWidth- 180, 50)];
+//    self.codeInput.placeHolder = NSLocalizedString(@"请输入短信验证码", nil);
+//    self.codeInput.font = [UIFont systemFontOfSize:14];
+//    [backImg addSubview: self.codeInput];
 	
-	self.getVerfiyBtn = [UIButton new];
-	[self.getVerfiyBtn setBackgroundColor:RGB(33, 192, 67)];
-	[self.getVerfiyBtn setTitle:NSLocalizedString(@"接收验证码", nil)  forState:UIControlStateNormal];
-	[self.getVerfiyBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
-	[self.getVerfiyBtn addTarget:self action:@selector(getVerfiyBtn:) forControlEvents:UIControlEventTouchUpInside];
-	[backImg addSubview:self.getVerfiyBtn];
-	[self.getVerfiyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.height.mas_equalTo(self.codeInput.mas_height);
-		make.top.mas_equalTo(self.codeInput.mas_top);
-		make.trailing.mas_equalTo(-20);
-		make.leading.mas_equalTo(self.codeInput.mas_trailing).offset(3);
-		
-	}];
+//    self.getVerfiyBtn = [UIButton new];
+//    [self.getVerfiyBtn setBackgroundColor:RGB(33, 192, 67)];
+//    [self.getVerfiyBtn setTitle:NSLocalizedString(@"接收验证码", nil)  forState:UIControlStateNormal];
+//    [self.getVerfiyBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+//    [self.getVerfiyBtn addTarget:self action:@selector(getVerfiyBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [backImg addSubview:self.getVerfiyBtn];
+//    [self.getVerfiyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.height.mas_equalTo(self.codeInput.mas_height);
+//        make.top.mas_equalTo(self.codeInput.mas_top);
+//        make.trailing.mas_equalTo(-20);
+//        make.leading.mas_equalTo(self.codeInput.mas_trailing).offset(3);
+//
+//    }];
 
 	UIButton *submitBtn = [UIButton new];
 	[submitBtn setBackgroundColor:RGB(33, 192, 67)];
@@ -77,7 +77,8 @@
 		make.height.equalTo(@50);
 		make.leading.equalTo(self.phoneInput.mas_leading);
 		make.trailing.equalTo(self.phoneInput.mas_trailing);
-		make.top.equalTo(self.codeInput.mas_bottom).offset(20);
+		//make.top.equalTo(self.codeInput.mas_bottom).offset(20);
+        make.top.equalTo(self.phoneInput.mas_bottom).offset(20);
 		
 	}];
 	
@@ -100,20 +101,30 @@
 }
 
 - (void)submitAction:(UIButton *)sender{
-	if (self.phoneInput.text.length && self.codeInput.text.length) {
-		StepSecMemEnrollController *step1 = [StepSecMemEnrollController new];
-		SetUserDefault(@"joinphone", self.phoneInput.text);
-		SetUserDefault(@"joinauthnum", self.codeInput.text);
-		UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:step1];
-		
-		[self presentViewController:navi animated:YES completion:nil];
-
-	}else{
-		MBProgressHUD *hudview = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-		hudview.mode = MBProgressHUDModeText;
-		hudview.label.text = NSLocalizedString(@"填写完整资料进入下一步", nil);
-		[hudview hideAnimated:YES afterDelay:2.f];
-	}
+    
+    if (self.phoneInput.text.length) {
+        StepSecMemEnrollController *step1 = [StepSecMemEnrollController new];
+        SetUserDefault(@"joinphone", self.phoneInput.text);
+        UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:step1];
+        [self presentViewController:navi animated:true completion:nil];
+    } else {
+        [self showMessage:@"please enter the phone number to next step" interval:1.2 completionAction:nil];
+    }
+    
+//    if (self.phoneInput.text.length && self.codeInput.text.length) {
+//        StepSecMemEnrollController *step1 = [StepSecMemEnrollController new];
+//        SetUserDefault(@"joinphone", self.phoneInput.text);
+//        SetUserDefault(@"joinauthnum", self.codeInput.text);
+//        UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:step1];
+//
+//        [self presentViewController:navi animated:YES completion:nil];
+//
+//    }else{
+//        MBProgressHUD *hudview = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        hudview.mode = MBProgressHUDModeText;
+//        hudview.label.text = NSLocalizedString(@"填写完整资料进入下一步", nil);
+//        [hudview hideAnimated:YES afterDelay:2.f];
+//    }
 
 	
 	

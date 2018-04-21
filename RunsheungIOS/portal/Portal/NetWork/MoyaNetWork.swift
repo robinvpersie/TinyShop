@@ -302,12 +302,6 @@ struct RSEditProfileResource<T>: DecodableTargetType {
     }
 }
 
-
-
-
-
-
-
 class tokenResource<T>:DecodableTargetType {
     
     var headers: [String : String]?
