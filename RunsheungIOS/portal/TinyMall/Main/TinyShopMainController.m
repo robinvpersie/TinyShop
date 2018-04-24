@@ -109,11 +109,12 @@
 		[self.view addSubview:self.scrollview];
 		
 	}
-	blackView  = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width ,2*(self.view.frame.size.width - 30)/5+70 )];
+	blackView  = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width ,2*SCREEN_WIDTH/5.0 + 80)];
 	blackView.backgroundColor = RGB(60, 60, 60);
 	[self.scrollview addSubview:blackView];
 
-	self.numberDomainview = [[NumDomainView alloc]initWithFrame:CGRectMake(15, 10, self.view.frame.size.width - 30,2*(self.view.frame.size.width - 30)/5+60 )];
+//    self.numberDomainview = [[NumDomainView alloc]initWithFrame:CGRectMake(15, 10, self.view.frame.size.width - 30, 2 * (self.view.frame.size.width - 30)/5 + 60 )];
+    self.numberDomainview = [[NumDomainView alloc] initWithFrame:CGRectMake(15, 10, SCREEN_WIDTH, 2*SCREEN_WIDTH/5.0 + 60)];
 	self.numberDomainview.backgroundColor = RGB(60, 60, 60);
 	[blackView addSubview:self.numberDomainview];
 

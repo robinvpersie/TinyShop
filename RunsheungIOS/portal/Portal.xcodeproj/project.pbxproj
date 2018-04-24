@@ -2001,7 +2001,6 @@
 		5B8AAE361F7B5123001EB504 /* UMSocialCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMSocialCore.framework; sourceTree = "<group>"; };
 		5B8AAE371F7B5123001EB504 /* UMSocialNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMSocialNetwork.framework; sourceTree = "<group>"; };
 		5B8AAE381F7B5123001EB504 /* UMSocialSDKPromptResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKPromptResources.bundle; sourceTree = "<group>"; };
-		5B8AAE3A1F7B5123001EB504 /* libUMSocialLog.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMSocialLog.a; sourceTree = "<group>"; };
 		5B8AAE3C1F7B5123001EB504 /* UMSocialSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResources.bundle; sourceTree = "<group>"; };
 		5B8AAE3D1F7B5123001EB504 /* UShareUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UShareUI.framework; sourceTree = "<group>"; };
 		5B8AAE411F7B840C001EB504 /* AnyActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyActivity.swift; sourceTree = "<group>"; };
@@ -4984,7 +4983,6 @@
 			children = (
 				26B5EDC51FF2317F0001E40B /* SocialLibraries */,
 				5B8AAE351F7B5123001EB504 /* UMSocialSDK */,
-				5B8AAE391F7B5123001EB504 /* UMSocialSDKPlugin */,
 				5B8AAE3B1F7B5123001EB504 /* UMSocialUI */,
 			);
 			path = UMSocial;
@@ -4998,14 +4996,6 @@
 				5B8AAE381F7B5123001EB504 /* UMSocialSDKPromptResources.bundle */,
 			);
 			path = UMSocialSDK;
-			sourceTree = "<group>";
-		};
-		5B8AAE391F7B5123001EB504 /* UMSocialSDKPlugin */ = {
-			isa = PBXGroup;
-			children = (
-				5B8AAE3A1F7B5123001EB504 /* libUMSocialLog.a */,
-			);
-			path = UMSocialSDKPlugin;
 			sourceTree = "<group>";
 		};
 		5B8AAE3B1F7B5123001EB504 /* UMSocialUI */ = {

@@ -38,10 +38,10 @@
 @property(nonatomic,assign)int pickerIndex2;
 @property(nonatomic,assign)int pickerIndex3;
 
-@property (nonatomic,retain)NSArray *showColors;
+@property (nonatomic,retain)NSArray<UIColor *> *showColors;
 @property (nonatomic,retain)NSArray *BigCategoresArray;
 @property (nonatomic,retain)NSArray *BigCategoresImgs;
-@property (nonatomic,retain)NSMutableArray *fieldArray;
+@property (nonatomic,retain)NSMutableArray<UITextField *> *fieldArray;
 
 @property(nonatomic,retain)UIImageView *pickbackImg;
 

@@ -149,7 +149,7 @@
                                     withmempwd:[self sha512:self.passwordinput.text ]
                                   withnickname:self.nickinput.text
                                      withemail:self.emailedinput.text
-                                  witheAuthNum:GetUserDefault(@"joinauthnum")
+                                  witheAuthNum:@""  /*GetUserDefault(@"joinauthnum") */
                                withcustom_name:self.customernameinput.text
                               withtop_zip_code:self.delegatecodeinput.text
                              withtop_addr_head:self.delegatecityinput.text
