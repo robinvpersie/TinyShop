@@ -230,7 +230,7 @@
 	_mainScrollView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requesTinyShopDetailData)];
     [self.view addSubview:_mainScrollView];
     
-    banner = [[ZHSCorllHeader alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenWidth/2)];
+    banner = [[ZHSCorllHeader alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 100)];
     banner.delegate = self;
     [_mainScrollView addSubview:banner];
 	
