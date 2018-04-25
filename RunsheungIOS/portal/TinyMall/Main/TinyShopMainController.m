@@ -15,9 +15,19 @@
 #import "SupermarketHomeViewController.h"
 #import "SupermarketSearchController.h"
 #import "TSearchViewController.h"
+#import "DomainCell.h"
+#import "ADMainCell.h"
+#import <MJRefresh/MJRefresh.h>
 
+typedef NS_ENUM(NSInteger, sectionType) {
+    domain,
+    list
+};
 
-
+typedef NS_ENUM(NSInteger, fetchType) {
+    topRefresh,
+    loadmore
+};
 
 @interface TinyShopMainController ()<UITableViewDelegate, UITableViewDataSource>{
 	UIView *blackView;
@@ -29,7 +39,7 @@
 @property (nonatomic,retain)UITableView *tableView;
 @property (nonatomic,retain)UIView *numberDomainview;
 @property (nonatomic, strong)ChoiceHeadView *choiceHeadView;
-
+@property (nonatomic, assign)BOOL isFetching;
 @property (nonatomic, strong)ShowLocationView * locationView;
 
 @property(nonatomic,strong)NSMutableArray*mutaleData;
@@ -38,9 +48,8 @@
 @end
 
 @implementation TinyShopMainController
--(void)viewDidLayoutSubviews{
-	[super viewDidLayoutSubviews];
-}
+
+
 - (void)viewWillDisappear:(BOOL)animated{
 	[super viewWillDisappear:animated];
 	self.navigationController.navigationBar.barTintColor = RGB(253, 253, 253);
@@ -56,67 +65,92 @@
 }
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	paged = 1;
-	self.mutaleData = @[].mutableCopy;
+    [self commonInit];
 	[self location];
 	[self createLocationView];
-	[self createScrollview];
-	
+//    [self createScrollview];
+    [self createTableview];
+   
+//    [self footerRefresh];
 }
-- (void)loadMainDataWith:(NSString*)pg withPageSize:(NSString*)pagesize{
 
-	__weak __typeof(self) weakSelf = self;
-	
-	[KLHttpTool TinyRequestMainDataUrl:@"StoreCate/requestStoreCateList" Withpg:pg WithPagesize:pagesize WithCustomlev1:@"1" WithCustomlev2:@"1" WithCustomlev3:@"1" Withlatitude:GetUserDefault(@"latitude") Withlongitude:GetUserDefault(@"longtitude") Withorder_by:@"1" success:^(id response) {
-			
-			if ([response[@"status"] intValue] == 1) {
-				NSArray *data = response[@"storelist"];
-				if (data.count) {
-					for (NSDictionary *dic in data) {
-						
-						[self.mutaleData  addObject:dic];
-						[self.tableView reloadData];
-						
-						CGRect fram = self.tableView.frame;
-						fram.size.height = self.mutaleData.count *120+15;
-						self.tableView.frame = fram;
-						self.scrollview.contentSize = CGSizeMake(APPScreenWidth, CGRectGetMaxY(self.tableView.frame));
-						
-					}
-					++paged;
-					[weakSelf.scrollview.mj_footer setState:MJRefreshStateIdle];
+-(void)commonInit {
+    paged = 1;
+    self.isFetching = NO;
+    self.mutaleData = [NSMutableArray array];
+}
 
-				}else{
-					
-					[weakSelf.scrollview.mj_footer endRefreshingWithNoMoreData];
 
-				}
-				
-			}
-			
-		} failure:^(NSError *err) {
+- (void)loadMainDataWithType:(fetchType)type finish:(void(^)())finish {
+    
+    if (self.isFetching) {
+        finish();
+        return;
+    }
+    self.isFetching = YES;
+    
+    if (type == topRefresh) {
+        paged = 1;
+    } else {
+        paged = paged + 1;
+    }
+    
+    __weak typeof(self) weakSelf = self;
+	 [KLHttpTool TinyRequestMainDataUrl:@"StoreCate/requestStoreCateList"
+                                Withpg:[NSString stringWithFormat:@"%d", paged]
+                          WithPagesize:@"10"
+                        WithCustomlev1:@"13"
+                        WithCustomlev2:@"1"
+                        WithCustomlev3:@"1"
+                          Withlatitude:GetUserDefault(@"latitude")
+                         Withlongitude:GetUserDefault(@"longtitude")
+                          Withorder_by:@"2"
+                               success:^(id response)
+    {
+        weakSelf.isFetching = NO;
+        if ([response[@"status"] intValue] == 1) {
+            NSArray *data = response[@"storelist"];
+            if (type == topRefresh) {
+                [weakSelf.mutaleData removeAllObjects];
+                self.mutaleData = [data mutableCopy];
+            } else {
+                for (NSDictionary *dic in data) {
+                    [weakSelf.mutaleData addObject:dic];
+                }
+            }
+           }
+           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+              [weakSelf.tableView reloadData];
+           }];
+
+           finish();
+
+        } failure:^(NSError *err) {
+            finish();
 			UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil) message:@"인터넷 연결 또는 서버에 문제 있습니다." preferredStyle:UIAlertControllerStyleAlert];
 			UIAlertAction *ok = [UIAlertAction actionWithTitle:NSLocalizedString(@"SMAlertSureTitle", nil) style:UIAlertActionStyleCancel handler:nil];
 			[alertController addAction:ok];
 			[self presentViewController:alertController animated:YES completion:nil];
 		}];
-
 }
+
+
 - (void)createScrollview{
-	if (self.scrollview ==nil) {
-		self.scrollview = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenHeight - 44)];
-		self.scrollview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
-		[self.view addSubview:self.scrollview];
-		
-	}
-	blackView  = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width ,2*SCREEN_WIDTH/5.0 + 80)];
-	blackView.backgroundColor = RGB(60, 60, 60);
-	[self.scrollview addSubview:blackView];
+//    if (self.scrollview ==nil) {
+//        self.scrollview = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenHeight - 44)];
+//        self.scrollview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
+//        [self.view addSubview:self.scrollview];
+//
+//    }
+//    blackView  = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width ,3 * SCREEN_WIDTH / 5.0 + 80)];
+//    blackView.backgroundColor = RGB(60, 60, 60);
+//    [self.scrollview addSubview:blackView];
 
 //    self.numberDomainview = [[NumDomainView alloc]initWithFrame:CGRectMake(15, 10, self.view.frame.size.width - 30, 2 * (self.view.frame.size.width - 30)/5 + 60 )];
-    self.numberDomainview = [[NumDomainView alloc] initWithFrame:CGRectMake(15, 10, SCREEN_WIDTH, 2*SCREEN_WIDTH/5.0 + 60)];
-	self.numberDomainview.backgroundColor = RGB(60, 60, 60);
-	[blackView addSubview:self.numberDomainview];
+    
+//    self.numberDomainview = [[NumDomainView alloc] initWithFrame:CGRectMake(15, 10, SCREEN_WIDTH, 3 * SCREEN_WIDTH / 5.0 + 60)];
+//    self.numberDomainview.backgroundColor = RGB(60, 60, 60);
+//    [blackView addSubview:self.numberDomainview];
 
 	//创建标示图
 	[self createTableview];
@@ -124,76 +158,95 @@
 }
 
 - (void)createTableview{
-	if (self.tableView == nil) {
-		self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(blackView.frame), APPScreenWidth, 0) style:UITableViewStyleGrouped];
-		self.tableView.tableFooterView = [UIView new];
-		[self.tableView registerNib:[UINib nibWithNibName:@"MainTableViewCell" bundle:nil] forCellReuseIdentifier:@"MainTableViewCell"];
-		self.tableView.scrollEnabled = NO;
-		self.tableView.delegate = self;
-		self.tableView.dataSource = self;
-		
-		UIView *tableheadview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 10)];
-		self.tableView.tableHeaderView = tableheadview;
-		self.tableView.estimatedRowHeight = 0;
-		self.tableView.estimatedSectionFooterHeight = 0;
-		self.tableView.estimatedSectionHeaderHeight = 0;
-		self.tableView.separatorColor = RGB(245, 245, 245);
-		self.tableView.backgroundColor = RGB(245, 245, 245);
-	
-		[self.scrollview addSubview:self.tableView];
-//		[self.scrollview.mj_footer beginRefreshing];
-		
-	}
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView.backgroundColor = UIColor.groupTableViewBackgroundColor;
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    [self.tableView registerClass:[DomainCell class] forCellReuseIdentifier:@"domain"];
+    [self.tableView registerClass:[ADMainCell class] forCellReuseIdentifier:@"admain"];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.estimatedRowHeight = 0;
+    self.tableView.estimatedSectionFooterHeight = 0;
+    self.tableView.estimatedSectionHeaderHeight = 0;
+    self.tableView.separatorColor = RGB(245, 245, 245);
+    self.tableView.backgroundColor = RGB(245, 245, 245);
+    __weak typeof(self) weakself = self;
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakself loadMainDataWithType:topRefresh finish:^{
+            [weakself.tableView.mj_header endRefreshing];
+            [weakself.tableView.mj_footer resetNoMoreData];
+        }];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [weakself loadMainDataWithType:loadmore finish:^{
+            [weakself.tableView.mj_footer endRefreshing];
+        }];
+    }];
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
+    [self.tableView.mj_header beginRefreshing];
 }
 
-#pragma mark --上拉刷新
-- (void)footerRefresh{
-	[self.view endEditing:YES];
-	[self loadMainDataWith:[NSString stringWithFormat:@"%d",paged] withPageSize:@"5"];
-}
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-	return 1;
+	return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-	
+    if (section == domain) {
+        return 1;
+    }
+    if (self.mutaleData.count > 0) {
+        [tableView.mj_footer setHidden:NO];
+    } else {
+        [tableView.mj_footer setHidden:YES];
+    }
 	return self.mutaleData.count;
-	
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-	
-	UITableViewCell *cell = [[UITableViewCell alloc]init];
-	cell.selectionStyle = UITableViewCellSelectionStyleNone;
-	NSDictionary *dic = self.mutaleData[indexPath.row];
-	cell.contentView.backgroundColor = RGB(245, 245, 245);
-	UIImageView *showImg = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, APPScreenWidth - 20, 110)];
-	[showImg sd_setImageWithURL:[NSURL URLWithString:dic[@"shop_thumnail_image"]] placeholderImage:[UIImage imageNamed:@"no_search"]];
-	showImg.userInteractionEnabled = YES;
-	[cell.contentView addSubview:showImg];
-	
-	
-	return cell;
+    if (indexPath.section == domain) {
+        DomainCell * cell = [tableView dequeueReusableCellWithIdentifier:@"domain" forIndexPath:indexPath];
+        return cell;
+    } else {
+        ADMainCell * cell = [tableView dequeueReusableCellWithIdentifier:@"admain" forIndexPath:indexPath];
+        cell.dic = self.mutaleData[indexPath.row];
+        return  cell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-	return 120;
+    if (indexPath.section == domain) {
+        return 3 * SCREEN_WIDTH / 5.0 + 80;
+    } else {
+        return 80;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-	
 	return 0.01f;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == domain) {
+        return  0.01f;
+    }
 	return 15.0f;
 }
 
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-	UILabel *views = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 15)];
-	views.text = @"    여러분을 위해 골라봤어요";
-	views.font = [UIFont systemFontOfSize:13];
-	views.textColor = RGB(46, 46, 46);
-	return views;
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (section == list) {
+        UILabel *views = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 15)];
+        views.text = @"    여러분을 위해 골라봤어요";
+        views.font = [UIFont systemFontOfSize:13];
+        views.textColor = RGB(46, 46, 46);
+        return views;
+    }
+	return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -226,7 +279,9 @@
 				SetUserDefault(@"Address", address);
 				self.choiceHeadView.addressName = address;
 				if (first) {
-					[self footerRefresh];
+                    [self loadMainDataWithType:topRefresh finish:^{
+                        
+                    }];
 					first = NO;
 				}
 			} else {
@@ -335,9 +390,8 @@
 }
 
 - (void)createLocationView{
+    
 	self.choiceHeadView = [[ChoiceHeadView alloc]initWithFrame:CGRectMake(0, 0, 200, 30) withTextColor:RGB(253, 253, 253) withData:@[@"icon_location",@"icon_arrow_bottom"]];
-	
-	
 	__weak typeof(self) weakSelf = self;
 	self.choiceHeadView.showAction = ^{
 		[weakSelf.locationView showInView:weakSelf.view.window];

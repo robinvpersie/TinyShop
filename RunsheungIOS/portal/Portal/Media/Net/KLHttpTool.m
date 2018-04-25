@@ -3313,9 +3313,9 @@
 	NSString *lang_type = @"kor";
 	NSString *div_code = @"2";
 	
-	YCAccountModel *accountmodel = [YCAccountModel getAccount];
-	NSString *custom_code = accountmodel.customCode;
-	NSString *token = accountmodel.token;
+    YCAccountModel *accountmodel = [YCAccountModel getAccount];
+    NSString *custom_code = accountmodel.customCode;
+    NSString *token = accountmodel.token;
 	
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,pagesize,div_code,pg,custom_lev1,custom_lev2,custom_lev3,order_by).mutableCopy;
 	if (latitude.length) {
@@ -3325,12 +3325,12 @@
 		[params setObject:longitude forKey:@"longitude"];
 	}
 
-	if (custom_code.length) {
-		[params setObject:custom_code forKey:@"custom_code"];
-	}
-	if (token.length) {
-		[params setObject:token forKey:@"token"];
-	}
+    if (custom_code.length) {
+        [params setObject:custom_code forKey:@"custom_code"];
+    }
+    if (token.length) {
+        [params setObject:token forKey:@"token"];
+    }
 
 //	[KLHttpTool getToken:^(id token) {
 //		if (token) {

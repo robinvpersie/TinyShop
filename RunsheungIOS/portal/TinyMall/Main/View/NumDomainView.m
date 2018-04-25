@@ -65,9 +65,9 @@
 		make.trailing.mas_equalTo(-8);
 	}];
 	
-	self.BigCategoresArray= @[@"여행",@"가정",@"건축",@"교육",@"교통",@"금융",@"종교",@"미용",@"법률",@"쇼핑",@"언론",@"건강",@"음식",@"취미",@"컴퓨터",@"보건소"];
+	self.BigCategoresArray= @[@"음식",@"미용",@"재래시장",@"숙박",@"오락",@"인테리어",@"제과제빵",@"레저스포츠",@"학원",@"애완동물",@"음악",@"컴퓨터",@"음식",@"취미",@"컴퓨터",@"보건소"];
 //    self.BigCategoresArray= @[@"음식",@"미용",@"여행",@"금융",@"건강",@"취미",@"쇼핑",@"컴퓨터"];
-	self.BigCategoresImgs = @[@"m_icon12.png",@"m_icon07.png",@"t_icon01.png",@"m_icon04.png",@"m_icon11.png",@"m_icon13.png",@"m_icon09.png",@"m_icon14.png"];
+	self.BigCategoresImgs = @[@"m_icon15",@"m_icon16",@"m_icon14",@"m_icon02",@"m_icon13",@"m_icon03",@"m_icon06",@"m_icon04",@"m_icon09",@"m_icon08",@"m_icon10",@"m_icon07"];
 	self.showColors = @[RGB(255, 86, 100),RGB(220, 211, 57),RGB(62, 220, 108),RGB(37, 126, 220),RGB(10, 34, 60)];
 	self.pickerNumbers = @[@"1", @"2", @"3",@"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16"];
 	
@@ -199,6 +199,7 @@
 - (void)okAction:(UIButton*)sender{
 	
 	[self endEditing:NO];
+    
 	TSCategoryController *cateVC = [[TSCategoryController alloc]init];
 	cateVC.hidesBottomBarWhenPushed = YES;
 	cateVC.leves = @[[NSString stringWithFormat:@"%d",self.pickerIndex1],[NSString stringWithFormat:@"%d",self.pickerIndex2],[NSString stringWithFormat:@"%d",self.pickerIndex3]].mutableCopy;
@@ -273,7 +274,7 @@
 	if (self.centerShowCollectView == nil) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        self.centerShowCollectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 70, SCREEN_WIDTH, 2 * ScrollviewHeight) collectionViewLayout:layout];
+        self.centerShowCollectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 70, SCREEN_WIDTH, 3 * ScrollviewHeight) collectionViewLayout:layout];
         self.centerShowCollectView.tag = centerScrollViewTag;
         [self.centerShowCollectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCellID"];
         self.centerShowCollectView.showsVerticalScrollIndicator = NO;
@@ -328,7 +329,8 @@
 		return 10;
 	}
 //    return 16;
-    return self.BigCategoresArray.count;
+    //return self.BigCategoresArray.count;
+    return self.BigCategoresImgs.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -381,7 +383,7 @@
         }
 //        topImgNamed = self.BigCategoresImgs[indexPath.row];
 	}
-    UIImageView *numberImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:topImgNamed]];
+    UIImageView *numberImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:self.BigCategoresImgs[indexPath.row]]];
     numberImg.frame = CGRectMake(15, 8, ScrollviewHeight-30, ScrollviewHeight-30);
     [cell.contentView addSubview:numberImg];
 
@@ -422,7 +424,70 @@
 
         TSCategoryController *cateVC = [[TSCategoryController alloc]init];
         cateVC.hidesBottomBarWhenPushed = YES;
-        self.pickerIndex1 =(int)indexPath.row+1;
+//        self.pickerIndex1 =(int)indexPath.row+1;
+    switch (indexPath.row) {
+        case 0:
+            self.pickerIndex1 = 13;
+            self.pickerIndex2 = 1;
+            self.pickerIndex3 = 1;
+            break;
+        case 1:
+            self.pickerIndex1 = 8;
+            self.pickerIndex2 = 1;
+            self.pickerIndex3 = 1;
+            break;
+        case 2:
+            self.pickerIndex1 = 1;
+            self.pickerIndex2 = 1;
+            self.pickerIndex3 = 1;
+            break;
+        case 3:
+            self.pickerIndex1 = 2;
+            self.pickerIndex2 = 1;
+            self.pickerIndex3 = 1;
+            break;
+        case 4:
+            self.pickerIndex1 = 14;
+            self.pickerIndex2 = 1;
+            self.pickerIndex3 = 1;
+            break;
+        case 5:
+            self.pickerIndex1 = 4;
+            self.pickerIndex2 = 3;
+            self.pickerIndex3 = 1;
+            break;
+        case 6:
+            self.pickerIndex1 = 13;
+            self.pickerIndex2 = 3;
+            self.pickerIndex3 = 1;
+            break;
+        case 7:
+            self.pickerIndex1 = 2;
+            self.pickerIndex2 = 2;
+            self.pickerIndex3 = 1;
+        case 8:
+            self.pickerIndex1 = 5;
+            self.pickerIndex2 = 2;
+            self.pickerIndex3 = 1;
+            break;
+        case 9:
+            self.pickerIndex1 = 14;
+            self.pickerIndex2 = 1;
+            self.pickerIndex3 = 4;
+            break;
+        case 10:
+            self.pickerIndex1 = 14;
+            self.pickerIndex2 = 4;
+            self.pickerIndex3 = 1;
+            break;
+        case 11:
+            self.pickerIndex1 = 15;
+            self.pickerIndex2 = 1;
+            self.pickerIndex3 = 1;
+            break;
+        default:
+            break;
+      }
         cateVC.leves = @[[NSString stringWithFormat:@"%d",self.pickerIndex1],[NSString stringWithFormat:@"%d",self.pickerIndex2],[NSString stringWithFormat:@"%d",self.pickerIndex3]].mutableCopy;
         [self.viewController.navigationController pushViewController:cateVC animated:YES];
 	

@@ -745,6 +745,8 @@
 		6296F457201A0E1B00976C21 /* MyQRController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6296F456201A0E1B00976C21 /* MyQRController.swift */; };
 		6296F459201ABF3400976C21 /* CheckParentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6296F458201ABF3400976C21 /* CheckParentModel.swift */; };
 		6296F45B201B244900976C21 /* MatchParentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6296F45A201B244900976C21 /* MatchParentModel.swift */; };
+		629EB4BA2090134700144C64 /* DomainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 629EB4B92090134700144C64 /* DomainCell.m */; };
+		629EB4BD20901E2200144C64 /* ADMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 629EB4BC20901E2200144C64 /* ADMainCell.m */; };
 		62ADFAE21DE3CEB6005FDE1D /* YCRuler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ADFAE11DE3CEB6005FDE1D /* YCRuler.swift */; };
 		62ADFAE51DE3D6CB005FDE1D /* YCTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ADFAE41DE3D6CB005FDE1D /* YCTabbarController.swift */; };
 		62ADFAE71DE3DF74005FDE1D /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ADFAE61DE3DF74005FDE1D /* BaseController.swift */; };
@@ -2162,6 +2164,10 @@
 		6296F456201A0E1B00976C21 /* MyQRController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQRController.swift; sourceTree = "<group>"; };
 		6296F458201ABF3400976C21 /* CheckParentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckParentModel.swift; sourceTree = "<group>"; };
 		6296F45A201B244900976C21 /* MatchParentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchParentModel.swift; sourceTree = "<group>"; };
+		629EB4B82090134700144C64 /* DomainCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DomainCell.h; sourceTree = "<group>"; };
+		629EB4B92090134700144C64 /* DomainCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DomainCell.m; sourceTree = "<group>"; };
+		629EB4BB20901E2200144C64 /* ADMainCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADMainCell.h; sourceTree = "<group>"; };
+		629EB4BC20901E2200144C64 /* ADMainCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADMainCell.m; sourceTree = "<group>"; };
 		62A82F961DDD4AF70078F687 /* Portal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Portal-Bridging-Header.h"; path = "Portal/Portal-Bridging-Header.h"; sourceTree = "<group>"; };
 		62A82F971DDD4F470078F687 /* UMengUShare.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMengUShare.framework; path = "../../Library/Developer/Xcode/DerivedData/Portal-hfxqkcovnocsbybuhprrpaklladb/Build/Products/Debug-iphonesimulator/UMengUShare/UMengUShare.framework"; sourceTree = "<group>"; };
 		62ADFAE11DE3CEB6005FDE1D /* YCRuler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCRuler.swift; sourceTree = "<group>"; };
@@ -5637,6 +5643,10 @@
 			children = (
 				D5D01F56206213E4002263CC /* NumDomainView.h */,
 				D5D01F57206213E6002263CC /* NumDomainView.m */,
+				629EB4B82090134700144C64 /* DomainCell.h */,
+				629EB4B92090134700144C64 /* DomainCell.m */,
+				629EB4BB20901E2200144C64 /* ADMainCell.h */,
+				629EB4BC20901E2200144C64 /* ADMainCell.m */,
 				D5D01F3D205FD5E6002263CC /* MainTableViewCell.h */,
 				D5D01F3E205FD5E6002263CC /* MainTableViewCell.m */,
 				D5D01F3F205FD5E6002263CC /* MainTableViewCell.xib */,
@@ -6526,6 +6536,7 @@
 				1B392D801E28D0E500F70981 /* YYTextContainerView.m in Sources */,
 				62C417D220060698005571D4 /* ProfileAvatarCell.swift in Sources */,
 				1B392EEA1E28D14E00F70981 /* PYSearchConst.m in Sources */,
+				629EB4BD20901E2200144C64 /* ADMainCell.m in Sources */,
 				1B392F531E28D14E00F70981 /* SupermarketSelfPickRightTableView.m in Sources */,
 				1B392F461E28D14E00F70981 /* SupermarketOrderTableView.m in Sources */,
 				1B392D911E28D0E500F70981 /* UIView+YYText.m in Sources */,
@@ -6616,6 +6627,7 @@
 				5BF0A9DA1E0B7A900035B517 /* PersonalCollectionController.swift in Sources */,
 				1B4C10171EB03A19005EAAE5 /* HotelRoomTypeDetailView.m in Sources */,
 				1B43F7AF1EA59C4F002A36BB /* HotelRoomTypeModel.m in Sources */,
+				629EB4BA2090134700144C64 /* DomainCell.m in Sources */,
 				1B80E6D21E4D5631001603B2 /* MASViewAttribute.m in Sources */,
 				5BC13C621E10F4AB00985C41 /* AvatarPod.swift in Sources */,
 				1B5B6BCE1E9B5F20009D5C75 /* HotelFinishedOrderController.m in Sources */,
