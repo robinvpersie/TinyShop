@@ -163,6 +163,7 @@
         
     
 }
+
 - (void)goDetail:(NSNotification *)notification {
     NSString *itemCode = notification.object;
     GoodsDetailController *detail = [[GoodsDetailController alloc]init];
@@ -176,7 +177,6 @@
 
 - (void)chooseDivCode:(NSNotification *)notification {
     NSArray *arr = notification.object;
-    NSLog(@"%@",arr);
     self.divCode = arr.firstObject;
     self.divName = arr.lastObject;
     
@@ -433,8 +433,10 @@
     }
 
     tasteNew.text = _tasteFreshBannerData.title;
-    NSMutableArray *testData = @[].mutableCopy;
-    NSMutableArray *otcData = @[].mutableCopy;
+    
+    NSMutableArray *testData = [NSMutableArray array];
+    NSMutableArray *otcData = [NSMutableArray array];
+    
     for (int i =0 ;i<_peopleLikeArray.count;i++) {
         id model = _peopleLikeArray[i];
         if (i<10) {

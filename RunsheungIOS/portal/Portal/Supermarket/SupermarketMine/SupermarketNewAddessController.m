@@ -358,6 +358,8 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
                 if (status.integerValue == 1) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:RefreshMyAddressListNotification object:nil];
                     [self.navigationController popViewControllerAnimated:YES];
+                } else {
+                    [self showMessage:response[@"message"] interval:1.5 completionAction:nil];
                 }
             } failure:^(NSError *err) {
                     [self hideLoading];

@@ -21,7 +21,7 @@
     if (self) {
         
         self.contentView.backgroundColor = RGB(245, 245, 245);
-        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.adView = [[UIImageView alloc] init];
         [self.contentView addSubview:self.adView];
         [self.adView mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -21,7 +21,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.contentView.backgroundColor = RGB(60, 60, 60);
-        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.numberDomainView = [[NumDomainView alloc] initWithFrame:CGRectMake(15, 10, SCREEN_WIDTH, 3 * SCREEN_WIDTH / 5.0 + 60)];
         self.numberDomainView.backgroundColor = RGB(60, 60, 60);
         [self.contentView addSubview:self.numberDomainView];

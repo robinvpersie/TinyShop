@@ -35,14 +35,13 @@ typedef NS_ENUM(NSInteger, fetchType) {
 	BOOL first;
 }
 
-@property (nonatomic,retain)UIScrollView *scrollview;
-@property (nonatomic,retain)UITableView *tableView;
-@property (nonatomic,retain)UIView *numberDomainview;
+@property (nonatomic, strong)UITableView *tableView;
+//@property (nonatomic, strong)UIView *numberDomainview;
 @property (nonatomic, strong)ChoiceHeadView *choiceHeadView;
 @property (nonatomic, assign)BOOL isFetching;
-@property (nonatomic, strong)ShowLocationView * locationView;
+@property (nonatomic, strong)ShowLocationView *locationView;
 
-@property(nonatomic,strong)NSMutableArray*mutaleData;
+@property(nonatomic, strong)NSMutableArray *mutaleData;
 
 
 @end
@@ -68,10 +67,7 @@ typedef NS_ENUM(NSInteger, fetchType) {
     [self commonInit];
 	[self location];
 	[self createLocationView];
-//    [self createScrollview];
     [self createTableview];
-   
-//    [self footerRefresh];
 }
 
 -(void)commonInit {
@@ -135,28 +131,6 @@ typedef NS_ENUM(NSInteger, fetchType) {
 }
 
 
-- (void)createScrollview{
-//    if (self.scrollview ==nil) {
-//        self.scrollview = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenHeight - 44)];
-//        self.scrollview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
-//        [self.view addSubview:self.scrollview];
-//
-//    }
-//    blackView  = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width ,3 * SCREEN_WIDTH / 5.0 + 80)];
-//    blackView.backgroundColor = RGB(60, 60, 60);
-//    [self.scrollview addSubview:blackView];
-
-//    self.numberDomainview = [[NumDomainView alloc]initWithFrame:CGRectMake(15, 10, self.view.frame.size.width - 30, 2 * (self.view.frame.size.width - 30)/5 + 60 )];
-    
-//    self.numberDomainview = [[NumDomainView alloc] initWithFrame:CGRectMake(15, 10, SCREEN_WIDTH, 3 * SCREEN_WIDTH / 5.0 + 60)];
-//    self.numberDomainview.backgroundColor = RGB(60, 60, 60);
-//    [blackView addSubview:self.numberDomainview];
-
-	//创建标示图
-	[self createTableview];
-
-}
-
 - (void)createTableview{
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -192,10 +166,10 @@ typedef NS_ENUM(NSInteger, fetchType) {
 }
 
 
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 	return 2;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == domain) {
         return 1;
@@ -255,7 +229,6 @@ typedef NS_ENUM(NSInteger, fetchType) {
 		shopDetailed.hidesBottomBarWhenPushed = YES;
 		shopDetailed.dic = dic;
 		[self.navigationController pushViewController:shopDetailed animated:YES];
-
 }
 
 -(void)location {
