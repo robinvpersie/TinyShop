@@ -36,6 +36,7 @@ class OrderLocationController: UIViewController {
     
     }
     //声明一个闭包
+    @objc (locationSuccessClosure)
     var locationSuccessClosure: locationValueClosure?
 
     public var locationCityName:locationState = .location("正在定位")

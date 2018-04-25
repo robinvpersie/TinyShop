@@ -36,11 +36,9 @@ typedef NS_ENUM(NSInteger, fetchType) {
 }
 
 @property (nonatomic, strong)UITableView *tableView;
-//@property (nonatomic, strong)UIView *numberDomainview;
 @property (nonatomic, strong)ChoiceHeadView *choiceHeadView;
 @property (nonatomic, assign)BOOL isFetching;
 @property (nonatomic, strong)ShowLocationView *locationView;
-
 @property(nonatomic, strong)NSMutableArray *mutaleData;
 
 

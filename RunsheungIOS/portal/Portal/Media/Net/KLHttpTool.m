@@ -3283,12 +3283,13 @@
 
 	
 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-		NSLog(@"%@",response);
 		if (success) {
 			success(response);
 		}
 	} failure:^(NSError *err) {
-		NSLog(@"%@",err);
+        if (failure) {
+            failure(err);
+        }
 	}];
 }
 

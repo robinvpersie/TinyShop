@@ -85,9 +85,7 @@
         switch (index) {
             case 0:
             {
-				
-
-                UIImage *image = [UIImage imageNamed:@"icon_home_bottom"];
+				UIImage *image = [UIImage imageNamed:@"icon_home_bottom"];
                 UIImage *selectedImage = [UIImage imageNamed:@"icon_home_bottom_s"];
                 selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
                 nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"SupermarketTabHome", nil) image:image selectedImage:selectedImage];
@@ -144,9 +142,7 @@
         if ([YCAccountModel islogin]){
             return YES;
         }else {
-            [tabBarController.selectedViewController goToLogin:^{
-                
-            }];
+            [tabBarController.selectedViewController goToLogin:^{}];
             return NO;
         }
     }
