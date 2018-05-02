@@ -58,6 +58,7 @@ extension UIView{
         }
     }
     
+    @objc (maxY)
     var maxy : CGFloat {
         get {
           return self.frame.maxY
@@ -76,6 +77,7 @@ extension UIView{
         }
     }
     
+    @objc (maxX)
     var maxx:CGFloat {
         get{
           return self.frame.maxX

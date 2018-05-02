@@ -121,25 +121,32 @@ class AroundMapController: UIViewController {
         searchAddressBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         searchAddressBtn.setTitle("주소검색 ", for: .normal)
         searchAddressBtn.backgroundColor = UIColor(hex: 0x22c67b)
-        
-        let searchAreaBtn = UIButton(type: .custom)
-        searchAreaBtn.addTarget(self, action: #selector(searchArea), for: .touchUpInside)
-        searchAreaBtn.setTitleColor(UIColor.white, for: .normal)
-        searchAreaBtn.setTitle("지역검색", for: .normal)
-        searchAreaBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        searchAreaBtn.backgroundColor = UIColor(hex: 0x53c9d7)
-        
-        let stackView = UIStackView(arrangedSubviews: [searchAddressBtn, searchAreaBtn])
-        stackView.axis = .horizontal
-        stackView.spacing = 100
-        stackView.distribution = .fillEqually
-        container.addSubview(stackView)
-        stackView.snp.makeConstraints { (make) in
+        container.addSubview(searchAddressBtn)
+        searchAddressBtn.snp.makeConstraints { (make) in
             make.top.equalTo(topBtn.snp.bottom).offset(10)
-            make.leading.equalTo(container).offset(30)
-            make.trailing.equalTo(container).offset(-30)
+            make.centerX.equalTo(topBtn)
             make.height.equalTo(40)
+            make.width.equalTo(120)
         }
+        
+//        let searchAreaBtn = UIButton(type: .custom)
+//        searchAreaBtn.addTarget(self, action: #selector(searchArea), for: .touchUpInside)
+//        searchAreaBtn.setTitleColor(UIColor.white, for: .normal)
+//        searchAreaBtn.setTitle("지역검색", for: .normal)
+//        searchAreaBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+//        searchAreaBtn.backgroundColor = UIColor(hex: 0x53c9d7)
+        
+//        let stackView = UIStackView(arrangedSubviews: [searchAddressBtn, searchAreaBtn])
+//        stackView.axis = .horizontal
+//        stackView.spacing = 100
+//        stackView.distribution = .fillEqually
+//        container.addSubview(stackView)
+//        stackView.snp.makeConstraints { (make) in
+//            make.top.equalTo(topBtn.snp.bottom).offset(10)
+//            make.leading.equalTo(container).offset(30)
+//            make.trailing.equalTo(container).offset(-30)
+//            make.height.equalTo(40)
+//        }
     }
     
     @objc func didTop() {

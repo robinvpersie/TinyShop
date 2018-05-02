@@ -22,7 +22,7 @@
 
 
 
-@interface TSCategoryController ()<UITableViewDelegate,UITableViewDataSource,WJClickItemsDelegate,SingleSegmentDelegate,SegmentItemDelegate>{
+@interface TSCategoryController() <UITableViewDelegate, UITableViewDataSource, WJClickItemsDelegate, SingleSegmentDelegate, SegmentItemDelegate>{
 	NSString *Level1;
 	NSString *Level2;
 	NSString *Level3;
@@ -30,29 +30,29 @@
 	int paged ;
 }
 
-@property (nonatomic,retain)UITableView *tableview;
+@property (nonatomic, strong)UITableView *tableview;
 
-@property (nonatomic,retain)NSMutableDictionary *allDic;
+@property (nonatomic, strong)NSMutableDictionary *allDic;
 
-@property (nonatomic,retain)SingleSegmentView *segmentView1;
+@property (nonatomic, strong)SingleSegmentView *segmentView1;
 
-@property (nonatomic,retain)SingleSegmentView *segmentView2;
+@property (nonatomic, strong)SingleSegmentView *segmentView2;
 
-@property (nonatomic,retain)SegmentItem *SegmentItem;
+@property (nonatomic, strong)SegmentItem *SegmentItem;
 
-@property (nonatomic,retain)TSItemView *ItemView;
+@property (nonatomic, strong)TSItemView *ItemView;
 
-@property (nonatomic,assign)BOOL extend;
+@property (nonatomic, assign)BOOL extend;
 
 @property (nonatomic, strong)ShowLocationView * locationView;
 
 @property (nonatomic, strong)ChoiceHeadView *choiceHeadView;
 
-@property (nonatomic,strong)NSDictionary *responseDit;
+@property (nonatomic, strong)NSDictionary *responseDit;
 
-@property (nonatomic,retain)NSMutableArray *shoplistData;
+@property (nonatomic, strong)NSMutableArray *shoplistData;
 
-@property (nonatomic,strong)NSMutableArray *dic3sArray;
+@property (nonatomic, strong)NSMutableArray *dic3sArray;
 
 
 @end
@@ -84,11 +84,26 @@
 
 }
 
-- (void)loadStoreListwithLeve1:(NSString*)leve1 withLeve2:(NSString*)leve2 withLeve3:(NSString*)leve3 withorderBy:(NSString*)order_by withPg:(NSString *)pg{
+- (void)loadStoreListwithLeve1:(NSString*)leve1
+                     withLeve2:(NSString*)leve2
+                     withLeve3:(NSString*)leve3
+                   withorderBy:(NSString*)order_by
+                        withPg:(NSString *)pg
+{
+    
 	YCAccountModel *account = [YCAccountModel getAccount];
-
-	
-	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:account.customCode withpg:pg withtoken:account.token withcustom_lev1:leve1 withcustom_lev2:leve2 withcustom_lev3:leve3 withlatitude:GetUserDefault(@"latitude") withlongitude:GetUserDefault(@"longtitude") withorder_by:order_by success:^(id response) {
+    
+    [KLHttpTool TinyShoprequestStoreCateListwithCustom_code:account.customCode
+                                                     withpg:pg
+                                                  withtoken:account.token
+                                            withcustom_lev1:leve1
+                                            withcustom_lev2:leve2
+                                            withcustom_lev3:leve3
+                                               withlatitude:GetUserDefault(@"latitude")
+                                              withlongitude:GetUserDefault(@"longtitude")
+                                               withorder_by:order_by
+                                                    success:^(id response)
+     {
 		if ([response[@"status"] intValue] == 1) {
 			self.responseDit = response;
 			
@@ -102,20 +117,14 @@
 				[self.tableview.mj_footer setState:MJRefreshStateIdle];
 				
 			}else{
-				
 				[self.tableview.mj_footer endRefreshingWithNoMoreData];
-				
-			}
-
-			
-			
-		}
-		
-	} failure:^(NSError *err) {
-		
-		
-		
-	}];
+            }
+        } else {
+            [self.tableview.mj_footer endRefreshingWithNoMoreData];
+        }
+    } failure:^(NSError *err) {
+        [self.tableview.mj_footer endRefreshingWithNoMoreData];
+    }];
 }
 
 - (void)transferResponse{
@@ -139,10 +148,7 @@
 		self.segmentView1.tag = 1001;
 		self.segmentView1.delegate =self;
 		[self.view addSubview:self.segmentView1];
-		
-
-
-	}
+    }
 	[self createSecSegmentView:leve3Mutables];
 	
 	
@@ -225,11 +231,7 @@
 			[self loadThirdData];
 			
 		}
-		
-		
-		
-	}
-	
+    }
 }
 
 
@@ -245,12 +247,13 @@
 		self.tableview.estimatedSectionHeaderHeight = 0;
 		self.tableview.estimatedSectionFooterHeight = 0;
 		self.tableview.tableFooterView = [[UIView alloc]init];
-		self.tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
-		[self.tableview.mj_footer beginRefreshing];
+        self.tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
+        [self.tableview.mj_footer beginRefreshing];
 		[self.view addSubview:self.tableview];
+        
+        
 		
 	}
-	
 }
 
 - (void)footerRefresh{
@@ -260,9 +263,9 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-	
-	return self.shoplistData.count;
+    return self.shoplistData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -272,14 +275,10 @@
 	cell.dic = dics;
 	cell.starValue = [dics[@"score"] floatValue];
 	return cell;
-	
-	
 }
 
-
-    
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-     return  120.0f;
+     return 120.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -310,19 +309,17 @@
 	right1Btn.imageEdgeInsets = UIEdgeInsetsMake(0, 7, 0, -7);
 	right1Btn.tag = 2004;
 	[right1Btn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
-	UIBarButtonItem *right1Item = [[UIBarButtonItem alloc]initWithCustomView:right1Btn];
+	UIBarButtonItem *right1Item = [[UIBarButtonItem alloc] initWithCustomView:right1Btn];
 	
 	UIButton *right2Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
 	[right2Btn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-	UIBarButtonItem *right2Item = [[UIBarButtonItem alloc]initWithCustomView:right2Btn];
+	UIBarButtonItem *right2Item = [[UIBarButtonItem alloc] initWithCustomView:right2Btn];
 	[right2Btn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
 	right2Btn.tag = 2005;
 	[self.navigationItem setRightBarButtonItems:@[right1Item]];
 	
 	
 	self.choiceHeadView = [[ChoiceHeadView alloc]initWithFrame:CGRectMake(0, 0, 200, 30) withTextColor:RGB(25, 25, 25) withData:@[@"icon_location",@"icon_arrow_bottom"]];
-	
-	
 	__weak typeof(self) weakSelf = self;
 	self.choiceHeadView.showAction = ^{
 		[weakSelf.locationView showInView:weakSelf.view.window];

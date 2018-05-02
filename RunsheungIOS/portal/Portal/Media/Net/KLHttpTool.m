@@ -1078,7 +1078,7 @@
     [params setObject:@"20" forKey:@"pagesize"];
     [params setObject:@(appType) forKey:@"appType"];
     
-    YCAccountModel *model = [YCAccountModel getAccount];
+//    YCAccountModel *model = [YCAccountModel getAccount];
 
     [self getToken:^(id token) {
 		if (token !=nil) {
@@ -3283,12 +3283,13 @@
 
 	
 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-		NSLog(@"%@",response);
 		if (success) {
 			success(response);
 		}
 	} failure:^(NSError *err) {
-		NSLog(@"%@",err);
+        if (failure) {
+            failure(err);
+        }
 	}];
 }
 
@@ -3313,9 +3314,9 @@
 	NSString *lang_type = @"kor";
 	NSString *div_code = @"2";
 	
-	YCAccountModel *accountmodel = [YCAccountModel getAccount];
-	NSString *custom_code = accountmodel.customCode;
-	NSString *token = accountmodel.token;
+    YCAccountModel *accountmodel = [YCAccountModel getAccount];
+    NSString *custom_code = accountmodel.customCode;
+    NSString *token = accountmodel.token;
 	
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,pagesize,div_code,pg,custom_lev1,custom_lev2,custom_lev3,order_by).mutableCopy;
 	if (latitude.length) {
@@ -3325,12 +3326,12 @@
 		[params setObject:longitude forKey:@"longitude"];
 	}
 
-	if (custom_code.length) {
-		[params setObject:custom_code forKey:@"custom_code"];
-	}
-	if (token.length) {
-		[params setObject:token forKey:@"token"];
-	}
+    if (custom_code.length) {
+        [params setObject:custom_code forKey:@"custom_code"];
+    }
+    if (token.length) {
+        [params setObject:token forKey:@"token"];
+    }
 
 //	[KLHttpTool getToken:^(id token) {
 //		if (token) {

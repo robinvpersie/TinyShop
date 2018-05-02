@@ -174,7 +174,7 @@ class ProtocolController: UIViewController {
         
 //        let lieveProtocollb = UITextView()
 //        let liveRichText = NSMutableAttributedString()
-//        let liveFirstText = NSAttributedString(string: "개인 방송에 관한 약관 동의")
+//        let liveFirstText = NSAttributedString(string: "위치기반서비스 동의 약관")
 //        liveRichText.append(liveFirstText)
 //        let liveLastText = NSAttributedString(string: "(필수)", attributes: [NSAttributedStringKey.foregroundColor: UIColor(hex: 0x999999)])
 //        liveRichText.append(liveLastText)
@@ -188,30 +188,30 @@ class ProtocolController: UIViewController {
 //        lieveProtocollb.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
 //        lieveProtocollb.textContainer.lineFragmentPadding = 0
 //        scrollView.addSubview(lieveProtocollb)
-    
+//
 //        liveChooseBtn = UIButton(type: .custom)
 //        liveChooseBtn.addTarget(self, action: #selector(didChoose(sender:)), for: .touchUpInside)
 //        liveChooseBtn.setImage(UIImage(named: "icon_select"), for: .normal)
 //        liveChooseBtn.setImage(UIImage(named: "icon_selected2"), for: .selected)
 //        liveChooseBtn.tag = chooseType.live.rawValue
 //        scrollView.addSubview(liveChooseBtn)
-        
+//
 //        let line2 = UIView()
 //        line2.backgroundColor = UIColor(hex: 0xe6e6e6)
 //        scrollView.addSubview(line2)
-        
+//
 //        lieveProtocollb.snp.makeConstraints { (make) in
 //            make.leading.equalTo(locationProtocolTV)
 //            make.top.equalTo(line1.snp.bottom).offset(15)
 //            make.height.equalTo(lieveProtocollb.font!.lineHeight)
 //            make.trailing.equalTo(liveChooseBtn.snp.leading).offset(-5)
 //        }
-        
+//
 //        liveChooseBtn.snp.makeConstraints { (make) in
 //            make.trailing.width.height.equalTo(locationChooseBtn)
 //            make.centerY.equalTo(lieveProtocollb)
 //        }
-        
+//
 //        line2.snp.makeConstraints { (make) in
 //            make.top.equalTo(lieveProtocollb.snp.bottom).offset(15)
 //            make.leading.trailing.height.equalTo(line1)

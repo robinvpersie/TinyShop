@@ -29,7 +29,7 @@ class SearchListController: BaseViewController {
         searchBar.searchBarStyle = .minimal
         searchBar.backgroundImage = UIImage()
         searchBar.showsCancelButton = true
-        searchBar.placeholder = "搜索地址"
+        searchBar.placeholder = "주소검색"
         searchBar.delegate = self
         searchBar.becomeFirstResponder()
         navigationItem.titleView = searchBar
@@ -91,7 +91,7 @@ extension SearchListController: UISearchBarDelegate {
 extension SearchListController: DZNEmptyDataSetSource {
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: "搜索想要的商品")
+        return nil
     }
 }
 

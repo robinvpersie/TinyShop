@@ -100,9 +100,10 @@ static float timeDur;
     _pageControl.frame = CGRectMake(self.frame.size.width / 2 - 25 * urlImagesArray.count / 2 , self.frame.size.height - 35, 25 * urlImagesArray.count, 30);
     _pageControl.numberOfPages = urlImagesArray.count;
     for (int i = 0; i < (urlImagesArray.count + 2); i ++ ) {
+        
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width * i, 0, self.frame.size.width, self.frame.size.height)];
         imageView.userInteractionEnabled = YES;
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
+//        imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.clipsToBounds = YES;
         imageView.tag = i + 100;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHeader:)];
@@ -315,12 +316,6 @@ static float timeDur;
     }
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+
 
 @end

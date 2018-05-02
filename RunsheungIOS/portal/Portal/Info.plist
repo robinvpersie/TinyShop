@@ -19,7 +19,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>1.1.5</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -121,19 +121,17 @@
 	<string>앱 설치시 캘린더 사용을 허락하시겠습니까? 
 </string>
 	<key>NSCameraUsageDescription</key>
-	<string>앱 설치시 카메라 사용을 허락하시겠습니까?
-</string>
+	<string>프로필 사진 설정을 위한 카메라 촬영/앨범 사용 권한에 동의함</string>
 	<key>NSContactsUsageDescription</key>
 	<string>앱 설치시 연락처 사용을 허락하시겠습니까?
 </string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>약관:위치기반 정책정보는 “나의 정보” 에서 화원가입후 확인이 가능합니다.</string>
+	<string>기기 위치정보를 통한 주변상가 검색 및 마케팅/이벤트 정보 수신에 동의함</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>앱 설치시 마이크 사용을 허락하시겠습니까?
 </string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>앱 설치시 사진/앨범 사용을 허락하시겠습니까?
-</string>
+	<string>프로필 사진 설정을 위한 카메라 촬영/앨범 사용 권한에 동의함</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

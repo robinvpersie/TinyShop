@@ -120,11 +120,6 @@
 	UILabel *shopAddress;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-	[super viewWillAppear:animated];
-	
-	
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -148,13 +143,16 @@
 }
 
 - (void)loadShopBaseInfoes{
-	[KLHttpTool TinyRequestStoreDetail:@"StoreCate/requestStoreDetail" WithSaleCustomCode:self.dic[@"custom_code"] WithLatitude:GetUserDefault(@"latitude") WithLongitude:GetUserDefault(@"longitude") success:^(id response) {
+	[KLHttpTool TinyRequestStoreDetail:@"StoreCate/requestStoreDetail"
+                    WithSaleCustomCode:self.dic[@"custom_code"]
+                          WithLatitude:GetUserDefault(@"latitude")
+                         WithLongitude:GetUserDefault(@"longitude")
+                               success:^(id response)
+    {
 		if ([response[@"status"] intValue] == 1) {
 			shopInfoesDic = response;
-			
-		}
-		
-	} failure:^(NSError *err) {
+        }
+    } failure:^(NSError *err) {
 		
 	}];
 }
@@ -163,6 +161,7 @@
         
     
 }
+
 - (void)goDetail:(NSNotification *)notification {
     NSString *itemCode = notification.object;
     GoodsDetailController *detail = [[GoodsDetailController alloc]init];
@@ -176,7 +175,6 @@
 
 - (void)chooseDivCode:(NSNotification *)notification {
     NSArray *arr = notification.object;
-    NSLog(@"%@",arr);
     self.divCode = arr.firstObject;
     self.divName = arr.lastObject;
     
@@ -188,11 +186,10 @@
 - (void)initNavigation {
 	
 	self.loveBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 16, 6)];
-	
 	[self.loveBtn setImage:[UIImage imageNamed:@"icon-_collection_s"] forState:UIControlStateSelected];
 	[self.loveBtn setImage:[UIImage imageNamed:@"icon-_collection_n"] forState:UIControlStateNormal];
 	[self.loveBtn addTarget:self action:@selector(LoveAction:) forControlEvents:UIControlEventTouchUpInside];
-	UIBarButtonItem *loveitem = [[UIBarButtonItem alloc]initWithCustomView:self.loveBtn];
+	//UIBarButtonItem *loveitem = [[UIBarButtonItem alloc]initWithCustomView:self.loveBtn];
 //		self.navigationItem.rightBarButtonItem = loveitem;
 	
     UIBarButtonItem *dismiss = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_back"] style:UIBarButtonItemStylePlain target:self action:@selector(dismis)];
@@ -201,11 +198,10 @@
     locationName = [UIButton createButtonWithFrame:CGRectMake(0, 0, 60, 20) title:self.divName titleColor:[UIColor darkcolor] titleFont:[UIFont systemFontOfSize:12] backgroundColor:[UIColor clearColor]];
     locationName.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [locationName addTarget:self action:@selector(goLocation) forControlEvents:UIControlEventTouchUpInside];
-    UIButton *titlebtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 30)];
     
+    UIButton *titlebtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 30)];
     [titlebtn setTitle:_dic[@"custom_name"] forState:UIControlStateNormal];
     [titlebtn setTitleColor:RGB(16, 16, 16) forState:UIControlStateNormal];
-	
 	self.navigationItem.titleView = titlebtn;
     
     UIBarButtonItem *locationNameItem = [[UIBarButtonItem alloc] initWithCustomView:locationName];
@@ -230,7 +226,7 @@
 	_mainScrollView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requesTinyShopDetailData)];
     [self.view addSubview:_mainScrollView];
     
-    banner = [[ZHSCorllHeader alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, APPScreenWidth/2)];
+    banner = [[ZHSCorllHeader alloc] initWithFrame:CGRectMake(0, 0, APPScreenWidth, 100)];
     banner.delegate = self;
     [_mainScrollView addSubview:banner];
 	
@@ -323,9 +319,9 @@
 }
 
 - (void)requestData {
-    if (!_isRefresh) {
-        [MBProgressHUD showWithView:self.view];
-    }
+//    if (!_isRefresh) {
+//        [MBProgressHUD showWithView:self.view];
+//    }
     NSString *div;
 	NSString *divCode = @"2";
     if (divCode.length > 0) {
@@ -433,8 +429,10 @@
     }
 
     tasteNew.text = _tasteFreshBannerData.title;
-    NSMutableArray *testData = @[].mutableCopy;
-    NSMutableArray *otcData = @[].mutableCopy;
+    
+    NSMutableArray *testData = [NSMutableArray array];
+    NSMutableArray *otcData = [NSMutableArray array];
+    
     for (int i =0 ;i<_peopleLikeArray.count;i++) {
         id model = _peopleLikeArray[i];
         if (i<10) {
@@ -663,7 +661,6 @@
 }
 
 - (void)scanViewController:(HNScanViewController *)scanViewController didScanResult:(NSString *)result {
-    NSLog(@"%@",result);
     GoodsDetailController *goodDetail = [[GoodsDetailController alloc] init];
     goodDetail.item_code = result;
     goodDetail.hidesBottomBarWhenPushed = YES;
