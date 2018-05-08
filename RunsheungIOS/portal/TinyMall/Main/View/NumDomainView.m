@@ -26,7 +26,7 @@
 		self.pickerIndex1 = 1;
 		self.pickerIndex2 = 1;
 		self.pickerIndex3 = 1;
-		self.backgroundColor = [UIColor colorWithRed:60/255.0f green:60/255.0f blue:60/255.0f alpha:1.0f];
+		self.backgroundColor = [UIColor whiteColor];
 		[self createPickerviews];
 		[self createCollectViews];
 		
@@ -44,7 +44,7 @@
 	const double width = self.frame.size.width - ScrollviewHeight;
 	[self.pickbackImg mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.height.equalTo(@60);
-		make.leading.equalTo(@15);
+		make.leading.equalTo(@0);
 		make.top.equalTo(self.mas_top);
 		make.width.mas_equalTo(width);
 	} ];
@@ -62,7 +62,7 @@
 	[ok mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.top.bottom.mas_equalTo(self.pickbackImg);
 		make.leading.mas_equalTo(self.pickbackImg.mas_trailing);
-		make.trailing.mas_equalTo(-8);
+		make.trailing.mas_equalTo(-20);
 	}];
 	
 	self.BigCategoresArray= @[@"음식",@"미용",@"재래시장",@"숙박",@"오락",@"인테리어",@"제과제빵",@"레저스포츠",@"학원",@"애완동물",@"음악",@"컴퓨터",@"음식",@"취미",@"컴퓨터",@"보건소"];
@@ -281,7 +281,8 @@
         self.centerShowCollectView.showsHorizontalScrollIndicator = NO;
         self.centerShowCollectView.delegate = self;
         self.centerShowCollectView.dataSource = self;
-        self.centerShowCollectView.backgroundColor = [UIColor colorWithRed:60/255.0f green:60/255.0f blue:60/255.0f alpha:1.0f];
+//        self.centerShowCollectView.backgroundColor = [UIColor colorWithRed:60/255.0f green:60/255.0f blue:60/255.0f alpha:1.0f];
+		self.centerShowCollectView.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.centerShowCollectView];
     }
 
@@ -388,9 +389,9 @@
     [cell.contentView addSubview:numberImg];
 
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(numberImg.frame)+3, ScrollviewHeight, 15)];
+	title.textColor = RGB(60, 60, 60);
     title.text = self.BigCategoresArray[indexPath.row];
     title.textAlignment = NSTextAlignmentCenter;
-    title.textColor = [UIColor whiteColor];
     title.font = [UIFont systemFontOfSize:13];
     [cell.contentView addSubview:title];
 	
