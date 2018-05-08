@@ -196,6 +196,7 @@
 	}
 	
 }
+
 - (void)okAction:(UIButton*)sender{
 	
 	[self endEditing:NO];
@@ -213,7 +214,6 @@
  *创建上下左右滑动视图
  */
 - (void)createCollectViews{
-	
 	
 	if (self.topLandScopeCollectView == nil) {
 		UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
