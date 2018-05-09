@@ -116,9 +116,8 @@ typedef NS_ENUM(NSInteger, fetchType) {
            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
               [weakSelf.tableView reloadData];
            }];
-
            finish();
-
+        
         } failure:^(NSError *err) {
             finish();
 			UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil) message:@"인터넷 연결 또는 서버에 문제 있습니다." preferredStyle:UIAlertControllerStyleAlert];
@@ -250,9 +249,7 @@ typedef NS_ENUM(NSInteger, fetchType) {
 				SetUserDefault(@"Address", address);
 				self.choiceHeadView.addressName = address;
 				if (first) {
-                    [self loadMainDataWithType:topRefresh finish:^{
-                        
-                    }];
+                    [self loadMainDataWithType:topRefresh finish:^{ }];
 					first = NO;
 				}
 			} else {
