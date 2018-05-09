@@ -140,7 +140,7 @@ typedef NS_ENUM(NSInteger, fetchType) {
     self.tableView.estimatedRowHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
-    self.tableView.separatorColor = RGB(245, 245, 245);
+    self.tableView.separatorColor = RGB(225, 225, 225);
     self.tableView.backgroundColor = RGB(245, 245, 245);
     __weak typeof(self) weakself = self;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -192,9 +192,9 @@ typedef NS_ENUM(NSInteger, fetchType) {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == domain) {
-        return 3 * SCREEN_WIDTH / 5.0 + 80;
+        return 3 * SCREEN_WIDTH / 4.0 + 80;
     } else {
-        return 80;
+        return 120;
     }
 }
 
@@ -206,13 +206,14 @@ typedef NS_ENUM(NSInteger, fetchType) {
     if (section == domain) {
         return  0.01f;
     }
-	return 15.0f;
+	return 26.0f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == list) {
-        UILabel *views = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 15)];
+        UILabel *views = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 26)];
         views.text = @"    여러분을 위해 골라봤어요";
+		views.backgroundColor = RGB(242, 244, 246);
         views.font = [UIFont systemFontOfSize:13];
         views.textColor = RGB(46, 46, 46);
         return views;
@@ -221,11 +222,17 @@ typedef NS_ENUM(NSInteger, fetchType) {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-		NSDictionary *dic = self.mutaleData[indexPath.row];
-		SupermarketHomeViewController *shopDetailed = [[SupermarketHomeViewController alloc] init];
-		shopDetailed.hidesBottomBarWhenPushed = YES;
-		shopDetailed.dic = dic;
-		[self.navigationController pushViewController:shopDetailed animated:YES];
+//		NSDictionary *dic = self.mutaleData[indexPath.row];
+//		SupermarketHomeViewController *shopDetailed = [[SupermarketHomeViewController alloc] init];
+//		shopDetailed.hidesBottomBarWhenPushed = YES;
+//		shopDetailed.dic = dic;
+//		[self.navigationController pushViewController:shopDetailed animated:YES];
+	NSString *loadurl = @"https://baike.baidu.com/item/%E5%BC%80%E5%9B%BD%E5%A4%A7%E5%85%B8/1061?fr=aladdin";
+	WebRulesViewController *rulevc = [WebRulesViewController new];
+	UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:rulevc];
+	[rulevc loadRulesWebWithLoadurl:loadurl];
+	[self presentViewController:navi animated:YES completion:nil];
+
 }
 
 -(void)location {
@@ -334,7 +341,7 @@ typedef NS_ENUM(NSInteger, fetchType) {
 #pragma mark -- 设置导航栏
 - (void)setNaviBar{
 	
-	self.navigationController.navigationBar.barTintColor = RGB(60, 60, 60);
+//	self.navigationController.navigationBar.barTintColor = RGB(60, 60, 60);
 	
 	UIButton *right1Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
 	[right1Btn setImage:[UIImage imageNamed:@"icon_scanss"] forState:UIControlStateNormal];

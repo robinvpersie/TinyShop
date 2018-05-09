@@ -9,7 +9,7 @@
 #import "NumDomainView.h"
 #import "TSCategoryController.h"
 #import <AFNetworking/AFNetworking.h>
-#define ScrollviewHeight  (self.frame.size.width)/5.0f
+#define ScrollviewHeight  (self.frame.size.width)/4.0f
 
 #define topLandScropeTag 1001
 #define bottomLandScropeTag 1002
@@ -26,7 +26,7 @@
 		self.pickerIndex1 = 1;
 		self.pickerIndex2 = 1;
 		self.pickerIndex3 = 1;
-		self.backgroundColor = [UIColor whiteColor];
+		self.backgroundColor = RGB(242, 244, 246);
 		[self createPickerviews];
 		[self createCollectViews];
 		
@@ -44,10 +44,10 @@
 	const double width = self.frame.size.width - ScrollviewHeight;
 	[self.pickbackImg mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.height.equalTo(@60);
-		make.leading.equalTo(@0);
+		make.leading.equalTo(@10);
 		make.top.equalTo(self.mas_top);
 		make.width.mas_equalTo(width);
-	} ];
+	}];
 	
 
 	UIButton *ok = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -62,7 +62,7 @@
 	[ok mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.top.bottom.mas_equalTo(self.pickbackImg);
 		make.leading.mas_equalTo(self.pickbackImg.mas_trailing);
-		make.trailing.mas_equalTo(-20);
+		make.trailing.mas_equalTo(-10);
 	}];
 	
 	self.BigCategoresArray= @[@"음식",@"미용",@"재래시장",@"숙박",@"오락",@"인테리어",@"제과제빵",@"레저스포츠",@"학원",@"애완동물",@"음악",@"컴퓨터",@"음식",@"취미",@"컴퓨터",@"보건소"];
@@ -281,8 +281,8 @@
         self.centerShowCollectView.showsHorizontalScrollIndicator = NO;
         self.centerShowCollectView.delegate = self;
         self.centerShowCollectView.dataSource = self;
-//        self.centerShowCollectView.backgroundColor = [UIColor colorWithRed:60/255.0f green:60/255.0f blue:60/255.0f alpha:1.0f];
-		self.centerShowCollectView.backgroundColor = [UIColor whiteColor];
+		self.centerShowCollectView.backgroundColor = RGB(242, 244, 246);
+//		self.centerShowCollectView.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.centerShowCollectView];
     }
 
@@ -384,16 +384,21 @@
         }
 //        topImgNamed = self.BigCategoresImgs[indexPath.row];
 	}
+	
+	UIView *bg_cell = [[UIView alloc]initWithFrame:CGRectMake(1, 1, ScrollviewHeight - 2, ScrollviewHeight - 2)];
+	bg_cell.backgroundColor = [UIColor whiteColor];
+	[cell.contentView addSubview:bg_cell];
+	
     UIImageView *numberImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:self.BigCategoresImgs[indexPath.row]]];
-    numberImg.frame = CGRectMake(15, 8, ScrollviewHeight-30, ScrollviewHeight-30);
-    [cell.contentView addSubview:numberImg];
+    numberImg.frame = CGRectMake(20, 10, ScrollviewHeight-40, ScrollviewHeight-40);
+    [bg_cell addSubview:numberImg];
 
-    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(numberImg.frame)+3, ScrollviewHeight, 15)];
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(numberImg.frame)+10, ScrollviewHeight, 15)];
 	title.textColor = RGB(60, 60, 60);
     title.text = self.BigCategoresArray[indexPath.row];
     title.textAlignment = NSTextAlignmentCenter;
     title.font = [UIFont systemFontOfSize:13];
-    [cell.contentView addSubview:title];
+    [bg_cell addSubview:title];
 	
 	return cell;
 }
@@ -501,7 +506,7 @@
     if (collectionView.tag == centerScrollViewTag) {
 
         float width = (self.frame.size.width)/4.0f ;
-        float height = (self.frame.size.width)/5.0f ;
+        float height = (self.frame.size.width)/4.0f ;
         return CGSizeMake(width, height);
 
     }

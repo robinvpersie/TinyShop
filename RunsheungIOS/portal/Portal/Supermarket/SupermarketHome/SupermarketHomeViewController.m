@@ -82,7 +82,7 @@
 
 @property (nonatomic,retain)NSDictionary *responseDic;
 
-@property (nonatomic,retain)UIButton *loveBtn;
+@property (nonatomic,retain)UIButton *viewBtn;
 
 @property (nonatomic,assign)NSInteger paged;
 
@@ -185,12 +185,13 @@
 
 - (void)initNavigation {
 	
-	self.loveBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 16, 6)];
-	[self.loveBtn setImage:[UIImage imageNamed:@"icon-_collection_s"] forState:UIControlStateSelected];
-	[self.loveBtn setImage:[UIImage imageNamed:@"icon-_collection_n"] forState:UIControlStateNormal];
-	[self.loveBtn addTarget:self action:@selector(LoveAction:) forControlEvents:UIControlEventTouchUpInside];
-	//UIBarButtonItem *loveitem = [[UIBarButtonItem alloc]initWithCustomView:self.loveBtn];
-//		self.navigationItem.rightBarButtonItem = loveitem;
+	self.viewBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 16, 6)];
+	[self.viewBtn setTitle:@"View" forState:UIControlStateNormal];
+	self.viewBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+	[self.viewBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+	[self.viewBtn addTarget:self action:@selector(ViewAction:) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *viewBtnitem = [[UIBarButtonItem alloc]initWithCustomView:self.viewBtn];
+	self.navigationItem.rightBarButtonItem = viewBtnitem;
 	
     UIBarButtonItem *dismiss = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_back"] style:UIBarButtonItemStylePlain target:self action:@selector(dismis)];
     dismiss.tintColor = [UIColor darkcolor];
@@ -261,6 +262,9 @@
 		[callPhoneBtn setBackgroundColor:RGB(0,128, 48)];
 		[callPhoneBtn addTarget:self action:@selector(callPhoneBtn:) forControlEvents:UIControlEventTouchUpInside];
 		[callPhoneBtn setImage:[UIImage imageNamed:@"icon_call_order"] forState:UIControlStateNormal];
+		[callPhoneBtn setTitle:@" 전화주문" forState:UIControlStateNormal];
+		[callPhoneBtn setTitleColor:RGB(242, 244, 246) forState:UIControlStateNormal];
+		callPhoneBtn.titleLabel.font = [UIFont systemFontOfSize:15];
 		[self.view addSubview:callPhoneBtn];
 		[callPhoneBtn mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.leading.trailing.bottom.equalTo(self.view);
@@ -301,11 +305,6 @@
 
 			self.mainScrollView.contentSize = CGSizeMake(APPScreenWidth,CGRectGetMaxY(self.tsDetailedView.frame));
 			
-			if ([self.responseDic[@"favorites"] isEqualToString:@"False"]) {
-				self.loveBtn.selected = NO;
-			}else{
-				self.loveBtn.selected = YES;
-			}
 			
 			_bannerDataArray = @[].mutableCopy;
 			[_bannerDataArray addObject:self.responseDic[@"shop_thumnail_image"]];
@@ -913,8 +912,8 @@
 	[[UIApplication sharedApplication]openURL:url];
 }
 
-- (void)LoveAction:(UIButton*)sender{
-	sender.selected = !sender.selected;
+- (void)ViewAction:(UIButton*)sender{
+	
 	
 }
 

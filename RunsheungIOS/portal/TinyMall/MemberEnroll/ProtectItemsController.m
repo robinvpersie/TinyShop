@@ -280,7 +280,6 @@
 	WebRulesViewController *rulevc = [WebRulesViewController new];
 	UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:rulevc];
 	[rulevc loadRulesWebWithLoadurl:loadurl];
-//	rulevc.title = titleArray[(int)sender.tag-1];
 	[self presentViewController:navi animated:YES completion:nil];
 	
 
