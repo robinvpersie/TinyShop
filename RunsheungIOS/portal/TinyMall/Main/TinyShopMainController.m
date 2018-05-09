@@ -214,6 +214,7 @@ typedef NS_ENUM(NSInteger, fetchType) {
     if (section == list) {
         UILabel *views = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 26)];
         views.text = @"    여러분을 위해 골라봤어요";
+		views.backgroundColor = RGB(242, 244, 246);
         views.font = [UIFont systemFontOfSize:13];
         views.textColor = RGB(46, 46, 46);
         return views;
@@ -343,7 +344,7 @@ typedef NS_ENUM(NSInteger, fetchType) {
 #pragma mark -- 设置导航栏
 - (void)setNaviBar{
 	
-	self.navigationController.navigationBar.barTintColor = RGB(60, 60, 60);
+//	self.navigationController.navigationBar.barTintColor = RGB(60, 60, 60);
 	
 	UIButton *right1Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
 	[right1Btn setImage:[UIImage imageNamed:@"icon_scanss"] forState:UIControlStateNormal];

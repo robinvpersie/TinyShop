@@ -24,27 +24,28 @@
 		self.contentView.backgroundColor = [UIColor whiteColor];
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 
+		
+        self.adView = [[UIImageView alloc] init];
+        [self.contentView addSubview:self.adView];
+		self.adView.layer.cornerRadius = 5.0f;
+		self.adView.layer.masksToBounds = YES;
+        [self.adView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentView).offset(15);
+            make.bottom.equalTo(self.contentView).offset(-15);
+            make.leading.equalTo(self.contentView).offset(10);
+			make.width.mas_equalTo(90);
+        }];
+		
 		self.newtitle = [[UILabel alloc]init];
 		self.newtitle.numberOfLines = 0;
 		[self.contentView addSubview:self.newtitle];
 		[self.newtitle mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.equalTo(self.contentView).offset(10);
-			make.left.equalTo(self.contentView).offset(10);
-			make.height.equalTo(@20);
-			make.width.mas_equalTo(SCREEN_WIDTH/2.0f);
+			make.top.equalTo(self.contentView).offset(15);
+			make.leading.equalTo(self.adView.mas_trailing).offset(15);
+			make.trailing.equalTo(self.contentView.mas_trailing).offset(-10);
 			
 		}];
-        
-        self.adView = [[UIImageView alloc] init];
-        [self.contentView addSubview:self.adView];
-        [self.adView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView).offset(10);
-            make.bottom.equalTo(self.contentView);
-            make.leading.equalTo(self.newtitle.mas_trailing).offset(15);
-            make.trailing.equalTo(self.contentView).offset(-10);
-        }];
-		
-		
+
     }
     return self;
 }
