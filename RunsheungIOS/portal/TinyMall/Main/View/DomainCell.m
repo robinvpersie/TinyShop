@@ -20,10 +20,9 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.contentView.backgroundColor = [UIColor whiteColor];
+        self.contentView.backgroundColor = RGB(242, 244, 246);
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.numberDomainView = [[NumDomainView alloc] initWithFrame:CGRectMake(15, 10, SCREEN_WIDTH, 3 * SCREEN_WIDTH / 5.0 + 60)];
-        self.numberDomainView.backgroundColor = [UIColor whiteColor];
+        self.numberDomainView = [[NumDomainView alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH, 3 * SCREEN_WIDTH / 5.0 + 60)];
         [self.contentView addSubview:self.numberDomainView];
     }
     return self;
