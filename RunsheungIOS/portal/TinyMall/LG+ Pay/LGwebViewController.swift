@@ -19,6 +19,7 @@ class LGwebViewController: UIViewController,UIWebViewDelegate {
 		super.viewDidLoad()
 		setNav()
 		
+		
 	}
 	
 	@objc public func loadRequestUrl(OrderNumber:String,OrderMoney:String,OrderUserName:String,GiftInfo:String){
