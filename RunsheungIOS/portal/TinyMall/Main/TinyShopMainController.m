@@ -167,7 +167,7 @@ typedef NS_ENUM(NSInteger, fetchType) {
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-	return 2;
+	return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -192,13 +192,23 @@ typedef NS_ENUM(NSInteger, fetchType) {
         return  cell;
     } else {
         ADHeaderCell * cell = [tableView dequeueReusableCellWithIdentifier:@"header" forIndexPath:indexPath];
+		cell.headblock = ^(int index) {
+			switch (index) {
+				case 1:
+					[self scanQR];
+					break;
+					
+				default:
+					break;
+			}
+		};
         return  cell;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == domain) {
-        return 3 * SCREEN_WIDTH / 4.0 + 80;
+        return 3*(SCREEN_WIDTH - 30)/4.0f + 90;
     } else if (indexPath.section == list) {
         return 120;
     } else {
@@ -214,18 +224,18 @@ typedef NS_ENUM(NSInteger, fetchType) {
     if (section == domain || section == header) {
         return  0.01f;
     }
-	return 26.0f;
+	return 10.0f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (section == list) {
-        UILabel *views = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 26)];
-        views.text = @"    여러분을 위해 골라봤어요";
-		views.backgroundColor = RGB(242, 244, 246);
-        views.font = [UIFont systemFontOfSize:13];
-        views.textColor = RGB(46, 46, 46);
-        return views;
-    }
+//    if (section == list) {
+//        UILabel *views = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 26)];
+//        views.text = @"    여러분을 위해 골라봤어요";
+//		views.backgroundColor = RGB(242, 244, 246);
+//        views.font = [UIFont systemFontOfSize:13];
+//        views.textColor = RGB(46, 46, 46);
+//        return views;
+//    }
 	return nil;
 }
 
@@ -235,11 +245,15 @@ typedef NS_ENUM(NSInteger, fetchType) {
 //		shopDetailed.hidesBottomBarWhenPushed = YES;
 //		shopDetailed.dic = dic;
 //		[self.navigationController pushViewController:shopDetailed animated:YES];
-	NSString *loadurl = @"https://baike.baidu.com/item/%E5%BC%80%E5%9B%BD%E5%A4%A7%E5%85%B8/1061?fr=aladdin";
-	WebRulesViewController *rulevc = [WebRulesViewController new];
-	UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:rulevc];
-	[rulevc loadRulesWebWithLoadurl:loadurl];
-	[self presentViewController:navi animated:YES completion:nil];
+	
+	if (indexPath.section == list) {
+		NSString *loadurl = @"https://baike.baidu.com/item/%E5%BC%80%E5%9B%BD%E5%A4%A7%E5%85%B8/1061?fr=aladdin";
+		WebRulesViewController *rulevc = [WebRulesViewController new];
+		UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:rulevc];
+		[rulevc loadRulesWebWithLoadurl:loadurl];
+		[self presentViewController:navi animated:YES completion:nil];
+
+	}
 
 }
 
@@ -308,43 +322,33 @@ typedef NS_ENUM(NSInteger, fetchType) {
 
 }
 
-#pragma mark -- 右边点击方法
-- (void)rightAction:(UIButton*)sender{
+//扫码
+- (void)scanQR{
+	ZFScanViewController *scanVC = [[ZFScanViewController alloc] init];
+	scanVC.autoGoBack = YES;
+	__weak typeof(self) weakself = self;
+	scanVC.returnScanBarCodeValue = ^(NSString *barCodeString) {
+		NSURLComponents *components = [[NSURLComponents alloc] initWithString:barCodeString];
+		if ([components.scheme isEqualToString:@"giga"]) {
+			if ([components.host isEqualToString:@"qrPay"]) {
+				NSString *numcode = components.query;
+				InputAmountController *input = [[InputAmountController alloc] init];
+				input.hidesBottomBarWhenPushed = YES;
+				input.numcode = numcode;
+				input.payCompletion = ^(BOOL state) {
+					if (state) {
+						[weakself.navigationController popViewControllerAnimated:YES];
+					}
+				};
+				[weakself.navigationController pushViewController:input animated:YES];
+			}
+		}
+		
+	};
+	[self presentViewController:scanVC animated:YES completion:nil];
 
-             if (sender.tag == 2004) {
-
-                ZFScanViewController *scanVC = [[ZFScanViewController alloc] init];
-                 scanVC.autoGoBack = YES;
-                __weak typeof(self) weakself = self;
-                scanVC.returnScanBarCodeValue = ^(NSString *barCodeString) {
-                    NSURLComponents *components = [[NSURLComponents alloc] initWithString:barCodeString];
-                    if ([components.scheme isEqualToString:@"giga"]) {
-                        if ([components.host isEqualToString:@"qrPay"]) {
-                            NSString *numcode = components.query;
-                            InputAmountController *input = [[InputAmountController alloc] init];
-                            input.hidesBottomBarWhenPushed = YES;
-                            input.numcode = numcode;
-                            input.payCompletion = ^(BOOL state) {
-                                if (state) {
-                                    [weakself.navigationController popViewControllerAnimated:YES];
-                                }
-                            };
-                            [weakself.navigationController pushViewController:input animated:YES];
-                        }
-                    }
-
-                };
-                [self presentViewController:scanVC animated:YES completion:nil];
-
-            }else if (sender.tag == 2005){
-
-//				LGwebViewController *lgupay = [LGwebViewController new];
-//				lgupay.hidesBottomBarWhenPushed = YES;
-//				[lgupay loadRequestUrlWithOrderNumber:@"1021804110000000011W" OrderMoney:@"1800" OrderUserName:@"%EA%B9%80%EB%8F%84%EC%84%B1" GiftInfo:@"api%EC%83%88%EB%A1%9C%20%EB%B0%9B%EC%9D%84%EA%B2%83"];
-//				[self.navigationController pushViewController:lgupay animated:YES];
-//
-            }
 }
+
 
 #pragma mark -- 设置导航栏
 - (void)setNaviBar{

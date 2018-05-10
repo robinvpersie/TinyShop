@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ADView : UIView
+@interface ADView : UIButton
 
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, assign) NSString * title;

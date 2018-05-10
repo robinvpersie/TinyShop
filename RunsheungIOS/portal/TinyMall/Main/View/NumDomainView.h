@@ -43,7 +43,7 @@
 @property (nonatomic,retain)NSArray *BigCategoresImgs;
 @property (nonatomic,retain)NSMutableArray<UITextField *> *fieldArray;
 
-@property(nonatomic,retain)UIImageView *pickbackImg;
+@property(nonatomic,retain)UIView *inputBg;
 
 
 
