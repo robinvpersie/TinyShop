@@ -18,19 +18,23 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        
         ADView *adone = [[ADView alloc] init];
-        adone.image = [UIImage imageNamed:@""];
-        adone.title = @"";
+        adone.image = [UIImage imageNamed:@"icon_home_scan"];
+        adone.title = @"QR코드";
         [self.contentView addSubview:adone];
         
         ADView *adtwo = [[ADView alloc] init];
-        adtwo.image = [UIImage imageNamed:@""];
-        adtwo.title = @"";
+        adtwo.image = [UIImage imageNamed:@"icon_home_sns"];
+        adtwo.title = @"sns";
         [self.contentView addSubview:adtwo];
         
         ADView *adthree = [[ADView alloc] init];
-        adthree.image = [UIImage imageNamed:@""];
-        adthree.title = @"";
+        adthree.image = [UIImage imageNamed:@"icon_home_live"];
+        adthree.title = @"방송";
         [self.contentView addSubview:adthree];
         
         UIStackView *stack = [[UIStackView alloc] init];

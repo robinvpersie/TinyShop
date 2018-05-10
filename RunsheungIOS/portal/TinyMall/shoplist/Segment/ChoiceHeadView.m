@@ -28,7 +28,7 @@ static const CGFloat locationWidth = 12;
 - (instancetype)initWithFrame:(CGRect)frame withTextColor:(UIColor*)textColor withData:(NSArray*)images{
 	self = [super initWithFrame:frame];
 	if (self) {
-		self.textColor = textColor;
+		self.textColor = [UIColor darkTextColor];
 		self.images = images;
 		[self createSubviews];
 	}
