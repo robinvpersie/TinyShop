@@ -721,6 +721,8 @@
 		5BFB70071DEBB8D10004ED83 /* UIColor+YC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFB70061DEBB8D10004ED83 /* UIColor+YC.swift */; };
 		5BFB70091DEBD1950004ED83 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFB70081DEBD1950004ED83 /* HomeModel.swift */; };
 		5BFB700B1DEBD51E0004ED83 /* YCHomeNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFB700A1DEBD51D0004ED83 /* YCHomeNewsCell.swift */; };
+		6216DB3B20A320A400869570 /* ADHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6216DB3A20A320A400869570 /* ADHeaderCell.m */; };
+		6216DB3E20A3219800869570 /* ADView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6216DB3D20A3219800869570 /* ADView.m */; };
 		621DB37920060F3400EE3F63 /* ProfileServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621DB37820060F3300EE3F63 /* ProfileServiceCell.swift */; };
 		621DB37B2006342A00EE3F63 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621DB37A2006342A00EE3F63 /* ProfileModel.swift */; };
 		62503F7F2084931700D9FED3 /* AlManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62503F7E2084931700D9FED3 /* AlManager.swift */; };
@@ -2134,6 +2136,10 @@
 		5BFB70061DEBB8D10004ED83 /* UIColor+YC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+YC.swift"; sourceTree = "<group>"; };
 		5BFB70081DEBD1950004ED83 /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		5BFB700A1DEBD51D0004ED83 /* YCHomeNewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCHomeNewsCell.swift; sourceTree = "<group>"; };
+		6216DB3920A320A400869570 /* ADHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADHeaderCell.h; sourceTree = "<group>"; };
+		6216DB3A20A320A400869570 /* ADHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADHeaderCell.m; sourceTree = "<group>"; };
+		6216DB3C20A3219800869570 /* ADView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADView.h; sourceTree = "<group>"; };
+		6216DB3D20A3219800869570 /* ADView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADView.m; sourceTree = "<group>"; };
 		621DB37820060F3300EE3F63 /* ProfileServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServiceCell.swift; sourceTree = "<group>"; };
 		621DB37A2006342A00EE3F63 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		62503F7E2084931700D9FED3 /* AlManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlManager.swift; sourceTree = "<group>"; };
@@ -5647,6 +5653,10 @@
 				629EB4B92090134700144C64 /* DomainCell.m */,
 				629EB4BB20901E2200144C64 /* ADMainCell.h */,
 				629EB4BC20901E2200144C64 /* ADMainCell.m */,
+				6216DB3920A320A400869570 /* ADHeaderCell.h */,
+				6216DB3A20A320A400869570 /* ADHeaderCell.m */,
+				6216DB3C20A3219800869570 /* ADView.h */,
+				6216DB3D20A3219800869570 /* ADView.m */,
 				D5D01F3D205FD5E6002263CC /* MainTableViewCell.h */,
 				D5D01F3E205FD5E6002263CC /* MainTableViewCell.m */,
 				D5D01F3F205FD5E6002263CC /* MainTableViewCell.xib */,
@@ -6463,6 +6473,7 @@
 				1B0CD2EE1E8E0693008AF162 /* MSSCalendarManager.m in Sources */,
 				1B392F271E28D14E00F70981 /* ExpressCell.m in Sources */,
 				1B510E641E9F78D800B77F14 /* HotelReserveResultController.m in Sources */,
+				6216DB3E20A3219800869570 /* ADView.m in Sources */,
 				5B8AAE451F7B8859001EB504 /* SocailInfo.swift in Sources */,
 				1BD7D6F21F131E5100D52F15 /* HotelRetainTimeModel.m in Sources */,
 				011B523A205A0DD200B7E4D7 /* OrderLocationCell.swift in Sources */,
@@ -6572,6 +6583,7 @@
 				1B80E6B31E4D561F001603B2 /* GSFilterView.m in Sources */,
 				26CFF6572004877300A10F91 /* RSSpecialGoodsMedicineCell.m in Sources */,
 				1B392F201E28D14E00F70981 /* SupermarketAllKindsController.m in Sources */,
+				6216DB3B20A320A400869570 /* ADHeaderCell.m in Sources */,
 				1B392F511E28D14E00F70981 /* SupermarketSelfPickCollectionViewCell.m in Sources */,
 				1BC876781E973AA300BB38D7 /* MD5DataSigner.m in Sources */,
 				1B392F4E1E28D14E00F70981 /* SupermarketRefundInfoData.m in Sources */,

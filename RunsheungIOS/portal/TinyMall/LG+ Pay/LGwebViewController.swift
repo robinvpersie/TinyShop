@@ -77,7 +77,7 @@ extension LGwebViewController{
 		var backgroundSupported:Bool = false
 		backgroundSupported = device.isMultitaskingSupported
 		if !backgroundSupported {
-			let alert:UIAlertView = UIAlertView(title:"안 내", message: "멀티테스킹을 지원하는 기기 또는 어플만  공인인증서비스가 가능합니다.", delegate: nil, cancelButtonTitle: "OK", otherButtonTitles: "")
+			let alert = UIAlertView(title:"안 내", message: "멀티테스킹을 지원하는 기기 또는 어플만  공인인증서비스가 가능합니다.", delegate: nil, cancelButtonTitle: "OK", otherButtonTitles: "")
 			alert.show()
 			return true
 

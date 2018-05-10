@@ -17,9 +17,11 @@
 #import "TSearchViewController.h"
 #import "DomainCell.h"
 #import "ADMainCell.h"
+#import "ADHeaderCell.h"
 #import <MJRefresh/MJRefresh.h>
 
 typedef NS_ENUM(NSInteger, sectionType) {
+    header,
     domain,
     list
 };
@@ -116,9 +118,8 @@ typedef NS_ENUM(NSInteger, fetchType) {
            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
               [weakSelf.tableView reloadData];
            }];
-
            finish();
-
+        
         } failure:^(NSError *err) {
             finish();
 			UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil) message:@"인터넷 연결 또는 서버에 문제 있습니다." preferredStyle:UIAlertControllerStyleAlert];
@@ -136,6 +137,7 @@ typedef NS_ENUM(NSInteger, fetchType) {
     self.tableView.tableFooterView = [[UIView alloc] init];
     [self.tableView registerClass:[DomainCell class] forCellReuseIdentifier:@"domain"];
     [self.tableView registerClass:[ADMainCell class] forCellReuseIdentifier:@"admain"];
+    [self.tableView registerClass:[ADHeaderCell class] forCellReuseIdentifier:@"header"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 0;
@@ -169,7 +171,7 @@ typedef NS_ENUM(NSInteger, fetchType) {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == domain) {
+    if (section == domain || section == header) {
         return 1;
     }
     if (self.mutaleData.count > 0) {
@@ -184,9 +186,12 @@ typedef NS_ENUM(NSInteger, fetchType) {
     if (indexPath.section == domain) {
         DomainCell * cell = [tableView dequeueReusableCellWithIdentifier:@"domain" forIndexPath:indexPath];
         return cell;
-    } else {
+    } else if (indexPath.section == list) {
         ADMainCell * cell = [tableView dequeueReusableCellWithIdentifier:@"admain" forIndexPath:indexPath];
         cell.dic = self.mutaleData[indexPath.row];
+        return  cell;
+    } else {
+        ADHeaderCell * cell = [tableView dequeueReusableCellWithIdentifier:@"header" forIndexPath:indexPath];
         return  cell;
     }
 }
@@ -194,8 +199,10 @@ typedef NS_ENUM(NSInteger, fetchType) {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == domain) {
         return 3 * SCREEN_WIDTH / 4.0 + 80;
-    } else {
+    } else if (indexPath.section == list) {
         return 120;
+    } else {
+        return 80;
     }
 }
 
@@ -204,7 +211,7 @@ typedef NS_ENUM(NSInteger, fetchType) {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == domain) {
+    if (section == domain || section == header) {
         return  0.01f;
     }
 	return 26.0f;
@@ -257,9 +264,7 @@ typedef NS_ENUM(NSInteger, fetchType) {
 				SetUserDefault(@"Address", address);
 				self.choiceHeadView.addressName = address;
 				if (first) {
-                    [self loadMainDataWithType:topRefresh finish:^{
-                        
-                    }];
+                    [self loadMainDataWithType:topRefresh finish:^{ }];
 					first = NO;
 				}
 			} else {
@@ -346,18 +351,22 @@ typedef NS_ENUM(NSInteger, fetchType) {
 	
 //	self.navigationController.navigationBar.barTintColor = RGB(60, 60, 60);
 	
-	UIButton *right1Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-	[right1Btn setImage:[UIImage imageNamed:@"icon_scanss"] forState:UIControlStateNormal];
-	right1Btn.imageEdgeInsets = UIEdgeInsetsMake(0, 7, 0, -7);
-	right1Btn.tag = 2004;
-	[right1Btn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
-	UIBarButtonItem *right1Item = [[UIBarButtonItem alloc]initWithCustomView:right1Btn];
+//    UIButton *right1Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+//    [right1Btn setImage:[UIImage imageNamed:@"icon_scanss"] forState:UIControlStateNormal];
+//    right1Btn.imageEdgeInsets = UIEdgeInsetsMake(0, 7, 0, -7);
+//    right1Btn.tag = 2004;
+//    [right1Btn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *right1Item = [[UIBarButtonItem alloc]initWithCustomView:right1Btn];
 	
-	UIButton *right2Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 30)];
-	[right2Btn setImage:[UIImage imageNamed:@"icon_searchhotel"] forState:UIControlStateNormal];
-	UIBarButtonItem *right2Item = [[UIBarButtonItem alloc]initWithCustomView:right2Btn];
-	[right2Btn addTarget:self action:@selector(SearchBtn:) forControlEvents:UIControlEventTouchUpInside];
-	[self.navigationItem setRightBarButtonItems:@[right1Item,right2Item]];
+//    UIButton *right2Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 30)];
+//    [right2Btn setImage:[UIImage imageNamed:@"icon_searchhotel"] forState:UIControlStateNormal];
+//    UIBarButtonItem *right2Item = [[UIBarButtonItem alloc]initWithCustomView:right2Btn];
+//    right2Item.tintColor = [UIColor darkTextColor];
+//    [right2Btn addTarget:self action:@selector(SearchBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.rightBarButtonItem = right2Item;
+    //[self.navigationItem setRightBarButtonItems:@[right1Item,right2Item]];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_searchhotel"] style:UIBarButtonItemStylePlain target:self action:@selector(SearchBtn:)];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor darkTextColor];
 	
 	UIButton *leftBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
 	[leftBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
