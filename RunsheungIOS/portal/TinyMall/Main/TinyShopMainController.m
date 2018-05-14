@@ -359,12 +359,14 @@ typedef NS_ENUM(NSInteger, fetchType) {
     rightItem1.tintColor = [UIColor darkTextColor];
 	
 	UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_searchhotel"] style:UIBarButtonItemStylePlain target:self action:@selector(searchAction:)];
-	rightItem1.tag = 1002;
+	rightItem2.tag = 1002;
+	rightItem2.imageInsets = UIEdgeInsetsMake(0, 13, 0, -13);
 	rightItem2.tintColor = [UIColor darkTextColor];
 	[self.navigationItem setRightBarButtonItems:@[rightItem1,rightItem2]];
 	
 	UIButton *leftBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
 	[leftBtn setImage:[UIImage imageNamed:@"mainlogo.png"] forState:UIControlStateNormal];
+	leftBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 10);
 	UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:leftBtn];
 	leftBtn.tag = 1003;
 	[self.navigationItem setLeftBarButtonItem:leftItem];
