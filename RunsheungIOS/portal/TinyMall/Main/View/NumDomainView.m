@@ -9,7 +9,7 @@
 #import "NumDomainView.h"
 #import "TSCategoryController.h"
 #import <AFNetworking/AFNetworking.h>
-#define ScrollviewHeight  (self.frame.size.width)/4.0f
+#define ScrollviewHeight  (self.frame.size.width - 30)/4.0f
 
 #define topLandScropeTag 1001
 #define bottomLandScropeTag 1002
@@ -37,51 +37,70 @@
 
 - (void)createPickerviews{
 	
-	self.pickbackImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"dial_num"]];
-	self.pickbackImg.userInteractionEnabled = YES;
-	self.pickbackImg.image = [UIImage imageNamed:@"dial_num"];
-	[self addSubview:self.pickbackImg];
-	const double width = self.frame.size.width - ScrollviewHeight;
-	[self.pickbackImg mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.height.equalTo(@60);
-		make.leading.equalTo(@10);
+	
+	self.inputBg = [UIView new];
+	self.inputBg.backgroundColor = [UIColor whiteColor];
+	self.inputBg.layer.cornerRadius = 5;
+	self.inputBg.layer.masksToBounds = YES;
+	[self addSubview:self.inputBg];
+	[self.inputBg mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.height.mas_equalTo(60);
+		make.leading.equalTo(@15);
 		make.top.equalTo(self.mas_top);
-		make.width.mas_equalTo(width);
+		make.width.mas_equalTo(SCREEN_WIDTH - 30);
 	}];
+	
+	const double width = self.frame.size.width - ScrollviewHeight;
+	
+	
+	
+//	self.pickbackImg = [UIImageView new];
+//	self.pickbackImg.userInteractionEnabled = YES;
+//	self.pickbackImg.backgroundColor = [UIColor whiteColor];
+//	[self addSubview:self.pickbackImg];
+//	const double width = self.frame.size.width - ScrollviewHeight;
+//	[self.pickbackImg mas_makeConstraints:^(MASConstraintMaker *make) {
+//		make.height.equalTo(@60);
+//		make.leading.equalTo(@10);
+//		make.top.equalTo(self.mas_top);
+//		make.width.mas_equalTo(width);
+//	}];
 	
 
 	UIButton *ok = [UIButton buttonWithType:UIButtonTypeCustom];
 	[ok setTitle:@"선택" forState:UIControlStateNormal];
 	[ok.titleLabel setFont:[UIFont systemFontOfSize:15]];
-	[ok setBackgroundImage:[UIImage imageNamed:@"dial_btn"] forState:UIControlStateNormal];
-	[ok setTitleColor:[UIColor colorWithRed:38/255.0f green:199/255.0f blue:48/255.0f alpha:1.0f] forState:UIControlStateNormal];
-	ok.layer.cornerRadius = 5;
+	[ok setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	ok.backgroundColor = RGB(0, 128, 64);
+	ok.layer.cornerRadius = 4;
 	ok.layer.masksToBounds = YES;
 	[ok addTarget:self action:@selector(okAction:) forControlEvents:UIControlEventTouchUpInside];
-	[self addSubview:ok];
+	[self.inputBg addSubview:ok];
 	[ok mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.bottom.mas_equalTo(self.pickbackImg);
-		make.leading.mas_equalTo(self.pickbackImg.mas_trailing);
+		make.top.mas_equalTo(10);
 		make.trailing.mas_equalTo(-10);
+		make.width.mas_equalTo(ScrollviewHeight-20);
+		make.height.mas_equalTo(40);
+		
 	}];
 	
 	self.BigCategoresArray= @[@"음식",@"미용",@"재래시장",@"숙박",@"오락",@"인테리어",@"제과제빵",@"레저스포츠",@"학원",@"애완동물",@"음악",@"컴퓨터",@"음식",@"취미",@"컴퓨터",@"보건소"];
-//    self.BigCategoresArray= @[@"음식",@"미용",@"여행",@"금융",@"건강",@"취미",@"쇼핑",@"컴퓨터"];
 	self.BigCategoresImgs = @[@"m_icon15",@"m_icon16",@"m_icon14",@"m_icon02",@"m_icon13",@"m_icon03",@"m_icon06",@"m_icon04",@"m_icon09",@"m_icon08",@"m_icon10",@"m_icon07"];
 	self.showColors = @[RGB(255, 86, 100),RGB(220, 211, 57),RGB(62, 220, 108),RGB(37, 126, 220),RGB(10, 34, 60)];
 	self.pickerNumbers = @[@"1", @"2", @"3",@"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16"];
 	
-//	for (int i = 0; i<4; i++) {
-//		UIPickerView *pickView = [[UIPickerView alloc]initWithFrame:CGRectMake(i*(CGFloat)CGRectGetWidth(pickbackImg.frame)/5.5,0, (CGFloat)CGRectGetWidth(pickbackImg.frame)/5.5, 60)];
-//		pickView.dataSource = self;
-//		pickView.delegate = self;
-//		pickView.tag = i;
-//		[pickbackImg addSubview:pickView];
-//	}
 	
 	self.fieldArray = [NSMutableArray array];
 	for (int j= 0; j<5; j++) {
-		
+		UIView *sigleview = [UIView new];
+		[self.inputBg addSubview:sigleview];
+		[sigleview mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.leading.mas_equalTo(j*width/5.5);
+			make.top.mas_equalTo(0);
+			make.width.mas_equalTo((j<4?(width/5.5):1.5*width/5.5));
+			make.height.mas_equalTo(60);
+		}];
+
 		UITextField *inputview = [UITextField new];
 		inputview.textColor = self.showColors[j];
 		inputview.textAlignment = NSTextAlignmentCenter;
@@ -89,20 +108,22 @@
 		inputview.returnKeyType = UIReturnKeyDone;
 		inputview.delegate = self;
 		inputview.tag = j;
+		inputview.backgroundColor = RGB(242, 244, 246);
+		inputview.layer.cornerRadius = 3;
+		inputview.layer.masksToBounds = YES;
 		inputview.tintColor = self.showColors[j];
-        
+
 		inputview.keyboardType =  UIKeyboardTypeNumberPad;
 		inputview.text = [NSString stringWithFormat:@"%d",self.pickerIndex1];
-		[self.pickbackImg addSubview:inputview];
+		[sigleview addSubview:inputview];
 		[self.fieldArray addObject:inputview];
 		[inputview mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.leading.mas_equalTo(j*width/5.5);
-			make.top.mas_equalTo(0);
-			make.width.mas_equalTo((j<4?(width/5.5):1.5*width/5.5));
-			make.height.mas_equalTo(60);
+			make.leading.top.mas_equalTo(10);
+			make.bottom.mas_equalTo(-10);
+			make.width.mas_equalTo(@40);
 		}];
 	}
-	
+
 	
 	
 }
@@ -258,6 +279,8 @@
     }
     
 	if (self.rightPortraitCollectView == nil) {
+		
+		
 		UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
 		layout.scrollDirection = UICollectionViewScrollDirectionVertical;
 		self.rightPortraitCollectView = [[UICollectionView alloc]initWithFrame:CGRectMake(self.frame.size.width - ScrollviewHeight, ScrollviewHeight+60, ScrollviewHeight,3* ScrollviewHeight) collectionViewLayout:layout];
@@ -272,18 +295,42 @@
     }
 
 	if (self.centerShowCollectView == nil) {
+		
+//		UIView *centerbg = [UIView new];
+//		centerbg.backgroundColor = [UIColor whiteColor];
+//		centerbg.layer.cornerRadius = 5;
+//		centerbg.layer.masksToBounds = YES;
+//		[self addSubview:centerbg];
+//		[centerbg mas_makeConstraints:^(MASConstraintMaker *make) {
+//			make.top.equalTo(self.inputBg.mas_bottom).offset(10);
+//			make.leading.equalTo(self.inputBg.mas_leading);
+//			make.trailing.equalTo(self.inputBg.mas_trailing);
+//			make.bottom.equalTo(self.mas_bottom);
+//
+//		}];
+		
+		
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        self.centerShowCollectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 70, SCREEN_WIDTH, 3 * ScrollviewHeight) collectionViewLayout:layout];
+		self.centerShowCollectView = [[UICollectionView alloc]initWithFrame:CGRectMake(15, 70, SCREEN_WIDTH - 30, 3*(SCREEN_WIDTH - 30) / 4.0) collectionViewLayout:layout];
+		self.centerShowCollectView.layer.cornerRadius = 5;
+		self.centerShowCollectView.layer.masksToBounds = YES;
         self.centerShowCollectView.tag = centerScrollViewTag;
+		self.centerShowCollectView.backgroundColor = [UIColor whiteColor];
         [self.centerShowCollectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCellID"];
         self.centerShowCollectView.showsVerticalScrollIndicator = NO;
         self.centerShowCollectView.showsHorizontalScrollIndicator = NO;
         self.centerShowCollectView.delegate = self;
         self.centerShowCollectView.dataSource = self;
-		self.centerShowCollectView.backgroundColor = RGB(242, 244, 246);
-//		self.centerShowCollectView.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.centerShowCollectView];
+
+//		[self.centerShowCollectView mas_makeConstraints:^(MASConstraintMaker *make) {
+//			make.top.equalTo(self.inputBg.mas_bottom).offset(10);
+//			make.leading.equalTo(self.inputBg.mas_leading);
+//			make.trailing.equalTo(self.inputBg.mas_trailing);
+//			make.bottom.equalTo(self.mas_bottom);
+//
+//		}];
     }
 
 }
@@ -385,7 +432,7 @@
 //        topImgNamed = self.BigCategoresImgs[indexPath.row];
 	}
 	
-	UIView *bg_cell = [[UIView alloc]initWithFrame:CGRectMake(1, 1, ScrollviewHeight - 2, ScrollviewHeight - 2)];
+	UIView *bg_cell = [[UIView alloc]initWithFrame:CGRectMake(0, 0,ScrollviewHeight , ScrollviewHeight )];
 	bg_cell.backgroundColor = [UIColor whiteColor];
 	[cell.contentView addSubview:bg_cell];
 	
@@ -393,7 +440,7 @@
     numberImg.frame = CGRectMake(20, 10, ScrollviewHeight-40, ScrollviewHeight-40);
     [bg_cell addSubview:numberImg];
 
-    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(numberImg.frame)+10, ScrollviewHeight, 15)];
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(numberImg.frame)+5, ScrollviewHeight, 15)];
 	title.textColor = RGB(60, 60, 60);
     title.text = self.BigCategoresArray[indexPath.row];
     title.textAlignment = NSTextAlignmentCenter;
@@ -503,17 +550,10 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
 				  layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (collectionView.tag == centerScrollViewTag) {
-
-        float width = (self.frame.size.width)/4.0f ;
-        float height = (self.frame.size.width)/4.0f ;
+        float width = (self.frame.size.width-30)/4.0f ;
+        float height =width ;
         return CGSizeMake(width, height);
 
-    }
-	float width = ScrollviewHeight ;
-	float height = width ;
-	
-	return CGSizeMake(width, height);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef void(^headBlock)(int index);
 @interface ADHeaderCell : UITableViewCell
-
+@property (nonatomic,copy) headBlock headblock;
 @end
 

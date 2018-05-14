@@ -691,4 +691,14 @@
 + (void)deliveryTokenToServer:(NSString *)token
 					  Success:(void (^)(id response))success
 					  failure:(void (^)(NSError *err))failure;
+/**
+ 加载首页的新闻列表
+ 
+ @param pageIndex 分页参数
+ @param success 成功调用
+ @param failure 失败调用
+ */
++ (void)loadmainNewsListWithPaged:(NSString *)pageIndex
+					  withSuccess:(void (^)(id response))success
+					  withfailure:(void (^)(NSError *err))failure;
 @end

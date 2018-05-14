@@ -25,18 +25,28 @@
         ADView *adone = [[ADView alloc] init];
         adone.image = [UIImage imageNamed:@"icon_home_scan"];
         adone.title = @"QR코드";
+		adone.tag = 1;
+		[adone addTarget:self action:@selector(clickHeadTap:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:adone];
         
         ADView *adtwo = [[ADView alloc] init];
         adtwo.image = [UIImage imageNamed:@"icon_home_sns"];
         adtwo.title = @"sns";
+		adtwo.tag = 2;
+		[adtwo addTarget:self action:@selector(clickHeadTap:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:adtwo];
         
         ADView *adthree = [[ADView alloc] init];
         adthree.image = [UIImage imageNamed:@"icon_home_live"];
         adthree.title = @"방송";
+		adthree.tag = 3;
+		[adthree addTarget:self action:@selector(clickHeadTap:) forControlEvents:UIControlEventTouchUpInside];
+
         [self.contentView addSubview:adthree];
-        
+		
+
+		
+		
         UIStackView *stack = [[UIStackView alloc] init];
         stack.axis = UILayoutConstraintAxisHorizontal;
         stack.alignment = UIStackViewAlignmentFill;
@@ -55,6 +65,13 @@
         
     }
     return self;
+}
+
+
+- (void)clickHeadTap:(UIButton*)sender{
+	if (self.headblock) {
+		self.headblock((int)sender.tag);
+	}
 }
 
 - (void)awakeFromNib {

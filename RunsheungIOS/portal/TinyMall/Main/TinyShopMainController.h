@@ -9,5 +9,5 @@
 #import "TSBaseViewController.h"
 
 @interface TinyShopMainController : UIViewController
-
+@property(nonatomic,retain)UIWebView*newsWebview;
 @end
