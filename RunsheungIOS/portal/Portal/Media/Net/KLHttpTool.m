@@ -3294,6 +3294,7 @@
 }
 
 
+
 /*
  加载主页数据
  */
@@ -3476,6 +3477,32 @@
 
 
 
+/**
+ 加载首页的新闻列表
+
+ @param paged 分页参数
+ @param success 成功调用
+ @param failure 失败调用
+ */
++ (void)loadmainNewsListWithPaged:(NSString *)pageIndex
+					  withSuccess:(void (^)(id response))success
+							withfailure:(void (^)(NSError *err))failure{
+	NSString *url =[NSString stringWithFormat:@"%@%@",@"http://www.gigaworld.co.kr:8080/",@"Newsgiga/GetNewListBysb"];
+	
+	NSString *pageSize = @"20";
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(pageSize,pageIndex).mutableCopy;
+	
+
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+	}];
+
+}
 @end
 
 

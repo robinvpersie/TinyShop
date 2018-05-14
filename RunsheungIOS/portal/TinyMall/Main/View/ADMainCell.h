@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ADMainCell : UITableViewCell
+@property(nonatomic,strong )NSDictionary *dic;
 
-@property (nonatomic, strong) NSDictionary *dic;
 
 @end
