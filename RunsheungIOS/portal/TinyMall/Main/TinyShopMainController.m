@@ -21,7 +21,7 @@
 #import <MJRefresh/MJRefresh.h>
 
 typedef NS_ENUM(NSInteger, sectionType) {
-    header,
+//    header,
     domain,
     list
 };
@@ -167,19 +167,22 @@ typedef NS_ENUM(NSInteger, fetchType) {
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-	return 3;
+	return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == domain || section == header) {
+    if (section == domain ) {
         return 1;
-    }
-    if (self.mutaleData.count > 0) {
-        [tableView.mj_footer setHidden:NO];
-    } else {
-        [tableView.mj_footer setHidden:YES];
-    }
-	return self.mutaleData.count;
+	}else if (section == list){
+		if (self.mutaleData.count > 0) {
+			[tableView.mj_footer setHidden:NO];
+		} else {
+			[tableView.mj_footer setHidden:YES];
+		}
+		return self.mutaleData.count;
+	}
+	return 0;
+		
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -221,7 +224,7 @@ typedef NS_ENUM(NSInteger, fetchType) {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == domain || section == header) {
+    if (section == domain) {
         return  0.01f;
     }
 	return 10.0f;
@@ -299,28 +302,26 @@ typedef NS_ENUM(NSInteger, fetchType) {
 }
 
 
-- (void)SearchBtn:(UIButton*)sender{
+- (void)searchAction:(UIButton*)sender{
+
+			//创建热搜的数组
+		NSArray *hotSeaches = [NSArray array];
+		//创建搜索结果的控制器
+		PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"搜索关键字", nil)  didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText)
+														{
+															TSearchViewController *searchResultVC = [[TSearchViewController alloc] init];
+															searchResultVC.searchKeyWord = searchText;
+															searchResultVC.navigationItem.title = NSLocalizedString(@"搜索结果", nil) ;
+															[searchViewController.navigationController pushViewController:searchResultVC animated:YES];
+														}];
+		//创建搜索的控制器
+		UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+		[self presentViewController:nav  animated:NO completion:nil];
 
 	
-	//创建热搜的数组
-	NSArray *hotSeaches = [NSArray array];
-	//创建搜索结果的控制器
-	PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"搜索关键字", nil)  didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText)
-    {
-		TSearchViewController *searchResultVC = [[TSearchViewController alloc] init];
-		searchResultVC.searchKeyWord = searchText;
-		searchResultVC.navigationItem.title = NSLocalizedString(@"搜索结果", nil) ;
-		[searchViewController.navigationController pushViewController:searchResultVC animated:YES];
-		
-		
-	}];
-	//创建搜索的控制器
-	
-	UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
-	[self presentViewController:nav  animated:NO completion:nil];
-	
-
 }
+
+
 
 //扫码
 - (void)scanQR{
@@ -352,31 +353,23 @@ typedef NS_ENUM(NSInteger, fetchType) {
 
 #pragma mark -- 设置导航栏
 - (void)setNaviBar{
+
+    UIBarButtonItem *rightItem1 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_home_scan"] style:UIBarButtonItemStylePlain target:self action:@selector(scanQR)];
+	rightItem1.tag = 1001;
+    rightItem1.tintColor = [UIColor darkTextColor];
 	
-//	self.navigationController.navigationBar.barTintColor = RGB(60, 60, 60);
-	
-//    UIButton *right1Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-//    [right1Btn setImage:[UIImage imageNamed:@"icon_scanss"] forState:UIControlStateNormal];
-//    right1Btn.imageEdgeInsets = UIEdgeInsetsMake(0, 7, 0, -7);
-//    right1Btn.tag = 2004;
-//    [right1Btn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *right1Item = [[UIBarButtonItem alloc]initWithCustomView:right1Btn];
-	
-//    UIButton *right2Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 30)];
-//    [right2Btn setImage:[UIImage imageNamed:@"icon_searchhotel"] forState:UIControlStateNormal];
-//    UIBarButtonItem *right2Item = [[UIBarButtonItem alloc]initWithCustomView:right2Btn];
-//    right2Item.tintColor = [UIColor darkTextColor];
-//    [right2Btn addTarget:self action:@selector(SearchBtn:) forControlEvents:UIControlEventTouchUpInside];
-//    self.navigationItem.rightBarButtonItem = right2Item;
-    //[self.navigationItem setRightBarButtonItems:@[right1Item,right2Item]];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_searchhotel"] style:UIBarButtonItemStylePlain target:self action:@selector(SearchBtn:)];
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor darkTextColor];
+	UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_searchhotel"] style:UIBarButtonItemStylePlain target:self action:@selector(searchAction:)];
+	rightItem1.tag = 1002;
+	rightItem2.tintColor = [UIColor darkTextColor];
+	[self.navigationItem setRightBarButtonItems:@[rightItem1,rightItem2]];
 	
 	UIButton *leftBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-	[leftBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+	[leftBtn setImage:[UIImage imageNamed:@"mainlogo.png"] forState:UIControlStateNormal];
 	UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:leftBtn];
-	leftBtn.tag = 2005;
-	[self.navigationItem setLeftBarButtonItems:@[leftItem]];
+	leftBtn.tag = 1003;
+	[self.navigationItem setLeftBarButtonItem:leftItem];
+	
+	
 	
 }
 
