@@ -109,7 +109,6 @@ class InputAmountController: BaseViewController {
             make.centerX.equalTo(inputWrapper)
         }
         
-        
         whiteWarrperView.snp.makeConstraints { (make) in
             make.width.equalTo(scrollView).offset(-ratioWidth(30))
             make.centerX.equalTo(scrollView)
@@ -131,7 +130,9 @@ class InputAmountController: BaseViewController {
         passwordView.loadingText = "결제중..."
         passwordView.show(in: view.window!)
         passwordView.finish = { [weak self] password in
-            guard let this = self else { return }
+            guard let this = self else {
+                return
+            }
             passwordView.hideKeyboard()
             if let password = password,
                let account = YCAccountModel.getAccount() {
