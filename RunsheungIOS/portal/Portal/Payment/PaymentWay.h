@@ -17,8 +17,8 @@
  @param orderDic 生成的订单字典
  @param controller 调用的控制器对象
  */
-+ (void)wechatpay:(NSDictionary*)orderDic
-   viewController:(UIViewController *)controller;
+//+ (void)wechatpay:(NSDictionary*)orderDic
+//   viewController:(UIViewController *)controller;
 
 + (void)alipay:(NSString *)orderStr;
 

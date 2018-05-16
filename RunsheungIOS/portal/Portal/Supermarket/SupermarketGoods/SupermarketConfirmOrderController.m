@@ -462,7 +462,7 @@
 								[weakSelf.passwordView requestComplete:YES message:NSLocalizedString(@"PaySucMsg", nil)];
 								NSDictionary *data = response[@"data"];
 								
-								[PaymentWay wechatpay:data viewController:weakself];
+//                                [PaymentWay wechatpay:data viewController:weakself];
 							}
 							else {
 								[weakSelf.passwordView requestComplete:NO message:response[@"msg"]];

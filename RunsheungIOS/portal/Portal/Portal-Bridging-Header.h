@@ -44,7 +44,7 @@
 #import "AllCouponViewController.h"
 #import "SupermarketMyOrderController.h"
 #import "UMMobClick/MobClick.h"
-#import <UMSocialCore/UMSocialCore.h>
+
 #import "ZFScanViewController.h"
 #import "YCOCShareManager.h"
 //#import "UShareUI/UShareUI.h"
@@ -53,7 +53,7 @@
 #import "RSShopCartController.h"
 #import "RSMineController.h"
 #import "WJSetLineColor.h"
-#import "WXApi.h"
+
 #import "CustomerServiceController.h"
 #import "RSAgencyViewController.h"
 #import "CompanyAuthController.h"

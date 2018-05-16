@@ -105,7 +105,6 @@ class YCWebViewController: BaseViewController {
     
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
         progressView.progress = Float(webView.estimatedProgress)
         if keyPath == "estimatedProgress" && webView.estimatedProgress == 1.0 {
                 UIView.animate(withDuration: 0.25, animations: {
@@ -114,69 +113,8 @@ class YCWebViewController: BaseViewController {
         }
     }
     
-    func shareWithArray(_ valueArray: [String]){
-        
-        if valueArray.isEmpty {
-            return
-        }
-        
-        let completion:(Any?,  Error?)-> Void = { result, error in
-            if error != nil {
-                self.showMessage(error!.localizedDescription)
-            }
-        }
+   
 
-        shareView.showInView(view)
-        
-        let parameterString = valueArray[0]
-        let parameterArray = parameterString.components(separatedBy: "$")
-        let title = parameterArray[4]
-        let descr = parameterArray[5]
-        let thumImage = parameterArray[3] as NSString
-        let object = UMSocialMessageObject()
-        let thumburl = self.url.absoluteString
-        let shareobject = UMShareWebpageObject.shareObject(withTitle: title, descr: descr, thumImage: thumImage)
-        shareobject?.webpageUrl = thumburl
-        object.shareObject = shareobject
-        
-        shareView.shareAction = { [weak self] type in
-            switch type {
-            case .long:
-                self?.showLoading()
-               CheckToken.chekcTokenAPI(completion: { [weak self] result in
-                    self?.hideLoading()
-                    switch result {
-                      case .success(let check):
-                          let shareModel = YCShareModel()
-                          shareModel.action_type = "share"
-                          shareModel.phone_number = check.custom_code
-                          shareModel.password = YCAccountModel.getAccount()?.password
-                          shareModel.title = parameterArray[4]
-                          shareModel.content = parameterArray[5]
-                          let originalUrlString = "http://portal.dxbhtm.com:8488/img/11.png"
-                          shareModel.imageUrl = parameterArray[3].isEmpty ? originalUrlString:parameterArray[3]
-                          shareModel.url = self!.url.absoluteString
-                          shareModel.type = parameterArray[1]
-                          shareModel.item_code = parameterArray[2]
-                          shareModel.token = check.newtoken
-                          YCShareAddress.share(with: YCShareAddress.getWith(shareModel))
-                       case .failure(let error):
-                           self?.showMessage(error.localizedDescription)
-                        }
-                 })
-            case .qq:
-                SocailShare.share(plattype: .QQ, messageObject: object, viewController: self, completion: completion)
-            case .sina:
-                SocailShare.share(plattype: .sina, messageObject: object, viewController: self, completion: completion)
-            case .wechatFavorite:
-                SocailShare.share(plattype: .wechatFavorite, messageObject: object, viewController: self, completion: completion)
-            case .wechatSession:
-                SocailShare.share(plattype: .wechatSession, messageObject: object, viewController: self, completion: completion)
-            case .wechatTimeLine:
-                SocailShare.share(plattype: .wechatTimeLine, messageObject: object, viewController: self, completion: completion)
-            }
-        }
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -232,13 +170,13 @@ extension YCWebViewController:WKNavigationDelegate{
         })
        }else if requestUrlHost == callShare {
             decisionHandler(.allow)
-            if let aboString = navigationAction.request.url?.absoluteString {
-              let utf8 = aboString.utf8encodedString()
-              let valueArray = utf8.getValurArray()
-              shareWithArray(valueArray)
-            }else {
-              self.showMessage("分享错误")
-            }
+//            if let aboString = navigationAction.request.url?.absoluteString {
+//              let utf8 = aboString.utf8encodedString()
+//              let valueArray = utf8.getValurArray()
+//              shareWithArray(valueArray)
+//            }else {
+//              self.showMessage("分享错误")
+//            }
         }else {
             decisionHandler(.allow)
         }

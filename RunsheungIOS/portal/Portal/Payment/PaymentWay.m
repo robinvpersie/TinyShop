@@ -9,31 +9,28 @@
 #import "PaymentWay.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "UPPaymentControl.h"
-#import "WXApi.h"
-#import "WXApiObject.h"
-#import "RSPayRep.h"
 
 @implementation PaymentWay
-+ (void)wechatpay:(NSDictionary*)orderDic
-  viewController:(UIViewController *)controller{
-    if ([orderDic isKindOfClass:[NSDictionary class]]) {
-        if (orderDic != nil )
-        {
-            //调起支付
-            NSString *appids = orderDic[@"appid"];
-            [WXApi registerApp:appids withDescription:@"人生药业商品"];
-            RSPayRep *req = [[RSPayRep alloc]init];
-            req.partnerId = orderDic[@"partnerid"];
-            req.prepayId = orderDic[@"prepayid"];
-            req.package = orderDic[@"package"];
-            req.nonceStr = orderDic[@"noncestr"];
-            req.timeStamp = [orderDic[@"timestamp"] intValue];
-            req.sign = orderDic[@"sign"];
-            [WXApi sendReq:req];
-        }
-    }
-   
-}
+//+ (void)wechatpay:(NSDictionary*)orderDic
+//  viewController:(UIViewController *)controller{
+//    if ([orderDic isKindOfClass:[NSDictionary class]]) {
+//        if (orderDic != nil )
+//        {
+//            //调起支付
+//            NSString *appids = orderDic[@"appid"];
+//            [WXApi registerApp:appids withDescription:@"人生药业商品"];
+//            RSPayRep *req = [[RSPayRep alloc]init];
+//            req.partnerId = orderDic[@"partnerid"];
+//            req.prepayId = orderDic[@"prepayid"];
+//            req.package = orderDic[@"package"];
+//            req.nonceStr = orderDic[@"noncestr"];
+//            req.timeStamp = [orderDic[@"timestamp"] intValue];
+//            req.sign = orderDic[@"sign"];
+//            [WXApi sendReq:req];
+//        }
+//    }
+//   
+//}
 
 + (void)alipay:(NSString *)orderStr{
     
