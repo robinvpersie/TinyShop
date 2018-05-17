@@ -24,11 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let pro = ProtocolController()
             pro.startAction = { [weak self] in
             guard let this = self else { return }
-            UIView.transition(with: this.window!,
-                              duration: 0.5,
-                              options: .curveEaseIn,
-                              animations:
-                {
+            UIView.transition(with: this.window!, duration: 0.5, options: .curveEaseIn, animations: {
                         let oldState = UIView.areAnimationsEnabled
                         UIView.setAnimationsEnabled(false)
                         let home = SupermarketMainController()
@@ -40,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             window?.rootViewController = pro
         } else {
-//            let home = ProtocolController()
+
             let home = SupermarketMainController()
             window?.rootViewController = home
         }
