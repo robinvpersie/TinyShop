@@ -36,22 +36,18 @@ extension UITableView{
     func performWithTableView(tableview:UITableView){
             switch self {
             case .none:
-                OperationQueue.main.addOperation {
-                    tableview.reloadData()
-                }
+                break;
             case .reloadData:
                 DispatchQueue.main.async {
                     tableview.reloadData()
                 }
-            case .reloadIndexPaths(let indexpath):
+            case let .reloadIndexPaths(indexpath):
                 DispatchQueue.main.async {
                     tableview.reloadRows(at: indexpath, with: .none)
                 }
-            case .insert(let indexpath):
+            case let .insert(indexpath):
                 DispatchQueue.main.async {
-                    tableview.beginUpdates()
-                    tableview.insertRows(at: indexpath, with: .automatic)
-                    tableview.endUpdates()
+                    tableview.insertRows(at: indexpath, with: .none)
                 }
             }
         }

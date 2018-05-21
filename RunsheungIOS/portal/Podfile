@@ -26,7 +26,7 @@ target 'Portal' do
   pod 'FSPagerView'
   pod 'MJRefresh'
   pod 'TPKeyboardAvoiding'
-  pod 'GDataXML-HTML', '~> 1.4.1'
+
   
 
   

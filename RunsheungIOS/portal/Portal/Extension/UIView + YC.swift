@@ -13,7 +13,7 @@ import SnapKit
 
 extension UIView{
 
-    var height:CGFloat{
+    var height: CGFloat{
         set{
            var temp = self.frame
            temp.size.height = newValue
@@ -24,7 +24,7 @@ extension UIView{
         }
     }
     
-    var width:CGFloat{
+    var width: CGFloat{
         set{
           var temp = self.frame
           temp.size.width = newValue
@@ -59,44 +59,44 @@ extension UIView{
     }
     
     @objc (maxY)
-    var maxy : CGFloat {
+    var maxy: CGFloat {
         get {
           return self.frame.maxY
         }
     }
     
-    var minx:CGFloat{
+    var minx: CGFloat{
         get{
           return self.frame.minX
         }
     }
     
-    var miny :CGFloat {
+    var miny: CGFloat {
         get {
           return self.frame.minY
         }
     }
     
     @objc (maxX)
-    var maxx:CGFloat {
+    var maxx: CGFloat {
         get{
           return self.frame.maxX
         }
     }
     
-    var midx:CGFloat {
+    var midx: CGFloat {
         get{
           return self.frame.midX
         }
     }
     
-    var midy:CGFloat{
+    var midy: CGFloat{
         get{
           return self.frame.midY
         }
     }
     
-    var centerx:CGFloat{
+    var centerx: CGFloat{
         set{
           var center = self.center
           center.x = centerx

@@ -37,6 +37,9 @@
 		018AE84D20594D210018F854 /* NetWorkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84C20594D210018F854 /* NetWorkResult.swift */; };
 		018AE84F20594DC90018F854 /* NetIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84E20594DC90018F854 /* NetIndicator.swift */; };
 		0193C697207F4003002AADAC /* PayTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0193C696207F4002002AADAC /* PayTarget.swift */; };
+		01B28A7F20B2E57D00CEFB36 /* MoyaProvider+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A7E20B2E57D00CEFB36 /* MoyaProvider+Rx.swift */; };
+		01B28A8120B2E9A900CEFB36 /* Observable+Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A8020B2E9A900CEFB36 /* Observable+Response.swift */; };
+		01B28A8320B2F01200CEFB36 /* Single+Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A8220B2F01200CEFB36 /* Single+Response.swift */; };
 		01B6BDA32063809C0057CC53 /* SearchListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6BDA22063809C0057CC53 /* SearchListModel.swift */; };
 		01B6BDA5206380D10057CC53 /* AllAddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6BDA4206380D10057CC53 /* AllAddressController.swift */; };
 		01C03460205FED7F00237AAD /* SearchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C0345F205FED7F00237AAD /* SearchListController.swift */; };
@@ -851,6 +854,9 @@
 		018AE84C20594D210018F854 /* NetWorkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkResult.swift; sourceTree = "<group>"; };
 		018AE84E20594DC90018F854 /* NetIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetIndicator.swift; sourceTree = "<group>"; };
 		0193C696207F4002002AADAC /* PayTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayTarget.swift; sourceTree = "<group>"; };
+		01B28A7E20B2E57D00CEFB36 /* MoyaProvider+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Rx.swift"; sourceTree = "<group>"; };
+		01B28A8020B2E9A900CEFB36 /* Observable+Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Response.swift"; sourceTree = "<group>"; };
+		01B28A8220B2F01200CEFB36 /* Single+Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Response.swift"; sourceTree = "<group>"; };
 		01B6BDA22063809C0057CC53 /* SearchListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchListModel.swift; sourceTree = "<group>"; };
 		01B6BDA4206380D10057CC53 /* AllAddressController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllAddressController.swift; sourceTree = "<group>"; };
 		01C0345F205FED7F00237AAD /* SearchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListController.swift; sourceTree = "<group>"; };
@@ -5193,6 +5199,9 @@
 				5BCE0AA31E319A960089A73A /* NSObject+TransfromModel.h */,
 				5BCE0AA41E319A960089A73A /* NSObject+TransfromModel.m */,
 				5B0744CE1F6FA1F900C66C2A /* BundleExtension.swift */,
+				01B28A7E20B2E57D00CEFB36 /* MoyaProvider+Rx.swift */,
+				01B28A8020B2E9A900CEFB36 /* Observable+Response.swift */,
+				01B28A8220B2F01200CEFB36 /* Single+Response.swift */,
 			);
 			name = Extension;
 			path = Portal/Extension;
@@ -6144,6 +6153,7 @@
 				5B7DCAF81DEFBFFC00F1D2AB /* UIButton + YC.swift in Sources */,
 				1B392EED1E28D14E00F70981 /* PYTempViewController.m in Sources */,
 				1B392F551E28D14E00F70981 /* SupermarketWaitCommentController.m in Sources */,
+				01B28A8120B2E9A900CEFB36 /* Observable+Response.swift in Sources */,
 				1BC876741E973AA300BB38D7 /* Order.m in Sources */,
 				D5D5BB04207F523000A27ABF /* LGwebViewController.swift in Sources */,
 				1B392F0C1E28D14E00F70981 /* SupermarketOnSaleCollectionView.m in Sources */,
@@ -6277,6 +6287,7 @@
 				5BE6542F1E6EA3A0003CC59F /* UIBarButtonItem+WZLBadge.m in Sources */,
 				1B392EE61E28D14E00F70981 /* VirtualData.m in Sources */,
 				6296F44F2019F84B00976C21 /* RecommendSearchPresent.swift in Sources */,
+				01B28A7F20B2E57D00CEFB36 /* MoyaProvider+Rx.swift in Sources */,
 				1B392F4B1E28D14E00F70981 /* SupermarketChekRefundProgressController.m in Sources */,
 				1B392F1D1E28D14E00F70981 /* AllKindsCollectionViewCell.m in Sources */,
 				5BC13C651E10F4AB00985C41 /* UIImageView+Navi.swift in Sources */,
@@ -6535,6 +6546,7 @@
 				1BC876761E973AA300BB38D7 /* DataSigner.m in Sources */,
 				1B392ECE1E28D14E00F70981 /* SupermarketBaseNavigationController.m in Sources */,
 				1B1971BD1E20803300E54D95 /* KLVoteActionView.m in Sources */,
+				01B28A8320B2F01200CEFB36 /* Single+Response.swift in Sources */,
 				D5D01F4420609272002263CC /* StepSecMemEnrollController.m in Sources */,
 				5B9CBDDD1DE7DBB70071A3B5 /* YCGCDTimer.swift in Sources */,
 				1BC8767A1E973AA300BB38D7 /* openssl_wrapper.m in Sources */,
