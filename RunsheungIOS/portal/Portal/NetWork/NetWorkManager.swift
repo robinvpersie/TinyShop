@@ -51,7 +51,7 @@ struct CheckToken{
 
     }
     
-   static func chekcTokenAPI(completion:@escaping (NetWorkResult<CheckToken>)->Void){
+   static func chekcTokenAPI(completion:@escaping (NetWorkResult<CheckToken>) -> Void){
         
         let parse:(JSONDictionary) -> CheckToken? = { json in
             let checkToken = CheckToken(json: json)

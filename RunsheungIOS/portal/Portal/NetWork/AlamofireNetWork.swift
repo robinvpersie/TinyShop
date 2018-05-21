@@ -13,8 +13,8 @@ import SwiftyJSON
 
 public enum Router: URLRequestConvertible {
     
-    case playVideo(videoId: String, kind: Int ,userId:String?)
-    case playLiveVideo(videoId:Int,kind:Int ,userId:String?)
+    case playVideo(videoId: String, kind: Int ,userId: String?)
+    case playLiveVideo(videoId: Int,kind: Int ,userId: String?)
     
     public func asURLRequest() throws -> URLRequest {
         let result: (path: String, parameters: Parameters) = {
@@ -25,7 +25,9 @@ public enum Router: URLRequestConvertible {
                 return (KLOnlineVideoPlayApiKey, ["videoId": videoId, "kind": kind , "userId":userId ?? ""])
             }
         }()
-        guard let url = URL(string: BaseType.MediaPlayVideo.baseURL) else { throw ParseError.failedToGenerate(property: "url") }
+        guard let url = URL(string: BaseType.MediaPlayVideo.baseURL) else {
+            throw ParseError.failedToGenerate(property: "url")
+        }
         let urlRequest = URLRequest(url: url.appendingPathComponent(result.path))
         return try URLEncoding.default.encode(urlRequest, with: result.parameters)
     }
@@ -35,21 +37,21 @@ public enum Router: URLRequestConvertible {
 
 public struct AlamofireResource<A>{
     
-    let path:String
-    let method:HTTPMethod
-    let requestBody:[String:Any]?
-    let headers:[String:String]?
+    let path: String
+    let method: HTTPMethod
+    let requestBody: [String: Any]?
+    let headers: [String: String]?
     let parse:(JSONDictionary) -> A?
-    var baseType:BaseType
-    var encoding:ParameterEncoding
+    var baseType: BaseType
+    var encoding: ParameterEncoding
     
-    init(baseType:BaseType,
+    init(baseType: BaseType,
          path: String,
          method: HTTPMethod,
          requestBody: [String:Any]?,
-         encoding:ParameterEncoding,
-         headers:[String:String]?,
-         parse:@escaping (JSONDictionary) -> A?) {
+         encoding: ParameterEncoding,
+         headers: [String: String]?,
+         parse: @escaping (JSONDictionary) -> A?) {
           self.path = path
           self.method = method
           self.requestBody = requestBody
@@ -61,13 +63,13 @@ public struct AlamofireResource<A>{
 }
 
 
-public func AlmofireResource<A>(Type:BaseType = .MediaBase,
-                                 token:String? = nil,
-                                 header:[String:String]? = nil,
-                                 path:String,
-                                 method:HTTPMethod,
-                                 requestParameters:JSONDictionary?,
-                                 urlEncoding:ParameterEncoding = URLEncoding.default,
+public func AlmofireResource<A>(Type: BaseType = .MediaBase,
+                                 token: String? = nil,
+                                 header: [String:String]? = nil,
+                                 path: String,
+                                 method: HTTPMethod,
+                                 requestParameters: JSONDictionary?,
+                                 urlEncoding: ParameterEncoding = URLEncoding.default,
                                  parse:@escaping (JSONDictionary) ->A?) -> AlamofireResource<A>
    {
     let jsonParse:(JSONDictionary) -> A? = { data in

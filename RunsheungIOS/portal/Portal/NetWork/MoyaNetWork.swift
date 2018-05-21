@@ -62,7 +62,7 @@ public enum BaseType {
     case recommend
     case pay
     
-    var baseURL: String{
+    var baseURL: String {
         switch self {
         case .PortalBase:
             return portalBaseURL
@@ -118,7 +118,7 @@ private func JSONResponseDataFormatter(_ data: Data) -> Data {
       let dataAsJSON = try JSONSerialization.jsonObject(with: data)
       let prettyData = try JSONSerialization.data(withJSONObject: dataAsJSON, options: .prettyPrinted)
       return prettyData
-    }catch {
+    } catch {
       return data
     }
 }
@@ -126,22 +126,22 @@ private func JSONResponseDataFormatter(_ data: Data) -> Data {
 let loggerPlugin = NetworkLoggerPlugin(verbose: true, responseDataFormatter: JSONResponseDataFormatter)
 
 #if !DEBUG
-let pluginTypeArray:[PluginType] = [activityPlugin]
+let pluginTypeArray: [PluginType] = [activityPlugin]
 #else
-let pluginTypeArray:[PluginType] = [activityPlugin, loggerPlugin]
+let pluginTypeArray: [PluginType] = [activityPlugin, loggerPlugin]
 #endif
 
-public typealias JSONDictionary = [String:Any]
+public typealias JSONDictionary = [String: Any]
 
 protocol DecodableTargetType: Moya.TargetType {
     associatedtype resultType
-    var parse:(_ object: [String:Any]) -> resultType? {get}
+    var parse:(_ object: [String: Any]) -> resultType? { get }
 }
 
 
 protocol MapTargetType: Moya.TargetType {
     associatedtype resultType
-    var map:(_ object: [String:Any]) throws -> resultType { get }
+    var map:(_ object: [String: Any]) throws -> resultType { get }
 }
 
 
@@ -171,7 +171,7 @@ final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
     @discardableResult
     func requestDecoded<T: DecodableTargetType>(
                         _ target: T,
-                        completion: @escaping (_ result:NetWorkResult<T.resultType>) -> Void)
+                        completion: @escaping (_ result: NetWorkResult<T.resultType>) -> Void)
                          -> Cancellable
     {
         let cancellable = request(MultiTarget(target)) { result in
@@ -193,14 +193,14 @@ final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
     
     
     @discardableResult
-    func requestTarget<T: MapTargetType>(target:T,
+    func requestTarget<T: MapTargetType>(target: T,
                                          completion: @escaping (_ result: NetWorkResult<T.resultType>) -> Void)
                                          -> Cancellable
     {
         let cancellable = request(MultiTarget(target)) { result in
             switch result {
             case .success(let response):
-                if let json: [String:Any] = try? response.mapJSON() as! [String:Any] {
+                if let json: [String: Any] = try? response.mapJSON() as! [String:Any] {
                     do {
                         let parse = try target.map(json)
                         completion(.success(parse))
@@ -279,7 +279,7 @@ struct RSEditProfileResource<T>: DecodableTargetType {
     init(baseURL: URL = BaseType.editProfile.URI,
          path: String,
          method: Moya.Method,
-         parameters: [String:Any]?,
+         parameters: [String: Any]?,
          parameterEncoding: JSONEncoding = JSONEncoding.default,
          sampleData: Data = Data(),
          task: Task = .requestPlain,
@@ -302,7 +302,7 @@ struct RSEditProfileResource<T>: DecodableTargetType {
     }
 }
 
-class tokenResource<T>:DecodableTargetType {
+class tokenResource<T>: DecodableTargetType {
     
     var headers: [String : String]?
     typealias resultType = T
@@ -320,7 +320,7 @@ class tokenResource<T>:DecodableTargetType {
     init(baseURL: URL = BaseType.PortalBase.URI,
          path: String,
          method: Moya.Method,
-         parameters: [String:Any]?,
+         parameters: [String: Any]?,
          parameterEncoding: ParameterEncoding = URLEncoding.default,
          sampleData: Data = Data(),
          task: Task = .requestPlain,
@@ -359,7 +359,7 @@ class tokenResource<T>:DecodableTargetType {
                         }
                     })
                 }else {
-                 completion(.tokenError)
+                   completion(.tokenError)
                 }
             }
         }

@@ -26,6 +26,7 @@
                         style:(UITableViewStyle)style {
     self = [super initWithFrame:frame style:style];
     if (self) {
+        _dataArray = [NSMutableArray array];
         [self registerClass:[SupermarketCommentCell class] forCellReuseIdentifier:@"Comment_Cell"];
         self.dataSource = self;
 		self.estimatedRowHeight = 0;
@@ -49,13 +50,16 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (self.dataArray == nil) {
+        return 0;
+    }
     return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SupermarketCommentCell *cell = [[SupermarketCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Comment_Cell"];
     cell.commentControllerType = self.commentControllerType;
-    cell.commentData = self.dataArray[indexPath.section];
+    cell.model = self.dataArray[indexPath.section];
     return cell;
 }
 
@@ -69,12 +73,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    SupermarketCommentData *data = self.dataArray[indexPath.section];
-    CGFloat contentHeight = [UILabel getHeightByWidth:LabelWidth title:data.content font:[UIFont systemFontOfSize:14]];
+    SPCommentModel *data = self.dataArray[indexPath.section];
+//    if (data == nil || data.content == nil ) {
+//        return 105;
+//    }
+    CGFloat contentHeight = [UILabel getHeightByWidth:LabelWidth title:data.text font:[UIFont systemFontOfSize:14]];
     return  contentHeight + 105;
-    
-
-    
 }
 
 -(NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
