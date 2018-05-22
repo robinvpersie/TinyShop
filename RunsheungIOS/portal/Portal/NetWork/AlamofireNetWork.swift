@@ -85,7 +85,7 @@ public func AlmofireResource<A>(Type: BaseType = .MediaBase,
 }
 
 
-public func AlamofireRequest<A>(resource:AlamofireResource<A>,failure:FailureHandler?,completion: @escaping (A?) -> Void){
+public func AlamofireRequest<A>(resource: AlamofireResource<A>, failure: FailureHandler?, completion: @escaping (A?) -> Void){
     
     NetActivityIndicator.share.increment()
     if !(NetworkReachabilityManager()!.isReachable){

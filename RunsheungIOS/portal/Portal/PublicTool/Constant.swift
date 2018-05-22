@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 public protocol ConstantTarget {
     func translate() -> CGFloat
@@ -33,6 +34,8 @@ public func ratioHeight<T>(_ height: T) -> CGFloat where T: ConstantTarget {
 }
 
 struct Constant {
+    
+    static let dispose = DisposeBag()
     
     static let screenHeight = UIScreen.main.bounds.size.height
     static let screenWidth = UIScreen.main.bounds.size.width

@@ -11,6 +11,18 @@ import Moya
 import Result
 import RxSwift
 
+public enum BaseUrlType: String {
+    case base = "http://mall.gigawon.co.kr:8800"
+    
+    var url: URL {
+       switch self {
+         case .base:
+            return URL(string: self.rawValue)!
+        }
+    }
+}
+
+
 public struct MoyaManager {
     
     static func JSONResponseDataFormatter(_ data: Data) -> Data {
