@@ -36,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             window?.rootViewController = pro
         } else {
-
             let home = SupermarketMainController()
             window?.rootViewController = home
         }

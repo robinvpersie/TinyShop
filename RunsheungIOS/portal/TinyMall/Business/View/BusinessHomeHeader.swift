@@ -29,7 +29,7 @@ class BusinessHomeHeader: UIView {
         addSubview(avatarBigImgView)
         avatarBigImgView.snp.makeConstraints { make in
             make.left.right.top.equalTo(self)
-            make.height.equalTo(300.hrpx)
+            make.height.equalTo(150.hrpx)
         }
         
         let effect = UIBlurEffect(style: .light)
@@ -45,7 +45,7 @@ class BusinessHomeHeader: UIView {
         addSubview(avatarlittleImgView)
         avatarlittleImgView.snp.makeConstraints { make in
             make.bottom.equalTo(avatarBigImgView).offset(20.hrpx)
-            make.width.height.equalTo(150.wrpx)
+            make.width.height.equalTo(75.wrpx)
             make.left.equalTo(self).offset(15.wrpx)
         }
         
@@ -74,7 +74,7 @@ class BusinessHomeHeader: UIView {
         bottomContainer.snp.makeConstraints { make in
             make.left.right.equalTo(self)
             make.top.equalTo(avatarBigImgView.snp.bottom)
-            make.height.equalTo(160.hrpx)
+            make.height.equalTo(80.hrpx)
         }
         
         rationNum = UILabel()
@@ -84,8 +84,8 @@ class BusinessHomeHeader: UIView {
         bottomContainer.addSubview(rationNum)
         rationNum.snp.makeConstraints { make in
             make.left.equalTo(15.wrpx)
-            make.width.equalTo(150.wrpx)
-            make.top.equalTo(bottomContainer).offset(40.hrpx)
+            make.width.equalTo(75.wrpx)
+            make.top.equalTo(bottomContainer).offset(30.hrpx)
         }
         
         ratioStarView = CosmosView()
@@ -98,7 +98,7 @@ class BusinessHomeHeader: UIView {
         bottomContainer.addSubview(ratioStarView)
         ratioStarView.snp.makeConstraints { make in
             make.center.equalTo(rationNum)
-            make.top.equalTo(rationNum.snp.bottom).offset(20.hrpx)
+            make.top.equalTo(rationNum.snp.bottom).offset(10.hrpx)
             make.height.equalTo(20.hrpx)
             make.width.equalTo(120)
         }
@@ -120,7 +120,7 @@ class BusinessHomeHeader: UIView {
             make.right.equalTo(telView.snp.left).offset(-15)
             make.bottom.equalTo(bottomContainer).offset(-20)
             make.width.equalTo(0.8)
-            make.height.equalTo(80)
+            make.height.equalTo(50)
         }
         
         commentInfoView = InfoView()
