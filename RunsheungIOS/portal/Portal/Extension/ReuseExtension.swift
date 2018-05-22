@@ -83,12 +83,12 @@ extension UICollectionView{
             case .none:
                 print("collectionview waytoupdate:none")
             case .reloadData:
-                DispatchQueue.main.safeAsync {
+                DispatchQueue.main.async {
                     collectionview.reloadData()
                 }
             case .insert(let indexpaths):
-                DispatchQueue.main.safeAsync {
-                     collectionview.insertItems(at: indexpaths)
+                DispatchQueue.main.async {
+                    collectionview.insertItems(at: indexpaths)
                 }
             }
         

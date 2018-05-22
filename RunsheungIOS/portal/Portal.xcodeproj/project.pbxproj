@@ -40,6 +40,10 @@
 		01B28A7F20B2E57D00CEFB36 /* MoyaProvider+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A7E20B2E57D00CEFB36 /* MoyaProvider+Rx.swift */; };
 		01B28A8120B2E9A900CEFB36 /* Observable+Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A8020B2E9A900CEFB36 /* Observable+Response.swift */; };
 		01B28A8320B2F01200CEFB36 /* Single+Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A8220B2F01200CEFB36 /* Single+Response.swift */; };
+		01B28A8620B3A98C00CEFB36 /* BusinessHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A8520B3A98C00CEFB36 /* BusinessHomeController.swift */; };
+		01B28A8920B3AF5B00CEFB36 /* BusinessHomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A8820B3AF5B00CEFB36 /* BusinessHomeHeader.swift */; };
+		01B28A8B20B3C0A200CEFB36 /* CGFloat+Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A8A20B3C0A200CEFB36 /* CGFloat+Ratio.swift */; };
+		01B28A8D20B3C34200CEFB36 /* MoyaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A8C20B3C34200CEFB36 /* MoyaManager.swift */; };
 		01B6BDA32063809C0057CC53 /* SearchListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6BDA22063809C0057CC53 /* SearchListModel.swift */; };
 		01B6BDA5206380D10057CC53 /* AllAddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6BDA4206380D10057CC53 /* AllAddressController.swift */; };
 		01C03460205FED7F00237AAD /* SearchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C0345F205FED7F00237AAD /* SearchListController.swift */; };
@@ -857,6 +861,10 @@
 		01B28A7E20B2E57D00CEFB36 /* MoyaProvider+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Rx.swift"; sourceTree = "<group>"; };
 		01B28A8020B2E9A900CEFB36 /* Observable+Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Response.swift"; sourceTree = "<group>"; };
 		01B28A8220B2F01200CEFB36 /* Single+Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Response.swift"; sourceTree = "<group>"; };
+		01B28A8520B3A98C00CEFB36 /* BusinessHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessHomeController.swift; sourceTree = "<group>"; };
+		01B28A8820B3AF5B00CEFB36 /* BusinessHomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessHomeHeader.swift; sourceTree = "<group>"; };
+		01B28A8A20B3C0A200CEFB36 /* CGFloat+Ratio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Ratio.swift"; sourceTree = "<group>"; };
+		01B28A8C20B3C34200CEFB36 /* MoyaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaManager.swift; sourceTree = "<group>"; };
 		01B6BDA22063809C0057CC53 /* SearchListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchListModel.swift; sourceTree = "<group>"; };
 		01B6BDA4206380D10057CC53 /* AllAddressController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllAddressController.swift; sourceTree = "<group>"; };
 		01C0345F205FED7F00237AAD /* SearchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListController.swift; sourceTree = "<group>"; };
@@ -2282,6 +2290,23 @@
 				01099A00205CFC1200FCC6B6 /* ArtworkView.swift */,
 				01099A02205CFEA700FCC6B6 /* Artwork.swift */,
 				01099A06205D0F9100FCC6B6 /* ShopInfoView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		01B28A8420B3A92B00CEFB36 /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				01B28A8720B3AF3900CEFB36 /* View */,
+				01B28A8520B3A98C00CEFB36 /* BusinessHomeController.swift */,
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
+		01B28A8720B3AF3900CEFB36 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01B28A8820B3AF5B00CEFB36 /* BusinessHomeHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5154,6 +5179,7 @@
 				018AE84C20594D210018F854 /* NetWorkResult.swift */,
 				018AE84E20594DC90018F854 /* NetIndicator.swift */,
 				62503F7E2084931700D9FED3 /* AlManager.swift */,
+				01B28A8C20B3C34200CEFB36 /* MoyaManager.swift */,
 			);
 			name = NetWork;
 			path = Portal/NetWork;
@@ -5202,6 +5228,7 @@
 				01B28A7E20B2E57D00CEFB36 /* MoyaProvider+Rx.swift */,
 				01B28A8020B2E9A900CEFB36 /* Observable+Response.swift */,
 				01B28A8220B2F01200CEFB36 /* Single+Response.swift */,
+				01B28A8A20B3C0A200CEFB36 /* CGFloat+Ratio.swift */,
 			);
 			name = Extension;
 			path = Portal/Extension;
@@ -5435,6 +5462,7 @@
 		D59D3A1B205BE42E0074F0E8 /* TinyMall */ = {
 			isa = PBXGroup;
 			children = (
+				01B28A8420B3A92B00CEFB36 /* Business */,
 				D5D5BB00207F31AC00A27ABF /* LG+ Pay */,
 				D51B046D20689C4500D8D6D2 /* Search */,
 				D5D01F38205FB3D1002263CC /* Main */,
@@ -6028,6 +6056,7 @@
 				1B9547031F1DF147006DCB6C /* ZFScanViewController.m in Sources */,
 				1B392D7C1E28D0E500F70981 /* TZVideoPlayerController.m in Sources */,
 				1B392D831E28D0E500F70981 /* YYTextInput.m in Sources */,
+				01B28A8B20B3C0A200CEFB36 /* CGFloat+Ratio.swift in Sources */,
 				011B5240205BDE2500B7E4D7 /* BaseViewController.swift in Sources */,
 				5BEF65AF1F208C0500817141 /* RightToLeft.swift in Sources */,
 				1B5B6BD11E9B622B009D5C75 /* HotelOrderTableView.m in Sources */,
@@ -6113,6 +6142,7 @@
 				267DAA911EA213EE00299E74 /* HotelDownTableViewCell.m in Sources */,
 				5BE152771F137DC300FC74C2 /* Config.swift in Sources */,
 				1B3C97241E2A1B8B00517684 /* SupermarketAboutViewController.m in Sources */,
+				01B28A8920B3AF5B00CEFB36 /* BusinessHomeHeader.swift in Sources */,
 				D53093CA205E483700427350 /* MemberEnrollController.m in Sources */,
 				5B9CBDDF1DE7FABE0071A3B5 /* YCImageCache.swift in Sources */,
 				1B392EE71E28D14E00F70981 /* CountTimeView.m in Sources */,
@@ -6201,6 +6231,7 @@
 				269CA6E92001D90C009E6C54 /* WJSetLineColor.m in Sources */,
 				5B76BB761E00CA0F00F1F30B /* WelcomeController.swift in Sources */,
 				1BCC16161EB8689F00C8197F /* MediaHomePage.m in Sources */,
+				01B28A8D20B3C34200CEFB36 /* MoyaManager.swift in Sources */,
 				267DAA9A1EA213EE00299E74 /* HotelSegmentView.m in Sources */,
 				269248E5200C8FAB0071900E /* RSJudgeIsX.swift in Sources */,
 				1B5B6BB01E9B1F6A009D5C75 /* HotelPicTableViewCell.m in Sources */,
@@ -6348,6 +6379,7 @@
 				1B392D8D1E28D0E500F70981 /* YYTextRunDelegate.m in Sources */,
 				1B0CD2EF1E8E0693008AF162 /* MSSCalendarPopView.m in Sources */,
 				1B72C4251EA1EBC500FA361E /* CancelOrderViewController.m in Sources */,
+				01B28A8620B3A98C00CEFB36 /* BusinessHomeController.swift in Sources */,
 				1B48D0661F74FC9300DF6865 /* NSBundle+Language.m in Sources */,
 				1B510E4E1E9CC26100B77F14 /* HotelConfirmOrderViewController.m in Sources */,
 				1B392F301E28D14E00F70981 /* SupermarketChooseTimeCell.m in Sources */,

@@ -15,10 +15,7 @@ class BaseController: UIViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshLanguage(_:)), name: NSNotification.Name.changeLanguage, object: nil)
-//        view.backgroundColor = UIColor.BaseControllerBackgroundColor
-//        navigationController?.navigationBar.tintColor = UIColor.navigationbarColor
-//        navigationController?.navigationBar.barTintColor = UIColor.navigationbarColor
-//        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName:UIFont.systemFont(ofSize: 19),NSForegroundColorAttributeName:UIColor.white]
+
     }
     
     @objc func refreshLanguage(_ noti:Notification){

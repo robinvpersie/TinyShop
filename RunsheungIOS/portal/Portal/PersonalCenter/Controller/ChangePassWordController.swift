@@ -71,7 +71,7 @@ class ChangePassWordController: BaseViewController {
         confirmBtn.rx.tap.subscribe(onNext: { [weak self] in
             self?.view.endEditing(true)
             if self?.newPasswordConfirmfield.text != self?.newPasswordfield.text {
-                YCAlert.alertSorry(message: "您设置的密码不相同", inViewController: self)
+//                YCAlert.alertSorry(message: "您设置的密码不相同", inViewController: self)
                 return
             }
             self?.showLoading()

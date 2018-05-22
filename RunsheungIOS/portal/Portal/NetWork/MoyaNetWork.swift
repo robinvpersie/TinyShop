@@ -146,17 +146,17 @@ protocol MapTargetType: Moya.TargetType {
 
 
 
-final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
+public final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
     
     typealias Target = MultiTarget
     
     override init(endpointClosure: @escaping MoyaProvider<Target>.EndpointClosure = MoyaProvider.defaultEndpointMapping,
-                requestClosure: @escaping MoyaProvider<Target>.RequestClosure = MoyaProvider<Target>.defaultRequestMapping,
-                stubClosure: @escaping MoyaProvider<Target>.StubClosure = MoyaProvider.neverStub,
-                callbackQueue: DispatchQueue? = nil,
-                manager: Manager = DefaultAlamofireManager.shareManager,
-                plugins: [PluginType] = pluginTypeArray,
-                trackInflights: Bool = false) {
+                  requestClosure: @escaping MoyaProvider<Target>.RequestClosure = MoyaManager.defaultRequestMapping,
+                  stubClosure: @escaping MoyaProvider<Target>.StubClosure = MoyaProvider.neverStub,
+                  callbackQueue: DispatchQueue? = DispatchQueue(label: "callback"),
+                  manager: Manager = MoyaProvider<Target>.defaultAlamofireManager(),
+                  plugins: [PluginType] = MoyaManager.pluginArray,
+                  trackInflights: Bool = false) {
         
         super.init(endpointClosure: endpointClosure,
                    requestClosure: requestClosure,
@@ -165,7 +165,6 @@ final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
                    manager: manager,
                    plugins: plugins,
                    trackInflights: trackInflights)
-        
     }
     
     @discardableResult

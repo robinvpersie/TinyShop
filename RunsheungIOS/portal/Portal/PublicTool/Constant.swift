@@ -34,4 +34,7 @@ public func ratioHeight<T>(_ height: T) -> CGFloat where T: ConstantTarget {
 
 struct Constant {
     
+    static let screenHeight = UIScreen.main.bounds.size.height
+    static let screenWidth = UIScreen.main.bounds.size.width
+    
 }

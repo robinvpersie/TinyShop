@@ -9,20 +9,6 @@
 import UIKit
 import Foundation
 
-public extension DispatchQueue {
-
-    func safeAsync(_ block: @escaping () -> ()) {
-        if self == DispatchQueue.main && Thread.isMainThread{
-          block()
-        }else {
-            async {
-                block()
-            }
-        }
-    }
-
-}
-
 
 final class YCAlert {
    @objc (alert:message:dismissTitle:inViewController:withDismissAction:)
@@ -44,17 +30,6 @@ final class YCAlert {
         }
     }
     
-    
-    class func alertSorry(message: String?, inViewController viewController: UIViewController?, withDismissAction dismissAction: @escaping () -> Void) {
-        
-        alert(title: NSLocalizedString("Sorry", comment: ""), message: message, dismissTitle: NSLocalizedString("OK", comment: ""), inViewController: viewController, withDismissAction: dismissAction)
-    }
-    
-    class func alertSorry(message: String?, inViewController viewController: UIViewController?) {
-        
-        alert(title: NSLocalizedString("Sorry", comment: ""), message: message, dismissTitle: NSLocalizedString("OK", comment: ""), inViewController: viewController, withDismissAction: nil)
-    }
-    
     @objc (textInput:placeholder:oldText:dismissTitle:inViewController:withFinishedAction:)
     class func textInput(title: String,
                          placeholder: String?,
@@ -71,7 +46,7 @@ final class YCAlert {
                 textField.text = oldText
             }
             let action: UIAlertAction = UIAlertAction(title: dismissTitle, style: .default) { action in
-                if let finishedAction = finishedAction,
+                 if let finishedAction = finishedAction,
                     let textField = alertController.textFields?.first,
                     let text = textField.text
                 {
@@ -143,11 +118,11 @@ final class YCAlert {
         DispatchQueue.main.async {
             
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let cancelAction: UIAlertAction = UIAlertAction(title: cancelTitle, style: .cancel) { action in
+            let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel) { action in
                 cancelAction?()
             }
             alertController.addAction(cancelAction)
-            let confirmAction: UIAlertAction = UIAlertAction(title: confirmTitle, style: .default) { action in
+            let confirmAction = UIAlertAction(title: confirmTitle, style: .default) { action in
                 confirmAction()
             }
             alertController.addAction(confirmAction)
@@ -176,19 +151,16 @@ final class YCAlert {
                 let alertAction = UIAlertAction(title: model.title, style: model.style, handler: model.action)
                 alertController.addAction(alertAction)
             }
-           viewController?.present(alertController, animated: true, completion: nil)
+            viewController?.present(alertController, animated: true, completion: nil)
         }
     }
 }
 
 
-
-
 struct AlertActionModel: AlertProtocol {
-    
     var title: String?
     var style: UIAlertActionStyle
-    var action: ((UIAlertAction)->Swift.Void)?
+    var action: ( (UIAlertAction) -> Swift.Void)?
     var isEnabled: Bool = true
     
     init(title: String?, style: UIAlertActionStyle = .default, action: ((UIAlertAction) -> Swift.Void)?) {
@@ -199,10 +171,10 @@ struct AlertActionModel: AlertProtocol {
 }
 
 protocol AlertProtocol {
-    var title: String? {get}
-    var style: UIAlertActionStyle {get}
-    var action: ((UIAlertAction) -> Swift.Void)? {get}
-    var isEnabled: Bool {get}
+    var title: String? { get }
+    var style: UIAlertActionStyle { get }
+    var action: ((UIAlertAction) -> Swift.Void)? { get }
+    var isEnabled: Bool { get }
 }
 
 extension AlertProtocol {

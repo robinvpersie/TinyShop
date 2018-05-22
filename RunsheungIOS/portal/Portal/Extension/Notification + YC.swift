@@ -8,26 +8,25 @@
 
 import Foundation
 
-
 public extension Notification.Name{
     
-    public static var addressUpdate:Notification.Name{
+    public static var addressUpdate: Notification.Name{
        return Notification.Name("YCLocationUpdated")
     }
     
-    public static var addressUpdateFail:Notification.Name{
+    public static var addressUpdateFail: Notification.Name{
        return Notification.Name("YCLocationFail")
     }
     
-    public static var longinState:NSNotification.Name{
+    public static var longinState: NSNotification.Name{
       return NSNotification.Name("YCAccountIsLogin")
     }
     
-    public static var OrderRow:NSNotification.Name {
+    public static var OrderRow: NSNotification.Name {
       return NSNotification.Name("OrderRow")
     }
     
-    public static var changeLanguage:NSNotification.Name{
+    public static var changeLanguage: NSNotification.Name{
       return NSNotification.Name("changeLanguage")
     }
 }
