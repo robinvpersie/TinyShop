@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, fetchType) {
 @property (nonatomic, strong)ChoiceHeadView *choiceHeadView;
 @property (nonatomic, assign)BOOL isFetching;
 @property (nonatomic, strong)ShowLocationView *locationView;
-@property (nonatomic, strong)NSMutableArray *mutaleData;
+@property(nonatomic, strong)NSMutableArray *mutaleData;
 
 
 @end
@@ -92,8 +92,10 @@ typedef NS_ENUM(NSInteger, fetchType) {
 	}
 	
 	__weak typeof(self) weakSelf = self;
-	[KLHttpTool loadmainNewsListWithPaged:[NSString stringWithFormat:@"%d",paged]
-							  withSuccess:^(id response)
+	[KLHttpTool getMainNewListwithUri:@""
+						withPageIndex:[NSString stringWithFormat:@"%d", paged]
+						 withPageSize:@"6"
+							  success:^(id response)
 	 {
 		 weakSelf.isFetching = NO;
 		 if ([response[@"status"] intValue] == 1) {
@@ -111,8 +113,8 @@ typedef NS_ENUM(NSInteger, fetchType) {
 			 [weakSelf.tableView reloadData];
 		 }];
 		 finish();
-
-	 } withfailure:^(NSError *err) {
+		 
+	 } failure:^(NSError *err) {
 		 finish();
 		 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil) message:@"인터넷 연결 또는 서버에 문제 있습니다." preferredStyle:UIAlertControllerStyleAlert];
 		 UIAlertAction *ok = [UIAlertAction actionWithTitle:NSLocalizedString(@"SMAlertSureTitle", nil) style:UIAlertActionStyleCancel handler:nil];
@@ -203,7 +205,7 @@ typedef NS_ENUM(NSInteger, fetchType) {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	if (indexPath.section == domain) {
-		return 3*(SCREEN_WIDTH - 30)/4.0f + 90;
+		return SCREEN_WIDTH + 100;
 	} else if (indexPath.section == list) {
 		return 120;
 	} else {
@@ -238,7 +240,7 @@ typedef NS_ENUM(NSInteger, fetchType) {
 	
 	if (indexPath.section == list) {
 		NSDictionary *dic = self.mutaleData[indexPath.row];
-		NSString *loadurl = [NSString stringWithFormat:@"http://www.gigaworld.co.kr:8080/newslist/NewsDetail.html?postid=%@",dic[@"PostId"]];
+		NSString *loadurl = [NSString stringWithFormat:@"http://www.gigaworld.co.kr:8080/newslist/NewsDetail.html?postid=%@",dic[@"PostId"]] ;
 		WebRulesViewController *rulevc = [WebRulesViewController new];
 		UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:rulevc];
 		[rulevc loadRulesWebWithLoadurl:loadurl];

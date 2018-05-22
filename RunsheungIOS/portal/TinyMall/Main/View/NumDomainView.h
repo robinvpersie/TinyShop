@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface NumDomainView : UIView<UICollectionViewDelegate,UICollectionViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource,UIScrollViewDelegate,UITextFieldDelegate>
+@interface NumDomainView : UIView<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,UITextFieldDelegate>
 
 /**
  滑动UICollectView
@@ -20,15 +20,15 @@
 @property (nonatomic,strong)UICollectionView *rightPortraitCollectView;
 @property (nonatomic,strong)UICollectionView *centerShowCollectView;
 
-/**
- 滑动UIPickerView
- */
-@property (nonatomic,strong)UIPickerView *pickerView1;
-@property (nonatomic,strong)UIPickerView *pickerView2;
-@property (nonatomic,strong)UIPickerView *pickerView3;
-@property (nonatomic,strong)UIPickerView *pickerView4;
-
-@property (nonatomic,retain)NSArray *pickerNumbers;
+///**
+// 滑动UIPickerView
+// */
+//@property (nonatomic,strong)UIPickerView *pickerView1;
+//@property (nonatomic,strong)UIPickerView *pickerView2;
+//@property (nonatomic,strong)UIPickerView *pickerView3;
+//@property (nonatomic,strong)UIPickerView *pickerView4;
+//
+//@property (nonatomic,retain)NSArray *pickerNumbers;
 
 
 /**

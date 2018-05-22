@@ -698,7 +698,9 @@
  @param success 成功调用
  @param failure 失败调用
  */
-+ (void)loadmainNewsListWithPaged:(NSString *)pageIndex
-					  withSuccess:(void (^)(id response))success
-					  withfailure:(void (^)(NSError *err))failure;
++ (void)getMainNewListwithUri:(NSString*)uri
+				withPageIndex:(NSString*)pageIndex
+				 withPageSize:(NSString*)pageSize
+					  success:(void (^)(id response))success
+					  failure:(void (^)(NSError *err))failure;
 @end
