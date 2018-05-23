@@ -29,7 +29,6 @@ class BusinessOrderController: BaseController {
         tableView.rowHeight = 90.hrpx
         tableView.estimatedRowHeight = 90.hrpx
         tableView.registerClassOf(BusinessOrderCell.self)
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0)
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
@@ -37,11 +36,19 @@ class BusinessOrderController: BaseController {
         
         orderMenu = OrderMenuView()
         view.addSubview(orderMenu)
-        orderMenu.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalTo(view)
-            make.height.equalTo(70)
+    
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        var height: CGFloat
+        if #available(iOS 11.0, *) {
+            height = view.height - view.safeAreaLayoutGuide.layoutFrame.maxY + 70
+        } else {
+            height = 70
         }
         
+        orderMenu.frame = CGRect(x: 0, y: view.height - height, width: view.width, height: height)
         
     }
     

@@ -41,7 +41,7 @@ class OrderMenuView: UIView {
         payBtn.addTarget(self, action: #selector(pay), for: .touchUpInside)
         payBtn.setTitle("去结算", for: .normal)
         payBtn.setTitleColor(UIColor.white, for: .normal)
-        payBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 25)
+        payBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         payBtn.backgroundColor = UIColor(red: 31, green: 184, blue: 59)
         backGroundView.addSubview(payBtn)
         payBtn.snp.makeConstraints { (make) in
