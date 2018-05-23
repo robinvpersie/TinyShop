@@ -335,8 +335,12 @@
 		NSArray*lev3s = self.responseDit[@"lev3s"];
 		NSLog(@"------------lev3s---------:%@",lev3s);
 		if (self.maskview == nil) {
+			//获取状态栏的rect
+			CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
+			//获取导航栏的rect
+			CGRect navRect = self.navigationController.navigationBar.frame;
 			
-			self.maskview = [[CoverMaskView alloc]initWithFrame:CGRectMake(0, 184, SCREEN_WIDTH, SCREEN_HEIGHT)];
+			self.maskview = [[CoverMaskView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.SegmentItem.frame)+statusRect.size.height+navRect.size.height, SCREEN_WIDTH, SCREEN_HEIGHT)];
 			self.maskview.data = lev3s;
 			self.maskview.sxdegate = self;
 			[[UIApplication sharedApplication].keyWindow addSubview:_maskview];
@@ -402,17 +406,21 @@
 
 #pragma mark ---saixuan
 -(void)clickSaixuan:(int)index{
-	
-	NSString*lev3 = [NSString stringWithFormat:@"%d",index];
-	SetUserDefault(@"Level3", lev3);
 	self.maskview.hidden = YES;
 	self.maskview = nil;
-	[self.shoplistData removeAllObjects];
-	if (index == 0) {
-		[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:@"" withorderBy:@"1" withPg:@"1"];
-	}else{
-		[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:lev3 withorderBy:@"1" withPg:@"1"];
+	
+	if ( index != 101) {
+		
+		NSString*lev3 = [NSString stringWithFormat:@"%d",index];
+		SetUserDefault(@"Level3", lev3);
+		[self.shoplistData removeAllObjects];
+		if (index == 0) {
+			[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:@"" withorderBy:@"1" withPg:@"1"];
+		}else{
+			[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:lev3 withorderBy:@"1" withPg:@"1"];
+		}
 	}
+	
 }
 
 

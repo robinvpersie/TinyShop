@@ -68,7 +68,7 @@
 		
 	}];
 	
-	self.BigCategoresArray= @[@"한식",@"분식",@"돈까스/회",@"치킨",@"피자",@"중국집",@"족발/보쌈",@"야식",@"도시락",@"치킨",@"피자",@"중국집",@"족발/보쌈",@"야식",@"도시락"];
+	self.BigCategoresArray= @[@"음식",@"재래시장",@"여행/레저",@"가정,생활",@"건축,인테리어",@"교육,취업",@"교통,이사",@"부동산",@"미용,패션",@"법률,회계",@"쇼핑,이벤트",@"광고,출판",@"건강,의료",@"취미,오락",@"컴퓨터,정보통신"];
 	self.showColors = @[RGB(255, 86, 100),RGB(220, 211, 57),RGB(62, 220, 108),RGB(37, 126, 220),RGB(10, 34, 60)];
 	
 	self.fieldArray = [NSMutableArray array];
@@ -157,6 +157,16 @@
 	
 	
 }
+- (void)layoutSubviews{
+	[super layoutSubviews];
+	self.topLandScopeCollectView.layer.backgroundColor = [UIColor whiteColor].CGColor;
+	self.leftPortraitCollectView.layer.backgroundColor = [UIColor whiteColor].CGColor;
+	self.rightPortraitCollectView.layer.backgroundColor = [UIColor whiteColor].CGColor;
+	self.bottomLandScopeCollectView.layer.backgroundColor = [UIColor whiteColor].CGColor;
+	self.centerShowCollectView.layer.backgroundColor = [UIColor whiteColor].CGColor;
+
+
+}
 
 #pragma mark --- 创建上下左右滑动视图
 /**
@@ -185,6 +195,7 @@
 		self.leftPortraitCollectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(self.topLandScopeCollectView.frame), ScrollviewHeight, 3*ScrollviewHeight) collectionViewLayout:layout];
 		self.leftPortraitCollectView.tag = leftPortraitTag;
 		[self.leftPortraitCollectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCellID"];
+
 		self.leftPortraitCollectView.showsVerticalScrollIndicator = NO;
 		self.leftPortraitCollectView.showsHorizontalScrollIndicator = NO;
 		self.leftPortraitCollectView.delegate = self;
@@ -226,11 +237,11 @@
 		
 		UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
 		layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+		
 		self.centerShowCollectView = [[UICollectionView alloc]initWithFrame:CGRectMake(ScrollviewHeight, CGRectGetMaxY(self.topLandScopeCollectView.frame), 3*(SCREEN_WIDTH ) / 5.0 , 3*(SCREEN_WIDTH )/5.0) collectionViewLayout:layout];
 		self.centerShowCollectView.layer.cornerRadius = 5;
 		self.centerShowCollectView.layer.masksToBounds = YES;
 		self.centerShowCollectView.tag = centerScrollViewTag;
-		self.centerShowCollectView.backgroundColor = [UIColor whiteColor];
 		[self.centerShowCollectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCellID"];
 		self.centerShowCollectView.showsVerticalScrollIndicator = NO;
 		self.centerShowCollectView.showsHorizontalScrollIndicator = NO;
@@ -358,7 +369,7 @@
 		title.textColor = RGB(60, 60, 60);
 		title.text = self.BigCategoresArray[indexPath.row];
 		title.textAlignment = NSTextAlignmentCenter;
-		title.font = [UIFont systemFontOfSize:13];
+		title.font = [UIFont systemFontOfSize:12];
 		[bg_cell addSubview:title];
 		
 	}
@@ -534,7 +545,20 @@
 		}];
 		
 		
+	}else if (scrollview.tag == centerScrollViewTag){
+		
+		CGFloat offsetX = scrollview.contentOffset.x;
+		CGFloat width = self.frame.size.width/3.0f;
+		int index = (offsetX/width);
+		int indexNum =((offsetX - index*ScrollviewHeight) > ScrollviewHeight/2.0f)? (index+1):index;
+		[UIView animateWithDuration:0.5f animations:^{
+			
+			scrollview.contentOffset = CGPointMake(indexNum *ScrollviewHeight, 0);
+			
+		}];
+
 	}
+
 }
 
 @end

@@ -25,6 +25,16 @@
 	CGRect frams = self.collectionview.frame;
 	frams.size.height = 80*ceil(_data.count/2.0f)>SCREEN_HEIGHT-184?SCREEN_HEIGHT-184:80*ceil(_data.count/2.0f);
 	self.collectionview.frame = frams;
+	
+	//cover
+	self.views = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.collectionview.frame), SCREEN_WIDTH, SCREEN_HEIGHT-CGRectGetMaxY(self.collectionview.frame))];
+	self.views.backgroundColor = [UIColor blackColor];
+	self.views.alpha = 0.2f;
+	self.views.tag = 101;
+	[self.views addTarget:self action:@selector(action:) forControlEvents:UIControlEventTouchUpInside];
+	
+	[self addSubview:self.views];
+
 	[self.collectionview reloadData];
 	
 }
@@ -40,6 +50,7 @@
 		self.collectionview.delegate = self;
 		self.collectionview.dataSource = self;
 		[self addSubview:self.collectionview];
+		
 	}
 }
 
@@ -75,7 +86,7 @@
 			[bg_cell addSubview:icon];
 			
 			UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(icon.frame)+6, 20, 100, 20)];
-			title.text = @"全部";
+			title.text = @"전부";
 			title.font = [UIFont systemFontOfSize:15];
 			[bg_cell addSubview:title];
 			
