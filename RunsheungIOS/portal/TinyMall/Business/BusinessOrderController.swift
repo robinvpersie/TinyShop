@@ -41,20 +41,20 @@ class BusinessOrderController: BaseController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         var height: CGFloat
         if #available(iOS 11.0, *) {
-            height = view.height - view.safeAreaLayoutGuide.layoutFrame.maxY + 70
+            height = view.frame.height - view.safeAreaLayoutGuide.layoutFrame.maxY + 50
         } else {
-            height = 70
+            height = 60
         }
         
-        orderMenu.frame = CGRect(x: 0, y: view.height - height, width: view.width, height: height)
-        
+        orderMenu.frame = CGRect(x: 0, y: view.frame.height - height, width: view.frame.width, height: height)
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, height, 0)
+    
     }
     
     
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

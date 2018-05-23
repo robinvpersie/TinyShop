@@ -141,7 +141,13 @@
 		[leve3Mutables addObject:dic3[@"lev_name"]];
 	}
 	if (self.segmentView1 == nil) {
-		self.segmentView1 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0,10, APPScreenWidth, 50) withdit:self.responseDit  withData:leve2Mutables withLineBottomColor:RGB(33, 192, 67)];
+		//获取状态栏的rect
+		CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
+		//获取导航栏的rect
+		CGRect navRect = self.navigationController.navigationBar.frame;
+		
+
+		self.segmentView1 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0,statusRect.size.height+navRect.size.height+10, APPScreenWidth, 50) withdit:self.responseDit  withData:leve2Mutables withLineBottomColor:RGB(33, 192, 67)];
 		self.segmentView1.delegate =self;
 		[self.view addSubview:self.segmentView1];
 	}
@@ -151,13 +157,17 @@
 		[self.view addSubview:self.SegmentItem];
 		
 	}
+	CGRect frams = self.tableview.frame;
+	frams.origin.y = CGRectGetMaxY(self.SegmentItem.frame)+5;
+	self.tableview.frame = frams;
+	
 }
 
 - (void)createTableview{
 	
 	if (self.tableview == nil) {
 		
-		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, 120, APPScreenWidth, APPScreenHeight - 234) style:UITableViewStylePlain];
+		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.SegmentItem.frame)+5, APPScreenWidth, APPScreenHeight - 234) style:UITableViewStylePlain];
 		[self.tableview registerNib:[UINib nibWithNibName:@"ChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChoiceTableViewCellID"];
 		self.tableview.delegate = self;
 		self.tableview.dataSource = self;
@@ -340,7 +350,7 @@
 			//获取导航栏的rect
 			CGRect navRect = self.navigationController.navigationBar.frame;
 			
-			self.maskview = [[CoverMaskView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.SegmentItem.frame)+statusRect.size.height+navRect.size.height, SCREEN_WIDTH, SCREEN_HEIGHT)];
+			self.maskview = [[CoverMaskView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.SegmentItem.frame), SCREEN_WIDTH, SCREEN_HEIGHT)];
 			self.maskview.data = lev3s;
 			self.maskview.sxdegate = self;
 			[[UIApplication sharedApplication].keyWindow addSubview:_maskview];

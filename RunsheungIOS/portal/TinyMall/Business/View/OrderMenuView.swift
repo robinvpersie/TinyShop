@@ -34,7 +34,7 @@ class OrderMenuView: UIView {
         addSubview(backGroundView)
         backGroundView.snp.makeConstraints { (make) in
             make.left.right.bottom.equalTo(self)
-            make.height.equalTo(50)
+            make.top.equalTo(self).offset(20)
         }
         
         payBtn = UIButton(type: .custom)
@@ -54,7 +54,7 @@ class OrderMenuView: UIView {
         containerView.backgroundColor = UIColor.clear
         addSubview(containerView)
         containerView.snp.makeConstraints { (make) in
-            make.left.equalTo(self).offset(10)
+            make.left.equalTo(self).offset(20)
             make.top.equalTo(self)
             make.width.height.equalTo(50)
         }
@@ -67,8 +67,9 @@ class OrderMenuView: UIView {
         
         priceLable = UILabel()
         priceLable.numberOfLines = 1
-        priceLable.font = UIFont.systemFont(ofSize: 15)
+        priceLable.font = UIFont.boldSystemFont(ofSize: 19)
         priceLable.textColor = UIColor.white
+        priceLable.text = "￥30"
         backGroundView.addSubview(priceLable)
         priceLable.snp.makeConstraints { (make) in
             make.left.equalTo(backGroundView).offset(80)
@@ -85,6 +86,11 @@ class OrderMenuView: UIView {
         }
         
         
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        containerView.showBadge(with: .number, value: 2, animationType: .none)
     }
     
     @objc func push() {
@@ -105,7 +111,8 @@ class OrderMenuView: UIView {
 
 
 
-public class ShopCarView: UIView{
+
+class ShopCarView: UIView{
     
     private var carImageView: UIImageView!
     
@@ -118,10 +125,6 @@ public class ShopCarView: UIView{
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        layer.masksToBounds = true
-//        layer.cornerRadius = 30
-////        layer.backgroundColor = UIColor.darkcolor.cgColor
-        
         carImageView = UIImageView()
         carImageView.image = UIImage(named: "icon_cart")
         addSubview(carImageView)
@@ -130,6 +133,7 @@ public class ShopCarView: UIView{
             make.width.height.equalTo(50)
         }
     }
+  
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
