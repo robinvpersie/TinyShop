@@ -88,7 +88,7 @@
 				   withorderBy:(NSString*)order_by
 						withPg:(NSString *)pg
 {
-	
+	NSLog(@"leve1:%@--leve2:%@--leve3:%@--order_by:%@--pg:%@",leve1,leve2,leve3,order_by,pg);
 	YCAccountModel *account = [YCAccountModel getAccount];
 	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:account.customCode
 													 withpg:pg
@@ -331,6 +331,7 @@
 
 #pragma mark --
 - (void)clickItem:(int)itemIndex{
+	paged = 1;
 	self.maskview.hidden = YES;
 	self.maskview = nil;
 	self.maskview.hidden = !self.maskview.hidden;
@@ -364,6 +365,7 @@
 	}else{
 		self.maskview.hidden = YES;
 		self.maskview = nil;
+		paged = 1;
 		[self.shoplistData removeAllObjects];
 		NSLog(@"%d",index);
 		[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:[NSString stringWithFormat:@"%d",index] withPg:@"1"];
@@ -420,6 +422,7 @@
 
 #pragma mark ---saixuan
 -(void)clickSaixuan:(int)index{
+	paged = 1;
 	self.maskview.hidden = YES;
 	self.maskview = nil;
 	
