@@ -48,7 +48,7 @@
 	selectBtn.tag = 1001;
 	selectBtn.titleLabel.font = [UIFont systemFontOfSize:15];
 	[selectBtn setTitleColor:RGB(13, 13, 13) forState:UIControlStateNormal];
-	[selectBtn setTitle:@"筛选分类 " forState:UIControlStateNormal];
+	[selectBtn setTitle:@"카테고리 " forState:UIControlStateNormal];
 	[selectBtn setImage:[UIImage imageNamed:@"icon_screen_list"] forState:UIControlStateNormal];
 	
 	NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:14]};

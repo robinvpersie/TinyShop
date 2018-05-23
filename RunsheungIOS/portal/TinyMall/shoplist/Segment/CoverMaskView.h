@@ -16,5 +16,6 @@
 @interface CoverMaskView : UIView<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property(nonatomic,retain)NSArray *data;
 @property(nonatomic,strong)UICollectionView *collectionview;
+@property (nonatomic,strong)UIButton *views;
 @property (nonatomic,assign) id<SaixuanDegate>sxdegate;
 @end
