@@ -792,6 +792,7 @@
 		D5D01F5220612870002263CC /* ShopDetailedCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F4E2061286F002263CC /* ShopDetailedCollectionCell.m */; };
 		D5D01F58206213E8002263CC /* NumDomainView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F57206213E6002263CC /* NumDomainView.m */; };
 		D5D5BB04207F523000A27ABF /* LGwebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D5BB03207F523000A27ABF /* LGwebViewController.swift */; };
+		D5FF7DF020B4367900D2AD78 /* CoverMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DEF20B4367900D2AD78 /* CoverMaskView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2227,6 +2228,8 @@
 		D5D01F56206213E4002263CC /* NumDomainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumDomainView.h; sourceTree = "<group>"; };
 		D5D01F57206213E6002263CC /* NumDomainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumDomainView.m; sourceTree = "<group>"; };
 		D5D5BB03207F523000A27ABF /* LGwebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LGwebViewController.swift; sourceTree = "<group>"; };
+		D5FF7DEE20B4367900D2AD78 /* CoverMaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoverMaskView.h; sourceTree = "<group>"; };
+		D5FF7DEF20B4367900D2AD78 /* CoverMaskView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoverMaskView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5530,6 +5533,8 @@
 				01637E55205F9C6000C59F30 /* ShowLocationView.h */,
 				01637E56205F9C6000C59F30 /* ShowLocationView.m */,
 				01C03461205FEDE000237AAD /* SearchListCell.swift */,
+				D5FF7DEE20B4367900D2AD78 /* CoverMaskView.h */,
+				D5FF7DEF20B4367900D2AD78 /* CoverMaskView.m */,
 			);
 			path = Segment;
 			sourceTree = "<group>";
@@ -5680,7 +5685,7 @@
 				TargetAttributes = {
 					6275E8551DDC692000656E2D = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = W6JK3FHE8S;
+						DevelopmentTeam = 9A8T4DFUB8;
 						ProvisioningStyle = Automatic;
 					};
 					6275E8691DDC692100656E2D = {
@@ -6643,6 +6648,7 @@
 				5BAD6A991E0CBF4900E43EAE /* PersonalMessageController.swift in Sources */,
 				1BEF69341E8F40DA00CE3434 /* HotelSearchTableView.m in Sources */,
 				5BAD6AA41E0D00A900E43EAE /* PersonalStarHeaderCell.swift in Sources */,
+				D5FF7DF020B4367900D2AD78 /* CoverMaskView.m in Sources */,
 				5B62F6F31E021E2500E0B8EF /* YCFPSLabel.swift in Sources */,
 				5B76BB781E00CAFD00F1F30B /* WelcomeModel.swift in Sources */,
 				1BEF69371E8F503200CE3434 /* HotelSearchTableViewCell.m in Sources */,
@@ -6959,7 +6965,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = W6JK3FHE8S;
+				DEVELOPMENT_TEAM = 9A8T4DFUB8;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7042,7 +7048,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = W6JK3FHE8S;
+				DEVELOPMENT_TEAM = 9A8T4DFUB8;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

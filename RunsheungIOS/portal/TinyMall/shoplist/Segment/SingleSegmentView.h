@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 @protocol SingleSegmentDelegate<NSObject>
 
-- (void)clickItem:(NSString*)itemIndex;
-- (void)clickItemsec:(NSString*)itemIndex;
+- (void)clickItem:(int)itemIndex;
 @end;
 
 @interface SingleSegmentView : UIView

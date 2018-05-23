@@ -13,10 +13,8 @@
 - (instancetype)initWithFrame:(CGRect)frame{
 	self = [super initWithFrame: frame];
 	if (self) {
-		self.dataArray = @[@"땡처리",@"거리순",@"인기순"].mutableCopy;
+		self.dataArray = @[@"거리순",@"인기순"].mutableCopy;
 		self.backgroundColor = RGB(254, 254, 254);
-		self.layer.borderWidth = 0.6f;
-		self.layer.borderColor = RGB(221, 221, 221).CGColor;
 		[self createSubviews];
 	}
 	return self;
@@ -27,37 +25,71 @@
 	self.buttonArray = @[].mutableCopy;
 	for (int i = 0; i<self.dataArray.count; i++) {
 		UIButton *buton = [[UIButton alloc]initWithFrame:CGRectMake(10 + i*75, 10, 65, 30)];
+		
 		if (i == 0) {
 			buton.selected = YES;
+			buton.layer.borderWidth= 1;
+			buton.layer.borderColor = RGB(33, 192, 67).CGColor;
+			
 		}
-		buton.layer.cornerRadius = 15;
 		buton.tag = i;
+		buton.layer.cornerRadius = 15;
 		buton.layer.masksToBounds = YES;
 		[buton addTarget:self action:@selector(ItemThird:) forControlEvents:UIControlEventTouchUpInside];
 		[buton setTitle:self.dataArray[i] forState:UIControlStateNormal];
 		[buton setTitleColor:RGB(175, 175, 175) forState:UIControlStateNormal];
-		[buton setTitleColor:RGB(255, 255, 255) forState:UIControlStateSelected];
-		[buton setBackgroundImage:[UIImage imageNamed:@"green"] forState:UIControlStateSelected];
-		[buton setBackgroundImage:[UIImage imageNamed:@"white1"] forState:UIControlStateNormal];
+		[buton setTitleColor:RGB(33, 192, 67) forState:UIControlStateSelected];
 		[buton.titleLabel setFont:[UIFont systemFontOfSize:13]];
-		
 		[self addSubview:buton];
+	}
+	
+	//筛选分类
+	UIButton *selectBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 0, 100, 50)];
+	selectBtn.tag = 1001;
+	selectBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+	[selectBtn setTitleColor:RGB(13, 13, 13) forState:UIControlStateNormal];
+	[selectBtn setTitle:@"筛选分类 " forState:UIControlStateNormal];
+	[selectBtn setImage:[UIImage imageNamed:@"icon_screen_list"] forState:UIControlStateNormal];
+	
+	NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:14]};
+	CGSize contentSize = [selectBtn.currentTitle boundingRectWithSize:CGSizeMake(100, MAXFLOAT) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
+	selectBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -selectBtn.currentImage.size.width, 0, selectBtn.currentImage.size.width);
+	selectBtn.imageEdgeInsets = UIEdgeInsetsMake(0, contentSize.width + 2.5, 0, -contentSize.width - 2.5);
+	[selectBtn addTarget:self action:@selector(choiceIconBtn:) forControlEvents:UIControlEventTouchUpInside];
+	[self addSubview:selectBtn];
+	
+}
+- (void)choiceIconBtn:(UIButton*)sender{
+	if ([self.delegate respondsToSelector:@selector(clickSegment:)]) {
+		[self.delegate clickSegment:(int)sender.tag];
 	}
 }
 
 - (void)ItemThird:(UIButton*)sender{
+	
 	NSArray *btnarray = [self subviews];
 	for (int i = 0;i<btnarray.count;i++) {
 		id btn = btnarray[i];
 		if ([btn isMemberOfClass:[UIButton class]]) {
 			UIButton *button = (UIButton*)btn;
 			button.selected = NO;
+			button.layer.borderWidth= 0;
+			button.layer.borderColor =[UIColor whiteColor].CGColor;
+			
 		}
 	}
 	sender.selected = YES;
 	if ([self.delegate respondsToSelector:@selector(clickSegment:)]) {
 		[self.delegate clickSegment:(int)sender.tag];
+		if (sender.tag != 1001) {
+			sender.layer.borderWidth= 1;
+			sender.layer.borderColor = RGB(33, 192, 67).CGColor;
+			
+		}
+		
+		
 	}
+	
 	
 }
 @end

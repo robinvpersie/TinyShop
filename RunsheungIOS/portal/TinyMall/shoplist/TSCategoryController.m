@@ -18,11 +18,12 @@
 #import "SingleSegmentView.h"
 #import "SupermarketSearchController.h"
 #import "TSearchViewController.h"
+#import "CoverMaskView.h"
 
 
 
 
-@interface TSCategoryController() <UITableViewDelegate, UITableViewDataSource, WJClickItemsDelegate, SingleSegmentDelegate, SegmentItemDelegate>{
+@interface TSCategoryController() <SaixuanDegate,UITableViewDelegate, UITableViewDataSource, WJClickItemsDelegate, SingleSegmentDelegate, SegmentItemDelegate>{
 	NSString *Level1;
 	NSString *Level2;
 	NSString *Level3;
@@ -30,17 +31,14 @@
 	int paged ;
 }
 
+@property (nonatomic,strong)CoverMaskView *maskview;
 @property (nonatomic, strong)UITableView *tableview;
 
 @property (nonatomic, strong)NSMutableDictionary *allDic;
 
 @property (nonatomic, strong)SingleSegmentView *segmentView1;
 
-@property (nonatomic, strong)SingleSegmentView *segmentView2;
-
 @property (nonatomic, strong)SegmentItem *SegmentItem;
-
-@property (nonatomic, strong)TSItemView *ItemView;
 
 @property (nonatomic, assign)BOOL extend;
 
@@ -61,7 +59,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
-		
+	
 	if (self.leves.count) {
 		
 		[self setNavi];
@@ -79,52 +77,51 @@
 }
 
 - (void)setLeves:(NSMutableArray *)leves{
-    _leves = leves;
+	_leves = leves;
 	[self location];
-
+	
 }
 
 - (void)loadStoreListwithLeve1:(NSString*)leve1
-                     withLeve2:(NSString*)leve2
-                     withLeve3:(NSString*)leve3
-                   withorderBy:(NSString*)order_by
-                        withPg:(NSString *)pg
+					 withLeve2:(NSString*)leve2
+					 withLeve3:(NSString*)leve3
+				   withorderBy:(NSString*)order_by
+						withPg:(NSString *)pg
 {
-    
+	
 	YCAccountModel *account = [YCAccountModel getAccount];
-    
-    [KLHttpTool TinyShoprequestStoreCateListwithCustom_code:account.customCode
-                                                     withpg:pg
-                                                  withtoken:account.token
-                                            withcustom_lev1:leve1
-                                            withcustom_lev2:leve2
-                                            withcustom_lev3:leve3
-                                               withlatitude:GetUserDefault(@"latitude")
-                                              withlongitude:GetUserDefault(@"longtitude")
-                                               withorder_by:order_by
-                                                    success:^(id response)
-     {
-		if ([response[@"status"] intValue] == 1) {
-			self.responseDit = response;
-			
-			[self transferResponse];
-			NSArray *datas = self.responseDit[@"storelist"];
-			
-			if (datas.count) {
-				[self.shoplistData addObjectsFromArray:datas];
-				[self.tableview reloadData];
-				++paged;
-				[self.tableview.mj_footer setState:MJRefreshStateIdle];
-				
-			}else{
-				[self.tableview.mj_footer endRefreshingWithNoMoreData];
-            }
-        } else {
-            [self.tableview.mj_footer endRefreshingWithNoMoreData];
-        }
-    } failure:^(NSError *err) {
-        [self.tableview.mj_footer endRefreshingWithNoMoreData];
-    }];
+	[KLHttpTool TinyShoprequestStoreCateListwithCustom_code:account.customCode
+													 withpg:pg
+												  withtoken:account.token
+											withcustom_lev1:leve1
+											withcustom_lev2:leve2
+											withcustom_lev3:leve3
+											   withlatitude:GetUserDefault(@"latitude")
+											  withlongitude:GetUserDefault(@"longtitude")
+											   withorder_by:order_by
+													success:^(id response)
+	 {
+		 if ([response[@"status"] intValue] == 1) {
+			 self.responseDit = response;
+			 
+			 [self transferResponse];
+			 NSArray *datas = self.responseDit[@"storelist"];
+			 
+			 if (datas.count) {
+				 [self.shoplistData addObjectsFromArray:datas];
+				 [self.tableview reloadData];
+				 ++paged;
+				 [self.tableview.mj_footer setState:MJRefreshStateIdle];
+				 
+			 }else{
+				 [self.tableview.mj_footer endRefreshingWithNoMoreData];
+			 }
+		 } else {
+			 [self.tableview.mj_footer endRefreshingWithNoMoreData];
+		 }
+	 } failure:^(NSError *err) {
+		 [self.tableview.mj_footer endRefreshingWithNoMoreData];
+	 }];
 }
 
 - (void)transferResponse{
@@ -145,101 +142,22 @@
 	}
 	if (self.segmentView1 == nil) {
 		self.segmentView1 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0,10, APPScreenWidth, 50) withdit:self.responseDit  withData:leve2Mutables withLineBottomColor:RGB(33, 192, 67)];
-		self.segmentView1.tag = 1001;
 		self.segmentView1.delegate =self;
 		[self.view addSubview:self.segmentView1];
-    }
-	[self createSecSegmentView:leve3Mutables];
-	
-	
-}
-
-- (void)createSecSegmentView:(NSMutableArray*)array{
-	
-	if (self.segmentView2 == nil) {
-		self.segmentView2 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView1.frame)+10, APPScreenWidth, 50) withdit:self.responseDit  withData:array withLineBottomColor:RGB(33, 192, 67)];
-		self.segmentView2.tag = 1002;
-		self.segmentView2.delegate = self;
-		[self.view addSubview:self.segmentView2];
 	}
-	[self.view addSubview:self.SegmentItem];
-	[self createSegmentItem];
-	
-}
-
-- (void)createSegmentItem{
 	if (self.SegmentItem == nil) {
-		self.SegmentItem = [[SegmentItem alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView2.frame)+10, APPScreenWidth, 50)];
+		self.SegmentItem = [[SegmentItem alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView1.frame)+10, APPScreenWidth, 50)];
 		self.SegmentItem.delegate = self;
-		
 		[self.view addSubview:self.SegmentItem];
 		
 	}
 }
 
-- (void)createItemView:(NSMutableArray*)array{
-	if (self.ItemView == nil) {
-		self.ItemView =[[TSItemView alloc]initWithFrame:CGRectMake(10, 120, APPScreenWidth - 20, 50) withData:array];
-		self.ItemView.wjitemdelegate = self;
-		
-		[self.view addSubview:self.ItemView];
-		
-		self.SegmentItem.hidden = YES;
-		
-	}
-	
-}
-- (void)loadThirdData{
-    [KLHttpTool TinyRequestGetCategory3ListWithCustom_lev1:Level1 WithCustom_lev2:Level2 WithLangtype:@"kor" success:^(id response) {
-        if ([response[@"status"] intValue] == 1) {
-            _dic3sArray = response[@"lev3s"];
-            NSMutableArray *lev3sArray = [NSMutableArray array];
-            
-            for (int i =0; i<_dic3sArray.count; i++) {
-                NSDictionary *dic = _dic3sArray[i];
-                [lev3sArray addObject:dic[@"lev_name"]];
-                
-            }
-            [self createItemView:lev3sArray];
-        }
-    } failure:^(NSError *err) {
-        
-    }];
-}
-
-- (void)PushEditAction:(NSNotification*)notice{
-	NSString *notices = notice.object;
-	if ([notices isEqualToString:@"1"]) {
-		TSFirstMoreViewController *firstMore = [TSFirstMoreViewController new];
-		firstMore.title = @"카테고리";
-		firstMore.level1 = Level1;
-		firstMore.choiceBlock = ^(NSString *selectItem) {
-			
-		};
-		[self.navigationController pushViewController:firstMore animated:YES];
-		
-	}else{
-		if (self.ItemView !=nil) {
-			
-			self.ItemView.hidden = YES;
-			self.ItemView = nil;
-			self.SegmentItem.hidden = YES;
-			self.SegmentItem = nil;
-			
-			[self createSegmentItem];
-		}else{
-			[self loadThirdData];
-			
-		}
-    }
-}
-
-
 - (void)createTableview{
 	
 	if (self.tableview == nil) {
 		
-		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, 170, APPScreenWidth, APPScreenHeight - 234) style:UITableViewStylePlain];
+		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, 120, APPScreenWidth, APPScreenHeight - 234) style:UITableViewStylePlain];
 		[self.tableview registerNib:[UINib nibWithNibName:@"ChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChoiceTableViewCellID"];
 		self.tableview.delegate = self;
 		self.tableview.dataSource = self;
@@ -247,11 +165,11 @@
 		self.tableview.estimatedSectionHeaderHeight = 0;
 		self.tableview.estimatedSectionFooterHeight = 0;
 		self.tableview.tableFooterView = [[UIView alloc]init];
-        self.tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
-        [self.tableview.mj_footer beginRefreshing];
+		self.tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
+		[self.tableview.mj_footer beginRefreshing];
 		[self.view addSubview:self.tableview];
-        
-        
+		
+		
 		
 	}
 }
@@ -261,11 +179,11 @@
 }
 #pragma mark -- 代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+	return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.shoplistData.count;
+	return self.shoplistData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -278,15 +196,15 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-     return 120.0f;
+	return 120.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0.01f;
+	return 0.01f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.01f;
+	return 0.01f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -297,7 +215,7 @@
 	[self.navigationController pushViewController:shopDetailed animated:YES];
 }
 
-    
+
 - (void)setNaviBar{
 	
 	self.view.backgroundColor = [UIColor whiteColor];
@@ -316,7 +234,6 @@
 	[right2Btn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
 	right2Btn.tag = 2005;
 	[self.navigationItem setRightBarButtonItems:@[right1Item]];
-	
 	
 	self.choiceHeadView = [[ChoiceHeadView alloc]initWithFrame:CGRectMake(0, 0, 200, 30) withTextColor:RGB(25, 25, 25) withData:@[@"icon_location",@"icon_arrow_bottom"]];
 	__weak typeof(self) weakSelf = self;
@@ -363,101 +280,96 @@
 }
 
 -(ShowLocationView *)locationView {
-    if (_locationView == nil) {
-        _locationView = [[ShowLocationView alloc] init];
-    }
-    return _locationView;
+	if (_locationView == nil) {
+		_locationView = [[ShowLocationView alloc] init];
+	}
+	return _locationView;
 }
-    
+
 #pragma mark -- 右边点击方法
 - (void)rightAction:(UIButton*)sender{
-        if (sender.tag == 2004) {
+	if (sender.tag == 2004) {
 		
 		
-				//创建热搜的数组
-				NSArray *hotSeaches = @[];
-				//创建搜索结果的控制器
-				PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"검색어입력" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-					TSearchViewController *searchResultVC = [[TSearchViewController alloc] init];
-					searchResultVC.searchKeyWord = searchText;
-					searchResultVC.navigationItem.title = @"검색결과";
-					[searchViewController.navigationController pushViewController:searchResultVC animated:YES];
-					
-					
-				}];
-				//创建搜索的控制器
-				
-				UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
-				[self presentViewController:nav  animated:NO completion:nil];
-				
-
+		//创建热搜的数组
+		NSArray *hotSeaches = @[];
+		//创建搜索结果的控制器
+		PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"검색어입력" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+			TSearchViewController *searchResultVC = [[TSearchViewController alloc] init];
+			searchResultVC.searchKeyWord = searchText;
+			searchResultVC.navigationItem.title = @"검색결과";
+			[searchViewController.navigationController pushViewController:searchResultVC animated:YES];
+			
+			
+		}];
+		//创建搜索的控制器
 		
-		}else{
-//			AroundMapController * around = [[AroundMapController alloc] init];
-//			around.hidesBottomBarWhenPushed = YES;
-//			[self.navigationController pushViewController:around animated:YES];
-		}
-
+		UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+		[self presentViewController:nav  animated:NO completion:nil];
+		
+		
+		
+	}else{
+		//			AroundMapController * around = [[AroundMapController alloc] init];
+		//			around.hidesBottomBarWhenPushed = YES;
+		//			[self.navigationController pushViewController:around animated:YES];
+	}
+	
 }
 
 #pragma mark --
-- (void)clickItem:(NSString*)itemIndex{
-        self.segmentView2.hidden = YES;
-        self.segmentView2 = nil;
-        self.SegmentItem.hidden = YES;
-        self.SegmentItem = nil;
-        self.ItemView.hidden = YES;
-        self.ItemView = nil;
-        Level2 = itemIndex;
-	    [self.shoplistData removeAllObjects];
-        [self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:@"1" withorderBy:@"1" withPg:@"1"];
+- (void)clickItem:(int)itemIndex{
+	self.maskview.hidden = YES;
+	self.maskview = nil;
+	self.maskview.hidden = !self.maskview.hidden;
+	NSArray*lev2s = self.responseDit[@"lev2s"];
+	NSDictionary*selectLev2s = lev2s[itemIndex];
+	Level2 = selectLev2s[@"lev"];
+	[self.shoplistData removeAllObjects];
+	[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:@"1" withorderBy:@"1" withPg:@"1"];
 }
 
-- (void)clickItemsec:(NSString*)itemIndex{
-        self.SegmentItem.hidden = YES;
-        self.SegmentItem = nil;
-        Level3 = itemIndex;
-        self.ItemView.hidden = YES;
-        self.ItemView = nil;
-	
-	    [self.shoplistData removeAllObjects];
-        [self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:@"1" withPg:@"1"];
-}
-//
 - (void)clickSegment:(int)index{
-	[self.shoplistData removeAllObjects];
 	
-	[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:[NSString stringWithFormat:@"%d",index] withPg:@"1"];
+	if (index == 1001) {
+		NSArray*lev3s = self.responseDit[@"lev3s"];
+		NSLog(@"------------lev3s---------:%@",lev3s);
+		if (self.maskview == nil) {
+			
+			self.maskview = [[CoverMaskView alloc]initWithFrame:CGRectMake(0, 184, SCREEN_WIDTH, SCREEN_HEIGHT)];
+			self.maskview.data = lev3s;
+			self.maskview.sxdegate = self;
+			[[UIApplication sharedApplication].keyWindow addSubview:_maskview];
+		}else{
+			self.maskview.hidden = !self.maskview.hidden;
+			
+		}
+		
+	}else{
+		self.maskview.hidden = YES;
+		self.maskview = nil;
+		[self.shoplistData removeAllObjects];
+		NSLog(@"%d",index);
+		[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:[NSString stringWithFormat:@"%d",index] withPg:@"1"];
+		
+	}
 }
 
-//点击单个的项目响应
-- (void)wjClickItems:(NSString*)item{
-	for (NSDictionary*dic in self.dic3sArray) {
-		if ([item isEqualToString:dic[@"lev_name"]]) {
-			Level3 = dic[@"lev"];
-		}
-	}
-	self.SegmentItem.hidden = NO;
-	self.ItemView.hidden = YES;
-	self.ItemView = nil;
-	[self.shoplistData removeAllObjects];
-	[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:@"1" withPg:@"1"];
-}
 
 
 - (void)setNavi{
-        UIButton *popBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-        [popBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
-        [popBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
-        [popBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
-        [popBtn addTarget:self action:@selector(pop:) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:popBtn];
-        [self.navigationItem setLeftBarButtonItem:item];
-
+	UIButton *popBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+	[popBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
+	[popBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
+	[popBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+	[popBtn addTarget:self action:@selector(pop:) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:popBtn];
+	[self.navigationItem setLeftBarButtonItem:item];
+	
 }
 
 - (void)pop:(UIButton*)sender{
-    [self.navigationController popViewControllerAnimated:YES];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -- 初始化分类级别数据
@@ -471,7 +383,7 @@
 		orderBy = @"1";
 		
 	}else{
-		Level1 = @"1";
+		Level1 = @"13";
 		Level2 = @"1";
 		Level3 = @"1";
 		orderBy = @"1";
@@ -485,13 +397,25 @@
 	
 	self.extend = NO;
 	self.allDic = @{}.mutableCopy;
-	[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PushEditAction:) name:@"EDITACTIONNOTIFICATIONS" object:nil];
 	
-	
-
 }
 
-    
+#pragma mark ---saixuan
+-(void)clickSaixuan:(int)index{
+	
+	NSString*lev3 = [NSString stringWithFormat:@"%d",index];
+	SetUserDefault(@"Level3", lev3);
+	self.maskview.hidden = YES;
+	self.maskview = nil;
+	[self.shoplistData removeAllObjects];
+	if (index == 0) {
+		[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:@"" withorderBy:@"1" withPg:@"1"];
+	}else{
+		[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:lev3 withorderBy:@"1" withPg:@"1"];
+	}
+}
+
+
 @end
-    
-    
+
+
