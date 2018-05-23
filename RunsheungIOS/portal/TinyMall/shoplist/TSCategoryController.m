@@ -114,9 +114,11 @@
 				 [self.tableview.mj_footer setState:MJRefreshStateIdle];
 				 
 			 }else{
+				 
 				 [self.tableview.mj_footer endRefreshingWithNoMoreData];
 			 }
 		 } else {
+			 [self.tableview reloadData];
 			 [self.tableview.mj_footer endRefreshingWithNoMoreData];
 		 }
 	 } failure:^(NSError *err) {
@@ -383,6 +385,8 @@
 }
 
 - (void)pop:(UIButton*)sender{
+	self.maskview.hidden = YES;
+	self.maskview = nil;
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
