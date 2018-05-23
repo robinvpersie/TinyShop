@@ -209,9 +209,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	NSDictionary *dic = self.shoplistData[indexPath.row];
-	SupermarketHomeViewController *shopDetailed = [[SupermarketHomeViewController alloc] init];
+	BusinessHomeController *shopDetailed = [[BusinessHomeController alloc] init];
 	shopDetailed.hidesBottomBarWhenPushed = YES;
-	shopDetailed.dic = dic;
+    shopDetailed.dic = dic;
 	[self.navigationController pushViewController:shopDetailed animated:YES];
 }
 
@@ -219,9 +219,8 @@
 - (void)setNaviBar{
 	
 	self.view.backgroundColor = [UIColor whiteColor];
-	self.edgesForExtendedLayout = UIRectEdgeNone;
-	self.navigationItem.leftBarButtonItem = nil;
-	self.navigationController.navigationBar.translucent = NO;
+    self.navigationItem.leftBarButtonItem = nil;
+
 	UIButton *right1Btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
 	[right1Btn setImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
 	right1Btn.imageEdgeInsets = UIEdgeInsetsMake(0, 7, 0, -7);

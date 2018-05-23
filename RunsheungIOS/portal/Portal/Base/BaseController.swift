@@ -13,7 +13,7 @@ class BaseController: UIViewController {
     
       override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = UIColor.groupTableViewBackground
         NotificationCenter.default.addObserver(self, selector: #selector(refreshLanguage(_:)), name: NSNotification.Name.changeLanguage, object: nil)
 
     }
@@ -23,9 +23,7 @@ class BaseController: UIViewController {
     }
     
     @objc func didback(){
-        if let navi = self.navigationController {
-           navi.popViewController(animated: true)
-        }
+        self.navigationController?.popViewController(animated: true)
     }
     
     deinit {

@@ -11,17 +11,42 @@ import UIKit
 class BusinessOrderController: BaseController {
     
     var tableView: UITableView!
+    var orderMenu: OrderMenuView!
+    var productList = [Plist]() {
+        didSet {
+            OperationQueue.main.addOperation {
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView = UITableView(frame: .zero, style: .plain)
+        tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.registerClassOf(UITableViewCell.self)
+        tableView.rowHeight = 90.hrpx
+        tableView.estimatedRowHeight = 90.hrpx
+        tableView.registerClassOf(BusinessOrderCell.self)
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0)
         view.addSubview(tableView)
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
+        
+        orderMenu = OrderMenuView()
+        view.addSubview(orderMenu)
+        orderMenu.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalTo(view)
+            make.height.equalTo(70)
+        }
+        
         
     }
+    
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -36,25 +61,46 @@ extension BusinessOrderController: UITableViewDelegate {
         
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90.hrpx
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let cell = cell as! BusinessOrderCell
+        cell.configureWithPlist(productList[indexPath.row])
     }
     
 }
 
 extension BusinessOrderController: UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return productList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell()
+        let cell: BusinessOrderCell = tableView.dequeueReusableCell()
+        cell.selectionStyle = .none
         return cell
     }
+    
+    
     
 }
