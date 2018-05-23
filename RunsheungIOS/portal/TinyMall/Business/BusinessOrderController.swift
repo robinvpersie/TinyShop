@@ -11,6 +11,7 @@ import UIKit
 class BusinessOrderController: BaseController {
     
     var tableView: UITableView!
+    var orderMenu: OrderMenuView!
     var productList = [Plist]() {
         didSet {
             OperationQueue.main.addOperation {
@@ -28,12 +29,22 @@ class BusinessOrderController: BaseController {
         tableView.rowHeight = 90.hrpx
         tableView.estimatedRowHeight = 90.hrpx
         tableView.registerClassOf(BusinessOrderCell.self)
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0)
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
         }
         
+        orderMenu = OrderMenuView()
+        view.addSubview(orderMenu)
+        orderMenu.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalTo(view)
+            make.height.equalTo(70)
+        }
+        
+        
     }
+    
     
     
 

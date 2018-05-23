@@ -135,10 +135,10 @@ class BusinessHomeHeader: UIView {
         stackView.distribution = .fillEqually
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            make.right.equalTo(vline.snp.left).offset(-10)
-            make.left.equalTo(ratioStarView.snp.right).offset(15)
+            make.right.equalTo(vline.snp.left).offset(-8)
+            make.left.equalTo(ratioStarView.snp.right).offset(8)
             make.bottom.equalTo(vline)
-            make.height.equalTo(40)
+            make.height.equalTo(35)
         }
 
         
@@ -180,11 +180,11 @@ private class InfoView: UIView {
         
         numlb = UILabel()
         numlb.textColor = UIColor(hex: 0x111111)
-        numlb.font = UIFont.systemFont(ofSize: 13)
+        numlb.font = UIFont.systemFont(ofSize: Ruler.iPhoneHorizontal(9, 11, 14).value)
         
         infolb = UILabel()
         infolb.textColor = UIColor(hex: 0x999999)
-        infolb.font = UIFont.systemFont(ofSize: 13)
+        infolb.font = UIFont.systemFont(ofSize: Ruler.iPhoneHorizontal(9, 11, 14).value)
         
         let stackView = UIStackView(arrangedSubviews: [numlb, infolb])
         stackView.axis = .vertical
