@@ -9,7 +9,33 @@
 import Foundation
 import Moya
 
+struct Plist: Codable {
+    let ANum: String
+    let item_code: String
+    let image_url: String
+    let item_name: String
+    let item_p: String
+    let MonthSaleCount: String
+    let GroupId: String
+    let isSingle: String
+}
+
+struct StoreInfo: Codable {
+    let custom_code: String
+    let custom_name: String
+    let shop_thumnail_image: String
+    let sale_cnt: String
+    let fav_cnt: String
+    let distance: String
+    let score: String
+    let cnt: String
+    let sale_custom_cnt: String
+    let favorites: String
+}
+
 struct StoreInfoProduct: Codable {
+    var StoreInfo: StoreInfo
+    var plist: [Plist]
     
 }
 
@@ -23,13 +49,17 @@ struct StoreInfoProductTarget: TargetType  {
     var task: Task
     var headers: [String : String]?
     
-    init(saleCustomCode: String, customCode: String, pg: Int) {
+    init(saleCustomCode: String?, pg: Int) {
+//        let customCode = YCAccountModel.getAccount()?.customCode
+//        let token = YCAccountModel.getAccount()?.token
+//        let latitude = UserDefaults.standard.object(forKey: "latitude")
+//        let longtitude = UserDefaults.standard.object(forKey: "longitude")
         let parameters: [String: Any] = [
-            "sale_custom_code": saleCustomCode,
-            "custom_code": customCode,
-            "latitude": "",
-            "longitude": "",
-            "token": "",
+            "sale_custom_code": "01071390009abcde",
+            "custom_code": "186731755546ed9e",
+            "latitude": "37.434668",
+            "longitude": "122.160742",
+            "token": "adgkdlgmnkflbhk1",
             "pg": pg,
             "pagesize": 10
         ]

@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import Kingfisher
 
 class BusinessHomeHeader: UIView {
     
     var avatarBigImgView: UIImageView!
     var avatarlittleImgView: UIImageView!
-    var avatarBlurView: UIVisualEffectView!
     var businessNamelb: UILabel!
     var sellNumlb: UILabel!
     var rationNum: UILabel!
@@ -25,18 +25,28 @@ class BusinessHomeHeader: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        backgroundColor = UIColor.white
+        
         avatarBigImgView = UIImageView()
         addSubview(avatarBigImgView)
         avatarBigImgView.snp.makeConstraints { make in
             make.left.right.top.equalTo(self)
-            make.height.equalTo(150.hrpx)
+            make.height.equalTo(Ruler.iPhoneVertical(170, 150, 160, 160).value)
         }
         
         let effect = UIBlurEffect(style: .light)
-        avatarBlurView = UIVisualEffectView(effect: effect)
+        let avatarBlurView = UIVisualEffectView(effect: effect)
         addSubview(avatarBlurView)
         avatarBlurView.snp.makeConstraints { make in
             make.edges.equalTo(avatarBigImgView)
+        }
+        
+        let bottomline = UIView()
+        bottomline.backgroundColor = UIColor.groupTableViewBackground
+        addSubview(bottomline)
+        bottomline.snp.makeConstraints { make in
+            make.left.right.bottom.equalTo(self)
+            make.height.equalTo(0.8)
         }
         
         avatarlittleImgView = UIImageView()
@@ -44,9 +54,9 @@ class BusinessHomeHeader: UIView {
         avatarlittleImgView.layer.shadowColor = UIColor.darkText.withAlphaComponent(0.7).cgColor
         addSubview(avatarlittleImgView)
         avatarlittleImgView.snp.makeConstraints { make in
-            make.bottom.equalTo(avatarBigImgView).offset(20.hrpx)
-            make.width.height.equalTo(75.wrpx)
-            make.left.equalTo(self).offset(15.wrpx)
+            make.bottom.equalTo(avatarBigImgView).offset(10)
+            make.width.height.equalTo(75)
+            make.left.equalTo(self).offset(15)
         }
         
         businessNamelb = UILabel()
@@ -55,7 +65,7 @@ class BusinessHomeHeader: UIView {
         addSubview(businessNamelb)
         businessNamelb.snp.makeConstraints { make in
             make.left.equalTo(avatarlittleImgView.snp.right).offset(8)
-            make.right.equalTo(self).offset(-15.wrpx)
+            make.right.equalTo(self).offset(-15)
             make.top.equalTo(avatarlittleImgView)
         }
         
@@ -65,62 +75,54 @@ class BusinessHomeHeader: UIView {
         addSubview(sellNumlb)
         sellNumlb.snp.makeConstraints { make in
             make.left.equalTo(businessNamelb)
-            make.top.equalTo(businessNamelb.snp.bottom).offset(20.hrpx)
-        }
-        
-        let bottomContainer = UIView()
-        bottomContainer.backgroundColor = UIColor.white
-        addSubview(bottomContainer)
-        bottomContainer.snp.makeConstraints { make in
-            make.left.right.equalTo(self)
-            make.top.equalTo(avatarBigImgView.snp.bottom)
-            make.height.equalTo(80.hrpx)
+            make.top.equalTo(businessNamelb.snp.bottom).offset(10)
         }
         
         rationNum = UILabel()
         rationNum.textColor = UIColor(red: 255, green: 201, blue: 40)
         rationNum.font = UIFont.boldSystemFont(ofSize: 24)
         rationNum.textAlignment = .center
-        bottomContainer.addSubview(rationNum)
+        rationNum.text = "5.8"
+        addSubview(rationNum)
         rationNum.snp.makeConstraints { make in
-            make.left.equalTo(15.wrpx)
-            make.width.equalTo(75.wrpx)
-            make.top.equalTo(bottomContainer).offset(30.hrpx)
+            make.left.equalTo(avatarlittleImgView)
+            make.width.equalTo(75)
+            make.top.equalTo(avatarlittleImgView.snp.bottom).offset(15)
         }
         
         ratioStarView = CosmosView()
         ratioStarView.settings.emptyColor = UIColor.groupTableViewBackground
         ratioStarView.settings.filledColor = UIColor(red: 255, green: 201, blue: 40)
         ratioStarView.settings.fillMode = .precise
-        ratioStarView.settings.starSize = 20
-        ratioStarView.settings.starMargin = 4
+        ratioStarView.settings.starSize = 15
+        ratioStarView.settings.starMargin = 1
         ratioStarView.settings.updateOnTouch = false
-        bottomContainer.addSubview(ratioStarView)
+        addSubview(ratioStarView)
         ratioStarView.snp.makeConstraints { make in
-            make.center.equalTo(rationNum)
-            make.top.equalTo(rationNum.snp.bottom).offset(10.hrpx)
-            make.height.equalTo(20.hrpx)
-            make.width.equalTo(120)
+            make.left.equalTo(rationNum)
+            make.height.equalTo(15)
+            make.width.equalTo(90)
+            make.top.equalTo(rationNum.snp.bottom).offset(8)
         }
         
         telView = UIButton(type: .custom)
         telView.setImage(UIImage(named: "icon_phonenumber"), for: .normal)
         telView.addTarget(self, action: #selector(tel), for: .touchUpInside)
-        bottomContainer.addSubview(telView)
+        addSubview(telView)
         telView.snp.makeConstraints { make in
             make.width.height.equalTo(30)
-            make.right.equalTo(bottomContainer).offset(-15)
-            make.bottom.equalTo(bottomContainer).offset(30.hrpx)
+            make.right.equalTo(self).offset(-15)
+            make.bottom.equalTo(self).offset(-15)
         }
         
         let vline = UIView()
         vline.backgroundColor = UIColor.groupTableViewBackground
-        bottomContainer.addSubview(vline)
+        addSubview(vline)
         vline.snp.makeConstraints { make in
             make.right.equalTo(telView.snp.left).offset(-15)
-            make.bottom.equalTo(bottomContainer).offset(-20)
+            make.bottom.equalTo(ratioStarView)
             make.width.equalTo(0.8)
-            make.height.equalTo(50)
+            make.height.equalTo(40)
         }
         
         commentInfoView = InfoView()
@@ -131,23 +133,30 @@ class BusinessHomeHeader: UIView {
         stackView.axis = .horizontal
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
-        bottomContainer.addSubview(stackView)
+        addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            make.right.equalTo(vline.snp.left).offset(-20)
-            make.left.equalTo(ratioStarView.snp.right).offset(30)
+            make.right.equalTo(vline.snp.left).offset(-10)
+            make.left.equalTo(ratioStarView.snp.right).offset(15)
             make.bottom.equalTo(vline)
-            make.height.equalTo(60)
+            make.height.equalTo(40)
         }
-        
-        let bottomline = UIView()
-        bottomline.backgroundColor = UIColor.groupTableViewBackground
-        bottomContainer.addSubview(bottomline)
-        bottomContainer.snp.makeConstraints { make in
-            make.left.right.bottom.equalTo(bottomContainer)
-            make.height.equalTo(0.8)
-        }
+
         
         
+    }
+    
+    func reloadData(_ data: StoreInfo) {
+        avatarBigImgView.kf.setImage(with: URL(string: data.shop_thumnail_image))
+        businessNamelb.text = data.custom_name
+        sellNumlb.text = "주문수" + data.sale_cnt
+        rationNum.text = data.fav_cnt
+        avatarlittleImgView.kf.setImage(with: URL(string: data.shop_thumnail_image), options: [.processor(RoundCornerImageProcessor(cornerRadius: 5))])
+        commentInfoView.infolb.text = "评论数量"
+        commentInfoView.numlb.text = "254"
+        replyInfoView.infolb.text = "商家回复"
+        replyInfoView.numlb.text = "38"
+        distanceInfoView.infolb.text = "商家距离"
+        distanceInfoView.numlb.text = "1.5km"
     }
     
     @objc func tel() {
@@ -171,11 +180,11 @@ private class InfoView: UIView {
         
         numlb = UILabel()
         numlb.textColor = UIColor(hex: 0x111111)
-        numlb.font = UIFont.systemFont(ofSize: 15)
+        numlb.font = UIFont.systemFont(ofSize: 13)
         
         infolb = UILabel()
         infolb.textColor = UIColor(hex: 0x999999)
-        infolb.font = UIFont.systemFont(ofSize: 15)
+        infolb.font = UIFont.systemFont(ofSize: 13)
         
         let stackView = UIStackView(arrangedSubviews: [numlb, infolb])
         stackView.axis = .vertical
