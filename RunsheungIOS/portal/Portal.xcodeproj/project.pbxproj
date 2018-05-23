@@ -49,6 +49,7 @@
 		01B28A9420B40DD200CEFB36 /* BusinessCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A9320B40DD200CEFB36 /* BusinessCommentCell.swift */; };
 		01B28A9620B4F8E900CEFB36 /* BusinessOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A9520B4F8E900CEFB36 /* BusinessOrderCell.swift */; };
 		01B28A9820B50FC100CEFB36 /* OrderMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A9720B50FC100CEFB36 /* OrderMenuView.swift */; };
+		01B28A9A20B5512600CEFB36 /* OrderTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A9920B5512600CEFB36 /* OrderTypeView.swift */; };
 		01B6BDA32063809C0057CC53 /* SearchListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6BDA22063809C0057CC53 /* SearchListModel.swift */; };
 		01B6BDA5206380D10057CC53 /* AllAddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6BDA4206380D10057CC53 /* AllAddressController.swift */; };
 		01C03460205FED7F00237AAD /* SearchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C0345F205FED7F00237AAD /* SearchListController.swift */; };
@@ -876,6 +877,7 @@
 		01B28A9320B40DD200CEFB36 /* BusinessCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCommentCell.swift; sourceTree = "<group>"; };
 		01B28A9520B4F8E900CEFB36 /* BusinessOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessOrderCell.swift; sourceTree = "<group>"; };
 		01B28A9720B50FC100CEFB36 /* OrderMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderMenuView.swift; sourceTree = "<group>"; };
+		01B28A9920B5512600CEFB36 /* OrderTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTypeView.swift; sourceTree = "<group>"; };
 		01B6BDA22063809C0057CC53 /* SearchListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchListModel.swift; sourceTree = "<group>"; };
 		01B6BDA4206380D10057CC53 /* AllAddressController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllAddressController.swift; sourceTree = "<group>"; };
 		01C0345F205FED7F00237AAD /* SearchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListController.swift; sourceTree = "<group>"; };
@@ -2325,6 +2327,7 @@
 				01B28A9320B40DD200CEFB36 /* BusinessCommentCell.swift */,
 				01B28A9520B4F8E900CEFB36 /* BusinessOrderCell.swift */,
 				01B28A9720B50FC100CEFB36 /* OrderMenuView.swift */,
+				01B28A9920B5512600CEFB36 /* OrderTypeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6489,6 +6492,7 @@
 				1B5B6BB71E9B20EE009D5C75 /* HotelPicsCollectionViewCell.m in Sources */,
 				1B392D701E28D0E500F70981 /* NSBundle+TZImagePicker.m in Sources */,
 				5BC25E161E8F432D00732DA9 /* YCGenericTableView.swift in Sources */,
+				01B28A9A20B5512600CEFB36 /* OrderTypeView.swift in Sources */,
 				1B80E6B41E4D561F001603B2 /* ModelBtn.m in Sources */,
 				1BDDA0E41EB96AF8005E8409 /* HotelLowCommentViewController.m in Sources */,
 				1B392D631E28D0E500F70981 /* STPickerView.m in Sources */,
