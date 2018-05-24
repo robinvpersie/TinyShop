@@ -12,7 +12,7 @@ class BusinessOrderController: BaseController {
     
     var tableView: UITableView!
     var orderMenu: OrderMenuView!
-    lazy var orderTypeView = OrderTypeView()
+	lazy var orderTypeView = OrderMenuView()
     var productList = [Plist]() {
         didSet {
             OperationQueue.main.addOperation {
