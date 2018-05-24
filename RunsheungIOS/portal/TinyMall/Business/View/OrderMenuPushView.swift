@@ -9,7 +9,22 @@
 import UIKit
 
 class OrderMenuPushView: UIView {
-
-
-
+    
+    var containerView: UIButton!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        containerView = UIButton(type: .custom)
+        containerView.addTarget(self, action: #selector(hide), for: .touchUpInside)
+    }
+    
+    @objc func hide() {
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
