@@ -12,6 +12,7 @@ class BusinessOrderController: BaseController {
     
     var tableView: UITableView!
     var orderMenu: OrderMenuView!
+    lazy var orderTypeView = OrderTypeView()
     var productList = [Plist]() {
         didSet {
             OperationQueue.main.addOperation {
@@ -46,6 +47,28 @@ class BusinessOrderController: BaseController {
         orderMenu.frame = CGRect(x: 0, y: view.frame.height - height, width: view.frame.width, height: height)
         tableView.contentInset = UIEdgeInsetsMake(0, 0, height, 0)
     
+    }
+    
+    func requestTypeWithGroupId(_ groupId: String) {
+        showLoading()
+        let storeDetail = StoreDetailTarget(groupId: groupId)
+        API.request(storeDetail)
+            .filterSuccessfulStatusCodes()
+            .map(StoreDetail.self, atKeyPath: "data")
+            .subscribe { [weak self] event in
+                self?.hideLoading()
+                switch event {
+                case let .success(value):
+                    if let window = self?.view.window {
+                        OperationQueue.main.addOperation {
+                            self?.orderTypeView.showInView(window)
+                            self?.orderTypeView.reloadDataWith(value)
+                        }
+                    }
+                case .error:
+                    break
+                }
+        }.disposed(by: Constant.dispose)
     }
     
     
@@ -98,6 +121,14 @@ extension BusinessOrderController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: BusinessOrderCell = tableView.dequeueReusableCell()
+        cell.addAction = { [weak self] in
+            
+        }
+        cell.buyAction = { [weak self] in
+            if let strongself = self {
+                strongself.requestTypeWithGroupId(strongself.productList[indexPath.row].GroupId)
+            }
+        }
         cell.selectionStyle = .none
         return cell
     }

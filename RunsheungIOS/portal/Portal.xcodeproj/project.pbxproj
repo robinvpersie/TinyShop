@@ -50,6 +50,9 @@
 		01B28A9620B4F8E900CEFB36 /* BusinessOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A9520B4F8E900CEFB36 /* BusinessOrderCell.swift */; };
 		01B28A9820B50FC100CEFB36 /* OrderMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A9720B50FC100CEFB36 /* OrderMenuView.swift */; };
 		01B28A9A20B5512600CEFB36 /* OrderTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A9920B5512600CEFB36 /* OrderTypeView.swift */; };
+		01B28A9C20B64A6600CEFB36 /* OrderPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A9B20B64A6600CEFB36 /* OrderPopView.swift */; };
+		01B28A9E20B6892900CEFB36 /* StoreDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A9D20B6892900CEFB36 /* StoreDetail.swift */; };
+		01B28AA020B6A44500CEFB36 /* OrderMenuPushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A9F20B6A44500CEFB36 /* OrderMenuPushView.swift */; };
 		01B6BDA32063809C0057CC53 /* SearchListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6BDA22063809C0057CC53 /* SearchListModel.swift */; };
 		01B6BDA5206380D10057CC53 /* AllAddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6BDA4206380D10057CC53 /* AllAddressController.swift */; };
 		01C03460205FED7F00237AAD /* SearchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C0345F205FED7F00237AAD /* SearchListController.swift */; };
@@ -878,6 +881,9 @@
 		01B28A9520B4F8E900CEFB36 /* BusinessOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessOrderCell.swift; sourceTree = "<group>"; };
 		01B28A9720B50FC100CEFB36 /* OrderMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderMenuView.swift; sourceTree = "<group>"; };
 		01B28A9920B5512600CEFB36 /* OrderTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTypeView.swift; sourceTree = "<group>"; };
+		01B28A9B20B64A6600CEFB36 /* OrderPopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPopView.swift; sourceTree = "<group>"; };
+		01B28A9D20B6892900CEFB36 /* StoreDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetail.swift; sourceTree = "<group>"; };
+		01B28A9F20B6A44500CEFB36 /* OrderMenuPushView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderMenuPushView.swift; sourceTree = "<group>"; };
 		01B6BDA22063809C0057CC53 /* SearchListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchListModel.swift; sourceTree = "<group>"; };
 		01B6BDA4206380D10057CC53 /* AllAddressController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllAddressController.swift; sourceTree = "<group>"; };
 		01C0345F205FED7F00237AAD /* SearchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListController.swift; sourceTree = "<group>"; };
@@ -2328,6 +2334,8 @@
 				01B28A9520B4F8E900CEFB36 /* BusinessOrderCell.swift */,
 				01B28A9720B50FC100CEFB36 /* OrderMenuView.swift */,
 				01B28A9920B5512600CEFB36 /* OrderTypeView.swift */,
+				01B28A9B20B64A6600CEFB36 /* OrderPopView.swift */,
+				01B28A9F20B6A44500CEFB36 /* OrderMenuPushView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2336,6 +2344,7 @@
 			isa = PBXGroup;
 			children = (
 				01B28A8F20B3F55D00CEFB36 /* StoreProductList.swift */,
+				01B28A9D20B6892900CEFB36 /* StoreDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5691,6 +5700,7 @@
 				TargetAttributes = {
 					6275E8551DDC692000656E2D = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = W6JK3FHE8S;
 						ProvisioningStyle = Automatic;
 					};
 					6275E8691DDC692100656E2D = {
@@ -6515,6 +6525,7 @@
 				1B80E6B31E4D561F001603B2 /* GSFilterView.m in Sources */,
 				26CFF6572004877300A10F91 /* RSSpecialGoodsMedicineCell.m in Sources */,
 				1B392F201E28D14E00F70981 /* SupermarketAllKindsController.m in Sources */,
+				01B28A9C20B64A6600CEFB36 /* OrderPopView.swift in Sources */,
 				6216DB3B20A320A400869570 /* ADHeaderCell.m in Sources */,
 				1B392F511E28D14E00F70981 /* SupermarketSelfPickCollectionViewCell.m in Sources */,
 				1BC876781E973AA300BB38D7 /* MD5DataSigner.m in Sources */,
@@ -6563,6 +6574,7 @@
 				1B392F1F1E28D14E00F70981 /* SupermarketAllKindsCollectionView.m in Sources */,
 				1B392F261E28D14E00F70981 /* SupermarketMainController.m in Sources */,
 				5B8A5CED1F7E26CD00793E14 /* YCOCShareManager.m in Sources */,
+				01B28AA020B6A44500CEFB36 /* OrderMenuPushView.swift in Sources */,
 				1B4C103D1EB32956005EAAE5 /* HotelCommentFaceTableViewCell.m in Sources */,
 				1B5B6BD71E9B7DB8009D5C75 /* HotelHomeListModel.m in Sources */,
 				1B392D591E28D0E500F70981 /* NinaPagerView.m in Sources */,
@@ -6586,6 +6598,7 @@
 				1B6156A31E9B15E300B16877 /* HotelRoomPicsController.m in Sources */,
 				1B4B8AE01ED51C1B00266C90 /* SupermarketMyCollectionViewController.m in Sources */,
 				1B392F4C1E28D14E00F70981 /* SupermarketRefundController.m in Sources */,
+				01B28A9E20B6892900CEFB36 /* StoreDetail.swift in Sources */,
 				1B80E6B51E4D561F001603B2 /* SelectBtn.m in Sources */,
 				269248D42009F5D10071900E /* RSAgencyViewController.m in Sources */,
 				5BE152891F137DDF00FC74C2 /* PhotoDismissalInteractionController.swift in Sources */,
@@ -6972,7 +6985,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = W6JK3FHE8S;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7055,7 +7068,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = W6JK3FHE8S;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
