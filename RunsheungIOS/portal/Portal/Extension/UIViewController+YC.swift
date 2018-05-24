@@ -31,12 +31,16 @@ extension UIViewController {
     
     @objc (showLoading)
     func showLoading(){
-        MBProgressHUD.show(view: view)
+        OperationQueue.main.addOperation {
+            MBProgressHUD.show(view: self.view)
+        }
     }
     
     @objc (hideLoading)
     func hideLoading(){
-       MBProgressHUD.hide(for: view, animated: true)
+        OperationQueue.main.addOperation {
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
     }
     
     @objc (yc_showErrMessage:subtitle:)

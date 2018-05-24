@@ -99,46 +99,46 @@ extension UICollectionView{
 }
 
 
-protocol Reusable:class {
-    static var portal_reuseIdentifier:String{get}
+protocol Reusable: class {
+    static var portal_reuseIdentifier: String {get}
 }
 
 protocol NibLoadable {
-    static var portal_nibName:String{get}
+    static var portal_nibName: String {get}
 }
 
-extension UITableViewCell:NibLoadable{
+extension UITableViewCell: NibLoadable{
     static var portal_nibName: String{
         return String(describing: self)
     }
 }
 
-extension UITableViewCell:Reusable{
+extension UITableViewCell: Reusable{
     static var portal_reuseIdentifier: String{
         return String(describing: self)
     }
 }
 
-extension UITableViewHeaderFooterView:Reusable{
+extension UITableViewHeaderFooterView: Reusable{
     static var portal_reuseIdentifier: String{
         return String(describing: self)
     }
 }
 
-extension UITableViewHeaderFooterView:NibLoadable{
+extension UITableViewHeaderFooterView: NibLoadable{
     static var portal_nibName: String{
         return String(describing:self)
     }
 }
 
-extension UICollectionReusableView:NibLoadable{
+extension UICollectionReusableView: NibLoadable{
     static var portal_nibName: String{
         return String(describing:self)
     }
 }
 
 
-extension UICollectionReusableView:Reusable{
+extension UICollectionReusableView: Reusable{
     static var portal_reuseIdentifier: String{
         return String(describing: self)
     }
@@ -146,21 +146,21 @@ extension UICollectionReusableView:Reusable{
 
 extension UICollectionView{
     
-    func registerClassOf<T>(_:T.Type) where T:UICollectionViewCell {
+    func registerClassOf<T>(_: T.Type) where T: UICollectionViewCell {
         self.register(T.self, forCellWithReuseIdentifier: T.portal_reuseIdentifier)
     }
     
-    func registerNibOf<T>(_:T.Type) where T:UICollectionViewCell{
+    func registerNibOf<T>(_: T.Type) where T: UICollectionViewCell{
         let nib = UINib(nibName: T.portal_nibName, bundle: nil)
         self.register(nib, forCellWithReuseIdentifier: T.portal_reuseIdentifier)
     }
     
-    func registerHeaderNibOf<T>(_:T.Type) where T:UICollectionReusableView{
+    func registerHeaderNibOf<T>(_: T.Type) where T: UICollectionReusableView{
         let nib = UINib(nibName: T.portal_nibName, bundle: nil)
         register(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: T.portal_reuseIdentifier)
     }
     
-    func registerHeaderClassOf<T>(_: T.Type) where T:UICollectionReusableView {
+    func registerHeaderClassOf<T>(_: T.Type) where T: UICollectionReusableView {
         register(T.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: T.portal_reuseIdentifier)
     }
 
@@ -169,14 +169,14 @@ extension UICollectionView{
         register(T.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: T.portal_reuseIdentifier)
     }
     
-    func registerFooterNibOf<T>(_:T.Type) where T:UICollectionReusableView{
+    func registerFooterNibOf<T>(_: T.Type) where T: UICollectionReusableView{
         let nib = UINib(nibName: T.portal_nibName, bundle: nil)
         register(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: T.portal_reuseIdentifier)
     }
 
 
     
-    func dequeueReusableCell<T>(indexpath:IndexPath) -> T where T:UICollectionViewCell {
+    func dequeueReusableCell<T>(indexpath: IndexPath) -> T where T: UICollectionViewCell {
         guard let cell = dequeueReusableCell(withReuseIdentifier: T.portal_reuseIdentifier, for: indexpath) as? T else {
             fatalError("Could not dequeue cell with identifier: \(T.portal_reuseIdentifier)")
         }
