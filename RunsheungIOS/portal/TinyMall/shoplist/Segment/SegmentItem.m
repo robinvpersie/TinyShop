@@ -32,7 +32,7 @@
 			buton.layer.borderColor = RGB(33, 192, 67).CGColor;
 			
 		}
-		buton.tag = i;
+		buton.tag = i+1;
 		buton.layer.cornerRadius = 15;
 		buton.layer.masksToBounds = YES;
 		[buton addTarget:self action:@selector(ItemThird:) forControlEvents:UIControlEventTouchUpInside];
