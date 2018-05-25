@@ -12,6 +12,7 @@ class OrderTypeView: UIView {
     
     var backgroudView: UIView!
     var popView: OrderPopView!
+    var buyAction: ((_ plist: String, _ price: Float) -> ())?
  
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,7 +28,8 @@ class OrderTypeView: UIView {
         popView.closeAction = { [weak self] in
             self?.hide()
         }
-        popView.buyAction = { [weak self] in
+        popView.buyAction = { [weak self] itemcode, price in
+            self?.buyAction?(itemcode, price)
             self?.hide()
         }
         addSubview(popView)
@@ -39,8 +41,8 @@ class OrderTypeView: UIView {
         
     }
     
-    func reloadDataWith(_ storeDetail: StoreDetail, title: String? = nil) {
-        popView.reloadDataWith(storeDetail)
+    func reloadDataWith(_ storeDetail: StoreDetail, plist: Plist) {
+        popView.reloadDataWith(storeDetail, title: plist.item_name)
     }
     
     override func didMoveToSuperview() {

@@ -18,12 +18,28 @@ class OrderMenuView: UIView {
     var numlable: UILabel!
     var containerView: UIView!
     var pushBtn: UIButton!
-    var ispush = false
-    
-    enum pushType{
-        case up
-        case down
+    private var _bageValue: Int = 0
+    var badgeValue: Int {
+        set {
+            _bageValue = newValue
+            containerView.showBadge(with: .number, value: newValue, animationType: .none)
+        }
+        get {
+            return _bageValue
+        }
     }
+    var _totalPrice: Float = 0
+    var totalPrice: Float {
+        get {
+            return _totalPrice
+        }
+        set {
+            _totalPrice = newValue
+            priceLable.text = "￥\(_totalPrice)"
+        }
+    }
+    var pushAction: (() -> ())?
+    var payAction: (() -> ())?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,7 +58,7 @@ class OrderMenuView: UIView {
         payBtn.setTitle("去结算", for: .normal)
         payBtn.setTitleColor(UIColor.white, for: .normal)
         payBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        payBtn.backgroundColor = UIColor(red: 31, green: 184, blue: 59)
+        payBtn.backgroundColor = Theme.orderStyleColor
         backGroundView.addSubview(payBtn)
         payBtn.snp.makeConstraints { (make) in
             make.right.top.bottom.equalTo(backGroundView)
@@ -69,7 +85,7 @@ class OrderMenuView: UIView {
         priceLable.numberOfLines = 1
         priceLable.font = UIFont.boldSystemFont(ofSize: 19)
         priceLable.textColor = UIColor.white
-        priceLable.text = "￥30"
+        priceLable.text = "￥0"
         backGroundView.addSubview(priceLable)
         priceLable.snp.makeConstraints { (make) in
             make.left.equalTo(backGroundView).offset(80)
@@ -84,38 +100,27 @@ class OrderMenuView: UIView {
             make.left.top.bottom.equalTo(backGroundView)
             make.right.equalTo(payBtn.snp.left)
         }
-        
-        
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        containerView.showBadge(with: .number, value: 2, animationType: .none)
     }
     
     @objc func push() {
-        
+        pushAction?()
     }
     
     @objc func pay() {
-        
+        payAction?()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-
-
 }
-
 
 
 
 class ShopCarView: UIView{
     
     private var carImageView: UIImageView!
-    
     var carImage: UIImage?{
         didSet{
             carImageView.image = carImage
