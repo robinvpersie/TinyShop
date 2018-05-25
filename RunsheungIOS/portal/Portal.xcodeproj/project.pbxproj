@@ -799,6 +799,7 @@
 		D5FF7DF720B7B6D700D2AD78 /* OrderTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DF420B7B6D600D2AD78 /* OrderTypeView.swift */; };
 		D5FF7DF820B7B6D700D2AD78 /* OrderPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DF520B7B6D600D2AD78 /* OrderPopView.swift */; };
 		D5FF7DFA20B7B70100D2AD78 /* SelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DF920B7B70100D2AD78 /* SelectModel.swift */; };
+		D5FF7DFC20B7D88400D2AD78 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DFB20B7D88400D2AD78 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2242,6 +2243,7 @@
 		D5FF7DF420B7B6D600D2AD78 /* OrderTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTypeView.swift; sourceTree = "<group>"; };
 		D5FF7DF520B7B6D600D2AD78 /* OrderPopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderPopView.swift; sourceTree = "<group>"; };
 		D5FF7DF920B7B70100D2AD78 /* SelectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectModel.swift; sourceTree = "<group>"; };
+		D5FF7DFB20B7D88400D2AD78 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5204,6 +5206,7 @@
 				5B19AF2F1E4BFB9E0093D97F /* YCNoDataAlertView.xib */,
 				5BC25E151E8F432D00732DA9 /* YCGenericTableView.swift */,
 				012530A3207DF4A600663180 /* Constant.swift */,
+				D5FF7DFB20B7D88400D2AD78 /* Theme.swift */,
 			);
 			name = PublicTool;
 			path = Portal/PublicTool;
@@ -6674,6 +6677,7 @@
 				5BAD6AA41E0D00A900E43EAE /* PersonalStarHeaderCell.swift in Sources */,
 				D5FF7DF020B4367900D2AD78 /* CoverMaskView.m in Sources */,
 				5B62F6F31E021E2500E0B8EF /* YCFPSLabel.swift in Sources */,
+				D5FF7DFC20B7D88400D2AD78 /* Theme.swift in Sources */,
 				5B76BB781E00CAFD00F1F30B /* WelcomeModel.swift in Sources */,
 				1BEF69371E8F503200CE3434 /* HotelSearchTableViewCell.m in Sources */,
 				1B392F3C1E28D14E00F70981 /* SupermarketMineHeaderView.m in Sources */,
