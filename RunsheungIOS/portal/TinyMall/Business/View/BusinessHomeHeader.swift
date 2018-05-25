@@ -140,9 +140,6 @@ class BusinessHomeHeader: UIView {
             make.bottom.equalTo(vline)
             make.height.equalTo(35)
         }
-
-        
-        
     }
     
     func reloadData(_ data: StoreInfo) {

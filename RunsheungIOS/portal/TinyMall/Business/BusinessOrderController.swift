@@ -13,7 +13,7 @@ class BusinessOrderController: BaseController {
     var tableView: UITableView!
     var orderMenu: OrderMenuView!
 	var pushView: OrderMenuPushView!
-    var itemSelected = [String: Int]()
+    var itemSelected = [SelectModel: Int]()
     var totalNum: Int = 0
     var totalPrice: Float = 0
  
@@ -69,7 +69,7 @@ class BusinessOrderController: BaseController {
     
     }
     
-    func requestTypeWithGroupId(_ groupId: String, title: String?) {
+    func requestTypeWithGroupId(_ groupId: String, plist: Plist, indexPath: IndexPath) {
         showLoading()
         let storeDetail = StoreDetailTarget(groupId: groupId)
         API.request(storeDetail)
@@ -82,10 +82,11 @@ class BusinessOrderController: BaseController {
                    OperationQueue.main.addOperation {
                     if let window = self?.view.window {
                         self?.orderTypeView.showInView(window)
-                        self?.orderTypeView.reloadDataWith(value, title: title)
+                        self?.orderTypeView.reloadDataWith(value, plist: plist)
                         self?.orderTypeView.buyAction = { itemCode, price in
                             guard let this = self else { return }
-                            this.itemSelected[itemCode, default: 0] += 1
+                            let model = SelectModel(indexPath: indexPath, itemCode: itemCode)
+                            this.itemSelected[model, default: 0] += 1
                             this.totalPrice += price
                             this.totalNum += 1
                             this.orderMenu.totalPrice = this.totalPrice
@@ -154,7 +155,8 @@ extension BusinessOrderController: UITableViewDataSource {
                 return
             }
             let plist = this.productList[indexPath.row]
-            this.itemSelected[plist.item_code, default: 0] += 1
+            let selectModel = SelectModel(indexPath: indexPath, itemCode: plist.item_code)
+            this.itemSelected[selectModel, default: 0] += 1
             this.totalNum += 1
             this.orderMenu.badgeValue = this.totalNum
             this.totalPrice += Float(plist.item_p) ?? 0
@@ -163,7 +165,7 @@ extension BusinessOrderController: UITableViewDataSource {
         cell.buyAction = { [weak self] in
             if let strongself = self {
                 let product = strongself.productList[indexPath.row]
-                strongself.requestTypeWithGroupId(product.GroupId, title: product.item_name)
+                strongself.requestTypeWithGroupId(product.GroupId, plist: product, indexPath: indexPath)
             }
         }
         cell.selectionStyle = .none
