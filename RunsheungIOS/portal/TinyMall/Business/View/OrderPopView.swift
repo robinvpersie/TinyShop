@@ -19,7 +19,8 @@ class OrderPopView: UIView {
     var dataSource: StoreDetail?
     var foodSpecIndex: Int = 0
     var foodFlavorIndex: Int = 0
-    var buyAction: ((_ itemcode: String, _ price: Float) -> ())?
+    var buyAction: ((_ itemcode: String, _ price: Float, _ name: String) -> ())?
+    var title: String?
     var closeAction: (() -> ())?
     
     override init(frame: CGRect) {
@@ -103,6 +104,7 @@ class OrderPopView: UIView {
         foodFlavorIndex = 0
         dataSource = storeDetail
         titlelb.text = title
+        self.title = title
         pricelb.text = "￥" + storeDetail.FoodSpec[foodSpecIndex].item_p
         collectionView.reloadData()
     }
@@ -119,7 +121,12 @@ class OrderPopView: UIView {
     @objc func didBuy() {
         if let dataSource = dataSource {
             let foodSpec = dataSource.FoodSpec[foodSpecIndex]
-            buyAction?(foodSpec.item_code, Float(foodSpec.item_p) ?? 0)
+            let littleName = dataSource.FoodSpec[foodSpecIndex].item_name
+            var totalName: String = "" 
+            if let title = self.title {
+              totalName = title + "(\(littleName))"
+            }
+            buyAction?(foodSpec.item_code, Float(foodSpec.item_p) ?? 0, totalName)
         }
     }
     

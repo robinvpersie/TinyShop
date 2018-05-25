@@ -35,7 +35,9 @@ class OrderMenuView: UIView {
         }
         set {
             _totalPrice = newValue
-            priceLable.text = "￥\(_totalPrice)"
+            let price = String(format: "%.2f", newValue)
+            //let price = String(format: "%.2f", arguments: [_totalPrice])
+            priceLable.text = "￥\(price)"
         }
     }
     var pushAction: (() -> ())?

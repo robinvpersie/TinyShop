@@ -16,6 +16,7 @@ class BusinessOrderController: BaseController {
     var itemSelected = [SelectModel: Int]()
     var totalNum: Int = 0
     var totalPrice: Float = 0
+    var pushDataSource = [(SelectModel, Int)]()
  
     lazy var orderTypeView = OrderTypeView()
     
@@ -42,6 +43,26 @@ class BusinessOrderController: BaseController {
         }
         
         pushView = OrderMenuPushView()
+        pushView.actionBlock = { [weak self] type, model in
+            guard let this = self else {
+                return
+            }
+            switch type {
+            case .add:
+                this.itemSelected[model.model, default: 0] += 1
+                this.totalNum += 1
+                this.totalPrice += model.model.itemP
+            case .sub:
+                if model.num == 0 {
+                   this.itemSelected.removeValue(forKey: model.model)
+                } else {
+                   this.itemSelected[model.model, default: 0] -= 1
+                }
+                this.totalNum -= 1
+                this.totalPrice -= model.model.itemP
+            }
+            this.menuReloadData()
+        }
         view.addSubview(pushView)
         
         orderMenu = OrderMenuView()
@@ -50,7 +71,13 @@ class BusinessOrderController: BaseController {
             if this.pushView.isUp {
                 this.pushView.hide()
             }else {
-                
+//                var dataSource = [(SelectModel, Int)]()
+//                this.itemSelected.forEach({ select, num in
+//                    let plist = this.productList[select.indexPath.row]
+//                    let select
+//                    dataSource.append((plist, num))
+//                })
+                this.pushView.showWithModel(this.itemSelected)
             }
         }
         orderMenu.payAction = { [weak self] in
@@ -66,6 +93,7 @@ class BusinessOrderController: BaseController {
         let height: CGFloat = 60
         orderMenu.frame = CGRect(x: 0, y: view.frame.height - height, width: view.frame.width, height: height)
         tableView.contentInset = UIEdgeInsetsMake(0, 0, height, 0)
+        pushView.frame = view.frame
     
     }
     
@@ -83,14 +111,13 @@ class BusinessOrderController: BaseController {
                     if let window = self?.view.window {
                         self?.orderTypeView.showInView(window)
                         self?.orderTypeView.reloadDataWith(value, plist: plist)
-                        self?.orderTypeView.buyAction = { itemCode, price in
+                        self?.orderTypeView.buyAction = { itemCode, price, name in
                             guard let this = self else { return }
-                            let model = SelectModel(indexPath: indexPath, itemCode: itemCode)
+                            let model = SelectModel(indexPath: indexPath, itemCode: itemCode, name: name, itemp: price)
                             this.itemSelected[model, default: 0] += 1
                             this.totalPrice += price
                             this.totalNum += 1
-                            this.orderMenu.totalPrice = this.totalPrice
-                            this.orderMenu.badgeValue = this.totalNum
+                            this.menuReloadData()
                         }
                       }
                    }
@@ -98,6 +125,11 @@ class BusinessOrderController: BaseController {
                     break
                 }
         }.disposed(by: Constant.dispose)
+    }
+    
+    func menuReloadData() {
+        orderMenu.totalPrice = totalPrice
+        orderMenu.badgeValue = totalNum
     }
     
     
@@ -155,7 +187,7 @@ extension BusinessOrderController: UITableViewDataSource {
                 return
             }
             let plist = this.productList[indexPath.row]
-            let selectModel = SelectModel(indexPath: indexPath, itemCode: plist.item_code)
+            let selectModel = SelectModel(indexPath: indexPath, itemCode: plist.item_code, name: plist.item_name, itemp: Float(plist.item_p)!)
             this.itemSelected[selectModel, default: 0] += 1
             this.totalNum += 1
             this.orderMenu.badgeValue = this.totalNum

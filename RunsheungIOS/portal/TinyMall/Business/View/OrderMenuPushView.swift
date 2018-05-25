@@ -9,19 +9,31 @@
 import UIKit
 import SnapKit
 
+class PushModel {
+    var model: SelectModel
+    var num: Int
+    
+    init(model: SelectModel, num: Int) {
+        self.model = model
+        self.num = num
+    }
+}
+
 class OrderMenuPushView: UIView {
     
     var containerView: UIButton!
     var tableView: UITableView!
-    var dataSource = [Plist: Int]()
+    var dataSource = [PushModel]()
     var hideAction: (() -> ())?
     var isUp: Bool = false
-    var tableHeight: CGFloat = 200
-    
+    var tableHeight: CGFloat = 240
+    var actionBlock:((_ actionType: OrderMenuPushCell.actionType, _ pushModel: PushModel) -> Void)?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.groupTableViewBackground
+        isHidden = true
+        backgroundColor = UIColor.clear
         
         containerView = UIButton(type: .custom)
         containerView.addTarget(self, action: #selector(hide), for: .touchUpInside)
@@ -31,21 +43,15 @@ class OrderMenuPushView: UIView {
             make.edges.equalTo(self)
         }
         
-//        backContainer = UIView()
-//        backContainer.backgroundColor = UIColor.groupTableViewBackground
-//        addSubview(backContainer)
-//        backContainer.snp.makeConstraints { (make) in
-//            make.left.right.bottom.equalTo(self)
-//            backHeightConstraint = make.height.equalTo(0).constraint
-//        }
-        
         tableView = UITableView(frame: CGRect.zero, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerClassOf(OrderMenuPushCell.self)
         tableView.rowHeight = OrderMenuPushCell.getHeight()
-        tableView.tableHeaderView = headerView()
         tableView.tableFooterView = UIView()
+        tableView.sectionHeaderHeight = 45
+        tableView.sectionFooterHeight = 0.01
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0)
         addSubview(tableView)
     
     }
@@ -76,7 +82,6 @@ class OrderMenuPushView: UIView {
             make.right.equalTo(headerView).offset(-15)
             make.centerY.equalTo(headerView)
         }
-        
         return headerView
     }
     
@@ -84,27 +89,39 @@ class OrderMenuPushView: UIView {
         hide()
     }
     
-    func showWithModel(_ modelDic: [Plist: Int]) {
-        dataSource = modelDic
-        tableView.reloadData()
-        //let tableHeight: CGFloat = modelDic.count >= 4 ? 5.0 * 45.0 : CGFloat((modelDic.count + 1) * 45)
-        tableView.frame = CGRect.init(x: 0, y: frame.maxY, width: frame.width, height: tableHeight)
-        UIView.animate(withDuration: 0.3) {
-            self.tableView.frame = CGRect(x: 0, y: self.frame.maxY - self.tableHeight, width: self.frame.width, height: self.tableHeight)
+    func showWithModel(_ modelDic: [SelectModel: Int]) {
+        isHidden = false
+        var data = [PushModel]()
+        modelDic.forEach { model, num in
+            let model = PushModel(model: model, num: num)
+            data.append(model)
         }
-        
+        dataSource = data
+        tableView.reloadData()
+        tableView.frame = CGRect.init(x: 0, y: frame.maxY, width: frame.width, height: tableHeight)
+
+        UIView.animate(withDuration: 0.2, animations: {
+            self.tableView.frame = CGRect(x: 0, y: self.frame.maxY - self.tableHeight, width: self.frame.width, height: self.tableHeight)
+        }) { finish in
+            if finish {
+                self.toggle()
+            }
+        }
+    }
+    
+    func toggle() {
+        self.isUp = !self.isUp
     }
     
     @objc func hide() {
         
         UIView.animate(withDuration: 0.2, animations: {
-//           self?.heightConstraint?.update(offset: 0)
-//           self?.backHeightConstraint?.update(offset: 0)
-//           self?.layoutIfNeeded()
             self.tableView.frame = CGRect(x: 0, y: self.frame.maxY , width: self.frame.width, height: self.tableHeight)
         }) { [weak self] finish in
             if finish {
                 self?.hideAction?()
+                self?.isHidden = true
+                self?.toggle()
             }
         }
         
@@ -121,6 +138,14 @@ extension OrderMenuPushView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return headerView()
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
  
     
 }
@@ -129,13 +154,23 @@ extension OrderMenuPushView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: OrderMenuPushCell = tableView.dequeueReusableCell()
-        cell.actionBlock = { [weak self] type, num in
+        cell.configureWith(dataSource[indexPath.row])
+        cell.actionBlock = { [weak self] type, model in
+            guard let this = self else {
+                return
+            }
+            this.dataSource[indexPath.row] = model
+            this.actionBlock?(type, model)
             switch type {
             case .add:
                 break
             case .sub:
-                break
+                if model.num == 0 {
+                    this.dataSource.remove(at: indexPath.row)
+                    tableView.reloadData()
+                }
             }
+           
         }
         return cell
     }
@@ -152,8 +187,6 @@ extension OrderMenuPushView: UITableViewDataSource {
 
 
 
-
-
 class OrderMenuPushCell: UITableViewCell {
     
     public enum actionType {
@@ -166,12 +199,13 @@ class OrderMenuPushCell: UITableViewCell {
     private var addbtn: UIButton!
     private var subBtn: UIButton!
     private var numlb: UILabel!
-    var totalNum: Int = 0 {
-        didSet{
-            numlb.text = "\(totalNum)"
-        }
-    }
-    var actionBlock:((_ actionType: actionType, _ num: Int) -> Void)?
+    private var model: PushModel!
+//    var totalNum: Int = 0 {
+//        didSet{
+//            numlb.text = "\(totalNum)"
+//        }
+//    }
+    var actionBlock:((_ actionType: actionType, _ pushModel: PushModel) -> Void)?
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -210,7 +244,7 @@ class OrderMenuPushCell: UITableViewCell {
         numlb.snp.makeConstraints { (make) in
             make.trailing.equalTo(addbtn.snp.leading)
             make.centerY.equalTo(addbtn)
-            make.width.equalTo(50)
+            make.width.equalTo(40)
             make.height.equalTo(18)
         }
         
@@ -235,22 +269,33 @@ class OrderMenuPushCell: UITableViewCell {
         pricelb.font = UIFont.systemFont(ofSize: 14)
         contentView.addSubview(pricelb)
         pricelb.snp.makeConstraints { (make) in
-            make.trailing.equalTo(subBtn.snp.leading).offset(-10)
+            make.trailing.equalTo(subBtn.snp.leading).offset(-20)
             make.centerY.equalTo(contentView)
         }
     }
     
-    
+    func configureWith(_ model: PushModel) {
+        self.model = model
+//        totalNum = model.num
+        numlb.text = "\(model.num)"
+        namelb.text = model.model.name
+        let price = model.model.itemP
+        pricelb.text = "￥" + "\(price)"
+    }
     
     @objc private func didSub(){
-        if totalNum == 0 { return }
-        totalNum -= 1
-        actionBlock?(.sub, totalNum)
+        if model.num == 0 {
+            return
+        }
+        model.num -= 1
+        numlb.text = "\(model.num)"
+        actionBlock?(.sub, model)
     }
     
     @objc private func didAdd(){
-        totalNum += 1
-        actionBlock?(.add, totalNum)
+        model.num += 1
+        numlb.text = "\(model.num)"
+        actionBlock?(.add, model)
     }
     
     class func getHeight() -> CGFloat {
