@@ -12,7 +12,13 @@ class BusinessOrderController: BaseController {
     
     var tableView: UITableView!
     var orderMenu: OrderMenuView!
-	lazy var orderTypeView = OrderMenuView()
+	var pushView: OrderMenuPushView!
+    var itemSelected = [String: Int]()
+    var totalNum: Int = 0
+    var totalPrice: Float = 0
+ 
+    lazy var orderTypeView = OrderTypeView()
+    
     var productList = [Plist]() {
         didSet {
             OperationQueue.main.addOperation {
@@ -35,7 +41,21 @@ class BusinessOrderController: BaseController {
             make.edges.equalTo(view)
         }
         
+        pushView = OrderMenuPushView()
+        view.addSubview(pushView)
+        
         orderMenu = OrderMenuView()
+        orderMenu.pushAction = { [weak self] in
+            guard let this = self else { return }
+            if this.pushView.isUp {
+                this.pushView.hide()
+            }else {
+                
+            }
+        }
+        orderMenu.payAction = { [weak self] in
+            
+        }
         view.addSubview(orderMenu)
     
     }
@@ -49,7 +69,7 @@ class BusinessOrderController: BaseController {
     
     }
     
-    func requestTypeWithGroupId(_ groupId: String) {
+    func requestTypeWithGroupId(_ groupId: String, title: String?) {
         showLoading()
         let storeDetail = StoreDetailTarget(groupId: groupId)
         API.request(storeDetail)
@@ -59,12 +79,20 @@ class BusinessOrderController: BaseController {
                 self?.hideLoading()
                 switch event {
                 case let .success(value):
+                   OperationQueue.main.addOperation {
                     if let window = self?.view.window {
-                        OperationQueue.main.addOperation {
-                            self?.orderTypeView.showInView(window)
-                            self?.orderTypeView.reloadDataWith(value)
+                        self?.orderTypeView.showInView(window)
+                        self?.orderTypeView.reloadDataWith(value, title: title)
+                        self?.orderTypeView.buyAction = { itemCode, price in
+                            guard let this = self else { return }
+                            this.itemSelected[itemCode, default: 0] += 1
+                            this.totalPrice += price
+                            this.totalNum += 1
+                            this.orderMenu.totalPrice = this.totalPrice
+                            this.orderMenu.badgeValue = this.totalNum
                         }
-                    }
+                      }
+                   }
                 case .error:
                     break
                 }
@@ -122,11 +150,20 @@ extension BusinessOrderController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: BusinessOrderCell = tableView.dequeueReusableCell()
         cell.addAction = { [weak self] in
-            
+            guard let this = self else {
+                return
+            }
+            let plist = this.productList[indexPath.row]
+            this.itemSelected[plist.item_code, default: 0] += 1
+            this.totalNum += 1
+            this.orderMenu.badgeValue = this.totalNum
+            this.totalPrice += Float(plist.item_p) ?? 0
+            this.orderMenu.totalPrice = this.totalPrice
         }
         cell.buyAction = { [weak self] in
             if let strongself = self {
-                strongself.requestTypeWithGroupId(strongself.productList[indexPath.row].GroupId)
+                let product = strongself.productList[indexPath.row]
+                strongself.requestTypeWithGroupId(product.GroupId, title: product.item_name)
             }
         }
         cell.selectionStyle = .none

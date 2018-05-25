@@ -19,7 +19,7 @@ class OrderPopView: UIView {
     var dataSource: StoreDetail?
     var foodSpecIndex: Int = 0
     var foodFlavorIndex: Int = 0
-    var buyAction: (() -> ())?
+    var buyAction: ((_ itemcode: String, _ price: Float) -> ())?
     var closeAction: (() -> ())?
     
     override init(frame: CGRect) {
@@ -75,7 +75,6 @@ class OrderPopView: UIView {
         pricelb = UILabel()
         pricelb.textColor = UIColor(hex: 0xdd0909)
         pricelb.font = UIFont.systemFont(ofSize: 18)
-        pricelb.text = "￥28"
         bottomView.addSubview(pricelb)
         pricelb.snp.makeConstraints { (make) in
             make.left.equalTo(bottomView).offset(15)
@@ -99,8 +98,12 @@ class OrderPopView: UIView {
         
     }
     
-    func reloadDataWith(_ storeDetail: StoreDetail) {
+    func reloadDataWith(_ storeDetail: StoreDetail, title: String?) {
+        foodSpecIndex = 0
+        foodFlavorIndex = 0
         dataSource = storeDetail
+        titlelb.text = title
+        pricelb.text = "￥" + storeDetail.FoodSpec[foodSpecIndex].item_p
         collectionView.reloadData()
     }
     
@@ -114,7 +117,10 @@ class OrderPopView: UIView {
     }
     
     @objc func didBuy() {
-        buyAction?()
+        if let dataSource = dataSource {
+            let foodSpec = dataSource.FoodSpec[foodSpecIndex]
+            buyAction?(foodSpec.item_code, Float(foodSpec.item_p) ?? 0)
+        }
     }
     
     @objc func didClose() {
@@ -131,6 +137,7 @@ extension OrderPopView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             foodSpecIndex = indexPath.row
+            pricelb.text = "￥" + dataSource!.FoodSpec[foodSpecIndex].item_p
             collectionView.reloadSections([indexPath.section])
         } else {
             foodFlavorIndex = indexPath.row

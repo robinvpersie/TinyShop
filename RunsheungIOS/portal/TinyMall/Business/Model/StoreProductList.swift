@@ -9,7 +9,7 @@
 import Foundation
 import Moya
 
-struct Plist: Codable {
+struct Plist: Codable, Hashable {
     let ANum: String
     let item_code: String
     let image_url: String
@@ -19,6 +19,7 @@ struct Plist: Codable {
     let GroupId: String
     let isSingle: String
 }
+
 
 struct StoreInfo: Codable {
     let custom_code: String
