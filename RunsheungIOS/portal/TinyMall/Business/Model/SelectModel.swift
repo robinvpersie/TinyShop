@@ -8,16 +8,29 @@
 
 import Foundation
 
-struct SelectModel: Hashable {
-    var indexPath: IndexPath
+struct SelectModel {
     var itemCode: String
     var name: String
     var itemP: Float
     
-    init(indexPath: IndexPath, itemCode: String, name: String, itemp: Float) {
-        self.indexPath = indexPath
+    init(itemCode: String, name: String, itemp: Float) {
         self.itemCode = itemCode
         self.name = name
-        self.itemP = itemp
+        self.itemp = itemp
     }
 }
+
+//public struct SelectModel: Hashable {
+//
+//    var indexPath: IndexPath
+//    var itemCode: String
+//    var name: String
+//    var itemP: Float
+//
+//    init(indexPath: IndexPath, itemCode: String, name: String, itemp: Float) {
+//        self.indexPath = indexPath
+//        self.itemCode = itemCode
+//        self.name = name
+//        self.itemP = itemp
+//    }
+//}

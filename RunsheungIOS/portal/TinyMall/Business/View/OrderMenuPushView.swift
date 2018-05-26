@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 class PushModel {
-    var model: SelectModel
+    var model: SelectModel 
     var num: Int
     
     init(model: SelectModel, num: Int) {
