@@ -17,6 +17,7 @@ class BusinessOrderController: BaseController {
     var totalNum: Int = 0
     var totalPrice: Float = 0
     var pushDataSource = [(SelectModel, Int)]()
+    @objc var dic: NSDictionary?
  
     lazy var orderTypeView = OrderTypeView()
     
@@ -81,7 +82,50 @@ class BusinessOrderController: BaseController {
             }
         }
         orderMenu.payAction = { [weak self] in
+            guard let this = self else {
+                return
+            }
+//            let passwordView = CYPasswordView()
+//            passwordView.title = "결제 비밀번호를 입력해주세요"
+//            passwordView.loadingText = "결제중..."
+//            passwordView.show(in: this.view.window!)
+//            passwordView.finish = { password in
+//                passwordView.startLoading()
+//                passwordView.hideKeyboard()
+//                delay(2, work: {
+//                    passwordView.stopLoading()
+//                    passwordView.requestComplete(true, message: "success!!!")
+//                    delay(1.5, work: {
+//                        passwordView.hide()
+//                        this.itemSelected.removeAll()
+//                        this.totalPrice = 0.00
+//                        this.totalNum = 0
+//                        this.menuReloadData()
+//                    })
+//                })
+//            }
+            var carArray = [LZCartModel]()
+            this.itemSelected.forEach({ (model, num) in
+                let car = LZCartModel()
+                car.image_url = this.productList[model.indexPath.row].image_url
+                car.number = num
+                car.item_code = model.itemCode
+                car.price = "\(model.itemP)"
+                car.nameStr = model.name
+                car.select = true
+                car.stock_unit = ""
+                car.isEditing = false
+                car.sale_custom_code = this.dic?["custom_code"] as? String ?? ""
+                car.divCode = "2"
+                carArray.append(car)
+            })
             
+            let confirm = SupermarketConfrimOrderByNumbersController()
+            confirm.controllerType = .supermarket
+            confirm.totalPrice = this.totalPrice
+            confirm.dataArray = carArray
+            this.navigationController?.pushViewController(confirm, animated: true)
+
         }
         view.addSubview(orderMenu)
     

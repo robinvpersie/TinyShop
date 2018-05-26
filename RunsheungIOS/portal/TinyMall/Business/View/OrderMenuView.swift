@@ -19,6 +19,7 @@ class OrderMenuView: UIView {
     var containerView: UIView!
     var pushBtn: UIButton!
     private var _bageValue: Int = 0
+    var _totalPrice: Float = 0
     var badgeValue: Int {
         set {
             _bageValue = newValue
@@ -28,7 +29,6 @@ class OrderMenuView: UIView {
             return _bageValue
         }
     }
-    var _totalPrice: Float = 0
     var totalPrice: Float {
         get {
             return _totalPrice
@@ -36,7 +36,6 @@ class OrderMenuView: UIView {
         set {
             _totalPrice = newValue
             let price = String(format: "%.2f", newValue)
-            //let price = String(format: "%.2f", arguments: [_totalPrice])
             priceLable.text = "￥\(price)"
         }
     }
@@ -57,7 +56,7 @@ class OrderMenuView: UIView {
         
         payBtn = UIButton(type: .custom)
         payBtn.addTarget(self, action: #selector(pay), for: .touchUpInside)
-        payBtn.setTitle("去结算", for: .normal)
+        payBtn.setTitle("주문하기", for: .normal)
         payBtn.setTitleColor(UIColor.white, for: .normal)
         payBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         payBtn.backgroundColor = Theme.orderStyleColor

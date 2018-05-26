@@ -2,7 +2,7 @@
 //  SelectModel.swift
 //  Portal
 //
-//  Created by 이정구 on 2018/5/25.
+//  Created by 이정구 on 2018/5/26.
 //  Copyright © 2018年 linpeng. All rights reserved.
 //
 

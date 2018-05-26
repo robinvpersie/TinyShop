@@ -51,8 +51,11 @@
 		01B28A9820B50FC100CEFB36 /* OrderMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A9720B50FC100CEFB36 /* OrderMenuView.swift */; };
 		01B6BDA32063809C0057CC53 /* SearchListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6BDA22063809C0057CC53 /* SearchListModel.swift */; };
 		01B6BDA5206380D10057CC53 /* AllAddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6BDA4206380D10057CC53 /* AllAddressController.swift */; };
+		01B97F7420B9A13B006B7E24 /* SelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B97F7320B9A13B006B7E24 /* SelectModel.swift */; };
 		01C03460205FED7F00237AAD /* SearchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C0345F205FED7F00237AAD /* SearchListController.swift */; };
 		01C03462205FEDE000237AAD /* SearchListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C03461205FEDE000237AAD /* SearchListCell.swift */; };
+		01CA194B20B9B53100E40F7D /* TinyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52B804520B829750057E831 /* TinyMainViewController.m */; };
+		01CA194D20B9CDAC00E40F7D /* CeateOrderTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA194C20B9CDAC00E40F7D /* CeateOrderTarget.swift */; };
 		1B022D611F21A20400129849 /* ZoomingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B022D601F21A20400129849 /* ZoomingImageView.m */; };
 		1B0CD2BD1E8B5B6A008AF162 /* YCHotelMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CD2BC1E8B5B6A008AF162 /* YCHotelMainController.m */; };
 		1B0CD2C01E8B5B8D008AF162 /* YCHoltelBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CD2BF1E8B5B8D008AF162 /* YCHoltelBaseViewController.m */; };
@@ -684,7 +687,6 @@
 		5BEC723A1E46F725007D519D /* YCFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEC72391E46F725007D519D /* YCFileModel.swift */; };
 		5BECA2381F2ADBBF00729382 /* MoyaNetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BECA2371F2ADBBF00729382 /* MoyaNetWork.swift */; };
 		5BED7BCC1F68B9A600CE31D6 /* YCDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED7BCB1F68B9A600CE31D6 /* YCDataManager.swift */; };
-		5BED7BCE1F690FD200CE31D6 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BED7BCD1F690FD200CE31D6 /* UMMobClick.framework */; };
 		5BED7BD01F69104900CE31D6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BED7BCF1F69104900CE31D6 /* libsqlite3.tbd */; };
 		5BEF65A31F208C0500817141 /* CosmosAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF65921F208C0500817141 /* CosmosAccessibility.swift */; };
 		5BEF65A41F208C0500817141 /* CosmosDefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF65931F208C0500817141 /* CosmosDefaultSettings.swift */; };
@@ -763,7 +765,6 @@
 		C433F8242E4FA5BC81AF8004 /* Pods_PortalUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8179359380611AE76CEE55B2 /* Pods_PortalUITests.framework */; };
 		D0CF005259FA3D3921BC6052 /* Pods_PortalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13D323634F062064C36589E /* Pods_PortalTests.framework */; };
 		D51B047020689C8A00D8D6D2 /* TSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51B046F20689C8A00D8D6D2 /* TSearchViewController.m */; };
-		D52B804620B829750057E831 /* TinyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52B804520B829750057E831 /* TinyMainViewController.m */; };
 		D52B804920B83CFD0057E831 /* GroomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D52B804820B83CFD0057E831 /* GroomCollectionView.m */; };
 		D53093BA205E445400427350 /* SingleSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093AD205E445100427350 /* SingleSegmentView.m */; };
 		D53093BB205E445400427350 /* SegmentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093AF205E445100427350 /* SegmentItem.m */; };
@@ -804,7 +805,6 @@
 		D5FF7DF620B7B6D700D2AD78 /* OrderMenuPushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DF320B7B6B900D2AD78 /* OrderMenuPushView.swift */; };
 		D5FF7DF720B7B6D700D2AD78 /* OrderTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DF420B7B6D600D2AD78 /* OrderTypeView.swift */; };
 		D5FF7DF820B7B6D700D2AD78 /* OrderPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DF520B7B6D600D2AD78 /* OrderPopView.swift */; };
-		D5FF7DFA20B7B70100D2AD78 /* SelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DF920B7B70100D2AD78 /* SelectModel.swift */; };
 		D5FF7DFC20B7D88400D2AD78 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DFB20B7D88400D2AD78 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
@@ -890,8 +890,10 @@
 		01B28A9720B50FC100CEFB36 /* OrderMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderMenuView.swift; sourceTree = "<group>"; };
 		01B6BDA22063809C0057CC53 /* SearchListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchListModel.swift; sourceTree = "<group>"; };
 		01B6BDA4206380D10057CC53 /* AllAddressController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllAddressController.swift; sourceTree = "<group>"; };
+		01B97F7320B9A13B006B7E24 /* SelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModel.swift; sourceTree = "<group>"; };
 		01C0345F205FED7F00237AAD /* SearchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListController.swift; sourceTree = "<group>"; };
 		01C03461205FEDE000237AAD /* SearchListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListCell.swift; sourceTree = "<group>"; };
+		01CA194C20B9CDAC00E40F7D /* CeateOrderTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeateOrderTarget.swift; sourceTree = "<group>"; };
 		1B022D5F1F21A20400129849 /* ZoomingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomingImageView.h; sourceTree = "<group>"; };
 		1B022D601F21A20400129849 /* ZoomingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomingImageView.m; sourceTree = "<group>"; };
 		1B0CD2BB1E8B5B6A008AF162 /* YCHotelMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHotelMainController.h; sourceTree = "<group>"; };
@@ -2260,7 +2262,6 @@
 		D5FF7DF320B7B6B900D2AD78 /* OrderMenuPushView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderMenuPushView.swift; sourceTree = "<group>"; };
 		D5FF7DF420B7B6D600D2AD78 /* OrderTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTypeView.swift; sourceTree = "<group>"; };
 		D5FF7DF520B7B6D600D2AD78 /* OrderPopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderPopView.swift; sourceTree = "<group>"; };
-		D5FF7DF920B7B70100D2AD78 /* SelectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectModel.swift; sourceTree = "<group>"; };
 		D5FF7DFB20B7D88400D2AD78 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2290,7 +2291,6 @@
 				1BEF69D71E94B51800CE3434 /* Security.framework in Frameworks */,
 				1BDBB93B1EC1666000D01036 /* libcrypto.a in Frameworks */,
 				1BEF69D51E94B50D00CE3434 /* libc++.tbd in Frameworks */,
-				5BED7BCE1F690FD200CE31D6 /* UMMobClick.framework in Frameworks */,
 				1BEF69D31E94B4FC00CE3434 /* libz.tbd in Frameworks */,
 				838F8B76C110A40044A207B0 /* Pods_Portal.framework in Frameworks */,
 				1BC8767E1E973AA300BB38D7 /* AlipaySDK.framework in Frameworks */,
@@ -2365,9 +2365,10 @@
 		01B28A8E20B3F44800CEFB36 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D5FF7DF920B7B70100D2AD78 /* SelectModel.swift */,
 				D5FF7DF120B6A6F900D2AD78 /* StoreDetail.swift */,
 				01B28A8F20B3F55D00CEFB36 /* StoreProductList.swift */,
+				01B97F7320B9A13B006B7E24 /* SelectModel.swift */,
+				01CA194C20B9CDAC00E40F7D /* CeateOrderTarget.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5736,7 +5737,7 @@
 				TargetAttributes = {
 					6275E8551DDC692000656E2D = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 9A8T4DFUB8;
+						DevelopmentTeam = W6JK3FHE8S;
 						ProvisioningStyle = Automatic;
 					};
 					6275E8691DDC692100656E2D = {
@@ -6086,6 +6087,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01CA194B20B9B53100E40F7D /* TinyMainViewController.m in Sources */,
 				26CFF65C2004B1A600A10F91 /* RSOTCCollectionViewCell.m in Sources */,
 				269CA6F120020555009E6C54 /* AppDelegate.swift in Sources */,
 				D53093BE205E445400427350 /* ChoiceTableViewCell.m in Sources */,
@@ -6254,6 +6256,7 @@
 				1B392F051E28D14E00F70981 /* SupermarketLimitBuyTableView.m in Sources */,
 				5BC2DA261E1B709000082167 /* YCBaseTableViewController.swift in Sources */,
 				1BDBB9441EC5A73D00D01036 /* HotelDetailInfoModel.m in Sources */,
+				01B97F7420B9A13B006B7E24 /* SelectModel.swift in Sources */,
 				1BC876A31E98872E00BB38D7 /* HotelHomeAllDayController.m in Sources */,
 				1B392F1A1E28D14E00F70981 /* IntergrationTableViewCell.m in Sources */,
 				1B392F101E28D14E00F70981 /* SupermarketSearchController.m in Sources */,
@@ -6512,7 +6515,6 @@
 				5B9CBDDB1DE6CE7C0071A3B5 /* YCConcurrentOperation.swift in Sources */,
 				1B392D7A1E28D0E500F70981 /* TZPhotoPreviewController.m in Sources */,
 				1B392D931E28D0E500F70981 /* YYTextTransaction.m in Sources */,
-				D5FF7DFA20B7B70100D2AD78 /* SelectModel.swift in Sources */,
 				1B392F681E28D14E00F70981 /* SupermarketShoppingCartViewController.m in Sources */,
 				5B6F59541EFBBE4800D1DE90 /* YCIndicator.swift in Sources */,
 				1BBF76B41E6418F700BF0AA9 /* HotelHome.m in Sources */,
@@ -6632,6 +6634,7 @@
 				5BE654311E6EA3A0003CC59F /* CAAnimation+WAnimation.m in Sources */,
 				1B392D671E28D0E500F70981 /* HNCodeScannerView.m in Sources */,
 				26B5EE1F1FF391BD0001E40B /* RSLoginContainerController.m in Sources */,
+				01CA194D20B9CDAC00E40F7D /* CeateOrderTarget.swift in Sources */,
 				013297E7205E53CC007735B4 /* CompanyAuthController.m in Sources */,
 				1BA9B1EA1E791351001FB11F /* SupermarketPointModel.m in Sources */,
 				5BCE0AA51E319A960089A73A /* NSObject+TransfromModel.m in Sources */,
@@ -6752,7 +6755,6 @@
 				5B95EAED1DF7B81D006E74C4 /* Notification + YC.swift in Sources */,
 				5BEBB6771DFAB73400367D77 /* AlamofireNetWork.swift in Sources */,
 				1B392EF31E28D14E00F70981 /* SupermarketHomeBannerData.m in Sources */,
-				D52B804620B829750057E831 /* TinyMainViewController.m in Sources */,
 				5BE9DD021E777A780089A1C2 /* SupermarketReleaseCommentController.m in Sources */,
 				5B7DCAFA1DEFEAE900F1D2AB /* YCWebViewClass.swift in Sources */,
 				1B80E6CF1E4D5631001603B2 /* MASConstraint.m in Sources */,
@@ -7029,7 +7031,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 9A8T4DFUB8;
+				DEVELOPMENT_TEAM = W6JK3FHE8S;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7060,6 +7062,7 @@
 					"$(PROJECT_DIR)/UMSocial/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/UMSocial/SocialLibraries/WeChat",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -7098,7 +7101,7 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "arm64 armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -7112,7 +7115,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 9A8T4DFUB8;
+				DEVELOPMENT_TEAM = W6JK3FHE8S;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7179,7 +7182,7 @@
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "arm64 armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};

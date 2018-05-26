@@ -14,20 +14,18 @@ class BusinessHomeController: BaseController {
         case order
         case comment
         case business
-        case generalize
+    
         
-        static let count: Int = 4
+        static let count: Int = 3
         
         var title: String {
             switch self {
             case .order:
-                return "点单"
+                return "메뉴"
             case .comment:
-                return "评价"
+                return "리뷰"
             case .business:
-                return "商家"
-            case .generalize:
-                return "推广"
+                return "정보"
             }
         }
     }
@@ -67,7 +65,7 @@ class BusinessHomeController: BaseController {
         pageView.progressColor = UIColor(hex: 0x21c043)
         pageView.selectedTextFont = UIFont.systemFont(ofSize: 15)
         pageView.normalTextFont = UIFont.systemFont(ofSize: 15)
-        pageView.cellWidth = Constant.screenWidth / 4.0
+        pageView.cellWidth = Constant.screenWidth / 3.0
         pageView.delegate = self
         pageView.dataSource = self
         addChildViewController(pageView)
@@ -134,6 +132,7 @@ extension BusinessHomeController: TYPagerControllerDataSource {
         let type = pageType(rawValue: index)!
         switch type {
         case .order:
+            orderController.dic = self.dic 
             return orderController
         default:
             return UIViewController()
