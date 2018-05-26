@@ -12,7 +12,7 @@ class OrderTypeView: UIView {
     
     var backgroudView: UIView!
     var popView: OrderPopView!
-    var buyAction: ((_ plist: String, _ price: Float) -> ())?
+    var buyAction: ((_ plist: String, _ price: Float, _ name: String) -> ())?
  
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,8 +28,8 @@ class OrderTypeView: UIView {
         popView.closeAction = { [weak self] in
             self?.hide()
         }
-        popView.buyAction = { [weak self] itemcode, price in
-            self?.buyAction?(itemcode, price)
+        popView.buyAction = { [weak self] itemcode, price, name in
+            self?.buyAction?(itemcode, price, name)
             self?.hide()
         }
         addSubview(popView)
