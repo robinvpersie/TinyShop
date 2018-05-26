@@ -58,7 +58,7 @@ class BusinessOrderCell: UITableViewCell {
         
         buyBtn = UIButton(type: .custom)
         buyBtn.addTarget(self, action: #selector(didBuy), for: .touchUpInside)
-        buyBtn.setTitle("选购", for: .normal)
+        buyBtn.setTitle("옵션", for: .normal)
         buyBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         buyBtn.setTitleColor(UIColor.white, for: .normal)
         buyBtn.layer.backgroundColor = UIColor(red: 31, green: 184, blue: 59).cgColor
@@ -74,7 +74,7 @@ class BusinessOrderCell: UITableViewCell {
         addBtn = UIButton(type: .custom)
         addBtn.addTarget(self, action: #selector(didAdd), for: .touchUpInside)
         addBtn.setTitleColor(UIColor.white, for: .normal)
-        addBtn.setTitle("添加", for: .normal)
+        addBtn.setTitle("추가", for: .normal)
         addBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         addBtn.layer.backgroundColor = buyBtn.layer.backgroundColor
         addBtn.layer.cornerRadius = 15
@@ -95,10 +95,7 @@ class BusinessOrderCell: UITableViewCell {
             NSAttributedStringKey.foregroundColor: UIColor(hex: 0xdd0909),
             NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 15)])
         mutableAttributeString.append(priceAttributeStr)
-        let startStr = NSAttributedString(string: "起", attributes: [
-            NSAttributedStringKey.foregroundColor: UIColor(hex: 0x999999),
-            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 13)])
-        mutableAttributeString.append(startStr)
+      
         minmunPricelb.attributedText = mutableAttributeString
         
         if plist.isSingle == "0" {

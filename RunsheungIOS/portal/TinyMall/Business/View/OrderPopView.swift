@@ -84,7 +84,7 @@ class OrderPopView: UIView {
         
         let buyBtn = UIButton(type: .custom)
         buyBtn.addTarget(self, action: #selector(didBuy), for: .touchUpInside)
-        buyBtn.setTitle("加入购物车", for: .normal)
+        buyBtn.setTitle("장바구니담기", for: .normal)
         buyBtn.setTitleColor(UIColor.white, for: .normal)
         buyBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         buyBtn.layer.cornerRadius = 4
@@ -202,9 +202,9 @@ extension OrderPopView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header: OrderHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, forIndexPath: indexPath)
         if indexPath.section == 0 {
-            header.titlelb.text = "规格:"
+            header.titlelb.text = "규격:"
         } else {
-            header.titlelb.text = "口味"
+            header.titlelb.text = "입맛:"
         }
         return header
     }

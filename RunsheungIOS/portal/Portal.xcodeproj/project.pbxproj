@@ -49,16 +49,12 @@
 		01B28A9420B40DD200CEFB36 /* BusinessCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A9320B40DD200CEFB36 /* BusinessCommentCell.swift */; };
 		01B28A9620B4F8E900CEFB36 /* BusinessOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A9520B4F8E900CEFB36 /* BusinessOrderCell.swift */; };
 		01B28A9820B50FC100CEFB36 /* OrderMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A9720B50FC100CEFB36 /* OrderMenuView.swift */; };
-		01B28AA220B6A92200CEFB36 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28AA120B6A92200CEFB36 /* Theme.swift */; };
-		01B28AA620B79A4000CEFB36 /* OrderTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28AA320B79A3F00CEFB36 /* OrderTypeView.swift */; };
-		01B28AA720B79A4000CEFB36 /* OrderPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28AA420B79A4000CEFB36 /* OrderPopView.swift */; };
-		01B28AA820B79A4000CEFB36 /* OrderMenuPushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28AA520B79A4000CEFB36 /* OrderMenuPushView.swift */; };
-		01B28AAA20B7A1EA00CEFB36 /* SelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28AA920B7A1EA00CEFB36 /* SelectModel.swift */; };
 		01B6BDA32063809C0057CC53 /* SearchListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6BDA22063809C0057CC53 /* SearchListModel.swift */; };
 		01B6BDA5206380D10057CC53 /* AllAddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6BDA4206380D10057CC53 /* AllAddressController.swift */; };
 		01B97F7420B9A13B006B7E24 /* SelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B97F7320B9A13B006B7E24 /* SelectModel.swift */; };
 		01C03460205FED7F00237AAD /* SearchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C0345F205FED7F00237AAD /* SearchListController.swift */; };
 		01C03462205FEDE000237AAD /* SearchListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C03461205FEDE000237AAD /* SearchListCell.swift */; };
+		01CA194B20B9B53100E40F7D /* TinyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52B804520B829750057E831 /* TinyMainViewController.m */; };
 		1B022D611F21A20400129849 /* ZoomingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B022D601F21A20400129849 /* ZoomingImageView.m */; };
 		1B0CD2BD1E8B5B6A008AF162 /* YCHotelMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CD2BC1E8B5B6A008AF162 /* YCHotelMainController.m */; };
 		1B0CD2C01E8B5B8D008AF162 /* YCHoltelBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CD2BF1E8B5B8D008AF162 /* YCHoltelBaseViewController.m */; };
@@ -690,7 +686,6 @@
 		5BEC723A1E46F725007D519D /* YCFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEC72391E46F725007D519D /* YCFileModel.swift */; };
 		5BECA2381F2ADBBF00729382 /* MoyaNetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BECA2371F2ADBBF00729382 /* MoyaNetWork.swift */; };
 		5BED7BCC1F68B9A600CE31D6 /* YCDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED7BCB1F68B9A600CE31D6 /* YCDataManager.swift */; };
-		5BED7BCE1F690FD200CE31D6 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BED7BCD1F690FD200CE31D6 /* UMMobClick.framework */; };
 		5BED7BD01F69104900CE31D6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BED7BCF1F69104900CE31D6 /* libsqlite3.tbd */; };
 		5BEF65A31F208C0500817141 /* CosmosAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF65921F208C0500817141 /* CosmosAccessibility.swift */; };
 		5BEF65A41F208C0500817141 /* CosmosDefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF65931F208C0500817141 /* CosmosDefaultSettings.swift */; };
@@ -891,11 +886,6 @@
 		01B28A9320B40DD200CEFB36 /* BusinessCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCommentCell.swift; sourceTree = "<group>"; };
 		01B28A9520B4F8E900CEFB36 /* BusinessOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessOrderCell.swift; sourceTree = "<group>"; };
 		01B28A9720B50FC100CEFB36 /* OrderMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderMenuView.swift; sourceTree = "<group>"; };
-		01B28AA120B6A92200CEFB36 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		01B28AA320B79A3F00CEFB36 /* OrderTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTypeView.swift; sourceTree = "<group>"; };
-		01B28AA420B79A4000CEFB36 /* OrderPopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderPopView.swift; sourceTree = "<group>"; };
-		01B28AA520B79A4000CEFB36 /* OrderMenuPushView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderMenuPushView.swift; sourceTree = "<group>"; };
-		01B28AA920B7A1EA00CEFB36 /* SelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModel.swift; sourceTree = "<group>"; };
 		01B6BDA22063809C0057CC53 /* SearchListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchListModel.swift; sourceTree = "<group>"; };
 		01B6BDA4206380D10057CC53 /* AllAddressController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllAddressController.swift; sourceTree = "<group>"; };
 		01B97F7320B9A13B006B7E24 /* SelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModel.swift; sourceTree = "<group>"; };
@@ -2296,7 +2286,6 @@
 				1BEF69D71E94B51800CE3434 /* Security.framework in Frameworks */,
 				1BDBB93B1EC1666000D01036 /* libcrypto.a in Frameworks */,
 				1BEF69D51E94B50D00CE3434 /* libc++.tbd in Frameworks */,
-				5BED7BCE1F690FD200CE31D6 /* UMMobClick.framework in Frameworks */,
 				1BEF69D31E94B4FC00CE3434 /* libz.tbd in Frameworks */,
 				838F8B76C110A40044A207B0 /* Pods_Portal.framework in Frameworks */,
 				1BC8767E1E973AA300BB38D7 /* AlipaySDK.framework in Frameworks */,
@@ -6090,6 +6079,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01CA194B20B9B53100E40F7D /* TinyMainViewController.m in Sources */,
 				26CFF65C2004B1A600A10F91 /* RSOTCCollectionViewCell.m in Sources */,
 				269CA6F120020555009E6C54 /* AppDelegate.swift in Sources */,
 				D53093BE205E445400427350 /* ChoiceTableViewCell.m in Sources */,

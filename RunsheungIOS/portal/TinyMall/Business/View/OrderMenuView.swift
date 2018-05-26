@@ -56,7 +56,7 @@ class OrderMenuView: UIView {
         
         payBtn = UIButton(type: .custom)
         payBtn.addTarget(self, action: #selector(pay), for: .touchUpInside)
-        payBtn.setTitle("去结算", for: .normal)
+        payBtn.setTitle("주문하기", for: .normal)
         payBtn.setTitleColor(UIColor.white, for: .normal)
         payBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         payBtn.backgroundColor = Theme.orderStyleColor

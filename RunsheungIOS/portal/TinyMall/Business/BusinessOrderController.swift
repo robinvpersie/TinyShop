@@ -81,7 +81,29 @@ class BusinessOrderController: BaseController {
             }
         }
         orderMenu.payAction = { [weak self] in
-            
+            guard let this = self else {
+                return
+            }
+            let passwordView = CYPasswordView()
+            passwordView.title = "결제 비밀번호를 입력해주세요"
+            passwordView.loadingText = "결제중..."
+            passwordView.show(in: this.view.window!)
+            passwordView.finish = { password in
+                passwordView.startLoading()
+                passwordView.hideKeyboard()
+                delay(2, work: {
+                    passwordView.stopLoading()
+                    passwordView.requestComplete(true, message: "success!!!")
+                    delay(1.5, work: {
+                        passwordView.hide()
+                        this.itemSelected.removeAll()
+                        this.totalPrice = 0.00
+                        this.totalNum = 0
+                        this.menuReloadData()
+                    })
+                })
+            }
+
         }
         view.addSubview(orderMenu)
     
