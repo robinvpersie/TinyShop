@@ -55,6 +55,8 @@
 			for (UIViewController *vc in controllers) {
 				if ([vc isMemberOfClass:[SupermarketHomeViewController class]]||[vc isMemberOfClass:[LZCartViewController class]]) {
 					[self.navigationController popToViewController:vc animated:YES];
+                } else {
+                    [self.navigationController popViewControllerAnimated: YES];
                 }
 			}
 

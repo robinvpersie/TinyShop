@@ -55,6 +55,7 @@
 		01C03460205FED7F00237AAD /* SearchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C0345F205FED7F00237AAD /* SearchListController.swift */; };
 		01C03462205FEDE000237AAD /* SearchListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C03461205FEDE000237AAD /* SearchListCell.swift */; };
 		01CA194B20B9B53100E40F7D /* TinyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52B804520B829750057E831 /* TinyMainViewController.m */; };
+		01CA194D20B9CDAC00E40F7D /* CeateOrderTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA194C20B9CDAC00E40F7D /* CeateOrderTarget.swift */; };
 		1B022D611F21A20400129849 /* ZoomingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B022D601F21A20400129849 /* ZoomingImageView.m */; };
 		1B0CD2BD1E8B5B6A008AF162 /* YCHotelMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CD2BC1E8B5B6A008AF162 /* YCHotelMainController.m */; };
 		1B0CD2C01E8B5B8D008AF162 /* YCHoltelBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CD2BF1E8B5B8D008AF162 /* YCHoltelBaseViewController.m */; };
@@ -891,6 +892,7 @@
 		01B97F7320B9A13B006B7E24 /* SelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModel.swift; sourceTree = "<group>"; };
 		01C0345F205FED7F00237AAD /* SearchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListController.swift; sourceTree = "<group>"; };
 		01C03461205FEDE000237AAD /* SearchListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListCell.swift; sourceTree = "<group>"; };
+		01CA194C20B9CDAC00E40F7D /* CeateOrderTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeateOrderTarget.swift; sourceTree = "<group>"; };
 		1B022D5F1F21A20400129849 /* ZoomingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomingImageView.h; sourceTree = "<group>"; };
 		1B022D601F21A20400129849 /* ZoomingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomingImageView.m; sourceTree = "<group>"; };
 		1B0CD2BB1E8B5B6A008AF162 /* YCHotelMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHotelMainController.h; sourceTree = "<group>"; };
@@ -2363,6 +2365,7 @@
 				D5FF7DF120B6A6F900D2AD78 /* StoreDetail.swift */,
 				01B28A8F20B3F55D00CEFB36 /* StoreProductList.swift */,
 				01B97F7320B9A13B006B7E24 /* SelectModel.swift */,
+				01CA194C20B9CDAC00E40F7D /* CeateOrderTarget.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6625,6 +6628,7 @@
 				5BE654311E6EA3A0003CC59F /* CAAnimation+WAnimation.m in Sources */,
 				1B392D671E28D0E500F70981 /* HNCodeScannerView.m in Sources */,
 				26B5EE1F1FF391BD0001E40B /* RSLoginContainerController.m in Sources */,
+				01CA194D20B9CDAC00E40F7D /* CeateOrderTarget.swift in Sources */,
 				013297E7205E53CC007735B4 /* CompanyAuthController.m in Sources */,
 				1BA9B1EA1E791351001FB11F /* SupermarketPointModel.m in Sources */,
 				5BCE0AA51E319A960089A73A /* NSObject+TransfromModel.m in Sources */,

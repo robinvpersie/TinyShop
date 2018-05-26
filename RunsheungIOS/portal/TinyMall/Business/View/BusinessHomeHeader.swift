@@ -82,7 +82,6 @@ class BusinessHomeHeader: UIView {
         rationNum.textColor = UIColor(red: 255, green: 201, blue: 40)
         rationNum.font = UIFont.boldSystemFont(ofSize: 24)
         rationNum.textAlignment = .center
-        rationNum.text = "2.4"
         addSubview(rationNum)
         rationNum.snp.makeConstraints { make in
             make.left.equalTo(avatarlittleImgView)
@@ -149,12 +148,13 @@ class BusinessHomeHeader: UIView {
 //        rationNum.text = data.fav_cnt
         avatarlittleImgView.kf.setImage(with: URL(string: data.shop_thumnail_image), options: [.processor(RoundCornerImageProcessor(cornerRadius: 5))])
         commentInfoView.infolb.text = "최근리뷰"
-        commentInfoView.numlb.text = "254"
+        commentInfoView.numlb.text = data.sale_cnt
         replyInfoView.infolb.text = "사장님댓글"
         replyInfoView.numlb.text = "38"
         distanceInfoView.infolb.text = "상가거리"
-        distanceInfoView.numlb.text = "1.5km"
-        ratioStarView.rating = 2.4
+        distanceInfoView.numlb.text = data.distance
+        ratioStarView.rating = Double(data.fav_cnt) ?? 0
+        rationNum.text = data.fav_cnt
     }
     
     @objc func tel() {

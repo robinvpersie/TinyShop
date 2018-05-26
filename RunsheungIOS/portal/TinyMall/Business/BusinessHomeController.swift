@@ -132,6 +132,7 @@ extension BusinessHomeController: TYPagerControllerDataSource {
         let type = pageType(rawValue: index)!
         switch type {
         case .order:
+            orderController.dic = self.dic 
             return orderController
         default:
             return UIViewController()

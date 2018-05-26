@@ -844,11 +844,13 @@ typedef void(^finishAction)();
 		SupermarketConfrimOrderByNumbersController *confirm = [[SupermarketConfrimOrderByNumbersController alloc] init];
 		confirm.controllerType = self.controllerType;
 		confirm.hidesBottomBarWhenPushed = YES;
-		confirm.divCode = self.divCode;
+//        confirm.divCode = self.divCode;
 		float totalPrice = [self countPrice];
 		confirm.totalPrice = totalPrice;
 		confirm.dataArray = self.selectedArray;
-		confirm.shopArray = self.selectedShopArray;
+//        confirm.shopArray = self.selectedShopArray;
+        NSLog(@"%@",self.selectedArray);
+        NSLog(@"%@", self.selectedShopArray);
 		[self.navigationController pushViewController:confirm animated:YES];
 	} else {
 		[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:NSLocalizedString(@"没有选择任何商品", nil) ];
