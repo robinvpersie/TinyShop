@@ -703,4 +703,26 @@
 				 withPageSize:(NSString*)pageSize
 					  success:(void (^)(id response))success
 					  failure:(void (^)(NSError *err))failure;
+
+/**
+ 加载首页的图片列表
+ 
+ @param success 成功调用
+ @param failure 失败调用
+ */
++ (void)getMainPicturewithUri:(NSString*)uri
+				   withUserId:(NSString*)user_id
+					withToken:(NSString*)token
+					  success:(void (^)(id response))success
+					  failure:(void (^)(NSError *err))failure;
+/**
+ 获取条件菜品的种类
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getDisKindswithUri:(NSString*)uri
+				   success:(void (^)(id response))success
+				   failure:(void (^)(NSError *err))failure;
 @end

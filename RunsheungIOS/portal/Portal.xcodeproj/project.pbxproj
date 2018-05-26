@@ -763,6 +763,8 @@
 		C433F8242E4FA5BC81AF8004 /* Pods_PortalUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8179359380611AE76CEE55B2 /* Pods_PortalUITests.framework */; };
 		D0CF005259FA3D3921BC6052 /* Pods_PortalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13D323634F062064C36589E /* Pods_PortalTests.framework */; };
 		D51B047020689C8A00D8D6D2 /* TSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51B046F20689C8A00D8D6D2 /* TSearchViewController.m */; };
+		D52B804620B829750057E831 /* TinyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52B804520B829750057E831 /* TinyMainViewController.m */; };
+		D52B804920B83CFD0057E831 /* GroomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D52B804820B83CFD0057E831 /* GroomCollectionView.m */; };
 		D53093BA205E445400427350 /* SingleSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093AD205E445100427350 /* SingleSegmentView.m */; };
 		D53093BB205E445400427350 /* SegmentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093AF205E445100427350 /* SegmentItem.m */; };
 		D53093BC205E445400427350 /* ChoiceHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093B0205E445200427350 /* ChoiceHeadView.m */; };
@@ -776,6 +778,9 @@
 		D53093CE205E520C00427350 /* ProtectItemsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093CD205E520C00427350 /* ProtectItemsController.m */; };
 		D53093D1205E683D00427350 /* StepOneMemEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093D0205E683D00427350 /* StepOneMemEnrollController.m */; };
 		D5359DBC20848748008A62A9 /* WebRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5359DBB20848748008A62A9 /* WebRulesViewController.swift */; };
+		D56D5BB920B8430C00B657BF /* SearchIfView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BB820B8430C00B657BF /* SearchIfView.m */; };
+		D56D5BBC20B8FAB900B657BF /* arrowBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BBB20B8FAB900B657BF /* arrowBtn.m */; };
+		D56D5BBF20B94F1000B657BF /* FavCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BBE20B94F1000B657BF /* FavCollectionView.m */; };
 		D59D3A2C205BE42E0074F0E8 /* TSCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */; };
 		D59D3A2F205BF1030074F0E8 /* TSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */; };
 		D5D01F2A205F5606002263CC /* TeamEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F29205F5606002263CC /* TeamEnrollController.m */; };
@@ -2181,6 +2186,10 @@
 		B7BAC5172084458000A6D1C1 /* strip-frameworks.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "strip-frameworks.sh"; sourceTree = "<group>"; };
 		D51B046E20689C8A00D8D6D2 /* TSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSearchViewController.h; sourceTree = "<group>"; };
 		D51B046F20689C8A00D8D6D2 /* TSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSearchViewController.m; sourceTree = "<group>"; };
+		D52B804420B829750057E831 /* TinyMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TinyMainViewController.h; sourceTree = "<group>"; };
+		D52B804520B829750057E831 /* TinyMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TinyMainViewController.m; sourceTree = "<group>"; };
+		D52B804720B83CFD0057E831 /* GroomCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroomCollectionView.h; sourceTree = "<group>"; };
+		D52B804820B83CFD0057E831 /* GroomCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroomCollectionView.m; sourceTree = "<group>"; };
 		D53093AB205E445100427350 /* ChoiceSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceSegmentView.h; sourceTree = "<group>"; };
 		D53093AC205E445100427350 /* SegmentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentItem.h; sourceTree = "<group>"; };
 		D53093AD205E445100427350 /* SingleSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleSegmentView.m; sourceTree = "<group>"; };
@@ -2205,6 +2214,12 @@
 		D53093CF205E683D00427350 /* StepOneMemEnrollController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StepOneMemEnrollController.h; sourceTree = "<group>"; };
 		D53093D0205E683D00427350 /* StepOneMemEnrollController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StepOneMemEnrollController.m; sourceTree = "<group>"; };
 		D5359DBB20848748008A62A9 /* WebRulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRulesViewController.swift; sourceTree = "<group>"; };
+		D56D5BB720B8430C00B657BF /* SearchIfView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchIfView.h; sourceTree = "<group>"; };
+		D56D5BB820B8430C00B657BF /* SearchIfView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchIfView.m; sourceTree = "<group>"; };
+		D56D5BBA20B8FAB900B657BF /* arrowBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = arrowBtn.h; sourceTree = "<group>"; };
+		D56D5BBB20B8FAB900B657BF /* arrowBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = arrowBtn.m; sourceTree = "<group>"; };
+		D56D5BBD20B94F1000B657BF /* FavCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavCollectionView.h; sourceTree = "<group>"; };
+		D56D5BBE20B94F1000B657BF /* FavCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavCollectionView.m; sourceTree = "<group>"; };
 		D59D3A26205BE42E0074F0E8 /* TSCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCategoryController.h; sourceTree = "<group>"; };
 		D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCategoryController.m; sourceTree = "<group>"; };
 		D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBaseViewController.m; sourceTree = "<group>"; };
@@ -5576,6 +5591,16 @@
 		D5D01F38205FB3D1002263CC /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				D52B804420B829750057E831 /* TinyMainViewController.h */,
+				D52B804520B829750057E831 /* TinyMainViewController.m */,
+				D56D5BBD20B94F1000B657BF /* FavCollectionView.h */,
+				D56D5BBE20B94F1000B657BF /* FavCollectionView.m */,
+				D52B804720B83CFD0057E831 /* GroomCollectionView.h */,
+				D52B804820B83CFD0057E831 /* GroomCollectionView.m */,
+				D56D5BB720B8430C00B657BF /* SearchIfView.h */,
+				D56D5BB820B8430C00B657BF /* SearchIfView.m */,
+				D56D5BBA20B8FAB900B657BF /* arrowBtn.h */,
+				D56D5BBB20B8FAB900B657BF /* arrowBtn.m */,
 				D5D01F3C205FD5BE002263CC /* View */,
 				D5D01F39205FB3FF002263CC /* TinyShopMainController.h */,
 				D5D01F3A205FB3FF002263CC /* TinyShopMainController.m */,
@@ -6341,6 +6366,7 @@
 				1B4C10141EAEE056005EAAE5 /* HotelOrderArrangeModel.m in Sources */,
 				1B7036D91F20411600F53333 /* SupermarketWaitDeliverOrderController.m in Sources */,
 				26CFF6602004B1F400A10F91 /* RSOtcCollectionView.m in Sources */,
+				D56D5BB920B8430C00B657BF /* SearchIfView.m in Sources */,
 				01C03460205FED7F00237AAD /* SearchListController.swift in Sources */,
 				1B0CD2C61E8B5BFD008AF162 /* YCHotelMineViewController.m in Sources */,
 				D53093C1205E445400427350 /* GigaStarLabel.m in Sources */,
@@ -6547,6 +6573,7 @@
 				1B392F0A1E28D14E00F70981 /* SupermarketOnSaleCell.m in Sources */,
 				D5D01F31205F645E002263CC /* EnrollSheetView.m in Sources */,
 				1B392F141E28D14E00F70981 /* SupermarketTasteNewController.m in Sources */,
+				D52B804920B83CFD0057E831 /* GroomCollectionView.m in Sources */,
 				1BC876771E973AA300BB38D7 /* DataVerifier.m in Sources */,
 				1B9546F91F1DF147006DCB6C /* ZFMaskView.m in Sources */,
 				1B0CD2F51E8E0B40008AF162 /* HotelCalendarView.m in Sources */,
@@ -6618,6 +6645,7 @@
 				62ADFAF71DE3F632005FDE1D /* YCHomeBusinessCell.swift in Sources */,
 				5BC2DA221E1B3B3000082167 /* PersonalCenterModel.swift in Sources */,
 				267DAA961EA213EE00299E74 /* HotelChoiceTypeView.m in Sources */,
+				D56D5BBC20B8FAB900B657BF /* arrowBtn.m in Sources */,
 				1B5B6BB31E9B2044009D5C75 /* HotelPicsCollectionView.m in Sources */,
 				1B392F431E28D14E00F70981 /* SupermarketOrderData.m in Sources */,
 				1B80E6B21E4D561F001603B2 /* GSFilterCell.m in Sources */,
@@ -6664,6 +6692,7 @@
 				5BF0A9D71E0B79710035B517 /* PersonalCenterCell.swift in Sources */,
 				1B392EF91E28D14E00F70981 /* SupermarketHomePurchaseData.m in Sources */,
 				1B392D7B1E28D0E500F70981 /* TZProgressView.m in Sources */,
+				D56D5BBF20B94F1000B657BF /* FavCollectionView.m in Sources */,
 				6272BE641DDC6AD60075EA1C /* NetWorking.swift in Sources */,
 				1B392D541E28D0E500F70981 /* PGIndexBannerSubiew.m in Sources */,
 				5B9CBDD91DE547650071A3B5 /* BaseProtocol.swift in Sources */,
@@ -6717,6 +6746,7 @@
 				5B95EAED1DF7B81D006E74C4 /* Notification + YC.swift in Sources */,
 				5BEBB6771DFAB73400367D77 /* AlamofireNetWork.swift in Sources */,
 				1B392EF31E28D14E00F70981 /* SupermarketHomeBannerData.m in Sources */,
+				D52B804620B829750057E831 /* TinyMainViewController.m in Sources */,
 				5BE9DD021E777A780089A1C2 /* SupermarketReleaseCommentController.m in Sources */,
 				5B7DCAFA1DEFEAE900F1D2AB /* YCWebViewClass.swift in Sources */,
 				1B80E6CF1E4D5631001603B2 /* MASConstraint.m in Sources */,

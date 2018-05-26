@@ -103,7 +103,6 @@
 	 {
 		 if ([response[@"status"] intValue] == 1) {
 			 self.responseDit = response;
-			 
 			 [self transferResponse];
 			 NSArray *datas = self.responseDit[@"storelist"];
 			 
@@ -348,11 +347,6 @@
 		NSArray*lev3s = self.responseDit[@"lev3s"];
 		NSLog(@"------------lev3s---------:%@",lev3s);
 		if (self.maskview == nil) {
-			//获取状态栏的rect
-			CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
-			//获取导航栏的rect
-			CGRect navRect = self.navigationController.navigationBar.frame;
-			
 			self.maskview = [[CoverMaskView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.SegmentItem.frame), SCREEN_WIDTH, SCREEN_HEIGHT)];
 			self.maskview.data = lev3s;
 			self.maskview.sxdegate = self;
