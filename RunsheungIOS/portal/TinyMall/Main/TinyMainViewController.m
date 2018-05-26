@@ -18,6 +18,7 @@
 #import "ChoiceTableViewCell.h"
 #import "TSCategoryController.h"
 #import "FavCollectionView.h"
+#import "PopDomainInputView.h"
 
 @interface TinyMainViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,retain)UITableView *mainTableview;
@@ -29,6 +30,10 @@
 
 @property (nonatomic,retain)SearchIfView *searchView;
 @property (nonatomic,retain)NSDictionary *imgDic;
+@property (nonatomic,retain)NSDictionary *searchDic;
+@property (nonatomic,retain)NSArray *storelists;
+@property(nonatomic,retain)PopDomainInputView *popInputView;
+@property (nonatomic,retain)NSMutableArray *numberdata;
 @end
 
 @implementation TinyMainViewController
@@ -68,6 +73,7 @@
 	UIButton *goBtn = [UIButton new];
 	[goBtn setTitle:@"GO" forState:UIControlStateNormal];
 	[goBtn addTarget:self action:@selector(goBtn:) forControlEvents:UIControlEventTouchUpInside];
+	goBtn.tag = 0;
 	goBtn.backgroundColor = RGB(33, 192, 67);
 	goBtn.layer.cornerRadius = 5;
 	goBtn.layer.masksToBounds = YES;
@@ -80,9 +86,13 @@
 	}];
 	
 	self.domainBtn = [UIButton new];
+	self.domainBtn.tag = 1;
 	self.domainBtn.layer.cornerRadius = 5;
 	self.domainBtn.layer.masksToBounds = YES;
 	self.domainBtn.backgroundColor = RGB(221, 221, 221);
+	[self.domainBtn setTitleColor:RGB(45, 45, 45) forState:UIControlStateNormal];
+	[self.domainBtn addTarget:self action:@selector(goBtn:) forControlEvents:UIControlEventTouchUpInside];
+
 	[headview addSubview:self.domainBtn];
 	[self.domainBtn mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.leading.mas_equalTo(10);
@@ -90,6 +100,8 @@
 		make.top.mas_equalTo(10);
 		make.height.mas_equalTo(40);
 	}];
+	
+	
 	
 	UIImageView *headImageview = [UIImageView new];
 	headImageview.image = [UIImage imageNamed:@"banner"];
@@ -106,7 +118,7 @@
 #pragma mark -- uitableviewdelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 	if (section == 3) {
-		return 6;
+		return self.storelists.count;
 	}
 	return 1;
 }
@@ -134,6 +146,13 @@
 		
 	}else if (indexPath.section == 2){
 			self.searchView = [SearchIfView new];
+		__weak typeof(self) weakself = self;
+			self.searchView.paramterdic = ^(NSMutableDictionary *dic) {
+				[weakself orCorddingToIf:dic];
+			};
+			if (_searchDic !=nil) {
+				self.searchView.dic = _searchDic;
+			}
 			[cell.contentView addSubview:self.searchView];
 			[self.searchView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.edges.equalTo(cell.contentView);
@@ -141,7 +160,10 @@
 	}else {
 		ChoiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChoiceTableViewCellID"];
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-		cell.starValue = 4.2f;
+		NSDictionary *dic = self.storelists[indexPath.row];
+		cell.starValue = [dic[@"score"] doubleValue];
+		cell.dic = dic;
+		
 		return cell;
 	}
 
@@ -316,30 +338,35 @@
 }
 
 - (void)goBtn:(UIButton*)sender{
-	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"输入数字域名" message:nil preferredStyle:UIAlertControllerStyleAlert];
-	//增加取消按钮；
-	[alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
-	//增加确定按钮；
-	[alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-		
-		UITextField *userNameTextField = alertController.textFields.firstObject;
-		UITextField *passwordTextField = alertController.textFields.lastObject;
-		NSLog(@"用户名 = %@，密码 = %@",userNameTextField.text,passwordTextField.text);
-		
-	}]];
+	if (sender.tag == 1) {
+		__weak typeof(self) weakself = self;
+		self.popInputView = [PopDomainInputView new];
+		self.popInputView.submitblock = ^(NSMutableArray *data) {
+			weakself.numberdata = data;
+			NSString *addstr = data.firstObject;
+			for (int i = 0;i<4;i++) {
+				NSString *str = data[i+1];
+				addstr = [NSString stringWithFormat:@"%@-%@",addstr,str];
+			}
 
-	//定义第一个输入框；
-	[alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-		textField.placeholder = @"请输入用户名";
-	}];
-	//定义第二个输入框；
-	[alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-		textField.placeholder = @"请输入密码";
-	}];
-	
-	[self presentViewController:alertController animated:true completion:nil];
-	
+			[weakself.domainBtn setTitle:addstr forState:UIControlStateNormal];
+			
+		};
+		[[UIApplication sharedApplication].delegate.window addSubview:self.popInputView];
+		[self.popInputView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.mas_equalTo(SCREEN_HEIGHT/2.0f - 50);
+			make.leading.mas_equalTo(30);
+			make.trailing.mas_equalTo(-30);
+			make.height.mas_equalTo(200);
+			
+		}];
+	} else {
+		[self loadInputDomain:self.numberdata];
 
+	}
+	
+	
+		
 }
 
 - (void)loadResquestData{
@@ -347,10 +374,57 @@
 	YCAccountModel *account = [YCAccountModel getAccount];
 	NSString *token = account.token;
 	NSString*userid = account.customCode;
+	NSString *commbine = account.combineToken;
 	[KLHttpTool getMainPicturewithUri:@"StoreCate/requestStoreCate1FavList" withUserId:(userid.length?userid:@"") withToken:(token.length?token:@"") success:^(id response) {
 		if ([response[@"status"] intValue] == 1) {
 			_imgDic = response;
 			[self.mainTableview reloadData];
+		}
+	} failure:^(NSError *err) {
+		
+	}];
+	
+	[KLHttpTool getDisKindswithUri:@"StoreCate/requestStoreCate1Where" success:^(id response) {
+		if ([response[@"status"] intValue] == 1) {
+			_searchDic = response;
+			[self.mainTableview reloadData];
+		}
+	} failure:^(NSError *err) {
+		
+	}];
+}
+- (void)orCorddingToIf:(NSMutableDictionary*)dic{
+
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString *token = account.token;
+	NSString*userid = account.customCode;
+	NSString *commbine = account.combineToken;
+	[KLHttpTool getStoreListWithIfWithUri:@"StoreCate/requestStoreSearchList" withUserId:(userid.length?userid:@"") withToken:(token.length?token:@"") withPg:@"1" withPageSize:@"5" withLatitude:GetUserDefault(@"latitude") withlongitude:GetUserDefault(@"longtitude") withParamter:dic success:^(id response) {
+		if ([response[@"status"] intValue]==1) {
+			self.storelists = response[@"storelist"];
+			NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:3];
+			[self.mainTableview reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+
+		}
+	} failure:^(NSError *err) {
+		
+	}];
+}
+
+- (void)loadInputDomain:(NSMutableArray*)data{
+	NSString *addstr = data.firstObject;
+	for (int i = 0;i<4;i++) {
+		NSString *str = data[i+1];
+		addstr = [NSString stringWithFormat:@"%@-%@",addstr,str];
+	}
+
+	[KLHttpTool getInputDomainViewwithUri:nil withad_num:addstr witht_num:data.firstObject withl_num:data[1] withr_num:data[2] withb_num:data[3] withc_num:data[4] withlatitude:GetUserDefault(@"latitude") withlongitude:GetUserDefault(@"longtitude") success:^(id response) {
+		if ([response[@"status"] intValue] == 1) {
+			NSDictionary *dic = response[@"data"];
+			BusinessHomeController *shopDetailed = [[BusinessHomeController alloc] init];
+			shopDetailed.hidesBottomBarWhenPushed = YES;
+			shopDetailed.dic = dic;
+			[self.navigationController pushViewController:shopDetailed animated:YES];
 		}
 	} failure:^(NSError *err) {
 		

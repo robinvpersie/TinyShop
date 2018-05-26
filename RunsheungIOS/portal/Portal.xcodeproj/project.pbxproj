@@ -781,6 +781,7 @@
 		D56D5BB920B8430C00B657BF /* SearchIfView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BB820B8430C00B657BF /* SearchIfView.m */; };
 		D56D5BBC20B8FAB900B657BF /* arrowBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BBB20B8FAB900B657BF /* arrowBtn.m */; };
 		D56D5BBF20B94F1000B657BF /* FavCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BBE20B94F1000B657BF /* FavCollectionView.m */; };
+		D56D5BC220B9C7D400B657BF /* PopDomainInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BC120B9C7D400B657BF /* PopDomainInputView.m */; };
 		D59D3A2C205BE42E0074F0E8 /* TSCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */; };
 		D59D3A2F205BF1030074F0E8 /* TSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */; };
 		D5D01F2A205F5606002263CC /* TeamEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F29205F5606002263CC /* TeamEnrollController.m */; };
@@ -2220,6 +2221,8 @@
 		D56D5BBB20B8FAB900B657BF /* arrowBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = arrowBtn.m; sourceTree = "<group>"; };
 		D56D5BBD20B94F1000B657BF /* FavCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavCollectionView.h; sourceTree = "<group>"; };
 		D56D5BBE20B94F1000B657BF /* FavCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavCollectionView.m; sourceTree = "<group>"; };
+		D56D5BC020B9C7D400B657BF /* PopDomainInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PopDomainInputView.h; sourceTree = "<group>"; };
+		D56D5BC120B9C7D400B657BF /* PopDomainInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PopDomainInputView.m; sourceTree = "<group>"; };
 		D59D3A26205BE42E0074F0E8 /* TSCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCategoryController.h; sourceTree = "<group>"; };
 		D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCategoryController.m; sourceTree = "<group>"; };
 		D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBaseViewController.m; sourceTree = "<group>"; };
@@ -5597,6 +5600,8 @@
 				D56D5BBE20B94F1000B657BF /* FavCollectionView.m */,
 				D52B804720B83CFD0057E831 /* GroomCollectionView.h */,
 				D52B804820B83CFD0057E831 /* GroomCollectionView.m */,
+				D56D5BC020B9C7D400B657BF /* PopDomainInputView.h */,
+				D56D5BC120B9C7D400B657BF /* PopDomainInputView.m */,
 				D56D5BB720B8430C00B657BF /* SearchIfView.h */,
 				D56D5BB820B8430C00B657BF /* SearchIfView.m */,
 				D56D5BBA20B8FAB900B657BF /* arrowBtn.h */,
@@ -6388,6 +6393,7 @@
 				1B392ED71E28D14E00F70981 /* SupermarketCommentData.m in Sources */,
 				1B54612A1EAAF17400E16169 /* HotelOrderDetailRoomModel.m in Sources */,
 				5B34C8981E1FAD3300AF6B93 /* TYTabTitleViewCell.m in Sources */,
+				D56D5BC220B9C7D400B657BF /* PopDomainInputView.m in Sources */,
 				1BEF69481E947E0C00CE3434 /* HotelSearchResultTableView.m in Sources */,
 				1B5B6BC81E9B5882009D5C75 /* HotelWaitPayOrderController.m in Sources */,
 				267DAA9C1EA213EE00299E74 /* HotelSupportServiceView.m in Sources */,

@@ -9,15 +9,28 @@
 #import "SearchIfView.h"
 #import "arrowBtn.h"
 
+
 @implementation SearchIfView
 
 - (instancetype)initWithFrame:(CGRect)frame{
 	self = [super initWithFrame:frame];
 	if (self) {
-		self.datas = @[@[@{@"外卖":@[@"可以",@"不可以"]},@{@"排序":@[@"距离",@"销量",@"推荐"]},@{@"种类":@[@"韩餐",@"中餐",@"海外餐"]}],@[@{@"活动":@[@"有",@"没有"]},@{@"优惠券":@[@"有",@"没有"]},@{@"确定":@[]}]];
-		[self createSubviews];
 	}
 	return self;
+}
+- (void)setDic:(NSDictionary *)dic{
+	_dic = dic;
+	self.resquestDic = [NSMutableDictionary new];
+	self.datas = @[@[@{@"外卖":_dic[@"dataDeli"]},@{@"排序":_dic[@"dataOrderBy"]},@{@"种类":_dic[@"dataLevel"]}],@[@{@"活动":_dic[@"dataEvnt"]},@{@"优惠券":_dic[@"dataVchr"]},@{@"确定":@[]}]];
+	[self.resquestDic setObject:@"0" forKey:@"DeliveryCd"];
+	[self.resquestDic setObject:@"0" forKey:@"order_by"];
+	[self.resquestDic setObject:@"0" forKey:@"EventCd"];
+	[self.resquestDic setObject:@"0" forKey:@"VoucherCd"];
+	[self.resquestDic setObject:@"1" forKey:@"level1"];
+	[self.resquestDic setObject:@"3" forKey:@"level2"];
+
+	[self createSubviews];
+
 }
 - (void)createSubviews{
 	UILabel *ifchoice = [UILabel new];
@@ -30,7 +43,7 @@
 	NSArray *first = self.datas.firstObject;
 	NSArray *second = self.datas.lastObject;
 	for (int i=0;i<self.datas.count;i++) {
-		for (int j=0;j<second.count;j++) {
+		for (int j=0;j< second.count;j++) {
 			if (i*3+j != 5) {
 				NSDictionary *dic = (i==0? first[j]: second[j]);
 				
@@ -38,10 +51,9 @@
 				[self addSubview:bgview];
 				[bgview mas_makeConstraints:^(MASConstraintMaker *make) {
 					make.top.mas_equalTo(i*40 + 40);
-					make.width.mas_equalTo((i*3+j==4?((SCREEN_WIDTH - 36)/3.0f+20):(SCREEN_WIDTH - 36)/3.0f));
+					make.width.mas_equalTo(((i*3+j)==4?((SCREEN_WIDTH - 36)/3.0f+20):(SCREEN_WIDTH - 36)/3.0f));
 					make.leading.mas_equalTo(15+j*(SCREEN_WIDTH - 30)/3.0f);
 					make.height.mas_equalTo(40);
-					
 				}];
 				
 				UILabel *title = [UILabel new];
@@ -56,6 +68,46 @@
 				
 				NSArray *values = dic.allValues.firstObject;
 				arrowBtn *editBtn = [[arrowBtn alloc]initWithFrame:CGRectZero];
+				editBtn.choiceblock = ^(NSString *str ,int index,int indexpathrow) {
+					NSLog(@"%@",str);
+					_currentStr = str;
+					if (index == 0) {
+						
+						[self.resquestDic setObject:[NSString stringWithFormat:@"%d",indexpathrow] forKey:@"DeliveryCd"];
+						
+					}
+					if (index == 1) {
+						
+						[self.resquestDic setObject:[NSString stringWithFormat:@"%d",indexpathrow+1] forKey:@"order_by"];
+						
+					}
+					
+					if (index == 2) {
+						
+						NSArray *data1 = self.datas.firstObject;
+						NSDictionary*dics = data1.lastObject;
+						NSArray *datass = dics.allValues;
+						NSArray *datasss = datass.firstObject;
+						NSDictionary *dit = datasss[indexpathrow];
+						[self.resquestDic setObject:dit[@"level1"] forKey:@"level1"];
+						[self.resquestDic setObject:dit[@"level2"] forKey:@"level2"];
+
+					}
+					if (index == 3) {
+						
+						[self.resquestDic setObject:[NSString stringWithFormat:@"%d",indexpathrow] forKey:@"EventCd"];
+						
+					}
+					if (index == 4) {
+						
+						[self.resquestDic setObject:[NSString stringWithFormat:@"%d",indexpathrow+1] forKey:@"VoucherCd"];
+						
+					}
+
+					NSLog(@"%@",self.resquestDic);
+				};
+				editBtn.tag = (i*3+j);
+				[editBtn addTarget:self action:@selector(clickChoice:) forControlEvents:UIControlEventTouchUpInside];
 				[bgview addSubview:editBtn];
 				[editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
 					make.leading.mas_equalTo(title.mas_trailing).offset(3);
@@ -64,6 +116,7 @@
 					make.bottom.mas_equalTo(-8);
 				}];
 				editBtn.data = values;
+				
 
 			}else{
 				UIButton *submit = [UIButton new];
@@ -71,6 +124,7 @@
 				submit.layer.cornerRadius = 4;
 				submit.layer.masksToBounds = YES;
 				[submit setTitle:@"确定" forState:UIControlStateNormal];
+				[submit addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
 				[self addSubview:submit];
 				[submit mas_makeConstraints:^(MASConstraintMaker *make) {
 					make.width.mas_equalTo(50);
@@ -82,6 +136,20 @@
 			}
 	}
 }
+}
+
+- (void)clickChoice:(UIButton*)sender{
+
+
+}
+
+- (void)submit:(UIButton*)sender{
+	NSLog(@"%@",_resquestDic);
+	if (self.paramterdic) {
+		self.paramterdic(self.resquestDic);
+	}
+
+
 }
 #pragma mark -- 获取文字内容的宽度
 - (CGSize)getSize:(NSString*)content{

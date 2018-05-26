@@ -397,7 +397,6 @@
         [KLHttpTool sendGoodsCommentWithPic:self.imageArray itemCode:itemCode rate:starView.scorePercent*10/2 level:level content:textView.text orderID:_orderData.order_code divCode:_orderData.divCode success:^(id response) {
             NSNumber *statu = response[@"status"];
             if (statu.integerValue == 1) {
-//                [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
                 [[NSNotificationCenter defaultCenter] postNotificationName:ReceiveGoodsSucNotification object:nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:ReloadWaitCommentGoodsNotification object:nil];
                 if (self.isOrderDetail == YES && self.isLastOne == NO) {

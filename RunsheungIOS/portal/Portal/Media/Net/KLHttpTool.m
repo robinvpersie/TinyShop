@@ -3549,6 +3549,73 @@
 		NSLog(@"%@",err);
 	}];
 }
+
+//按条件获取商家列表
++ (void)getStoreListWithIfWithUri:(NSString *)uri
+					   withUserId:(NSString*)user_id
+						withToken:(NSString*)token
+						   withPg:(NSString*)pg
+					 withPageSize:(NSString*)pagesize
+					 withLatitude:(NSString*)latitude
+					withlongitude:(NSString *)longitude
+					 withParamter:(NSMutableDictionary*)dic
+						  success:(void (^)(id response))success
+						  failure:(void (^)(NSError *err))failure{
+	NSString *url =[NSString stringWithFormat:@"%@%@",TinyMallShopBaseURL,uri];
+	
+	[dic setObject:@"kor" forKey:@"lang_type"];
+	[dic setObject:@"2" forKey:@"div_code"];
+	[dic setObject:user_id forKey:@"user_id"];
+	[dic setObject:token forKey:@"token"];
+	[dic setObject:pagesize forKey:@"pagesize"];
+	[dic setObject:pg forKey:@"pg"];
+	[dic setObject:latitude forKey:@"latitude"];
+	[dic setObject:longitude forKey:@"longitude"];
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:dic success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+	}];
+}
+
+/**
+ 获取输入域名请求
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getInputDomainViewwithUri:(NSString*)uri
+						withad_num:(NSString*)ad_num
+						witht_num:(NSString*)t_num
+						withl_num:(NSString*)l_num
+						withr_num:(NSString*)r_num
+						withb_num:(NSString*)b_num
+						withc_num:(NSString*)c_num
+					   withlatitude:(NSString*)latitude
+					withlongitude:(NSString*)longitude
+						  success:(void (^)(id response))success
+				   failure:(void (^)(NSError *err))failure{
+	NSString *url =[NSString stringWithFormat:@"%@",@"http://apiAD.gigaroom.com:9280/api/apiNumeric/requestFindStore"];
+	NSString * lang_type = @"kor";
+	
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,ad_num,t_num,l_num,r_num,b_num,c_num,latitude,longitude).mutableCopy;
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+	}];
+}
+
+
 @end
 
 
