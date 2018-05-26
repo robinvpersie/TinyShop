@@ -25,12 +25,13 @@
 	self.buttonArray = @[].mutableCopy;
 	for (int i = 0; i<self.dataArray.count; i++) {
 		UIButton *buton = [[UIButton alloc]initWithFrame:CGRectMake(10 + i*75, 10, 65, 30)];
-		
+		buton.layer.borderWidth= 1;
 		if (i == 0) {
 			buton.selected = YES;
-			buton.layer.borderWidth= 1;
 			buton.layer.borderColor = RGB(33, 192, 67).CGColor;
 			
+		}else{
+			buton.layer.borderColor =RGB(201, 201, 201).CGColor;
 		}
 		buton.tag = i+1;
 		buton.layer.cornerRadius = 15;
@@ -73,8 +74,7 @@
 		if ([btn isMemberOfClass:[UIButton class]]) {
 			UIButton *button = (UIButton*)btn;
 			button.selected = NO;
-			button.layer.borderWidth= 0;
-			button.layer.borderColor =[UIColor whiteColor].CGColor;
+			button.layer.borderColor =RGB(201, 201, 201).CGColor;
 			
 		}
 	}
@@ -82,7 +82,6 @@
 	if ([self.delegate respondsToSelector:@selector(clickSegment:)]) {
 		[self.delegate clickSegment:(int)sender.tag];
 		if (sender.tag != 1001) {
-			sender.layer.borderWidth= 1;
 			sender.layer.borderColor = RGB(33, 192, 67).CGColor;
 			
 		}

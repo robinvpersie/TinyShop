@@ -113,7 +113,7 @@ class BusinessOrderController: BaseController {
                         self?.orderTypeView.reloadDataWith(value, plist: plist)
                         self?.orderTypeView.buyAction = { itemCode, price, name in
                             guard let this = self else { return }
-                            let model = SelectModel(indexPath: indexPath, itemCode: itemCode, name: name, itemp: price)
+                            let model = SelectModel(itemCode: itemCode, name: name, itemp: price)
                             this.itemSelected[model, default: 0] += 1
                             this.totalPrice += price
                             this.totalNum += 1
@@ -187,7 +187,7 @@ extension BusinessOrderController: UITableViewDataSource {
                 return
             }
             let plist = this.productList[indexPath.row]
-            let selectModel = SelectModel(indexPath: indexPath, itemCode: plist.item_code, name: plist.item_name, itemp: Float(plist.item_p)!)
+            let selectModel = SelectModel(itemCode: plist.item_code, name: plist.item_name, itemp: Float(plist.item_p)!)
             this.itemSelected[selectModel, default: 0] += 1
             this.totalNum += 1
             this.orderMenu.badgeValue = this.totalNum
