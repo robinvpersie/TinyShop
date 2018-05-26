@@ -3,7 +3,7 @@
 //  Portal
 //
 //  Created by linpeng on 2016/11/16.
-//  Copyright © 2016年 linpeng. All rights reserved.
+//  Copyright ©2016年 linpeng. All rights reserved.
 //
 
 import UIKit
