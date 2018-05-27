@@ -194,6 +194,17 @@
 	}
 	return 0.01f;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+	if (indexPath.section == 3) {
+		NSDictionary *dic = self.storelists[indexPath.row];
+		BusinessHomeController *shopDetailed = [[BusinessHomeController alloc] init];
+		shopDetailed.hidesBottomBarWhenPushed = YES;
+		shopDetailed.dic = dic;
+		[self.navigationController pushViewController:shopDetailed animated:YES];
+
+	}
+}
 #pragma mark -- 设置导航栏
 - (void)setNaviBar{
 	
