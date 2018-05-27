@@ -52,6 +52,7 @@
 	if (self.mainTableview == nil) {
 		self.mainTableview = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
 		[self.mainTableview registerNib:[UINib nibWithNibName:@"ChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChoiceTableViewCellID"];
+		self.mainTableview.hidden = YES;
 		self.mainTableview.separatorColor = RGB(221, 221, 221);
 		self.mainTableview.delegate = self;
 		self.mainTableview.dataSource = self;
@@ -371,27 +372,43 @@
 
 - (void)loadResquestData{
 	
+	MBProgressHUD *showhud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+	[showhud showAnimated:YES];
 	YCAccountModel *account = [YCAccountModel getAccount];
 	NSString *token = account.token;
 	NSString*userid = account.customCode;
-	NSString *commbine = account.combineToken;
-	[KLHttpTool getMainPicturewithUri:@"StoreCate/requestStoreCate1FavList" withUserId:(userid.length?userid:@"") withToken:(token.length?token:@"") success:^(id response) {
-		if ([response[@"status"] intValue] == 1) {
-			_imgDic = response;
-			[self.mainTableview reloadData];
-		}
-	} failure:^(NSError *err) {
+	dispatch_async(dispatch_get_global_queue(0, 0), ^{
+
+		[KLHttpTool getMainPicturewithUri:@"StoreCate/requestStoreCate1FavList" withUserId:(userid.length?userid:@"") withToken:(token.length?token:@"") success:^(id response) {
+			if ([response[@"status"] intValue] == 1) {
+				_imgDic = response;
+				[KLHttpTool getDisKindswithUri:@"StoreCate/requestStoreCate1Where" success:^(id response) {
+					if ([response[@"status"] intValue] == 1) {
+						_searchDic = response;
+						dispatch_async(dispatch_get_main_queue(), ^{
+							[showhud hideAnimated:YES];
+							self.mainTableview.hidden = NO;
+							[self.mainTableview reloadData];
 		
-	}];
+						});
+		
+					}
+				} failure:^(NSError *err) {
+		
+				}];
+
+
+			}
+		} failure:^(NSError *err) {
+			
+		}];
+		
+		
+		
+	});
 	
-	[KLHttpTool getDisKindswithUri:@"StoreCate/requestStoreCate1Where" success:^(id response) {
-		if ([response[@"status"] intValue] == 1) {
-			_searchDic = response;
-			[self.mainTableview reloadData];
-		}
-	} failure:^(NSError *err) {
-		
-	}];
+	
+	
 }
 - (void)orCorddingToIf:(NSMutableDictionary*)dic{
 

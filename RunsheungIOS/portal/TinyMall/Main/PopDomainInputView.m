@@ -93,6 +93,7 @@
 	}
 }
 - (void)click:(UITapGestureRecognizer*)tap{
+	
 	self.hidden = YES;
 	[self removeFromSuperview];
 	self.coverView.hidden = YES;
