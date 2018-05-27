@@ -402,8 +402,8 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
             if status == "1" {
                 YCUserDefaults.accountModel.value = nil
 
-			   let notificationName = Notification.Name(rawValue: "YCAccountIsLogin")
-			   NotificationCenter.default.post(name: notificationName, object: nil, userInfo: nil)
+//               let notificationName = Notification.Name(rawValue: "YCAccountIsLogin")
+//               NotificationCenter.default.post(name: notificationName, object: nil, userInfo: nil)
                self?.navigationController?.popViewController(animated: true)
             }
         case .failure(let error):
