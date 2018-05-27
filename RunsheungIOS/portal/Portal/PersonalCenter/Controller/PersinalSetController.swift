@@ -31,7 +31,6 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
         case sexAndNickName
         case changePassword
         case clearCache
-//        case changeLanguage
         case logOut
         
         init(indexPath: IndexPath){
