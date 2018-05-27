@@ -725,4 +725,35 @@
 + (void)getDisKindswithUri:(NSString*)uri
 				   success:(void (^)(id response))success
 				   failure:(void (^)(NSError *err))failure;
+
+//按条件获取商家列表
++ (void)getStoreListWithIfWithUri:(NSString *)uri
+					   withUserId:(NSString*)user_id
+						withToken:(NSString*)token
+						   withPg:(NSString*)pg
+					 withPageSize:(NSString*)pagesize
+					 withLatitude:(NSString*)latitude
+					withlongitude:(NSString *)longitude
+					 withParamter:(NSMutableDictionary*)dic
+						  success:(void (^)(id response))success
+						  failure:(void (^)(NSError *err))failure;
+
+/**
+ 获取输入域名请求
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getInputDomainViewwithUri:(NSString*)uri
+					   withad_num:(NSString*)ad_num
+						witht_num:(NSString*)t_num
+						withl_num:(NSString*)l_num
+						withr_num:(NSString*)r_num
+						withb_num:(NSString*)b_num
+						withc_num:(NSString*)c_num
+					 withlatitude:(NSString*)latitude
+					withlongitude:(NSString*)longitude
+						  success:(void (^)(id response))success
+						  failure:(void (^)(NSError *err))failure;
 @end
