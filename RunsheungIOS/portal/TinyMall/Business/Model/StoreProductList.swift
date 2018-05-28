@@ -18,10 +18,7 @@ struct Plist: Codable, Hashable {
     let MonthSaleCount: String
     let GroupId: String
     let isSingle: String
-    
-    
 }
-
 
 struct StoreInfo: Codable {
     let custom_code: String
@@ -42,9 +39,7 @@ struct StoreInfoProduct: Codable {
     
 }
 
-
 struct StoreInfoProductTarget: TargetType  {
-    
     var baseURL: URL = BaseUrlType.base.url
     var path: String = "/api/StoreCate/requestStoreInfoProductList"
     var method: Moya.Method = .post

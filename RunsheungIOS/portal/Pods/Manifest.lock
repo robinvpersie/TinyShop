@@ -31,6 +31,7 @@ PODS:
   - Moya/Core (11.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
+  - PromiseKit/CorePromise (6.2.7)
   - Proposer (1.2.0)
   - Result (3.2.4)
   - RxCocoa (4.1.2):
@@ -58,6 +59,7 @@ DEPENDENCIES:
   - MBProgressHUD
   - MJRefresh
   - Moya
+  - PromiseKit/CorePromise
   - Proposer
   - RxCocoa
   - RxSwift
@@ -81,6 +83,7 @@ SPEC CHECKSUMS:
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   Moya: 3d594ada51a21cc02b18739ab578a1984f900c8a
+  PromiseKit: 12b9d87748b170714247d8b2677146ca57e488f2
   Proposer: 722fe61822b89f551ae10afe8314067f98c39c28
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
@@ -92,6 +95,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
 
-PODFILE CHECKSUM: c0e606d3fb54f24433a2d63dfb612a20305c0c58
+PODFILE CHECKSUM: d4c4f8816a39512a880f08d5ba4567fb35b9cbcb
 
 COCOAPODS: 1.4.0
