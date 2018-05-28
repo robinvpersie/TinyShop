@@ -97,7 +97,7 @@
 		[[UIApplication sharedApplication].delegate.window addSubview:_cover];
 		
 		CGRect newFrame = [self convertRect:self.bounds toView:[UIApplication sharedApplication].delegate.window ];
-		self.popTableView = [[UITableView alloc]initWithFrame:CGRectMake(newFrame.origin.x, CGRectGetMaxY(newFrame)+ 5, CGRectGetWidth(self.frame), (_data.count>3?6:_data.count)*30 ) style:UITableViewStylePlain];
+		self.popTableView = [[UITableView alloc]initWithFrame:CGRectMake(newFrame.origin.x, CGRectGetMaxY(newFrame)+5, CGRectGetWidth(self.frame), (_data.count>3?6:_data.count)*30 ) style:UITableViewStylePlain];
 		self.popTableView.layer.cornerRadius = 5;
 		self.popTableView.layer.masksToBounds = YES;
 		self.popTableView.delegate = self;

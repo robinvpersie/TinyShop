@@ -128,6 +128,14 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
     
     var operationQue = OperationQueue()
     
+    @objc func popBack() {
+        if let navigation = navigationController {
+            navigation.popViewController(animated: true)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -135,7 +143,7 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
         
         title = "设置".localized
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(yc_back))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(popBack))
         
         view.backgroundColor = UIColor.BaseControllerBackgroundColor
         
@@ -394,9 +402,10 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
             if status == "1" {
                 YCUserDefaults.accountModel.value = nil
 
-			   let notificationName = Notification.Name(rawValue: "YCAccountIsLogin")
-			   NotificationCenter.default.post(name: notificationName, object: nil, userInfo: nil)
-               self?.navigationController?.popViewController(animated: true)
+               let notificationName = Notification.Name(rawValue: "YCAccountIsLogin")
+               NotificationCenter.default.post(name: notificationName, object: nil, userInfo: nil)
+               self?.popBack()
+               //self?.navigationController?.popViewController(animated: true)
             }
         case .failure(let error):
             self?.showMessage(error.localizedDescription)
