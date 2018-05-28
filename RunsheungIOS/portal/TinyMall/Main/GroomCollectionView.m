@@ -25,7 +25,7 @@
 - (void)createCollectionview{
 	if (self.collectionview == nil) {
 		UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-		self.collectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH , self.frame.size.height) collectionViewLayout:layout];
+		self.collectionview = [[UICollectionView alloc]initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, self.frame.size.height) collectionViewLayout:layout];
 		[self.collectionview registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCellID"];
 		self.collectionview.showsVerticalScrollIndicator = NO;
 		self.collectionview.showsHorizontalScrollIndicator = NO;
@@ -72,7 +72,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
 				  layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-	float width = self.frame.size.width/5.0f;
+	float width =floor(SCREEN_WIDTH/5.0f) ;
 	float height = width ;
 	return CGSizeMake(width, height);
 	

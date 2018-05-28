@@ -68,7 +68,7 @@
 }
 
 - (UIView*)tableViewHeadView{
-	UIView *headview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/4)];
+	UIView *headview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/2+60)];
 	headview.backgroundColor = [UIColor whiteColor];
 	
 	UIButton *goBtn = [UIButton new];
@@ -79,12 +79,13 @@
 	goBtn.layer.cornerRadius = 5;
 	goBtn.layer.masksToBounds = YES;
 	[headview addSubview:goBtn];
-	[goBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.trailing.mas_equalTo(-10);
-		make.top.mas_equalTo(10);
-		make.width.mas_equalTo(80);
-		make.height.mas_equalTo(40);
-	}];
+    [goBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.mas_equalTo(-10);
+        make.bottom.mas_equalTo(headview.mas_bottom).offset(-10);
+        make.width.mas_equalTo(80);
+        make.height.mas_equalTo(40);
+    }];
+	
 	
 	self.domainBtn = [UIButton new];
 	self.domainBtn.tag = 1;
@@ -96,20 +97,22 @@
 
 	[headview addSubview:self.domainBtn];
 	[self.domainBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.leading.mas_equalTo(10);
+		
 		make.trailing.mas_equalTo(goBtn.mas_leading).offset(-10);
-		make.top.mas_equalTo(10);
+		make.bottom.mas_equalTo(-10);
 		make.height.mas_equalTo(40);
+        make.leading.mas_equalTo(10);
 	}];
 	
-	
+   
 	
 	UIImageView *headImageview = [UIImageView new];
 	headImageview.image = [UIImage imageNamed:@"banner"];
 	[headview addSubview:headImageview];
 	[headImageview mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.leading.trailing.bottom.mas_equalTo(0);
-		make.top.equalTo(self.domainBtn.mas_bottom).offset(10);
+		make.leading.trailing.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(self.domainBtn.mas_top).offset(-10);
+		
 	}];
 	
 	
@@ -141,7 +144,7 @@
 	}else if (indexPath.section == 1) {
 		
 		    NSArray *grooms = _imgDic[@"data"];
-			self.groomCollectionview = [[GroomCollectionView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ceil(grooms.count/5.0f)*SCREEN_WIDTH/5)];
+			self.groomCollectionview = [[GroomCollectionView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ceil(grooms.count/5.0)*SCREEN_WIDTH/5.0)];
 		    self.groomCollectionview.datas = _imgDic[@"data"];
 			[cell.contentView addSubview:self.groomCollectionview];
 		
@@ -366,10 +369,10 @@
 		};
 		[[UIApplication sharedApplication].delegate.window addSubview:self.popInputView];
 		[self.popInputView mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.mas_equalTo(SCREEN_HEIGHT/2.0f - 50);
 			make.leading.mas_equalTo(30);
 			make.trailing.mas_equalTo(-30);
 			make.height.mas_equalTo(200);
+            make.bottom.mas_equalTo(-SCREEN_HEIGHT/2.0f);
 			
 		}];
 	} else {
