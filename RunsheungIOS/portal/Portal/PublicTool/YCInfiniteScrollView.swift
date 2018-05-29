@@ -11,14 +11,14 @@ import Kingfisher
 import SnapKit
 
 struct YCInfiniteItem {
-    var imageUrl:URL
-    var imageVer:String
+    var imageUrl: URL
+    var imageVer: String
 }
 
 
 class YCInfiniteScrollView: UIView {
     
-    var autoscroll:Bool = true {
+    var autoscroll: Bool = true {
         didSet{
             invalidateTimer()
             if autoscroll == true {
@@ -27,12 +27,11 @@ class YCInfiniteScrollView: UIView {
         }
     }
     
-    var timeInterval:TimeInterval = 5{
+    var timeInterval: TimeInterval = 5{
         didSet{
             setAutoScroll()
         }
     }
-    
     
     fileprivate func setAutoScroll(){
         invalidateTimer()
@@ -41,38 +40,35 @@ class YCInfiniteScrollView: UIView {
         }
     }
 
-    var scrollViewItem = [YCInfiniteItem](){
+    var scrollViewItem = [YCInfiniteItem]() {
         didSet{
             invalidateTimer()
-            TotalPageCount = scrollViewItem.count * 100
+            totalPageCount = scrollViewItem.count * 100
             setAutoScroll()
             collectionView.reloadData()
         }
     }
     
-    var TotalPageCount = 0
+    var totalPageCount = 0
     var didSelectItemAtIndex: ((_ index:Int) -> Void)?
-    var collectionView:UICollectionView!
-    var timer:Timer?
-    var collectionViewLayout:UICollectionViewFlowLayout?
-    lazy var backGroundImageView:UIImageView = UIImageView()
-    
-    lazy var backGroundEffectBlurView:UIVisualEffectView = {
-         let effectView = UIVisualEffectView()
-         effectView.effect = UIVisualEffect()
-         return effectView
-    }()
+    var collectionView: UICollectionView!
+    var timer: Timer?
+    var collectionViewLayout: UICollectionViewFlowLayout?
+    var backGroundImageView: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        backGroundImageView = UIImageView()
         addSubview(backGroundImageView)
+        
         collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout?.scrollDirection = .horizontal
         collectionViewLayout?.minimumLineSpacing = 0
         collectionViewLayout?.minimumInteritemSpacing = 0
-        collectionView =  UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewLayout!)
+        collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewLayout!)
         collectionView.backgroundColor = UIColor.clear
-        collectionView.decelerationRate =  UIScrollViewDecelerationRateFast
+        collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         collectionView.registerClassOf(YCInfiniteCollectionCell.self)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
@@ -87,16 +83,16 @@ class YCInfiniteScrollView: UIView {
         collectionViewLayout?.itemSize = frame.size
         backGroundImageView.frame = bounds
         collectionView.frame = bounds
-       if (collectionView.contentOffset.x == 0 && TotalPageCount>0){
-           let targetIndex = TotalPageCount/2
-           collectionView.scrollToItem(at: IndexPath(row: targetIndex, section: 0), at: .init(rawValue: 0), animated: false)
+        if (collectionView.contentOffset.x == 0 && totalPageCount > 0) {
+            let targetIndex = totalPageCount / 2
+            collectionView.scrollToItem(at: IndexPath(row: targetIndex, section: 0), at: .init(rawValue: 0), animated: false)
         }
     }
     
    fileprivate func setUpTimer(){
         invalidateTimer()
         timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(timeFire(timer:)), userInfo: nil, repeats: true)
-         RunLoop.main.add(timer!, forMode: .commonModes)
+        RunLoop.main.add(timer!, forMode: .commonModes)
     }
     
     
@@ -107,8 +103,8 @@ class YCInfiniteScrollView: UIView {
         timer = nil
     }
     
-    @objc fileprivate func timeFire(timer:Timer) {
-        if TotalPageCount == 0 {
+    @objc fileprivate func timeFire(timer: Timer) {
+        if totalPageCount == 0 {
             return
         }
         let currentIndex = self.currentIndex()
@@ -118,8 +114,8 @@ class YCInfiniteScrollView: UIView {
     
     func scrollToIndex(_ targetIndex:Int){
         var targetIndex = targetIndex
-        if targetIndex >= TotalPageCount {
-            targetIndex = Int(TotalPageCount/2)
+        if targetIndex >= totalPageCount {
+            targetIndex = Int(totalPageCount / 2)
             let indexpath = IndexPath(item: targetIndex, section: 0)
             collectionView.scrollToItem(at:indexpath , at: .init(rawValue: 0), animated: false)
             return
@@ -140,16 +136,13 @@ class YCInfiniteScrollView: UIView {
         return max(0, index)
      }
     
-    
-    
-    func adjustWhenControllerViewWillAppear(){
+    func adjustWhenControllerViewWillAppear() {
         let targetIndex = currentIndex()
-        if targetIndex < TotalPageCount {
+        if targetIndex < totalPageCount {
             let indexpath = IndexPath(row: targetIndex, section: 0)
             collectionView.scrollToItem(at: indexpath, at: .init(rawValue: 0), animated: false)
         }
     }
-    
     
     override func willMove(toSuperview newSuperview: UIView?) {
         if (newSuperview == nil) {
@@ -172,7 +165,7 @@ extension YCInfiniteScrollView:UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let didselect = didSelectItemAtIndex{
-            didselect(indexPath.item % self.scrollViewItem.count)
+            didselect(indexPath.item % scrollViewItem.count)
         }
     }
     
@@ -181,11 +174,11 @@ extension YCInfiniteScrollView:UICollectionViewDelegate{
 extension YCInfiniteScrollView:UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return TotalPageCount
+        return totalPageCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell:YCInfiniteCollectionCell = collectionView.dequeueReusableCell(indexpath: indexPath)
+        let cell: YCInfiniteCollectionCell = collectionView.dequeueReusableCell(indexpath: indexPath)
         return cell
     }
     
@@ -219,7 +212,7 @@ extension YCInfiniteScrollView:UIScrollViewDelegate{
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        self.scrollViewDidEndScrollingAnimation(collectionView)
+        scrollViewDidEndScrollingAnimation(collectionView)
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
@@ -233,21 +226,23 @@ extension YCInfiniteScrollView:UIScrollViewDelegate{
 
 
 
-class YCInfiniteCollectionCell:UICollectionViewCell{
+class YCInfiniteCollectionCell: UICollectionViewCell{
     
-    var imageUrl:URL!{
+    var imageUrl: URL!{
        didSet{
-        let options:[KingfisherOptionsInfoItem] = [.transition(.fade(0.3))]
-        self.imageView.kf.setImage(with: imageUrl , options: options)
+          let options: [KingfisherOptionsInfoItem] = [.transition(.fade(0.3))]
+          self.imageView.kf.setImage(with: imageUrl , options: options)
        }
     }
     
-    var imageView:UIImageView!
+    var imageView: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         contentView.backgroundColor = UIColor.white
-        imageView = UIImageView(frame: CGRect.zero)
+        
+        imageView = UIImageView(frame: .zero)
         imageView.kf.indicatorType = .activity
         contentView.addSubview(imageView)
         imageView.snp.makeConstraints { (make) in
@@ -264,8 +259,8 @@ class YCInfiniteCollectionCell:UICollectionViewCell{
 class YCInfiniteCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-        var layoutAttribute:UICollectionViewLayoutAttributes
-        let proposedContentOffsetCenterX:CGFloat = proposedContentOffset.x + collectionView!.bounds.size.width * 0.5
+        var layoutAttribute: UICollectionViewLayoutAttributes
+        let proposedContentOffsetCenterX: CGFloat = proposedContentOffset.x + collectionView!.bounds.size.width * 0.5
         guard let layoutAttributesForElements = layoutAttributesForElements(in: collectionView!.bounds),
               let layoutAttributes = layoutAttributesForElements.first  else {
             return super.targetContentOffset(forProposedContentOffset: proposedContentOffset, withScrollingVelocity: velocity)

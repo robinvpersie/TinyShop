@@ -20,6 +20,7 @@
 #import "FavCollectionView.h"
 #import "PopDomainInputView.h"
 
+
 @interface TinyMainViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,retain)UITableView *mainTableview;
 @property (nonatomic, strong)ChoiceHeadView *choiceHeadView;
@@ -45,6 +46,8 @@
 	[self createLocationView];
 	[self createTabeleview];
 	[self loadResquestData];
+    
+    
 
 }
 

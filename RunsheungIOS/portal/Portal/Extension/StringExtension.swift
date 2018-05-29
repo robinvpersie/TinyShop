@@ -71,7 +71,7 @@ public extension String {
         var keyArray = [String]()
         if let url = URLComponents(string: self),
             let queryItem = url.queryItems {
-            keyArray = queryItem.flatMap({ $0.name })
+            keyArray = queryItem.compactMap({ $0.name })
         }
         return keyArray
     }
@@ -80,7 +80,7 @@ public extension String {
         var valueArray = [String]()
         if let url = URLComponents(string: self),
             let queryItem = url.queryItems {
-            valueArray = queryItem.flatMap({ $0.value })
+            valueArray = queryItem.compactMap({ $0.value })
         }
         return valueArray
     }
@@ -112,7 +112,7 @@ public extension NSDate {
     public class func dateWithString(dateString: String?) -> Date {
         if var dateString = dateString {
             if dateString.hasSuffix("Z") {
-                dateString = String(dateString.characters.dropLast()).appending("-0000")
+                dateString = String(dateString.dropLast()).appending("-0000")
             }
             return dateFromString(dateString: dateString, withFormat: "yyyy-MM-dd'T'HH:mm:ssZ")
         }

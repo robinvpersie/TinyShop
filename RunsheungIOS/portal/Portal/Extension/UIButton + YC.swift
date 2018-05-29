@@ -19,7 +19,7 @@ enum style {
 
 extension UIButton {
     
-    func layoutWthStyle(style:style,space:CGFloat){
+    func layoutWthStyle(style: style,space :CGFloat){
         let imagewidth:CGFloat = (self.imageView?.frame.size.width)!
         let imageheight:CGFloat = (self.imageView?.frame.size.height)!
         let labelWidth:CGFloat = (self.titleLabel?.intrinsicContentSize.width)!
