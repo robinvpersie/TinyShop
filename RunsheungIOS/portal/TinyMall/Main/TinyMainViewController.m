@@ -68,9 +68,8 @@
 }
 
 - (UIView*)tableViewHeadView{
-	UIView *headview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/2+60)];
+	UIView *headview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 2*SCREEN_WIDTH/5+60)];
 	headview.backgroundColor = [UIColor whiteColor];
-	
 	UIButton *goBtn = [UIButton new];
 	[goBtn setTitle:@"GO" forState:UIControlStateNormal];
 	[goBtn addTarget:self action:@selector(goBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -100,7 +99,7 @@
 		
 		make.trailing.mas_equalTo(goBtn.mas_leading).offset(-10);
 		make.bottom.mas_equalTo(-10);
-		make.height.mas_equalTo(40);
+		make.height.mas_equalTo(goBtn.mas_height);
         make.leading.mas_equalTo(10);
 	}];
 	
@@ -369,10 +368,10 @@
 		};
 		[[UIApplication sharedApplication].delegate.window addSubview:self.popInputView];
 		[self.popInputView mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.leading.mas_equalTo(30);
-			make.trailing.mas_equalTo(-30);
-			make.height.mas_equalTo(200);
-            make.bottom.mas_equalTo(-SCREEN_HEIGHT/2.0f);
+			make.leading.mas_equalTo(SCREEN_WIDTH/10);
+			make.trailing.mas_equalTo(-SCREEN_WIDTH/10);
+			make.height.mas_equalTo(SCREEN_WIDTH/2);
+            make.bottom.mas_equalTo(-SCREEN_HEIGHT/2);
 			
 		}];
 	} else {
