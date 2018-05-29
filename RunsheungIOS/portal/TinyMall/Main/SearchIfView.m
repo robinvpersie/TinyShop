@@ -23,7 +23,7 @@
 	self.resquestDic = [NSMutableDictionary new];
 	self.datas = @[@[@{@"外卖":_dic[@"dataDeli"]},@{@"排序":_dic[@"dataOrderBy"]},@{@"种类":_dic[@"dataLevel"]}],@[@{@"活动":_dic[@"dataEvnt"]},@{@"优惠券":_dic[@"dataVchr"]},@{@"确定":@[]}]];
 	[self.resquestDic setObject:@"0" forKey:@"DeliveryCd"];
-	[self.resquestDic setObject:@"0" forKey:@"order_by"];
+	[self.resquestDic setObject:@"1" forKey:@"order_by"];
 	[self.resquestDic setObject:@"0" forKey:@"EventCd"];
 	[self.resquestDic setObject:@"0" forKey:@"VoucherCd"];
 	[self.resquestDic setObject:@"1" forKey:@"level1"];
@@ -71,39 +71,26 @@
 				editBtn.choiceblock = ^(NSString *str ,int index,int indexpathrow) {
 					NSLog(@"%@",str);
 					_currentStr = str;
-					if (index == 0) {
-						
-						[self.resquestDic setObject:[NSString stringWithFormat:@"%d",indexpathrow] forKey:@"DeliveryCd"];
-						
-					}
-					if (index == 1) {
-						
-						[self.resquestDic setObject:[NSString stringWithFormat:@"%d",indexpathrow+1] forKey:@"order_by"];
+					NSArray *keys = @[@"DeliveryCd",@"order_by",@"",@"EventCd",@"VoucherCd"];
+					for (int i = 0; i<keys.count; i++) {
+						if (i!=2) {
+							[self.resquestDic setObject:[NSString stringWithFormat:@"%d",(i==1?indexpathrow+1:indexpathrow)] forKey:keys[i]];
+
+						}else{
+				
+							NSArray *data1 = self.datas.firstObject;
+							NSDictionary*dics = data1.lastObject;
+							NSArray *datass = dics.allValues;
+							NSArray *datasss = datass.firstObject;
+							NSDictionary *dit = datasss[indexpathrow];
+							[self.resquestDic setObject:dit[@"level1"] forKey:@"level1"];
+							[self.resquestDic setObject:dit[@"level2"] forKey:@"level2"];
+							
+						}
 						
 					}
 					
-					if (index == 2) {
-						
-						NSArray *data1 = self.datas.firstObject;
-						NSDictionary*dics = data1.lastObject;
-						NSArray *datass = dics.allValues;
-						NSArray *datasss = datass.firstObject;
-						NSDictionary *dit = datasss[indexpathrow];
-						[self.resquestDic setObject:dit[@"level1"] forKey:@"level1"];
-						[self.resquestDic setObject:dit[@"level2"] forKey:@"level2"];
-
-					}
-					if (index == 3) {
-						
-						[self.resquestDic setObject:[NSString stringWithFormat:@"%d",indexpathrow] forKey:@"EventCd"];
-						
-					}
-					if (index == 4) {
-						
-						[self.resquestDic setObject:[NSString stringWithFormat:@"%d",indexpathrow+1] forKey:@"VoucherCd"];
-						
-					}
-
+				
 					NSLog(@"%@",self.resquestDic);
 				};
 				editBtn.tag = (i*3+j);

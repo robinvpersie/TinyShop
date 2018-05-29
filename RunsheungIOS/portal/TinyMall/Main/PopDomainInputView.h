@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 typedef void(^submitBlock)(NSMutableArray *data);
 
-@interface PopDomainInputView : UIView
+@interface PopDomainInputView : UIView<UITextFieldDelegate>
 - (instancetype)initWithFrame:(CGRect)frame;
 @property (nonatomic,retain)UIView *coverView;
 @property (nonatomic,retain)NSMutableArray *fieldDatas;
