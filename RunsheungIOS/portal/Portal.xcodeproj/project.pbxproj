@@ -604,7 +604,6 @@
 		5B76BB761E00CA0F00F1F30B /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76BB741E00CA0F00F1F30B /* WelcomeController.swift */; };
 		5B76BB781E00CAFD00F1F30B /* WelcomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76BB771E00CAFD00F1F30B /* WelcomeModel.swift */; };
 		5B76BB7C1E01003100F1F30B /* YCCancelableTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76BB7B1E01003100F1F30B /* YCCancelableTask.swift */; };
-		5B7DCAF81DEFBFFC00F1D2AB /* UIButton + YC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7DCAF71DEFBFFC00F1D2AB /* UIButton + YC.swift */; };
 		5B7DCAFA1DEFEAE900F1D2AB /* YCWebViewClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7DCAF91DEFEAE900F1D2AB /* YCWebViewClass.swift */; };
 		5B7DCAFC1DF0013300F1D2AB /* YCTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7DCAFB1DF0013300F1D2AB /* YCTableFooterView.swift */; };
 		5B85D6421F564BF200ED8E22 /* AdvertisingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85D6411F564BF200ED8E22 /* AdvertisingController.swift */; };
@@ -1993,7 +1992,6 @@
 		5B76BB741E00CA0F00F1F30B /* WelcomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
 		5B76BB771E00CAFD00F1F30B /* WelcomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeModel.swift; sourceTree = "<group>"; };
 		5B76BB7B1E01003100F1F30B /* YCCancelableTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCCancelableTask.swift; sourceTree = "<group>"; };
-		5B7DCAF71DEFBFFC00F1D2AB /* UIButton + YC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton + YC.swift"; sourceTree = "<group>"; };
 		5B7DCAF91DEFEAE900F1D2AB /* YCWebViewClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCWebViewClass.swift; sourceTree = "<group>"; };
 		5B7DCAFB1DF0013300F1D2AB /* YCTableFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YCTableFooterView.swift; sourceTree = "<group>"; };
 		5B8476961DFF9372005DE66C /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = Portal/PrefixHeader.pch; sourceTree = "<group>"; };
@@ -5280,7 +5278,6 @@
 				62ADFAEB1DE3E28B005FDE1D /* ProgressExtension.swift */,
 				5B9CBDD61DE547110071A3B5 /* UIImage+YC.swift */,
 				5BFB70061DEBB8D10004ED83 /* UIColor+YC.swift */,
-				5B7DCAF71DEFBFFC00F1D2AB /* UIButton + YC.swift */,
 				5B95EA8F1DF4F5CE006E74C4 /* UIView + YC.swift */,
 				5B95EAEC1DF7B81D006E74C4 /* Notification + YC.swift */,
 				5B4292351DFE3F1E000C242B /* UINavigationController + YC.swift */,
@@ -6265,7 +6262,6 @@
 				1B392D821E28D0E500F70981 /* YYTextEffectWindow.m in Sources */,
 				261E5C3120108BF400E106EF /* NSTimer+addition.m in Sources */,
 				5BE152831F137DD200FC74C2 /* PhotosViewControllerDelegate.swift in Sources */,
-				5B7DCAF81DEFBFFC00F1D2AB /* UIButton + YC.swift in Sources */,
 				1B392EED1E28D14E00F70981 /* PYTempViewController.m in Sources */,
 				1B392F551E28D14E00F70981 /* SupermarketWaitCommentController.m in Sources */,
 				01B28A8120B2E9A900CEFB36 /* Observable+Response.swift in Sources */,
