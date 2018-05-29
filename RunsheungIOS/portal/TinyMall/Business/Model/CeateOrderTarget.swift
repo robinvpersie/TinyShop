@@ -18,7 +18,4 @@ struct CreateOrderTarget: TargetType {
     var task: Task
     var headers: [String : String]?
     
-    
-    
-    
 }
