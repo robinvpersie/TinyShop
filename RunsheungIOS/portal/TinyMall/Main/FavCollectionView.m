@@ -60,12 +60,19 @@
 	return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-	
-	NSDictionary *dic = _datas[indexPath.row];
-	TSCategoryController *cateVC = [[TSCategoryController alloc]init];
-	cateVC.hidesBottomBarWhenPushed = YES;
-	cateVC.leves = @[dic[@"level1"],@"1",@"1"].mutableCopy;
-	[self.viewController.navigationController pushViewController:cateVC animated:YES];
+	if (indexPath.row == 0) {
+		ParcelViewController *parcel = [ParcelViewController new];
+		parcel.hidesBottomBarWhenPushed = YES;
+		[self.viewController.navigationController pushViewController:parcel animated:YES];
+		
+	} else {
+		NSDictionary *dic = _datas[indexPath.row];
+		TSCategoryController *cateVC = [[TSCategoryController alloc]init];
+		cateVC.hidesBottomBarWhenPushed = YES;
+		cateVC.leves = @[dic[@"level1"],@"1",@"1"].mutableCopy;
+		[self.viewController.navigationController pushViewController:cateVC animated:YES];
+
+	}
 	
 }
 
