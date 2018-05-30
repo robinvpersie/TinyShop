@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Notification.Name{
+public extension Notification.Name {
     
     public static var addressUpdate: Notification.Name{
        return Notification.Name("YCLocationUpdated")

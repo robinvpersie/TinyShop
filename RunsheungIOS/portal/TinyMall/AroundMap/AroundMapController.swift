@@ -8,7 +8,28 @@
 
 import UIKit
 import SnapKit
+import PromiseKit
+import Alamofire
 //import SwiftLocation
+
+
+extension Alamofire.DataRequest {
+    
+    public func response(_: PMKNamespacer, queue: DispatchQueue? = nil) -> Promise<(URLRequest, HTTPURLResponse, Data)> {
+      return  Promise { seal in
+            response(queue: queue) { rsp in
+                if let error = rsp.error {
+                    seal.reject(error)
+                } else if let a = rsp.request, let b = rsp.response, let c = rsp.data {
+                    seal.fulfill((a,b,c))
+                } else {
+                    seal.reject(PMKError.invalidCallingConvention)
+                }
+            }
+        }
+    }
+    
+}
 
 
 let UserPOIflagTypeDefault: NMapPOIflagType = NMapPOIflagTypeReserved + 1
@@ -54,6 +75,8 @@ class AroundMapController: UIViewController {
 //        Locator.requestAuthorizationIfNeeded(.whenInUse)
         makeUI()
         enableLocationUpdate()
+        
+    
         
 //        location()
     }
