@@ -44,6 +44,7 @@ class BusinessMenuViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barTintColor = UIColor(hex: 0x333333)
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedStringKey.font:UIFont.systemFont(ofSize: 19),
             NSAttributedStringKey.foregroundColor:UIColor.white
