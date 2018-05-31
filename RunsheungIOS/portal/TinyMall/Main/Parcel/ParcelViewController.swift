@@ -10,6 +10,7 @@ import UIKit
 
 class ParcelViewController: UIViewController {
 	var scroview:UIScrollView?
+	public var lev1:String?
 	var locationView:ParecellocationView?
 	var parcelView:UICollectionView?
 	lazy var flowLayout:UICollectionViewLayout = {
@@ -22,22 +23,22 @@ class ParcelViewController: UIViewController {
 		return flt
 	}()
 	
-	var data:NSMutableArray = NSMutableArray(array: ["1","2","3","4","5","6","7","8","9"])
-	
+	var data:NSArray = NSArray(array: [])
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
+		self.parcelView?.layer.backgroundColor = UIColor(red: 254, green: 222, blue: 209).cgColor
+
 	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.view.backgroundColor = UIColor.white
-		
 		createNavi()
 		createScroview()
 		createCollectionview()
-		
-		
+		loadData()
     }
+	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		self.navigationController?.navigationBar.isTranslucent = false
@@ -62,6 +63,7 @@ extension ParcelViewController :UICollectionViewDelegate, UICollectionViewDataSo
 		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "parcelviewcell", for: indexPath)
 		cell.contentView.backgroundColor = UIColor(red: 254, green: 222, blue: 209)
 		
+		let dic:NSDictionary = self.data.object(at: indexPath.row) as! NSDictionary
 		let bgcell:UIView = UIView()
 		bgcell.backgroundColor = UIColor.white
 		cell.contentView.addSubview(bgcell)
@@ -70,7 +72,9 @@ extension ParcelViewController :UICollectionViewDelegate, UICollectionViewDataSo
 			make.trailing.bottom.equalTo(-1)
 		}
 		
-		let logo:UIImageView = UIImageView(image: UIImage(named: "img_menu01"))
+		let logo:UIImageView = UIImageView()
+		logo.isUserInteractionEnabled = true
+		logo.setImageWith(NSURL(string: dic.object(forKey: "image_url") as! String)! as URL)
 		logo.contentMode = .scaleAspectFit
 		bgcell.addSubview(logo)
 		logo.snp.makeConstraints { (make) in
@@ -80,7 +84,14 @@ extension ParcelViewController :UICollectionViewDelegate, UICollectionViewDataSo
 		
 		return cell
 	}
-	
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		let dic:NSDictionary = self.data.object(at: indexPath.row) as! NSDictionary
+		let vc:TSCategoryController = TSCategoryController()
+		vc.hidesBottomBarWhenPushed = true
+		vc.leves = [dic.object(forKey: "custom_lev1") ?? "1",dic.object(forKey: "custom_lev2") ?? "1","1"]
+		self.navigationController?.pushViewController(vc, animated: true)
+
+	}
 }
 
 extension ParcelViewController{
@@ -126,11 +137,8 @@ extension ParcelViewController{
 		titleImg.contentMode = .scaleAspectFill
 		self.navigationItem.titleView = titleImg
 		
-		
-		let statusRect = UIApplication.shared.statusBarFrame
-		let navRect = self.navigationController?.navigationBar.frame
-		
 		self.locationView = ParecellocationView()
+		self.locationView?.backgroundColor = UIColor(red: 254, green: 222, blue: 209)
 		self.view.addSubview(self.locationView!)
 		self.locationView?.snp.makeConstraints({ (make) in
 			make.leading.trailing.equalTo(0)
@@ -138,13 +146,12 @@ extension ParcelViewController{
 			make.height.equalTo(40)
 
 		})
-		
-		
 	}
 	
 	@objc private func leftAction(sender:UIButton){
 		
 		self.navigationController?.popViewController(animated: true)
+		
 	}
 	
 	@objc private func searchAction(sender:UIButton){
@@ -160,5 +167,15 @@ extension ParcelViewController{
 		self.present(navi, animated: false, completion: nil)
 	}
 	
-
+	private func loadData(){
+		KLHttpTool.getFoodCatewithUri("StoreCate/requestCategory2List", withCustom_lev1: self.lev1, success: { (res) in
+			let response:NSDictionary = res as! NSDictionary
+			self.data = response.object(forKey: "data") as! NSArray
+			self.parcelView?.reloadData()
+		}) { (err) in
+			
+		}
+		
+	}
+	
 }

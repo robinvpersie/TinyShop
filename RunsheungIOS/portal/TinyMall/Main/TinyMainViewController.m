@@ -269,14 +269,11 @@
 		CLGeocoder *geocoder = [[CLGeocoder alloc] init];
 		[geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
 			if (placemarks.count > 0) {
-				NSString *address = placemarks.firstObject.name;
 				
+				NSString *address = placemarks.firstObject.name;
 				SetUserDefault(@"Address", address);
 				self.choiceHeadView.addressName = address;
-//				if (first) {
-//					[self loadMainDataWithType:topRefresh finish:^{ }];
-//					first = NO;
-//				}
+
 			} else {
 				self.choiceHeadView.addressName =  NSLocalizedString(@"定位失败", nil) ;
 			};
@@ -381,9 +378,7 @@
 		[self loadInputDomain:self.numberdata];
 
 	}
-	
-	
-		
+
 }
 
 - (void)loadResquestData{
