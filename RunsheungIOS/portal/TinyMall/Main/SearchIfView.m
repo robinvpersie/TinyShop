@@ -21,7 +21,7 @@
 - (void)setDic:(NSDictionary *)dic{
 	_dic = dic;
 	self.resquestDic = [NSMutableDictionary new];
-	self.datas = @[@[@{@"外卖":_dic[@"dataDeli"]},@{@"排序":_dic[@"dataOrderBy"]},@{@"种类":_dic[@"dataLevel"]}],@[@{@"活动":_dic[@"dataEvnt"]},@{@"优惠券":_dic[@"dataVchr"]},@{@"确定":@[]}]];
+	self.datas = @[@[@{@"배달":_dic[@"dataDeli"]},@{@"위치":_dic[@"dataOrderBy"]},@{@"주문상품":_dic[@"dataLevel"]}],@[@{@"이벤트중":_dic[@"dataEvnt"]},@{@"상품권사용":_dic[@"dataVchr"]},@{@"검색":@[]}]];
 	[self.resquestDic setObject:@"0" forKey:@"DeliveryCd"];
 	[self.resquestDic setObject:@"1" forKey:@"order_by"];
 	[self.resquestDic setObject:@"0" forKey:@"EventCd"];
@@ -34,8 +34,7 @@
 }
 - (void)createSubviews{
 	UILabel *ifchoice = [UILabel new];
-	ifchoice.text = @"条件搜索";
-	ifchoice.font = [UIFont systemFontOfSize:18];
+	ifchoice.text = @"조건검색";
 	[self addSubview:ifchoice];
 	[ifchoice mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.leading.top.height.mas_equalTo(15);
@@ -57,6 +56,7 @@
 				}];
 				
 				UILabel *title = [UILabel new];
+				title.font = [UIFont systemFontOfSize:15];
 				title.textColor = RGB(45, 45, 45);
 				title.text = dic.allKeys.firstObject;
 				[bgview addSubview:title];
@@ -68,8 +68,8 @@
 				
 				NSArray *values = dic.allValues.firstObject;
 				arrowBtn *editBtn = [[arrowBtn alloc]initWithFrame:CGRectZero];
+				editBtn.titleLabel.font = [UIFont systemFontOfSize:15];
 				editBtn.choiceblock = ^(NSString *str ,int index,int indexpathrow) {
-					NSLog(@"%@",str);
 					_currentStr = str;
 					NSArray *keys = @[@"DeliveryCd",@"order_by",@"",@"EventCd",@"VoucherCd"];
 					for (int i = 0; i<keys.count; i++) {
@@ -110,13 +110,13 @@
 				submit.backgroundColor = RGB(33, 192, 67);
 				submit.layer.cornerRadius = 4;
 				submit.layer.masksToBounds = YES;
-				[submit setTitle:@"确定" forState:UIControlStateNormal];
+				[submit setTitle:@"검색" forState:UIControlStateNormal];
 				[submit addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
 				[self addSubview:submit];
 				[submit mas_makeConstraints:^(MASConstraintMaker *make) {
 					make.width.mas_equalTo(50);
-					make.top.mas_equalTo(i*50 + 40);
-					make.height.mas_equalTo(20);
+					make.top.mas_equalTo(i*50 + 37);
+					make.height.mas_equalTo(26);
 					make.trailing.mas_equalTo(-20);
 				}];
 				

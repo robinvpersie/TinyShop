@@ -88,7 +88,7 @@
 		}
 	}
 	[UIView animateWithDuration:0.4f animations:^{
-		self.bottomLine.frame = CGRectMake(5+sender.tag*65,47 , 55, 2);
+		self.bottomLine.frame = CGRectMake(5+sender.tag*65,37 , 55, 2);
 	}];
 	
 	if ([self.delegate respondsToSelector:@selector(clickItem:)]) {

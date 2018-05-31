@@ -150,7 +150,7 @@
 	}
 
 	if (self.segmentView1 == nil) {
-		self.segmentView1 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(_locatview.frame)+5, APPScreenWidth, 40) withdit:self.responseDit  withData:leve2Mutables withLineBottomColor:RGB(33, 192, 67)];
+		self.segmentView1 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(_locatview.frame)+5, APPScreenWidth, 40) withdit:self.responseDit  withData:leve2Mutables withLineBottomColor:RGB(33, 194, 180)];
 		self.segmentView1.delegate =self;
 		[self.view addSubview:self.segmentView1];
 	}

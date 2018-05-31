@@ -99,7 +99,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="언어선택언어선택언어선택" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqq-hb-nDK">
-                        <rect key="frame" x="108" y="39" width="135" height="16"/>
+                        <rect key="frame" x="108" y="39" width="244" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -125,6 +125,7 @@
                     <constraint firstItem="678-NU-alg" firstAttribute="leading" secondItem="A3r-4o-xxj" secondAttribute="trailing" constant="3" id="UAT-lk-f5i"/>
                     <constraint firstAttribute="trailing" secondItem="3dR-4Z-gxH" secondAttribute="trailing" constant="18" id="UNS-ur-WSI"/>
                     <constraint firstItem="oaF-7i-881" firstAttribute="leading" secondItem="Zle-fE-6O3" secondAttribute="trailing" constant="8" id="Wet-qq-1m3"/>
+                    <constraint firstItem="Fej-Pt-fCd" firstAttribute="trailing" secondItem="hqq-hb-nDK" secondAttribute="trailing" id="aOS-7M-yTa"/>
                     <constraint firstItem="5ES-VU-CzP" firstAttribute="leading" secondItem="678-NU-alg" secondAttribute="trailing" constant="3" id="e7b-05-u1M"/>
                     <constraint firstItem="Fqx-gQ-EkL" firstAttribute="leading" secondItem="5ES-VU-CzP" secondAttribute="trailing" constant="3" id="n6B-sq-zgj"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Fej-Pt-fCd" secondAttribute="trailing" constant="8" id="nmq-9S-5k7"/>

@@ -28,7 +28,7 @@
 		buton.layer.borderWidth= 1;
 		if (i == 0) {
 			buton.selected = YES;
-			buton.layer.borderColor = RGB(33, 192, 67).CGColor;
+			buton.layer.borderColor = RGB(33, 194, 180).CGColor;
 			
 		}else{
 			buton.layer.borderColor =RGB(201, 201, 201).CGColor;
@@ -39,7 +39,7 @@
 		[buton addTarget:self action:@selector(ItemThird:) forControlEvents:UIControlEventTouchUpInside];
 		[buton setTitle:self.dataArray[i] forState:UIControlStateNormal];
 		[buton setTitleColor:RGB(175, 175, 175) forState:UIControlStateNormal];
-		[buton setTitleColor:RGB(33, 192, 67) forState:UIControlStateSelected];
+		[buton setTitleColor:RGB(33, 194, 180) forState:UIControlStateSelected];
 		[buton.titleLabel setFont:[UIFont systemFontOfSize:13]];
 		[self addSubview:buton];
 	}
@@ -82,7 +82,7 @@
 	if ([self.delegate respondsToSelector:@selector(clickSegment:)]) {
 		[self.delegate clickSegment:(int)sender.tag];
 		if (sender.tag != 1001) {
-			sender.layer.borderColor = RGB(33, 192, 67).CGColor;
+			sender.layer.borderColor = RGB(33, 194, 180).CGColor;
 			
 		}
 		
