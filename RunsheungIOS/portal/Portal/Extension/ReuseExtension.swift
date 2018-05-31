@@ -25,15 +25,15 @@ extension UITableView{
             return false
         case .reloadData:
             return true
-      case .reloadIndexPaths(_):
+        case .reloadIndexPaths:
             return true
-        case .insert(_):
+        case .insert:
             return true
         }
     }
         
      
-    func performWithTableView(tableview:UITableView){
+    func performWithTableView(tableview: UITableView){
             switch self {
             case .none:
                 break;
@@ -53,9 +53,6 @@ extension UITableView{
         }
         
     }
-    
-    
-    
 }
 
 
@@ -66,19 +63,18 @@ extension UICollectionView{
        case reloadData
        case insert([IndexPath])
         
-        var needsLabor:Bool{
+        var needsLabor: Bool{
             switch self {
             case .none:
                 return false
             case .reloadData:
                 return true
-            case .insert(_):
+            case .insert:
                 return true
             }
         }
         
-        func performWithCollectionView(collectionview:UICollectionView){
-            
+        func performWithCollectionView(collectionview: UICollectionView){
             switch self {
             case .none:
                 print("collectionview waytoupdate:none")
@@ -100,15 +96,15 @@ extension UICollectionView{
 
 
 protocol Reusable: class {
-    static var portal_reuseIdentifier: String {get}
+    static var portal_reuseIdentifier: String { get }
 }
 
 protocol NibLoadable {
-    static var portal_nibName: String {get}
+    static var portal_nibName: String { get }
 }
 
 extension UITableViewCell: NibLoadable{
-    static var portal_nibName: String{
+    static var portal_nibName: String {
         return String(describing: self)
     }
 }
@@ -174,8 +170,6 @@ extension UICollectionView{
         register(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: T.portal_reuseIdentifier)
     }
 
-
-    
     func dequeueReusableCell<T>(indexpath: IndexPath) -> T where T: UICollectionViewCell {
         guard let cell = dequeueReusableCell(withReuseIdentifier: T.portal_reuseIdentifier, for: indexpath) as? T else {
             fatalError("Could not dequeue cell with identifier: \(T.portal_reuseIdentifier)")
@@ -183,12 +177,11 @@ extension UICollectionView{
         return cell
     }
     
-    func dequeueReusableSupplementaryView<T>(ofKind kind: String, forIndexPath indexPath: IndexPath) -> T where T:UICollectionReusableView {
+    func dequeueReusableSupplementaryView<T>(ofKind kind: String, forIndexPath indexPath: IndexPath) -> T where T: UICollectionReusableView {
         
         guard let view = dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: T.portal_reuseIdentifier, for: indexPath as IndexPath) as? T else {
             fatalError("Could not dequeue supplementary view with identifier: \(T.portal_reuseIdentifier), kind: \(kind)")
         }
-        
         return view
     }
 

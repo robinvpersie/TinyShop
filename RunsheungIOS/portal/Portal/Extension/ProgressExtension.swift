@@ -11,7 +11,7 @@ import MBProgressHUD
 import SnapKit
 
 
-extension MBProgressHUD{
+extension MBProgressHUD {
    
     class func  getrootWindow() -> UIWindow? {
       let windows = UIApplication.shared.windows
@@ -19,27 +19,25 @@ extension MBProgressHUD{
          if let appdelegate = UIApplication.shared.delegate {
             if x.isKind(of: UIWindow.self) && x == (appdelegate.window)! && x.bounds.equalTo(UIScreen.main.bounds){
                 return x
-              }
-        }
+            }
+         }
       }
-        return nil
+      return nil
     }
     
     
    class func getRootView() -> UIView? {
-    if let window = self.getrootWindow() {
+     if let window = self.getrootWindow() {
         let frontview = window.subviews[0]
-        var result:UIViewController!
-        if let nextResponser = frontview.next {
-            if nextResponser.isKind(of: UIViewController.self){
+        var result: UIViewController!
+        if let nextResponser = frontview.next, nextResponser.isKind(of: UIViewController.self) {
                 result = nextResponser as! UIViewController
                 return result.view
-            }
-        }else {
+        } else {
            result = window.rootViewController!
            return result.view
         }
-     }
+      }
        return nil
    }
         
@@ -48,15 +46,15 @@ extension MBProgressHUD{
    @discardableResult
    public class func showLoading() -> MBProgressHUD?{
        return self.showLoadingtoView()
-    }
+   }
         
         
     
     public class func hideHud() {
         guard let rootView = self.getRootView() else {
-                return
+            return
         }
-        for  subView  in rootView.subviews.reversed(){
+        for subView in rootView.subviews.reversed(){
             if (subView is MBProgressHUD) {
                let y = subView as! MBProgressHUD
                y.hide(animated: true)
@@ -66,14 +64,14 @@ extension MBProgressHUD{
     
     
     @discardableResult
-    public class func show(view:UIView) -> MBProgressHUD{
+    public class func show(view: UIView) -> MBProgressHUD{
       let hud = MBProgressHUD.showAdded(to: view, animated: true)
       hud.removeFromSuperViewOnHide = true
       return hud
     }
     
     @discardableResult
-    public class func progressHud(view:UIView) -> MBProgressHUD{
+    public class func progressHud(view: UIView) -> MBProgressHUD{
         let hud = MBProgressHUD.showAdded(to: view, animated: true)
         hud.removeFromSuperViewOnHide = true
         hud.mode = .annularDeterminate
@@ -81,7 +79,7 @@ extension MBProgressHUD{
     }
     
     
-   public class func showLoadingtoView(view:UIView? = nil) -> MBProgressHUD?{
+   public class func showLoadingtoView(view: UIView? = nil) -> MBProgressHUD?{
         if let view  = view {
           let hud = show(view: view)
             return hud
@@ -113,8 +111,7 @@ extension MBProgressHUD{
     
     
     @discardableResult
-    public class func showCustomInView(_ view:UIView) -> MBProgressHUD{
-        
+    public class func showCustomInView(_ view: UIView) -> MBProgressHUD{
         let mb = MBProgressHUD(frame: view.bounds)
         mb.bezelView.color = UIColor.clear
         mb.backgroundView.color = UIColor.white
@@ -130,18 +127,18 @@ extension MBProgressHUD{
 }
 
 
-class YCMBProgressView:UIView{
+class YCMBProgressView: UIView{
     
-    var activity:UIActivityIndicatorView!
+    var activity: UIActivityIndicatorView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         activity = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        addSubview(activity)
         activity.hidesWhenStopped = true
+        addSubview(activity)
         activity.snp.makeConstraints { (make) in
-            make.centerX.centerY.equalTo(self)
+            make.center.equalTo(self)
         }
         activity.startAnimating()
     }

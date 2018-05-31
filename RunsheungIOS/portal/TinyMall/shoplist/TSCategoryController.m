@@ -220,10 +220,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	NSDictionary *dic = self.shoplistData[indexPath.row];
-	BusinessHomeController *shopDetailed = [[BusinessHomeController alloc] init];
-	shopDetailed.hidesBottomBarWhenPushed = YES;
-    shopDetailed.dic = dic;
-	[self.navigationController pushViewController:shopDetailed animated:YES];
+//    BusinessHomeController *shopDetailed = [[BusinessHomeController alloc] init];
+//    shopDetailed.hidesBottomBarWhenPushed = YES;
+//    shopDetailed.dic = dic;
+    BusinessMenuViewController *menu = [[BusinessMenuViewController alloc] init];
+    menu.dic = dic;
+    menu.hidesBottomBarWhenPushed = YES;
+	[self.navigationController pushViewController:menu animated:YES];
 }
 
 

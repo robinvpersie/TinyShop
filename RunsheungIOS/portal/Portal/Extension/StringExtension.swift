@@ -76,7 +76,7 @@ public extension String {
         return keyArray
     }
     
-    func getValurArray() -> [String]{
+    func getValurArray() -> [String] {
         var valueArray = [String]()
         if let url = URLComponents(string: self),
             let queryItem = url.queryItems {

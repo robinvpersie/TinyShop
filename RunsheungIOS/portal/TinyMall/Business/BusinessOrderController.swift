@@ -35,36 +35,37 @@ class BusinessOrderController: BaseController {
         tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 90.hrpx
-        tableView.estimatedRowHeight = 90.hrpx
+        tableView.rowHeight = 100.hrpx
+        tableView.estimatedRowHeight = 100.hrpx
         tableView.registerClassOf(BusinessOrderCell.self)
+        tableView.registerNibOf(BusinessMenuCell.self)
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
         }
         
-        pushView = OrderMenuPushView()
-        pushView.actionBlock = { [weak self] type, model in
-            guard let this = self else {
-                return
-            }
-            switch type {
-            case .add:
-                this.itemSelected[model.model, default: 0] += 1
-                this.totalNum += 1
-                this.totalPrice += model.model.itemP
-            case .sub:
-                if model.num == 0 {
-                   this.itemSelected.removeValue(forKey: model.model)
-                } else {
-                   this.itemSelected[model.model, default: 0] -= 1
-                }
-                this.totalNum -= 1
-                this.totalPrice -= model.model.itemP
-            }
-            this.menuReloadData()
-        }
-        view.addSubview(pushView)
+//        pushView = OrderMenuPushView()
+//        pushView.actionBlock = { [weak self] type, model in
+//            guard let this = self else {
+//                return
+//            }
+//            switch type {
+//            case .add:
+//                this.itemSelected[model.model, default: 0] += 1
+//                this.totalNum += 1
+//                this.totalPrice += model.model.itemP
+//            case .sub:
+//                if model.num == 0 {
+//                   this.itemSelected.removeValue(forKey: model.model)
+//                } else {
+//                   this.itemSelected[model.model, default: 0] -= 1
+//                }
+//                this.totalNum -= 1
+//                this.totalPrice -= model.model.itemP
+//            }
+//            this.menuReloadData()
+//        }
+//        view.addSubview(pushView)
         
         orderMenu = OrderMenuView()
         orderMenu.pushAction = { [weak self] in
@@ -127,7 +128,7 @@ class BusinessOrderController: BaseController {
             this.navigationController?.pushViewController(confirm, animated: true)
 
         }
-        view.addSubview(orderMenu)
+//        view.addSubview(orderMenu)
     
     }
     
@@ -135,9 +136,10 @@ class BusinessOrderController: BaseController {
         super.viewDidLayoutSubviews()
         
         let height: CGFloat = 60
-        orderMenu.frame = CGRect(x: 0, y: view.frame.height - height, width: view.frame.width, height: height)
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, height, 0)
-        pushView.frame = view.frame
+//        orderMenu.frame = CGRect(x: 0, y: view.frame.height - height, width: view.frame.width, height: height)
+        //tableView.contentInset = UIEdgeInsetsMake(0, 0, height, 0)
+//        pushView.frame = view.frame
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
     
     }
     
@@ -199,8 +201,8 @@ extension BusinessOrderController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let cell = cell as! BusinessOrderCell
-        cell.configureWithPlist(productList[indexPath.row])
+//        let cell = cell as! BusinessOrderCell
+//        cell.configureWithPlist(productList[indexPath.row])
     }
     
 }
@@ -225,25 +227,27 @@ extension BusinessOrderController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: BusinessOrderCell = tableView.dequeueReusableCell()
-        cell.addAction = { [weak self] in
-            guard let this = self else {
-                return
-            }
-            let plist = this.productList[indexPath.row]
-            let selectModel = SelectModel(indexPath: indexPath, itemCode: plist.item_code, name: plist.item_name, itemp: Float(plist.item_p)!)
-            this.itemSelected[selectModel, default: 0] += 1
-            this.totalNum += 1
-            this.orderMenu.badgeValue = this.totalNum
-            this.totalPrice += Float(plist.item_p) ?? 0
-            this.orderMenu.totalPrice = this.totalPrice
-        }
-        cell.buyAction = { [weak self] in
-            if let strongself = self {
-                let product = strongself.productList[indexPath.row]
-                strongself.requestTypeWithGroupId(product.GroupId, plist: product, indexPath: indexPath)
-            }
-        }
+        let cell: BusinessMenuCell = tableView.dequeueReusableCell()
+//       let cell: BusinessOrderCell = tableView.dequeueReusableCell()
+//        cell.addAction = { [weak self] in
+//            guard let this = self else {
+//                return
+//            }
+//            let plist = this.productList[indexPath.row]
+//            let selectModel = SelectModel(indexPath: indexPath, itemCode: plist.item_code, name: plist.item_name, itemp: Float(plist.item_p)!)
+//            this.itemSelected[selectModel, default: 0] += 1
+//            this.totalNum += 1
+//            this.orderMenu.badgeValue = this.totalNum
+//            this.totalPrice += Float(plist.item_p) ?? 0
+//            this.orderMenu.totalPrice = this.totalPrice
+//        }
+//        cell.buyAction = { [weak self] in
+//            if let strongself = self {
+//                let product = strongself.productList[indexPath.row]
+//                strongself.requestTypeWithGroupId(product.GroupId, plist: product, indexPath: indexPath)
+//            }
+//        }
+        cell.configureWithData(productList[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }

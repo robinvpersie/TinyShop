@@ -93,8 +93,8 @@ class BusinessHomeController: BaseController {
                 switch event {
                 case let .success(element):
                     OperationQueue.main.addOperation {
-                    self?.headerView.reloadData(element.StoreInfo)
-                    self?.orderController.productList = element.plist
+                        self?.headerView.reloadData(element.StoreInfo)
+                        self?.orderController.productList = element.plist
                     }
                 case .error:
                     break
