@@ -10,7 +10,7 @@ import UIKit
 
 class ParcelViewController: UIViewController {
 	var scroview:UIScrollView?
-	public var lev1:String?
+	@objc public var lev1:String?
 	var locationView:ParecellocationView?
 	var parcelView:UICollectionView?
 	lazy var flowLayout:UICollectionViewLayout = {
