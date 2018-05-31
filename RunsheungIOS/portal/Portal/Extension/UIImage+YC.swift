@@ -320,7 +320,7 @@ public extension UIImage {
     }
     
     static var leftarrow: UIImage? {
-        return UIImage(named: "icon_02_01")
+        return UIImage(named: "back_white")
     }
     
     static var password: UIImage{
