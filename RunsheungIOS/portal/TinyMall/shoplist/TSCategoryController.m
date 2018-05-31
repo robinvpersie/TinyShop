@@ -150,13 +150,13 @@
 	}
 
 	if (self.segmentView1 == nil) {
-		self.segmentView1 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(_locatview.frame)+10, APPScreenWidth, 50) withdit:self.responseDit  withData:leve2Mutables withLineBottomColor:RGB(33, 192, 67)];
+		self.segmentView1 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(_locatview.frame)+5, APPScreenWidth, 40) withdit:self.responseDit  withData:leve2Mutables withLineBottomColor:RGB(33, 194, 180)];
 		self.segmentView1.delegate =self;
 		[self.view addSubview:self.segmentView1];
 	}
 	
 	if (self.SegmentItem == nil) {
-		self.SegmentItem = [[SegmentItem alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView1.frame)+10, APPScreenWidth, 50)];
+		self.SegmentItem = [[SegmentItem alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView1.frame), APPScreenWidth, 40)];
 		self.SegmentItem.delegate = self;
 		[self.view addSubview:self.SegmentItem];
 	}
@@ -171,8 +171,9 @@
 	
 	if (self.tableview == nil) {
 		
-		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.locationView.frame)+5, APPScreenWidth, APPScreenHeight - 234) style:UITableViewStylePlain];
+		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.locationView.frame), APPScreenWidth, APPScreenHeight - 234) style:UITableViewStylePlain];
 		[self.tableview registerNib:[UINib nibWithNibName:@"ChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChoiceTableViewCellID"];
+		self.tableview.separatorColor = [UIColor whiteColor];
 		self.tableview.delegate = self;
 		self.tableview.dataSource = self;
 		self.tableview.estimatedRowHeight = 0;
@@ -208,7 +209,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-	return 120.0f;
+	return 110.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
