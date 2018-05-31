@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *detailedLab;
 @property (weak, nonatomic) IBOutlet UILabel *distance;
 @property (weak, nonatomic) IBOutlet UILabel *lastlabel;
+@property (weak, nonatomic) IBOutlet UILabel *korAddress;
 
 @end

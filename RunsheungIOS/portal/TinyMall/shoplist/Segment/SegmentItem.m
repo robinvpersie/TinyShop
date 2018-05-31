@@ -24,7 +24,7 @@
 	
 	self.buttonArray = @[].mutableCopy;
 	for (int i = 0; i<self.dataArray.count; i++) {
-		UIButton *buton = [[UIButton alloc]initWithFrame:CGRectMake(10 + i*75, 10, 65, 30)];
+		UIButton *buton = [[UIButton alloc]initWithFrame:CGRectMake(10 + i*75, 10, 65, 24)];
 		buton.layer.borderWidth= 1;
 		if (i == 0) {
 			buton.selected = YES;
@@ -34,7 +34,7 @@
 			buton.layer.borderColor =RGB(201, 201, 201).CGColor;
 		}
 		buton.tag = i+1;
-		buton.layer.cornerRadius = 15;
+		buton.layer.cornerRadius = 12;
 		buton.layer.masksToBounds = YES;
 		[buton addTarget:self action:@selector(ItemThird:) forControlEvents:UIControlEventTouchUpInside];
 		[buton setTitle:self.dataArray[i] forState:UIControlStateNormal];
@@ -45,7 +45,7 @@
 	}
 	
 	//筛选分类
-	UIButton *selectBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 0, 100, 50)];
+	UIButton *selectBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 8, 100, 24)];
 	selectBtn.tag = 1001;
 	selectBtn.titleLabel.font = [UIFont systemFontOfSize:15];
 	[selectBtn setTitleColor:RGB(13, 13, 13) forState:UIControlStateNormal];

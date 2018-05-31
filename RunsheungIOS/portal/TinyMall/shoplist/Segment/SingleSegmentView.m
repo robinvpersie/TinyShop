@@ -28,11 +28,11 @@
 - (void)createSubview{
 	
 	//第一级
-	UIView *firstView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 50)];
+	UIView *firstView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPScreenWidth, 40)];
 	firstView.backgroundColor = [UIColor whiteColor];
 	[self addSubview:firstView];
 	
-	self.scrollview = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 50)];
+	self.scrollview = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 40)];
 	self.scrollview.backgroundColor = [UIColor whiteColor];
 	self.scrollview.showsHorizontalScrollIndicator = NO;
 	[firstView addSubview:self.scrollview];
@@ -46,7 +46,7 @@
 	
 	for (int i = 0; i<self.showarray.count; i++) {
 		NSString *titles = self.showarray[i];
-		UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(i*65, 0, 65, 47)];
+		UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(i*65, 0, 65, 37)];
 		[btn setTitle:titles forState:UIControlStateNormal];
 		[btn setTitleColor:self.lineColor forState:UIControlStateSelected];
 		
@@ -57,7 +57,7 @@
 			if (i+1 == isTwo.intValue) {
 				btn.selected = YES;
 				[UIView animateWithDuration:0.4f animations:^{
-					self.bottomLine.frame = CGRectMake(5+i*65,47 , 55, 2);
+					self.bottomLine.frame = CGRectMake(5+i*65,37 , 55, 2);
 				}];
 			}
 		}else {
@@ -73,7 +73,7 @@
 		[self.scrollview addSubview:btn];
 		
 	}
-	self.scrollview .contentSize = CGSizeMake(self.showarray.count * 65, 50);
+	self.scrollview .contentSize = CGSizeMake(self.showarray.count * 65, 40);
 	
 }
 

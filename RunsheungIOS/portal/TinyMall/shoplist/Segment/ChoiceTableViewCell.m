@@ -12,6 +12,22 @@
 @implementation ChoiceTableViewCell
 - (void)setDic:(NSDictionary *)dic{
 	_dic = dic;
+	self.lastlabel.layer.cornerRadius = 10;
+	self.lastlabel.layer.masksToBounds = YES;
+	UIView *bgv = [UIView new];
+	bgv.layer.cornerRadius = 5;
+	bgv.layer.masksToBounds = YES;
+	bgv.layer.borderColor = RGB(234, 234, 234).CGColor;
+	bgv.layer.borderWidth = 2;
+	[self.contentView insertSubview:bgv atIndex:0];
+	[bgv mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.leading.mas_equalTo(10);
+		make.top.mas_equalTo(5);
+		make.trailing.mas_equalTo(-10);
+		make.bottom.mas_equalTo(-5);
+	}];
+	
+	[self.korAddress setText:_dic[@"kor_addr"]];
 	[self.Headavor sd_setImageWithURL:[NSURL URLWithString:_dic[@"shop_thumnail_image"]]];
 	[self.titleLab setText:_dic[@"custom_name"]];
 	
