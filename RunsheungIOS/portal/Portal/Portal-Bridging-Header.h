@@ -60,6 +60,8 @@
 #import "InputFieldView.h"
 #import "ECU.h"
 #import "TSearchViewController.h"
+#import "TSCategoryController.h"
+#import "UIView+ViewController.h"
 
 
 #endif /* Portal_Bridging_Header_h */

@@ -11,7 +11,7 @@ import UIKit
 class ParecellocationView: UIView {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		self.backgroundColor = UIColor(red: 254, green: 222, blue: 209)
+
 		createSubviews()
 	}
 	
@@ -51,7 +51,7 @@ class ParecellocationView: UIView {
 		
 		let lbl:UILabel = UILabel()
 		lbl.text = UserDefaults().object(forKey: "Address") as? String
-		
+		lbl.font = UIFont.systemFont(ofSize: 13)
 		suv.addSubview(lbl)
 		lbl.snp.makeConstraints { (make) in
 			make.leading.equalTo(ltn.snp_trailing).offset(15)
@@ -62,8 +62,37 @@ class ParecellocationView: UIView {
 		
 	}
 	
+
 	@objc private func btnaction(sender:UIButton){
+		let scanVC:ZFScanViewController = ZFScanViewController()
+		scanVC.autoGoBack = true
+		weak var weakself = self
 		
+		scanVC.returnScanBarCodeValue = { (barStr:String?) in
+			let components:NSURLComponents = NSURLComponents(string: barStr!)!
+			let scheme:String? = components.scheme!
+			let host:String? = components.host!
+			if scheme == "giga" {
+				if host == "qrPay"
+				{
+					let numcode:String = components.query!
+					let input:InputAmountController = InputAmountController()
+					input.hidesBottomBarWhenPushed = true
+					input.numcode = numcode
+					input.payCompletion = {(state:Bool) in
+						if state {
+							weakself?.viewController().navigationController?.popViewController(animated: true)
+						}
+						
+					}
+					weakself?.viewController().navigationController?.pushViewController(input, animated: true)
+					
+					
+				}
+			}
+		} 
+		
+		self.viewController().present(scanVC, animated: true, completion: nil)
 	}
 	
 }

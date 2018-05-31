@@ -756,4 +756,15 @@
 					withlongitude:(NSString*)longitude
 						  success:(void (^)(id response))success
 						  failure:(void (^)(NSError *err))failure;
+/**
+ 获取食品主页分类
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getFoodCatewithUri:(NSString*)uri
+		   withCustom_lev1:(NSString*)custom_lev1
+				   success:(void (^)(id response))success
+				   failure:(void (^)(NSError *err))failure;
 @end

@@ -51,8 +51,20 @@
 		[btn setTitleColor:self.lineColor forState:UIControlStateSelected];
 		
 		btn.tag = i;
-		if (i == 0) {
-			btn.selected = YES;
+		NSString *isOne = GetUserDefault(@"Level1");
+		NSString *isTwo = GetUserDefault(@"Level2");
+		if ([isOne isEqualToString:@"1"]) {
+			if (i+1 == isTwo.intValue) {
+				btn.selected = YES;
+				[UIView animateWithDuration:0.4f animations:^{
+					self.bottomLine.frame = CGRectMake(5+i*65,47 , 55, 2);
+				}];
+			}
+		}else {
+			if (i == 0) {
+				btn.selected = YES;
+			}
+
 		}
 		
 		[btn setTitleColor:RGB(2, 2, 2) forState:UIControlStateNormal];

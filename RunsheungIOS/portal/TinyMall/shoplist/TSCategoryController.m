@@ -20,9 +20,6 @@
 #import "TSearchViewController.h"
 #import "CoverMaskView.h"
 
-
-
-
 @interface TSCategoryController() <SaixuanDegate,UITableViewDelegate, UITableViewDataSource, WJClickItemsDelegate, SingleSegmentDelegate, SegmentItemDelegate>{
 	NSString *Level1;
 	NSString *Level2;
@@ -52,6 +49,8 @@
 
 @property (nonatomic, strong)NSMutableArray *dic3sArray;
 
+@property (nonatomic,strong)ParecellocationView *locatview;
+
 
 @end
 
@@ -59,16 +58,22 @@
 
 - (void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
+	self.navigationController.navigationBar.translucent = YES;
+
+	[[WJSetLineColor shareSetLineColor] setNaviLineColor:self withColor:RGB(38, 194, 180)];
 	if (self.leves.count) {
-		
 		[self setNavi];
 		
 	}
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+	[super viewWillDisappear:animated];
+	[[WJSetLineColor shareSetLineColor] setNaviLineColor:self withColor:RGB(255, 255, 255)];
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
-
 	[self setNaviBar];
 	[self setInitData];
 	[self location];
@@ -143,32 +148,30 @@
 		NSDictionary *dic3 = leve3s[i];
 		[leve3Mutables addObject:dic3[@"lev_name"]];
 	}
+
 	if (self.segmentView1 == nil) {
-		CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
-		CGRect navRect = self.navigationController.navigationBar.frame;
-		self.segmentView1 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0,statusRect.size.height+navRect.size.height+10, APPScreenWidth, 50) withdit:self.responseDit  withData:leve2Mutables withLineBottomColor:RGB(33, 192, 67)];
+		self.segmentView1 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(_locatview.frame)+10, APPScreenWidth, 50) withdit:self.responseDit  withData:leve2Mutables withLineBottomColor:RGB(33, 192, 67)];
 		self.segmentView1.delegate =self;
 		[self.view addSubview:self.segmentView1];
-		
-		
 	}
+	
 	if (self.SegmentItem == nil) {
 		self.SegmentItem = [[SegmentItem alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView1.frame)+10, APPScreenWidth, 50)];
 		self.SegmentItem.delegate = self;
 		[self.view addSubview:self.SegmentItem];
-		
 	}
+	
 	CGRect frams = self.tableview.frame;
 	frams.origin.y = CGRectGetMaxY(self.SegmentItem.frame)+5;
 	self.tableview.frame = frams;
-	
 }
+
 
 - (void)createTableview{
 	
 	if (self.tableview == nil) {
 		
-		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.SegmentItem.frame)+5, APPScreenWidth, APPScreenHeight - 234) style:UITableViewStylePlain];
+		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.locationView.frame)+5, APPScreenWidth, APPScreenHeight - 234) style:UITableViewStylePlain];
 		[self.tableview registerNib:[UINib nibWithNibName:@"ChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChoiceTableViewCellID"];
 		self.tableview.delegate = self;
 		self.tableview.dataSource = self;
@@ -179,9 +182,7 @@
 		self.tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
 		[self.tableview.mj_footer beginRefreshing];
 		[self.view addSubview:self.tableview];
-		
-		
-		
+ 
 	}
 }
 
@@ -246,20 +247,18 @@
 	right2Btn.tag = 2005;
 	[self.navigationItem setRightBarButtonItems:@[right1Item]];
 	
-	self.choiceHeadView = [[ChoiceHeadView alloc]initWithFrame:CGRectMake(0, 0, 200, 30) withTextColor:RGB(25, 25, 25) withData:@[@"icon_location",@"icon_arrow_bottom"]];
-	__weak typeof(self) weakSelf = self;
-	self.choiceHeadView.showAction = ^{
-		[weakSelf.locationView showInView:weakSelf.view.window];
-		weakSelf.locationView.location = ^{
-			[weakSelf location];
-		};
-		weakSelf.locationView.map = ^{
-			AroundMapController * around = [[AroundMapController alloc] init];
-			around.hidesBottomBarWhenPushed = YES;
-			[weakSelf.navigationController pushViewController:around animated:YES];
-		};
-	};
-	self.navigationItem.titleView = self.choiceHeadView;
+	CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
+	CGRect navRect = self.navigationController.navigationBar.frame;
+	if (_locatview == nil) {
+		_locatview = [[ParecellocationView alloc] initWithFrame:CGRectMake(0, statusRect.size.height+navRect.size.height, SCREEN_WIDTH, 40)];
+		_locatview.backgroundColor = RGB(38, 194, 180);
+		[self.view addSubview:_locatview];
+	}
+	
+//	CGRect frams = self.tableview.frame;
+//	frams.origin.y = CGRectGetMaxY(self.locatview.frame)+5;
+//	self.tableview.frame = frams;
+	self.navigationItem.titleView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"img_top_slogan"]];
 }
 
 -(void)location {
@@ -363,7 +362,6 @@
 		[self.shoplistData removeAllObjects];
 		NSLog(@"%d",index);
 		[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:[NSString stringWithFormat:@"%d",index] withPg:@"1"];
-		
 	}
 }
 
@@ -373,7 +371,7 @@
 	UIButton *popBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
 	[popBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
 	[popBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
-	[popBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+	[popBtn setImage:[UIImage imageNamed:@"shengqing_back"] forState:UIControlStateNormal];
 	[popBtn addTarget:self action:@selector(pop:) forControlEvents:UIControlEventTouchUpInside];
 	UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:popBtn];
 	[self.navigationItem setLeftBarButtonItem:item];
@@ -397,7 +395,7 @@
 		orderBy = @"1";
 		
 	}else{
-		Level1 = @"13";
+		Level1 = @"1";
 		Level2 = @"1";
 		Level3 = @"1";
 		orderBy = @"1";
