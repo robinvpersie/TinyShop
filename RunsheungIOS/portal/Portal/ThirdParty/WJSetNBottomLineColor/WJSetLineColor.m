@@ -19,7 +19,7 @@
 }
 
 - (void)setNaviLineColor:(UIViewController*)vc withColor:(UIColor*)color{
-    UIImage *colorImage = [self imageWithColor:[UIColor clearColor] size:CGSizeMake(vc.view.frame.size.width, 0.8)];
+    UIImage *colorImage = [self imageWithColor:color size:CGSizeMake(vc.view.frame.size.width, 1.0)];
     [vc.navigationController.navigationBar setBackgroundImage:colorImage forBarMetrics:UIBarMetricsDefault];
     [vc.navigationController.navigationBar setShadowImage:[self imageWithColor:color size:CGSizeMake(vc.view.frame.size.width, 0.8)]];
 

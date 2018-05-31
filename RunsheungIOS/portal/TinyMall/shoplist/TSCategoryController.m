@@ -59,7 +59,6 @@
 
 - (void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
-	
 	if (self.leves.count) {
 		
 		[self setNavi];
@@ -69,10 +68,13 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+
 	[self setNaviBar];
 	[self setInitData];
 	[self location];
 	[self createTableview];
+	NSLog(@"rigin.y:%f",CGRectGetMinY(self.segmentView1.frame));
+
 	
 }
 
@@ -142,15 +144,13 @@
 		[leve3Mutables addObject:dic3[@"lev_name"]];
 	}
 	if (self.segmentView1 == nil) {
-		//获取状态栏的rect
 		CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
-		//获取导航栏的rect
 		CGRect navRect = self.navigationController.navigationBar.frame;
-		
-
 		self.segmentView1 = [[SingleSegmentView alloc]initWithFrame:CGRectMake(0,statusRect.size.height+navRect.size.height+10, APPScreenWidth, 50) withdit:self.responseDit  withData:leve2Mutables withLineBottomColor:RGB(33, 192, 67)];
 		self.segmentView1.delegate =self;
 		[self.view addSubview:self.segmentView1];
+		
+		
 	}
 	if (self.SegmentItem == nil) {
 		self.SegmentItem = [[SegmentItem alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.segmentView1.frame)+10, APPScreenWidth, 50)];

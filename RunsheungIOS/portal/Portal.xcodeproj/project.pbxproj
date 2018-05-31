@@ -787,6 +787,8 @@
 		D56D5BBC20B8FAB900B657BF /* arrowBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BBB20B8FAB900B657BF /* arrowBtn.m */; };
 		D56D5BBF20B94F1000B657BF /* FavCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BBE20B94F1000B657BF /* FavCollectionView.m */; };
 		D56D5BC220B9C7D400B657BF /* PopDomainInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BC120B9C7D400B657BF /* PopDomainInputView.m */; };
+		D56D5BC520BCF38F00B657BF /* ParcelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BC420BCF38F00B657BF /* ParcelViewController.swift */; };
+		D56D5BC720BD236B00B657BF /* ParecellocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BC620BD236B00B657BF /* ParecellocationView.swift */; };
 		D59D3A2C205BE42E0074F0E8 /* TSCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */; };
 		D59D3A2F205BF1030074F0E8 /* TSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */; };
 		D5D01F2A205F5606002263CC /* TeamEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F29205F5606002263CC /* TeamEnrollController.m */; };
@@ -2233,6 +2235,8 @@
 		D56D5BBE20B94F1000B657BF /* FavCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavCollectionView.m; sourceTree = "<group>"; };
 		D56D5BC020B9C7D400B657BF /* PopDomainInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PopDomainInputView.h; sourceTree = "<group>"; };
 		D56D5BC120B9C7D400B657BF /* PopDomainInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PopDomainInputView.m; sourceTree = "<group>"; };
+		D56D5BC420BCF38F00B657BF /* ParcelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParcelViewController.swift; sourceTree = "<group>"; };
+		D56D5BC620BD236B00B657BF /* ParecellocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParecellocationView.swift; sourceTree = "<group>"; };
 		D59D3A26205BE42E0074F0E8 /* TSCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCategoryController.h; sourceTree = "<group>"; };
 		D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCategoryController.m; sourceTree = "<group>"; };
 		D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBaseViewController.m; sourceTree = "<group>"; };
@@ -5534,6 +5538,15 @@
 			path = MemberEnroll;
 			sourceTree = "<group>";
 		};
+		D56D5BC320BCF31E00B657BF /* Parcel */ = {
+			isa = PBXGroup;
+			children = (
+				D56D5BC420BCF38F00B657BF /* ParcelViewController.swift */,
+				D56D5BC620BD236B00B657BF /* ParecellocationView.swift */,
+			);
+			path = Parcel;
+			sourceTree = "<group>";
+		};
 		D59D3A1B205BE42E0074F0E8 /* TinyMall */ = {
 			isa = PBXGroup;
 			children = (
@@ -5607,6 +5620,7 @@
 		D5D01F38205FB3D1002263CC /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				D56D5BC320BCF31E00B657BF /* Parcel */,
 				D52B804420B829750057E831 /* TinyMainViewController.h */,
 				D52B804520B829750057E831 /* TinyMainViewController.m */,
 				D56D5BBD20B94F1000B657BF /* FavCollectionView.h */,
@@ -6231,6 +6245,7 @@
 				1B392D941E28D0E500F70981 /* YYTextUtilities.m in Sources */,
 				1B392D971E28D0E500F70981 /* YYTextView.m in Sources */,
 				5BE152841F137DD200FC74C2 /* Previewable.swift in Sources */,
+				D56D5BC720BD236B00B657BF /* ParecellocationView.swift in Sources */,
 				1B1BC8661E52D35E0094E488 /* SupermarketOrderWaitPayDetailController.m in Sources */,
 				2682D18D1FF64AC900F0470E /* RSCategoryCollectionCell.swift in Sources */,
 				1B392D7D1E28D0E500F70981 /* UIView+Layout.m in Sources */,
@@ -6699,6 +6714,7 @@
 				5B5989D31E9F583700F70125 /* ASValueTrackingSlider.m in Sources */,
 				5B4292381DFE80E2000C242B /* YCAccountModel.swift in Sources */,
 				1B392F2E1E28D14E00F70981 /* SupermarketAllOrderController.m in Sources */,
+				D56D5BC520BCF38F00B657BF /* ParcelViewController.swift in Sources */,
 				26CFF6502004671500A10F91 /* SuperMarketAddView.m in Sources */,
 				267DAAA01EA214CC00299E74 /* HotelDetailedTraficCell.m in Sources */,
 				26B5EE231FF39B1F0001E40B /* SegmentView.m in Sources */,

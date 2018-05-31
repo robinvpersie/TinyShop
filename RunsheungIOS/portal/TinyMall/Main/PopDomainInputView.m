@@ -77,6 +77,9 @@
 	for (int i = 0;i<5;i++) {
 		UITextField *field = [UITextField new];
 		field.tag = i;
+		if ((int)field.tag == 0) {
+			[field becomeFirstResponder];
+		}
 		[self.fieldDatas addObject:field];
 		field.textAlignment = NSTextAlignmentCenter;
 		field.font = [UIFont systemFontOfSize:20];
@@ -119,12 +122,19 @@
 			self.submitblock(data);
 		}
 	}
-	
-	
 }
 #pragma mark-- UIFieldDelegate
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-	NSLog(@"tag:%d--text:%@--string:%@",(int)textField.tag,textField.text,string);
+	NSString *value = [NSString stringWithFormat:@"%@%@",textField.text,string];
+	NSLog(@"tag:%d--text:%@--string:%@",(int)textField.tag,value,string);
+
+	if (value.length > 2) {
+		if ((int)textField.tag < 4) {
+			UITextField *field = self.fieldDatas[(int)textField.tag +1];
+			[field becomeFirstResponder];
+		}
+		return  NO;
+	}
 	return YES;
 	
 }

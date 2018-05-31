@@ -21,6 +21,7 @@
 }
 
 
+
 - (void)setNavi{
 	UIButton *popBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 30)];
 	[popBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
