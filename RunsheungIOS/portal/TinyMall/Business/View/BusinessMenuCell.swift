@@ -16,7 +16,7 @@ class BusinessMenuCell: UITableViewCell {
     @IBOutlet weak var titlelb: UILabel!
     @IBOutlet weak var avatarImgView: UIImageView!
     
-    var scopeAction: (() -> ())?
+    var addAction: (() -> ())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,11 +26,12 @@ class BusinessMenuCell: UITableViewCell {
     func configureWithData(_ plist: Plist) {
         pricelb.text = plist.item_p
         titlelb.text = plist.item_name
+        introducelb.text = plist.Remark
         avatarImgView.kf.setImage(with: URL.init(string: plist.image_url))
     }
 
     @IBAction func didScope(_ sender: Any) {
-        scopeAction?()
+        addAction?()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

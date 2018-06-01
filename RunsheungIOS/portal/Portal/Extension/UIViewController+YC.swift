@@ -21,7 +21,9 @@ extension UIViewController {
     
     @objc (showMessage:interval:completionAction:)
     func showMessage(_ message: String?, interval: TimeInterval = 2, completionAction: (() -> Void)? = nil){
-        MBProgressHUD.delay(view: view, interval: interval, text: message, completionAction: completionAction)
+        OperationQueue.main.addOperation {
+             MBProgressHUD.delay(view: view, interval: interval, text: message, completionAction: completionAction)
+        }
     }
     
     @objc (showCustomloading)

@@ -13,6 +13,7 @@ struct StoreDetail: Codable {
     
     let FoodSpec: [FoodSpec]
     let FoodFlavor: [FoodFlavor]
+ 
     
     struct FoodSpec: Codable {
         let item_code: String
@@ -23,6 +24,8 @@ struct StoreDetail: Codable {
     struct FoodFlavor: Codable {
         let flavorName: String
     }
+    
+
 }
 
 

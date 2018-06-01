@@ -37,9 +37,19 @@ class BusinessMenuViewController: BaseViewController {
     @objc var dic: NSDictionary?
     var avatarImgView: UIImageView!
     var ratiolb: UILabel!
+    var badgelb: UILabel!
     var starView: CosmosView!
     var tabController: TYTabButtonPagerController!
     var orderController = BusinessOrderController()
+    var collectBtn: BadgeView!
+//    lazy var collectItem: UIBarButtonItem = {
+//        let collectBtn = UIButton(type: .custom)
+//        collectBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+//        collectBtn.setImage(UIImage(named: "icon_uncollected_store"), for: .normal)
+//        collectBtn.addTarget(self, action: #selector(didCollect), for: .touchUpInside)
+//        let collectItem = UIBarButtonItem(customView: collectBtn)
+//        return collectItem
+//    }()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -67,9 +77,8 @@ class BusinessMenuViewController: BaseViewController {
         
         let starBtn = UIButton(type: .custom)
         starBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        starBtn.setImage(UIImage(named: "icon_cart_store"), for: .normal)
+        starBtn.setImage(UIImage(named: "icon_uncollected_store"), for: .normal)
         starBtn.addTarget(self, action: #selector(didStar), for: .touchUpInside)
-//        let starItem = UIBarButtonItem(image: UIImage(named: "icon_cart_store")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(didStar))
         let starItem = UIBarButtonItem(customView: starBtn)
         
         let searchBtn = UIButton(type: .custom)
@@ -78,16 +87,13 @@ class BusinessMenuViewController: BaseViewController {
         searchBtn.addTarget(self, action: #selector(didSearch), for: .touchUpInside)
         let searchItem = UIBarButtonItem(customView: searchBtn)
         
-//        let searchItem = UIBarButtonItem(image: UIImage(named: "icon_search_store")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(didSearch))
-      
-        
-        let collectBtn = UIButton(type: .custom)
+        collectBtn = BadgeView(type: .custom)
         collectBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        collectBtn.setImage(UIImage(named: "icon_uncollected_store"), for: .normal)
+        collectBtn.setImage(UIImage(named: "icon_cart_store"), for: .normal)
         collectBtn.addTarget(self, action: #selector(didCollect), for: .touchUpInside)
-        let collectItem = UIBarButtonItem.init(customView: collectBtn)
-//        let collectItem = UIBarButtonItem(image: UIImage(named: "icon_uncollected_store")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(didCollect))
-        navigationItem.rightBarButtonItems = [starItem, searchItem, collectItem]
+        let collectItem = UIBarButtonItem(customView: collectBtn)
+
+        navigationItem.rightBarButtonItems = [collectItem, searchItem, starItem]
         
         avatarImgView = UIImageView()
         view.addSubview(avatarImgView)
@@ -179,7 +185,7 @@ class BusinessMenuViewController: BaseViewController {
                         self?.ratiolb.text = element.StoreInfo.custom_name
                         self?.starView.rating = Double(element.StoreInfo.cnt) ?? 0
                         self?.ratiolb.text = element.StoreInfo.cnt
-                        self?.orderController.productList = element.plist
+                        self?.orderController.dataSource = (element.plist, element.category)
                     }
                 case .error:
                     break
@@ -223,6 +229,14 @@ extension BusinessMenuViewController: TYPagerControllerDataSource {
         switch type {
         case .order:
             orderController.dic = self.dic
+            orderController.addSuccessAction = { [weak self] totalNum in
+                guard let this = self else {
+                    return
+                }
+                OperationQueue.main.addOperation {
+                  this.collectBtn.badgeNum = totalNum
+                }
+            }
             return orderController
         case .comment:
             let comment = BusinessCommentController()

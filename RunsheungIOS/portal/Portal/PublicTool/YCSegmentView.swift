@@ -10,99 +10,107 @@ import UIKit
 
 class YCSegmentView: UIView {
     
-    var didselectItemAtIndexPath:((_ index:Int) -> Void)?
-    var titleForIndex:((_ index:Int)->String)?
+    var didselectItemAtIndexPath:((_ index: Int) -> Void)?
+    var titleForIndex:((_ index: Int) -> String?)?
     
-    var numberOfItems:(() -> Int)?{
+    var numberOfItems:(() -> Int)? {
         didSet{
-            if numberOfItems!() == 0{
+            if let numberOfItems = numberOfItems?(), numberOfItems == 0 {
               self.UnderLineView.isHidden = true
             }else {
               self.UnderLineView.isHidden = false 
             }
-          self.collectionView.reloadData()
+            self.collectionView.reloadData()
         }
     }
     
-    var collectionLayoutEdging:CGFloat = 0
-    var progressHeight:CGFloat = 1 {
+    var collectionLayoutEdging: CGFloat = 0
+    var progressHeight: CGFloat = 1 {
         didSet {
          self.UnderLineView.height = progressHeight
         }
     }
-    var progressEdging:CGFloat = 0
+    var progressEdging: CGFloat = 0
     
-    var progressWidth:CGFloat = 0 {
+    var progressWidth: CGFloat = 0 {
         didSet{
           self.UnderLineView.width = progressWidth
         }
     }
-    var cellWidth:CGFloat = 0{
+    var cellWidth: CGFloat = 0{
         didSet{
          let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
-         layout!.itemSize = CGSize(width: cellWidth, height: self.frame.size.height)
+         layout?.itemSize = CGSize(width: cellWidth, height: self.frame.size.height)
         }
     }
-    var cellSpacing:CGFloat = 0 {
+    var cellSpacing: CGFloat = 0 {
         didSet{
           let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
-          layout!.minimumLineSpacing = cellSpacing
+          layout?.minimumLineSpacing = cellSpacing
         }
     }
-    var cellEdge:CGFloat = 0
-    var animationDuration:CGFloat = 0.25
-    var selectedTextFont:UIFont = UIFont.systemFont(ofSize: 17)
-    var normalTextFont:UIFont = UIFont.systemFont(ofSize: 15)
-    var normalTextColor:UIColor = UIColor.darkcolor
-    var SelectedTextColor:UIColor = UIColor.navigationbarColor
-    var underlineColor:UIColor = UIColor.navigationbarColor{
+    var cellEdge: CGFloat = 0
+    var animationDuration: CGFloat = 0.25
+    var selectedTextFont = UIFont.systemFont(ofSize: 17)
+    var normalTextFont = UIFont.systemFont(ofSize: 15)
+    var normalTextColor = UIColor.darkcolor
+    var selectedTextColor = UIColor.navigationbarColor
+    var selectBackgroundColor = UIColor.white
+    var normalBackgroundColor = UIColor.white
+    var underlineColor = UIColor.navigationbarColor {
         didSet{
           self.UnderLineView.backgroundColor = underlineColor
         }
     }
-    var currentIndex:Int?{
+    var currentIndex: Int?{
         didSet{
-        var toindexpath:IndexPath!
-        if let newValue = currentIndex {
-            toindexpath = IndexPath(item: newValue, section: 0)
-        if let oldValue = oldValue {
-            self.collectionView.scrollToItem(at: toindexpath!, at: .centeredHorizontally, animated: true)
-            self.transitionFromIndex(oldValue, toIndex: newValue, animated: true)
-        }else {
-           setUnderLineFrameWithIndex(index: newValue, animated: false)
-        }
+          var toindexpath: IndexPath!
+          if let newValue = currentIndex {
+              toindexpath = IndexPath(item: newValue, section: 0)
+              if let oldValue = oldValue {
+                 self.collectionView.scrollToItem(at: toindexpath!, at: .centeredHorizontally, animated: true)
+                 self.transitionFromIndex(oldValue, toIndex: newValue, animated: true)
+              }else {
+                 setUnderLineFrameWithIndex(index: newValue, animated: false)
+              }
         }
        }
     }
     
-    lazy var UnderLineView:UIView = {
-      let  UnderLineView = UIView()
-      UnderLineView.backgroundColor = self.underlineColor
-      return  UnderLineView
-     }()
-    
-    lazy var collectionView:UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionview = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
-        collectionview.showsHorizontalScrollIndicator = false
-        collectionview.showsVerticalScrollIndicator = false
-        collectionview.delegate = self
-        collectionview.dataSource = self
-        collectionview.backgroundColor = UIColor.clear
-        collectionview.registerClassOf(YCSegMentTitleCell.self)
-        return collectionview
+    lazy var UnderLineView: UIView = {
+       let underLineView = UIView()
+       underLineView.backgroundColor = self.underlineColor
+       return underLineView
     }()
+    
+    var collectionView: UICollectionView!
 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        backgroundColor = UIColor.clear
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = UIColor.clear
+        collectionView.registerClassOf(YCSegMentTitleCell.self)
         addSubview(collectionView)
-        self.backgroundColor = UIColor.clear
+        
         collectionView.addSubview(UnderLineView)
     }
     
-    fileprivate func setUnderLineFrameWithIndex(index:Int,animated:Bool){
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        collectionView.frame = bounds
+    }
+    
+    fileprivate func setUnderLineFrameWithIndex(index: Int, animated: Bool){
         if let numberOfItems = numberOfItems {
             if numberOfItems() == 0 {
                 UnderLineView.frame = CGRect.zero
@@ -152,15 +160,17 @@ class YCSegmentView: UIView {
         return collectionView.cellForItem(at: IndexPath(item: index, section: 0))
     }
     
-    fileprivate func transitionFromCell(_ fromcell:YCSegMentTitleCell?,tocell:YCSegMentTitleCell?){
+    fileprivate func transitionFromCell(_ fromcell: YCSegMentTitleCell?, tocell: YCSegMentTitleCell?){
         if let fromcell = fromcell {
-            fromcell.titleLabel.textColor = self.normalTextColor
-            let scale = self.normalTextFont.pointSize / self.selectedTextFont.pointSize
+            fromcell.titleLabel.textColor = normalTextColor
+            fromcell.backgroundColor = normalBackgroundColor
+            let scale = normalTextFont.pointSize / selectedTextFont.pointSize
             fromcell.transform = CGAffineTransform(scaleX: scale, y: scale)
-        }
+         }
          if let tocell = tocell {
-            tocell.titleLabel.textColor = self.SelectedTextColor
+            tocell.titleLabel.textColor = selectedTextColor
             tocell.transform = CGAffineTransform.identity
+            tocell.backgroundColor = selectBackgroundColor
         }
         
     }
@@ -178,23 +188,17 @@ class YCSegmentView: UIView {
 }
 
 
-extension YCSegmentView:UICollectionViewDataSource{
+extension YCSegmentView: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let numberOfItems = numberOfItems {
-            return numberOfItems()
-        }else {
-            return 0
-        }
+         return numberOfItems?() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell:YCSegMentTitleCell = collectionView.dequeueReusableCell(indexpath: indexPath)
-        if let titleForIndex = titleForIndex {
-            let title:String = titleForIndex(indexPath.item)
-            cell.titleLabel.text = title
-            cell.titleLabel.font = selectedTextFont
-          }
+        let cell: YCSegMentTitleCell = collectionView.dequeueReusableCell(indexpath: indexPath)
+        cell.titleLabel.text = titleForIndex?(indexPath.item)
+        cell.titleLabel.font = selectedTextFont
         transitionFromCell(indexPath.item == currentIndex ? nil : cell, tocell: indexPath.item == currentIndex ? cell : nil)
         return cell
     }
@@ -202,41 +206,39 @@ extension YCSegmentView:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let cell = cell as? YCSegMentTitleCell
         if indexPath.row != currentIndex {
-            cell?.titleLabel.textColor = self.normalTextColor
-            let scale = self.normalTextFont.pointSize / self.selectedTextFont.pointSize
+            cell?.titleLabel.textColor = normalTextColor
+            let scale = normalTextFont.pointSize / selectedTextFont.pointSize
             cell?.transform = CGAffineTransform(scaleX: scale, y: scale)
+            cell?.backgroundColor = normalBackgroundColor
         }else {
-            cell?.titleLabel.textColor = self.SelectedTextColor
+            cell?.titleLabel.textColor = selectedTextColor
             cell?.transform = CGAffineTransform.identity
-
+            cell?.backgroundColor = selectBackgroundColor
         }
     }
 }
 
 
-extension YCSegmentView:UICollectionViewDelegate {
+extension YCSegmentView: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        if let didselectItemAtIndexPath = didselectItemAtIndexPath {
-            didselectItemAtIndexPath(indexPath.item)
-        }
+        didselectItemAtIndexPath?(indexPath.item)
         currentIndex = indexPath.item
-        
     }
 }
 
-extension YCSegmentView:UICollectionViewDelegateFlowLayout{
+extension YCSegmentView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if cellWidth > 0 {
-          return CGSize(width: cellWidth, height: self.height)
+          return CGSize(width: cellWidth, height: height)
         }else {
-            if let titleForIndex = titleForIndex{
-                let title:String = titleForIndex(indexPath.item)
-                let width = title.sizeforConstrainedSize(font: self.selectedTextFont, constrainedSize: CGSize(width: 300, height: 100)).width
-                return CGSize(width: width + cellEdge * 2, height: self.height)
+            if let titleForIndex = titleForIndex,
+                let title = titleForIndex(indexPath.item) {
+                let width = title.sizeforConstrainedSize(font: selectedTextFont, constrainedSize: CGSize(width: 300, height: 100)).width
+                return CGSize(width: width + cellEdge * 2, height: height)
             }else {
-              return CGSize.zero
+                return CGSize.zero
             }
         }
     }

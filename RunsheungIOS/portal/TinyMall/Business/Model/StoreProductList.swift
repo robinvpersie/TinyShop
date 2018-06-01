@@ -18,6 +18,7 @@ struct Plist: Codable, Hashable {
     let MonthSaleCount: String
     let GroupId: String
     let isSingle: String
+    let Remark: String
 }
 
 struct StoreInfo: Codable {
@@ -33,9 +34,15 @@ struct StoreInfo: Codable {
     let favorites: String
 }
 
+struct Category: Codable {
+    let id: String
+    let level_name: String
+}
+
 struct StoreInfoProduct: Codable {
     var StoreInfo: StoreInfo
     var plist: [Plist]
+    var category: [Category]
     
 }
 

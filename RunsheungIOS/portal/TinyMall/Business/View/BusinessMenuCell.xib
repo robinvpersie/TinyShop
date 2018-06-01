@@ -32,8 +32,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这是一道菜，我不知道是什么名字" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2V1-Mg-zzm">
-                        <rect key="frame" x="147" y="53.5" width="163" height="33.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2V1-Mg-zzm">
+                        <rect key="frame" x="147" y="70.5" width="163" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                             <constraint firstAttribute="height" constant="30" id="QQG-V9-2BN"/>
                             <constraint firstAttribute="width" constant="30" id="Trx-Sg-spp"/>
                         </constraints>
-                        <state key="normal" image="icon_unselected"/>
+                        <state key="normal" image="icon_selected-1"/>
                         <connections>
                             <action selector="didScope:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BkC-TP-LbS"/>
                         </connections>
@@ -85,6 +85,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_unselected" width="22" height="22"/>
+        <image name="icon_selected-1" width="22" height="22"/>
     </resources>
 </document>

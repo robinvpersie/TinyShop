@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class BusinessOrderController: BaseController {
     
@@ -17,31 +18,49 @@ class BusinessOrderController: BaseController {
     var totalNum: Int = 0
     var totalPrice: Float = 0
     var pushDataSource = [(SelectModel, Int)]()
+    var addSuccessAction: ((Int) -> ())?
     @objc var dic: NSDictionary?
  
     lazy var orderTypeView = OrderTypeView()
     
-    var productList = [Plist]() {
+    var dataSource: (plist: [Plist], category: [Category])? {
         didSet {
-            OperationQueue.main.addOperation {
-                self.tableView.reloadData()
+            if let dataSource = dataSource {
+                self.productList = dataSource.plist
+                self.category = dataSource.category
+                OperationQueue.main.addOperation {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
+    
+    var productList = [Plist]()
+    var category = [Category]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView = UITableView(frame: .zero, style: .grouped)
+        tableView = UITableView(frame: .zero, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 100.hrpx
         tableView.estimatedRowHeight = 100.hrpx
         tableView.registerClassOf(BusinessOrderCell.self)
         tableView.registerNibOf(BusinessMenuCell.self)
+        tableView.regisiterHeaderFooterClassOf(OrderHeaderScrollView.self)
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
+        }
+        
+        let slogan = UIImageView()
+        slogan.backgroundColor = UIColor(red: 254, green: 217, blue: 203)
+        slogan.image = UIImage(named: "img_top_slogan")
+        view.addSubview(slogan)
+        slogan.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalTo(view)
+            make.height.equalTo(50)
         }
         
 //        pushView = OrderMenuPushView()
@@ -135,11 +154,11 @@ class BusinessOrderController: BaseController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let height: CGFloat = 60
+//        let height: CGFloat = 60
 //        orderMenu.frame = CGRect(x: 0, y: view.frame.height - height, width: view.frame.width, height: height)
         //tableView.contentInset = UIEdgeInsetsMake(0, 0, height, 0)
 //        pushView.frame = view.frame
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
     
     }
     
@@ -173,6 +192,32 @@ class BusinessOrderController: BaseController {
         }.disposed(by: Constant.dispose)
     }
     
+    func addGoods(itemcode: String, saleCustomCode: String) {
+        showLoading()
+        let addTarget = AddGoodTarget(itemCode: itemcode, saleCustomCode: saleCustomCode, goodnumber: 1)
+        API.request(addTarget)
+            .filterSuccessfulStatusCodes()
+            .mapJSON()
+            .subscribe { [weak self] event in
+                guard let this = self else {
+                    return
+                }
+                this.hideLoading()
+                switch event {
+                case .success(let json):
+                    let json = JSON(json)
+                    if json["status"].int == 1 {
+                        this.totalNum += 1
+                        this.addSuccessAction?(this.totalNum)
+                    } else {
+                        this.showMessage(json["message"].string)
+                    }
+                case .error:
+                    break
+                }
+        }.disposed(by: Constant.dispose)
+    }
+    
     func menuReloadData() {
         orderMenu.totalPrice = totalPrice
         orderMenu.badgeValue = totalNum
@@ -188,6 +233,21 @@ class BusinessOrderController: BaseController {
 
 extension BusinessOrderController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header: OrderHeaderScrollView = tableView.dequeueReusableHeaderFooter()
+        header.category = category
+        header.selectAction = { [weak self] category in
+            guard let this = self else {
+                return
+            }
+        }
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
@@ -197,27 +257,13 @@ extension BusinessOrderController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return 45
     }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        let cell = cell as! BusinessOrderCell
-//        cell.configureWithPlist(productList[indexPath.row])
-    }
-    
 }
 
 extension BusinessOrderController: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return nil
-    }
-    
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -247,8 +293,16 @@ extension BusinessOrderController: UITableViewDataSource {
 //                strongself.requestTypeWithGroupId(product.GroupId, plist: product, indexPath: indexPath)
 //            }
 //        }
-        cell.configureWithData(productList[indexPath.row])
+        let plist = productList[indexPath.row]
+        cell.configureWithData(plist)
         cell.selectionStyle = .none
+        let saleCustomCode = dic?["custom_code"] as? String ?? ""
+        cell.addAction = { [weak self] in
+            guard let this = self else {
+                return
+            }
+            this.addGoods(itemcode: plist.item_code, saleCustomCode: saleCustomCode)
+        }
         return cell
     }
     

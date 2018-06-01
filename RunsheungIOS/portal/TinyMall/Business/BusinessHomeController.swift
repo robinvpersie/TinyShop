@@ -94,7 +94,8 @@ class BusinessHomeController: BaseController {
                 case let .success(element):
                     OperationQueue.main.addOperation {
                         self?.headerView.reloadData(element.StoreInfo)
-                        self?.orderController.productList = element.plist
+                        self?.orderController.dataSource = (element.plist, element.category)
+//                        self?.orderController.productList = element.plist
                     }
                 case .error:
                     break

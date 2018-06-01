@@ -13,12 +13,10 @@ import RxSwift
 
 public enum BaseUrlType: String {
     case base = "http://mall.gigawon.co.kr:8800"
+    case pay = "http://pay.gigawon.co.kr:81"
     
     var url: URL {
-       switch self {
-         case .base:
-            return URL(string: self.rawValue)!
-        }
+       return URL(string: self.rawValue)!
     }
 }
 

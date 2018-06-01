@@ -9,25 +9,22 @@
 import UIKit
 
 
-protocol tabTitleCellProtocol {
-    var titleLabel:UILabel {get}
+protocol TabTitleCellProtocol: class {
+    var titleLabel: UILabel { get }
 }
 
-class YCSegMentTitleCell: UICollectionViewCell,tabTitleCellProtocol {
+class YCSegMentTitleCell: UICollectionViewCell, TabTitleCellProtocol {
     
-    lazy var titleLabel:UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = UIColor.darkText
-        label.textAlignment = .center
-        return label
-    }()
+    var titleLabel: UILabel
     
     override init(frame: CGRect) {
+        titleLabel = UILabel()
+        titleLabel.font = UIFont.systemFont(ofSize: 15)
+        titleLabel.textColor = UIColor.darkText
+        titleLabel.textAlignment = .center
         super.init(frame: frame)
-        
-      contentView.addSubview(titleLabel)
-      contentView.backgroundColor = UIColor.clear
+        contentView.addSubview(titleLabel)
+        contentView.backgroundColor = UIColor.clear
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,7 +33,7 @@ class YCSegMentTitleCell: UICollectionViewCell,tabTitleCellProtocol {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.titleLabel.frame = self.contentView.bounds
+        titleLabel.frame = contentView.bounds
     }
     
 }
