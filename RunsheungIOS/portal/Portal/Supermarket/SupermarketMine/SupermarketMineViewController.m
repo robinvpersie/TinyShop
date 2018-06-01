@@ -182,7 +182,7 @@
     if (section == 0) {
         return 1;
     }
-    return 5;
+    return 6;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
