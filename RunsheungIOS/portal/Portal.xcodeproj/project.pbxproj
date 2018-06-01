@@ -813,6 +813,7 @@
 		D5D01F5220612870002263CC /* ShopDetailedCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F4E2061286F002263CC /* ShopDetailedCollectionCell.m */; };
 		D5D01F58206213E8002263CC /* NumDomainView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F57206213E6002263CC /* NumDomainView.m */; };
 		D5D5BB04207F523000A27ABF /* LGwebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D5BB03207F523000A27ABF /* LGwebViewController.swift */; };
+		D5F6333B20C13A6E00F67742 /* MyShopWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6333A20C13A6E00F67742 /* MyShopWebViewController.swift */; };
 		D5FF7DF020B4367900D2AD78 /* CoverMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DEF20B4367900D2AD78 /* CoverMaskView.m */; };
 		D5FF7DF220B6A70500D2AD78 /* StoreDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DF120B6A6F900D2AD78 /* StoreDetail.swift */; };
 		D5FF7DF620B7B6D700D2AD78 /* OrderMenuPushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DF320B7B6B900D2AD78 /* OrderMenuPushView.swift */; };
@@ -2282,6 +2283,7 @@
 		D5D01F56206213E4002263CC /* NumDomainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumDomainView.h; sourceTree = "<group>"; };
 		D5D01F57206213E6002263CC /* NumDomainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumDomainView.m; sourceTree = "<group>"; };
 		D5D5BB03207F523000A27ABF /* LGwebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LGwebViewController.swift; sourceTree = "<group>"; };
+		D5F6333A20C13A6E00F67742 /* MyShopWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShopWebViewController.swift; sourceTree = "<group>"; };
 		D5FF7DEE20B4367900D2AD78 /* CoverMaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoverMaskView.h; sourceTree = "<group>"; };
 		D5FF7DEF20B4367900D2AD78 /* CoverMaskView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoverMaskView.m; sourceTree = "<group>"; };
 		D5FF7DF120B6A6F900D2AD78 /* StoreDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetail.swift; sourceTree = "<group>"; };
@@ -5555,6 +5557,7 @@
 				D5D01F32205FA3EB002263CC /* FindTeamViewController.h */,
 				D5D01F33205FA3EB002263CC /* FindTeamViewController.m */,
 				D5359DBB20848748008A62A9 /* WebRulesViewController.swift */,
+				D5F6333A20C13A6E00F67742 /* MyShopWebViewController.swift */,
 			);
 			path = MemberEnroll;
 			sourceTree = "<group>";
@@ -6192,6 +6195,7 @@
 				011B5240205BDE2500B7E4D7 /* BaseViewController.swift in Sources */,
 				5BEF65AF1F208C0500817141 /* RightToLeft.swift in Sources */,
 				1B5B6BD11E9B622B009D5C75 /* HotelOrderTableView.m in Sources */,
+				D5F6333B20C13A6E00F67742 /* MyShopWebViewController.swift in Sources */,
 				1B0CD2D51E8B83EC008AF162 /* HotelChooseView.m in Sources */,
 				1B392EF21E28D14E00F70981 /* SupermarketHomeAdview.m in Sources */,
 				011B523B205A0DD200B7E4D7 /* OrderCurrentLocationCell.swift in Sources */,

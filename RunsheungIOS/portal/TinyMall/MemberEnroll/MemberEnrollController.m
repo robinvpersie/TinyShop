@@ -26,10 +26,11 @@
 #define AddMemberCodeBtnTag 3003
 #define ForgetPwdBtnTag 3004
 #define AddMemberRefTag 3005
-@interface MemberEnrollController ()<EnrollSheetViewDelegate, SegmentDelegate, TSMemberDelegate, UIScrollViewDelegate, UITextFieldDelegate>{
+@interface MemberEnrollController ()<EnrollSheetViewDelegate, SegmentDelegate, TSMemberDelegate, UIScrollViewDelegate, UITextFieldDelegate,UIWebViewDelegate>{
 	UIView *loginBG;
 	TSMemberEnrollView *addmemberBG;
 	MBProgressHUD *hud;
+	UIWebView *addWeb;
 	
 }
 
@@ -184,7 +185,6 @@
 	} else {//注册
 		[self moveToright];
 	}
-	
 }
 
 - (void)createTableHeadView{
@@ -282,6 +282,11 @@
 //	[self.scrollview addSubview:forgetBtn];
 	
 	//注册
+//	addWeb = [[UIWebView alloc]initWithFrame:CGRectMake(APPScreenWidth, 0, APPScreenWidth, CGRectGetHeight(self.scrollview.frame))];
+//	addWeb.delegate = self;
+//	[addWeb loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://join.gigaroom.com/10_Member/join_main.aspx"]]];
+//	[self.scrollview addSubview:addWeb];
+
 	addmemberBG =[[TSMemberEnrollView alloc]initWithFrame:CGRectMake(APPScreenWidth+15, 50, APPScreenWidth- 30, 230)];
 	addmemberBG.delegate = self;
 	addmemberBG.layer.cornerRadius = 3;
@@ -417,54 +422,68 @@
 }
 
 - (void)ClickTSMemberDelegate:(int)index{
-	
-	switch (index) {
-		case 0:
-		{
-			
-			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
-			SetUserDefault(@"joinKinds", @"1");
-			[self presentViewController:personalVC animated:YES completion:nil];
-
-		}
-			break;
-		case 1:
-		{
-			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
-			SetUserDefault(@"joinKinds", @"2");
-			[self presentViewController:personalVC animated:YES completion:nil];
-        }
-			break;
-        case 2:
-		{
-			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
-			SetUserDefault(@"joinKinds", @"5");
-			[self presentViewController:personalVC animated:YES completion:nil];
-        }
-			break;
-        case 3:
-		{
-			[self showAlert];
-			SetUserDefault(@"joinKinds", @"4");
-        }
-			break;
-        case 4:
-		{
-			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
-			[self presentViewController:personalVC animated:YES completion:nil];
-			SetUserDefault(@"joinKinds", @"6");
-        }
-			break;
-        case 5:
-		{
-			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
-			[self presentViewController:personalVC animated:YES completion:nil];
-			SetUserDefault(@"joinKinds", @"8");
-        }
-			break;
-        default:
-			break;
+	NSString *loadurl;
+	if (index<4) {
+		loadurl = [NSString stringWithFormat:@"http://join.gigaroom.com/10_Member/join_0%d",(int)index+1];
+	}else if ( index == 4){
+		loadurl = @"http://join.gigaroom.com/10_Member/join_05_Main";
+	}else{
+		loadurl = @"http://join.gigaroom.com/10_Member/join_06_01";
 	}
+	WebRulesViewController *rulevc = [WebRulesViewController new];
+	UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:rulevc];
+	[rulevc loadRulesWebWithLoadurl:loadurl];
+	[rulevc withFlagWithFlag:1];
+	[self presentViewController:navi animated:YES completion:nil];
+	
+
+//	switch (index) {
+//		case 0:
+//		{
+//
+//			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
+//			SetUserDefault(@"joinKinds", @"1");
+//			[self presentViewController:personalVC animated:YES completion:nil];
+//
+//		}
+//			break;
+//		case 1:
+//		{
+//			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
+//			SetUserDefault(@"joinKinds", @"2");
+//			[self presentViewController:personalVC animated:YES completion:nil];
+//        }
+//			break;
+//        case 2:
+//		{
+//			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
+//			SetUserDefault(@"joinKinds", @"5");
+//			[self presentViewController:personalVC animated:YES completion:nil];
+//        }
+//			break;
+//        case 3:
+//		{
+//			[self showAlert];
+//			SetUserDefault(@"joinKinds", @"4");
+//        }
+//			break;
+//        case 4:
+//		{
+//			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
+//			[self presentViewController:personalVC animated:YES completion:nil];
+//			SetUserDefault(@"joinKinds", @"6");
+//        }
+//			break;
+//        case 5:
+//		{
+//			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
+//			[self presentViewController:personalVC animated:YES completion:nil];
+//			SetUserDefault(@"joinKinds", @"8");
+//        }
+//			break;
+//        default:
+//			break;
+//	}
 }
 
 
@@ -497,6 +516,18 @@
 		self.sheetView = [[EnrollSheetView alloc]initWithFrame:CGRectMake(50, APPScreenHeight/ 3.0f, APPScreenWidth - 100,  APPScreenHeight/ 3.0f) withBtntitles:@[@"단체 회원 가입",@"단체신청",@"단체찾기"]];
 		self.sheetView.tag = 0;
 		self.sheetView.delegate = self;
+}
+
+
+#pragma mark -- UIWebViewDelegate
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+	
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+	
+}
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+	return YES;
 }
 @end
 

@@ -1,5 +1,5 @@
 //
-//  WebRulesViewController.swift
+//  MyShopWebViewController.swift
 //  Portal
 //
 //  Created by dlwpdlr on 2018/4/16.
@@ -9,18 +9,18 @@
 import UIKit
 import SnapKit
 
-class WebRulesViewController: UIViewController {
+class MyShopWebViewController : UIViewController {
 	var webview:UIWebView!
 	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
 		setNav()
 		
-    }
+	}
 	
 	private func setNav(){
-
+		
 		navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow?.withRenderingMode(.alwaysOriginal),
 														   style: .plain,
 														   target: self,
@@ -31,12 +31,8 @@ class WebRulesViewController: UIViewController {
 		if self.webview.canGoBack {
 			self.webview.goBack()
 		}else{
-			self.dismiss(animated: true, completion: nil)
+			self.navigationController?.popViewController(animated: true)
 		}
-	}
-	
-	@objc public func withFlag(flag:Int){
-		self.navigationController?.navigationBar.barTintColor =  UIColor(red: 33, green: 192, blue: 67)
 	}
 	
 	@objc public func loadRulesWeb(loadurl:String){
@@ -47,15 +43,15 @@ class WebRulesViewController: UIViewController {
 			self.webview.snp.makeConstraints { (make) in
 				make.edges.equalToSuperview()
 			}
-
+			
 			self.webview.loadRequest(URLRequest(url: URL(string: loadurl)!))
 		}
 	}
 	
-
+	
 }
 
-extension WebRulesViewController:UIWebViewDelegate{
+extension MyShopWebViewController :UIWebViewDelegate{
 	func webViewDidStartLoad(_ webView: UIWebView) {
 		
 		
