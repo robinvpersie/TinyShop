@@ -79,10 +79,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	_imageNames = @[@"icon_myaddress",
+	_imageNames = @[@"icon_mystore",
+					@"icon_myaddress",
                     @"icon_coupon",
                     @"icon_notice",
-
                     @"icon_collection2",
                     @"icon_setting2"
                     ];
@@ -182,7 +182,7 @@
     if (section == 0) {
         return 1;
     }
-    return 5;
+    return 6;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -206,7 +206,13 @@
     cell.textLabel.font = [UIFont systemFontOfSize:17];
 
     if (indexPath.section == 0) {
-        
+		UIImage *icon = [UIImage imageNamed: @"订单"];
+		CGSize itemSize = CGSizeMake(18, 20);
+		UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0);
+		CGRect imageRect = CGRectMake(0, 0, itemSize.width, itemSize.height);
+		[icon drawInRect:imageRect];
+		cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
         cell.textLabel.text = NSLocalizedString(@"SupermarketHomeMyOrder", nil);
         
     } else if (indexPath.section == 1) {
@@ -218,13 +224,15 @@
         cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
-        if (indexPath.row == 0) {
+		if (indexPath.row == 0) {
+			cell.textLabel.text = @"나의 상가";
+		} else if (indexPath.row == 1) {
             cell.textLabel.text = @"주소관리";
-        } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"공지사항";
         } else if (indexPath.row == 2) {
-            cell.textLabel.text = @"리뷰관리";
+            cell.textLabel.text = @"공지사항";
         } else if (indexPath.row == 3) {
+            cell.textLabel.text = @"리뷰관리";
+        } else if (indexPath.row == 4) {
              cell.textLabel.text = @"찜하기";
         } else {
              cell.textLabel.text = @"환경설정";
@@ -250,26 +258,32 @@
         [weakself hideLoading];
         if (token != nil) {
         if (indexPath.section == 1) {
-            if (indexPath.row == 0) {
+			if (indexPath.row == 0) {
+				NSString *loadurl = @"http://www.gigawon.co.kr:1314/80_StoreAdmin/storeMain.aspx";
+				MyShopWebViewController *rulevc = [MyShopWebViewController new];
+				[rulevc loadRulesWebWithLoadurl:loadurl];
+				[weakself.navigationController pushViewController:rulevc animated:YES];
+				
+			} else if (indexPath.row == 1) {
                 SupermarketMyAddressViewController *vc = [[SupermarketMyAddressViewController alloc] init];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.isPageView = NO;
                 [weakself.navigationController pushViewController:vc animated:YES];
                 
-            } else if (indexPath.row == 1) {
+            } else if (indexPath.row == 2) {
                 
                 YCWebViewController *web = [[YCWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://www.gigawon.co.kr:1314/QnA/sub_01"]];
                 web.title = @"공고";
                 web.hidesBottomBarWhenPushed = YES;
                 [weakself.navigationController pushViewController:web animated:YES];
                 
-            } else if (indexPath.row == 2) {
+            } else if (indexPath.row == 3) {
                 
                 SupermarketMyCommentController *myComment = [[SupermarketMyCommentController alloc] init];
                 myComment.hidesBottomBarWhenPushed = YES;
                 [weakself.navigationController pushViewController:myComment animated:YES];
                 
-            } else if (indexPath.row == 3) {
+            } else if (indexPath.row == 4) {
                 
                 SupermarketMyCollectionViewController *mycollection = [[SupermarketMyCollectionViewController alloc] init];
                 mycollection.hidesBottomBarWhenPushed = YES;

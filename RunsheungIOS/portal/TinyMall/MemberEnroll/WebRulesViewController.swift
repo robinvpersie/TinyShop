@@ -25,7 +25,6 @@ class WebRulesViewController: UIViewController {
 														   style: .plain,
 														   target: self,
 														   action: #selector(returnPreController))
-		
 	}
 	
 	@objc private func returnPreController(){
@@ -35,8 +34,12 @@ class WebRulesViewController: UIViewController {
 			self.dismiss(animated: true, completion: nil)
 		}
 	}
-
-   @objc public	func loadRulesWeb(loadurl:String){
+	
+	@objc public func withFlag(flag:Int){
+		self.navigationController?.navigationBar.barTintColor =  UIColor(red: 33, green: 192, blue: 67)
+	}
+	
+	@objc public func loadRulesWeb(loadurl:String){
 		if self.webview == nil {
 			self.webview = UIWebView()
 			self.webview.delegate = self
@@ -44,7 +47,7 @@ class WebRulesViewController: UIViewController {
 			self.webview.snp.makeConstraints { (make) in
 				make.edges.equalToSuperview()
 			}
-			
+
 			self.webview.loadRequest(URLRequest(url: URL(string: loadurl)!))
 		}
 	}

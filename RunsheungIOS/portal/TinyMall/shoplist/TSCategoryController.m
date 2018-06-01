@@ -188,7 +188,10 @@
 }
 
 - (void)footerRefresh{
-	[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:orderBy withPg:[NSString stringWithFormat:@"%d",paged]];
+	
+	[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:orderBy withPg:
+	 
+	 [NSString stringWithFormat:@"%d",paged]];
 }
 #pragma mark -- 代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
