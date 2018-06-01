@@ -228,7 +228,8 @@ extension BusinessMenuViewController: TYPagerControllerDataSource {
             let comment = BusinessCommentController()
             return comment
         case .business:
-            return UIViewController()
+            let generalize = GeneralizeViewController()
+            return generalize
         }
     }
 }

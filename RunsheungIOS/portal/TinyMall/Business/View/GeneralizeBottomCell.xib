@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="158" id="KGk-i7-Jjw" customClass="GeneralizeBottomCell" customModule="Portal" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="158"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="157.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asr-02-CCn">
+                        <rect key="frame" x="90" y="59" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="AyL-o7-SpH"/>
+                            <constraint firstAttribute="width" constant="40" id="EB5-nL-6hG"/>
+                        </constraints>
+                        <state key="normal" image="icon_tel00"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cQ-qb-dE3">
+                        <rect key="frame" x="80.5" y="109" width="59" height="21"/>
+                        <string key="text">전화걸기
+</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ye6-2f-8ci">
+                        <rect key="frame" x="190" y="59" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="3Nf-pv-Rhu"/>
+                            <constraint firstAttribute="width" constant="40" id="rJF-t2-hJI"/>
+                        </constraints>
+                        <state key="normal" image="icon_map00"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지도보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o59-C8-hLR">
+                        <rect key="frame" x="181" y="109" width="59" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="ye6-2f-8ci" secondAttribute="trailing" constant="90" id="H5C-CD-5eY"/>
+                    <constraint firstItem="6cQ-qb-dE3" firstAttribute="centerX" secondItem="asr-02-CCn" secondAttribute="centerX" id="VAc-SD-fOf"/>
+                    <constraint firstItem="o59-C8-hLR" firstAttribute="centerX" secondItem="ye6-2f-8ci" secondAttribute="centerX" id="VG5-fl-Nhz"/>
+                    <constraint firstItem="asr-02-CCn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VbB-U4-LNF"/>
+                    <constraint firstItem="o59-C8-hLR" firstAttribute="top" secondItem="ye6-2f-8ci" secondAttribute="bottom" constant="10" id="clc-KR-r7B"/>
+                    <constraint firstItem="6cQ-qb-dE3" firstAttribute="top" secondItem="asr-02-CCn" secondAttribute="bottom" constant="10" id="d3Q-51-vHg"/>
+                    <constraint firstItem="ye6-2f-8ci" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hHn-kb-0la"/>
+                    <constraint firstItem="asr-02-CCn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="90" id="juE-lF-QYi"/>
+                    <constraint firstItem="o59-C8-hLR" firstAttribute="top" secondItem="ye6-2f-8ci" secondAttribute="bottom" constant="10" id="szK-8C-bWO"/>
+                    <constraint firstItem="6cQ-qb-dE3" firstAttribute="top" secondItem="asr-02-CCn" secondAttribute="bottom" constant="10" id="ub8-uE-pBY"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="34" y="17"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_map00" width="32" height="32"/>
+        <image name="icon_tel00" width="32" height="32"/>
+    </resources>
+</document>

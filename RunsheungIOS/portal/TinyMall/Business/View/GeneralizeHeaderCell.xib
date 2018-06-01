@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="148" id="KGk-i7-Jjw" customClass="GeneralizeHeaderCell" customModule="Portal" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="147.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상호:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMB-vV-8wJ">
+                        <rect key="frame" x="15" y="15" width="34.5" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="1jN-qs-aAR"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사업자번호:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L41-Qh-Tvc">
+                        <rect key="frame" x="15" y="45" width="78.5" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전화번호:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCA-qL-Izb">
+                        <rect key="frame" x="15" y="105" width="63.5" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주소:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NV4-Zt-7eW">
+                        <rect key="frame" x="15" y="75" width="34.5" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GigaKorea最棒" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1f2-fT-9lJ">
+                        <rect key="frame" x="57.5" y="14.5" width="114" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="800-820-8820" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3P-vd-61z">
+                        <rect key="frame" x="101" y="45" width="118.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giga Korea, best korea" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOp-qT-Btg">
+                        <rect key="frame" x="57" y="74.5" width="173" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="188-7409-7957" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Twr-NG-HQb">
+                        <rect key="frame" x="86.5" y="104" width="122.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="1f2-fT-9lJ" firstAttribute="leading" secondItem="kMB-vV-8wJ" secondAttribute="trailing" priority="998" constant="8" id="0f0-eN-TZN"/>
+                    <constraint firstItem="Twr-NG-HQb" firstAttribute="centerY" secondItem="xCA-qL-Izb" secondAttribute="centerY" id="15n-fd-4EY"/>
+                    <constraint firstItem="L41-Qh-Tvc" firstAttribute="leading" secondItem="kMB-vV-8wJ" secondAttribute="leading" id="5x6-qV-set"/>
+                    <constraint firstItem="xCA-qL-Izb" firstAttribute="top" secondItem="NV4-Zt-7eW" secondAttribute="bottom" constant="10" id="9Lu-Qe-qIF"/>
+                    <constraint firstItem="g3P-vd-61z" firstAttribute="leading" secondItem="L41-Qh-Tvc" secondAttribute="trailing" constant="8" id="F45-60-snZ"/>
+                    <constraint firstItem="DOp-qT-Btg" firstAttribute="centerY" secondItem="NV4-Zt-7eW" secondAttribute="centerY" id="Hw0-lf-Y1J"/>
+                    <constraint firstItem="kMB-vV-8wJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="J4i-lU-zCU"/>
+                    <constraint firstItem="xCA-qL-Izb" firstAttribute="height" secondItem="kMB-vV-8wJ" secondAttribute="height" id="Kxd-RQ-C4p"/>
+                    <constraint firstItem="1f2-fT-9lJ" firstAttribute="centerY" secondItem="kMB-vV-8wJ" secondAttribute="centerY" id="MMb-AC-YKv"/>
+                    <constraint firstItem="L41-Qh-Tvc" firstAttribute="top" secondItem="kMB-vV-8wJ" secondAttribute="bottom" constant="10" id="PDS-Xv-ya2"/>
+                    <constraint firstItem="g3P-vd-61z" firstAttribute="centerY" secondItem="L41-Qh-Tvc" secondAttribute="centerY" id="YI8-mJ-jSb"/>
+                    <constraint firstItem="NV4-Zt-7eW" firstAttribute="height" secondItem="kMB-vV-8wJ" secondAttribute="height" id="cza-uf-IbV"/>
+                    <constraint firstItem="NV4-Zt-7eW" firstAttribute="leading" secondItem="kMB-vV-8wJ" secondAttribute="leading" id="e0o-iF-FcM"/>
+                    <constraint firstItem="DOp-qT-Btg" firstAttribute="leading" secondItem="NV4-Zt-7eW" secondAttribute="trailing" constant="8" id="oLm-1c-DhS"/>
+                    <constraint firstItem="kMB-vV-8wJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="qVi-HW-ofy"/>
+                    <constraint firstItem="NV4-Zt-7eW" firstAttribute="top" secondItem="L41-Qh-Tvc" secondAttribute="bottom" constant="10" id="sma-kz-iYt"/>
+                    <constraint firstItem="Twr-NG-HQb" firstAttribute="leading" secondItem="xCA-qL-Izb" secondAttribute="trailing" constant="8" id="w21-Cu-NCU"/>
+                    <constraint firstItem="L41-Qh-Tvc" firstAttribute="height" secondItem="kMB-vV-8wJ" secondAttribute="height" id="wU8-vL-axg"/>
+                    <constraint firstItem="xCA-qL-Izb" firstAttribute="leading" secondItem="kMB-vV-8wJ" secondAttribute="leading" id="x1m-aU-twr"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="-20" y="45"/>
+        </tableViewCell>
+    </objects>
+</document>

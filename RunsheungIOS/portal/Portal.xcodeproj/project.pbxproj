@@ -42,6 +42,13 @@
 		01B20DC620BE7DB900ACEC59 /* BusinessMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01B20DC420BE7DB900ACEC59 /* BusinessMenuCell.xib */; };
 		01B20DC820BEA23000ACEC59 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B20DC720BEA23000ACEC59 /* CommentCell.swift */; };
 		01B20DCA20BEA5DB00ACEC59 /* BusinessCommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B20DC920BEA5DB00ACEC59 /* BusinessCommentController.swift */; };
+		01B20DCD20BFC22100ACEC59 /* GeneralizeHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B20DCB20BFC22100ACEC59 /* GeneralizeHeaderCell.swift */; };
+		01B20DCE20BFC22100ACEC59 /* GeneralizeHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01B20DCC20BFC22100ACEC59 /* GeneralizeHeaderCell.xib */; };
+		01B20DD120BFC71A00ACEC59 /* GeneralizeSecondCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B20DCF20BFC71A00ACEC59 /* GeneralizeSecondCell.swift */; };
+		01B20DD220BFC71A00ACEC59 /* GeneralizeSecondCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01B20DD020BFC71A00ACEC59 /* GeneralizeSecondCell.xib */; };
+		01B20DD520BFC7ED00ACEC59 /* GeneralizeBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B20DD320BFC7ED00ACEC59 /* GeneralizeBottomCell.swift */; };
+		01B20DD620BFC7ED00ACEC59 /* GeneralizeBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01B20DD420BFC7ED00ACEC59 /* GeneralizeBottomCell.xib */; };
+		01B20DD820BFCB7800ACEC59 /* GeneralizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B20DD720BFCB7800ACEC59 /* GeneralizeViewController.swift */; };
 		01B28A7F20B2E57D00CEFB36 /* MoyaProvider+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A7E20B2E57D00CEFB36 /* MoyaProvider+Rx.swift */; };
 		01B28A8120B2E9A900CEFB36 /* Observable+Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A8020B2E9A900CEFB36 /* Observable+Response.swift */; };
 		01B28A8320B2F01200CEFB36 /* Single+Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28A8220B2F01200CEFB36 /* Single+Response.swift */; };
@@ -887,6 +894,13 @@
 		01B20DC420BE7DB900ACEC59 /* BusinessMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusinessMenuCell.xib; sourceTree = "<group>"; };
 		01B20DC720BEA23000ACEC59 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		01B20DC920BEA5DB00ACEC59 /* BusinessCommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCommentController.swift; sourceTree = "<group>"; };
+		01B20DCB20BFC22100ACEC59 /* GeneralizeHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralizeHeaderCell.swift; sourceTree = "<group>"; };
+		01B20DCC20BFC22100ACEC59 /* GeneralizeHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralizeHeaderCell.xib; sourceTree = "<group>"; };
+		01B20DCF20BFC71A00ACEC59 /* GeneralizeSecondCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralizeSecondCell.swift; sourceTree = "<group>"; };
+		01B20DD020BFC71A00ACEC59 /* GeneralizeSecondCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralizeSecondCell.xib; sourceTree = "<group>"; };
+		01B20DD320BFC7ED00ACEC59 /* GeneralizeBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralizeBottomCell.swift; sourceTree = "<group>"; };
+		01B20DD420BFC7ED00ACEC59 /* GeneralizeBottomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralizeBottomCell.xib; sourceTree = "<group>"; };
+		01B20DD720BFCB7800ACEC59 /* GeneralizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralizeViewController.swift; sourceTree = "<group>"; };
 		01B28A7E20B2E57D00CEFB36 /* MoyaProvider+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Rx.swift"; sourceTree = "<group>"; };
 		01B28A8020B2E9A900CEFB36 /* Observable+Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Response.swift"; sourceTree = "<group>"; };
 		01B28A8220B2F01200CEFB36 /* Single+Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Response.swift"; sourceTree = "<group>"; };
@@ -2358,6 +2372,7 @@
 				01B28A9120B407E900CEFB36 /* BusinessOrderController.swift */,
 				01B20DC120BE6FDE00ACEC59 /* BusinessMenuViewController.swift */,
 				01B20DC920BEA5DB00ACEC59 /* BusinessCommentController.swift */,
+				01B20DD720BFCB7800ACEC59 /* GeneralizeViewController.swift */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -2375,6 +2390,12 @@
 				01B20DC320BE7DB900ACEC59 /* BusinessMenuCell.swift */,
 				01B20DC420BE7DB900ACEC59 /* BusinessMenuCell.xib */,
 				01B20DC720BEA23000ACEC59 /* CommentCell.swift */,
+				01B20DCB20BFC22100ACEC59 /* GeneralizeHeaderCell.swift */,
+				01B20DCC20BFC22100ACEC59 /* GeneralizeHeaderCell.xib */,
+				01B20DCF20BFC71A00ACEC59 /* GeneralizeSecondCell.swift */,
+				01B20DD020BFC71A00ACEC59 /* GeneralizeSecondCell.xib */,
+				01B20DD320BFC7ED00ACEC59 /* GeneralizeBottomCell.swift */,
+				01B20DD420BFC7ED00ACEC59 /* GeneralizeBottomCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5862,6 +5883,7 @@
 				1B9546FC1F1DF147006DCB6C /* Flashlight_H@2x.png in Resources */,
 				6275E8611DDC692000656E2D /* Assets.xcassets in Resources */,
 				1B5B6BB81E9B20EE009D5C75 /* HotelPicsCollectionViewCell.xib in Resources */,
+				01B20DD220BFC71A00ACEC59 /* GeneralizeSecondCell.xib in Resources */,
 				1B5B9AA11E320EB2004F4CB1 /* CYPasswordView.bundle in Resources */,
 				1B392EFD1E28D14E00F70981 /* SupermarketHomeTasteNewCollectionViewCell.xib in Resources */,
 				1B392F5E1E28D14E00F70981 /* cart_cutBtn_highlight@2x.png in Resources */,
@@ -5869,6 +5891,7 @@
 				1B392EE91E28D14E00F70981 /* PYSearch.bundle in Resources */,
 				267DAA941EA213EE00299E74 /* HotelSpecificTableCell.xib in Resources */,
 				1BEF693F1E8F7DC000CE3434 /* HotelSearchCollectionViewCell.xib in Resources */,
+				01B20DD620BFC7ED00ACEC59 /* GeneralizeBottomCell.xib in Resources */,
 				1B4C10381EB3195F005EAAE5 /* foregroundStar.png in Resources */,
 				1B392D561E28D0E500F70981 /* ico_make.png in Resources */,
 				1B392F1E1E28D14E00F70981 /* AllKindsCollectionViewCell.xib in Resources */,
@@ -5880,6 +5903,7 @@
 				D5D01F41205FD5E6002263CC /* MainTableViewCell.xib in Resources */,
 				6275E85F1DDC692000656E2D /* Main.storyboard in Resources */,
 				1B392F621E28D14E00F70981 /* cart_selected_btn@3x.png in Resources */,
+				01B20DCE20BFC22100ACEC59 /* GeneralizeHeaderCell.xib in Resources */,
 				1BF3F74C1F283EDC00EA44FB /* Localizable.strings in Resources */,
 				5BAD6AA51E0D00A900E43EAE /* PersonalStarHeaderCell.xib in Resources */,
 				1B392EDA1E28D14E00F70981 /* SupermarketCommentPicCell.xib in Resources */,
@@ -6239,6 +6263,7 @@
 				621DB37920060F3400EE3F63 /* ProfileServiceCell.swift in Sources */,
 				1B392EF11E28D14E00F70981 /* SupermarketHomeADVData.m in Sources */,
 				1B0CD2ED1E8E0693008AF162 /* MSSCalendarHeaderModel.m in Sources */,
+				01B20DCD20BFC22100ACEC59 /* GeneralizeHeaderCell.swift in Sources */,
 				1B392D4D1E28D0E500F70981 /* UILabel+WidthAndHeight.m in Sources */,
 				D53093BA205E445400427350 /* SingleSegmentView.m in Sources */,
 				5BEF65AD1F208C0500817141 /* CosmosView.swift in Sources */,
@@ -6285,11 +6310,13 @@
 				267DAA981EA213EE00299E74 /* HotelDateView.m in Sources */,
 				1B392ED31E28D14E00F70981 /* StarView.m in Sources */,
 				1B392F051E28D14E00F70981 /* SupermarketLimitBuyTableView.m in Sources */,
+				01B20DD820BFCB7800ACEC59 /* GeneralizeViewController.swift in Sources */,
 				5BC2DA261E1B709000082167 /* YCBaseTableViewController.swift in Sources */,
 				1BDBB9441EC5A73D00D01036 /* HotelDetailInfoModel.m in Sources */,
 				01B97F7420B9A13B006B7E24 /* SelectModel.swift in Sources */,
 				1BC876A31E98872E00BB38D7 /* HotelHomeAllDayController.m in Sources */,
 				1B392F1A1E28D14E00F70981 /* IntergrationTableViewCell.m in Sources */,
+				01B20DD120BFC71A00ACEC59 /* GeneralizeSecondCell.swift in Sources */,
 				1B392F101E28D14E00F70981 /* SupermarketSearchController.m in Sources */,
 				1B392D821E28D0E500F70981 /* YYTextEffectWindow.m in Sources */,
 				261E5C3120108BF400E106EF /* NSTimer+addition.m in Sources */,
@@ -6647,6 +6674,7 @@
 				62ADFAE71DE3DF74005FDE1D /* BaseController.swift in Sources */,
 				1B510E571E9CC50A00B77F14 /* HotelConfirmTableViewCell.m in Sources */,
 				1B392F1F1E28D14E00F70981 /* SupermarketAllKindsCollectionView.m in Sources */,
+				01B20DD520BFC7ED00ACEC59 /* GeneralizeBottomCell.swift in Sources */,
 				1B392F261E28D14E00F70981 /* SupermarketMainController.m in Sources */,
 				5B8A5CED1F7E26CD00793E14 /* YCOCShareManager.m in Sources */,
 				1B4C103D1EB32956005EAAE5 /* HotelCommentFaceTableViewCell.m in Sources */,
