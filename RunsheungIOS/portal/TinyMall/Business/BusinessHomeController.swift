@@ -84,7 +84,7 @@ class BusinessHomeController: BaseController {
     
     func requestData() {
         let saleCustomCode = dic?["custom_code"] as? String
-        let targetType = StoreInfoProductTarget(saleCustomCode: saleCustomCode, pg: pg)
+        let targetType = StoreInfoProductTarget(saleCustomCode: saleCustomCode, pg: pg, itemlevel: "0")
         
         API.request(targetType)
             .filterSuccessfulStatusCodes()
@@ -95,7 +95,6 @@ class BusinessHomeController: BaseController {
                     OperationQueue.main.addOperation {
                         self?.headerView.reloadData(element.StoreInfo)
                         self?.orderController.dataSource = (element.plist, element.category)
-//                        self?.orderController.productList = element.plist
                     }
                 case .error:
                     break

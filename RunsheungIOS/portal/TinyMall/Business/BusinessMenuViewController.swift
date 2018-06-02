@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class BusinessMenuViewController: BaseViewController {
     
@@ -42,14 +43,12 @@ class BusinessMenuViewController: BaseViewController {
     var tabController: TYTabButtonPagerController!
     var orderController = BusinessOrderController()
     var collectBtn: BadgeView!
-//    lazy var collectItem: UIBarButtonItem = {
-//        let collectBtn = UIButton(type: .custom)
-//        collectBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-//        collectBtn.setImage(UIImage(named: "icon_uncollected_store"), for: .normal)
-//        collectBtn.addTarget(self, action: #selector(didCollect), for: .touchUpInside)
-//        let collectItem = UIBarButtonItem(customView: collectBtn)
-//        return collectItem
-//    }()
+    var totalNum: Int = 0 {
+        didSet {
+            collectBtn.badgeNum = totalNum
+        }
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -155,10 +154,12 @@ class BusinessMenuViewController: BaseViewController {
         view.addSubview(tabController.view)
         
         requestData()
+        requestTotalNum()
     }
     
     @objc func didCollect() {
-        
+        let shopcart = LZCartViewController()
+        navigationController?.pushViewController(shopcart, animated: true)
     }
     
     @objc func didSearch() {
@@ -172,7 +173,7 @@ class BusinessMenuViewController: BaseViewController {
     
     func requestData() {
         let saleCustomCode = dic?["custom_code"] as? String
-        let targetType = StoreInfoProductTarget(saleCustomCode: saleCustomCode, pg: pg)
+        let targetType = StoreInfoProductTarget(saleCustomCode: saleCustomCode, pg: pg, itemlevel: "0")
         
         API.request(targetType)
             .filterSuccessfulStatusCodes()
@@ -191,6 +192,28 @@ class BusinessMenuViewController: BaseViewController {
                     break
                 }
             }.disposed(by: Constant.dispose)
+    }
+    
+    
+    func requestTotalNum() {
+        let saleCustomCode = dic?["custom_code"] as? String
+        let totalNumTarget = GoodNumTarget(shopId: saleCustomCode)
+        
+        API.request(totalNumTarget)
+            .filterSuccessfulStatusCodes()
+            .mapJSON()
+            .subscribe { [weak self] event in
+                switch event {
+                case let .success(element):
+                    let json = JSON(element)
+                    if let data = json["data"].array {
+                        self?.totalNum = data.count
+                    }
+                case .error:
+                    break
+                }
+        }.disposed(by: Constant.dispose)
+        
     }
     
     override func viewDidLayoutSubviews() {

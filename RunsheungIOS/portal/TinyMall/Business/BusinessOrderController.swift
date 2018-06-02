@@ -19,6 +19,7 @@ class BusinessOrderController: BaseController {
     var totalPrice: Float = 0
     var pushDataSource = [(SelectModel, Int)]()
     var addSuccessAction: ((Int) -> ())?
+    var pg: Int = 1
     @objc var dic: NSDictionary?
  
     lazy var orderTypeView = OrderTypeView()
@@ -192,6 +193,30 @@ class BusinessOrderController: BaseController {
         }.disposed(by: Constant.dispose)
     }
     
+    
+    func requestData(itemlevel: String) {
+        pg = 1
+        let saleCustomCode = dic?["custom_code"] as? String
+        let targetType = StoreInfoProductTarget(saleCustomCode: saleCustomCode, pg: pg, itemlevel: itemlevel)
+        showLoading()
+        API.request(targetType)
+            .filterSuccessfulStatusCodes()
+            .map(StoreInfoProduct.self, atKeyPath: "data")
+            .subscribe { [weak self] event in
+                self?.hideLoading()
+                switch event {
+                case let .success(element):
+                    OperationQueue.main.addOperation {
+                        self?.productList = element.plist
+                        self?.tableView.reloadData()
+                    }
+                case .error:
+                    break
+                }
+            }.disposed(by: Constant.dispose)
+    }
+    
+    
     func addGoods(itemcode: String, saleCustomCode: String) {
         showLoading()
         let addTarget = AddGoodTarget(itemCode: itemcode, saleCustomCode: saleCustomCode, goodnumber: 1)
@@ -240,6 +265,7 @@ extension BusinessOrderController: UITableViewDelegate {
             guard let this = self else {
                 return
             }
+            this.requestData(itemlevel: category.id)
         }
         return header
     }

@@ -54,22 +54,18 @@ struct StoreInfoProductTarget: TargetType  {
     var task: Task
     var headers: [String : String]?
     
-    init(saleCustomCode: String?, pg: Int) {
+    init(saleCustomCode: String?, pg: Int, itemlevel: String) {
         let customCode = YCAccountModel.getAccount()?.customCode
-        let token = YCAccountModel.getAccount()?.token
+        let token = YCAccountModel.getAccount()?.combineToken
         let latitude = UserDefaults.standard.object(forKey: "latitude")
         let longtitude = UserDefaults.standard.object(forKey: "longitude")
         let parameters: [String: Any] = [
-            "sale_custom_code": "01071390009abcde",
-            "custom_code": "186731755546ed9e",
-            "latitude": "37.434668",
-            "longitude": "122.160742",
-            "token": "adgkdlgmnkflbhk1",
-//            "sale_custom_code": saleCustomCode ?? "",
-//            "custom_code": customCode ?? "",
-//            "latitude": latitude ?? "0",
-//            "longitude": longtitude ?? "0",
-//            "token": token ?? "",
+            "item_level1": itemlevel,
+            "sale_custom_code": saleCustomCode ?? "",
+            "custom_code": customCode ?? "",
+            "latitude": latitude ?? "0",
+            "longitude": longtitude ?? "0",
+            "token": token ?? "",
             "pg": pg,
             "pagesize": 10
         ]

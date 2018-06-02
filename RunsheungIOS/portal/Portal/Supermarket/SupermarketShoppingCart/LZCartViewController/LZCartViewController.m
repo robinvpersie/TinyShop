@@ -339,6 +339,15 @@ typedef void(^finishAction)();
 	
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    if (@available(iOS 11.0, *)) {
+        backgroundView.frame = CGRectMake(0, self.view.safeAreaLayoutGuide.layoutFrame.origin.y + self.view.safeAreaLayoutGuide.layoutFrame.size.height - LZTabBarHeight, self.view.frame.size.width, LZTabBarHeight);
+    } else {
+        backgroundView.frame = CGRectMake(0, self.view.frame.size.height - self.bottomLayoutGuide.length - LZTabBarHeight, self.view.frame.size.width, LZTabBarHeight);
+    }
+}
+
 
 #pragma mark -- 自定义底部视图
 - (void)setupCustomBottomView {
@@ -346,20 +355,21 @@ typedef void(^finishAction)();
 	backgroundView = [[UIView alloc]init];
 	backgroundView.backgroundColor = [UIColor whiteColor];
 	backgroundView.tag = TAG_CartEmptyView + 1;
-	[self.view addSubview:backgroundView];
-	
-	//当有tabBarController时,在tabBar的上面
-	if (_isHasTabBarController == YES) {
-		//        backgroundView.frame = CGRectMake(0, LZSCREEN_HEIGHT -  2*LZTabBarHeight, LZSCREEN_WIDTH, LZTabBarHeight);
-		backgroundView.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y - LZTabBarHeight, LZSCREEN_WIDTH, LZTabBarHeight);
-		
-		NSLog(@"%f",self.tabBarController.tabBar.frame.origin.y);
-		if (_isPush) {
-			backgroundView.frame = CGRectMake(0, LZSCREEN_HEIGHT -  LZTabBarHeight, LZSCREEN_WIDTH, LZTabBarHeight);
-		}
-	} else {
-		backgroundView.frame = CGRectMake(0, LZSCREEN_HEIGHT -  LZTabBarHeight, LZSCREEN_WIDTH, LZTabBarHeight);
-	}
+   [self.view addSubview:backgroundView];
+  
+//
+//    //当有tabBarController时,在tabBar的上面
+//    if (_isHasTabBarController == YES) {
+//        //        backgroundView.frame = CGRectMake(0, LZSCREEN_HEIGHT -  2*LZTabBarHeight, LZSCREEN_WIDTH, LZTabBarHeight);
+//        backgroundView.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y - LZTabBarHeight, LZSCREEN_WIDTH, LZTabBarHeight);
+//
+//        NSLog(@"%f",self.tabBarController.tabBar.frame.origin.y);
+//        if (_isPush) {
+//            backgroundView.frame = CGRectMake(0, LZSCREEN_HEIGHT -  LZTabBarHeight, LZSCREEN_WIDTH, LZTabBarHeight);
+//        }
+//    } else {
+//        backgroundView.frame = CGRectMake(0, LZSCREEN_HEIGHT -  LZTabBarHeight, LZSCREEN_WIDTH, LZTabBarHeight);
+//    }
 	
 	UIView *lineView = [[UIView alloc]init];
 	lineView.frame = CGRectMake(0, 0, LZSCREEN_WIDTH, 1);

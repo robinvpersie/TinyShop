@@ -9,7 +9,29 @@
 import Foundation
 import Moya
 
-struct AddGood {
+struct GoodNumTarget: TargetType {
+    
+    var baseURL: URL = BaseUrlType.pay.url
+    var path: String = "/FreshMart/User/GetUserShopCartOfListByShopId"
+//    var path: String = "/FreshMart/Main/SendToken"
+    var method: Moya.Method = .post
+    var sampleData: Data = Data()
+    var task: Task
+    var headers: [String : String]?
+    
+    init(shopId: String?) {
+        let account = YCAccountModel.getAccount()
+        let parameters: [String: Any] = [
+            "ShopId": shopId ?? "",
+            "appType": 1,
+            "token": account?.combineToken ?? ""
+        ]
+//        let parameters: [String: Any] = [
+//            "token": account?.combineToken ?? ""
+//        ]
+        self.task = .requestParameters(parameters: parameters, encoding: JSONEncoding())
+    }
+    
     
 }
 
