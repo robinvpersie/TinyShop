@@ -58,8 +58,9 @@
 
 - (void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
-	self.navigationController.navigationBar.translucent = YES;
+//	self.navigationController.navigationBar.translucent = YES;
 
+	self.edgesForExtendedLayout=UIRectEdgeBottom;
 	[[WJSetLineColor shareSetLineColor] setNaviLineColor:self withColor:RGB(38, 194, 180)];
 	if (self.leves.count) {
 		[self setNavi];
@@ -163,6 +164,7 @@
 	
 	CGRect frams = self.tableview.frame;
 	frams.origin.y = CGRectGetMaxY(self.SegmentItem.frame)+5;
+	frams.size.height = SCREEN_HEIGHT - CGRectGetMaxY(self.SegmentItem.frame)+5;
 	self.tableview.frame = frams;
 }
 
@@ -171,7 +173,7 @@
 	
 	if (self.tableview == nil) {
 		
-		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.locationView.frame), APPScreenWidth, APPScreenHeight - 234) style:UITableViewStylePlain];
+		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.locationView.frame), APPScreenWidth, APPScreenHeight - CGRectGetMaxY(self.locationView.frame)) style:UITableViewStylePlain];
 		[self.tableview registerNib:[UINib nibWithNibName:@"ChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChoiceTableViewCellID"];
 		self.tableview.separatorColor = [UIColor whiteColor];
 		self.tableview.delegate = self;
@@ -189,9 +191,11 @@
 
 - (void)footerRefresh{
 	
-	[self loadStoreListwithLeve1:Level1 withLeve2:Level2 withLeve3:Level3 withorderBy:orderBy withPg:
-	 
-	 [NSString stringWithFormat:@"%d",paged]];
+	[self loadStoreListwithLeve1:Level1
+					   withLeve2:Level2
+					   withLeve3:Level3
+					 withorderBy:orderBy
+						  withPg:[NSString stringWithFormat:@"%d",paged]];
 }
 #pragma mark -- 代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -257,14 +261,11 @@
 	CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
 	CGRect navRect = self.navigationController.navigationBar.frame;
 	if (_locatview == nil) {
-		_locatview = [[ParecellocationView alloc] initWithFrame:CGRectMake(0, statusRect.size.height+navRect.size.height, SCREEN_WIDTH, 40)];
+		_locatview = [[ParecellocationView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
 		_locatview.backgroundColor = RGB(38, 194, 180);
 		[self.view addSubview:_locatview];
 	}
 	
-//	CGRect frams = self.tableview.frame;
-//	frams.origin.y = CGRectGetMaxY(self.locatview.frame)+5;
-//	self.tableview.frame = frams;
 	self.navigationItem.titleView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"img_top_slogan"]];
 }
 
@@ -351,17 +352,17 @@
 	
 	if (index == 1001) {
 		NSArray*lev3s = self.responseDit[@"lev3s"];
-		NSLog(@"------------lev3s---------:%@",lev3s);
+	
 		if (self.maskview == nil) {
-			self.maskview = [[CoverMaskView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.SegmentItem.frame), SCREEN_WIDTH, SCREEN_HEIGHT)];
+			CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
+			CGRect navRect = self.navigationController.navigationBar.frame;
+			self.maskview = [[CoverMaskView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.SegmentItem.frame)+statusRect.size.height+navRect.size.height, SCREEN_WIDTH, SCREEN_HEIGHT)];
 			self.maskview.data = lev3s;
 			self.maskview.sxdegate = self;
 			[[UIApplication sharedApplication].keyWindow addSubview:_maskview];
 		}else{
 			self.maskview.hidden = !self.maskview.hidden;
-			
 		}
-		
 	}else{
 		self.maskview.hidden = YES;
 		self.maskview = nil;

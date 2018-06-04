@@ -50,6 +50,7 @@
 		UIButton *btn = [UIButton new];
 		btn.layer.borderColor = RGB(221, 221, 221).CGColor;
 		btn.layer.borderWidth = 1;
+		
 		btn.tag = i;
 		[btn setTitleColor:RGB(45, 45, 45) forState:UIControlStateNormal];
 		[btn setTitle:btns[i] forState:UIControlStateNormal];

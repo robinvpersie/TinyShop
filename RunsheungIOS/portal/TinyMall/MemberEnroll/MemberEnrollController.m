@@ -81,8 +81,7 @@
 	__weak typeof(self) weakself = self;
 	UITextField *phone = (UITextField*)[loginBG viewWithTag:LoginPhoneTag];
 	UITextField *pwd = (UITextField*)[loginBG viewWithTag:LoginPWDTag];
-	
-	
+	[weakself showLoading];
 	if (phone.text.length && pwd.text.length) {
         [KLHttpTool LoginMemberWithMemid:phone.text withMempwd:[self sha512: pwd.text] withDeviceNo:UUID success:^(id response) {
             [weakself hideLoading];
@@ -113,15 +112,16 @@
 				NSString *uionToken = [NSString stringWithFormat:@"%@|%@|%@|%@",accountModel.token,accountModel.ssoId,accountModel.customCode,UUID];
 				[self performSelector:@selector(deliveryTokenToServer:) withObject:uionToken afterDelay:1];
 				
-				
+				[weakself hideLoading];
             } else {
-				
+				[weakself hideLoading];
                 [weakself showMessage:response[@"msg"] interval:2 completionAction:^{ }];
             }
 		} failure:^(NSError *err) {
             [weakself hideLoading];
         }];
 	}else{
+		[weakself hideLoading];
 		MBProgressHUD *hude = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 		hude.mode = MBProgressHUDModeText;
 		hude.label.text = NSLocalizedString(@"정보를 기입하십시요", nil) ;

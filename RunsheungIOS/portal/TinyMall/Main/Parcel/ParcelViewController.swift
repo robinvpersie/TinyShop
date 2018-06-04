@@ -41,14 +41,15 @@ class ParcelViewController: UIViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		self.navigationController?.navigationBar.isTranslucent = false
+		self.edgesForExtendedLayout = .bottom
+//		self.navigationController?.navigationBar.isTranslucent = false
 		WJSetLineColor.share().setNavi(self, with: UIColor(red: 254, green: 222, blue: 209))
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		
 		super.viewWillDisappear(animated)
-		self.navigationController?.navigationBar.isTranslucent = true
+//		self.navigationController?.navigationBar.isTranslucent = true
 		WJSetLineColor.share().setNavi(self, with:  UIColor.white)
 
 	}
