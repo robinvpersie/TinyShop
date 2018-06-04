@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class BusinessMenuViewController: BaseViewController {
     
@@ -37,9 +38,17 @@ class BusinessMenuViewController: BaseViewController {
     @objc var dic: NSDictionary?
     var avatarImgView: UIImageView!
     var ratiolb: UILabel!
+    var badgelb: UILabel!
     var starView: CosmosView!
     var tabController: TYTabButtonPagerController!
     var orderController = BusinessOrderController()
+    var collectBtn: BadgeView!
+    var totalNum: Int = 0 {
+        didSet {
+            collectBtn.badgeNum = totalNum
+        }
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -67,9 +76,8 @@ class BusinessMenuViewController: BaseViewController {
         
         let starBtn = UIButton(type: .custom)
         starBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        starBtn.setImage(UIImage(named: "icon_cart_store"), for: .normal)
+        starBtn.setImage(UIImage(named: "icon_uncollected_store"), for: .normal)
         starBtn.addTarget(self, action: #selector(didStar), for: .touchUpInside)
-//        let starItem = UIBarButtonItem(image: UIImage(named: "icon_cart_store")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(didStar))
         let starItem = UIBarButtonItem(customView: starBtn)
         
         let searchBtn = UIButton(type: .custom)
@@ -78,16 +86,13 @@ class BusinessMenuViewController: BaseViewController {
         searchBtn.addTarget(self, action: #selector(didSearch), for: .touchUpInside)
         let searchItem = UIBarButtonItem(customView: searchBtn)
         
-//        let searchItem = UIBarButtonItem(image: UIImage(named: "icon_search_store")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(didSearch))
-      
-        
-        let collectBtn = UIButton(type: .custom)
+        collectBtn = BadgeView(type: .custom)
         collectBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        collectBtn.setImage(UIImage(named: "icon_uncollected_store"), for: .normal)
+        collectBtn.setImage(UIImage(named: "icon_cart_store"), for: .normal)
         collectBtn.addTarget(self, action: #selector(didCollect), for: .touchUpInside)
-        let collectItem = UIBarButtonItem.init(customView: collectBtn)
-//        let collectItem = UIBarButtonItem(image: UIImage(named: "icon_uncollected_store")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(didCollect))
-        navigationItem.rightBarButtonItems = [starItem, searchItem, collectItem]
+        let collectItem = UIBarButtonItem(customView: collectBtn)
+
+        navigationItem.rightBarButtonItems = [collectItem, searchItem, starItem]
         
         avatarImgView = UIImageView()
         view.addSubview(avatarImgView)
@@ -149,10 +154,12 @@ class BusinessMenuViewController: BaseViewController {
         view.addSubview(tabController.view)
         
         requestData()
+        requestTotalNum()
     }
     
     @objc func didCollect() {
-        
+        let shopcart = LZCartViewController()
+        navigationController?.pushViewController(shopcart, animated: true)
     }
     
     @objc func didSearch() {
@@ -166,7 +173,7 @@ class BusinessMenuViewController: BaseViewController {
     
     func requestData() {
         let saleCustomCode = dic?["custom_code"] as? String
-        let targetType = StoreInfoProductTarget(saleCustomCode: saleCustomCode, pg: pg)
+        let targetType = StoreInfoProductTarget(saleCustomCode: saleCustomCode, pg: pg, itemlevel: "0")
         
         API.request(targetType)
             .filterSuccessfulStatusCodes()
@@ -179,12 +186,34 @@ class BusinessMenuViewController: BaseViewController {
                         self?.ratiolb.text = element.StoreInfo.custom_name
                         self?.starView.rating = Double(element.StoreInfo.cnt) ?? 0
                         self?.ratiolb.text = element.StoreInfo.cnt
-                        self?.orderController.productList = element.plist
+                        self?.orderController.dataSource = (element.plist, element.category)
                     }
                 case .error:
                     break
                 }
             }.disposed(by: Constant.dispose)
+    }
+    
+    
+    func requestTotalNum() {
+        let saleCustomCode = dic?["custom_code"] as? String
+        let totalNumTarget = GoodNumTarget(shopId: saleCustomCode)
+        
+        API.request(totalNumTarget)
+            .filterSuccessfulStatusCodes()
+            .mapJSON()
+            .subscribe { [weak self] event in
+                switch event {
+                case let .success(element):
+                    let json = JSON(element)
+                    if let data = json["data"].array {
+                        self?.totalNum = data.count
+                    }
+                case .error:
+                    break
+                }
+        }.disposed(by: Constant.dispose)
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -223,6 +252,14 @@ extension BusinessMenuViewController: TYPagerControllerDataSource {
         switch type {
         case .order:
             orderController.dic = self.dic
+            orderController.addSuccessAction = { [weak self] totalNum in
+                guard let this = self else {
+                    return
+                }
+                OperationQueue.main.addOperation {
+                  this.collectBtn.badgeNum = totalNum
+                }
+            }
             return orderController
         case .comment:
             let comment = BusinessCommentController()

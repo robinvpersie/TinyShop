@@ -16,6 +16,7 @@
 		01099A10205D4A9A00FCC6B6 /* ApiGatewayMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01099A0D205D49B700FCC6B6 /* ApiGatewayMac.framework */; };
 		01099A11205D4A9A00FCC6B6 /* ApiGatewayMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01099A0D205D49B700FCC6B6 /* ApiGatewayMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		01099A16205D4BCE00FCC6B6 /* NMapViewerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01099A15205D4BCE00FCC6B6 /* NMapViewerSDK.framework */; };
+		0116DFE220C13E3C000C4802 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116DFE120C13E3C000C4802 /* BadgeView.swift */; };
 		01192C8B2063CE16009A5FD4 /* MarketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 01192C8A2063CE16009A5FD4 /* MarketModel.m */; };
 		011B5234205A0B5400B7E4D7 /* OrderLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */; };
 		011B5236205A0CE500B7E4D7 /* OrderLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5235205A0CE500B7E4D7 /* OrderLocationModel.swift */; };
@@ -29,6 +30,8 @@
 		011EC0DA206A615600334165 /* ECU.m in Sources */ = {isa = PBXBuildFile; fileRef = 011EC0D9206A615600334165 /* ECU.m */; };
 		012530A1207DF22800663180 /* InputAmountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012530A0207DF22800663180 /* InputAmountController.swift */; };
 		012530A4207DF4A600663180 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012530A3207DF4A600663180 /* Constant.swift */; };
+		0125AC6A20C0E4000021B358 /* OrderHeaderScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0125AC6920C0E4000021B358 /* OrderHeaderScrollView.swift */; };
+		0125AC6C20C128540021B358 /* AddGood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0125AC6B20C128540021B358 /* AddGood.swift */; };
 		013297E7205E53CC007735B4 /* CompanyAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013297E6205E53CC007735B4 /* CompanyAuthController.m */; };
 		013297EA205E55F4007735B4 /* InputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 013297E9205E55F4007735B4 /* InputFieldView.m */; };
 		01637E57205F9C6000C59F30 /* ShowLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01637E56205F9C6000C59F30 /* ShowLocationView.m */; };
@@ -863,6 +866,7 @@
 		01099A06205D0F9100FCC6B6 /* ShopInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopInfoView.swift; sourceTree = "<group>"; };
 		01099A0D205D49B700FCC6B6 /* ApiGatewayMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ApiGatewayMac.framework; sourceTree = "<group>"; };
 		01099A15205D4BCE00FCC6B6 /* NMapViewerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMapViewerSDK.framework; sourceTree = "<group>"; };
+		0116DFE120C13E3C000C4802 /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		01192C892063CE16009A5FD4 /* MarketModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarketModel.h; sourceTree = "<group>"; };
 		01192C8A2063CE16009A5FD4 /* MarketModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarketModel.m; sourceTree = "<group>"; };
 		011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationController.swift; sourceTree = "<group>"; };
@@ -878,6 +882,8 @@
 		011EC0D9206A615600334165 /* ECU.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ECU.m; sourceTree = "<group>"; };
 		012530A0207DF22800663180 /* InputAmountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputAmountController.swift; sourceTree = "<group>"; };
 		012530A3207DF4A600663180 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		0125AC6920C0E4000021B358 /* OrderHeaderScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHeaderScrollView.swift; sourceTree = "<group>"; };
+		0125AC6B20C128540021B358 /* AddGood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGood.swift; sourceTree = "<group>"; };
 		013297E5205E53CC007735B4 /* CompanyAuthController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyAuthController.h; sourceTree = "<group>"; };
 		013297E6205E53CC007735B4 /* CompanyAuthController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyAuthController.m; sourceTree = "<group>"; };
 		013297E8205E55F4007735B4 /* InputFieldView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputFieldView.h; sourceTree = "<group>"; };
@@ -2398,6 +2404,8 @@
 				01B20DD020BFC71A00ACEC59 /* GeneralizeSecondCell.xib */,
 				01B20DD320BFC7ED00ACEC59 /* GeneralizeBottomCell.swift */,
 				01B20DD420BFC7ED00ACEC59 /* GeneralizeBottomCell.xib */,
+				0125AC6920C0E4000021B358 /* OrderHeaderScrollView.swift */,
+				0116DFE120C13E3C000C4802 /* BadgeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2409,6 +2417,7 @@
 				01B28A8F20B3F55D00CEFB36 /* StoreProductList.swift */,
 				01B97F7320B9A13B006B7E24 /* SelectModel.swift */,
 				01CA194C20B9CDAC00E40F7D /* CeateOrderTarget.swift */,
+				0125AC6B20C128540021B358 /* AddGood.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5787,7 +5796,7 @@
 				TargetAttributes = {
 					6275E8551DDC692000656E2D = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 9A8T4DFUB8;
+						DevelopmentTeam = W6JK3FHE8S;
 						ProvisioningStyle = Automatic;
 					};
 					6275E8691DDC692100656E2D = {
@@ -6270,6 +6279,7 @@
 				01B20DCD20BFC22100ACEC59 /* GeneralizeHeaderCell.swift in Sources */,
 				1B392D4D1E28D0E500F70981 /* UILabel+WidthAndHeight.m in Sources */,
 				D53093BA205E445400427350 /* SingleSegmentView.m in Sources */,
+				0125AC6C20C128540021B358 /* AddGood.swift in Sources */,
 				5BEF65AD1F208C0500817141 /* CosmosView.swift in Sources */,
 				1B392D941E28D0E500F70981 /* YYTextUtilities.m in Sources */,
 				1B392D971E28D0E500F70981 /* YYTextView.m in Sources */,
@@ -6340,6 +6350,7 @@
 				1BC8767C1E973AA300BB38D7 /* RSADataVerifier.m in Sources */,
 				D5D01F37205FAAB3002263CC /* FindSearchView.m in Sources */,
 				1B0CD2F91E8E261E008AF162 /* HotelSeachViewController.m in Sources */,
+				0125AC6A20C0E4000021B358 /* OrderHeaderScrollView.swift in Sources */,
 				1BDDA0E11EB96AE1005E8409 /* HotelImageCommentViewController.m in Sources */,
 				1B1971BB1E20803300E54D95 /* KLRecommendCollectionViewCell.m in Sources */,
 				5B95EA901DF4F5CE006E74C4 /* UIView + YC.swift in Sources */,
@@ -6821,6 +6832,7 @@
 				5B95EAED1DF7B81D006E74C4 /* Notification + YC.swift in Sources */,
 				5BEBB6771DFAB73400367D77 /* AlamofireNetWork.swift in Sources */,
 				1B392EF31E28D14E00F70981 /* SupermarketHomeBannerData.m in Sources */,
+				0116DFE220C13E3C000C4802 /* BadgeView.swift in Sources */,
 				5BE9DD021E777A780089A1C2 /* SupermarketReleaseCommentController.m in Sources */,
 				5B7DCAFA1DEFEAE900F1D2AB /* YCWebViewClass.swift in Sources */,
 				1B80E6CF1E4D5631001603B2 /* MASConstraint.m in Sources */,
@@ -7097,7 +7109,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 9A8T4DFUB8;
+				DEVELOPMENT_TEAM = W6JK3FHE8S;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7181,7 +7193,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 9A8T4DFUB8;
+				DEVELOPMENT_TEAM = W6JK3FHE8S;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
