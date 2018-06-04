@@ -36,7 +36,7 @@
 	self.layer.masksToBounds = YES;
 	self.backgroundColor = RGB(253, 253, 253);
 	UILabel *title = [UILabel new];
-	title.text = @"输入数字域名";
+	title.text = @"디지털 도메인을 입력하다";
 	title.textAlignment = NSTextAlignmentCenter;
 	[self addSubview:title];
 	[title mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -45,34 +45,35 @@
 		make.height.mas_equalTo(30);
 	}];
 	
-	NSArray*btns = @[@"取消",@"确认"];
+	NSArray*btns = @[@"취소",@"확인"];
 	for (int i= 0;i<btns.count;i++) {
+		
 		UIButton *btn = [UIButton new];
 		btn.layer.borderColor = RGB(221, 221, 221).CGColor;
 		btn.layer.borderWidth = 1;
-		
 		btn.tag = i;
 		[btn setTitleColor:RGB(45, 45, 45) forState:UIControlStateNormal];
 		[btn setTitle:btns[i] forState:UIControlStateNormal];
 		[self addSubview:btn];
 		[btn addTarget:self action:@selector(finishAction:) forControlEvents:UIControlEventTouchUpInside];
-		
+
 		[btn mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.leading.mas_equalTo(i*(2*SCREEN_WIDTH/5.0));
+			make.leading.mas_equalTo(i?i*(2*SCREEN_WIDTH/5.0-1):i*(2*SCREEN_WIDTH/5.0));
 			make.width.mas_equalTo(2*SCREEN_WIDTH/5.0);
 			make.height.mas_equalTo(SCREEN_WIDTH/8.0);
 			make.bottom.mas_equalTo(0);
 		}];
+		
 	}
-	
-     	UIView *inputbg = [UIView new];
-		[self addSubview:inputbg];
-		[inputbg mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.width.mas_equalTo(23*SCREEN_WIDTH/35.0);
-			make.height.mas_equalTo(SCREEN_WIDTH/8.0);
-			make.top.mas_equalTo(3*SCREEN_WIDTH/16.0);
-			make.leading.mas_equalTo(SCREEN_WIDTH/14.0);
-		}];
+
+	UIView *inputbg = [UIView new];
+	[self addSubview:inputbg];
+	[inputbg mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.width.mas_equalTo(23*SCREEN_WIDTH/35.0);
+		make.height.mas_equalTo(SCREEN_WIDTH/8.0);
+		make.top.mas_equalTo(3*SCREEN_WIDTH/16.0);
+		make.leading.mas_equalTo(SCREEN_WIDTH/14.0);
+	}];
 	
 	float wdis = 23*SCREEN_WIDTH/175.0;
 	for (int i = 0;i<5;i++) {
