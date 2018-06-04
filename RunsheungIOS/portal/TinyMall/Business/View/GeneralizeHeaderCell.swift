@@ -10,9 +10,20 @@ import UIKit
 
 class GeneralizeHeaderCell: UITableViewCell {
 
+    @IBOutlet weak var fourthlb: UILabel!
+    @IBOutlet weak var thirdlb: UILabel!
+    @IBOutlet weak var firstlb: UILabel!
+    @IBOutlet weak var secondlb: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        selectionStyle = .none
+    }
+    
+    func configureWithData(_ data: StoreInfomation?) {
+        firstlb.text = data?.custom_name
+        secondlb.text = data?.telephon
+        thirdlb.text = data?.addr
+        fourthlb.text = data?.mobilepho
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

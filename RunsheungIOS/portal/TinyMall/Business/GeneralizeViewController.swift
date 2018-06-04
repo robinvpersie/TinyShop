@@ -70,7 +70,7 @@ extension GeneralizeViewController: UITableViewDelegate {
         if indexPath.row == 0 {
             return 150
         } else if indexPath.row == 1 {
-            return 110
+            return GeneralizeSecondCell.getHeightWithData(data)
         } else {
             return 150
         }
@@ -82,9 +82,11 @@ extension GeneralizeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell: GeneralizeHeaderCell = tableView.dequeueReusableCell()
+            cell.configureWithData(data)
             return cell
         } else if indexPath.row == 1 {
             let cell: GeneralizeSecondCell = tableView.dequeueReusableCell()
+            cell.configureWithData(data)
             return cell
         } else {
             let cell: GeneralizeBottomCell = tableView.dequeueReusableCell()
