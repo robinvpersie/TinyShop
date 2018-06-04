@@ -97,7 +97,7 @@
 		[[UIApplication sharedApplication].delegate.window addSubview:_cover];
 		
 		CGRect newFrame = [self convertRect:self.bounds toView:[UIApplication sharedApplication].delegate.window ];
-		self.popTableView = [[UITableView alloc]initWithFrame:CGRectMake(newFrame.origin.x, CGRectGetMaxY(newFrame)+5, CGRectGetWidth(self.frame), (_data.count>3?6:_data.count)*30 ) style:UITableViewStylePlain];
+		self.popTableView = [[UITableView alloc]initWithFrame:CGRectMake(newFrame.origin.x + newFrame.size.width/2 - 50 , CGRectGetMaxY(newFrame)+5, 100, (_data.count>3?6:_data.count)*30 ) style:UITableViewStylePlain];
 		self.popTableView.layer.cornerRadius = 5;
 		self.popTableView.layer.masksToBounds = YES;
 		self.popTableView.delegate = self;
@@ -107,7 +107,6 @@
 		self.popTableView.estimatedSectionHeaderHeight = 0;
 		self.popTableView.estimatedSectionFooterHeight = 0;
 		[[UIApplication sharedApplication].delegate.window addSubview:_popTableView];
-		
 	}
 }
 
@@ -124,13 +123,17 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	UITableViewCell *cell = [UITableViewCell new];
+	cell.textLabel.textAlignment = NSTextAlignmentCenter;
 	cell.textLabel.font = [UIFont systemFontOfSize:13];
 	cell.textLabel.text = self.values[indexPath.row];
 	UILabel *seperatorline = [UILabel new];
-	seperatorline.backgroundColor = RGB(222, 222, 222);
+	seperatorline.backgroundColor = RGB(232, 232, 232);
 	[cell.contentView addSubview:seperatorline];
 	[seperatorline mas_makeConstraints:^(MASConstraintMaker *make) {
-		
+		make.leading.mas_equalTo(10);
+		make.trailing.mas_equalTo(-10);
+		make.height.mas_equalTo(1);
+		make.bottom.equalTo(cell.contentView.mas_bottom).offset(0);
 	}];
 	
 	return cell;
@@ -141,7 +144,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	self.value.text = self.values[indexPath.row];
 	if (self.choiceblock) {
-		self.choiceblock(self.value.text,(int)self.tag,indexPath.row);
+		self.choiceblock(self.value.text,(int)self.tag,(int)indexPath.row);
 	}
 	[_cover removeFromSuperview];
 	[self.popTableView removeFromSuperview];
