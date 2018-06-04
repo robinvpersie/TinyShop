@@ -11,7 +11,9 @@ import UIKit
 class GeneralizeViewController: UIViewController {
     
     var tableView: UITableView!
-
+    var dic: NSDictionary!
+    var data: StoreInfomation?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,8 +29,34 @@ class GeneralizeViewController: UIViewController {
             make.edges.equalTo(view)
         }
 
+        requestData()
         // Do any additional setup after loading the view.
     }
+    
+    func requestData() {
+        let saleCustomCode = dic?["custom_code"] as? String
+        let storeInfoTarget = StoreInfoTarget(saleCustomCode: saleCustomCode ?? "")
+        
+        API.request(storeInfoTarget)
+            .filterSuccessfulStatusCodes()
+            .map(StoreInfomation.self, atKeyPath: nil)
+            .subscribe { [weak self] event in
+                guard let this = self else {
+                    return
+                }
+                switch event {
+                case let .success(element):
+                    this.data = element
+                    OperationQueue.main.addOperation {
+                        this.tableView.reloadData()
+                    }
+                case .error:
+                    break
+                }
+        }.disposed(by: Constant.dispose)
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

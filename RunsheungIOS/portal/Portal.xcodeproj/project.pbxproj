@@ -17,6 +17,7 @@
 		01099A11205D4A9A00FCC6B6 /* ApiGatewayMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01099A0D205D49B700FCC6B6 /* ApiGatewayMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		01099A16205D4BCE00FCC6B6 /* NMapViewerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01099A15205D4BCE00FCC6B6 /* NMapViewerSDK.framework */; };
 		0116DFE220C13E3C000C4802 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116DFE120C13E3C000C4802 /* BadgeView.swift */; };
+		0116DFE420C53114000C4802 /* StoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116DFE320C53113000C4802 /* StoreInfo.swift */; };
 		01192C8B2063CE16009A5FD4 /* MarketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 01192C8A2063CE16009A5FD4 /* MarketModel.m */; };
 		011B5234205A0B5400B7E4D7 /* OrderLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */; };
 		011B5236205A0CE500B7E4D7 /* OrderLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B5235205A0CE500B7E4D7 /* OrderLocationModel.swift */; };
@@ -867,6 +868,7 @@
 		01099A0D205D49B700FCC6B6 /* ApiGatewayMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ApiGatewayMac.framework; sourceTree = "<group>"; };
 		01099A15205D4BCE00FCC6B6 /* NMapViewerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMapViewerSDK.framework; sourceTree = "<group>"; };
 		0116DFE120C13E3C000C4802 /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
+		0116DFE320C53113000C4802 /* StoreInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInfo.swift; sourceTree = "<group>"; };
 		01192C892063CE16009A5FD4 /* MarketModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarketModel.h; sourceTree = "<group>"; };
 		01192C8A2063CE16009A5FD4 /* MarketModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarketModel.m; sourceTree = "<group>"; };
 		011B5233205A0B5400B7E4D7 /* OrderLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLocationController.swift; sourceTree = "<group>"; };
@@ -2418,6 +2420,7 @@
 				01B97F7320B9A13B006B7E24 /* SelectModel.swift */,
 				01CA194C20B9CDAC00E40F7D /* CeateOrderTarget.swift */,
 				0125AC6B20C128540021B358 /* AddGood.swift */,
+				0116DFE320C53113000C4802 /* StoreInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6351,6 +6354,7 @@
 				D5D01F37205FAAB3002263CC /* FindSearchView.m in Sources */,
 				1B0CD2F91E8E261E008AF162 /* HotelSeachViewController.m in Sources */,
 				0125AC6A20C0E4000021B358 /* OrderHeaderScrollView.swift in Sources */,
+				0116DFE420C53114000C4802 /* StoreInfo.swift in Sources */,
 				1BDDA0E11EB96AE1005E8409 /* HotelImageCommentViewController.m in Sources */,
 				1B1971BB1E20803300E54D95 /* KLRecommendCollectionViewCell.m in Sources */,
 				5B95EA901DF4F5CE006E74C4 /* UIView + YC.swift in Sources */,

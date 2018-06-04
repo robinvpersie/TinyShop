@@ -127,6 +127,7 @@ typedef void(^finishAction)();
 	[super viewDidLoad];
 	
 	self.navigationItem.title = NSLocalizedString(@"购物车", nil);
+    self.divCode = @"2";
 	self.isloading = YES;
 	[self setNavigationBar];
 	
@@ -355,7 +356,7 @@ typedef void(^finishAction)();
 	backgroundView = [[UIView alloc]init];
 	backgroundView.backgroundColor = [UIColor whiteColor];
 	backgroundView.tag = TAG_CartEmptyView + 1;
-   [self.view addSubview:backgroundView];
+    [self.view addSubview:backgroundView];
   
 //
 //    //当有tabBarController时,在tabBar的上面
@@ -845,7 +846,7 @@ typedef void(^finishAction)();
 		LZCartModel *firstModel = self.selectedArray.firstObject;
 		NSString *divCode = firstModel.divCode;
 		for (LZCartModel *model in self.selectedArray) {
-			NSLog(@"选择的商品>>%@>>>%ld",model,(long)model.number);
+			
 			if (![model.divCode isEqualToString:divCode]) {
 				[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:NSLocalizedString(@"SMShoppingCartMsg", nil)];
 				return;
@@ -854,13 +855,12 @@ typedef void(^finishAction)();
 		SupermarketConfrimOrderByNumbersController *confirm = [[SupermarketConfrimOrderByNumbersController alloc] init];
 		confirm.controllerType = self.controllerType;
 		confirm.hidesBottomBarWhenPushed = YES;
-//        confirm.divCode = self.divCode;
+        confirm.divCode = self.divCode;
 		float totalPrice = [self countPrice];
 		confirm.totalPrice = totalPrice;
 		confirm.dataArray = self.selectedArray;
 //        confirm.shopArray = self.selectedShopArray;
-        NSLog(@"%@",self.selectedArray);
-        NSLog(@"%@", self.selectedShopArray);
+      
 		[self.navigationController pushViewController:confirm animated:YES];
 	} else {
 		[MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:NSLocalizedString(@"没有选择任何商品", nil) ];

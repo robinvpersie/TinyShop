@@ -15,7 +15,6 @@ class BusinessHomeController: BaseController {
         case comment
         case business
     
-        
         static let count: Int = 3
         
         var title: String {

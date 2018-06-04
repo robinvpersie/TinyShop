@@ -306,7 +306,7 @@
 	
 	if (self.controllerType == ControllerTypeDepartmentStores) {
 		
-		[KLHttpTool supermarketCheckBeforeCreateOrder:parmas isShoppingCart:false appType:8 success:^(id response) {
+        [KLHttpTool supermarketCheckBeforeCreateOrder:parmas isShoppingCart:false divCode:@"2" appType:8 success:^(id response) {
 			[MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
 			NSNumber *status = response[@"status"];
 			if (status.integerValue == 1) {
@@ -329,8 +329,8 @@
 		
 	} else {
 		
-		[KLHttpTool supermarketCheckBeforeCreateOrder:parmas isShoppingCart:false appType:6 success:^(id response) {
-			NSLog(@"%@",response);
+        [KLHttpTool supermarketCheckBeforeCreateOrder:parmas isShoppingCart:false divCode:@"2" appType:6 success:^(id response) {
+			
 			[MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
 			NSNumber *status = response[@"status"];
 			if (status.integerValue == 1) {

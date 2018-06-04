@@ -1561,6 +1561,7 @@
 //创建订单前调用方法
 + (void)supermarketCheckBeforeCreateOrder:(NSDictionary *)params
                            isShoppingCart:(BOOL)isShoppingCart
+                                  divCode:(NSString *)divCode
                                   appType:(NSInteger)appType
                                   success:(void (^)(id response))success
 								  failure:(void (^)(NSError *err))failure {
@@ -1577,10 +1578,8 @@
 		[mutableParams setObject:@"false" forKey:@"onCartProcess"];
 	}
 	
-	NSString *divCode = [[NSUserDefaults standardUserDefaults] objectForKey:DivCodeDefault];
-	if (divCode.length > 0) {
-		[mutableParams setObject:divCode forKey:@"key"];
-	}
+	[mutableParams setObject:divCode forKey:@"key"];
+
 	
 	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:mutableParams
 													   options:NSJSONWritingPrettyPrinted
