@@ -270,6 +270,7 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
         let sectiontype = sectionType(indexPath: indexPath)
         switch sectiontype {
         case .logOut:
+		
             YCAlert.confirmOrCancel(title: "提示".localized, message: "确定要退出账号吗？".localized, confirmTitle: "确定".localized, cancelTitle: "取消".localized, inViewController: self, withConfirmAction: { [weak self] in
                 self?.logout()
             })
@@ -400,12 +401,12 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
             let json = JSON(data)
             let status = json["status"].string
             if status == "1" {
-                YCUserDefaults.accountModel.value = nil
-
-               let notificationName = Notification.Name(rawValue: "YCAccountIsLogin")
-               NotificationCenter.default.post(name: notificationName, object: nil, userInfo: nil)
-               self?.popBack()
-               //self?.navigationController?.popViewController(animated: true)
+				DispatchQueue.main.async(execute: {
+					YCUserDefaults.accountModel.value = nil
+					let notificationName = Notification.Name(rawValue: "YCAccountIsLogin")
+					NotificationCenter.default.post(name: notificationName, object: nil, userInfo: nil)
+					self?.popBack()
+				})
             }
         case .failure(let error):
             self?.showMessage(error.localizedDescription)
