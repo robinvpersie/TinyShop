@@ -266,6 +266,7 @@ extension BusinessMenuViewController: TYPagerControllerDataSource {
             return comment
         case .business:
             let generalize = GeneralizeViewController()
+            generalize.dic = self.dic
             return generalize
         }
     }

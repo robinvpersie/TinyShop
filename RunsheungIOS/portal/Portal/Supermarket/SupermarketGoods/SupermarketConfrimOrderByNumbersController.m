@@ -245,9 +245,11 @@
     [MBProgressHUD showWithView:KEYWINDOW];
     
     if (self.controllerType == ControllerTypeDepartmentStores) {
+        
+       
 
-        [KLHttpTool supermarketCheckBeforeCreateOrder:parmas isShoppingCart:true appType:8 success:^(id response) {
-            NSLog(@"%@",response);
+        [KLHttpTool supermarketCheckBeforeCreateOrder:parmas isShoppingCart:true divCode:self.divCode appType:8 success:^(id response) {
+
             NSNumber *status = response[@"status"];
             if (status.integerValue == 1) {
                 NSDictionary *data = response[@"data"];
@@ -259,22 +261,22 @@
                 } else {
                     self.priceLabel.text = [NSString stringWithFormat:@"¥%.2f",self.totalPrice+_checkOrderModel.expressPrice.floatValue];
                 }
-                
+
             }else {
-				
-				 [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
-				 [self.navigationController popViewControllerAnimated:YES];
-				
+
+                 [MBProgressHUD hideAfterDelayWithView:KEYWINDOW interval:2 text:response[@"message"]];
+                 [self.navigationController popViewControllerAnimated:YES];
+
             }
 
-            
+
         } failure:^(NSError *err) {
-            
+
         }];
 
     } else {
-        [KLHttpTool supermarketCheckBeforeCreateOrder:parmas isShoppingCart:true appType:6 success:^(id response) {
-            NSLog(@"%@",response);
+        [KLHttpTool supermarketCheckBeforeCreateOrder:parmas isShoppingCart:true divCode:self.divCode appType:6 success:^(id response) {
+          
 			[MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
 
             NSNumber *status = response[@"status"];

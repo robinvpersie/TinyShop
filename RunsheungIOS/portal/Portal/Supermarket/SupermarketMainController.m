@@ -64,7 +64,7 @@
 	tinyShophome = [[TinyMainViewController alloc]init];
     SupermarketMineViewController *mine = [[SupermarketMineViewController alloc] init];
     LZCartViewController *shopping_Cart = [[LZCartViewController alloc] init];
-    shopping_Cart.divCode = self.divCode;
+ 
     TSCategoryController *allKinds = [[TSCategoryController alloc] init];
         
     SupermarketBaseNavigationController *nav0 = [[SupermarketBaseNavigationController alloc] initWithRootViewController:tinyShophome];

@@ -189,22 +189,22 @@ extension UICollectionView{
     
  }
 
-extension UITableView{
+extension UITableView {
     
-    func registerClassOf<T>(_:T.Type) where T:UITableViewCell {
+    func registerClassOf<T>(_: T.Type) where T: UITableViewCell {
         self.register(T.self, forCellReuseIdentifier: T.portal_reuseIdentifier)
     }
     
-    func registerNibOf<T>(_:T.Type) where T:UITableViewCell {
+    func registerNibOf<T>(_: T.Type) where T: UITableViewCell {
         let nib = UINib(nibName: T.portal_nibName, bundle: nil)
         self.register(nib, forCellReuseIdentifier: T.portal_reuseIdentifier)
     }
     
-    func regisiterHeaderFooterClassOf<T>(_:T.Type) where T:UITableViewHeaderFooterView {
+    func regisiterHeaderFooterClassOf<T>(_: T.Type) where T: UITableViewHeaderFooterView {
         self.register(T.self, forHeaderFooterViewReuseIdentifier: T.portal_reuseIdentifier)
     }
     
-    func registerNibOf<T>(_:T.Type) where T:UITableViewHeaderFooterView{
+    func registerNibOf<T>(_: T.Type) where T: UITableViewHeaderFooterView{
         let nib = UINib(nibName: T.portal_nibName, bundle: nil)
         self.register(nib, forHeaderFooterViewReuseIdentifier: T.portal_reuseIdentifier)
     }
@@ -217,7 +217,7 @@ extension UITableView{
         return cell
     }
     
-    func dequeueReusableHeaderFooter<T>() -> T where T:UITableViewHeaderFooterView {
+    func dequeueReusableHeaderFooter<T>() -> T where T: UITableViewHeaderFooterView {
         guard let view = dequeueReusableHeaderFooterView(withIdentifier: T.portal_reuseIdentifier) as? T else {
             fatalError("Could not dequeue header with identifier: \(T.portal_reuseIdentifier)")
         }

@@ -64,6 +64,7 @@ extension MBProgressHUD {
     
     
     @discardableResult
+    @objc (showWithView:)
     public class func show(view: UIView) -> MBProgressHUD{
       let hud = MBProgressHUD.showAdded(to: view, animated: true)
       hud.removeFromSuperViewOnHide = true
@@ -92,35 +93,42 @@ extension MBProgressHUD {
     
     @objc (hideAfterDelayWithView:interval:text:)
     public class func hideAfterDelay(view: UIView, interval: TimeInterval = 1, text: String? = nil){
-        let hud = MBProgressHUD.showAdded(to: view, animated: true)
-        hud.mode = .text
-        hud.detailsLabel.text = text
-        hud.removeFromSuperViewOnHide = true
-        hud.hide(animated: true, afterDelay: interval)
-  }
+        OperationQueue.main.addOperation {
+            let hud = MBProgressHUD.showAdded(to: view, animated: true)
+            hud.mode = .text
+            hud.detailsLabel.text = text
+            hud.removeFromSuperViewOnHide = true
+            hud.hide(animated: true, afterDelay: interval)
+        }
+    }
     
     class func delay(view: UIView, interval: TimeInterval = 1, text: String? = nil, completionAction:(()->Void)? = nil){
-        let hud = MBProgressHUD.showAdded(to: view, animated: true)
-        hud.mode = .text
-        hud.detailsLabel.text = text
-        hud.removeFromSuperViewOnHide = true
-        hud.hide(animated: true, afterDelay: interval)
-        hud.completionBlock = completionAction
+        OperationQueue.main.addOperation {
+            let hud = MBProgressHUD.showAdded(to: view, animated: true)
+            hud.mode = .text
+            hud.detailsLabel.text = text
+            hud.removeFromSuperViewOnHide = true
+            hud.hide(animated: true, afterDelay: interval)
+            hud.completionBlock = completionAction
+        }
     }
     
     
     
     @discardableResult
     public class func showCustomInView(_ view: UIView) -> MBProgressHUD{
-        let mb = MBProgressHUD(frame: view.bounds)
-        mb.bezelView.color = UIColor.clear
-        mb.backgroundView.color = UIColor.white
-        mb.mode = .customView
-        mb.removeFromSuperViewOnHide = true
-        let custom = YCMBProgressView(frame: CGRect(x: 0, y: 0, width: 37, height: 37))
-        mb.customView = custom
-        view.addSubview(mb)
-        mb.show(animated: true)
+        var mb: MBProgressHUD!
+        OperationQueue.main.addOperation {
+            mb = MBProgressHUD(frame: view.bounds)
+            mb.bezelView.color = UIColor.clear
+            mb.backgroundView.color = UIColor.white
+            mb.mode = .customView
+            mb.removeFromSuperViewOnHide = true
+            let custom = YCMBProgressView(frame: CGRect(x: 0, y: 0, width: 37, height: 37))
+            mb.customView = custom
+            view.addSubview(mb)
+            mb.show(animated: true)
+        }
         return mb
     }
     

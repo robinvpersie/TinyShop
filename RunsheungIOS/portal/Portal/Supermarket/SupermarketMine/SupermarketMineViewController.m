@@ -252,64 +252,65 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    [self showLoading];
-    __weak typeof(self) weakself = self;
-    [KLHttpTool getToken:^(id token) {
-        [weakself hideLoading];
-        if (token != nil) {
+//    [self showLoading];
+//    __weak typeof(self) weakself = self;
+//    [KLHttpTool getToken:^(id token) {
+//        [weakself hideLoading];
+//        if (token != nil) {
         if (indexPath.section == 1) {
-			if (indexPath.row == 0) {
+            if (indexPath.row == 0) {
 				NSString *loadurl = @"http://www.gigawon.co.kr:1314/80_StoreAdmin/storeMain.aspx";
 				MyShopWebViewController *rulevc = [MyShopWebViewController new];
 				[rulevc loadRulesWebWithLoadurl:loadurl];
-				[weakself.navigationController pushViewController:rulevc animated:YES];
+				[self.navigationController pushViewController:rulevc animated:YES];
 				
 			} else if (indexPath.row == 1) {
                 SupermarketMyAddressViewController *vc = [[SupermarketMyAddressViewController alloc] init];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.isPageView = NO;
-                [weakself.navigationController pushViewController:vc animated:YES];
+                [self.navigationController pushViewController:vc animated:YES];
                 
             } else if (indexPath.row == 2) {
                 
                 YCWebViewController *web = [[YCWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://www.gigawon.co.kr:1314/QnA/sub_01"]];
                 web.title = @"공고";
                 web.hidesBottomBarWhenPushed = YES;
-                [weakself.navigationController pushViewController:web animated:YES];
+                [self.navigationController pushViewController:web animated:YES];
                 
             } else if (indexPath.row == 3) {
                 
                 SupermarketMyCommentController *myComment = [[SupermarketMyCommentController alloc] init];
                 myComment.hidesBottomBarWhenPushed = YES;
-                [weakself.navigationController pushViewController:myComment animated:YES];
+                [self.navigationController pushViewController:myComment animated:YES];
                 
             } else if (indexPath.row == 4) {
                 
                 SupermarketMyCollectionViewController *mycollection = [[SupermarketMyCollectionViewController alloc] init];
                 mycollection.hidesBottomBarWhenPushed = YES;
-                [weakself.navigationController pushViewController:mycollection animated:YES];
+                [self.navigationController pushViewController:mycollection animated:YES];
                 
             } else {
                 
                 PersinalSetController *personal = [[PersinalSetController alloc] init];
                 personal.hidesBottomBarWhenPushed = YES;
-                [weakself.navigationController pushViewController:personal animated:YES];
+                [self.navigationController pushViewController:personal animated:YES];
                 
                 
             }
         } else {
             SupermarketMyOrderController *vc = [[SupermarketMyOrderController alloc] init];
             vc.hidesBottomBarWhenPushed = YES;
-            vc.controllerType = weakself.controllerType;
-            [weakself.navigationController pushViewController:vc animated:YES];
+            vc.controllerType = self.controllerType;
+            [self.navigationController pushViewController:vc animated:YES];
         }
-        }
-    } failure:^(NSError *errToken) {
-        [weakself hideLoading];
-    }];
-
-
+//        }
 }
+//failure:^(NSError *errToken) {
+//        [weakself hideLoading];
+//    }];
+
+
+//}
 
 
 - (void)goWaitPay {

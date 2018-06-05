@@ -299,6 +299,7 @@
 //创建订单前调用方法
 + (void)supermarketCheckBeforeCreateOrder:(NSDictionary *)params
                            isShoppingCart:(BOOL)isShoppingCart
+                                  divCode:(NSString *)divCode
                                   appType:(NSInteger)appType
                                   success:(void (^)(id response))success
                                   failure:(void (^)(NSError *err))failure;
