@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="376" height="100.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_product_circle01" translatesAutoresizingMaskIntoConstraints="NO" id="V9c-nC-Ca4">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V9c-nC-Ca4">
                         <rect key="frame" x="20" y="15" width="80" height="80"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="iCH-Ad-FfZ"/>
@@ -37,7 +37,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaF-7i-881">
-                        <rect key="frame" x="176" y="62.5" width="70" height="14"/>
+                        <rect key="frame" x="108" y="62.5" width="70" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="YVT-v8-DFQ"/>
                             <constraint firstAttribute="width" constant="70" id="gKh-BT-SG0"/>
@@ -53,10 +53,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="언어선택   " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zle-fE-6O3">
-                        <rect key="frame" x="108" y="60" width="60" height="18"/>
+                        <rect key="frame" x="108" y="60" width="0.0" height="18"/>
                         <color key="backgroundColor" red="0.12941176470588234" green="0.76078431372549016" blue="0.70588235294117641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="60" id="juA-nj-Nyo"/>
+                            <constraint firstAttribute="width" id="juA-nj-Nyo"/>
                             <constraint firstAttribute="height" constant="18" id="khE-m1-ReG"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -104,8 +104,8 @@
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선택언어 0 선택언어 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKP-GS-xtN">
-                        <rect key="frame" x="176" y="76.5" width="108.5" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선택언어 0 선택언어 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKP-GS-xtN">
+                        <rect key="frame" x="108" y="76.5" width="108.5" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -124,7 +124,7 @@
                     <constraint firstItem="Zle-fE-6O3" firstAttribute="top" secondItem="hqq-hb-nDK" secondAttribute="bottom" constant="5" id="SSZ-TM-8y1"/>
                     <constraint firstItem="678-NU-alg" firstAttribute="leading" secondItem="A3r-4o-xxj" secondAttribute="trailing" constant="3" id="UAT-lk-f5i"/>
                     <constraint firstAttribute="trailing" secondItem="3dR-4Z-gxH" secondAttribute="trailing" constant="18" id="UNS-ur-WSI"/>
-                    <constraint firstItem="oaF-7i-881" firstAttribute="leading" secondItem="Zle-fE-6O3" secondAttribute="trailing" constant="8" id="Wet-qq-1m3"/>
+                    <constraint firstItem="oaF-7i-881" firstAttribute="leading" secondItem="Zle-fE-6O3" secondAttribute="trailing" id="Wet-qq-1m3"/>
                     <constraint firstItem="Fej-Pt-fCd" firstAttribute="trailing" secondItem="hqq-hb-nDK" secondAttribute="trailing" id="aOS-7M-yTa"/>
                     <constraint firstItem="5ES-VU-CzP" firstAttribute="leading" secondItem="678-NU-alg" secondAttribute="trailing" constant="3" id="e7b-05-u1M"/>
                     <constraint firstItem="Fqx-gQ-EkL" firstAttribute="leading" secondItem="5ES-VU-CzP" secondAttribute="trailing" constant="3" id="n6B-sq-zgj"/>
@@ -157,7 +157,6 @@
         <image name="icon_order_list" width="30" height="15"/>
         <image name="icon_panorama_list" width="15" height="15"/>
         <image name="icon_price_list" width="30" height="15"/>
-        <image name="img_product_circle01" width="79" height="79"/>
         <image name="rs_arrow" width="9" height="15"/>
     </resources>
 </document>

@@ -372,7 +372,6 @@
 			make.trailing.mas_equalTo(-SCREEN_WIDTH/10);
 			make.height.mas_equalTo(SCREEN_WIDTH/2);
             make.bottom.mas_equalTo(-SCREEN_HEIGHT/2);
-			
 		}];
 	} else {
 		[self loadInputDomain:self.numberdata];
