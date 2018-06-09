@@ -58,8 +58,6 @@
 
 - (void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
-//	self.navigationController.navigationBar.translucent = YES;
-
 	self.edgesForExtendedLayout=UIRectEdgeBottom;
 	[[WJSetLineColor shareSetLineColor] setNaviLineColor:self withColor:RGB(38, 194, 180)];
 	if (self.leves.count) {
@@ -125,6 +123,11 @@
 				 [self.tableview.mj_footer endRefreshingWithNoMoreData];
 			 }
 		 } else {
+			 CGRect frams = self.tableview.frame;
+			 frams.origin.y = CGRectGetMaxY(self.locatview.frame)+5;
+			 frams.size.height = SCREEN_HEIGHT - CGRectGetMaxY(self.locatview.frame)+5;
+			 self.tableview.frame = frams;
+			 
 			 [self.tableview reloadData];
 			 [self.tableview.mj_footer endRefreshingWithNoMoreData];
 		 }
@@ -173,7 +176,7 @@
 	
 	if (self.tableview == nil) {
 		
-		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.locationView.frame), APPScreenWidth, APPScreenHeight - CGRectGetMaxY(self.locationView.frame)) style:UITableViewStylePlain];
+		self.tableview =[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.locatview.frame), APPScreenWidth, APPScreenHeight - CGRectGetMaxY(self.locatview.frame)) style:UITableViewStylePlain];
 		[self.tableview registerNib:[UINib nibWithNibName:@"ChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChoiceTableViewCellID"];
 		self.tableview.separatorColor = [UIColor whiteColor];
 		self.tableview.delegate = self;
@@ -229,9 +232,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	NSDictionary *dic = self.shoplistData[indexPath.row];
-//    BusinessHomeController *shopDetailed = [[BusinessHomeController alloc] init];
-//    shopDetailed.hidesBottomBarWhenPushed = YES;
-//    shopDetailed.dic = dic;
     BusinessMenuViewController *menu = [[BusinessMenuViewController alloc] init];
     menu.dic = dic;
     menu.hidesBottomBarWhenPushed = YES;
@@ -258,8 +258,8 @@
 	right2Btn.tag = 2005;
 	[self.navigationItem setRightBarButtonItems:@[right1Item]];
 	
-	CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
-	CGRect navRect = self.navigationController.navigationBar.frame;
+//	CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
+//	CGRect navRect = self.navigationController.navigationBar.frame;
 	if (_locatview == nil) {
 		_locatview = [[ParecellocationView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
 		_locatview.backgroundColor = RGB(38, 194, 180);
