@@ -13,15 +13,17 @@ class BadgeView: UIButton {
     var badgelb: UILabel!
     var badgeNum: Int! {
         didSet {
-            if let badge = badgeNum {
-                if badge > 0 {
-                    badgelb.isHidden = false
-                } else {
-                    badgelb.isHidden = true
+            OperationQueue.main.addOperation {
+                if let badge = self.badgeNum {
+                    if badge > 0 {
+                        self.badgelb.isHidden = false
+                    } else {
+                        self.badgelb.isHidden = true
+                    }
+                    self.badgelb.text = "\(badge)"
                 }
-                badgelb.text = "\(badge)"
             }
-        }
+         }
     }
 
     override init(frame: CGRect) {

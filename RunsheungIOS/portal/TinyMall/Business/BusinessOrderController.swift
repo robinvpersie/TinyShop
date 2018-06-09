@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import PromiseKit
 
 class BusinessOrderController: BaseController {
     
@@ -217,32 +218,37 @@ class BusinessOrderController: BaseController {
             }.disposed(by: Constant.dispose)
     }
     
-    
-    func addGoods(itemcode: String, saleCustomCode: String) {
+    @discardableResult
+    func addGoods(itemcode: String, saleCustomCode: String) -> Promise<Bool>  {
         showLoading()
         let addTarget = AddGoodTarget(itemCode: itemcode, saleCustomCode: saleCustomCode, goodnumber: 1)
-        API.request(addTarget)
-            .filterSuccessfulStatusCodes()
-            .mapJSON()
-            .subscribe { [weak self] event in
-                guard let this = self else {
-                    return
-                }
-                this.hideLoading()
-                switch event {
-                case .success(let json):
-                    let json = JSON(json)
-                    if json["status"].int == 1 {
-                        this.totalNum += 1
-                        this.addSuccessAction?(this.totalNum)
-                    } else {
-                        this.showMessage(json["message"].string)
+        
+        return Promise { seal in
+            API.request(addTarget)
+                .filterSuccessfulStatusCodes()
+                .mapJSON()
+                .subscribe { [weak self] event in
+                    guard let this = self else {
+                        return
                     }
-                case .error:
-                    break
-                }
-        }.disposed(by: Constant.dispose)
-    }
+                    this.hideLoading()
+                    switch event {
+                    case let .success(json):
+                        let json = JSON(json)
+                        if json["status"].int == 1 {
+                            this.totalNum += 1
+                            this.addSuccessAction?(this.totalNum)
+                            seal.fulfill(true)
+                        } else {
+                            this.showMessage(json["message"].string)
+                            seal.fulfill(false)
+                        }
+                    case .error:
+                        seal.fulfill(false)
+                    }
+                }.disposed(by: Constant.dispose)
+        }
+     }
     
     func menuReloadData() {
         orderMenu.totalPrice = totalPrice
@@ -279,7 +285,21 @@ extension BusinessOrderController: UITableViewDelegate {
         defer {
             tableView.deselectRow(at: indexPath, animated: true)
         }
+        let saleCustomCode = dic?["custom_code"] as? String ?? ""
         menuInfoView.showInView(view.window, plist: productList[indexPath.row])
+        menuInfoView.collectAction = { [weak self] plist in
+            guard let this = self else {
+                return
+            }
+            firstly {
+               this.addGoods(itemcode: plist.item_code, saleCustomCode: saleCustomCode)
+            }.done { result in
+                if result {
+                    let shopcart = LZCartViewController()
+                    this.navigationController?.pushViewController(shopcart, animated: true)
+                }
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

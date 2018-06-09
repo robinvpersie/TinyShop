@@ -23,6 +23,7 @@ class MenuDetailInfoView: UIView, UITableViewDelegate, UITableViewDataSource {
             tableView.reloadData()
         }
     }
+    var collectAction: ((Plist) -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -101,7 +102,10 @@ class MenuDetailInfoView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func didBtn() {
-        
+        hide()
+        if let dataSource = self.dataSource {
+            collectAction?(dataSource)
+        }
     }
     
     @objc func hide() {
