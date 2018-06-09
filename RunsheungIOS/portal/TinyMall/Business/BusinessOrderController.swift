@@ -23,6 +23,7 @@ class BusinessOrderController: BaseController {
     @objc var dic: NSDictionary?
  
     lazy var orderTypeView = OrderTypeView()
+    lazy var menuInfoView = MenuDetailInfoView()
     
     var dataSource: (plist: [Plist], category: [Category])? {
         didSet {
@@ -275,7 +276,10 @@ extension BusinessOrderController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        defer {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        menuInfoView.showInView(view.window, plist: productList[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

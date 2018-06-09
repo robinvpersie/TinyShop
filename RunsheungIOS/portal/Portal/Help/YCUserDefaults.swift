@@ -8,43 +8,43 @@
 
 import Foundation
 
-public struct Listener<T>:Hashable{
+public struct Listener<T>: Hashable{
     public typealias Action = (T) -> Void
-    let action:Action
-    let name:String
-    public var hashValue: Int{
+    let action: Action
+    let name: String
+    public var hashValue: Int {
       return name.hashValue
     }
 }
 
-public func ==<T>(lhs:Listener<T>,rhs:Listener<T>) ->Bool{
+public func ==<T>(lhs: Listener<T>, rhs: Listener<T>) ->Bool{
     return lhs.name == rhs.name
 }
 
-final public class Listenable<T>{
-    public var value:T{
+final public class Listenable<T> {
+    public var value: T{
         didSet{
           setterAction(value)
-            for listener in listenerSet {
-                listener.action(value)
-            }
+          for listener in listenerSet {
+            listener.action(value)
+          }
         }
     }
     public typealias SetterAction = (T) -> Void
     var setterAction: SetterAction
     var listenerSet = Set<Listener<T>>()
     
-    public func bindListener(name:String,action:@escaping Listener<T>.Action){
+    public func bindListener(name: String, action: @escaping Listener<T>.Action){
         let listener = Listener(action: action, name: name)
         listenerSet.insert(listener)
     }
     
-    public func bindAndFireListener(name:String,action:@escaping Listener<T>.Action){
+    public func bindAndFireListener(name: String, action: @escaping Listener<T>.Action){
         bindListener(name: name, action: action)
         action(value)
     }
     
-    public func removeListenerWithName(name:String){
+    public func removeListenerWithName(name: String){
         for listener in listenerSet where listener.name == name{
                 listenerSet.remove(listener)
                 break
@@ -55,7 +55,7 @@ final public class Listenable<T>{
        listenerSet.removeAll(keepingCapacity: false)
     }
     
-    public init (_ v:T,setterAcion action:@escaping SetterAction){
+    public init (_ v: T, setterAcion action: @escaping SetterAction){
           value = v
           setterAction = action
       }
