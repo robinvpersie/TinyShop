@@ -16,7 +16,7 @@ struct StoreDetail: Codable {
  
     
     struct FoodSpec: Codable {
-        let item_code: String
+        var item_code: String
         let item_name: String
         let item_p: String
     }

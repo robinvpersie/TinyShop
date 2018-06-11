@@ -36,6 +36,9 @@
 		0125AC6C20C128540021B358 /* AddGood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0125AC6B20C128540021B358 /* AddGood.swift */; };
 		013297E7205E53CC007735B4 /* CompanyAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013297E6205E53CC007735B4 /* CompanyAuthController.m */; };
 		013297EA205E55F4007735B4 /* InputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 013297E9205E55F4007735B4 /* InputFieldView.m */; };
+		0158C00020CE3EF50048119C /* MenuTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0158BFFF20CE3EF50048119C /* MenuTypeView.swift */; };
+		0158C00220CE558B0048119C /* Type1DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0158C00120CE558B0048119C /* Type1DataSource.swift */; };
+		0158C00420CE559E0048119C /* Type2DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0158C00320CE559E0048119C /* Type2DataSource.swift */; };
 		01637E57205F9C6000C59F30 /* ShowLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01637E56205F9C6000C59F30 /* ShowLocationView.m */; };
 		01885C9C2060FE0E00901AF1 /* CollectionItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 01885C9B2060FE0E00901AF1 /* CollectionItemModel.m */; };
 		018AE84B20594CC60018F854 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018AE84A20594CC60018F854 /* Resource.swift */; };
@@ -892,6 +895,9 @@
 		013297E6205E53CC007735B4 /* CompanyAuthController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyAuthController.m; sourceTree = "<group>"; };
 		013297E8205E55F4007735B4 /* InputFieldView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputFieldView.h; sourceTree = "<group>"; };
 		013297E9205E55F4007735B4 /* InputFieldView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputFieldView.m; sourceTree = "<group>"; };
+		0158BFFF20CE3EF50048119C /* MenuTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTypeView.swift; sourceTree = "<group>"; };
+		0158C00120CE558B0048119C /* Type1DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type1DataSource.swift; sourceTree = "<group>"; };
+		0158C00320CE559E0048119C /* Type2DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type2DataSource.swift; sourceTree = "<group>"; };
 		01637E55205F9C6000C59F30 /* ShowLocationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowLocationView.h; sourceTree = "<group>"; };
 		01637E56205F9C6000C59F30 /* ShowLocationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowLocationView.m; sourceTree = "<group>"; };
 		01885C9A2060FE0E00901AF1 /* CollectionItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionItemModel.h; sourceTree = "<group>"; };
@@ -2411,6 +2417,9 @@
 				0125AC6920C0E4000021B358 /* OrderHeaderScrollView.swift */,
 				0116DFE120C13E3C000C4802 /* BadgeView.swift */,
 				0116DFE520CA2C93000C4802 /* MenuDetailInfoView.swift */,
+				0158BFFF20CE3EF50048119C /* MenuTypeView.swift */,
+				0158C00120CE558B0048119C /* Type1DataSource.swift */,
+				0158C00320CE559E0048119C /* Type2DataSource.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6216,6 +6225,7 @@
 				1B392EF21E28D14E00F70981 /* SupermarketHomeAdview.m in Sources */,
 				011B523B205A0DD200B7E4D7 /* OrderCurrentLocationCell.swift in Sources */,
 				1B392D871E28D0E500F70981 /* YYTextMagnifier.m in Sources */,
+				0158C00220CE558B0048119C /* Type1DataSource.swift in Sources */,
 				011EC0DA206A615600334165 /* ECU.m in Sources */,
 				01B20DC220BE6FDE00ACEC59 /* BusinessMenuViewController.swift in Sources */,
 				1B392ED81E28D14E00F70981 /* SupermarketCommentHeaderView.m in Sources */,
@@ -6323,6 +6333,7 @@
 				5BEF65A41F208C0500817141 /* CosmosDefaultSettings.swift in Sources */,
 				6272BE631DDC6AD60075EA1C /* NetWorkManager.swift in Sources */,
 				1B510E401E9C693A00B77F14 /* UIImageView+YCHotelImage.m in Sources */,
+				0158C00020CE3EF50048119C /* MenuTypeView.swift in Sources */,
 				1B392D951E28D0E500F70981 /* YYTextWeakProxy.m in Sources */,
 				1B392F2C1E28D14E00F70981 /* SLAreaPickerView.m in Sources */,
 				018AE84F20594DC90018F854 /* NetIndicator.swift in Sources */,
@@ -6466,6 +6477,7 @@
 				011B523E205B6C6C00B7E4D7 /* ProtocolController.swift in Sources */,
 				1B510E5D1E9E22BA00B77F14 /* HotelConfirmOrderEditTableViewCell.m in Sources */,
 				1B392D8F1E28D0E500F70981 /* NSParagraphStyle+YYText.m in Sources */,
+				0158C00420CE559E0048119C /* Type2DataSource.swift in Sources */,
 				5BEC72381E46F0D8007D519D /* YCDownloadManager.swift in Sources */,
 				6296F44B2019D50D00976C21 /* RecommendSearchController.swift in Sources */,
 				1B392EEB1E28D14E00F70981 /* PYSearchSuggestionViewController.m in Sources */,

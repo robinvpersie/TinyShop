@@ -30,6 +30,7 @@ class BadgeView: UIButton {
         super.init(frame: frame)
         
         clipsToBounds = false
+        
         badgelb = UILabel()
         badgelb.textAlignment = .center
         badgelb.isHidden = true

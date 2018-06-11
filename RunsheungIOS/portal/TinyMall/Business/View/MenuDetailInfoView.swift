@@ -23,7 +23,21 @@ class MenuDetailInfoView: UIView, UITableViewDelegate, UITableViewDataSource {
             tableView.reloadData()
         }
     }
+    var detail: StoreDetail? {
+        didSet {
+            type1DataSource.flavor = detail?.FoodFlavor
+            type2DataSource.foodSpec = detail?.FoodSpec
+        }
+    }
     var collectAction: ((Plist) -> Void)?
+    var isType1Show: Bool = false
+    var isType2Show: Bool = false
+    var tableView1: UITableView!
+    var tableView2: UITableView!
+    var type1DataSource: Type1DataSource!
+    var type2DataSource: Type2DataSource!
+    var selectSpec: StoreDetail.FoodSpec?
+    var selectFlavor: StoreDetail.FoodFlavor?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -99,12 +113,45 @@ class MenuDetailInfoView: UIView, UITableViewDelegate, UITableViewDataSource {
             make.left.top.right.equalTo(effectView.contentView)
             make.bottom.equalTo(bottomView.snp.top)
         }
+        
+        type1DataSource = Type1DataSource()
+        type1DataSource.flavorAction = { [weak self] flavor in
+            guard let this = self else { return }
+            this.tableView1.removeFromSuperview()
+            this.selectFlavor = flavor
+            this.tableView.reloadSections([0], with: .none)
+        }
+        type2DataSource = Type2DataSource()
+        type2DataSource.specAction = { [weak self] spec in
+            guard let this = self else { return }
+            this.tableView2.removeFromSuperview()
+            this.selectSpec = spec
+            this.tableView.reloadSections([0], with: .none)
+        }
+        
+        tableView1 = UITableView(frame: .zero, style: .plain)
+        tableView1.backgroundColor = UIColor.white
+        tableView1.tableFooterView = UIView()
+        tableView1.registerClassOf(UITableViewCell.self)
+        tableView1.delegate = type1DataSource
+        tableView1.dataSource = type1DataSource
+        
+        tableView2 = UITableView(frame: .zero, style: .plain)
+        tableView2.backgroundColor = UIColor.white
+        tableView2.tableFooterView = UIView()
+        tableView2.registerClassOf(UITableViewCell.self)
+        tableView2.delegate = type2DataSource
+        tableView2.dataSource = type2DataSource
     }
     
     @objc func didBtn() {
         hide()
-        if let dataSource = self.dataSource {
-            collectAction?(dataSource)
+        if var dataSource = self.dataSource {
+            if dataSource.isSingle == "0", let selectSpec = self.selectSpec {
+                dataSource.item_code = selectSpec.item_code
+            } else {
+                collectAction?(dataSource)
+            }
         }
     }
     
@@ -121,11 +168,12 @@ class MenuDetailInfoView: UIView, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func showInView(_ view: UIView?, plist: Plist) {
+    func showInView(_ view: UIView?, plist: Plist, detail: StoreDetail? = nil) {
         if let view = view {
             view.addSubview(self)
             frame = view.bounds
             dataSource = plist
+            self.detail = detail
         }
     }
     
@@ -149,6 +197,28 @@ class MenuDetailInfoView: UIView, UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             let cell: InfoHeaderCell = tableView.dequeueReusableCell()
             cell.configureWithPlist(dataSource)
+            cell.type1.rightlb.text = selectFlavor?.flavorName
+            cell.type2.rightlb.text = selectSpec?.item_name
+            cell.type1Action = { [weak self] in
+                guard let this = self else { return }
+                if !this.isType1Show {
+                    let frame = cell.type1.convert(cell.type1.frame, to: this.superview)
+                    this.superview?.addSubview(this.tableView1)
+                    this.tableView1.frame = CGRect(x: frame.minX, y: frame.maxY, width: frame.width, height: 140)
+                    this.tableView1.reloadData()
+                }
+                this.isType1Show = !this.isType1Show
+            }
+            cell.type2Action = { [weak self] in
+                guard let this = self else { return }
+                if !this.isType2Show {
+                    let frame = cell.type2.convert(cell.type2.frame, to: this.superview)
+                    this.superview?.addSubview(this.tableView2)
+                    this.tableView2.frame = CGRect(x: frame.minX, y: frame.maxY, width: frame.width, height: 140)
+                    this.tableView2.reloadData()
+                }
+                this.isType2Show = !this.isType2Show
+            }
             return cell
         } else {
             let cell: InfoBottomCell = tableView.dequeueReusableCell()
@@ -173,6 +243,10 @@ fileprivate class InfoHeaderCell: UITableViewCell {
     var pricelb: UILabel!
     var field: UITextField!
     var contentlb: UILabel!
+    var type1: MenuTypeView!
+    var type2: MenuTypeView!
+    var type1Action: (() -> ())?
+    var type2Action: (() -> ())?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -213,6 +287,22 @@ fileprivate class InfoHeaderCell: UITableViewCell {
         field.font = UIFont.systemFont(ofSize: 13)
         field.text = "1"
         contentView.addSubview(field)
+        
+        type1 = MenuTypeView()
+        type1.leftlb.text = "규격:"
+        type1.tapAction = { [weak self] in
+            guard let this = self else { return }
+            this.type1Action?()
+        }
+        contentView.addSubview(type1)
+        
+        type2 = MenuTypeView()
+        type2.leftlb.text = "입맛:"
+        type2.tapAction = { [weak self] in
+            guard let this = self else { return }
+            this.type2Action?()
+        }
+        contentView.addSubview(type2)
         
         let bottomlb = UILabel()
         bottomlb.textColor = UIColor.darkText
@@ -260,6 +350,18 @@ fileprivate class InfoHeaderCell: UITableViewCell {
         leftlb.snp.makeConstraints { make in
             make.right.equalTo(field.snp.left).offset(-2)
             make.centerY.equalTo(field)
+        }
+        
+        type1.snp.makeConstraints { make in
+            make.left.equalTo(titlelb).offset(5)
+            make.right.equalTo(rightlb)
+            make.top.equalTo(field.snp.bottom).offset(10)
+            make.height.equalTo(18)
+        }
+        
+        type2.snp.makeConstraints { make in
+            make.left.right.height.equalTo(type1)
+            make.top.equalTo(type1.snp.bottom).offset(10)
         }
         
         bottomlb.snp.makeConstraints { make in

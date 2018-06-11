@@ -165,34 +165,38 @@ class BusinessOrderController: BaseController {
     
     }
     
-    func requestTypeWithGroupId(_ groupId: String, plist: Plist, indexPath: IndexPath) {
+    func requestTypeWithGroupId(_ groupId: String) -> Promise<StoreDetail> {
         showLoading()
         let storeDetail = StoreDetailTarget(groupId: groupId)
-        API.request(storeDetail)
+        
+        return Promise { seal in
+         API.request(storeDetail)
             .filterSuccessfulStatusCodes()
             .map(StoreDetail.self, atKeyPath: "data")
             .subscribe { [weak self] event in
                 self?.hideLoading()
                 switch event {
                 case let .success(value):
-                   OperationQueue.main.addOperation {
-                    if let window = self?.view.window {
-                        self?.orderTypeView.showInView(window)
-                        self?.orderTypeView.reloadDataWith(value, plist: plist)
-                        self?.orderTypeView.buyAction = { itemCode, price, name in
-                            guard let this = self else { return }
-                            let model = SelectModel(indexPath: indexPath, itemCode: itemCode, name: name, itemp: price)
-                            this.itemSelected[model, default: 0] += 1
-                            this.totalPrice += price
-                            this.totalNum += 1
-                            this.menuReloadData()
-                        }
-                      }
-                   }
-                case .error:
-                    break
+                    seal.fulfill(value)
+//                   OperationQueue.main.addOperation {
+//                    if let window = self?.view.window {
+//                        self?.orderTypeView.showInView(window)
+//                        self?.orderTypeView.reloadDataWith(value, plist: plist)
+//                        self?.orderTypeView.buyAction = { itemCode, price, name in
+//                            guard let this = self else { return }
+//                            let model = SelectModel(indexPath: indexPath, itemCode: itemCode, name: name, itemp: price)
+//                            this.itemSelected[model, default: 0] += 1
+//                            this.totalPrice += price
+//                            this.totalNum += 1
+//                            this.menuReloadData()
+//                        }
+//                      }
+//                  }
+                case let .error(error):
+                    seal.reject(error)
                 }
         }.disposed(by: Constant.dispose)
+        }
     }
     
     
@@ -269,9 +273,7 @@ extension BusinessOrderController: UITableViewDelegate {
         let header: OrderHeaderScrollView = tableView.dequeueReusableHeaderFooter()
         header.category = category
         header.selectAction = { [weak self] category in
-            guard let this = self else {
-                return
-            }
+            guard let this = self else { return }
             this.requestData(itemlevel: category.id)
         }
         return header
@@ -285,14 +287,21 @@ extension BusinessOrderController: UITableViewDelegate {
         defer {
             tableView.deselectRow(at: indexPath, animated: true)
         }
-        let saleCustomCode = dic?["custom_code"] as? String ?? ""
-        menuInfoView.showInView(view.window, plist: productList[indexPath.row])
-        menuInfoView.collectAction = { [weak self] plist in
-            guard let this = self else {
-                return
-            }
+        let plist = productList[indexPath.row]
+        if plist.isSingle == "0" {
             firstly {
-               this.addGoods(itemcode: plist.item_code, saleCustomCode: saleCustomCode)
+                self.requestTypeWithGroupId(plist.GroupId)
+            }.done { detail in
+                self.menuInfoView.showInView(self.view.window, plist: plist, detail: detail)
+            }
+        } else {
+           menuInfoView.showInView(view.window, plist: plist)
+        }
+        menuInfoView.collectAction = { [weak self] plist in
+            guard let this = self else { return }
+            let saleCustomCode = this.dic?["custom_code"] as? String ?? ""
+            firstly {
+                this.addGoods(itemcode: plist.item_code, saleCustomCode: saleCustomCode)
             }.done { result in
                 if result {
                     let shopcart = LZCartViewController()

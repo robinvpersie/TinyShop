@@ -11,7 +11,7 @@ import Moya
 
 struct Plist: Codable, Hashable {
     let ANum: String
-    let item_code: String
+    var item_code: String
     let image_url: String
     let item_name: String
     let item_p: String
