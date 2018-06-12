@@ -25,8 +25,10 @@ class MenuDetailInfoView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     var detail: StoreDetail? {
         didSet {
-            type1DataSource.flavor = detail?.FoodFlavor
-            type2DataSource.foodSpec = detail?.FoodSpec
+            if let detail = detail {
+                type1DataSource.flavor = detail.FoodFlavor
+                type2DataSource.foodSpec = detail.FoodSpec
+            }
         }
     }
     var collectAction: ((Plist) -> Void)?
@@ -135,6 +137,9 @@ class MenuDetailInfoView: UIView, UITableViewDelegate, UITableViewDataSource {
         tableView1.registerClassOf(UITableViewCell.self)
         tableView1.delegate = type1DataSource
         tableView1.dataSource = type1DataSource
+        tableView1.layer.shadowColor = UIColor.darkText.cgColor
+        tableView1.layer.shadowOffset = CGSize(width: 3, height: 3)
+        tableView1.layer.masksToBounds = true
         
         tableView2 = UITableView(frame: .zero, style: .plain)
         tableView2.backgroundColor = UIColor.white
@@ -142,6 +147,10 @@ class MenuDetailInfoView: UIView, UITableViewDelegate, UITableViewDataSource {
         tableView2.registerClassOf(UITableViewCell.self)
         tableView2.delegate = type2DataSource
         tableView2.dataSource = type2DataSource
+        tableView2.layer.shadowColor = UIColor.darkText.cgColor
+        tableView2.layer.shadowOffset = CGSize(width: 3, height: 3)
+        tableView2.layer.masksToBounds = true
+        
     }
     
     @objc func didBtn() {
@@ -157,6 +166,8 @@ class MenuDetailInfoView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     @objc func hide() {
         endEditing(true)
+        tableView1.removeFromSuperview()
+        tableView2.removeFromSuperview()
         removeFromSuperview()
     }
     
@@ -201,23 +212,33 @@ class MenuDetailInfoView: UIView, UITableViewDelegate, UITableViewDataSource {
             cell.type2.rightlb.text = selectSpec?.item_name
             cell.type1Action = { [weak self] in
                 guard let this = self else { return }
-                if !this.isType1Show {
-                    let frame = cell.type1.convert(cell.type1.frame, to: this.superview)
+                if !this.isType1Show, let detail = self?.detail, !detail.FoodFlavor.isEmpty {
+                    this.tableView2.removeFromSuperview()
+                    let frame = cell.convert(cell.type1.frame, to: this.window!)
                     this.superview?.addSubview(this.tableView1)
                     this.tableView1.frame = CGRect(x: frame.minX, y: frame.maxY, width: frame.width, height: 140)
                     this.tableView1.reloadData()
+                    this.isType1Show = true
+                } else {
+                    this.isType1Show = false
+                    this.tableView1.removeFromSuperview()
                 }
-                this.isType1Show = !this.isType1Show
+//                this.isType1Show = !this.isType1Show
             }
             cell.type2Action = { [weak self] in
                 guard let this = self else { return }
-                if !this.isType2Show {
-                    let frame = cell.type2.convert(cell.type2.frame, to: this.superview)
+                if !this.isType2Show, let detail = self?.detail, !detail.FoodSpec.isEmpty {
+                    this.isType2Show = true
+                    this.tableView1.removeFromSuperview()
+                    let frame = cell.convert(cell.type2.frame, to: this.window!)
                     this.superview?.addSubview(this.tableView2)
                     this.tableView2.frame = CGRect(x: frame.minX, y: frame.maxY, width: frame.width, height: 140)
                     this.tableView2.reloadData()
+                } else {
+                    this.isType2Show = false
+                    this.tableView2.removeFromSuperview()
                 }
-                this.isType2Show = !this.isType2Show
+//                this.isType2Show = !this.isType2Show
             }
             return cell
         } else {
