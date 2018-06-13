@@ -53,7 +53,7 @@
 	[groomImg sd_setImageWithURL:[NSURL URLWithString: dic[@"image_url"]]];
 	[cell.contentView addSubview:groomImg];
 	[groomImg mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.edges.equalTo(cell.contentView).offset(2);
+		make.edges.equalTo(cell.contentView).offset(0);
 	}];
 	
 	return cell;
@@ -72,18 +72,19 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
 				  layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-	float width =floor(SCREEN_WIDTH/5.0f) ;
+	float width =floor(SCREEN_WIDTH/5.0f-2) ;
 	float height = width ;
 	return CGSizeMake(width, height);
 	
 }
 
+
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-	return 0;
+	return 2;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-	return 0;
+	return 2;
 }
 
 

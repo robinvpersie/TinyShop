@@ -17,16 +17,27 @@ class ParcelViewController: UIViewController {
 		let flt = UICollectionViewFlowLayout()
 		flt.minimumLineSpacing = 0
 		flt.minimumInteritemSpacing = 0
-		flt.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+		flt.sectionInset = UIEdgeInsets.zero
 		flt.scrollDirection = UICollectionViewScrollDirection.vertical
 		flt.itemSize = CGSize(width: (screenWidth - 20)/3.0 , height: 5*screenWidth/12.0)
 		return flt
 	}()
 	
+	let mapCollectionview = { (flowlayouts:UICollectionViewLayout,viewcontroller:UIViewController) -> UICollectionView in
+		
+		let collectionview = UICollectionView(frame: CGRect(x: 10, y:0, width: screenWidth-20, height: 5*screenWidth/4), collectionViewLayout: flowlayouts)
+		collectionview.layer.backgroundColor = UIColor(red: 254, green: 222, blue: 209).cgColor
+		collectionview.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "parcelviewcell")
+		collectionview.delegate = viewcontroller as? UICollectionViewDelegate
+		collectionview.dataSource = viewcontroller as? UICollectionViewDataSource
+		collectionview.layer.borderColor = UIColor(red: 254, green: 222, blue: 209).cgColor
+		collectionview.layer.borderWidth = 5;
+		return collectionview
+	}
+	
 	var data:NSArray = NSArray(array: [])
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
-		self.parcelView?.layer.backgroundColor = UIColor(red: 254, green: 222, blue: 209).cgColor
 
 	}
 	
@@ -59,6 +70,7 @@ extension ParcelViewController :UICollectionViewDelegate, UICollectionViewDataSo
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return self.data.count
 	}
+	
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "parcelviewcell", for: indexPath)
@@ -101,18 +113,14 @@ extension ParcelViewController{
 		self.view.addSubview(self.scroview!)
 		self.scroview?.isScrollEnabled = true
 		self.scroview?.snp.makeConstraints({ (make) in
-			make.top.equalTo((self.locationView?.snp_bottom)!).offset(10)
+			make.top.equalTo((self.locationView?.snp.bottom)!).offset(10)
 			make.leading.trailing.bottom.equalTo(0)
 		})
 	}
 	private func createCollectionview(){
 		
-		self.parcelView = UICollectionView(frame: CGRect(x: 10, y:0, width: screenWidth-20, height: 5*screenWidth/4), collectionViewLayout: flowLayout)
-		self.parcelView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "parcelviewcell")
-		self.parcelView?.delegate = self
-		self.parcelView?.dataSource = self
-		self.parcelView?.layer.borderColor = UIColor(red: 254, green: 222, blue: 209).cgColor
-		self.parcelView?.layer.borderWidth = 5;
+
+		self.parcelView = mapCollectionview(self.flowLayout, self)
 		self.scroview?.addSubview(self.parcelView!)
 		
 		let btmImg:UIImageView = UIImageView(image: UIImage(named: "test001"))
