@@ -11,7 +11,7 @@ import Moya
 
 struct Plist: Codable, Hashable {
     let ANum: String
-    let item_code: String
+    var item_code: String
     let image_url: String
     let item_name: String
     let item_p: String
@@ -19,6 +19,8 @@ struct Plist: Codable, Hashable {
     let GroupId: String
     let isSingle: String
     let Remark: String
+    let synopsis: String
+    let ITEM_DETAILS: String
 }
 
 struct StoreInfo: Codable {
@@ -60,6 +62,7 @@ struct StoreInfoProductTarget: TargetType  {
         let latitude = UserDefaults.standard.object(forKey: "latitude")
         let longtitude = UserDefaults.standard.object(forKey: "longitude")
         let parameters: [String: Any] = [
+            "lang_type": "kor",
             "item_level1": itemlevel,
             "sale_custom_code": saleCustomCode ?? "",
             "custom_code": customCode ?? "",

@@ -9,10 +9,10 @@
 import Foundation
 
 public class ConcurrentOperation: Operation {
-    enum State:String{
-    case Ready,Executing,Finished
+    enum State: String{
+    case Ready, Executing, Finished
         
-    var keyPath:String{
+    var keyPath: String {
            return "is" + rawValue
         }
     }
@@ -33,15 +33,15 @@ public class ConcurrentOperation: Operation {
 
 public extension ConcurrentOperation
 {
-    override public var isReady:Bool{
+    override public var isReady: Bool{
        return super.isReady && state == .Ready
     }
     
-    override public var isFinished:Bool{
+    override public var isFinished: Bool{
        return state == .Finished
     }
     
-    override public var isExecuting:Bool{
+    override public var isExecuting: Bool{
        return state == .Executing
     }
     

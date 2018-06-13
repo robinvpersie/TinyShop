@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import PromiseKit
 
 class BusinessOrderController: BaseController {
     
@@ -23,6 +24,7 @@ class BusinessOrderController: BaseController {
     @objc var dic: NSDictionary?
  
     lazy var orderTypeView = OrderTypeView()
+    lazy var menuInfoView = MenuDetailInfoView()
     
     var dataSource: (plist: [Plist], category: [Category])? {
         didSet {
@@ -163,34 +165,38 @@ class BusinessOrderController: BaseController {
     
     }
     
-    func requestTypeWithGroupId(_ groupId: String, plist: Plist, indexPath: IndexPath) {
+    func requestTypeWithGroupId(_ groupId: String) -> Promise<StoreDetail> {
         showLoading()
         let storeDetail = StoreDetailTarget(groupId: groupId)
-        API.request(storeDetail)
+        
+        return Promise { seal in
+         API.request(storeDetail)
             .filterSuccessfulStatusCodes()
             .map(StoreDetail.self, atKeyPath: "data")
             .subscribe { [weak self] event in
                 self?.hideLoading()
                 switch event {
                 case let .success(value):
-                   OperationQueue.main.addOperation {
-                    if let window = self?.view.window {
-                        self?.orderTypeView.showInView(window)
-                        self?.orderTypeView.reloadDataWith(value, plist: plist)
-                        self?.orderTypeView.buyAction = { itemCode, price, name in
-                            guard let this = self else { return }
-                            let model = SelectModel(indexPath: indexPath, itemCode: itemCode, name: name, itemp: price)
-                            this.itemSelected[model, default: 0] += 1
-                            this.totalPrice += price
-                            this.totalNum += 1
-                            this.menuReloadData()
-                        }
-                      }
-                   }
-                case .error:
-                    break
+                    seal.fulfill(value)
+//                   OperationQueue.main.addOperation {
+//                    if let window = self?.view.window {
+//                        self?.orderTypeView.showInView(window)
+//                        self?.orderTypeView.reloadDataWith(value, plist: plist)
+//                        self?.orderTypeView.buyAction = { itemCode, price, name in
+//                            guard let this = self else { return }
+//                            let model = SelectModel(indexPath: indexPath, itemCode: itemCode, name: name, itemp: price)
+//                            this.itemSelected[model, default: 0] += 1
+//                            this.totalPrice += price
+//                            this.totalNum += 1
+//                            this.menuReloadData()
+//                        }
+//                      }
+//                  }
+                case let .error(error):
+                    seal.reject(error)
                 }
         }.disposed(by: Constant.dispose)
+        }
     }
     
     
@@ -216,32 +222,37 @@ class BusinessOrderController: BaseController {
             }.disposed(by: Constant.dispose)
     }
     
-    
-    func addGoods(itemcode: String, saleCustomCode: String) {
+    @discardableResult
+    func addGoods(itemcode: String, saleCustomCode: String) -> Promise<Bool>  {
         showLoading()
         let addTarget = AddGoodTarget(itemCode: itemcode, saleCustomCode: saleCustomCode, goodnumber: 1)
-        API.request(addTarget)
-            .filterSuccessfulStatusCodes()
-            .mapJSON()
-            .subscribe { [weak self] event in
-                guard let this = self else {
-                    return
-                }
-                this.hideLoading()
-                switch event {
-                case .success(let json):
-                    let json = JSON(json)
-                    if json["status"].int == 1 {
-                        this.totalNum += 1
-                        this.addSuccessAction?(this.totalNum)
-                    } else {
-                        this.showMessage(json["message"].string)
+        
+        return Promise { seal in
+            API.request(addTarget)
+                .filterSuccessfulStatusCodes()
+                .mapJSON()
+                .subscribe { [weak self] event in
+                    guard let this = self else {
+                        return
                     }
-                case .error:
-                    break
-                }
-        }.disposed(by: Constant.dispose)
-    }
+                    this.hideLoading()
+                    switch event {
+                    case let .success(json):
+                        let json = JSON(json)
+                        if json["status"].int == 1 {
+                            this.totalNum += 1
+                            this.addSuccessAction?(this.totalNum)
+                            seal.fulfill(true)
+                        } else {
+                            this.showMessage(json["message"].string)
+                            seal.fulfill(false)
+                        }
+                    case .error:
+                        seal.fulfill(false)
+                    }
+                }.disposed(by: Constant.dispose)
+        }
+     }
     
     func menuReloadData() {
         orderMenu.totalPrice = totalPrice
@@ -262,9 +273,7 @@ extension BusinessOrderController: UITableViewDelegate {
         let header: OrderHeaderScrollView = tableView.dequeueReusableHeaderFooter()
         header.category = category
         header.selectAction = { [weak self] category in
-            guard let this = self else {
-                return
-            }
+            guard let this = self else { return }
             this.requestData(itemlevel: category.id)
         }
         return header
@@ -275,7 +284,31 @@ extension BusinessOrderController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        defer {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        let plist = productList[indexPath.row]
+        if plist.isSingle == "0" {
+            firstly {
+                self.requestTypeWithGroupId(plist.GroupId)
+            }.done { detail in
+                self.menuInfoView.showInView(self.view.window, plist: plist, detail: detail)
+            }
+        } else {
+           menuInfoView.showInView(view.window, plist: plist)
+        }
+        menuInfoView.collectAction = { [weak self] plist in
+            guard let this = self else { return }
+            let saleCustomCode = this.dic?["custom_code"] as? String ?? ""
+            firstly {
+                this.addGoods(itemcode: plist.item_code, saleCustomCode: saleCustomCode)
+            }.done { result in
+                if result {
+                    let shopcart = LZCartViewController()
+                    this.navigationController?.pushViewController(shopcart, animated: true)
+                }
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

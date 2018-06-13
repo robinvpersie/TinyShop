@@ -100,7 +100,7 @@ class BusinessMenuViewController: BaseViewController {
         let blackContainer = UIView()
         blackContainer.backgroundColor = UIColor.darkText.withAlphaComponent(0.6)
         view.addSubview(blackContainer)
-        blackContainer.snp.makeConstraints { (make) in
+        blackContainer.snp.makeConstraints { make in
             make.right.equalTo(view)
             if #available(iOS 11.0, *) {
                 make.top.equalTo(view.safeAreaLayoutGuide)
@@ -115,7 +115,7 @@ class BusinessMenuViewController: BaseViewController {
         ratiolb.textColor = UIColor(hex: 0xf9a80d)
         ratiolb.font = UIFont.boldSystemFont(ofSize: 25)
         blackContainer.addSubview(ratiolb)
-        ratiolb.snp.makeConstraints { (make) in
+        ratiolb.snp.makeConstraints { make in
             make.centerX.equalTo(blackContainer)
             make.top.equalTo(5)
             make.height.equalTo(30)
@@ -256,9 +256,7 @@ extension BusinessMenuViewController: TYPagerControllerDataSource {
                 guard let this = self else {
                     return
                 }
-                OperationQueue.main.addOperation {
-                  this.collectBtn.badgeNum = totalNum
-                }
+                this.collectBtn.badgeNum = totalNum
             }
             return orderController
         case .comment:

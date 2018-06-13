@@ -251,20 +251,17 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-//    [self showLoading];
-//    __weak typeof(self) weakself = self;
-//    [KLHttpTool getToken:^(id token) {
-//        [weakself hideLoading];
-//        if (token != nil) {
-        if (indexPath.section == 1) {
+    [self showLoading];
+    [KLHttpTool getToken:^(id token) {
+      [self hideLoading];
+       if (indexPath.section == 1) {
             if (indexPath.row == 0) {
-				NSString *loadurl = @"http://www.gigawon.co.kr:1314/80_StoreAdmin/storeMain.aspx";
-				MyShopWebViewController *rulevc = [MyShopWebViewController new];
-				[rulevc loadRulesWebWithLoadurl:loadurl];
-				[self.navigationController pushViewController:rulevc animated:YES];
-				
-			} else if (indexPath.row == 1) {
+                NSString *loadurl = @"http://www.gigawon.co.kr:1314/80_StoreAdmin/storeMain.aspx";
+                MyShopWebViewController *rulevc = [MyShopWebViewController new];
+                [rulevc loadRulesWebWithLoadurl:loadurl];
+                [self.navigationController pushViewController:rulevc animated:YES];
+                
+            } else if (indexPath.row == 1) {
                 SupermarketMyAddressViewController *vc = [[SupermarketMyAddressViewController alloc] init];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.isPageView = NO;
@@ -303,14 +300,14 @@
             vc.controllerType = self.controllerType;
             [self.navigationController pushViewController:vc animated:YES];
         }
-//        }
+    } failure:^(NSError *errToken) {
+        
+    }];
 }
-//failure:^(NSError *errToken) {
-//        [weakself hideLoading];
-//    }];
 
 
-//}
+
+
 
 
 - (void)goWaitPay {

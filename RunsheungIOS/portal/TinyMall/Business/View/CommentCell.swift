@@ -27,7 +27,7 @@ class CommentCell: UITableViewCell {
         starView.rating = 4.0
         starView.settings.updateOnTouch = false
         contentView.addSubview(starView)
-        starView.snp.makeConstraints { (make) in
+        starView.snp.makeConstraints { make in
             make.left.equalTo(contentView).offset(15)
             make.top.equalTo(contentView).offset(15)
             make.width.equalTo(80)
