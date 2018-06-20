@@ -23,6 +23,7 @@ class ParcelViewController: UIViewController {
 		return flt
 	}()
 	
+	
 	let mapCollectionview = { (flowlayouts:UICollectionViewLayout,viewcontroller:UIViewController) -> UICollectionView in
 		
 		let collectionview = UICollectionView(frame: CGRect(x: 10, y:0, width: screenWidth-20, height: 5*screenWidth/4), collectionViewLayout: flowlayouts)
@@ -48,6 +49,7 @@ class ParcelViewController: UIViewController {
 		createScroview()
 		createCollectionview()
 		loadData()
+		
     }
 	
 	override func viewWillAppear(_ animated: Bool) {

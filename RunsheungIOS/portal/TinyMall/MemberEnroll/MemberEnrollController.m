@@ -408,6 +408,7 @@
 - (void)rsKeyboardDismiss{
 	UITextField *field1 = (UITextField*)[loginBG viewWithTag:LoginPhoneTag];
 	UITextField *field2 = (UITextField*)[loginBG viewWithTag:LoginPWDTag];
+	
 	UITextField *field3 = (UITextField*)[addmemberBG viewWithTag:AddMemberPhoneTag];
 	UITextField *field4 = (UITextField*)[addmemberBG viewWithTag:AddMemberCodeTag];
 	UITextField *field5 = (UITextField*)[addmemberBG viewWithTag:AddMemberPwdTag];
@@ -419,6 +420,7 @@
 	[field4 resignFirstResponder];
 	[field5 resignFirstResponder];
 	[field6 resignFirstResponder];
+	
 }
 
 - (void)ClickTSMemberDelegate:(int)index{
@@ -437,53 +439,6 @@
 	[self presentViewController:navi animated:YES completion:nil];
 	
 
-//	switch (index) {
-//		case 0:
-//		{
-//
-//			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
-//			SetUserDefault(@"joinKinds", @"1");
-//			[self presentViewController:personalVC animated:YES completion:nil];
-//
-//		}
-//			break;
-//		case 1:
-//		{
-//			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
-//			SetUserDefault(@"joinKinds", @"2");
-//			[self presentViewController:personalVC animated:YES completion:nil];
-//        }
-//			break;
-//        case 2:
-//		{
-//			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
-//			SetUserDefault(@"joinKinds", @"5");
-//			[self presentViewController:personalVC animated:YES completion:nil];
-//        }
-//			break;
-//        case 3:
-//		{
-//			[self showAlert];
-//			SetUserDefault(@"joinKinds", @"4");
-//        }
-//			break;
-//        case 4:
-//		{
-//			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
-//			[self presentViewController:personalVC animated:YES completion:nil];
-//			SetUserDefault(@"joinKinds", @"6");
-//        }
-//			break;
-//        case 5:
-//		{
-//			ProtectItemsController *personalVC = [[ProtectItemsController alloc]init];
-//			[self presentViewController:personalVC animated:YES completion:nil];
-//			SetUserDefault(@"joinKinds", @"8");
-//        }
-//			break;
-//        default:
-//			break;
-//	}
 }
 
 
