@@ -63,10 +63,10 @@ extension MyNewEditViewController{
 
 		let submit:UIButton = UIButton()
 		submit.setTitle("保存上架", for: .normal)
-		submit.setTitleColor(UIColor(red: 33, green: 192, blue: 67), for: .normal)
+		submit.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
+		submit.setTitleColor(UIColor.white, for: .normal)
 		submit.addTarget(self, action: #selector(submitaction), for: .touchUpInside)
 		self.view.addSubview(submit)
-//		UIApplication.shared.delegate?.window??.addSubview(submit)
 		submit.snp.makeConstraints { (make) in
 			make.bottom.left.right.equalToSuperview()
 			make.height.equalTo(50)

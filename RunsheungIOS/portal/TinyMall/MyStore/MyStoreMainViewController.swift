@@ -89,6 +89,15 @@ extension MyStoreMainViewController:UICollectionViewDelegate,UICollectionViewDat
 			let goodmanager:GoodsManagerController = GoodsManagerController()
 			self.navigationController?.pushViewController(goodmanager, animated: true)
 			break
+		case 2:
+			let commentmanager:CommentMainController = CommentMainController()
+			self.navigationController?.pushViewController(commentmanager, animated: true)
+			break
+
+		case 4:
+			let dataStatistic:DataStatisticsController = DataStatisticsController()
+			self.navigationController?.pushViewController(dataStatistic, animated: true)
+			break
 
 		case 5:
 			let shopmanager:ShopMTableViewController = ShopMTableViewController()
@@ -301,6 +310,3 @@ extension MyStoreMainViewController {
 		
 	}
 }
-
-
-

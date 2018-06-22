@@ -804,6 +804,13 @@
 		D56D5BC220B9C7D400B657BF /* PopDomainInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BC120B9C7D400B657BF /* PopDomainInputView.m */; };
 		D56D5BC520BCF38F00B657BF /* ParcelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BC420BCF38F00B657BF /* ParcelViewController.swift */; };
 		D56D5BC720BD236B00B657BF /* ParecellocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BC620BD236B00B657BF /* ParecellocationView.swift */; };
+		D574884620DB354E004BA5DD /* DataStatisticsDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574884520DB354E004BA5DD /* DataStatisticsDatePicker.swift */; };
+		D574884920DB4CE3004BA5DD /* CommentMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574884820DB4CE2004BA5DD /* CommentMainController.swift */; };
+		D574884B20DB4D77004BA5DD /* CommentTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574884A20DB4D77004BA5DD /* CommentTopView.swift */; };
+		D574884E20DB8535004BA5DD /* CommetnTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574884C20DB8534004BA5DD /* CommetnTableCell.swift */; };
+		D574884F20DB8535004BA5DD /* CommetnTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D574884D20DB8534004BA5DD /* CommetnTableCell.xib */; };
+		D574885120DB8EBF004BA5DD /* CommentMerReturnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574885020DB8EBF004BA5DD /* CommentMerReturnView.swift */; };
+		D574885320DBA0CC004BA5DD /* CommentStarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574885220DBA0CC004BA5DD /* CommentStarView.swift */; };
 		D59D3A2C205BE42E0074F0E8 /* TSCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */; };
 		D59D3A2F205BF1030074F0E8 /* TSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */; };
 		D5B7A68220D145F80014F7D2 /* MyStoreMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7A68120D145F80014F7D2 /* MyStoreMainViewController.swift */; };
@@ -823,6 +830,12 @@
 		D5B7A6A220D8FCCC0014F7D2 /* OrderManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7A6A120D8FCCB0014F7D2 /* OrderManagerViewController.swift */; };
 		D5B7A6A420D8FF760014F7D2 /* OrderSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7A6A320D8FF760014F7D2 /* OrderSegmentView.swift */; };
 		D5B7A6A620D901CD0014F7D2 /* OrderCellTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7A6A520D901CD0014F7D2 /* OrderCellTableView.swift */; };
+		D5B7A6A920DA206A0014F7D2 /* DataStatisticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7A6A820DA20690014F7D2 /* DataStatisticsController.swift */; };
+		D5B7A6AB20DA21430014F7D2 /* DataStatisticsHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7A6AA20DA21430014F7D2 /* DataStatisticsHeadView.swift */; };
+		D5B7A6AD20DA39C80014F7D2 /* DataStatisticsCellTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7A6AC20DA39C80014F7D2 /* DataStatisticsCellTableView.swift */; };
+		D5B7A6AF20DA3BCC0014F7D2 /* DataStatisticCellHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7A6AE20DA3BCC0014F7D2 /* DataStatisticCellHeadView.swift */; };
+		D5B7A6B220DA4FCD0014F7D2 /* DataSingleOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7A6B020DA4FCC0014F7D2 /* DataSingleOrderCell.swift */; };
+		D5B7A6B320DA4FCD0014F7D2 /* DataSingleOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B7A6B120DA4FCC0014F7D2 /* DataSingleOrderCell.xib */; };
 		D5D01F2A205F5606002263CC /* TeamEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F29205F5606002263CC /* TeamEnrollController.m */; };
 		D5D01F2E205F6412002263CC /* TSMemberEnrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F2D205F6411002263CC /* TSMemberEnrollView.m */; };
 		D5D01F31205F645E002263CC /* EnrollSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F30205F645E002263CC /* EnrollSheetView.m */; };
@@ -2285,6 +2298,13 @@
 		D56D5BC120B9C7D400B657BF /* PopDomainInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PopDomainInputView.m; sourceTree = "<group>"; };
 		D56D5BC420BCF38F00B657BF /* ParcelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParcelViewController.swift; sourceTree = "<group>"; };
 		D56D5BC620BD236B00B657BF /* ParecellocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParecellocationView.swift; sourceTree = "<group>"; };
+		D574884520DB354E004BA5DD /* DataStatisticsDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStatisticsDatePicker.swift; sourceTree = "<group>"; };
+		D574884820DB4CE2004BA5DD /* CommentMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMainController.swift; sourceTree = "<group>"; };
+		D574884A20DB4D77004BA5DD /* CommentTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTopView.swift; sourceTree = "<group>"; };
+		D574884C20DB8534004BA5DD /* CommetnTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommetnTableCell.swift; sourceTree = "<group>"; };
+		D574884D20DB8534004BA5DD /* CommetnTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommetnTableCell.xib; sourceTree = "<group>"; };
+		D574885020DB8EBF004BA5DD /* CommentMerReturnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMerReturnView.swift; sourceTree = "<group>"; };
+		D574885220DBA0CC004BA5DD /* CommentStarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentStarView.swift; sourceTree = "<group>"; };
 		D59D3A26205BE42E0074F0E8 /* TSCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCategoryController.h; sourceTree = "<group>"; };
 		D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCategoryController.m; sourceTree = "<group>"; };
 		D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBaseViewController.m; sourceTree = "<group>"; };
@@ -2306,6 +2326,12 @@
 		D5B7A6A120D8FCCB0014F7D2 /* OrderManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderManagerViewController.swift; sourceTree = "<group>"; };
 		D5B7A6A320D8FF760014F7D2 /* OrderSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSegmentView.swift; sourceTree = "<group>"; };
 		D5B7A6A520D901CD0014F7D2 /* OrderCellTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCellTableView.swift; sourceTree = "<group>"; };
+		D5B7A6A820DA20690014F7D2 /* DataStatisticsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStatisticsController.swift; sourceTree = "<group>"; };
+		D5B7A6AA20DA21430014F7D2 /* DataStatisticsHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStatisticsHeadView.swift; sourceTree = "<group>"; };
+		D5B7A6AC20DA39C80014F7D2 /* DataStatisticsCellTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStatisticsCellTableView.swift; sourceTree = "<group>"; };
+		D5B7A6AE20DA3BCC0014F7D2 /* DataStatisticCellHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStatisticCellHeadView.swift; sourceTree = "<group>"; };
+		D5B7A6B020DA4FCC0014F7D2 /* DataSingleOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSingleOrderCell.swift; sourceTree = "<group>"; };
+		D5B7A6B120DA4FCC0014F7D2 /* DataSingleOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataSingleOrderCell.xib; sourceTree = "<group>"; };
 		D5D01F28205F5606002263CC /* TeamEnrollController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeamEnrollController.h; sourceTree = "<group>"; };
 		D5D01F29205F5606002263CC /* TeamEnrollController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeamEnrollController.m; sourceTree = "<group>"; };
 		D5D01F2C205F6411002263CC /* TSMemberEnrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMemberEnrollView.h; sourceTree = "<group>"; };
@@ -5629,6 +5655,19 @@
 			path = Parcel;
 			sourceTree = "<group>";
 		};
+		D574884720DB4C56004BA5DD /* CommentManager */ = {
+			isa = PBXGroup;
+			children = (
+				D574884820DB4CE2004BA5DD /* CommentMainController.swift */,
+				D574885020DB8EBF004BA5DD /* CommentMerReturnView.swift */,
+				D574884A20DB4D77004BA5DD /* CommentTopView.swift */,
+				D574884C20DB8534004BA5DD /* CommetnTableCell.swift */,
+				D574884D20DB8534004BA5DD /* CommetnTableCell.xib */,
+				D574885220DBA0CC004BA5DD /* CommentStarView.swift */,
+			);
+			path = CommentManager;
+			sourceTree = "<group>";
+		};
 		D59D3A1B205BE42E0074F0E8 /* TinyMall */ = {
 			isa = PBXGroup;
 			children = (
@@ -5690,6 +5729,8 @@
 		D5B7A68020D145930014F7D2 /* MyStore */ = {
 			isa = PBXGroup;
 			children = (
+				D574884720DB4C56004BA5DD /* CommentManager */,
+				D5B7A6A720DA1F8B0014F7D2 /* dataStatistics */,
 				D5B7A6A020D8FC470014F7D2 /* OrderManager */,
 				D5B7A69D20D8F2150014F7D2 /* ShopManager */,
 				D5B7A68620D28C850014F7D2 /* GoodsManager */,
@@ -5741,6 +5782,20 @@
 				D5B7A6A520D901CD0014F7D2 /* OrderCellTableView.swift */,
 			);
 			path = OrderManager;
+			sourceTree = "<group>";
+		};
+		D5B7A6A720DA1F8B0014F7D2 /* dataStatistics */ = {
+			isa = PBXGroup;
+			children = (
+				D5B7A6A820DA20690014F7D2 /* DataStatisticsController.swift */,
+				D574884520DB354E004BA5DD /* DataStatisticsDatePicker.swift */,
+				D5B7A6AA20DA21430014F7D2 /* DataStatisticsHeadView.swift */,
+				D5B7A6AC20DA39C80014F7D2 /* DataStatisticsCellTableView.swift */,
+				D5B7A6AE20DA3BCC0014F7D2 /* DataStatisticCellHeadView.swift */,
+				D5B7A6B020DA4FCC0014F7D2 /* DataSingleOrderCell.swift */,
+				D5B7A6B120DA4FCC0014F7D2 /* DataSingleOrderCell.xib */,
+			);
+			path = dataStatistics;
 			sourceTree = "<group>";
 		};
 		D5D01F2B205F63EF002263CC /* Views */ = {
@@ -5946,6 +6001,7 @@
 			files = (
 				1B43F7BC1EA5C42B002A36BB /* HotelPaymentRoomCell.xib in Resources */,
 				1B392F631E28D14E00F70981 /* cart_unSelect_btn@2x.png in Resources */,
+				D5B7A6B320DA4FCD0014F7D2 /* DataSingleOrderCell.xib in Resources */,
 				267DAAA11EA214CC00299E74 /* HotelDetailedTraficCell.xib in Resources */,
 				1BEF694D1E94847300CE3434 /* hotel.jpg in Resources */,
 				1B392D5B1E28D0E500F70981 /* area.plist in Resources */,
@@ -5953,6 +6009,7 @@
 				D53093C0205E445400427350 /* ChoiceTableViewCell.xib in Resources */,
 				1B392F0B1E28D14E00F70981 /* SupermarketOnSaleCell.xib in Resources */,
 				1B392D641E28D0E500F70981 /* BEEP.mp3 in Resources */,
+				D574884F20DB8535004BA5DD /* CommetnTableCell.xib in Resources */,
 				D5D01F5020612870002263CC /* ShopDetailedCollectionCell.xib in Resources */,
 				267DAAA31EA214DD00299E74 /* hotelintroduce.jpg in Resources */,
 				1B392F5D1E28D14E00F70981 /* cart_addBtn_nomal@2x.png in Resources */,
@@ -6373,8 +6430,10 @@
 				1B12C7961E7FAECE00D89DBB /* RefundListCell.m in Sources */,
 				1B392F321E28D14E00F70981 /* CouponOverTimeController.m in Sources */,
 				5B3ADC001E2CB80C003A6F4C /* KLTabOnlineVideoView.m in Sources */,
+				D574884920DB4CE3004BA5DD /* CommentMainController.swift in Sources */,
 				1B80E6D01E4D5631001603B2 /* MASConstraintMaker.m in Sources */,
 				1B510E441E9C714400B77F14 /* HotelAlbumImageModel.m in Sources */,
+				D5B7A6AD20DA39C80014F7D2 /* DataStatisticsCellTableView.swift in Sources */,
 				1B392D8E1E28D0E500F70981 /* NSAttributedString+YYText.m in Sources */,
 				1B1971AF1E20803300E54D95 /* KLBuyingTicketViewController.m in Sources */,
 				D5D01F4820610C0A002263CC /* TinyShopDetailedView.m in Sources */,
@@ -6394,6 +6453,7 @@
 				1B392D4D1E28D0E500F70981 /* UILabel+WidthAndHeight.m in Sources */,
 				D53093BA205E445400427350 /* SingleSegmentView.m in Sources */,
 				0125AC6C20C128540021B358 /* AddGood.swift in Sources */,
+				D574884620DB354E004BA5DD /* DataStatisticsDatePicker.swift in Sources */,
 				5BEF65AD1F208C0500817141 /* CosmosView.swift in Sources */,
 				1B392D941E28D0E500F70981 /* YYTextUtilities.m in Sources */,
 				1B392D971E28D0E500F70981 /* YYTextView.m in Sources */,
@@ -6417,6 +6477,7 @@
 				D5FF7DF720B7B6D700D2AD78 /* OrderTypeView.swift in Sources */,
 				1B392F421E28D14E00F70981 /* SupermarketNewAddessController.m in Sources */,
 				1B5B6BCB1E9B58A2009D5C75 /* HotelRefundOrderController.m in Sources */,
+				D5B7A6AB20DA21430014F7D2 /* DataStatisticsHeadView.swift in Sources */,
 				01B6BDA5206380D10057CC53 /* AllAddressController.swift in Sources */,
 				01B28A9820B50FC100CEFB36 /* OrderMenuView.swift in Sources */,
 				5B1E634A1DED667C005DDFB2 /* YCLoadMoreCell.swift in Sources */,
@@ -6475,6 +6536,7 @@
 				018AE84B20594CC60018F854 /* Resource.swift in Sources */,
 				1B5B6BA81E9B17E7009D5C75 /* HotelFacilityPicsController.m in Sources */,
 				1B392F351E28D14E00F70981 /* CouponUsedController.m in Sources */,
+				D574884E20DB8535004BA5DD /* CommetnTableCell.swift in Sources */,
 				1B392D6A1E28D0E500F70981 /* SDBrowserImageView.m in Sources */,
 				5BF0A9DD1E0B7B050035B517 /* PersonalCollectionCell.swift in Sources */,
 				1B392F281E28D14E00F70981 /* OrderDetailModel.m in Sources */,
@@ -6494,6 +6556,7 @@
 				5B98B67D1E5819C2001FEAE0 /* CouponCantUseController.m in Sources */,
 				1B392D551E28D0E500F70981 /* NewPagedFlowView.m in Sources */,
 				1B392D691E28D0E500F70981 /* HNSoundHelper.m in Sources */,
+				D574885120DB8EBF004BA5DD /* CommentMerReturnView.swift in Sources */,
 				1B392F291E28D14E00F70981 /* OrderVirtualData.m in Sources */,
 				1B61569A1E9B158E00B16877 /* HotelAllPicsController.m in Sources */,
 				1B9363871ED29039001CA2A5 /* LZShopModel.m in Sources */,
@@ -6575,6 +6638,7 @@
 				1B392F4A1E28D14E00F70981 /* SupermarketApplyRefundController.m in Sources */,
 				1B392F161E28D14E00F70981 /* AllIntergrationControllerController.m in Sources */,
 				5BFB700B1DEBD51E0004ED83 /* YCHomeNewsCell.swift in Sources */,
+				D5B7A6A920DA206A0014F7D2 /* DataStatisticsController.swift in Sources */,
 				5B8AAE421F7B840C001EB504 /* AnyActivity.swift in Sources */,
 				011B523E205B6C6C00B7E4D7 /* ProtocolController.swift in Sources */,
 				1B510E5D1E9E22BA00B77F14 /* HotelConfirmOrderEditTableViewCell.m in Sources */,
@@ -6601,6 +6665,7 @@
 				01B28A7F20B2E57D00CEFB36 /* MoyaProvider+Rx.swift in Sources */,
 				1B392F4B1E28D14E00F70981 /* SupermarketChekRefundProgressController.m in Sources */,
 				1B392F1D1E28D14E00F70981 /* AllKindsCollectionViewCell.m in Sources */,
+				D5B7A6AF20DA3BCC0014F7D2 /* DataStatisticCellHeadView.swift in Sources */,
 				5BC13C651E10F4AB00985C41 /* UIImageView+Navi.swift in Sources */,
 				1B392F361E28D14E00F70981 /* CouponWaitUseController.m in Sources */,
 				26E9101F2009D52100E838E8 /* RSCustomerService.swift in Sources */,
@@ -6671,6 +6736,7 @@
 				1B392F481E28D14E00F70981 /* SupermarketReceiveTimeController.m in Sources */,
 				5BE1F2FB1EC94A3200717E20 /* YCLoadMoreCollectionCell.swift in Sources */,
 				5BEF65B21F208C0500817141 /* StarLayer.swift in Sources */,
+				D574884B20DB4D77004BA5DD /* CommentTopView.swift in Sources */,
 				5BEF65AB1F208C0500817141 /* CosmosText.swift in Sources */,
 				5BAD6AA71E0D050B00E43EAE /* PersonalStarContentCell.swift in Sources */,
 				1B392ED11E28D14E00F70981 /* CWStarRateView.m in Sources */,
@@ -6853,6 +6919,7 @@
 				1B392F471E28D14E00F70981 /* SupermarketOrderTableViewCell.m in Sources */,
 				1B392D581E28D0E500F70981 /* NinaBaseView.m in Sources */,
 				62ADFAF71DE3F632005FDE1D /* YCHomeBusinessCell.swift in Sources */,
+				D5B7A6B220DA4FCD0014F7D2 /* DataSingleOrderCell.swift in Sources */,
 				5BC2DA221E1B3B3000082167 /* PersonalCenterModel.swift in Sources */,
 				267DAA961EA213EE00299E74 /* HotelChoiceTypeView.m in Sources */,
 				D56D5BBC20B8FAB900B657BF /* arrowBtn.m in Sources */,
@@ -6945,6 +7012,7 @@
 				5BE1527A1F137DC300FC74C2 /* PhotosViewController.swift in Sources */,
 				1B392D881E28D0E500F70981 /* YYTextSelectionView.m in Sources */,
 				5BC2DA241E1B466000082167 /* YCInfoView.swift in Sources */,
+				D574885320DBA0CC004BA5DD /* CommentStarView.swift in Sources */,
 				1B5B6BD41E9B67F8009D5C75 /* HotelOrderTableViewCell.m in Sources */,
 				1B0CD2C01E8B5B8D008AF162 /* YCHoltelBaseViewController.m in Sources */,
 				1B392EDD1E28D14E00F70981 /* SupermarketCommentViewController.m in Sources */,
