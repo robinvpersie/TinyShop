@@ -45,7 +45,7 @@ final class YCAlert {
                 textField.placeholder = placeholder
                 textField.text = oldText
             }
-            let action: UIAlertAction = UIAlertAction(title: dismissTitle, style: .default) { action in
+            let action = UIAlertAction(title: dismissTitle, style: .default) { action in
                  if let finishedAction = finishedAction,
                     let textField = alertController.textFields?.first,
                     let text = textField.text
@@ -73,9 +73,7 @@ final class YCAlert {
     {
         
         DispatchQueue.main.async {
-            
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            
             alertController.addTextField { textField in
                 textField.placeholder = placeholder
                 textField.text = oldText
@@ -85,7 +83,6 @@ final class YCAlert {
             let _cancelAction = UIAlertAction(title: cancelTitle, style: .cancel) { action in
                 cancelAction?()
             }
-            
             alertController.addAction(_cancelAction)
             
             let _confirmAction = UIAlertAction(title: confirmTitle, style: .default) { action in

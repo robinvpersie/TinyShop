@@ -11,7 +11,6 @@ import UIKit
 
 
 private enum ScreenMode{
-    
     case classic
     case bigger
     case biggerPlus
@@ -19,7 +18,7 @@ private enum ScreenMode{
     ////iphonex width 375 height 812
 }
 
-private let screenModel:ScreenMode = {
+private let screenModel: ScreenMode = {
     
      let screen = UIScreen.main
      let  nativeWidth = UIScreen.main.nativeBounds.size.width

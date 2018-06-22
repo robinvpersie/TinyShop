@@ -88,9 +88,9 @@ final public class YCUserDefaults{
     
     public static var isAcceptProtocol: Listenable<Bool?> = {
        let firstLanuch = defaults?.bool(forKey: "isAcceptProtocol")
-        return Listenable<Bool?> (firstLanuch) { firstLanuch in
-            defaults?.set(firstLanuch, forKey: "isAcceptProtocol")
-        }
+       return Listenable<Bool?> (firstLanuch) { firstLanuch in
+          defaults?.set(firstLanuch, forKey: "isAcceptProtocol")
+       }
     }()
     
     public static var locationAddress: Listenable<String?> = {
