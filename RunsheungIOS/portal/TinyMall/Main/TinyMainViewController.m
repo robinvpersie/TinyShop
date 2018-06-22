@@ -184,7 +184,7 @@
 	}else if (indexPath.section == 2){
 		return 120;
 	}
-	return 120.0f;
+	return 110.0f;
 	
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

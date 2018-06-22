@@ -257,8 +257,9 @@
        if (indexPath.section == 1) {
             if (indexPath.row == 0) {
                 NSString *loadurl = @"http://www.gigawon.co.kr:1314/80_StoreAdmin/storeMain.aspx";
-                MyShopWebViewController *rulevc = [MyShopWebViewController new];
-                [rulevc loadRulesWebWithLoadurl:loadurl];
+                MyStoreMainViewController *rulevc = [MyStoreMainViewController new];
+//                [rulevc loadRulesWebWithLoadurl:loadurl];
+				rulevc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:rulevc animated:YES];
                 
             } else if (indexPath.row == 1) {

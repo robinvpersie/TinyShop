@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="KGk-i7-Jjw" customClass="GoodsTableViewCell" customModule="Portal" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="365" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="365" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="256252.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="zql-pH-bgB">
+                        <rect key="frame" x="10" y="10" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="Yt0-IS-YvO"/>
+                            <constraint firstAttribute="width" constant="80" id="ZIj-eU-UvF"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月售 98" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulZ-fk-h9o">
+                        <rect key="frame" x="94" y="43" width="40" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥75" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-6w-irZ">
+                        <rect key="frame" x="94" y="72" width="37" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="WjD-fv-c3l"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.80000000000000004" green="0.08235294118" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35N-4M-95E">
+                        <rect key="frame" x="313" y="72.5" width="44" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="S2j-9a-R41"/>
+                            <constraint firstAttribute="width" constant="44" id="buw-1G-Wr9"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <state key="normal" title="重新编辑">
+                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="reEditionFunc:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kWP-cU-d4O"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScB-YS-S5A">
+                        <rect key="frame" x="264" y="72.5" width="44" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="COa-EQ-rr5"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="10"/>
+                        <state key="normal" title="下架商品">
+                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="downProductFunc:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pHS-k8-rjz"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chizza烤肉熟料" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Z8-Rq-tMt">
+                        <rect key="frame" x="94" y="10" width="108" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="RzO-WM-ein"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="zql-pH-bgB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="7lV-R7-ANu"/>
+                    <constraint firstItem="ulZ-fk-h9o" firstAttribute="leading" secondItem="8Z8-Rq-tMt" secondAttribute="leading" id="9cA-2s-Cpw"/>
+                    <constraint firstItem="HCI-6w-irZ" firstAttribute="leading" secondItem="8Z8-Rq-tMt" secondAttribute="leading" id="J3x-Lz-wZl"/>
+                    <constraint firstItem="zql-pH-bgB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="YME-FW-DA0"/>
+                    <constraint firstItem="35N-4M-95E" firstAttribute="leading" secondItem="ScB-YS-S5A" secondAttribute="trailing" constant="5" id="cvV-y3-hnD"/>
+                    <constraint firstItem="8Z8-Rq-tMt" firstAttribute="leading" secondItem="zql-pH-bgB" secondAttribute="trailing" constant="4" id="d3e-sM-te8"/>
+                    <constraint firstAttribute="trailing" secondItem="35N-4M-95E" secondAttribute="trailing" constant="8" id="ecp-u9-Uve"/>
+                    <constraint firstItem="35N-4M-95E" firstAttribute="top" secondItem="ScB-YS-S5A" secondAttribute="top" id="glc-aJ-kwz"/>
+                    <constraint firstItem="ulZ-fk-h9o" firstAttribute="centerY" secondItem="zql-pH-bgB" secondAttribute="centerY" id="jOW-m9-ay0"/>
+                    <constraint firstItem="35N-4M-95E" firstAttribute="centerY" secondItem="HCI-6w-irZ" secondAttribute="centerY" id="khH-Yw-xvb"/>
+                    <constraint firstItem="HCI-6w-irZ" firstAttribute="bottom" secondItem="zql-pH-bgB" secondAttribute="bottom" id="m4n-XI-7qd"/>
+                    <constraint firstItem="35N-4M-95E" firstAttribute="bottom" secondItem="ScB-YS-S5A" secondAttribute="bottom" id="oRJ-RN-5FZ"/>
+                    <constraint firstItem="8Z8-Rq-tMt" firstAttribute="top" secondItem="zql-pH-bgB" secondAttribute="top" id="qxb-aY-2rT"/>
+                    <constraint firstItem="ScB-YS-S5A" firstAttribute="centerY" secondItem="HCI-6w-irZ" secondAttribute="centerY" id="t8R-XS-U5t"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="downProduct" destination="ScB-YS-S5A" id="wzv-ZW-h5a"/>
+                <outlet property="headavator" destination="zql-pH-bgB" id="G2B-Wn-vGf"/>
+                <outlet property="price" destination="HCI-6w-irZ" id="JSj-iD-Spx"/>
+                <outlet property="productName" destination="8Z8-Rq-tMt" id="MA8-Ye-efT"/>
+                <outlet property="reEidt" destination="35N-4M-95E" id="0fm-Mj-c6X"/>
+                <outlet property="saleCount" destination="ulZ-fk-h9o" id="Na9-G2-XNR"/>
+            </connections>
+            <point key="canvasLocation" x="-48.5" y="66"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="256252.jpg" width="1440" height="900"/>
+    </resources>
+</document>
