@@ -93,7 +93,9 @@ extension MyStoreMainViewController:UICollectionViewDelegate,UICollectionViewDat
 			let commentmanager:CommentMainController = CommentMainController()
 			self.navigationController?.pushViewController(commentmanager, animated: true)
 			break
-
+        case 3:
+            
+            break
 		case 4:
 			let dataStatistic:DataStatisticsController = DataStatisticsController()
 			self.navigationController?.pushViewController(dataStatistic, animated: true)
