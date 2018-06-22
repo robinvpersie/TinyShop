@@ -42,7 +42,6 @@ class DataStatisticsCellTableView: UIView {
 			make.edges.equalToSuperview()
 		}
 		self.tableHeadView = DataStatisticCellHeadView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenWidth/4.0 + 70))
-		
 		self.tableview.tableHeaderView = self.tableHeadView
 		
 	}

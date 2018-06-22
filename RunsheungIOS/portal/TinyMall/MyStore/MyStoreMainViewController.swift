@@ -103,7 +103,7 @@ extension MyStoreMainViewController:UICollectionViewDelegate,UICollectionViewDat
 			}
 		case 3:
 			do{
-				self.orderbackBadage = self.badageCircle("2")
+				self.orderbackBadage = self.badageCircle("1")
 				cell.contentView.addSubview(self.orderbackBadage! )
 				self.orderbackBadage?.snp.makeConstraints { (make) in
 					make.width.height.equalTo(14)
@@ -135,6 +135,9 @@ extension MyStoreMainViewController:UICollectionViewDelegate,UICollectionViewDat
 			self.navigationController?.pushViewController(commentmanager, animated: true)
 			break
 		case 3:
+			let orderReturnmanager:OrderReturnMainController = OrderReturnMainController()
+			self.navigationController?.pushViewController(orderReturnmanager, animated: true)
+
 			self.orderbackBadage?.isHidden = true
 			break
 

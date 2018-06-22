@@ -813,6 +813,10 @@
 		D574885320DBA0CC004BA5DD /* CommentStarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574885220DBA0CC004BA5DD /* CommentStarView.swift */; };
 		D574885520DC92C6004BA5DD /* CommentPopReturnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574885420DC92C5004BA5DD /* CommentPopReturnView.swift */; };
 		D574885720DCCC31004BA5DD /* GMEditPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574885620DCCC31004BA5DD /* GMEditPopView.swift */; };
+		D574885A20DCE32B004BA5DD /* OrderReturnMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574885920DCE32B004BA5DD /* OrderReturnMainController.swift */; };
+		D574885C20DCE928004BA5DD /* OrderReturnCellTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574885B20DCE928004BA5DD /* OrderReturnCellTableView.swift */; };
+		D574885F20DCEAFA004BA5DD /* OrderReturnMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574885D20DCEAFA004BA5DD /* OrderReturnMainCell.swift */; };
+		D574886020DCEAFA004BA5DD /* OrderReturnMainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D574885E20DCEAFA004BA5DD /* OrderReturnMainCell.xib */; };
 		D59D3A2C205BE42E0074F0E8 /* TSCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */; };
 		D59D3A2F205BF1030074F0E8 /* TSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */; };
 		D5B7A68220D145F80014F7D2 /* MyStoreMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7A68120D145F80014F7D2 /* MyStoreMainViewController.swift */; };
@@ -2309,6 +2313,10 @@
 		D574885220DBA0CC004BA5DD /* CommentStarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentStarView.swift; sourceTree = "<group>"; };
 		D574885420DC92C5004BA5DD /* CommentPopReturnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPopReturnView.swift; sourceTree = "<group>"; };
 		D574885620DCCC31004BA5DD /* GMEditPopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMEditPopView.swift; sourceTree = "<group>"; };
+		D574885920DCE32B004BA5DD /* OrderReturnMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderReturnMainController.swift; sourceTree = "<group>"; };
+		D574885B20DCE928004BA5DD /* OrderReturnCellTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderReturnCellTableView.swift; sourceTree = "<group>"; };
+		D574885D20DCEAFA004BA5DD /* OrderReturnMainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderReturnMainCell.swift; sourceTree = "<group>"; };
+		D574885E20DCEAFA004BA5DD /* OrderReturnMainCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderReturnMainCell.xib; sourceTree = "<group>"; };
 		D59D3A26205BE42E0074F0E8 /* TSCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCategoryController.h; sourceTree = "<group>"; };
 		D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCategoryController.m; sourceTree = "<group>"; };
 		D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBaseViewController.m; sourceTree = "<group>"; };
@@ -5673,6 +5681,17 @@
 			path = CommentManager;
 			sourceTree = "<group>";
 		};
+		D574885820DCE2B0004BA5DD /* OrderReturns */ = {
+			isa = PBXGroup;
+			children = (
+				D574885920DCE32B004BA5DD /* OrderReturnMainController.swift */,
+				D574885B20DCE928004BA5DD /* OrderReturnCellTableView.swift */,
+				D574885D20DCEAFA004BA5DD /* OrderReturnMainCell.swift */,
+				D574885E20DCEAFA004BA5DD /* OrderReturnMainCell.xib */,
+			);
+			path = OrderReturns;
+			sourceTree = "<group>";
+		};
 		D59D3A1B205BE42E0074F0E8 /* TinyMall */ = {
 			isa = PBXGroup;
 			children = (
@@ -5734,6 +5753,7 @@
 		D5B7A68020D145930014F7D2 /* MyStore */ = {
 			isa = PBXGroup;
 			children = (
+				D574885820DCE2B0004BA5DD /* OrderReturns */,
 				D574884720DB4C56004BA5DD /* CommentManager */,
 				D5B7A6A720DA1F8B0014F7D2 /* dataStatistics */,
 				D5B7A6A020D8FC470014F7D2 /* OrderManager */,
@@ -6072,6 +6092,7 @@
 				5BE1F2FC1EC94A3200717E20 /* YCLoadMoreCollectionCell.xib in Resources */,
 				1B392EE91E28D14E00F70981 /* PYSearch.bundle in Resources */,
 				267DAA941EA213EE00299E74 /* HotelSpecificTableCell.xib in Resources */,
+				D574886020DCEAFA004BA5DD /* OrderReturnMainCell.xib in Resources */,
 				1BEF693F1E8F7DC000CE3434 /* HotelSearchCollectionViewCell.xib in Resources */,
 				01B20DD620BFC7ED00ACEC59 /* GeneralizeBottomCell.xib in Resources */,
 				1B4C10381EB3195F005EAAE5 /* foregroundStar.png in Resources */,
@@ -6583,6 +6604,7 @@
 				1B4C102C1EB310ED005EAAE5 /* HotelCommentStarTableViewCell.m in Sources */,
 				1B12C7931E7FADE000D89DBB /* RefundListTableView.m in Sources */,
 				1B392EF41E28D14E00F70981 /* SupermarketHomeMostFreshData.m in Sources */,
+				D574885F20DCEAFA004BA5DD /* OrderReturnMainCell.swift in Sources */,
 				5B002A791E0BB876002D0A05 /* PersonalHeaderCell.swift in Sources */,
 				1B32938F1E4C009F00022B1D /* UILabel+CreateLabel.m in Sources */,
 				1B392D511E28D0E500F70981 /* CFDropDownMenuView.m in Sources */,
@@ -6706,6 +6728,7 @@
 				1B392F3A1E28D14E00F70981 /* SupermarketExpressData.m in Sources */,
 				1B392D751E28D0E500F70981 /* TZImageManager.m in Sources */,
 				5BECA2381F2ADBBF00729382 /* MoyaNetWork.swift in Sources */,
+				D574885C20DCE928004BA5DD /* OrderReturnCellTableView.swift in Sources */,
 				1B0CD2C91E8B5C24008AF162 /* YCHotelOrderViewController.m in Sources */,
 				1B1971AE1E20803300E54D95 /* KLMainController.m in Sources */,
 				5B5989D41E9F583700F70125 /* MMMaterialDesignSpinner.m in Sources */,
@@ -6792,6 +6815,7 @@
 				1B43F7BF1EA60472002A36BB /* HotelOrderDetailModel.m in Sources */,
 				5BE152791F137DC300FC74C2 /* PhotosDataSource.swift in Sources */,
 				1B392ED51E28D14E00F70981 /* SupermarketCheckView.m in Sources */,
+				D574885A20DCE32B004BA5DD /* OrderReturnMainController.swift in Sources */,
 				5BAD6A9D1E0CC65000E43EAE /* PersonalNewsCell.swift in Sources */,
 				1B392F2D1E28D14E00F70981 /* SupermarketAddressModel.m in Sources */,
 				1BFEF3491E5BDF5700D1CA0C /* YCShareModel.m in Sources */,
