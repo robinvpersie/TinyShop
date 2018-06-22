@@ -9,8 +9,11 @@
 import UIKit
 
 class GMEditSizeCollectView: UIView {
+	var popEditView:GMEditPopView?
 	var sizeCollectView:UICollectionView?
-	var data:NSArray = NSArray(array: [])
+	var data:NSMutableArray = NSMutableArray(array: [])
+	
+	@objc public var sumbitMap:(String,String)->Void = {(name:String,price:String)->Void in }
 	let mapCollectionview = { (selfDelegate:UIView,width:CGFloat,height:CGFloat) -> UICollectionView in
 		
 		let layout = UICollectionViewFlowLayout();
@@ -32,14 +35,12 @@ class GMEditSizeCollectView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	@objc public func getData(array:NSArray){
+	@objc public func getData(array:NSMutableArray){
 		self.data = array
 		self.sizeCollectView?.reloadData()
 	}
 	
-	@objc private func addTap(){
-		
-	}
+
 	
 }
 extension GMEditSizeCollectView: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
@@ -51,7 +52,9 @@ extension GMEditSizeCollectView: UICollectionViewDelegate,UICollectionViewDataSo
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 //		let dic:NSDictionary = data.object(at: indexPath.row) as! NSDictionary
 		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "parcelviewcell", for: indexPath)
-		
+		for suv in cell.contentView.subviews {
+			suv.removeFromSuperview()
+		}
 		let bgView:UIView = UIView()
 		bgView.layer.cornerRadius = 3
 		bgView.layer.masksToBounds = true
@@ -89,8 +92,6 @@ extension GMEditSizeCollectView: UICollectionViewDelegate,UICollectionViewDataSo
 			let img:UIImageView = UIImageView(image: UIImage(named: "icon_add_specifications"))
 			img.contentMode = .scaleAspectFit
 			img.isUserInteractionEnabled = true
-			let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(addTap))
-			img.addGestureRecognizer(tap)
 			bgView.addSubview(img)
 			img.snp.makeConstraints { (make) in
 				make.top.left.equalTo(10)
@@ -103,6 +104,24 @@ extension GMEditSizeCollectView: UICollectionViewDelegate,UICollectionViewDataSo
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		if indexPath.row == (self.data.count-1){
+			self.popEditView = GMEditPopView()
+			self.popEditView?.finishCompleteMap = {(name:String,price:String)->Void in
+				self.sumbitMap(name,price)
+				var rect:CGRect = (self.sizeCollectView?.frame)!
+				let sections:Int = Int(ceil(CGFloat(self.data.count)/4.0))
+				rect.size.height = CGFloat(sections) * 50.0
+				self.sizeCollectView?.frame = rect
+				self.sizeCollectView?.reloadData()
+			}
+			UIApplication.shared.delegate?.window??.addSubview(self.popEditView!)
+			self.popEditView?.snp.makeConstraints({ (make) in
+				make.center.equalToSuperview()
+				make.width.equalTo(screenWidth - 60)
+				make.height.equalTo(screenHeight/3)
+			})
+
+		}
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

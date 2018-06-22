@@ -47,11 +47,21 @@ extension GMEditByInfoView{
 			make.height.equalTo(30)
 		}
 		
-		var array:NSMutableArray = ["1","2","3","4"]
-
+		var array:NSMutableArray = ["1","2","3"]
 		self.sizeCollectview = GMEditSizeCollectView(frame: CGRect(x: 20.0, y: 90, width: screenWidth - 40, height: (ceil(CGFloat(array.count)/4.0) * 50)))
 		self.sizeCollectview?.getData(array: array)
 		self.addSubview(self.sizeCollectview!)
+		self.sizeCollectview?.sumbitMap = {(name:String,price:String)->Void in
+			array.add("5")
+			
+			let sections:Int = Int(ceil(CGFloat(array.count)/4.0))
+			var rect:CGRect = (self.sizeCollectview?.frame)!
+			rect.size.height = CGFloat(sections) * 50.0
+			self.sizeCollectview?.frame = rect
+			
+
+		}
+		
 		
 		let kwlabel:UILabel = self.titleLabel("口味：",0.6)
 		kwlabel.font = UIFont.systemFont(ofSize: 15)
@@ -64,6 +74,14 @@ extension GMEditByInfoView{
 		
 		var array1:NSMutableArray = ["1"]
 		self.kwCollectview = GMEditSizeCollectView(frame: CGRect(x: 20.0, y: 0, width: screenWidth - 40, height: (ceil(CGFloat(array1.count)/4.0) * 50)))
+		self.kwCollectview?.sumbitMap = {(name:String,price:String)->Void in
+			array1.add("2")
+			let sections:Int = Int(ceil(CGFloat(array1.count)/4.0))
+			var rect:CGRect = (self.kwCollectview?.frame)!
+			rect.size.height = CGFloat(sections) * 50.0
+			self.kwCollectview?.frame = rect
+		}
+
 		self.kwCollectview?.getData(array: array1)
 		self.addSubview(self.kwCollectview!)
 		self.kwCollectview?.snp.makeConstraints({ (make) in

@@ -816,6 +816,8 @@
 		D574884F20DB8535004BA5DD /* CommetnTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D574884D20DB8534004BA5DD /* CommetnTableCell.xib */; };
 		D574885120DB8EBF004BA5DD /* CommentMerReturnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574885020DB8EBF004BA5DD /* CommentMerReturnView.swift */; };
 		D574885320DBA0CC004BA5DD /* CommentStarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574885220DBA0CC004BA5DD /* CommentStarView.swift */; };
+		D574885520DC92C6004BA5DD /* CommentPopReturnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574885420DC92C5004BA5DD /* CommentPopReturnView.swift */; };
+		D574885720DCCC31004BA5DD /* GMEditPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574885620DCCC31004BA5DD /* GMEditPopView.swift */; };
 		D59D3A2C205BE42E0074F0E8 /* TSCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */; };
 		D59D3A2F205BF1030074F0E8 /* TSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */; };
 		D5B7A68220D145F80014F7D2 /* MyStoreMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7A68120D145F80014F7D2 /* MyStoreMainViewController.swift */; };
@@ -2315,6 +2317,8 @@
 		D574884D20DB8534004BA5DD /* CommetnTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommetnTableCell.xib; sourceTree = "<group>"; };
 		D574885020DB8EBF004BA5DD /* CommentMerReturnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMerReturnView.swift; sourceTree = "<group>"; };
 		D574885220DBA0CC004BA5DD /* CommentStarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentStarView.swift; sourceTree = "<group>"; };
+		D574885420DC92C5004BA5DD /* CommentPopReturnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPopReturnView.swift; sourceTree = "<group>"; };
+		D574885620DCCC31004BA5DD /* GMEditPopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMEditPopView.swift; sourceTree = "<group>"; };
 		D59D3A26205BE42E0074F0E8 /* TSCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSCategoryController.h; sourceTree = "<group>"; };
 		D59D3A27205BE42E0074F0E8 /* TSCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSCategoryController.m; sourceTree = "<group>"; };
 		D59D3A2D205BF1030074F0E8 /* TSBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBaseViewController.m; sourceTree = "<group>"; };
@@ -5690,6 +5694,7 @@
 			children = (
 				D574884820DB4CE2004BA5DD /* CommentMainController.swift */,
 				D574885020DB8EBF004BA5DD /* CommentMerReturnView.swift */,
+				D574885420DC92C5004BA5DD /* CommentPopReturnView.swift */,
 				D574884A20DB4D77004BA5DD /* CommentTopView.swift */,
 				D574884C20DB8534004BA5DD /* CommetnTableCell.swift */,
 				D574884D20DB8534004BA5DD /* CommetnTableCell.xib */,
@@ -5793,6 +5798,7 @@
 				D5B7A68C20D2938D0014F7D2 /* GoodsTableViewCell.xib */,
 				D5B7A68F20D295450014F7D2 /* GoodsManagerView.swift */,
 				D5B7A69120D751F20014F7D2 /* GMcatagoryButton.swift */,
+				D574885620DCCC31004BA5DD /* GMEditPopView.swift */,
 			);
 			path = GoodsManager;
 			sourceTree = "<group>";
@@ -6491,6 +6497,7 @@
 				1B392D941E28D0E500F70981 /* YYTextUtilities.m in Sources */,
 				1B392D971E28D0E500F70981 /* YYTextView.m in Sources */,
 				5BE152841F137DD200FC74C2 /* Previewable.swift in Sources */,
+				D574885720DCCC31004BA5DD /* GMEditPopView.swift in Sources */,
 				D56D5BC720BD236B00B657BF /* ParecellocationView.swift in Sources */,
 				1B1BC8661E52D35E0094E488 /* SupermarketOrderWaitPayDetailController.m in Sources */,
 				2682D18D1FF64AC900F0470E /* RSCategoryCollectionCell.swift in Sources */,
@@ -7018,6 +7025,7 @@
 				1B5461221EA9EF7200E16169 /* ZHGenerateQRCode.m in Sources */,
 				1B80E6D61E4D5631001603B2 /* View+MASAdditions.m in Sources */,
 				5BAD6A991E0CBF4900E43EAE /* PersonalMessageController.swift in Sources */,
+				D574885520DC92C6004BA5DD /* CommentPopReturnView.swift in Sources */,
 				1BEF69341E8F40DA00CE3434 /* HotelSearchTableView.m in Sources */,
 				5BAD6AA41E0D00A900E43EAE /* PersonalStarHeaderCell.swift in Sources */,
 				D5FF7DF020B4367900D2AD78 /* CoverMaskView.m in Sources */,

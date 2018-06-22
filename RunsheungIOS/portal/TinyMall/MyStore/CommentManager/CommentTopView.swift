@@ -77,13 +77,13 @@ extension CommentTopView {
 		}
 		
 		let starView:CommentStarView = CommentStarView()
-		starView.getStarValue(value: 3.6, h: 14)
+		starView.getStarValue(value: 2.6, h: 14.0)
 		self.leftView.addSubview(starView)
 		starView.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview()
 			make.width.equalTo(90)
-			make.top.equalTo(commentCount.snp.bottom).offset(4)
-			make.height.equalTo(25)
+			make.top.equalTo(commentCount.snp.bottom).offset(10)
+			make.height.equalTo(14)
 		}
 	
 	}
