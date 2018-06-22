@@ -37,7 +37,7 @@ class CommentStarView: UIView {
 			starImg.contentMode = .scaleAspectFit
 			defaultStarBG.addSubview(starImg)
 			starImg.snp.makeConstraints { (make) in
-				make.top.equalTo(5)
+				make.top.equalToSuperview()
 				make.left.equalTo(i*Int(h + 5.0))
 				make.width.height.equalTo(h)
 			}
@@ -47,20 +47,20 @@ class CommentStarView: UIView {
 		let IntS:CGFloat = CGFloat(floorf(Float(self.starValue)))
 		let floatS:CGFloat = self.starValue - IntS
 		for i in (0...4){
-			
+
 			let yellowStarBG:UIView = UIView()
 			yellowStarBG.clipsToBounds = true
 			self.addSubview(yellowStarBG)
 			yellowStarBG.snp.makeConstraints { (make) in
-				make.left.bottom.top.equalToSuperview()
-				make.width.equalTo(floatS * h + IntS * CGFloat(i*Int(h + 5.0)))
+				make.left.height.bottom.equalToSuperview()
+				make.width.equalTo(floatS * h + IntS * CGFloat(h + 5.0))
 			}
-			
+
 			let starImgY:UIImageView = UIImageView(image: UIImage(named: "icon_star_yellow_8"))
 			starImgY.contentMode = .scaleAspectFit
 			yellowStarBG.addSubview(starImgY)
 			starImgY.snp.makeConstraints { (make) in
-				make.top.equalTo(5)
+				make.top.equalToSuperview()
 				make.left.equalTo(i*Int(h + 5.0))
 				make.width.height.equalTo(h)
 			}

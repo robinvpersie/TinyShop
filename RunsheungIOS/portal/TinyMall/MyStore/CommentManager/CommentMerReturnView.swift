@@ -10,14 +10,19 @@ import UIKit
 
 class CommentMerReturnView: UIView {
 	var clickChangeMap:(Bool)->Void = {(state:Bool)->Void in}
+	@objc public var comment:UITextField = UITextField()
 	
-	var comment:UITextField = UITextField()
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		createSUV()
 	}
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+	
+	@objc public func getContent(s:String){
+		self.comment.text = s
+		UserDefaults.standard.set(s, forKey: "changeComment")
 	}
 
 }
@@ -62,7 +67,8 @@ extension CommentMerReturnView{
 		self.comment.textColor = UIColor(red: 160, green: 160, blue: 160)
 		self.comment.isUserInteractionEnabled = false
 		self.comment.tintColor = UIColor(red: 160, green: 160, blue: 160)
-		self.comment.text = "感谢您的支持与喜欢！我们会努力做到更好！"
+		let ss:String? = UserDefaults.standard.object(forKey: "changeComment") as? String
+		self.comment.text = (ss?.count != 0) ? ss : "感谢您的支持与喜欢！我们会努力做到更好！"
 		self.comment.font = UIFont.systemFont(ofSize: 14)
 		self.addSubview(self.comment)
 		self.comment.snp.makeConstraints { (make) in
@@ -74,6 +80,13 @@ extension CommentMerReturnView{
 		}
 		
 		self.clickChangeMap = {(state:Bool)->Void in
+			if state {
+				self.comment.becomeFirstResponder()
+
+			}else{
+				self.comment.resignFirstResponder()
+			}
+			
 			self.comment.isUserInteractionEnabled = state
 
 		}

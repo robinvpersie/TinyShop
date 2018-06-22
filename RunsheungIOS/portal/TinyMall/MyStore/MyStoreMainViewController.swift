@@ -14,6 +14,20 @@ class MyStoreMainViewController: UITableViewController {
 	var stateBtn:BusinessStateView?
 	var todayPay:UILabel = UILabel()
 	var tadayCount:UILabel = UILabel()
+	var orderManagerBadage:UILabel?
+	var orderbackBadage:UILabel?
+
+	let badageCircle:(String) -> UILabel = {(text:String) -> UILabel in
+		let badage:UILabel = UILabel()
+		badage.textAlignment = .center
+		badage.textColor = UIColor.white
+		badage.layer.cornerRadius = 7
+		badage.layer.masksToBounds = true
+		badage.text = text
+		badage.font = UIFont.systemFont(ofSize: 12)
+		badage.backgroundColor = UIColor(red: 222, green: 0, blue: 0)
+		return badage
+	}
 
 	
 	let mapCollectionview = { (viewController:UIViewController) -> UICollectionView in
@@ -75,6 +89,32 @@ extension MyStoreMainViewController:UICollectionViewDelegate,UICollectionViewDat
 			make.left.right.equalToSuperview()
 			make.top.equalTo(icon.snp.bottom).offset(5)
 		}
+		
+		switch indexPath.row {
+		case 0:
+          do{
+			self.orderManagerBadage = self.badageCircle("2")
+			cell.contentView.addSubview(self.orderManagerBadage! )
+			self.orderManagerBadage?.snp.makeConstraints { (make) in
+					make.width.height.equalTo(14)
+					make.left.equalTo(icontitle.snp.centerX).offset(25)
+					make.top.equalTo(icon.snp.bottom).offset(-5)
+			}
+			}
+		case 3:
+			do{
+				self.orderbackBadage = self.badageCircle("2")
+				cell.contentView.addSubview(self.orderbackBadage! )
+				self.orderbackBadage?.snp.makeConstraints { (make) in
+					make.width.height.equalTo(14)
+					make.left.equalTo(icontitle.snp.centerX).offset(25)
+					make.top.equalTo(icon.snp.bottom).offset(-5)
+				}
+			}
+
+		default:
+			break
+		}
 		return cell
 	}
 	
@@ -83,6 +123,7 @@ extension MyStoreMainViewController:UICollectionViewDelegate,UICollectionViewDat
 		case 0:
 			let ordermanager:OrderManagerViewController = OrderManagerViewController()
 			self.navigationController?.pushViewController(ordermanager, animated: true)
+			self.orderManagerBadage?.isHidden = true
 			break
 
 		case 1:
@@ -92,6 +133,9 @@ extension MyStoreMainViewController:UICollectionViewDelegate,UICollectionViewDat
 		case 2:
 			let commentmanager:CommentMainController = CommentMainController()
 			self.navigationController?.pushViewController(commentmanager, animated: true)
+			break
+		case 3:
+			self.orderbackBadage?.isHidden = true
 			break
 
 		case 4:

@@ -22,6 +22,7 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="256252.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7OP-HA-1Ya">
                         <rect key="frame" x="15" y="15" width="40" height="40"/>
+                        <color key="backgroundColor" red="0.12941176469999999" green="0.75294117650000003" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="meQ-Sj-q7d"/>
                             <constraint firstAttribute="height" constant="40" id="wff-5H-qZn"/>
@@ -63,7 +64,8 @@
                             <constraint firstAttribute="height" constant="20" id="idK-yL-ZcO"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <state key="normal" title="回复">
+                        <color key="tintColor" red="0.94901960780000005" green="0.95686274510000002" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="normal" title="回复" backgroundImage="returnGreen">
                             <color key="titleColor" red="0.94901960780000005" green="0.95686274510000002" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <state key="selected">
@@ -104,5 +106,6 @@
     </objects>
     <resources>
         <image name="256252.jpg" width="1440" height="900"/>
+        <image name="returnGreen" width="66" height="25"/>
     </resources>
 </document>

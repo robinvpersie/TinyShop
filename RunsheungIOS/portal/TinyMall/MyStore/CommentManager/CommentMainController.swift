@@ -12,6 +12,14 @@ class CommentMainController: MyStoreBaseViewController {
 	var tableview:UITableView = UITableView()
 	var commentTop:CommentTopView = CommentTopView()
 	var segment:DataStatisticsHeadView?
+	var refreshHeight:CGFloat = 0.0
+	var refreshIndexPath:IndexPath?
+	var data:NSMutableArray = [true,false]
+
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		UserDefaults.standard.set("", forKey: "changeComment")
+	}
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.navigationItem.title = "评价管理"
@@ -62,7 +70,7 @@ extension CommentMainController:UITableViewDelegate,UITableViewDataSource {
 	}
 
 	func numberOfSections(in tableView: UITableView) -> Int {
-		return 2
+		return self.data.count
 	}
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return 1
@@ -70,7 +78,14 @@ extension CommentMainController:UITableViewDelegate,UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell:CommetnTableCell = tableview.dequeueReusableCell(withIdentifier: "cell_id", for: indexPath) as! CommetnTableCell
-		cell.getMark(mark: indexPath.section)
+		let hasReturn:Bool = self.data.object(at: indexPath.section) as! Bool
+		cell.getMark(mark: indexPath.section,haveReturn:hasReturn)
+		cell.refreshCellHeightMap = {(cellHeight:CGFloat,indexSection:Int)->Void in
+			self.refreshIndexPath = indexPath
+			self.refreshHeight = cellHeight
+			self.data.replaceObject(at: indexPath.section, with: true)
+			tableView.reloadSections([indexPath.section], with: .fade)
+		}
 			
 		return cell
 	}
@@ -79,7 +94,12 @@ extension CommentMainController:UITableViewDelegate,UITableViewDataSource {
 		if indexPath.section == 0 {
 			return 250.0
 		}
+
+		if indexPath.section == self.refreshIndexPath?.section {
+			return (150.0 + self.refreshHeight + 66.0)
+		}
 		return 150.0
+		
 	}
 
 	func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
