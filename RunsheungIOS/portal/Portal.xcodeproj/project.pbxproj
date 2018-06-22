@@ -76,11 +76,6 @@
 		01C03462205FEDE000237AAD /* SearchListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C03461205FEDE000237AAD /* SearchListCell.swift */; };
 		01CA194B20B9B53100E40F7D /* TinyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52B804520B829750057E831 /* TinyMainViewController.m */; };
 		01CA194D20B9CDAC00E40F7D /* CeateOrderTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA194C20B9CDAC00E40F7D /* CeateOrderTarget.swift */; };
-		01F3222220DCC50C00D5154A /* RefundManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F3222120DCC50C00D5154A /* RefundManagerController.swift */; };
-		01F3222520DCC79200D5154A /* RefundHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F3222420DCC79200D5154A /* RefundHeaderCell.swift */; };
-		01F3222720DCD42200D5154A /* RefundProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F3222620DCD42200D5154A /* RefundProductCell.swift */; };
-		01F3222A20DCE20700D5154A /* RefundInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F3222820DCE20700D5154A /* RefundInfoCell.swift */; };
-		01F3222B20DCE20700D5154A /* RefundInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01F3222920DCE20700D5154A /* RefundInfoCell.xib */; };
 		1B022D611F21A20400129849 /* ZoomingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B022D601F21A20400129849 /* ZoomingImageView.m */; };
 		1B0CD2BD1E8B5B6A008AF162 /* YCHotelMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CD2BC1E8B5B6A008AF162 /* YCHotelMainController.m */; };
 		1B0CD2C01E8B5B8D008AF162 /* YCHoltelBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0CD2BF1E8B5B8D008AF162 /* YCHoltelBaseViewController.m */; };
@@ -863,6 +858,11 @@
 		D5D01F58206213E8002263CC /* NumDomainView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F57206213E6002263CC /* NumDomainView.m */; };
 		D5D5BB04207F523000A27ABF /* LGwebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D5BB03207F523000A27ABF /* LGwebViewController.swift */; };
 		D5F6333B20C13A6E00F67742 /* MyShopWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6333A20C13A6E00F67742 /* MyShopWebViewController.swift */; };
+		D5FC6D5420DCF77F00A35EE5 /* RefundHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC6D4F20DCF77F00A35EE5 /* RefundHeaderCell.swift */; };
+		D5FC6D5520DCF77F00A35EE5 /* RefundInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FC6D5020DCF77F00A35EE5 /* RefundInfoCell.xib */; };
+		D5FC6D5620DCF77F00A35EE5 /* RefundInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC6D5120DCF77F00A35EE5 /* RefundInfoCell.swift */; };
+		D5FC6D5720DCF77F00A35EE5 /* RefundProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC6D5220DCF77F00A35EE5 /* RefundProductCell.swift */; };
+		D5FC6D5820DCF77F00A35EE5 /* RefundManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC6D5320DCF77F00A35EE5 /* RefundManagerController.swift */; };
 		D5FF7DF020B4367900D2AD78 /* CoverMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DEF20B4367900D2AD78 /* CoverMaskView.m */; };
 		D5FF7DF220B6A70500D2AD78 /* StoreDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DF120B6A6F900D2AD78 /* StoreDetail.swift */; };
 		D5FF7DF620B7B6D700D2AD78 /* OrderMenuPushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DF320B7B6B900D2AD78 /* OrderMenuPushView.swift */; };
@@ -977,11 +977,6 @@
 		01C0345F205FED7F00237AAD /* SearchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListController.swift; sourceTree = "<group>"; };
 		01C03461205FEDE000237AAD /* SearchListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListCell.swift; sourceTree = "<group>"; };
 		01CA194C20B9CDAC00E40F7D /* CeateOrderTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeateOrderTarget.swift; sourceTree = "<group>"; };
-		01F3222120DCC50C00D5154A /* RefundManagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefundManagerController.swift; sourceTree = "<group>"; };
-		01F3222420DCC79200D5154A /* RefundHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefundHeaderCell.swift; sourceTree = "<group>"; };
-		01F3222620DCD42200D5154A /* RefundProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefundProductCell.swift; sourceTree = "<group>"; };
-		01F3222820DCE20700D5154A /* RefundInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefundInfoCell.swift; sourceTree = "<group>"; };
-		01F3222920DCE20700D5154A /* RefundInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundInfoCell.xib; sourceTree = "<group>"; };
 		1B022D5F1F21A20400129849 /* ZoomingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomingImageView.h; sourceTree = "<group>"; };
 		1B022D601F21A20400129849 /* ZoomingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomingImageView.m; sourceTree = "<group>"; };
 		1B0CD2BB1E8B5B6A008AF162 /* YCHotelMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCHotelMainController.h; sourceTree = "<group>"; };
@@ -2382,6 +2377,11 @@
 		D5D01F57206213E6002263CC /* NumDomainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumDomainView.m; sourceTree = "<group>"; };
 		D5D5BB03207F523000A27ABF /* LGwebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LGwebViewController.swift; sourceTree = "<group>"; };
 		D5F6333A20C13A6E00F67742 /* MyShopWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShopWebViewController.swift; sourceTree = "<group>"; };
+		D5FC6D4F20DCF77F00A35EE5 /* RefundHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefundHeaderCell.swift; sourceTree = "<group>"; };
+		D5FC6D5020DCF77F00A35EE5 /* RefundInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefundInfoCell.xib; sourceTree = "<group>"; };
+		D5FC6D5120DCF77F00A35EE5 /* RefundInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefundInfoCell.swift; sourceTree = "<group>"; };
+		D5FC6D5220DCF77F00A35EE5 /* RefundProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefundProductCell.swift; sourceTree = "<group>"; };
+		D5FC6D5320DCF77F00A35EE5 /* RefundManagerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefundManagerController.swift; sourceTree = "<group>"; };
 		D5FF7DEE20B4367900D2AD78 /* CoverMaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoverMaskView.h; sourceTree = "<group>"; };
 		D5FF7DEF20B4367900D2AD78 /* CoverMaskView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoverMaskView.m; sourceTree = "<group>"; };
 		D5FF7DF120B6A6F900D2AD78 /* StoreDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetail.swift; sourceTree = "<group>"; };
@@ -2517,26 +2517,6 @@
 				0116DFE320C53113000C4802 /* StoreInfo.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		01F3222020DCC4C300D5154A /* RefundManager */ = {
-			isa = PBXGroup;
-			children = (
-				01F3222320DCC73600D5154A /* View */,
-				01F3222120DCC50C00D5154A /* RefundManagerController.swift */,
-			);
-			path = RefundManager;
-			sourceTree = "<group>";
-		};
-		01F3222320DCC73600D5154A /* View */ = {
-			isa = PBXGroup;
-			children = (
-				01F3222420DCC79200D5154A /* RefundHeaderCell.swift */,
-				01F3222620DCD42200D5154A /* RefundProductCell.swift */,
-				01F3222820DCE20700D5154A /* RefundInfoCell.swift */,
-				01F3222920DCE20700D5154A /* RefundInfoCell.xib */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		1B0CD2B61E8B5A84008AF162 /* YCHotel */ = {
@@ -5783,6 +5763,7 @@
 		D5B7A68020D145930014F7D2 /* MyStore */ = {
 			isa = PBXGroup;
 			children = (
+				D5FC6D4D20DCF77F00A35EE5 /* RefundManager */,
 				D574885820DCE2B0004BA5DD /* OrderReturns */,
 				D574884720DB4C56004BA5DD /* CommentManager */,
 				D5B7A6A720DA1F8B0014F7D2 /* dataStatistics */,
@@ -5932,6 +5913,26 @@
 				D5D5BB03207F523000A27ABF /* LGwebViewController.swift */,
 			);
 			path = "LG+ Pay";
+			sourceTree = "<group>";
+		};
+		D5FC6D4D20DCF77F00A35EE5 /* RefundManager */ = {
+			isa = PBXGroup;
+			children = (
+				D5FC6D4E20DCF77F00A35EE5 /* View */,
+				D5FC6D5320DCF77F00A35EE5 /* RefundManagerController.swift */,
+			);
+			path = RefundManager;
+			sourceTree = "<group>";
+		};
+		D5FC6D4E20DCF77F00A35EE5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D5FC6D4F20DCF77F00A35EE5 /* RefundHeaderCell.swift */,
+				D5FC6D5020DCF77F00A35EE5 /* RefundInfoCell.xib */,
+				D5FC6D5120DCF77F00A35EE5 /* RefundInfoCell.swift */,
+				D5FC6D5220DCF77F00A35EE5 /* RefundProductCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -6108,6 +6109,7 @@
 				01099A05205D057E00FCC6B6 /* PublicArt.json in Resources */,
 				5B002A7A1E0BB876002D0A05 /* PersonalHeaderCell.xib in Resources */,
 				2682D18E1FF64AC900F0470E /* RSCategoryCollectionCell.xib in Resources */,
+				D5FC6D5520DCF77F00A35EE5 /* RefundInfoCell.xib in Resources */,
 				1B1971BC1E20803300E54D95 /* KLRecommendCollectionViewCell.xib in Resources */,
 				1B4C10371EB3195F005EAAE5 /* backgroundStar@2x.png in Resources */,
 				1B392F5B1E28D14E00F70981 /* back_button@2x.png in Resources */,
@@ -6117,7 +6119,6 @@
 				1B5B6BB81E9B20EE009D5C75 /* HotelPicsCollectionViewCell.xib in Resources */,
 				01B20DD220BFC71A00ACEC59 /* GeneralizeSecondCell.xib in Resources */,
 				1B5B9AA11E320EB2004F4CB1 /* CYPasswordView.bundle in Resources */,
-				01F3222B20DCE20700D5154A /* RefundInfoCell.xib in Resources */,
 				1B392EFD1E28D14E00F70981 /* SupermarketHomeTasteNewCollectionViewCell.xib in Resources */,
 				1B392F5E1E28D14E00F70981 /* cart_cutBtn_highlight@2x.png in Resources */,
 				5BE1F2FC1EC94A3200717E20 /* YCLoadMoreCollectionCell.xib in Resources */,
@@ -6509,7 +6510,6 @@
 				1B0CD2ED1E8E0693008AF162 /* MSSCalendarHeaderModel.m in Sources */,
 				01B20DCD20BFC22100ACEC59 /* GeneralizeHeaderCell.swift in Sources */,
 				1B392D4D1E28D0E500F70981 /* UILabel+WidthAndHeight.m in Sources */,
-				01F3222720DCD42200D5154A /* RefundProductCell.swift in Sources */,
 				D53093BA205E445400427350 /* SingleSegmentView.m in Sources */,
 				0125AC6C20C128540021B358 /* AddGood.swift in Sources */,
 				D574884620DB354E004BA5DD /* DataStatisticsDatePicker.swift in Sources */,
@@ -6517,6 +6517,7 @@
 				1B392D941E28D0E500F70981 /* YYTextUtilities.m in Sources */,
 				1B392D971E28D0E500F70981 /* YYTextView.m in Sources */,
 				5BE152841F137DD200FC74C2 /* Previewable.swift in Sources */,
+				D5FC6D5720DCF77F00A35EE5 /* RefundProductCell.swift in Sources */,
 				D574885720DCCC31004BA5DD /* GMEditPopView.swift in Sources */,
 				D56D5BC720BD236B00B657BF /* ParecellocationView.swift in Sources */,
 				1B1BC8661E52D35E0094E488 /* SupermarketOrderWaitPayDetailController.m in Sources */,
@@ -6660,7 +6661,6 @@
 				1B392ED01E28D14E00F70981 /* ConfirmOrderheaderView.m in Sources */,
 				1B80E6B01E4D561F001603B2 /* DKFilterModel.m in Sources */,
 				1B392D491E28D0E500F70981 /* NSDictionary+Decode.m in Sources */,
-				01F3222220DCC50C00D5154A /* RefundManagerController.swift in Sources */,
 				5BDA96D71F146B40009D6325 /* ChangePassWordController.swift in Sources */,
 				1B392EF81E28D14E00F70981 /* SupermarketHomePeopleLikeData.m in Sources */,
 				1B392F501E28D14E00F70981 /* SupermarketSelfPickCollectionView.m in Sources */,
@@ -6728,6 +6728,7 @@
 				1B392F4B1E28D14E00F70981 /* SupermarketChekRefundProgressController.m in Sources */,
 				1B392F1D1E28D14E00F70981 /* AllKindsCollectionViewCell.m in Sources */,
 				D5B7A6AF20DA3BCC0014F7D2 /* DataStatisticCellHeadView.swift in Sources */,
+				D5FC6D5620DCF77F00A35EE5 /* RefundInfoCell.swift in Sources */,
 				5BC13C651E10F4AB00985C41 /* UIImageView+Navi.swift in Sources */,
 				1B392F361E28D14E00F70981 /* CouponWaitUseController.m in Sources */,
 				26E9101F2009D52100E838E8 /* RSCustomerService.swift in Sources */,
@@ -6804,6 +6805,7 @@
 				5BAD6AA71E0D050B00E43EAE /* PersonalStarContentCell.swift in Sources */,
 				1B392ED11E28D14E00F70981 /* CWStarRateView.m in Sources */,
 				5B915B691E0E43BA00E92E1F /* PersonalMyStarController.swift in Sources */,
+				D5FC6D5420DCF77F00A35EE5 /* RefundHeaderCell.swift in Sources */,
 				1BEF694B1E947FF700CE3434 /* HotelSearchResultTableViewCell.m in Sources */,
 				5B34C8971E1FAD3300AF6B93 /* TYTabPagerController.m in Sources */,
 				5BD429411DF1010700EE62DE /* YCLoginContainerController.swift in Sources */,
@@ -6844,7 +6846,6 @@
 				1BBF76B41E6418F700BF0AA9 /* HotelHome.m in Sources */,
 				1B392EFB1E28D14E00F70981 /* SupermarketHomeTasteNewCollectionView.m in Sources */,
 				1B1971B41E20803300E54D95 /* BroadcastData.m in Sources */,
-				01F3222520DCC79200D5154A /* RefundHeaderCell.swift in Sources */,
 				011EC0D5206A4F2600334165 /* SearchKoreaAddress.swift in Sources */,
 				1B43F7BF1EA60472002A36BB /* HotelOrderDetailModel.m in Sources */,
 				5BE152791F137DC300FC74C2 /* PhotosDataSource.swift in Sources */,
@@ -6873,7 +6874,6 @@
 				1B5B6BB71E9B20EE009D5C75 /* HotelPicsCollectionViewCell.m in Sources */,
 				1B392D701E28D0E500F70981 /* NSBundle+TZImagePicker.m in Sources */,
 				5BC25E161E8F432D00732DA9 /* YCGenericTableView.swift in Sources */,
-				01F3222A20DCE20700D5154A /* RefundInfoCell.swift in Sources */,
 				1B80E6B41E4D561F001603B2 /* ModelBtn.m in Sources */,
 				1BDDA0E41EB96AF8005E8409 /* HotelLowCommentViewController.m in Sources */,
 				D5FF7DF620B7B6D700D2AD78 /* OrderMenuPushView.swift in Sources */,
@@ -7000,6 +7000,7 @@
 				1B392EDC1E28D14E00F70981 /* SupermarketCommentTableView.m in Sources */,
 				6296F453201A05F900976C21 /* RecommendSearchPopView.swift in Sources */,
 				1B392EFA1E28D14E00F70981 /* SupermarketHomeTasteFreshBannerData.m in Sources */,
+				D5FC6D5820DCF77F00A35EE5 /* RefundManagerController.swift in Sources */,
 				1B392D6C1E28D0E500F70981 /* SDWaitingView.m in Sources */,
 				6296F457201A0E1B00976C21 /* MyQRController.swift in Sources */,
 				1B510E6A1EA0ABD200B77F14 /* HotelReseveResultInfoTableViewCell.m in Sources */,

@@ -302,7 +302,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
     } failure:^(NSError *errToken) {
-        
+
     }];
 }
 
