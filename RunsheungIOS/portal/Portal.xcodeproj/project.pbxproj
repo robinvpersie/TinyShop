@@ -863,6 +863,8 @@
 		D5FC6D5620DCF77F00A35EE5 /* RefundInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC6D5120DCF77F00A35EE5 /* RefundInfoCell.swift */; };
 		D5FC6D5720DCF77F00A35EE5 /* RefundProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC6D5220DCF77F00A35EE5 /* RefundProductCell.swift */; };
 		D5FC6D5820DCF77F00A35EE5 /* RefundManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC6D5320DCF77F00A35EE5 /* RefundManagerController.swift */; };
+		D5FC6D5A20DDDF1D00A35EE5 /* GMEditCellTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC6D5920DDDF1D00A35EE5 /* GMEditCellTableView.swift */; };
+		D5FC6D5C20DDE77900A35EE5 /* CommentCellTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC6D5B20DDE77900A35EE5 /* CommentCellTableView.swift */; };
 		D5FF7DF020B4367900D2AD78 /* CoverMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DEF20B4367900D2AD78 /* CoverMaskView.m */; };
 		D5FF7DF220B6A70500D2AD78 /* StoreDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DF120B6A6F900D2AD78 /* StoreDetail.swift */; };
 		D5FF7DF620B7B6D700D2AD78 /* OrderMenuPushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF7DF320B7B6B900D2AD78 /* OrderMenuPushView.swift */; };
@@ -2382,6 +2384,8 @@
 		D5FC6D5120DCF77F00A35EE5 /* RefundInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefundInfoCell.swift; sourceTree = "<group>"; };
 		D5FC6D5220DCF77F00A35EE5 /* RefundProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefundProductCell.swift; sourceTree = "<group>"; };
 		D5FC6D5320DCF77F00A35EE5 /* RefundManagerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefundManagerController.swift; sourceTree = "<group>"; };
+		D5FC6D5920DDDF1D00A35EE5 /* GMEditCellTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMEditCellTableView.swift; sourceTree = "<group>"; };
+		D5FC6D5B20DDE77900A35EE5 /* CommentCellTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCellTableView.swift; sourceTree = "<group>"; };
 		D5FF7DEE20B4367900D2AD78 /* CoverMaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoverMaskView.h; sourceTree = "<group>"; };
 		D5FF7DEF20B4367900D2AD78 /* CoverMaskView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoverMaskView.m; sourceTree = "<group>"; };
 		D5FF7DF120B6A6F900D2AD78 /* StoreDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetail.swift; sourceTree = "<group>"; };
@@ -5681,6 +5685,7 @@
 			isa = PBXGroup;
 			children = (
 				D574884820DB4CE2004BA5DD /* CommentMainController.swift */,
+				D5FC6D5B20DDE77900A35EE5 /* CommentCellTableView.swift */,
 				D574885020DB8EBF004BA5DD /* CommentMerReturnView.swift */,
 				D574885420DC92C5004BA5DD /* CommentPopReturnView.swift */,
 				D574884A20DB4D77004BA5DD /* CommentTopView.swift */,
@@ -5790,6 +5795,7 @@
 			children = (
 				D5B7A68920D28EAA0014F7D2 /* GoodsManagerController.swift */,
 				D5B7A69320D798400014F7D2 /* MyNewEditViewController.swift */,
+				D5FC6D5920DDDF1D00A35EE5 /* GMEditCellTableView.swift */,
 				D5B7A69520D79D5C0014F7D2 /* GMEditBaseInfoView.swift */,
 				D5B7A69720D7A5C60014F7D2 /* GMEditChoiceCateView.swift */,
 				D5B7A69920D7AF660014F7D2 /* GMEditByInfoView.swift */,
@@ -6014,7 +6020,7 @@
 				TargetAttributes = {
 					6275E8551DDC692000656E2D = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = W6JK3FHE8S;
+						DevelopmentTeam = 9A8T4DFUB8;
 						ProvisioningStyle = Automatic;
 					};
 					6275E8691DDC692100656E2D = {
@@ -6804,6 +6810,7 @@
 				5BEF65AB1F208C0500817141 /* CosmosText.swift in Sources */,
 				5BAD6AA71E0D050B00E43EAE /* PersonalStarContentCell.swift in Sources */,
 				1B392ED11E28D14E00F70981 /* CWStarRateView.m in Sources */,
+				D5FC6D5C20DDE77900A35EE5 /* CommentCellTableView.swift in Sources */,
 				5B915B691E0E43BA00E92E1F /* PersonalMyStarController.swift in Sources */,
 				D5FC6D5420DCF77F00A35EE5 /* RefundHeaderCell.swift in Sources */,
 				1BEF694B1E947FF700CE3434 /* HotelSearchResultTableViewCell.m in Sources */,
@@ -6925,6 +6932,7 @@
 				1B9546FA1F1DF147006DCB6C /* ZFConst.m in Sources */,
 				1B510E671EA0790400B77F14 /* HotelReserveResultDetailController.m in Sources */,
 				D53093C4205E44E400427350 /* TSFirstMoreViewController.m in Sources */,
+				D5FC6D5A20DDDF1D00A35EE5 /* GMEditCellTableView.swift in Sources */,
 				1BC876A61E98875B00BB38D7 /* HotelHomeTimeController.m in Sources */,
 				1B392F661E28D14E00F70981 /* LZCartTableViewCell.m in Sources */,
 				1B0CD2F21E8E0693008AF162 /* MSSCircleLabel.m in Sources */,
@@ -7373,7 +7381,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = W6JK3FHE8S;
+				DEVELOPMENT_TEAM = 9A8T4DFUB8;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7457,7 +7465,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = W6JK3FHE8S;
+				DEVELOPMENT_TEAM = 9A8T4DFUB8;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

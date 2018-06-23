@@ -89,6 +89,9 @@ extension OrderSegmentView:UITableViewDelegate,UITableViewDataSource{
 	
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if tableView.tag == 1 {
+			return self.allData.count - 1
+		}
 		return self.allData.count
 	}
 	

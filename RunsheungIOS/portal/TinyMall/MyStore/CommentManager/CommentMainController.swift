@@ -9,14 +9,11 @@
 import UIKit
 
 class CommentMainController: MyStoreBaseViewController {
-	var tableview:UITableView = UITableView()
+	var bottomCollectView:UICollectionView?
+	var dataHead:DataStatisticsHeadView?
 	var commentTop:CommentTopView = CommentTopView()
-	var segment:DataStatisticsHeadView?
-	var refreshHeight:CGFloat = 0.0
-	var refreshIndexPath:IndexPath?
-	var data:NSMutableArray = [true,false]
 
-	override func viewWillDisappear(_ animated: Bool) {
+ 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		UserDefaults.standard.set("", forKey: "changeComment")
 	}
@@ -32,85 +29,80 @@ class CommentMainController: MyStoreBaseViewController {
 			make.top.left.right.equalToSuperview()
 			make.height.equalTo( screenWidth / 2)
 		}
-		self.createTableView()
-
+	
+		self.dataHead = DataStatisticsHeadView()
+ 		self.dataHead?.getTitles(array:["全部(234)","差评(13)","未读(23)"])
+		self.dataHead?.clickHeadIndexMap = {[weak self](index:Int)->Void in
+			
+			let indexPath = IndexPath(row: index, section: 0)
+			self?.bottomCollectView?.scrollToItem(at: indexPath, at: .left, animated: false)
+			
+		}
+		self.view.addSubview(self.dataHead!)
+		self.dataHead?.snp.makeConstraints({ (make) in
+			make.left.right.equalToSuperview()
+			make.top.equalTo(self.commentTop.snp.bottom)
+			make.height.equalTo(50)
+		})
 		
+		self.createCollectionView()
+
+	}
+	
+	private func createCollectionView(){
+		let layout = UICollectionViewFlowLayout();
+		layout.scrollDirection = .horizontal
+		self.bottomCollectView = UICollectionView(frame:CGRect(x:0,y:0,width: 0,height:0), collectionViewLayout: layout)
+		self.bottomCollectView?.layer.backgroundColor = UIColor.white.cgColor
+		self.bottomCollectView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "ID")
+		self.bottomCollectView?.delegate = self
+		self.bottomCollectView?.dataSource = self
+		self.view.addSubview(self.bottomCollectView!)
+		self.bottomCollectView?.snp.makeConstraints({ (make) in
+			make.bottom.left.right.equalToSuperview()
+			make.top.equalTo((self.dataHead?.snp.bottom)!)
+		})
+
 	}
 
 }
-
-
-extension CommentMainController:UITableViewDelegate,UITableViewDataSource {
+extension CommentMainController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
 	
-	@objc private func clickChange(sender:UIButton){
-		
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return 3
 	}
 	
-	private func createTableView(){
-		
-		self.tableview.dataSource = self
-		self.tableview.delegate = self
-		self.tableview.estimatedRowHeight = 0
-		self.tableview.tableFooterView = UIView()
-		self.tableview.separatorColor = UIColor.white
-		
-		self.tableview.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
-		self.tableview.register(UINib(nibName: "CommetnTableCell", bundle: nil), forCellReuseIdentifier: "cell_id")
-		self.view.addSubview(self.tableview)
-		self.tableview.snp.makeConstraints { (make) in
-			make.top.equalTo(self.commentTop.snp.bottom)
-			make.left.right.bottom.equalToSuperview()
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ID", for: indexPath)
+		let dataCell:CommentCellTableView = CommentCellTableView()
+		dataCell.tag = indexPath.row
+		cell.contentView.addSubview(dataCell)
+		dataCell.snp.makeConstraints { (make) in
+			make.edges.equalToSuperview()
 		}
 		
-		self.segment = DataStatisticsHeadView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 50))
-		self.segment?.getTitles(array: ["全部(234)","差评(13)","未读(23)"])
-		self.tableview.tableHeaderView = self.segment
 		
-		
-	}
-
-	func numberOfSections(in tableView: UITableView) -> Int {
-		return self.data.count
-	}
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 1
-	}
-	
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell:CommetnTableCell = tableview.dequeueReusableCell(withIdentifier: "cell_id", for: indexPath) as! CommetnTableCell
-		let hasReturn:Bool = self.data.object(at: indexPath.section) as! Bool
-		cell.getMark(mark: indexPath.section,haveReturn:hasReturn)
-		cell.refreshCellHeightMap = {(cellHeight:CGFloat,indexSection:Int)->Void in
-			self.refreshIndexPath = indexPath
-			self.refreshHeight = cellHeight
-			self.data.replaceObject(at: indexPath.section, with: true)
-			tableView.reloadSections([indexPath.section], with: .fade)
-		}
-			
 		return cell
 	}
 	
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		if indexPath.section == 0 {
-			return 250.0
-		}
-
-		if indexPath.section == self.refreshIndexPath?.section {
-			return (150.0 + self.refreshHeight + 66.0)
-		}
-		return 150.0
-		
-	}
-
-	func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-		let view:UIView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 10))
-		view.backgroundColor =  UIColor(red: 242, green: 244, blue: 246)
-		
-		return view
+	
+	
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 	}
 	
-	func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
-		return 10.0
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		let width:CGFloat = screenWidth
+		let height:CGFloat = collectionView.frame.size.height
+		
+		return CGSize(width: width, height: height)
 	}
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+		return 0
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+		return 0
+	}
+	
 }
-

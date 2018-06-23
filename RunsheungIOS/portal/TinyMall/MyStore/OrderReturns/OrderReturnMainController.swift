@@ -23,7 +23,6 @@ class OrderReturnMainController: MyStoreBaseViewController {
 		layout.scrollDirection = .horizontal
 		let collectionview = UICollectionView(frame:CGRect(x:0,y:60,width: screenWidth,height:screenHeight - 60), collectionViewLayout: layout)
 		collectionview.layer.backgroundColor = UIColor.white.cgColor
-		collectionview.contentSize = CGSize(width: 4*screenWidth, height: screenHeight)
 		collectionview.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "parcelviewcell")
 		collectionview.delegate = selfDelegate as? UICollectionViewDelegate
 		collectionview.dataSource = selfDelegate as? UICollectionViewDataSource
@@ -84,7 +83,7 @@ extension OrderReturnMainController: UICollectionViewDelegate,UICollectionViewDa
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		let width:CGFloat = screenWidth
-		let height:CGFloat = screenHeight - 60.0
+		let height:CGFloat = collectionView.frame.size.height
 		
 		return CGSize(width: width, height: height)
 	}

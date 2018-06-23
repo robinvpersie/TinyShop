@@ -28,7 +28,6 @@ class OrderManagerViewController: MyStoreBaseViewController {
     }
 	
 	private func createTableView(){
-//		self.tableview = self.tableViewMap(1)
 	}
 
 
