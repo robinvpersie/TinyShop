@@ -19,9 +19,9 @@ let mapCollectionview = { (selfDelegate:UIViewController) -> UICollectionView in
 	
 	let layout = UICollectionViewFlowLayout();
 	layout.scrollDirection = .horizontal
-	let collectionview = UICollectionView(frame:CGRect(x:0,y:60,width: screenWidth,height:screenHeight - 60), collectionViewLayout: layout)
+	let collectionview = UICollectionView(frame:CGRect(x:0,y:50,width: screenWidth,height:screenHeight - 50), collectionViewLayout: layout)
 	collectionview.layer.backgroundColor = UIColor.white.cgColor
-	collectionview.contentSize = CGSize(width: 4*screenWidth, height: screenHeight)
+	collectionview.isPagingEnabled = true
 	collectionview.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "parcelviewcell")
 	collectionview.delegate = selfDelegate as? UICollectionViewDelegate
 	collectionview.dataSource = selfDelegate as? UICollectionViewDataSource
@@ -85,7 +85,7 @@ extension GoodsManagerController: UICollectionViewDelegate,UICollectionViewDataS
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "parcelviewcell", for: indexPath)
 		let dataCell:GMEditCellTableView = GMEditCellTableView()
-		dataCell.tag = indexPath.row
+		dataCell.getData(tag: indexPath.row)
 		cell.contentView.addSubview(dataCell)
 		dataCell.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()
@@ -95,6 +95,14 @@ extension GoodsManagerController: UICollectionViewDelegate,UICollectionViewDataS
 		return cell
 	}
 	
+	func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+		
+		let offsetX:CGFloat = scrollView.contentOffset.x
+		let index:Int = Int(offsetX / screenWidth)
+		self.dataHead?.transferIndex(index: index)
+		print(index)
+	}
+
 	
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

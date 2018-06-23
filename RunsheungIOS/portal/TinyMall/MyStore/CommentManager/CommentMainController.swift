@@ -15,7 +15,6 @@ class CommentMainController: MyStoreBaseViewController {
 
  	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-		UserDefaults.standard.set("", forKey: "changeComment")
 	}
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +56,7 @@ class CommentMainController: MyStoreBaseViewController {
 		self.bottomCollectView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "ID")
 		self.bottomCollectView?.delegate = self
 		self.bottomCollectView?.dataSource = self
+		self.bottomCollectView?.isPagingEnabled = true
 		self.view.addSubview(self.bottomCollectView!)
 		self.bottomCollectView?.snp.makeConstraints({ (make) in
 			make.bottom.left.right.equalToSuperview()
@@ -72,6 +72,14 @@ extension CommentMainController: UICollectionViewDelegate,UICollectionViewDataSo
 		return 3
 	}
 	
+	func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+		
+		let offsetX:CGFloat = scrollView.contentOffset.x
+		let index:Int = Int(offsetX / screenWidth)
+		self.dataHead?.transferIndex(index: index)
+		print(index)
+	}
+
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ID", for: indexPath)
 		let dataCell:CommentCellTableView = CommentCellTableView()

@@ -37,6 +37,7 @@ class CommentCellTableView: UIView {
 		self.tableview.estimatedSectionFooterHeight = 0
 		self.tableview.estimatedSectionHeaderHeight = 0
 		self.tableview.separatorColor = UIColor(red: 242, green: 244, blue: 246)
+		self.tableview.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
 		self.tableview.register(UINib(nibName: "CommetnTableCell", bundle: nil), forCellReuseIdentifier: "cell_id")
 		self.addSubview(self.tableview)
 		self.tableview.snp.makeConstraints { (make) in
@@ -47,9 +48,12 @@ class CommentCellTableView: UIView {
 }
 
 extension CommentCellTableView:UITableViewDelegate,UITableViewDataSource{
+	func numberOfSections(in tableView: UITableView) -> Int {
+		return 2
+	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 2
+		return 1
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,13 +78,11 @@ extension CommentCellTableView:UITableViewDelegate,UITableViewDataSource{
 			return (150.0 + self.refreshHeight + 66.0)
 		}
 		return 150.0
-		
 	}
 	
 	func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
 		let view:UIView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 10))
 		view.backgroundColor =  UIColor(red: 242, green: 244, blue: 246)
-
 		return view
 	}
 

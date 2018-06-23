@@ -25,6 +25,7 @@ class GMEditCellTableView: UIView {
 		
 	}
 	
+	
 	private func createTableView(){
 		
 		self.tableview.dataSource = self
@@ -38,6 +39,19 @@ class GMEditCellTableView: UIView {
 		self.addSubview(self.tableview)
 		self.tableview.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()
+		}
+		
+	}
+}
+
+extension GMEditCellTableView {
+	@objc public func getData(tag:Int){
+		KLHttpTool.getGoodManagerListCatewithUri("product/queryList", withselling: String(tag), withCategoryId: "0", withpg: "1", success: { (response) in
+			let res:NSDictionary = (response as? NSDictionary)!
+			
+			
+		}) { (err) in
+			
 		}
 		
 	}

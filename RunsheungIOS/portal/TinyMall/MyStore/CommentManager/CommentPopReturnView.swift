@@ -80,8 +80,7 @@ class CommentPopReturnView: UIView {
 		self.inputText?.textColor = UIColor(red: 160, green: 160, blue: 160)
 		self.inputText?.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
 		self.inputText?.tintColor = UIColor(red: 160, green: 160, blue: 160)
-		self.inputText?.text = "回复"
-		
+		self.inputText?.text = "感谢您的支持与喜欢！我们会努力做到更好！"
 		self.addSubview(self.inputText!)
 		self.inputText?.snp.makeConstraints({ (make) in
 			make.left.equalToSuperview().offset(30)

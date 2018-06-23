@@ -50,6 +50,11 @@
     #define GetZipcodeUrl @"http://api1.gigawon.co.kr:82/api/ycZipCode/getZipCode"
     #define GetTokenUrl @"http://member.gigawon.co.kr:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
     #define MallBaseUrl @"http://mall.gigawon.co.kr:8800"
+	#define MystoreUrl @"http://172.17.21.13:8825/"
+    #define MystoreTestCustom_Code @"01071390009abcde"
+    #define MystoreTestToken @"adgkdlgmnkflbhk1"
+
+
 #endif
 
 
@@ -3649,6 +3654,44 @@
 }
 
 
+#pragma mark -----------------------------------------------------我的商店--------------------------------------------------------------
+/**
+ 获取我的商铺商品管理列表
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getGoodManagerListCatewithUri:(NSString*)uri
+						  withselling:(NSString*)selling
+					   withCategoryId:(NSString*)CategoryId
+							   withpg:(NSString*)pg
+							  success:(void (^)(id response))success
+							  failure:(void (^)(NSError *err))failure{
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *paesize = @"10";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
+	NSString * lang_type = @"chn";
+	custom_code = MystoreTestCustom_Code;
+	token = MystoreTestToken;
+
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,CategoryId,pg,selling,paesize,custom_code,token).mutableCopy;
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+	
+	
+}
 
 @end
 

@@ -768,4 +768,19 @@
 		   withCustom_lev1:(NSString*)custom_lev1
 				   success:(void (^)(id response))success
 				   failure:(void (^)(NSError *err))failure;
+
+#pragma mark -----------------------------------------------------我的商店--------------------------------------------------------------
+/**
+ 获取我的商铺商品管理列表
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getGoodManagerListCatewithUri:(NSString*)uri
+						  withselling:(NSString*)selling
+					   withCategoryId:(NSString*)CategoryId
+							   withpg:(NSString*)pg
+							  success:(void (^)(id response))success
+							  failure:(void (^)(NSError *err))failure;
 @end

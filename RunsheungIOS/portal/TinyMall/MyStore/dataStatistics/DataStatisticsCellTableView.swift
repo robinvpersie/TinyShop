@@ -10,7 +10,7 @@ import UIKit
 
 class DataStatisticsCellTableView: UIView {
 	var tableview:UITableView = UITableView()
-	var data:NSArray = ["今日","本周","本月","自定"]
+	var data:NSArray = ["今日","本周","本月","期间"]
 	var tableHeadView:DataStatisticCellHeadView?
 
 	override init(frame: CGRect) {

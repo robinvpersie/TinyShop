@@ -22,6 +22,7 @@ class OrderReturnMainController: MyStoreBaseViewController {
 		let layout = UICollectionViewFlowLayout();
 		layout.scrollDirection = .horizontal
 		let collectionview = UICollectionView(frame:CGRect(x:0,y:60,width: screenWidth,height:screenHeight - 60), collectionViewLayout: layout)
+		collectionview.isPagingEnabled = true
 		collectionview.layer.backgroundColor = UIColor.white.cgColor
 		collectionview.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "parcelviewcell")
 		collectionview.delegate = selfDelegate as? UICollectionViewDelegate
@@ -62,7 +63,14 @@ extension OrderReturnMainController: UICollectionViewDelegate,UICollectionViewDa
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return 2
 	}
-	
+	func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+		
+		let offsetX:CGFloat = scrollView.contentOffset.x
+		let index:Int = Int(offsetX / screenWidth)
+		self.dataHead?.transferIndex(index: index)
+		print(index)
+	}
+
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "parcelviewcell", for: indexPath)
 		let dataCell:OrderReturnCellTableView = OrderReturnCellTableView()

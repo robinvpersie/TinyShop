@@ -102,7 +102,23 @@ extension DataStatisticsHeadView: UICollectionViewDelegate,UICollectionViewDataS
 		
 		return cell
 	}
-	
+	@objc public func transferIndex(index:Int){
+		for btn in self.pressBtnArray {
+			let button:UIButton = (btn as? UIButton)!
+			button.isSelected = false
+		}
+		let sender:UIButton = self.pressBtnArray.object(at: index) as! UIButton
+		sender.isSelected = true
+		let singleWidth:Int = (Int(screenWidth) / self.data.count)*Int(sender.tag)
+		
+		UIView.animate(withDuration: 0.3) {
+			self.bottomline?.transform = CGAffineTransform(translationX:CGFloat(singleWidth), y: 0)
+			
+		}
+//		self.clickHeadIndexMap(sender.tag)
+		
+	}
+
 	
 	@objc private func pressbtnIndex(sender:UIButton){
 		for btn in self.pressBtnArray {
