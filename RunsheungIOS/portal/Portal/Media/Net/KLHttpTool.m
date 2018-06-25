@@ -50,9 +50,9 @@
     #define GetZipcodeUrl @"http://api1.gigawon.co.kr:82/api/ycZipCode/getZipCode"
     #define GetTokenUrl @"http://member.gigawon.co.kr:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
     #define MallBaseUrl @"http://mall.gigawon.co.kr:8800"
-	#define MystoreUrl @"http://172.17.21.13:8825/"
+   #define MystoreUrl @"http://gigaMerchantManager.gigawon.co.kr:8825/"
     #define MystoreTestCustom_Code @"01071390009abcde"
-    #define MystoreTestToken @"adgkdlgmnkflbhk1"
+    #define MystoreTestToken @"01071390009abcde64715017-0c81-4ef9-8b21-5e48c64cb455"
 
 
 #endif
@@ -3606,9 +3606,7 @@
 				   failure:(void (^)(NSError *err))failure{
 	NSString *url =[NSString stringWithFormat:@"%@",@"http://apiAD.gigaroom.com:9280/api/apiNumeric/requestFindStore"];
 	NSString * lang_type = @"kor";
-	
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,ad_num,t_num,l_num,r_num,b_num,c_num,latitude,longitude).mutableCopy;
-	
 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
 		NSLog(@"%@",response);
 		if (success) {
@@ -3665,20 +3663,20 @@
 + (void)getGoodManagerListCatewithUri:(NSString*)uri
 						  withselling:(NSString*)selling
 					   withCategoryId:(NSString*)CategoryId
-							   withpg:(NSString*)pg
+							   withpg:(NSString*)page
 							  success:(void (^)(id response))success
 							  failure:(void (^)(NSError *err))failure{
+	
 	
 	YCAccountModel *account = [YCAccountModel getAccount];
 	NSString* custom_code = account.customCode.length?account.customCode:@"";
 	NSString* token = account.combineToken.length?account.combineToken:@"";
-	NSString *paesize = @"10";
+	NSString *pageSize = @"10";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
-	NSString * lang_type = @"chn";
+	NSString * lang_type = @"kor";
 	custom_code = MystoreTestCustom_Code;
 	token = MystoreTestToken;
-
-	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,CategoryId,pg,selling,paesize,custom_code,token).mutableCopy;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,CategoryId,page,selling,pageSize,custom_code,token).mutableCopy;
 	
 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
 		NSLog(@"%@",response);

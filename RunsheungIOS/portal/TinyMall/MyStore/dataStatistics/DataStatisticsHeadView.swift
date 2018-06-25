@@ -14,7 +14,22 @@ class DataStatisticsHeadView: UIView {
 	var collectView:UICollectionView?
 	var data:NSArray = []
 	var pressBtnArray:NSMutableArray = NSMutableArray()
-	var clickHeadIndexMap:(Int)->Void = {(index:Int)->Void in }
+//	var pressBadages:NSMutableArray = NSMutableArray()
+ 	var clickHeadIndexMap:(Int)->Void = {(index:Int)->Void in }
+	var newBadgeCircle:UILabel?
+	
+	let badageCircle:(String) -> UILabel = {(text:String) -> UILabel in
+		
+		let badage:UILabel = UILabel()
+		badage.textAlignment = .center
+		badage.textColor = UIColor.white
+		badage.layer.cornerRadius = 7
+		badage.layer.masksToBounds = true
+		badage.text = text
+		badage.font = UIFont.systemFont(ofSize: 12)
+		badage.backgroundColor = UIColor(red: 222, green: 0, blue: 0)
+		return badage
+	}
 	
 	var button:(CGFloat,UIColor,String,UIColor)->UIButton = {(fontSize:CGFloat,textColor:UIColor,textContent:String,bgColor:UIColor)->UIButton in
 		let btn:UIButton = UIButton()
@@ -99,9 +114,21 @@ extension DataStatisticsHeadView: UICollectionViewDelegate,UICollectionViewDataS
 			pressbtn.isSelected = true
 		}
 		self.pressBtnArray.add(pressbtn)
-		
+		if indexPath.row == 0 {
+			self.newBadgeCircle = self.badageCircle("2")
+			self.newBadgeCircle?.isHidden = false
+			pressbtn.addSubview(self.newBadgeCircle!)
+			self.newBadgeCircle?.snp.makeConstraints({ (make) in
+				make.top.equalToSuperview().offset(5)
+				make.width.height.equalTo(14)
+				make.right.equalTo(pressbtn.snp.centerX).offset(30)
+			})
+
+		}
+
 		return cell
 	}
+	
 	@objc public func transferIndex(index:Int){
 		for btn in self.pressBtnArray {
 			let button:UIButton = (btn as? UIButton)!
@@ -125,6 +152,7 @@ extension DataStatisticsHeadView: UICollectionViewDelegate,UICollectionViewDataS
 			let button:UIButton = (btn as? UIButton)!
 			button.isSelected = false
 		}
+		self.newBadgeCircle?.isHidden = true
 		sender.isSelected = true
 		let singleWidth:Int = (Int(screenWidth) / self.data.count)*Int(sender.tag)
 

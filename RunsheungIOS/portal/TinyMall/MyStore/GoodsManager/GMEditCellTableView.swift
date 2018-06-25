@@ -11,6 +11,7 @@ import UIKit
 
 class GMEditCellTableView: UIView {
 	var tableview:UITableView = UITableView()
+	var data:NSArray = NSArray()
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		createSuv()
@@ -34,7 +35,7 @@ class GMEditCellTableView: UIView {
 		self.tableview.estimatedRowHeight = 0
 		self.tableview.estimatedSectionFooterHeight = 0
 		self.tableview.estimatedSectionHeaderHeight = 0
-		self.tableview.separatorColor = UIColor(red: 242, green: 244, blue: 246)
+		self.tableview.separatorColor = UIColor(red: 232, green: 234, blue: 236)
 		self.tableview.register(UINib(nibName: "GoodsTableViewCell", bundle: nil), forCellReuseIdentifier: "cell_id")
 		self.addSubview(self.tableview)
 		self.tableview.snp.makeConstraints { (make) in
@@ -47,9 +48,14 @@ class GMEditCellTableView: UIView {
 extension GMEditCellTableView {
 	@objc public func getData(tag:Int){
 		KLHttpTool.getGoodManagerListCatewithUri("product/queryList", withselling: String(tag), withCategoryId: "0", withpg: "1", success: { (response) in
+		
 			let res:NSDictionary = (response as? NSDictionary)!
-			
-			
+			let status:Int = (res.object(forKey: "status") as! Int)
+			if status == 1 {
+				self.data = res.object(forKey: "data") as! NSArray
+				self.tableview.reloadData()
+				
+			}
 		}) { (err) in
 			
 		}
@@ -60,14 +66,13 @@ extension GMEditCellTableView {
 extension GMEditCellTableView:UITableViewDelegate,UITableViewDataSource{
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if tableView.tag == 1 {
-			return 2
-		}
-		return 3
+		return self.data.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell:UITableViewCell = tableview.dequeueReusableCell(withIdentifier: "cell_id", for: indexPath)
+		let cell:GoodsTableViewCell = tableview.dequeueReusableCell(withIdentifier: "cell_id", for: indexPath) as! GoodsTableViewCell
+		let dic:NSDictionary = self.data.object(at: indexPath.row) as! NSDictionary
+		cell.getDic(dic:dic)
 		return cell
 	}
 	

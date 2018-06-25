@@ -440,21 +440,24 @@
 
 - (void)loadInputDomain:(NSMutableArray*)data{
 	NSString *addstr = data.firstObject;
-	for (int i = 0;i<4;i++) {
-		NSString *str = data[i+1];
-		addstr = [NSString stringWithFormat:@"%@-%@",addstr,str];
-	}
-
-	[KLHttpTool getInputDomainViewwithUri:nil withad_num:addstr witht_num:data.firstObject withl_num:data[1] withr_num:data[2] withb_num:data[3] withc_num:data[4] withlatitude:GetUserDefault(@"latitude") withlongitude:GetUserDefault(@"longtitude") success:^(id response) {
-		if ([response[@"status"] intValue] == 1) {
-			NSDictionary *dic = response[@"data"];
-			BusinessHomeController *shopDetailed = [[BusinessHomeController alloc] init];
-			shopDetailed.hidesBottomBarWhenPushed = YES;
-			shopDetailed.dic = dic;
-			[self.navigationController pushViewController:shopDetailed animated:YES];
+	if (data.count != 0) {
+		for (int i = 0;i<4;i++) {
+			NSString *str = data[i+1];
+			addstr = [NSString stringWithFormat:@"%@-%@",addstr,str];
 		}
-	} failure:^(NSError *err) {
 		
-	}];
+		[KLHttpTool getInputDomainViewwithUri:nil withad_num:addstr witht_num:data.firstObject withl_num:data[1] withr_num:data[2] withb_num:data[3] withc_num:data[4] withlatitude:GetUserDefault(@"latitude") withlongitude:GetUserDefault(@"longtitude") success:^(id response) {
+			if ([response[@"status"] intValue] == 1) {
+				NSDictionary *dic = response[@"data"];
+				BusinessHomeController *shopDetailed = [[BusinessHomeController alloc] init];
+				shopDetailed.hidesBottomBarWhenPushed = YES;
+				shopDetailed.dic = dic;
+				[self.navigationController pushViewController:shopDetailed animated:YES];
+			}
+		} failure:^(NSError *err) {
+			
+		}];
+	}
+	
 }
 @end

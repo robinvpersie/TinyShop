@@ -11,22 +11,18 @@ import UIKit
 import SnapKit
 class OrderSegmentView: UIView {
 	
-	var segment:UIView?
-	var bottomline:UILabel?
-	var firstBtn:UIButton = UIButton()
-	var secBtn:UIButton = UIButton()
 	var tableview:UITableView = UITableView()
-	var scrollview:UIScrollView?
 	var index:Int = 0
-	var tabview1:UITableView = UITableView()
-	var tabview2:UITableView = UITableView()
-	var newBadage:UILabel?
-	var alreadyBadage:UILabel?
+	var tableviewTag:Int = 0
+
+	var tabview:UITableView = UITableView()
+
 	var allData:NSArray = [[1,2],[1,],[1,2,3]]
 	var stateData:NSMutableArray = [false,false,false]
 	var openCloseState:Bool = false
 	
 	let badageCircle:(String) -> UILabel = {(text:String) -> UILabel in
+		
 		let badage:UILabel = UILabel()
 		badage.textAlignment = .center
 		badage.textColor = UIColor.white
@@ -66,10 +62,13 @@ class OrderSegmentView: UIView {
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		createSuv()
-		createScrollerView()
+
+	}
+	
+	@objc public func getTag(tag:Int){
+		self.tableviewTag = tag
 		ceateTableView()
-		
+
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
@@ -80,16 +79,24 @@ class OrderSegmentView: UIView {
 extension OrderSegmentView:UITableViewDelegate,UITableViewDataSource{
 	private func ceateTableView(){
 		
-		self.tabview1 = self.tableViewMap(self, 0)
-		self.scrollview?.addSubview(self.tabview1)
-		self.tabview2 = self.tableViewMap(self, 1)
-		self.scrollview?.addSubview(self.tabview2)
+		self.tabview  = UITableView()
+		self.tabview .separatorColor = UIColor(red: 232, green: 234, blue: 236)
+		self.tabview .dataSource = self
+		self.tabview .delegate = self
+		self.tabview .estimatedRowHeight = 0
+		self.tabview .tableFooterView = UIView()
+		self.tabview .estimatedSectionFooterHeight = 0
+		self.tabview .estimatedSectionHeaderHeight = 0
+		self.addSubview(self.tabview)
+		self.tabview.snp.makeConstraints { (make) in
+			make.edges.equalToSuperview()
+		}
 		
 	}
 	
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if tableView.tag == 1 {
+		if self.tag == 1 {
 			return self.allData.count - 1
 		}
 		return self.allData.count
@@ -149,116 +156,3 @@ extension OrderSegmentView:UITableViewDelegate,UITableViewDataSource{
 	
 }
 
-extension OrderSegmentView:UIScrollViewDelegate{
-	private func createScrollerView(){
-		self.scrollview = UIScrollView()
-		self.scrollview?.isScrollEnabled = false
-		self.scrollview?.delegate = self
-		
-		self.addSubview(self.scrollview!)
-		self.scrollview?.snp.makeConstraints({ (make) in
-			make.bottom.left.right.equalToSuperview()
-			make.top.equalTo((self.segment?.snp.bottom)!)
-		})
-		self.scrollview?.contentSize = CGSize(width: 2*screenWidth, height: (self.scrollview?.frame.height)!)
-	}
-	
-	
-}
-
-extension OrderSegmentView{
-	
-	private func createSuv(){
-		self.segment = addSegmentView()
-		
-		self.addSubview(self.segment!)
-		self.segment?.snp.makeConstraints({ (make) in
-			make.top.left.right.equalToSuperview()
-			make.height.equalTo(40)
-		})
-		
-		self.firstBtn.tag = 0
-		self.firstBtn.setTitle("新订单", for: .normal)
-		self.firstBtn.setTitleColor(UIColor(red: 33, green: 192, blue: 67), for: .selected)
-		self.firstBtn.addTarget(self, action: #selector(segementIndex), for: .touchUpInside)
-		self.firstBtn.setTitleColor(UIColor.black, for: .normal)
-		self.firstBtn.isSelected = true
-		self.segment?.addSubview(self.firstBtn)
-		self.firstBtn.snp.makeConstraints { (make) in
-			make.left.top.equalToSuperview()
-			make.bottom.equalToSuperview().offset(-2)
-			make.right.equalTo((self.segment?.snp.centerX)!)
-			
-		}
-		
-		self.secBtn.tag = 1
-		self.secBtn.setTitle("已完成", for: .normal)
-		self.secBtn.setTitleColor(UIColor(red: 33, green: 192, blue: 67), for: .selected)
-		self.secBtn.addTarget(self, action: #selector(segementIndex), for: .touchUpInside)
-		self.secBtn.setTitleColor(UIColor.black, for: .normal)
-		self.segment?.addSubview(self.secBtn)
-		self.secBtn.snp.makeConstraints { (make) in
-			make.right.top.equalToSuperview()
-			make.bottom.equalToSuperview().offset(-2)
-			make.left.equalTo((self.segment?.snp.centerX)!)
-		}
-		
-		self.bottomline = UILabel()
-		self.bottomline?.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
-		self.segment?.addSubview(self.bottomline!)
-		self.bottomline?.snp.makeConstraints({ (make) in
-			make.height.equalTo(2)
-			make.width.equalTo(60)
-			make.centerX.equalTo(firstBtn.snp.centerX)
-			make.bottom.equalToSuperview()
-		})
-		
-		
-		self.newBadage = self.badageCircle("2")
-		firstBtn.addSubview(self.newBadage! )
-		self.newBadage?.snp.makeConstraints { (make) in
-			make.width.height.equalTo(14)
-			make.top.equalToSuperview().offset(2)
-			make.left.equalTo(self.firstBtn.snp.centerX).offset(20)
-		}
-		
-//		self.alreadyBadage = self.badageCircle("3")
-//		secBtn.addSubview(self.alreadyBadage! )
-//		self.alreadyBadage?.snp.makeConstraints { (make) in
-//			make.width.height.equalTo(14)
-//			make.top.equalToSuperview().offset(2)
-//			make.left.equalTo(self.secBtn.snp.centerX).offset(20)
-//		}
-
-		
-		
-	}
-	
-	@objc private func segementIndex(sender:UIButton){
-		
-		self.firstBtn.isSelected = false
-		self.secBtn.isSelected = false
-		sender.isSelected = !sender.isSelected
-		if (self.bottomline?.minx)! < screenWidth/2 {
-			self.alreadyBadage?.isHidden = true
-			UIView.animate(withDuration: 0.5) {
-				self.bottomline?.transform = CGAffineTransform(translationX: screenWidth/2, y: 0)
-				
-			}
-		}else{
-			self.newBadage?.isHidden = true
-
-			UIView.animate(withDuration: 0.5) {
-				self.bottomline?.transform = CGAffineTransform(translationX: 0, y: 0)
-			}
-			
-		}
-		
-		self.index = sender.tag
-		
-		scrollview?.contentOffset = CGPoint(x: self.index*Int(screenWidth), y: 0)
-		
-	}
-	
-	
-}

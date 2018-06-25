@@ -17,18 +17,30 @@ class GoodsTableViewCell: UITableViewCell {
 	
 	@IBOutlet weak var reEidt: UIButton!
 	@IBOutlet weak var downProduct: UIButton!
+	var dic:NSDictionary?
+	@objc public func getDic(dic:NSDictionary){
+		self.dic = dic
+		self.headavator.setImageWith(NSURL.init(string: self.dic?.object(forKey: "image_url") as! String)! as URL)
+		self.productName.text = self.dic?.object(forKey: "item_name") as? String
+		let salecount:String = (self.dic?.object(forKey: "MonthSaleCount") as? String)!
+		self.saleCount.text = "月售 " + salecount
+		self.price.text = self.dic?.object(forKey: "item_p") as? String
 	
+	}
 	override func awakeFromNib() {
         super.awakeFromNib()
-		self.reEidt.layer.cornerRadius = 3;
+		self.reEidt.layer.cornerRadius = 3
 		self.reEidt.layer.masksToBounds = true
 		self.reEidt.layer.borderColor = UIColor(red: 221, green: 221, blue: 221).cgColor
 		self.reEidt.layer.borderWidth = 1
 		
-		self.downProduct.layer.cornerRadius = 3;
+		self.downProduct.layer.cornerRadius = 3
 		self.downProduct.layer.masksToBounds = true
 		self.downProduct.layer.borderColor = UIColor(red: 221, green: 221, blue: 221).cgColor
 		self.downProduct.layer.borderWidth = 1
+		
+		self.headavator.layer.cornerRadius = 5
+		self.headavator.layer.masksToBounds = true
 
     }
 	@IBAction func downProductFunc(_ sender: UIButton) {

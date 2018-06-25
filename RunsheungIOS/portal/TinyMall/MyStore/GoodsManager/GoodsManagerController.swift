@@ -15,19 +15,24 @@ var bottomCollectView:UICollectionView?
 var datepicker:DataStatisticsDatePicker?
 var rightbtn:GMcatagoryButton?
 	
-let mapCollectionview = { (selfDelegate:UIViewController) -> UICollectionView in
+let mapCollectionview = { (selfDelegate:UIViewController, dataHead:DataStatisticsHeadView) -> UICollectionView in
 	
 	let layout = UICollectionViewFlowLayout();
 	layout.scrollDirection = .horizontal
-	let collectionview = UICollectionView(frame:CGRect(x:0,y:50,width: screenWidth,height:screenHeight - 50), collectionViewLayout: layout)
+	let collectionview = UICollectionView(frame:CGRect(x:0,y:0,width: 0,height:0), collectionViewLayout: layout)
 	collectionview.layer.backgroundColor = UIColor.white.cgColor
 	collectionview.isPagingEnabled = true
 	collectionview.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "parcelviewcell")
 	collectionview.delegate = selfDelegate as? UICollectionViewDelegate
 	collectionview.dataSource = selfDelegate as? UICollectionViewDataSource
+	selfDelegate.view.addSubview(collectionview)
+	collectionview.snp.makeConstraints({ (make) in
+		make.top.equalTo(dataHead.snp.bottom)
+		make.left.right.equalToSuperview()
+		make.bottom.equalToSuperview()
+	})
 	return collectionview
 }
-	
 
 override func viewDidLoad() {
 	super.viewDidLoad()
@@ -67,8 +72,8 @@ private func initUI() {
 		make.height.equalTo(50)
 	})
 	
-	self.bottomCollectView = self.mapCollectionview(self)
-	self.view.addSubview(self.bottomCollectView!)
+	self.bottomCollectView = self.mapCollectionview(self,self.dataHead!)
+//	self.view.addSubview(self.bottomCollectView!)
 	
 }
 
@@ -85,7 +90,7 @@ extension GoodsManagerController: UICollectionViewDelegate,UICollectionViewDataS
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "parcelviewcell", for: indexPath)
 		let dataCell:GMEditCellTableView = GMEditCellTableView()
-		dataCell.getData(tag: indexPath.row)
+		dataCell.getData(tag: 1 - indexPath.row)
 		cell.contentView.addSubview(dataCell)
 		dataCell.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()

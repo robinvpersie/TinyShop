@@ -33,7 +33,7 @@ class OrderReturnCellTableView: UIView {
 		self.tableview.estimatedRowHeight = 0
 		self.tableview.estimatedSectionFooterHeight = 0
 		self.tableview.estimatedSectionHeaderHeight = 0
-		self.tableview.separatorColor = UIColor(red: 242, green: 244, blue: 246)
+		self.tableview.separatorColor = UIColor(red: 232, green: 234, blue: 236)
 		self.tableview.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
 		self.tableview.register(UINib(nibName: "OrderReturnMainCell", bundle: nil), forCellReuseIdentifier: "cell_id")
 		self.addSubview(self.tableview)
