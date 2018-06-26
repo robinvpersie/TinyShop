@@ -12,8 +12,12 @@ class GMEditSizeCollectView: UIView {
 	var popEditView:GMEditPopView?
 	var sizeCollectView:UICollectionView?
 	var data:NSMutableArray = NSMutableArray(array: [])
-	
+	var dataIndex:Int?
+
+
 	@objc public var sumbitMap:(String,String)->Void = {(name:String,price:String)->Void in }
+	@objc public var sumbitMap1:(String)->Void = {(name:String)->Void in }
+
 	let mapCollectionview = { (selfDelegate:UIView,width:CGFloat,height:CGFloat) -> UICollectionView in
 		
 		let layout = UICollectionViewFlowLayout();
@@ -35,22 +39,59 @@ class GMEditSizeCollectView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	@objc public func getData(array:NSMutableArray){
+	@objc public func getData(array:NSMutableArray,tag:Int){
 		self.data = array
+		self.tag = tag
 		self.sizeCollectView?.reloadData()
 	}
 	
+	@objc private func longPressDele(longpressGuesture:UILongPressGestureRecognizer){
+		let alerController:UIAlertController = UIAlertController(title: "", message: "确定删除？", preferredStyle: .alert)
+		let cancel:UIAlertAction = UIAlertAction(title: "取消", style: .cancel) { (alert) in }
+		let ok:UIAlertAction = UIAlertAction(title: "确定", style: .default) { [weak self](alert) in
+
+			var delefunc:String = "product/DelFlavor"
+			var selftag:Int32 = 102
+			let dic:NSDictionary = self?.data.object(at: Int(longpressGuesture.allowableMovement)) as! NSDictionary
+			var str:String = dic.object(forKey: "flavorName") as! String
+			if self?.tag == 101 {
+				delefunc = "product/DelSpce"
+				selftag = 101
+				str = dic.object(forKey: "item_code") as! String
+
+ 			}
+			
+			KLHttpTool.deleGoodManagerDelSpcePricewithUri(delefunc, withgroupid: dic.object(forKey: "groupid") as! String, withdeleTag:selftag, withspecNamePrice: str , success: { (response) in
+				let res:NSDictionary = (response as? NSDictionary)!
+				let msg:String = res.object(forKey: "message") as! String
+				
+				if msg == "success" {
+					self?.data.removeObject(at: Int(longpressGuesture.allowableMovement))
+					self?.sizeCollectView?.reloadData()
+				}
+				
+			}, failure: { (err) in
+				
+			})
+
+		}
+		alerController.addAction(cancel)
+		alerController.addAction(ok)
+		self.viewController().present(alerController, animated: true, completion: nil)
+		
+
+	}
 
 	
 }
 extension GMEditSizeCollectView: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return data.count
+		return (data.count + 1)
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//		let dic:NSDictionary = data.object(at: indexPath.row) as! NSDictionary
+
 		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "parcelviewcell", for: indexPath)
 		for suv in cell.contentView.subviews {
 			suv.removeFromSuperview()
@@ -66,26 +107,49 @@ extension GMEditSizeCollectView: UICollectionViewDelegate,UICollectionViewDataSo
 			make.bottom.right.equalTo(-2)
 		}
 
-		if indexPath.row != (self.data.count-1) {
-
-			let size:UILabel = UILabel()
-			size.text = "大份"
-			size.textAlignment = .center
-			bgView.addSubview(size)
-			size.snp.makeConstraints { (make) in
-				make.top.equalTo(5)
-				make.left.right.equalToSuperview()
-				make.bottom.equalTo(bgView.snp.centerY)
-			}
+		if indexPath.row != (self.data.count) {
 			
-			let price:UILabel = UILabel()
-			price.text = "$125"
-			price.textAlignment = .center
-			bgView.addSubview(price)
-			price.snp.makeConstraints { (make) in
-				make.bottom.equalTo(-5)
-				make.left.right.equalToSuperview()
-				make.top.equalTo(bgView.snp.centerY)
+			let longPress:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressDele))
+			longPress.allowableMovement = CGFloat(indexPath.row)
+			bgView.addGestureRecognizer(longPress)
+			
+			let dic:NSDictionary = self.data.object(at: indexPath.row) as! NSDictionary
+ 			if self.tag == 101 {
+				
+				let specname:String = (dic.object(forKey: "specName") as! String)
+				let specPrice:String = (dic.object(forKey: "specPrice") as! String)
+ 				let size:UILabel = UILabel()
+				size.text = specname + "份"
+				size.textAlignment = .center
+				bgView.addSubview(size)
+				size.snp.makeConstraints { (make) in
+					make.top.equalTo(5)
+					make.left.right.equalToSuperview()
+					make.bottom.equalTo(bgView.snp.centerY)
+				}
+				
+				let price:UILabel = UILabel()
+				price.text = "$" + specPrice
+				price.textAlignment = .center
+				bgView.addSubview(price)
+				price.snp.makeConstraints { (make) in
+					make.bottom.equalTo(-5)
+					make.left.right.equalToSuperview()
+					make.top.equalTo(bgView.snp.centerY)
+				}
+
+			}else{
+				let specname:String = (dic.object(forKey: "flavorName") as! String)
+ 				let size:UILabel = UILabel()
+				size.text = specname
+				size.textAlignment = .center
+				bgView.addSubview(size)
+				size.snp.makeConstraints { (make) in
+
+					make.edges.equalToSuperview()
+					
+				}
+
 			}
 
 		}else{
@@ -104,15 +168,31 @@ extension GMEditSizeCollectView: UICollectionViewDelegate,UICollectionViewDataSo
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		if indexPath.row == (self.data.count-1){
+		
+		if indexPath.row == (self.data.count){
 			self.popEditView = GMEditPopView()
-			self.popEditView?.finishCompleteMap = {(name:String,price:String)->Void in
-				self.sumbitMap(name,price)
-				var rect:CGRect = (self.sizeCollectView?.frame)!
-				let sections:Int = Int(ceil(CGFloat(self.data.count)/4.0))
-				rect.size.height = CGFloat(sections) * 50.0
-				self.sizeCollectView?.frame = rect
-				self.sizeCollectView?.reloadData()
+			self.popEditView?.getTag(tag:self.tag)
+			if self.tag == 101 {
+				
+				self.popEditView?.finishCompleteMap = {(name:String,price:String)->Void in
+					self.sumbitMap(name,price)
+					var rect:CGRect = (self.sizeCollectView?.frame)!
+					let sections:Int = Int(ceil(CGFloat(self.data.count + 1)/4.0))
+					rect.size.height = CGFloat(sections) * 50.0
+					self.sizeCollectView?.frame = rect
+					self.sizeCollectView?.reloadData()
+				}
+
+			}else{
+				
+				self.popEditView?.finishCompleteMap1 = {(name:String)->Void in
+					self.sumbitMap1(name)
+					var rect:CGRect = (self.sizeCollectView?.frame)!
+					let sections:Int = Int(ceil(CGFloat(self.data.count + 1)/4.0))
+					rect.size.height = CGFloat(sections) * 50.0
+					self.sizeCollectView?.frame = rect
+					self.sizeCollectView?.reloadData()
+				}
 			}
 			UIApplication.shared.delegate?.window??.addSubview(self.popEditView!)
 			self.popEditView?.snp.makeConstraints({ (make) in

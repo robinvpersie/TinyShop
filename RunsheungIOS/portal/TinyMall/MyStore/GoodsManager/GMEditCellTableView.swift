@@ -11,7 +11,7 @@ import UIKit
 
 class GMEditCellTableView: UIView {
 	var tableview:UITableView = UITableView()
-	var data:NSArray = NSArray()
+	var data:NSMutableArray = NSMutableArray()
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		createSuv()
@@ -52,10 +52,9 @@ extension GMEditCellTableView {
 			let res:NSDictionary = (response as? NSDictionary)!
 			let status:Int = (res.object(forKey: "status") as! Int)
 			if status == 1 {
-				self.data = res.object(forKey: "data") as! NSArray
-				self.tableview.reloadData()
-				
-			}
+				self.data = NSMutableArray(array:res.object(forKey: "data") as! NSArray )
+ 				self.tableview.reloadData()
+ 			}
 		}) { (err) in
 			
 		}
@@ -73,6 +72,11 @@ extension GMEditCellTableView:UITableViewDelegate,UITableViewDataSource{
 		let cell:GoodsTableViewCell = tableview.dequeueReusableCell(withIdentifier: "cell_id", for: indexPath) as! GoodsTableViewCell
 		let dic:NSDictionary = self.data.object(at: indexPath.row) as! NSDictionary
 		cell.getDic(dic:dic)
+		cell.downProductMap = {(index:Int)->Void in
+			
+			self.data.removeObject(at: index - 1)
+			self.tableview.reloadData()
+		}
 		return cell
 	}
 	

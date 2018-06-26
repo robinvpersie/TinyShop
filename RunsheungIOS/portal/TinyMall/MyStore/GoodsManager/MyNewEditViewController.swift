@@ -11,7 +11,11 @@ import UIKit
 class MyNewEditViewController: MyStoreBaseViewController {
 	var baseInfoView:GMEditBaseInfoView = GMEditBaseInfoView()
 	var byInfoView:GMEditByInfoView = GMEditByInfoView()
-
+	var groupid:String?
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+	
+	}
     override func viewDidLoad() {
         super.viewDidLoad()
 		createBaseInfo()
@@ -19,14 +23,13 @@ class MyNewEditViewController: MyStoreBaseViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+     }
     
 
 	override func setNavi() {
 		super.setNavi()
 		self.view.backgroundColor = UIColor(red: 242, green: 242, blue: 242)
-
+		self.navigationItem.title = "重新编辑"
 		let cancel:UIBarButtonItem = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelEdit))
 		self.navigationItem.rightBarButtonItem = cancel
 	}
@@ -42,6 +45,26 @@ class MyNewEditViewController: MyStoreBaseViewController {
 		alerController.addAction(ok)
 		self.present(alerController, animated: true, completion: nil)
 
+	}
+	
+	@objc public func getData(groupid:String,categorName:String){
+		KLHttpTool.getGoodManagerNewEditwithUri("product/queryproductbyGroudId", withgroupid: groupid, success: { (response) in
+			let res:NSDictionary = (response as? NSDictionary)!
+			let status:Int = (res.object(forKey: "status") as! Int)
+			if status == 1 {
+				
+				let dataDit:NSDictionary = res.object(forKey: "data") as! NSDictionary
+				let dic:NSDictionary = dataDit.object(forKey: "item") as! NSDictionary
+				self.baseInfoView.getBaseData(dic: dic, categorName:categorName)
+				let spec:NSMutableArray = NSMutableArray(array: dataDit.object(forKey: "spec") as! NSArray )
+				let Flavor:NSMutableArray = NSMutableArray(array: dataDit.object(forKey: "Flavor") as! NSArray )
+
+				self.byInfoView.getData(array1: spec,array2: Flavor)
+				
+			}
+		}) { (error) in
+			
+		}
 	}
 }
 

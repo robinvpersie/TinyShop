@@ -15,12 +15,11 @@ class GMEditPopView: UIView {
 	var inputfieldPrice: UITextField = UITextField()
 
 	@objc public var finishCompleteMap:(String,String)->Void = {(name:String,price:String)->Void in }
-	
+	@objc public var finishCompleteMap1:(String)->Void = {(name:String)->Void in }
+
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		createSuv()
 	}
-	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -52,7 +51,6 @@ class GMEditPopView: UIView {
 		}
 		
 		let title:UILabel = UILabel()
-		title.text = "新增规格"
 		title.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight(rawValue: 0.4))
 		self.addSubview(title)
 		title.snp.makeConstraints { (make) in
@@ -104,15 +102,40 @@ class GMEditPopView: UIView {
 			make.height.equalTo(40)
 		}
 
+		if self.tag == 101 {
+			title.text = "新增规格"
+			self.inputfieldName.placeholder = "规格名称"
+
+		}else{
+			title.text = "新增口味"
+			self.inputfieldName.placeholder = "口味名称"
+			self.inputfieldPrice.isHidden = true
+
+		}
 	}
 	
 }
 
 extension GMEditPopView{
-	@objc private func sumbit(){
+	
+	@objc public func getTag(tag:Int){
+		self.tag = tag
+		createSuv()
+
+	}
+	@objc private func sumbit(tag:Int){
 		self.hidden()
-		if let name = self.inputfieldName.text, let price = self.inputfieldPrice.text {
-			self.finishCompleteMap(name,price)
+		if self.tag == 101 {
+			if let name = self.inputfieldName.text, let price = self.inputfieldPrice.text {
+				self.finishCompleteMap(name,price)
+				
+			}
+
+		}else{
+			if let name = self.inputfieldName.text {
+				self.finishCompleteMap1(name)
+				
+			}
 
 		}
 	}

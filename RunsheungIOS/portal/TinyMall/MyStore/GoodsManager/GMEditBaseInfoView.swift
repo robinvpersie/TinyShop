@@ -12,6 +12,7 @@ class GMEditBaseInfoView: UIView {
 	let avator:UIImageView = UIImageView(image: UIImage(named: "256252.jpg") )
 	var inputNameField:UITextField?
 	var choiceView:GMEditChoiceCateView?
+	
 	let titleLabel:(String)->UILabel = {(titles:String)->UILabel in
 		
 		let label:UILabel = UILabel()
@@ -25,7 +26,7 @@ class GMEditBaseInfoView: UIView {
 		input.text = text
 		input.textColor = UIColor(red: 141, green: 141, blue: 141)
 		input.borderStyle = .roundedRect
-		input.layer.backgroundColor = UIColor(red: 211, green: 211, blue: 211).cgColor
+//		input.layer.backgroundColor = UIColor(red: 211, green: 211, blue: 211).cgColor
 		return input
 		
 	}
@@ -56,6 +57,13 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 		alert.addAction(action2)
 		self.viewController().present(alert, animated:true, completion: nil)
 	}
+	
+	@objc public func getBaseData(dic:NSDictionary,categorName:String){
+		self.avator.setImageWith(NSURL(string: dic.object(forKey: "Image_url") as! String)! as URL)
+		self.inputNameField?.text = dic.object(forKey: "ITEM_NAME") as? String
+		self.choiceView?.getData(data:[categorName])
+	}
+
 	private func createSuvs(){
 		self.backgroundColor = UIColor.white
 		let basetitle:UILabel = self.titleLabel("基本信息")

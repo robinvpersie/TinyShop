@@ -14,9 +14,10 @@ class GoodsTableViewCell: UITableViewCell {
 	@IBOutlet weak var productName: UILabel!
 	@IBOutlet weak var saleCount: UILabel!
 	@IBOutlet weak var price: UILabel!
-	
 	@IBOutlet weak var reEidt: UIButton!
 	@IBOutlet weak var downProduct: UIButton!
+	var downProductMap:(Int)->Void = {(index:Int)->Void in }
+	
 	var dic:NSDictionary?
 	@objc public func getDic(dic:NSDictionary){
 		self.dic = dic
@@ -47,7 +48,22 @@ class GoodsTableViewCell: UITableViewCell {
 		
 		let alerController:UIAlertController = UIAlertController(title: "", message: "确定下架此商品？", preferredStyle: .alert)
 		let cancel:UIAlertAction = UIAlertAction(title: "取消", style: .cancel) { (alert) in }
-		let ok:UIAlertAction = UIAlertAction(title: "确定", style: .default) { (alert) in }
+		
+		let ok:UIAlertAction = UIAlertAction(title: "确定", style: .default) { (alert) in
+			let groupid:String = self.dic?.object(forKey: "GroupId") as! String
+			KLHttpTool.setGoodManagerDelFlavorwithUri("product/DelFlavor", withselling: "0", withgroupid: groupid, success: { (response) in
+			
+				let res:NSDictionary = (response as? NSDictionary)!
+				let anum:String = self.dic!.object(forKey: "ANum") as! String
+				let status:Int = (res.object(forKey: "status") as! Int)
+				if status == 1 {
+					self.downProductMap(Int(anum)!)
+				}
+				
+			}, failure: { (error) in
+				
+			})
+		}
 		alerController.addAction(cancel)
 		alerController.addAction(ok)
 		self.viewController().present(alerController, animated: true, completion: nil)
@@ -57,7 +73,7 @@ class GoodsTableViewCell: UITableViewCell {
 	@IBAction func reEditionFunc(_ sender: UIButton) {
 	
 		let newEdit:MyNewEditViewController = MyNewEditViewController()
-		newEdit.title = "重新编辑"
+		newEdit.getData(groupid: self.dic?.object(forKey: "GroupId") as! String,categorName:self.dic?.object(forKey: "level_name") as! String)
 		self.viewController().navigationController?.pushViewController(newEdit, animated: true)
 	}
 	override func setSelected(_ selected: Bool, animated: Bool) {

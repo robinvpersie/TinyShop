@@ -783,4 +783,42 @@
 							   withpg:(NSString*)pg
 							  success:(void (^)(id response))success
 							  failure:(void (^)(NSError *err))failure;
+
+/**
+ 获取我的商铺设置下架
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)setGoodManagerDelFlavorwithUri:(NSString*)uri
+						   withselling:(NSString*)selling
+						   withgroupid:(NSString*)groupid
+							   success:(void (^)(id response))success
+							   failure:(void (^)(NSError *err))failure;
+
+/**
+ 获取我的商铺商品重新编辑的数据
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getGoodManagerNewEditwithUri:(NSString*)uri
+					 withgroupid:(NSString*)groupid
+						 success:(void (^)(id response))success
+						 failure:(void (^)(NSError *err))failure;
+/**
+ 删除规格和尺寸
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)deleGoodManagerDelSpcePricewithUri:(NSString*)uri
+							   withgroupid:(NSString*)groupid
+							   withdeleTag:(int)deletag
+						 withspecNamePrice:(NSString*)specnameprice
+								   success:(void (^)(id response))success
+								   failure:(void (^)(NSError *err))failure;
 @end

@@ -22,7 +22,22 @@ class GMEditChoiceCateView: UIView {
 	}
 }
 
+
+
 extension GMEditChoiceCateView{
+	
+	@objc public func getData(data:NSArray){
+		self.choicebtn.getTitlesArray(titles: data)
+		self.addSubview(self.choicebtn)
+		
+		self.choicebtn.snp.makeConstraints { (make) in
+			make.right.equalTo(-5)
+			make.top.equalTo(10)
+			make.bottom.equalTo(-10)
+			make.width.equalTo(140)
+		}
+
+	}
 	private func createSUVS(){
 		self.layer.cornerRadius = 3
 		self.layer.masksToBounds = true
@@ -37,15 +52,6 @@ extension GMEditChoiceCateView{
 			make.left.equalTo(5)
 			make.width.equalTo(100)
 			make.height.equalTo(30)
-		}
-		self.choicebtn.getTitlesArray(titles: ["Chizza","KFC","人气明星套餐","鸡翅/鸡排","小食/配餐"])
-		self.addSubview(self.choicebtn)
-		
-		self.choicebtn.snp.makeConstraints { (make) in
-			make.right.equalTo(-5)
-			make.top.equalTo(10)
-			make.bottom.equalTo(-10)
-			make.width.equalTo(140)
 		}
 		
 		

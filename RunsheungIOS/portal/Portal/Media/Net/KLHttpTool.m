@@ -3691,6 +3691,132 @@
 	
 }
 
+/**
+ 获取我的商铺设置下架
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)setGoodManagerDelFlavorwithUri:(NSString*)uri
+						  withselling:(NSString*)selling
+							   withgroupid:(NSString*)groupid
+							  success:(void (^)(id response))success
+							  failure:(void (^)(NSError *err))failure{
+	
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
+	NSString * lang_type = @"kor";
+	custom_code = MystoreTestCustom_Code;
+	token = MystoreTestToken;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,groupid,selling,custom_code,token).mutableCopy;
+	
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+	
+	
+}
+
+/**
+ 获取我的商铺商品重新编辑的数据
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getGoodManagerNewEditwithUri:(NSString*)uri
+ 						   withgroupid:(NSString*)groupid
+							   success:(void (^)(id response))success
+							   failure:(void (^)(NSError *err))failure{
+	
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
+	NSString * lang_type = @"kor";
+	custom_code = MystoreTestCustom_Code;
+	token = MystoreTestToken;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,groupid,custom_code,token).mutableCopy;
+	
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+	
+	
+}
+
+/**
+ 删除规格和尺寸
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)deleGoodManagerDelSpcePricewithUri:(NSString*)uri
+							   withgroupid:(NSString*)groupid
+							  withdeleTag:(int)deletag
+							   withspecNamePrice:(NSString*)specnameprice
+								   success:(void (^)(id response))success
+								   failure:(void (^)(NSError *err))failure{
+	
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
+	NSString * lang_type = @"kor";
+	custom_code = MystoreTestCustom_Code;
+	token = MystoreTestToken;
+	if (deletag == 101) {
+		NSString* item_code = specnameprice;
+		NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,groupid, item_code,custom_code,token).mutableCopy;
+		[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+			NSLog(@"%@",response);
+			if (success) {
+				success(response);
+			}
+		} failure:^(NSError *err) {
+			NSLog(@"%@",err);
+			failure(err);
+		}];
+
+	}else{
+		NSString* flavorName = specnameprice;
+		NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,groupid, flavorName,custom_code,token).mutableCopy;
+		[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+			NSLog(@"%@",response);
+			if (success) {
+				success(response);
+			}
+		} failure:^(NSError *err) {
+			NSLog(@"%@",err);
+			failure(err);
+		}];
+	}
+	
+	
+}
+
+
 @end
 
 
