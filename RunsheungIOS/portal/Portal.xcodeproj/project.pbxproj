@@ -807,8 +807,8 @@
 		D574884620DB354E004BA5DD /* DataStatisticsDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574884520DB354E004BA5DD /* DataStatisticsDatePicker.swift */; };
 		D574884920DB4CE3004BA5DD /* CommentMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574884820DB4CE2004BA5DD /* CommentMainController.swift */; };
 		D574884B20DB4D77004BA5DD /* CommentTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574884A20DB4D77004BA5DD /* CommentTopView.swift */; };
-		D574884E20DB8535004BA5DD /* CommetnTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574884C20DB8534004BA5DD /* CommetnTableCell.swift */; };
-		D574884F20DB8535004BA5DD /* CommetnTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D574884D20DB8534004BA5DD /* CommetnTableCell.xib */; };
+		D574884E20DB8535004BA5DD /* CommentRetTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574884C20DB8534004BA5DD /* CommentRetTableCell.swift */; };
+		D574884F20DB8535004BA5DD /* CommentRetTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D574884D20DB8534004BA5DD /* CommentRetTableCell.xib */; };
 		D574885120DB8EBF004BA5DD /* CommentMerReturnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574885020DB8EBF004BA5DD /* CommentMerReturnView.swift */; };
 		D574885320DBA0CC004BA5DD /* CommentStarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574885220DBA0CC004BA5DD /* CommentStarView.swift */; };
 		D574885520DC92C6004BA5DD /* CommentPopReturnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574885420DC92C5004BA5DD /* CommentPopReturnView.swift */; };
@@ -856,6 +856,8 @@
 		D5D01F5120612870002263CC /* TSShopDetailedCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F4C2061286D002263CC /* TSShopDetailedCollectionView.m */; };
 		D5D01F5220612870002263CC /* ShopDetailedCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F4E2061286F002263CC /* ShopDetailedCollectionCell.m */; };
 		D5D01F58206213E8002263CC /* NumDomainView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D01F57206213E6002263CC /* NumDomainView.m */; };
+		D5D23BD920E31D8F00BEF1E6 /* CommentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D23BD720E31D8E00BEF1E6 /* CommentTableCell.swift */; };
+		D5D23BDA20E31D8F00BEF1E6 /* CommentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D23BD820E31D8E00BEF1E6 /* CommentTableCell.xib */; };
 		D5D5BB04207F523000A27ABF /* LGwebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D5BB03207F523000A27ABF /* LGwebViewController.swift */; };
 		D5F6333B20C13A6E00F67742 /* MyShopWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6333A20C13A6E00F67742 /* MyShopWebViewController.swift */; };
 		D5FC6D5420DCF77F00A35EE5 /* RefundHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC6D4F20DCF77F00A35EE5 /* RefundHeaderCell.swift */; };
@@ -2314,8 +2316,8 @@
 		D574884520DB354E004BA5DD /* DataStatisticsDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStatisticsDatePicker.swift; sourceTree = "<group>"; };
 		D574884820DB4CE2004BA5DD /* CommentMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMainController.swift; sourceTree = "<group>"; };
 		D574884A20DB4D77004BA5DD /* CommentTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTopView.swift; sourceTree = "<group>"; };
-		D574884C20DB8534004BA5DD /* CommetnTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommetnTableCell.swift; sourceTree = "<group>"; };
-		D574884D20DB8534004BA5DD /* CommetnTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommetnTableCell.xib; sourceTree = "<group>"; };
+		D574884C20DB8534004BA5DD /* CommentRetTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRetTableCell.swift; sourceTree = "<group>"; };
+		D574884D20DB8534004BA5DD /* CommentRetTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentRetTableCell.xib; sourceTree = "<group>"; };
 		D574885020DB8EBF004BA5DD /* CommentMerReturnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMerReturnView.swift; sourceTree = "<group>"; };
 		D574885220DBA0CC004BA5DD /* CommentStarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentStarView.swift; sourceTree = "<group>"; };
 		D574885420DC92C5004BA5DD /* CommentPopReturnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPopReturnView.swift; sourceTree = "<group>"; };
@@ -2377,6 +2379,8 @@
 		D5D01F4F2061286F002263CC /* TSShopDetailedCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSShopDetailedCollectionView.h; sourceTree = "<group>"; };
 		D5D01F56206213E4002263CC /* NumDomainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumDomainView.h; sourceTree = "<group>"; };
 		D5D01F57206213E6002263CC /* NumDomainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumDomainView.m; sourceTree = "<group>"; };
+		D5D23BD720E31D8E00BEF1E6 /* CommentTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableCell.swift; sourceTree = "<group>"; };
+		D5D23BD820E31D8E00BEF1E6 /* CommentTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableCell.xib; sourceTree = "<group>"; };
 		D5D5BB03207F523000A27ABF /* LGwebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LGwebViewController.swift; sourceTree = "<group>"; };
 		D5F6333A20C13A6E00F67742 /* MyShopWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShopWebViewController.swift; sourceTree = "<group>"; };
 		D5FC6D4F20DCF77F00A35EE5 /* RefundHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefundHeaderCell.swift; sourceTree = "<group>"; };
@@ -5689,9 +5693,11 @@
 				D574885020DB8EBF004BA5DD /* CommentMerReturnView.swift */,
 				D574885420DC92C5004BA5DD /* CommentPopReturnView.swift */,
 				D574884A20DB4D77004BA5DD /* CommentTopView.swift */,
-				D574884C20DB8534004BA5DD /* CommetnTableCell.swift */,
-				D574884D20DB8534004BA5DD /* CommetnTableCell.xib */,
 				D574885220DBA0CC004BA5DD /* CommentStarView.swift */,
+				D574884C20DB8534004BA5DD /* CommentRetTableCell.swift */,
+				D574884D20DB8534004BA5DD /* CommentRetTableCell.xib */,
+				D5D23BD720E31D8E00BEF1E6 /* CommentTableCell.swift */,
+				D5D23BD820E31D8E00BEF1E6 /* CommentTableCell.xib */,
 			);
 			path = CommentManager;
 			sourceTree = "<group>";
@@ -6072,7 +6078,7 @@
 				D53093C0205E445400427350 /* ChoiceTableViewCell.xib in Resources */,
 				1B392F0B1E28D14E00F70981 /* SupermarketOnSaleCell.xib in Resources */,
 				1B392D641E28D0E500F70981 /* BEEP.mp3 in Resources */,
-				D574884F20DB8535004BA5DD /* CommetnTableCell.xib in Resources */,
+				D574884F20DB8535004BA5DD /* CommentRetTableCell.xib in Resources */,
 				D5D01F5020612870002263CC /* ShopDetailedCollectionCell.xib in Resources */,
 				267DAAA31EA214DD00299E74 /* hotelintroduce.jpg in Resources */,
 				1B392F5D1E28D14E00F70981 /* cart_addBtn_nomal@2x.png in Resources */,
@@ -6080,6 +6086,7 @@
 				1B9547001F1DF147006DCB6C /* ScanQR2@2x.png in Resources */,
 				1B5461271EAAEE8400E16169 /* HotelCheckQRCodeCell.xib in Resources */,
 				1B4C10391EB3195F005EAAE5 /* foregroundStar@2x.png in Resources */,
+				D5D23BDA20E31D8F00BEF1E6 /* CommentTableCell.xib in Resources */,
 				1B392F071E28D14E00F70981 /* SupermarketMostFreshCell.xib in Resources */,
 				1BC876901E977A0200BB38D7 /* HotelSearchLeftTableViewCell.xib in Resources */,
 				1B392F1B1E28D14E00F70981 /* IntergrationTableViewCell.xib in Resources */,
@@ -6603,7 +6610,7 @@
 				018AE84B20594CC60018F854 /* Resource.swift in Sources */,
 				1B5B6BA81E9B17E7009D5C75 /* HotelFacilityPicsController.m in Sources */,
 				1B392F351E28D14E00F70981 /* CouponUsedController.m in Sources */,
-				D574884E20DB8535004BA5DD /* CommetnTableCell.swift in Sources */,
+				D574884E20DB8535004BA5DD /* CommentRetTableCell.swift in Sources */,
 				1B392D6A1E28D0E500F70981 /* SDBrowserImageView.m in Sources */,
 				5BF0A9DD1E0B7B050035B517 /* PersonalCollectionCell.swift in Sources */,
 				1B392F281E28D14E00F70981 /* OrderDetailModel.m in Sources */,
@@ -6714,6 +6721,7 @@
 				0158C00420CE559E0048119C /* Type2DataSource.swift in Sources */,
 				5BEC72381E46F0D8007D519D /* YCDownloadManager.swift in Sources */,
 				6296F44B2019D50D00976C21 /* RecommendSearchController.swift in Sources */,
+				D5D23BD920E31D8F00BEF1E6 /* CommentTableCell.swift in Sources */,
 				1B392EEB1E28D14E00F70981 /* PYSearchSuggestionViewController.m in Sources */,
 				1B510E4A1E9CAC8B00B77F14 /* HotelCityModel.m in Sources */,
 				1B9546F81F1DF147006DCB6C /* UIImage+Zirkfied.m in Sources */,

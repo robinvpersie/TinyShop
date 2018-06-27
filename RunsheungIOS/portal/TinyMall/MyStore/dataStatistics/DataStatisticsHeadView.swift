@@ -112,6 +112,7 @@ extension DataStatisticsHeadView: UICollectionViewDelegate,UICollectionViewDataS
 		if indexPath.row == 0 {
 			pressbtn.isSelected = true
 		}
+		
 		self.pressBtnArray.add(pressbtn)
 		if indexPath.row == 0 {
 			self.newBadgeCircle = self.badageCircle("2")

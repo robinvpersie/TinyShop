@@ -38,8 +38,9 @@ class CommentCellTableView: UIView {
 		self.tableview.estimatedSectionHeaderHeight = 0
 		self.tableview.separatorColor = UIColor(red: 232, green: 234, blue: 236)
 		self.tableview.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
-		self.tableview.register(UINib(nibName: "CommetnTableCell", bundle: nil), forCellReuseIdentifier: "cell_id")
-		self.addSubview(self.tableview)
+		self.tableview.register(UINib(nibName: "CommentRetTableCell", bundle: nil), forCellReuseIdentifier: "CommentRetTableCell_ID")
+		self.tableview.register(UINib(nibName: "CommentTableCell", bundle: nil), forCellReuseIdentifier: "CommentTableCell_ID")
+ 		self.addSubview(self.tableview)
 		self.tableview.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()
 		}
@@ -57,28 +58,39 @@ extension CommentCellTableView:UITableViewDelegate,UITableViewDataSource{
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell:CommetnTableCell = tableview.dequeueReusableCell(withIdentifier: "cell_id", for: indexPath) as! CommetnTableCell
 		let hasReturn:Bool = self.data.object(at: indexPath.section) as! Bool
-		cell.getMark(mark: indexPath.section,haveReturn:hasReturn)
-		cell.refreshCellHeightMap = {(cellHeight:CGFloat,indexSection:Int)->Void in
-			self.refreshIndexPath = indexPath
-			self.refreshHeight = cellHeight
-			self.data.replaceObject(at: indexPath.section, with: true)
-			tableView.reloadSections([indexPath.section], with: .fade)
+
+		if hasReturn {
+			let cell:CommentRetTableCell = tableview.dequeueReusableCell(withIdentifier: "CommentRetTableCell_ID", for: indexPath) as! CommentRetTableCell
+			
+			return cell
+
+		}else{
+			let cell:CommentTableCell = tableview.dequeueReusableCell(withIdentifier: "CommentTableCell_ID", for: indexPath) as! CommentTableCell
+			//		cell.getMark(mark: indexPath.section,haveReturn:hasReturn)
+//			cell.refreshCellHeightMap = {(cellHeight:CGFloat,indexSection:Int)->Void in
+//				self.refreshIndexPath = indexPath
+//				self.refreshHeight = cellHeight
+//				self.data.replaceObject(at: indexPath.section, with: true)
+//				tableView.reloadSections([indexPath.section], with: .fade)
+//			}
+			return cell
+
 		}
-		return cell
 	}
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		if indexPath.section == 0 {
+		
+		let hasReturn:Bool = self.data.object(at: indexPath.section) as! Bool
+ 		if hasReturn {
+			
 			return 250.0
-		}
+		}else{
+			
+			return 150.0
 
-		if indexPath.section == self.refreshIndexPath?.section {
-			return (150.0 + self.refreshHeight + 66.0)
 		}
-		return 150.0
-	}
+ 	}
 	
 	func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
 		let view:UIView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 10))

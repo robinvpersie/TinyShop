@@ -10,7 +10,7 @@ import UIKit
 
 class CommentMerReturnView: UIView {
 	var clickChangeMap:(Bool)->Void = {(state:Bool)->Void in}
-	@objc public var comment:UITextField = UITextField()
+	@objc public var comment:UITextView = UITextView()
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -65,6 +65,7 @@ extension CommentMerReturnView{
 		
 		self.comment.textColor = UIColor(red: 160, green: 160, blue: 160)
 		self.comment.isUserInteractionEnabled = false
+		self.comment.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
 		self.comment.tintColor = UIColor(red: 160, green: 160, blue: 160)
 		self.comment.text = "感谢您的支持与喜欢！我们会努力做到更好！"
 		self.comment.font = UIFont.systemFont(ofSize: 14)
