@@ -821,4 +821,82 @@
 						 withspecNamePrice:(NSString*)specnameprice
 								   success:(void (^)(id response))success
 								   failure:(void (^)(NSError *err))failure;
+
+/**
+ 获取我的商铺商品分类列表
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getGoodManagerQuerycategorywithUri:(NSString*)uri
+						   withCatergoryID:(NSString*)CatergoryID
+								   success:(void (^)(id response))success
+								   failure:(void (^)(NSError *err))failure;
+
+/**
+ 获取我的商铺商品修改某个类别
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getGoodManagerUpdatecategorywithUri:(NSString*)uri
+								   withDic:(NSMutableDictionary*)dic
+							 withLevelName:(NSString *)level_name
+								   success:(void (^)(id response))success
+								   failure:(void (^)(NSError *err))failure;
+
+/**
+ 获取我的商铺商品增加一个分类
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getGoodManagerAddcategorywithUri:(NSString*)uri
+ 						   withImage_url:(NSString*)image_url
+								withRank:(NSString*)rank
+								 withPid:(NSString*)pid
+								 withRid:(NSString*)rid
+						   withLevelName:(NSString *)level_name
+								 success:(void (^)(id response))success
+								 failure:(void (^)(NSError *err))failure;
+/**
+ 获取我的商铺商品删除一个分类
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getGoodManagerDelcategorywithUri:(NSString*)uri
+								  withID:(NSString*)cateid
+								 success:(void (^)(id response))success
+								 failure:(void (^)(NSError *err))failure;
+/**
+ 获取数据统计按日查询
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getGoodManagerSalesDailyListwithUri:(NSString*)uri
+								  withsDate:(NSString*)sDate
+								  witheDate:(NSString*)eDate
+								   withpage:(NSString*)page
+									success:(void (^)(id response))success
+									failure:(void (^)(NSError *err))failure;
+
+/**
+ 获取数据统计按月查询
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getGoodManagerSalesMonthListwithUri:(NSString*)uri
+								  withiYear:(NSString*)iYear
+ 								   withpage:(NSString*)page
+									success:(void (^)(id response))success
+									failure:(void (^)(NSError *err))failure;
 @end

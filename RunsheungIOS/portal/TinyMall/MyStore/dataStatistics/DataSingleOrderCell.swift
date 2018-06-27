@@ -28,6 +28,17 @@ class DataSingleOrderCell: UITableViewCell {
 
 	}
 
+	@objc public func getDic(dic:NSDictionary){
+		
+//		let num:String = dic.object(forKey: "A_NUM") as! String
+//		let itemP:String = dic.object(forKey: "tot_itemP") as! String
+//		let time:String = dic.object(forKey: "sale_date") as! String
+//		self.orderMoney.text = "订单金额：￥" + itemP
+//		self.orderNOmark.text = "#" + num
+//		self.orderTime.text = "下单时间：" + time
+		
+
+	}
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

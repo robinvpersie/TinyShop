@@ -9,8 +9,9 @@
 import UIKit
 
 class GMEditChoiceCateView: UIView {
-	var choicebtn:BusinessStateView = BusinessStateView()
 	
+	@objc public var choicebtn:BusinessStateView = BusinessStateView()
+	var datas:NSMutableArray? = NSMutableArray()
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -27,16 +28,37 @@ class GMEditChoiceCateView: UIView {
 extension GMEditChoiceCateView{
 	
 	@objc public func getData(data:NSArray){
-		self.choicebtn.getTitlesArray(titles: data)
-		self.addSubview(self.choicebtn)
+		KLHttpTool.getGoodManagerQuerycategorywithUri("category/querycategory", withCatergoryID: "4", success: { (response) in
+			let res:NSDictionary = (response as? NSDictionary)!
+			let status:Int = (res.object(forKey: "status") as! Int)
+			if status == 1 {
+				let tempdic:NSArray = res.object(forKey: "data") as! NSArray
+				for dic in tempdic {
+					let dit:NSDictionary = dic as! NSDictionary
+					let levelname:String = (dit.object(forKey: "level_name") as! String)
+					let current:String = ((data.firstObject) as! String)
+
+					if levelname == current {
+						self.datas?.insert(levelname, at: 0)
+					}else{
+						self.datas?.add(dit.object(forKey: "level_name") ?? " ")
+
+					}
+					self.choicebtn.getTitlesArray(titles: self.datas!)
+				}
+			}
+			
+		}) { (error) in
+			
+		}
 		
+ 		self.addSubview(self.choicebtn)
 		self.choicebtn.snp.makeConstraints { (make) in
 			make.right.equalTo(-5)
 			make.top.equalTo(10)
 			make.bottom.equalTo(-10)
 			make.width.equalTo(140)
 		}
-
 	}
 	private func createSUVS(){
 		self.layer.cornerRadius = 3

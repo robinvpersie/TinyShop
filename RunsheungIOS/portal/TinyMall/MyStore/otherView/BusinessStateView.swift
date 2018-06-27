@@ -18,8 +18,7 @@ class BusinessStateView: UIButton {
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-//		self.values = ["营业中","打烊中"]
-//		createSuvs()
+ 
 		self.addTarget(self, action: #selector(popChoiceView), for: .touchUpInside)
 	}
 	
@@ -69,12 +68,12 @@ extension BusinessStateView:UITableViewDelegate,UITableViewDataSource{
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		
-		self.value?.text = self.values?[indexPath.row] as? String
 		guard let _:((String,Int,Int) -> Void) = self.choiceMap else {
 			return
 		}
 		self.choiceMap((self.value?.text)!,Int(self.tag),Int(indexPath.row))
+		self.value?.text = self.values?[indexPath.row] as? String
+
 		self.hiddenPopView()
 		
 	}
@@ -100,6 +99,7 @@ extension BusinessStateView{
 		}
 
 		self.value = UILabel()
+		self.value?.backgroundColor = UIColor.white
 		self.value?.textAlignment = .right
 		self.value?.textColor = UIColor(red: 71, green: 71, blue: 71)
 		self.value?.font = UIFont.systemFont(ofSize: 14)

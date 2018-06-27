@@ -73,7 +73,6 @@ private func initUI() {
 	})
 	
 	self.bottomCollectView = self.mapCollectionview(self,self.dataHead!)
-//	self.view.addSubview(self.bottomCollectView!)
 	
 }
 

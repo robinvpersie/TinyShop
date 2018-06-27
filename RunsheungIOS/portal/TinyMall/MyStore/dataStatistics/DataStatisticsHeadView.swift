@@ -14,8 +14,7 @@ class DataStatisticsHeadView: UIView {
 	var collectView:UICollectionView?
 	var data:NSArray = []
 	var pressBtnArray:NSMutableArray = NSMutableArray()
-//	var pressBadages:NSMutableArray = NSMutableArray()
- 	var clickHeadIndexMap:(Int)->Void = {(index:Int)->Void in }
+  	var clickHeadIndexMap:(Int)->Void = {(index:Int)->Void in }
 	var newBadgeCircle:UILabel?
 	
 	let badageCircle:(String) -> UILabel = {(text:String) -> UILabel in

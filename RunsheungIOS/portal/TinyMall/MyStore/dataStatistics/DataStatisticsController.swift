@@ -17,16 +17,22 @@ class DataStatisticsController: MyStoreBaseViewController {
         super.viewDidLoad()
 		self.initUI()
     }
-	let mapCollectionview = { (selfDelegate:UIViewController) -> UICollectionView in
+	let mapCollectionview = { (selfDelegate:UIViewController, dataHead:DataStatisticsHeadView) -> UICollectionView in
 		
 		let layout = UICollectionViewFlowLayout();
 		layout.scrollDirection = .horizontal
-		let collectionview = UICollectionView(frame:CGRect(x:0,y:60,width: screenWidth,height:screenHeight - 60), collectionViewLayout: layout)
-		collectionview.isPagingEnabled = true
+		let collectionview = UICollectionView(frame:CGRect(x:0,y:0,width: 0,height:0), collectionViewLayout: layout)
 		collectionview.layer.backgroundColor = UIColor.white.cgColor
+		collectionview.isPagingEnabled = true
 		collectionview.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "parcelviewcell")
 		collectionview.delegate = selfDelegate as? UICollectionViewDelegate
 		collectionview.dataSource = selfDelegate as? UICollectionViewDataSource
+		selfDelegate.view.addSubview(collectionview)
+		collectionview.snp.makeConstraints({ (make) in
+			make.top.equalTo(dataHead.snp.bottom)
+			make.left.right.equalToSuperview()
+			make.bottom.equalToSuperview()
+		})
 		return collectionview
 	}
 	
@@ -55,8 +61,8 @@ class DataStatisticsController: MyStoreBaseViewController {
 			make.height.equalTo(50)
 		})
 		
-		self.bottomCollectView = self.mapCollectionview(self)
-		self.view.addSubview(self.bottomCollectView!)
+		self.bottomCollectView = self.mapCollectionview(self, self.dataHead!)
+//		self.view.addSubview(self.bottomCollectView!)
 		
 	}
     
@@ -105,6 +111,7 @@ extension DataStatisticsController: UICollectionViewDelegate,UICollectionViewDat
 		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "parcelviewcell", for: indexPath)
 		let dataCell:DataStatisticsCellTableView = DataStatisticsCellTableView()
 		dataCell.tag = indexPath.row
+		dataCell.getData(type:indexPath.row)
 		cell.contentView.addSubview(dataCell)
 		dataCell.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()

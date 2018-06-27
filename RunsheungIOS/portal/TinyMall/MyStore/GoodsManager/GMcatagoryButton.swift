@@ -11,8 +11,8 @@ import UIKit
 class GMcatagoryButton: UIView {
 	var popView:UITableView?
 	var popViewOrgY:CGFloat = 0.0
-	var count:Int = 6
 	var addOneState:Bool = false
+	var data:NSMutableArray = NSMutableArray()
 	
 	
 	
@@ -58,7 +58,19 @@ class GMcatagoryButton: UIView {
 }
 
 extension GMcatagoryButton:UITableViewDelegate,UITableViewDataSource{
-	
+	 private func resquestData(){
+		KLHttpTool.getGoodManagerQuerycategorywithUri("category/querycategory", withCatergoryID: "4", success: { (response) in
+			let res:NSDictionary = (response as? NSDictionary)!
+			let status:Int = (res.object(forKey: "status") as! Int)
+			if status == 1 {
+				self.data = NSMutableArray(array: res.object(forKey: "data") as! NSArray)
+				self.popView?.reloadData()
+			}
+
+		}) { (error) in
+			
+		}
+	}
 	private func initUI(){
 		
 		let arrow:UIImageView = UIImageView(image: UIImage(named: "icon_open_category"))
@@ -94,6 +106,7 @@ extension GMcatagoryButton:UITableViewDelegate,UITableViewDataSource{
 		
 		if (self.popView) == nil {
 			self.popView = self.tableViewMap(self,CGFloat(popViewOrgY))
+			self.resquestData()
 			self.viewController().view.addSubview(self.popView!)
 
 		}else{
@@ -103,7 +116,21 @@ extension GMcatagoryButton:UITableViewDelegate,UITableViewDataSource{
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return count
+		return (self.data.count + 1)
+	}
+	
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+		let dic:NSDictionary = self.data[indexPath.row - 1] as! NSDictionary
+		KLHttpTool.getGoodManagerDelcategorywithUri("category/delcategory", withID: dic.object(forKey: "id") as! String, success: { (response) in
+			let res:NSDictionary = (response as? NSDictionary)!
+			let status:Int = (res.object(forKey: "status") as! Int)
+			if status == 1 {
+  				self.resquestData()
+			}
+		}) { (error) in
+			
+		}
+		
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -152,11 +179,16 @@ extension GMcatagoryButton:UITableViewDelegate,UITableViewDataSource{
 			gesImg.setImage(#imageLiteral(resourceName: "icon_add_category"), for: .normal)
 		
 		default:
-			cell.textLabel?.text = "Chinzza"
+			if !addOneState || (indexPath.row != (self.data.count)){
+				let dic:NSDictionary = self.data[indexPath.row - 1] as! NSDictionary
+				cell.textLabel?.text = dic["level_name"] as? String
+				
+
+			}
 			gesImg.setImage(#imageLiteral(resourceName: "icon_edit_category"), for: .normal)
 			break
 		}
-		if addOneState && (indexPath.row == (count-1)){
+		if addOneState && (indexPath.row == (self.data.count)){
 			editfield.placeholder = "输入分类名称"
 			editfield.isHidden = false
 			sumbit.isHidden = false
@@ -175,7 +207,7 @@ extension GMcatagoryButton:UITableViewDelegate,UITableViewDataSource{
 		}
 	}
 	@objc private func cellAction(sender:UIButton){
-		if sender.tag != 0 {
+		if sender.tag != 0 {//修改分类
 			let okbar:UIButton = self.popView?.viewWithTag(sender.tag+100) as! UIButton
 			okbar.isHidden = false
 			
@@ -183,9 +215,13 @@ extension GMcatagoryButton:UITableViewDelegate,UITableViewDataSource{
 			editfield.isHidden = false
 			editfield.becomeFirstResponder()
 
-		}else {
+		}else {//添加分类ggg
+			
+			if !self.addOneState {
+				
+				self.data.add(" ")
+ 			}
 			self.addOneState = true
-			count += 1
 			self.popView?.reloadData()
 		}
 
@@ -195,7 +231,7 @@ extension GMcatagoryButton:UITableViewDelegate,UITableViewDataSource{
 		if sender.tag != 0 {
 			let tagBit:Int = sender.tag%100
 			sender.isHidden = true
-
+			
 			let editfield:UITextField = self.popView?.viewWithTag(tagBit+1000) as! UITextField
 			editfield.isHidden = true
 			editfield.resignFirstResponder()
@@ -203,8 +239,36 @@ extension GMcatagoryButton:UITableViewDelegate,UITableViewDataSource{
 			let cell:UITableViewCell = self.popView?.viewWithTag(tagBit + 10) as! UITableViewCell
 			let content:String = editfield.text!
 			cell.textLabel?.text = content.count != 0 ? content : (editfield.placeholder)
+			if self.addOneState {
+				KLHttpTool.getGoodManagerAddcategorywithUri("category/addcategory", withImage_url: " ", withRank: "0", withPid: "0", withRid: "0", withLevelName: content, success: { (response) in
+					let res:NSDictionary = (response as? NSDictionary)!
+					let status:Int = (res.object(forKey: "status") as! Int)
+					if status == 1 {
+ 
+						self.addOneState = false
+						self.resquestData()
+					}
 
-			self.addOneState = false
+				}) { (error) in
+					
+				}
+			}else {
+				var dic:NSMutableDictionary = NSMutableDictionary(dictionary: self.data.object(at: (tagBit - 1)) as! NSDictionary)
+  
+				KLHttpTool.getGoodManagerUpdatecategorywithUri("category/updatecategory", withDic: dic , withLevelName: content, success: { (response) in
+					let res:NSDictionary = (response as? NSDictionary)!
+					let status:Int = (res.object(forKey: "status") as! Int)
+					if status == 1 {
+						self.addOneState = false
+ 						self.resquestData()
+						
+					}
+					
+				}) { (err) in
+					
+				}
+ 			}
+			
 
 		}else{
 			

@@ -14,6 +14,7 @@ class MyNewEditViewController: MyStoreBaseViewController {
 	var groupid:String?
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
+		self.baseInfoView.choiceView?.choicebtn.hiddenPopView()
 	
 	}
     override func viewDidLoad() {
