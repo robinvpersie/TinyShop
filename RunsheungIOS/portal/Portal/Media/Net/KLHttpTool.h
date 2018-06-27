@@ -874,6 +874,17 @@
 								 success:(void (^)(id response))success
 								 failure:(void (^)(NSError *err))failure;
 /**
+ 获取我的商铺商品删除一个商品
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getGoodManagerDelproductwithUri:(NSString*)uri
+							withgroupID:(NSString*)groupid
+								success:(void (^)(id response))success
+								failure:(void (^)(NSError *err))failure;
+/**
  获取数据统计按日查询
  
  @param uri url

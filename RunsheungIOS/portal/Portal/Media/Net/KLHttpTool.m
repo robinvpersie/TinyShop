@@ -3970,6 +3970,40 @@
 	}];
 }
 
+/**
+ 获取我的商铺商品删除一个商品
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getGoodManagerDelproductwithUri:(NSString*)uri
+ 							withgroupID:(NSString*)groupid
+ 								success:(void (^)(id response))success
+ 								failure:(void (^)(NSError *err))failure{
+	
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
+	NSString * lang_type = @"kor";
+	custom_code = MystoreTestCustom_Code;
+	token = MystoreTestToken;
+	
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,custom_code,groupid,token).mutableCopy;
+ 
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+}
+
 
 /**
  获取数据统计按日查询

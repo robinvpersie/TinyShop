@@ -45,10 +45,10 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 	@objc private func changAvatorFunc(){
 		let alert:UIAlertController = UIAlertController(title: "", message: "修改头像图片", preferredStyle: .actionSheet)
 		let action = UIAlertAction(title:"相册".localized, style: .default) {[weak self](action)in
-			self?.openAlbum()
+			self?.openAlbumCamera()
 		}
-		let action1 = UIAlertAction(title:"相机".localized, style: .default) { [weak self](action)in
-			self?.openCamera()
+		let action1 = UIAlertAction(title:"照相".localized, style: .default) { [weak self](action)in
+			self?.openAlbumCamera()
 		}
 		let action2 = UIAlertAction(title:"取消".localized, style: .cancel, handler:nil)
 		alert.addAction(action)
@@ -75,6 +75,8 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 
 		self.addSubview(self.avator)
 		self.avator.isUserInteractionEnabled = true
+		self.avator.layer.cornerRadius = 5
+		self.avator.layer.masksToBounds = true
 		let changAvator:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(changAvatorFunc))
 		self.avator.addGestureRecognizer(changAvator)
 		self.avator.snp.makeConstraints { (make) in
@@ -116,8 +118,7 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 		
 		
 	}
-	//打开相册
-	func openAlbum(){
+  	private func openAlbumCamera(){
 		
 		if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
 			
@@ -129,34 +130,27 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 			self.viewController().present(picker, animated:true, completion: {() -> Void in
 				
 			})
-			
-		}else{
- 			print("读取相册错误")
  		}
- 	}
- 	func openCamera(){
-
+		
 		if UIImagePickerController.isSourceTypeAvailable(.camera){
-
+			
 			let picker = UIImagePickerController()
 			picker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
 			picker.sourceType = UIImagePickerControllerSourceType.camera
 			picker.allowsEditing = true
 			self.viewController().present(picker, animated:true, completion: { () -> Void in })
-
+			
 		}
  	}
 	
-	private func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String :AnyObject]) {
-
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 		let image = info[UIImagePickerControllerEditedImage] as! UIImage
 		picker.dismiss(animated: true, completion: { () -> Void in
 			self.avator.image = image
 		})
 
 	}
-
-
+	
 }
 
 

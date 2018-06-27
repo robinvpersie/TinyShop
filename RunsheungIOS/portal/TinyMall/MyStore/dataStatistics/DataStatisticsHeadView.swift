@@ -49,6 +49,7 @@ class DataStatisticsHeadView: UIView {
 		layout.scrollDirection = .vertical
 		let collectionview = UICollectionView(frame:CGRect(x:0,y:0,width: screenWidth,height:48), collectionViewLayout: layout)
 		collectionview.layer.backgroundColor = UIColor.white.cgColor
+		collectionview.isScrollEnabled = false
 		collectionview.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "parcelviewcell")
 		collectionview.delegate = selfDelegate as? UICollectionViewDelegate
 		collectionview.dataSource = selfDelegate as? UICollectionViewDataSource
@@ -115,20 +116,25 @@ extension DataStatisticsHeadView: UICollectionViewDelegate,UICollectionViewDataS
 		
 		self.pressBtnArray.add(pressbtn)
 		if indexPath.row == 0 {
-			self.newBadgeCircle = self.badageCircle("2")
+			
+			let titlestr:NSString = self.data[indexPath.row] as! NSString
+			let textMaxSize = CGSize(width:CGFloat(MAXFLOAT) , height: 25.0)
+			let size:CGSize = self.textSize(text: titlestr as String, font: UIFont.systemFont(ofSize: 15.0), maxSize: textMaxSize)
+ 			self.newBadgeCircle = self.badageCircle("2")
 			self.newBadgeCircle?.isHidden = false
 			pressbtn.addSubview(self.newBadgeCircle!)
 			self.newBadgeCircle?.snp.makeConstraints({ (make) in
-				make.top.equalToSuperview().offset(5)
+				make.top.equalToSuperview().offset(8)
 				make.width.height.equalTo(14)
-				make.right.equalTo(pressbtn.snp.centerX).offset(30)
+				make.left.equalTo(pressbtn.snp.centerX).offset((size.width / 2.0) - 5.0)
 			})
-
-		}
+ 		}
 
 		return cell
 	}
-	
+	private func textSize(text : String , font : UIFont , maxSize : CGSize) -> CGSize{
+		return text.boundingRect(with: maxSize, options: [.usesLineFragmentOrigin], attributes: [kCTFontAttributeName as NSAttributedStringKey : font], context: nil).size
+	}
 	@objc public func transferIndex(index:Int){
 		for btn in self.pressBtnArray {
 			let button:UIButton = (btn as? UIButton)!

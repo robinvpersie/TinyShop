@@ -18,8 +18,7 @@ class CommentTableCell: UITableViewCell {
 	@IBOutlet weak var content: UILabel!
 	@IBOutlet weak var bgStarView: UILabel!
 	@IBOutlet weak var returnBtn: UIButton!
-//	@objc public var refreshCellHeightMap:(CGFloat,Int)->Void = {(cellHeight:CGFloat,indexSection:Int)->Void in }
-
+ 
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,8 +38,7 @@ class CommentTableCell: UITableViewCell {
 		}    }
 
 	@IBAction func returnBtnAction(_ sender: UIButton) {
-//		if self.merReturn == nil {
-		
+ 
 			self.popReturnView = CommentPopReturnView()
 			UIApplication.shared.delegate?.window??.addSubview(self.popReturnView!)
 			self.popReturnView?.snp.makeConstraints({ (make) in
@@ -54,11 +52,9 @@ class CommentTableCell: UITableViewCell {
 				let ws:CGFloat = screenWidth - 50.0
 				let textMaxSize = CGSize(width:ws , height: CGFloat(MAXFLOAT))
 				let size:CGSize = self.textSize(text: returnContent, font: UIFont.systemFont(ofSize: 14), maxSize: textMaxSize)
-//				self.refreshCellHeightMap(size.height,self.IndexPathSection)
-			}
+ 			}
 			
-//		}
-
+ 
 	}
 	
 	private func textSize(text : String , font : UIFont , maxSize : CGSize) -> CGSize{
