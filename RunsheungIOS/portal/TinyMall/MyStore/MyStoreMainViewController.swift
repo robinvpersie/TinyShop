@@ -261,7 +261,8 @@ extension MyStoreMainViewController {
 			
 			
 			self.stateBtn = BusinessStateView()
-			self.stateBtn?.getTitlesArray(titles: ["营业中","打烊中"])
+			
+			self.stateBtn?.getTitlesArray(titles: [["level_name":"营业中","id":"1"],["level_name":"打烊中","id":"1"]])
 			self.stateBtn?.setTitleColor(UIColor.black, for: .normal)
 			self.stateBtn?.backgroundColor = UIColor.white
 			self.stateBtn?.layer.cornerRadius = 5

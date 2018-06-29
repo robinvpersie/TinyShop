@@ -12,8 +12,9 @@ class GMEditBaseInfoView: UIView {
 	let avator:UIImageView = UIImageView(image: UIImage(named: "256252.jpg") )
 	var inputNameField:UITextField?
 	var choiceView:GMEditChoiceCateView?
-	
-	let titleLabel:(String)->UILabel = {(titles:String)->UILabel in
+	var imageurl:String?
+ 	var finishBaseData:(String,String,String) -> Void = {(imageurl:String,name:String,categoryname:String) in }
+ 	let titleLabel:(String)->UILabel = {(titles:String)->UILabel in
 		
 		let label:UILabel = UILabel()
 		label.text = titles
@@ -39,8 +40,12 @@ class GMEditBaseInfoView: UIView {
 	}
 }
 
-extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControllerDelegate{
-	
+extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate{
+
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		self.finishBaseData(self.imageurl!,(self.inputNameField?.text)!,(self.choiceView?.choicebtn.level_id)!)
+		return true
+	}
 	
 	@objc private func changAvatorFunc(){
 		let alert:UIAlertController = UIAlertController(title: "", message: "修改头像图片", preferredStyle: .actionSheet)
@@ -57,10 +62,11 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 		self.viewController().present(alert, animated:true, completion: nil)
 	}
 	
-	@objc public func getBaseData(dic:NSDictionary,categorName:String){
-		self.avator.setImageWith(NSURL(string: dic.object(forKey: "Image_url") as! String)! as URL)
+	@objc public func getBaseData(dic:NSDictionary,currentLevelDic:NSArray){
+		self.imageurl =  dic.object(forKey: "Image_url") as? String
+  		self.avator.setImageWith(NSURL(string: dic.object(forKey: "Image_url") as! String)! as URL)
 		self.inputNameField?.text = dic.object(forKey: "ITEM_NAME") as? String
-		self.choiceView?.getData(data:[categorName])
+ 		self.choiceView?.getData(data:currentLevelDic)
 	}
 
 	private func createSuvs(){
@@ -99,6 +105,7 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 		}
 		
 		self.inputNameField = self.inputName("Chizza烤薯条餐S")
+		self.inputNameField?.delegate = self as UITextFieldDelegate
 		self.addSubview(self.inputNameField!)
 		self.inputNameField?.snp.makeConstraints({ (make) in
 			make.top.equalTo(self.avator.snp.top)
@@ -108,6 +115,10 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 		})
 		
 		self.choiceView = GMEditChoiceCateView()
+		self.choiceView?.choicebtn.choiceMap = {(_:NSDictionary,_:Int,_:Int) in
+			self.finishBaseData(self.imageurl!,(self.inputNameField?.text)!,(self.choiceView?.choicebtn.level_id)!)
+
+		}
 		self.addSubview(self.choiceView!)
 		self.choiceView?.snp.makeConstraints({ (make) in
 			make.height.equalTo(50)
@@ -147,8 +158,23 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 		let image = info[UIImagePickerControllerEditedImage] as! UIImage
 		picker.dismiss(animated: true, completion: { () -> Void in
 			self.avator.image = image
-		})
+			KLHttpTool.sendGoodLogoPicture(withUrl: "fileUp/postFile", with: image, success: { (response) in
+				let res:NSDictionary = (response as? NSDictionary)!
+				let status:Int = (res.object(forKey: "status") as! Int)
+ 				if status == 1 {
+					let imageurls:NSArray = res.object(forKey: "data") as! NSArray
+					self.imageurl = "http://gigaMerchantManager.gigawon.co.kr:8825/" + (imageurls.firstObject as! String)
+					self.finishBaseData(self.imageurl!,(self.inputNameField?.text)!,(self.choiceView?.choicebtn.level_id)!)
 
+				}
+
+			}, failure: { (error) in
+				
+			})
+			
+
+		})
+		
 	}
 	
 }

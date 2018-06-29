@@ -11,7 +11,13 @@ import UIKit
 class MyNewEditViewController: MyStoreBaseViewController {
 	var baseInfoView:GMEditBaseInfoView = GMEditBaseInfoView()
 	var byInfoView:GMEditByInfoView = GMEditByInfoView()
+	var dic:NSDictionary?
+	var imageURL:String?
+	var levelname:String?
+	var classname:String?
 	var groupid:String?
+	var editfinshRefreshMap:( )->Void = {( )->Void in }
+
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		self.baseInfoView.choiceView?.choicebtn.hiddenPopView()
@@ -33,11 +39,13 @@ class MyNewEditViewController: MyStoreBaseViewController {
 		self.navigationItem.title = "重新编辑"
 		let cancel:UIBarButtonItem = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelEdit))
 		self.navigationItem.rightBarButtonItem = cancel
+		
 	}
 	
 
 	@objc private func cancelEdit(){
-		let alerController:UIAlertController = UIAlertController(title: "", message: "取消编辑并退出？", preferredStyle: .alert)
+		self.baseInfoView.choiceView?.choicebtn.hiddenPopView()
+ 		let alerController:UIAlertController = UIAlertController(title: "", message: "取消编辑并退出？", preferredStyle: .alert)
 		let cancel:UIAlertAction = UIAlertAction(title: "继续编辑", style: .cancel) { (alert) in }
 		let ok:UIAlertAction = UIAlertAction(title: "确定", style: .default) { (alert) in
 			self.navigationController?.popViewController(animated: true)
@@ -48,19 +56,24 @@ class MyNewEditViewController: MyStoreBaseViewController {
 
 	}
 	
-	@objc public func getData(groupid:String,categorName:String){
-		KLHttpTool.getGoodManagerNewEditwithUri("product/queryproductbyGroudId", withgroupid: groupid, success: { (response) in
+	@objc public func getData(dic:NSDictionary){
+		self.dic = dic
+		self.imageURL = self.dic!.object(forKey: "image_url") as? String
+		self.levelname = self.dic!.object(forKey: "level_name") as? String
+		self.classname = self.dic!.object(forKey: "item_name") as? String
+		self.groupid =  self.dic!.object(forKey: "GroupId") as? String
+		
+   		KLHttpTool.getGoodManagerNewEditwithUri("product/queryproductbyGroudId", withgroupid: self.groupid, success: { (response) in
 			let res:NSDictionary = (response as? NSDictionary)!
 			let status:Int = (res.object(forKey: "status") as! Int)
 			if status == 1 {
 				
 				let dataDit:NSDictionary = res.object(forKey: "data") as! NSDictionary
 				let dic:NSDictionary = dataDit.object(forKey: "item") as! NSDictionary
-				self.baseInfoView.getBaseData(dic: dic, categorName:categorName)
+				self.baseInfoView.getBaseData(dic: dic, currentLevelDic:NSArray(array: [self.dic ?? " "] ))
 				let spec:NSMutableArray = NSMutableArray(array: dataDit.object(forKey: "spec") as! NSArray )
 				let Flavor:NSMutableArray = NSMutableArray(array: dataDit.object(forKey: "Flavor") as! NSArray )
-
-				self.byInfoView.getData(array1: spec,array2: Flavor)
+ 				self.byInfoView.getData(array1: spec,array2: Flavor)
 				
 			}
 		}) { (error) in
@@ -85,21 +98,29 @@ extension MyNewEditViewController{
 			make.height.equalTo(screenHeight - self.baseInfoView.maxy - 20)
 		}
 
-		let submit:UIButton = UIButton()
-		submit.setTitle("保存上架", for: .normal)
-		submit.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
-		submit.setTitleColor(UIColor.white, for: .normal)
-		submit.addTarget(self, action: #selector(submitaction), for: .touchUpInside)
-		self.view.addSubview(submit)
-		submit.snp.makeConstraints { (make) in
-			make.bottom.left.right.equalToSuperview()
-			make.height.equalTo(50)
+		self.byInfoView.finishData = {(da1:NSMutableArray,da2:NSMutableArray)->Void in
+ 
+			KLHttpTool.getGoodManagerAppendproductwithUri("product/updateproduct", withGroupid:self.groupid, withimageURL:self.imageURL, withcustom_item_code: self.dic?.object(forKey: "item_code") as! String, withcustom_item_name: self.classname , withcustom_item_spec: "1", withdom: "1", withitem_name: self.classname, withitem_level1: self.levelname, withprice:self.dic?.object(forKey: "item_p") as! String, withspec: da1 as! [Any], withFlavor: da2 as! [Any], success: { (response) in
+				
+				let res:NSDictionary = (response as? NSDictionary)!
+				let status:Int = (res.object(forKey: "status") as! Int)
+				if status == 1 {
+					self.editfinshRefreshMap()
+ 					self.navigationController?.popViewController(animated: true)
+				}
+			}, failure: { (error) in
+				
+			})
+		}
+		self.baseInfoView.finishBaseData = {(imageurl:String,name:String,categoryname:String) in
+			
+			self.imageURL = imageurl
+			self.levelname = categoryname
+			self.classname = name
+		
 		}
 		
 	}
-	
-	@objc private func submitaction(){
-		
-	}
 
-}
+	
+ }

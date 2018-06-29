@@ -123,11 +123,19 @@ extension GMEditCellTableView:UITableViewDelegate,UITableViewDataSource{
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell:GoodsTableViewCell = tableview.dequeueReusableCell(withIdentifier: "cell_id", for: indexPath) as! GoodsTableViewCell
 		let dic:NSDictionary = self.data.object(at: indexPath.row) as! NSDictionary
-		cell.getDic(dic:dic)
+		cell.getDic(dic:dic,tag:selftag)
+	
 		cell.downProductMap = {(index:Int)->Void in
 			
-			self.data.removeObject(at: index - 1)
+			self.data.removeObject(at: indexPath.row )
 			self.tableview.reloadData()
+		}
+		cell.editCellfinshRefreshMap = {() -> Void in
+			self.resquestData(refreshtype: RefreshType.topfresh, complete: {
+				self.tableview.mj_header.endRefreshing()
+				self.tableview.mj_footer.resetNoMoreData()
+				
+			})
 		}
 		return cell
 	}

@@ -16,11 +16,20 @@ class GoodsTableViewCell: UITableViewCell {
 	@IBOutlet weak var price: UILabel!
 	@IBOutlet weak var reEidt: UIButton!
 	@IBOutlet weak var downProduct: UIButton!
+	var selftag:Int = 0
 	var downProductMap:(Int)->Void = {(index:Int)->Void in }
-	
+	var editCellfinshRefreshMap:( )->Void = {( )->Void in }
+
 	var dic:NSDictionary?
-	@objc public func getDic(dic:NSDictionary){
+	@objc public func getDic(dic:NSDictionary,tag:Int){
 		self.dic = dic
+		self.selftag = tag
+		if selftag == 0 {
+			self.downProduct.setTitle("产品上架", for: .normal)
+			selftag = 1
+		}else{
+			selftag = 0
+		}
 		self.headavator.setImageWith(NSURL.init(string: self.dic?.object(forKey: "image_url") as! String)! as URL)
 		self.productName.text = self.dic?.object(forKey: "item_name") as? String
 		let salecount:String = (self.dic?.object(forKey: "MonthSaleCount") as? String)!
@@ -46,12 +55,13 @@ class GoodsTableViewCell: UITableViewCell {
     }
 	@IBAction func downProductFunc(_ sender: UIButton) {
 		
-		let alerController:UIAlertController = UIAlertController(title: "", message: "确定下架此商品？", preferredStyle: .alert)
+		let alerController:UIAlertController = UIAlertController(title: "", message:(selftag == 0 ? "确定下架此商品？":"确定上架此商品？"), preferredStyle: .alert)
 		let cancel:UIAlertAction = UIAlertAction(title: "取消", style: .cancel) { (alert) in }
 		
 		let ok:UIAlertAction = UIAlertAction(title: "确定", style: .default) { (alert) in
 			let groupid:String = self.dic?.object(forKey: "GroupId") as! String
-			KLHttpTool.setGoodManagerDelFlavorwithUri("product/DelFlavor", withselling: "0", withgroupid: groupid, success: { (response) in
+			
+			KLHttpTool.setGoodManagerDelFlavorwithUri("product/setProductsellstate", withselling: String(self.selftag ), withgroupid: groupid, success: { (response) in
 			
 				let res:NSDictionary = (response as? NSDictionary)!
 				let anum:String = self.dic!.object(forKey: "ANum") as! String
@@ -73,8 +83,11 @@ class GoodsTableViewCell: UITableViewCell {
 	@IBAction func reEditionFunc(_ sender: UIButton) {
 	
 		let newEdit:MyNewEditViewController = MyNewEditViewController()
-		newEdit.getData(groupid: self.dic?.object(forKey: "GroupId") as! String,categorName:self.dic?.object(forKey: "level_name") as! String)
-		self.viewController().navigationController?.pushViewController(newEdit, animated: true)
+		newEdit.getData(dic:self.dic!)
+		newEdit.editfinshRefreshMap = {()->Void in
+			self.editCellfinshRefreshMap()
+		}
+ 		self.viewController().navigationController?.pushViewController(newEdit, animated: true)
 	}
 	override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

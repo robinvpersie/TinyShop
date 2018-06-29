@@ -36,13 +36,16 @@ extension GMEditChoiceCateView{
 				for dic in tempdic {
 					let dit:NSDictionary = dic as! NSDictionary
 					let levelname:String = (dit.object(forKey: "level_name") as! String)
-					let current:String = ((data.firstObject) as! String)
+					
+					let currentDic:NSDictionary = ((data.firstObject) as! NSDictionary)
+					let current:String = currentDic.object(forKey: "level_name") as! String
 
 					if levelname == current {
-						self.datas?.insert(levelname, at: 0)
+//						self.datas?.insert(levelname, at: 0)
+						self.datas?.insert(dit, at: 0)
 					}else{
-						self.datas?.add(dit.object(forKey: "level_name") ?? " ")
-
+//						self.datas?.add(dit.object(forKey: "level_name") ?? " ")
+						self.datas?.add(dit)
 					}
 					self.choicebtn.getTitlesArray(titles: self.datas!)
 				}

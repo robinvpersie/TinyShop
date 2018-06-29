@@ -12,9 +12,10 @@ class BusinessStateView: UIButton {
 	var values:NSArray?
 	var data:NSArray?
 	var value:UILabel?
-
-	var popTableView:UITableView?
-	var choiceMap:(String,Int,Int) ->Void = {(_:String,_:Int,_:Int) in }
+	var popWidth:CGFloat = 0
+	var popTableView:UIImageView?
+	var choiceMap:(NSDictionary,Int,Int) ->Void = {(_:NSDictionary,_:Int,_:Int) in }
+	var level_id:String = "1"
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -28,6 +29,9 @@ class BusinessStateView: UIButton {
 	
 	@objc public func getTitlesArray(titles:NSArray){
 		self.values = titles
+		let dic:NSDictionary = self.values?.firstObject as! NSDictionary
+		self.level_id = (dic.object(forKey: "id") as? String)!
+ 		self.getWidth(array: self.values!)
 		createSuvs()
 	}
 }
@@ -41,18 +45,26 @@ extension BusinessStateView:UITableViewDelegate,UITableViewDataSource{
 		
 		let cell:UITableViewCell = UITableViewCell()
 		cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
-		cell.textLabel?.text = self.values?[indexPath.row] as? String
+
 		cell.textLabel?.textAlignment = .left
 
-		let check:UIImageView = UIImageView(frame: CGRect(x: 70, y: 15, width: 20, height: 14))
+		let check:UIImageView = UIImageView()
 		check.image = #imageLiteral(resourceName: "icon_state_02")
 		check.isHidden = true
 		cell.contentView.addSubview(check)
-
-		let s1:String = self.values?.object(at: indexPath.row) as! String
-		if s1 == self.value?.text {
+		check.snp.makeConstraints { (make) in
+			make.width.top.equalTo(17)
+			make.height.equalTo(12)
+			make.right.equalToSuperview().offset(-15)
+		}
+		
+		let dic1:NSDictionary  = self.values?.object(at: indexPath.row) as! NSDictionary
+		let s1:String = dic1.object(forKey: "level_name") as! String
+ 		cell.textLabel?.text = s1
+ 		if s1 == self.value?.text {
 			check.isHidden = false
 		}
+
 		
 		let seperatorline:UILabel = UILabel()
 		seperatorline.backgroundColor = UIColor(red: 232, green: 232, blue: 232)
@@ -68,12 +80,13 @@ extension BusinessStateView:UITableViewDelegate,UITableViewDataSource{
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		guard let _:((String,Int,Int) -> Void) = self.choiceMap else {
+		guard let _:((NSDictionary,Int,Int) -> Void) = self.choiceMap else {
 			return
 		}
-		self.choiceMap((self.value?.text)!,Int(self.tag),Int(indexPath.row))
-		self.value?.text = self.values?[indexPath.row] as? String
-
+		let dic:NSDictionary = self.values?[indexPath.row] as! NSDictionary
+		self.value?.text = dic.object(forKey: "level_name") as? String
+		self.level_id = (dic.object(forKey: "id") as? String)!
+  		self.choiceMap(dic,Int(self.tag),Int(indexPath.row))
 		self.hiddenPopView()
 		
 	}
@@ -103,7 +116,8 @@ extension BusinessStateView{
 		self.value?.textAlignment = .right
 		self.value?.textColor = UIColor(red: 71, green: 71, blue: 71)
 		self.value?.font = UIFont.systemFont(ofSize: 14)
-		self.value?.text = self.values?.firstObject as? String
+		let dic:NSDictionary = self.values?.firstObject as! NSDictionary
+		self.value?.text = dic.object(forKey: "level_name") as? String
 		self.addSubview(self.value!)
 		self.value?.snp.makeConstraints({ (make) in
 			make.left.top.equalTo(5)
@@ -114,20 +128,43 @@ extension BusinessStateView{
 		
 		
 	}
-	
+	private func getWidth(array:NSArray) {
+		for dic in array {
+			let dic1:NSDictionary  = dic as! NSDictionary
+			let st:String = dic1.object(forKey: "level_name") as! String
+ 			let textMaxSize = CGSize(width:CGFloat(MAXFLOAT) , height: 25.0)
+			let size:CGSize = self.textSize(text: st , font: UIFont.systemFont(ofSize: 15.0), maxSize: textMaxSize)
+			if size.width > self.popWidth {
+				self.popWidth = size.width
+			}
+		}
+		
+	}
+	private func textSize(text : String , font : UIFont , maxSize : CGSize) -> CGSize{
+		return text.boundingRect(with: maxSize, options: [.usesLineFragmentOrigin], attributes: [kCTFontAttributeName as NSAttributedStringKey : font], context: nil).size
+	}
 	@objc private func popChoiceView(){
 		
 		if self.popTableView == nil {
 
 			let newFrame:CGRect = self.convert(self.bounds, to: (UIApplication.shared.delegate?.window)!)
-			self.popTableView = UITableView(frame: CGRect(x:Int( newFrame.origin.x+newFrame.size.width/2 - 50), y:Int(newFrame.maxY+10) , width: 100, height: ((self.values?.count)!*44)), style: .plain)
-			self.popTableView?.separatorColor = UIColor.white
-			self.popTableView?.layer.cornerRadius = 5
-			self.popTableView?.layer.masksToBounds = true
-			self.popTableView?.layer.borderColor = UIColor(red: 242, green: 244, blue: 246).cgColor
-			self.popTableView?.layer.borderWidth = 1
-			self.popTableView?.delegate = self
-			self.popTableView?.dataSource = self
+			self.popTableView = UIImageView(frame: CGRect(x:Int( newFrame.origin.x+newFrame.size.width/2) - Int(22 + self.popWidth/2), y:Int(newFrame.maxY+5) , width: Int(55 + self.popWidth) , height: ((self.values?.count)!*44) + 10))
+			self.popTableView?.image = #imageLiteral(resourceName: "img_bg_01")
+			self.popTableView?.isUserInteractionEnabled = true
+			let tableview:UITableView = UITableView(frame: CGRect(x:0, y:0 , width: 0, height: 0), style: .plain)
+			tableview.separatorColor = UIColor.white
+			tableview.layer.cornerRadius = 5
+			tableview.layer.masksToBounds = true
+			tableview.layer.borderColor = UIColor(red: 242, green: 244, blue: 246).cgColor
+			tableview.layer.borderWidth = 1
+			tableview.delegate = self
+			tableview.dataSource = self
+			self.popTableView?.addSubview(tableview)
+			tableview.snp.makeConstraints { (make) in
+				make.left.bottom.right.equalToSuperview()
+				make.top.equalToSuperview().offset(10)
+			}
+			
 			UIApplication.shared.delegate?.window??.addSubview(self.popTableView!)
 			
 		}

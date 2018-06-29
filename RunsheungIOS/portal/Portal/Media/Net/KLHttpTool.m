@@ -4005,6 +4005,7 @@
 }
 
 
+
 /**
  获取数据统计按日查询
  
@@ -4077,6 +4078,97 @@
 		failure(err);
 	}];
 }
+
+
+
+/**
+ 上传商品的logo图片
+
+ @param url url
+ @param image 要上传的图片对象
+ @param success 成功调用的block
+ @param failure 失败调用的block
+ */
++ (void)sendGoodLogoPictureWithUrl:(NSString *)url
+						 withImage:(UIImage*)image
+ 						   success:(void (^)(id response))success
+ 						   failure:(void (^)(NSError *err))failure {
+	NSString *uri =[NSString stringWithFormat:@"%@%@",MystoreUrl,url];
+
+	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+	manager.requestSerializer.timeoutInterval = 20;
+	manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"multipart/form-data", @"application/json", @"text/html", @"image/jpeg", @"image/png", @"application/octet-stream", @"text/json", nil];
+	
+	[manager POST:uri parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+		
+  			NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+  			NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+ 			[formatter setDateFormat:@"yyyyMMddHHmmss"];
+			NSString *dateString = [formatter stringFromDate:[NSDate date]];
+			NSString *fileName = [NSString  stringWithFormat:@"%@.jpg", dateString];
+ 			[formData appendPartWithFileData:imageData name:@"files" fileName:fileName mimeType:@"image/jpeg"]; //
+ 
+	} progress:^(NSProgress * _Nonnull uploadProgress) {
+		NSLog(@"---上传进度--- %@",uploadProgress);
+	} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+		NSLog(@"```上传成功``` %@",responseObject);
+		[self checkStatusWithResponse:responseObject];
+		[MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
+		success(responseObject);
+	} failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+		[MBProgressHUD hideHUDForView:KEYWINDOW animated:NO];
+		NSLog(@"xxx上传失败xxx %@", error);
+	}];
+}
+
+/**
+ 获取我的商铺商品信息并且上架
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getGoodManagerAppendproductwithUri:(NSString*)uri
+							   withGroupid:(NSString*)groupid
+							  withimageURL:(NSString*)Image_url
+ 					  withcustom_item_code:(NSString*)custom_item_code
+					  withcustom_item_name:(NSString*)custom_item_name
+					  withcustom_item_spec:(NSString*)custom_item_spec
+								   withdom:(NSString*)dom
+							 withitem_name:(NSString*)item_name
+						   withitem_level1:(NSString*)item_level1
+								 withprice:(NSString*)price
+								  withspec:(NSArray*)spec
+								withFlavor:(NSArray*)Flavor
+								   success:(void (^)(id response))success
+								   failure:(void (^)(NSError *err))failure{
+	
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
+	NSString * lang_type = @"kor";
+	custom_code = MystoreTestCustom_Code;
+	token = MystoreTestToken;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,Image_url,custom_item_code,groupid,custom_item_name,custom_item_spec,item_name,item_level1,price,dom,custom_code,token).mutableCopy;
+	[params setObject:spec forKey:@"spec"];
+	[params setObject:Flavor forKey:@"Flavor"];
+	
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+	
+	
+}
+
 
 @end
 

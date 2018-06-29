@@ -11,6 +11,10 @@ import UIKit
 class GMEditByInfoView: UIView {
 	var sizeCollectview:GMEditSizeCollectView?
 	var kwCollectview:GMEditSizeCollectView?
+	var finishData:(NSMutableArray,NSMutableArray)->Void = {(da1:NSMutableArray,da2:NSMutableArray)->Void in}
+	var data1:NSMutableArray = NSMutableArray()
+	var data2:NSMutableArray = NSMutableArray()
+	
 	let titleLabel:(String,CGFloat)->UILabel = {(titles:String,fontweight:CGFloat)->UILabel in
 		
 		let label:UILabel = UILabel()
@@ -57,7 +61,8 @@ extension GMEditByInfoView{
 		self.sizeCollectview?.sumbitMap = {(name:String,price:String)->Void in
 			
 			array1.add(["specName":name,"specPrice":price])
- 			let sections:Int = Int(ceil(CGFloat(array1.count + 1)/4.0))
+			self.data1 = array1
+  			let sections:Int = Int(ceil(CGFloat(array1.count + 1)/4.0))
 			var rect:CGRect = (self.sizeCollectview?.frame)!
 			rect.size.height = CGFloat(sections) * 50.0
 			self.sizeCollectview?.frame = rect
@@ -79,6 +84,7 @@ extension GMEditByInfoView{
 		self.addSubview(self.kwCollectview!)
 		self.kwCollectview?.sumbitMap1 = {(name:String)->Void in
 			array2.add(["flavorName":name])
+			self.data2 = array2
 			let sections:Int = Int(ceil(CGFloat(array2.count + 1)/4.0))
 			var rect:CGRect = (self.kwCollectview?.frame)!
 			rect.size.height = CGFloat(sections) * 50.0
@@ -93,6 +99,21 @@ extension GMEditByInfoView{
 		})
 
 		
-
+		let submit:UIButton = UIButton()
+		submit.setTitle("保存上架", for: .normal)
+		submit.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
+		submit.setTitleColor(UIColor.white, for: .normal)
+		submit.addTarget(self, action: #selector(submitaction), for: .touchUpInside)
+		self.viewController().view.addSubview(submit)
+		submit.snp.makeConstraints { (make) in
+			make.bottom.left.right.equalToSuperview()
+			make.height.equalTo(50)
+		}
+	}
+	
+	@objc private func submitaction(){
+		self.finishData(self.data1,self.data2)
+		
+		
 	}
 }

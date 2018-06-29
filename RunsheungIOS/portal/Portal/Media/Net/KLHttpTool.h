@@ -910,4 +910,38 @@
  								   withpage:(NSString*)page
 									success:(void (^)(id response))success
 									failure:(void (^)(NSError *err))failure;
+/**
+ 上传商品的logo图片
+ 
+ @param url url
+ @param image 要上传的图片对象
+ @param success 成功调用的block
+ @param failure 失败调用的block
+ */
++ (void)sendGoodLogoPictureWithUrl:(NSString *)url
+						 withImage:(UIImage*)image
+						   success:(void (^)(id response))success
+						   failure:(void (^)(NSError *err))failure ;
+
+/**
+ 获取我的商铺商品信息并且上架
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)getGoodManagerAppendproductwithUri:(NSString*)uri
+ 							   withGroupid:(NSString*)groupid
+							  withimageURL:(NSString*)Image_url
+  					  withcustom_item_code:(NSString*)custom_item_code
+					  withcustom_item_name:(NSString*)custom_item_name
+					  withcustom_item_spec:(NSString*)custom_item_spec
+								   withdom:(NSString*)dom
+							 withitem_name:(NSString*)item_name
+						   withitem_level1:(NSString*)item_level1
+								 withprice:(NSString*)price
+								  withspec:(NSArray*)spec
+								withFlavor:(NSArray*)Flavor
+								   success:(void (^)(id response))success
+								   failure:(void (^)(NSError *err))failure;
 @end
