@@ -68,8 +68,8 @@
                             <action selector="downProductFunc:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pHS-k8-rjz"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Z8-Rq-tMt">
-                        <rect key="frame" x="94" y="10" width="0.0" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Z8-Rq-tMt">
+                        <rect key="frame" x="94" y="10" width="263" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="RzO-WM-ein"/>
                         </constraints>
@@ -89,6 +89,7 @@
                     <constraint firstItem="35N-4M-95E" firstAttribute="top" secondItem="ScB-YS-S5A" secondAttribute="top" id="glc-aJ-kwz"/>
                     <constraint firstItem="ulZ-fk-h9o" firstAttribute="centerY" secondItem="zql-pH-bgB" secondAttribute="centerY" id="jOW-m9-ay0"/>
                     <constraint firstItem="35N-4M-95E" firstAttribute="centerY" secondItem="HCI-6w-irZ" secondAttribute="centerY" id="khH-Yw-xvb"/>
+                    <constraint firstItem="35N-4M-95E" firstAttribute="trailing" secondItem="8Z8-Rq-tMt" secondAttribute="trailing" id="lwi-U5-y9E"/>
                     <constraint firstItem="HCI-6w-irZ" firstAttribute="bottom" secondItem="zql-pH-bgB" secondAttribute="bottom" id="m4n-XI-7qd"/>
                     <constraint firstItem="35N-4M-95E" firstAttribute="bottom" secondItem="ScB-YS-S5A" secondAttribute="bottom" id="oRJ-RN-5FZ"/>
                     <constraint firstItem="8Z8-Rq-tMt" firstAttribute="top" secondItem="zql-pH-bgB" secondAttribute="top" id="qxb-aY-2rT"/>

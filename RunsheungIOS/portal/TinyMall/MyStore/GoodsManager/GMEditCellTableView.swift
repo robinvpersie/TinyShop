@@ -15,7 +15,8 @@ class GMEditCellTableView: UIView {
 	var selftag:Int = 0
 	var pg:Int = 1
 	var isFetching:Bool = false
-
+	var clickOneTabelViewMap:(NSDictionary)->Void = {(dic:NSDictionary)->Void in}
+	var categoryid:String = "0"
 	
 	enum RefreshType: Int {
 		case topfresh
@@ -46,14 +47,14 @@ class GMEditCellTableView: UIView {
 		self.tableview.separatorColor = UIColor(red: 232, green: 234, blue: 236)
 		self.tableview.register(UINib(nibName: "GoodsTableViewCell", bundle: nil), forCellReuseIdentifier: "cell_id")
 		self.tableview.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
-			self.resquestData(refreshtype: RefreshType.topfresh, complete: {
+			self.resquestData(refreshtype: RefreshType.topfresh,categoryId:self.categoryid, complete: {
 				self.tableview.mj_header.endRefreshing()
 				self.tableview.mj_footer.resetNoMoreData()
 
  			})
 		})
 		self.tableview.mj_footer = MJRefreshAutoFooter.init(refreshingBlock: {
-			self.resquestData(refreshtype: RefreshType.loadmore, complete: {
+			self.resquestData(refreshtype: RefreshType.loadmore,categoryId:self.categoryid, complete: {
 				self.tableview.mj_footer.endRefreshing()
  			})
 		})
@@ -63,6 +64,15 @@ class GMEditCellTableView: UIView {
 			make.edges.equalToSuperview()
 		}
 		
+		self.clickOneTabelViewMap = {(dic:NSDictionary)->Void in
+			self.categoryid = dic.object(forKey: "id") as! String
+			self.resquestData(refreshtype: RefreshType.topfresh, categoryId: self.categoryid, complete: {
+				self.tableview.mj_header.endRefreshing()
+				self.tableview.mj_footer.resetNoMoreData()
+				
+
+			})
+		}
 	}
 }
 
@@ -73,7 +83,7 @@ extension GMEditCellTableView {
 		self.tableview.mj_header.beginRefreshing()
 	}
 	
-	private func resquestData(refreshtype:RefreshType,complete:@escaping ()->Void){
+	private func resquestData(refreshtype:RefreshType,categoryId:String,complete:@escaping ()->Void){
 		if (self.isFetching) {
 			complete()
 			return
@@ -86,7 +96,7 @@ extension GMEditCellTableView {
 			self.pg += 1
  
 		}
-		KLHttpTool.getGoodManagerListCatewithUri("product/queryList", withselling: String(self.selftag), withCategoryId: "0", withpg: String(self.pg), success: { (response) in
+		KLHttpTool.getGoodManagerListCatewithUri("product/queryList", withselling: String(self.selftag), withCategoryId: categoryId, withpg: String(self.pg), success: { (response) in
  			let res:NSDictionary = (response as? NSDictionary)!
 			let status:Int = (res.object(forKey: "status") as! Int)
 			self.isFetching = false
@@ -131,7 +141,7 @@ extension GMEditCellTableView:UITableViewDelegate,UITableViewDataSource{
 			self.tableview.reloadData()
 		}
 		cell.editCellfinshRefreshMap = {() -> Void in
-			self.resquestData(refreshtype: RefreshType.topfresh, complete: {
+			self.resquestData(refreshtype: RefreshType.topfresh, categoryId: self.categoryid, complete: {
 				self.tableview.mj_header.endRefreshing()
 				self.tableview.mj_footer.resetNoMoreData()
 				

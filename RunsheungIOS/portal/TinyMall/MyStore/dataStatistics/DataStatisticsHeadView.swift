@@ -121,7 +121,7 @@ extension DataStatisticsHeadView: UICollectionViewDelegate,UICollectionViewDataS
 			let textMaxSize = CGSize(width:CGFloat(MAXFLOAT) , height: 25.0)
 			let size:CGSize = self.textSize(text: titlestr as String, font: UIFont.systemFont(ofSize: 15.0), maxSize: textMaxSize)
  			self.newBadgeCircle = self.badageCircle("2")
-			self.newBadgeCircle?.isHidden = false
+			self.newBadgeCircle?.isHidden = true
 			pressbtn.addSubview(self.newBadgeCircle!)
 			self.newBadgeCircle?.snp.makeConstraints({ (make) in
 				make.top.equalToSuperview().offset(8)

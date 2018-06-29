@@ -14,6 +14,7 @@ var dataHead:DataStatisticsHeadView?
 var bottomCollectView:UICollectionView?
 var datepicker:DataStatisticsDatePicker?
 var rightbtn:GMcatagoryButton?
+var bgcell:GMEditCellTableView?
 	
 let mapCollectionview = { (selfDelegate:UIViewController, dataHead:DataStatisticsHeadView) -> UICollectionView in
 	
@@ -50,6 +51,9 @@ override func setNavi() {
 	let status:CGRect = UIApplication.shared.statusBarFrame
 	let navi:CGRect = (self.navigationController?.navigationBar.frame)!
 	rightbtn?.getPopViewOrgY(y: status.height + navi.height)
+	rightbtn?.clickOneClassMap = {(dic:NSDictionary)->Void in
+ 		self.bgcell?.clickOneTabelViewMap(dic)
+	}
 	let rightItem:UIBarButtonItem = UIBarButtonItem(customView: rightbtn!)
 	self.navigationItem.rightBarButtonItem = rightItem
 }
@@ -89,6 +93,7 @@ extension GoodsManagerController: UICollectionViewDelegate,UICollectionViewDataS
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "parcelviewcell", for: indexPath)
 		let dataCell:GMEditCellTableView = GMEditCellTableView()
+ 		self.bgcell = dataCell
 		dataCell.getData(tag: 1 - indexPath.row)
 		cell.contentView.addSubview(dataCell)
 		dataCell.snp.makeConstraints { (make) in

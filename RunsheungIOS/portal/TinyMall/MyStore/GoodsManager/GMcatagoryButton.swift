@@ -13,8 +13,7 @@ class GMcatagoryButton: UIView {
 	var popViewOrgY:CGFloat = 0.0
 	var addOneState:Bool = false
 	var data:NSMutableArray = NSMutableArray()
-	
-	
+	var clickOneClassMap:(NSDictionary)->Void = {(dic:NSDictionary)->Void in}
 	
 	let tableViewMap:(UIView,CGFloat)->UITableView = {(dele:UIView,orgY:CGFloat)->UITableView in
 		let tableview:UITableView = UITableView()
@@ -202,6 +201,8 @@ extension GMcatagoryButton:UITableViewDelegate,UITableViewDataSource{
 	}
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.row != 0 {
+			let dic:NSDictionary = self.data[indexPath.row - 1] as! NSDictionary
+			self.clickOneClassMap(dic)
 			hidePopTableView()
 
 		}

@@ -13,7 +13,7 @@ class MyNewEditViewController: MyStoreBaseViewController {
 	var byInfoView:GMEditByInfoView = GMEditByInfoView()
 	var dic:NSDictionary?
 	var imageURL:String?
-	var levelname:String?
+	var level:String?
 	var classname:String?
 	var groupid:String?
 	var editfinshRefreshMap:( )->Void = {( )->Void in }
@@ -59,7 +59,7 @@ class MyNewEditViewController: MyStoreBaseViewController {
 	@objc public func getData(dic:NSDictionary){
 		self.dic = dic
 		self.imageURL = self.dic!.object(forKey: "image_url") as? String
-		self.levelname = self.dic!.object(forKey: "level_name") as? String
+		self.level = self.dic!.object(forKey: "level_name") as? String
 		self.classname = self.dic!.object(forKey: "item_name") as? String
 		self.groupid =  self.dic!.object(forKey: "GroupId") as? String
 		
@@ -100,7 +100,7 @@ extension MyNewEditViewController{
 
 		self.byInfoView.finishData = {(da1:NSMutableArray,da2:NSMutableArray)->Void in
  
-			KLHttpTool.getGoodManagerAppendproductwithUri("product/updateproduct", withGroupid:self.groupid, withimageURL:self.imageURL, withcustom_item_code: self.dic?.object(forKey: "item_code") as! String, withcustom_item_name: self.classname , withcustom_item_spec: "1", withdom: "1", withitem_name: self.classname, withitem_level1: self.levelname, withprice:self.dic?.object(forKey: "item_p") as! String, withspec: da1 as! [Any], withFlavor: da2 as! [Any], success: { (response) in
+			KLHttpTool.getGoodManagerAppendproductwithUri("product/updateproduct", withGroupid:self.groupid, withimageURL:self.imageURL, withcustom_item_code: self.dic?.object(forKey: "item_code") as! String, withcustom_item_name: self.classname , withcustom_item_spec: "1", withdom: "1", withitem_name: self.classname, withitem_level1: self.level, withprice:self.dic?.object(forKey: "item_p") as! String, withspec: da1 as! [Any], withFlavor: da2 as! [Any], success: { (response) in
 				
 				let res:NSDictionary = (response as? NSDictionary)!
 				let status:Int = (res.object(forKey: "status") as! Int)
@@ -112,11 +112,12 @@ extension MyNewEditViewController{
 				
 			})
 		}
-		self.baseInfoView.finishBaseData = {(imageurl:String,name:String,categoryname:String) in
+		self.baseInfoView.finishBaseData = {(imageurl:String,name:String,categorylevel:String) in
 			
 			self.imageURL = imageurl
-			self.levelname = categoryname
 			self.classname = name
+			self.level = categorylevel
+
 		
 		}
 		

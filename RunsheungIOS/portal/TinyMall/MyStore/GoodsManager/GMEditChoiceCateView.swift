@@ -41,11 +41,9 @@ extension GMEditChoiceCateView{
 					let current:String = currentDic.object(forKey: "level_name") as! String
 
 					if levelname == current {
-//						self.datas?.insert(levelname, at: 0)
-						self.datas?.insert(dit, at: 0)
+ 						self.datas?.insert(dit, at: 0)
 					}else{
-//						self.datas?.add(dit.object(forKey: "level_name") ?? " ")
-						self.datas?.add(dit)
+ 						self.datas?.add(dit)
 					}
 					self.choicebtn.getTitlesArray(titles: self.datas!)
 				}
