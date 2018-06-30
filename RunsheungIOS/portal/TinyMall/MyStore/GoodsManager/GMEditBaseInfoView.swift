@@ -48,7 +48,7 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 	}
 	
 	@objc private func changAvatorFunc(){
-		let alert:UIAlertController = UIAlertController(title: "", message: "修改头像图片", preferredStyle: .actionSheet)
+		let alert:UIAlertController = UIAlertController(title: "", message: "修改头像图片".localized, preferredStyle: .actionSheet)
 		let action = UIAlertAction(title:"相册".localized, style: .default) {[weak self](action)in
 			self?.openAlbumCamera()
 		}
@@ -71,7 +71,7 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 
 	private func createSuvs(){
 		self.backgroundColor = UIColor.white
-		let basetitle:UILabel = self.titleLabel("基本信息")
+		let basetitle:UILabel = self.titleLabel("基本信息".localized)
 		self.addSubview(basetitle)
 		basetitle.snp.makeConstraints { (make) in
 			make.left.top.equalTo(20)
@@ -95,7 +95,7 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 		correct.backgroundColor = UIColor.black
 		correct.alpha = 0.3
 		correct.textColor = UIColor.white
-		correct.text = "更换图片"
+		correct.text = "更换图片".localized
 		correct.textAlignment = .center
 		correct.font = UIFont.systemFont(ofSize: 13)
 		self.avator.addSubview(correct)

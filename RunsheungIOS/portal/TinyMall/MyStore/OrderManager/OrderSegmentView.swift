@@ -17,7 +17,7 @@ class OrderSegmentView: UIView {
 
 	var tabview:UITableView = UITableView()
 
-	var allData:NSArray = [[1,2],[1,],[1,2,3]]
+	var allData:NSArray = []
 	var stateData:NSMutableArray = [false,false,false]
 	var openCloseState:Bool = false
 	
@@ -69,6 +69,18 @@ class OrderSegmentView: UIView {
 		self.tableviewTag = tag
 		ceateTableView()
 
+		KLHttpTool.requestNewOrderListwithUri("/api/AppSM/requestNewOrderList", withDivcode: "2", withpg: "1", withPagesize: "3", success: { (response) in
+			let res:NSDictionary = (response as? NSDictionary)!
+			let status:String = (res.object(forKey: "status") as! String)
+			if status == "1" {
+				self.allData = res.object(forKey: "data") as! NSArray
+				self.tabview.reloadData()
+			}
+			
+		}) { (error) in
+			
+		}
+
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
@@ -96,10 +108,7 @@ extension OrderSegmentView:UITableViewDelegate,UITableViewDataSource{
 	
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if self.tag == 1 {
-			return self.allData.count - 1
-		}
-		return self.allData.count
+ 		return self.allData.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -107,16 +116,14 @@ extension OrderSegmentView:UITableViewDelegate,UITableViewDataSource{
 		cell.contentView.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
 		
 		let orderView:OrderCellTableView = OrderCellTableView()
-		orderView.clickStateMap = { (openState:Bool) in
+ 		orderView.clickStateMap = { (openState:Bool) in
 			self.openCloseState = openState
 			self.stateData.replaceObject(at: indexPath.row, with: openState)
 			tableView.reloadRows(at: [indexPath], with: .none)
-//			orderView.getData(array: (self.allData.object(at: indexPath.row) as! NSArray))
-		}
-		
+ 		}
+		orderView.getData(dic:(self.allData.object(at: indexPath.row) as! NSDictionary))
 		orderView.getState(state:self.openCloseState)
-		orderView.getData(array:(self.allData.object(at: indexPath.row) as! NSArray))
-		cell.contentView.addSubview(orderView)
+ 		cell.contentView.addSubview(orderView)
 		orderView.snp.makeConstraints { (make) in
 			make.left.top.equalToSuperview().offset(10)
 			make.right.equalToSuperview().offset(-10)
@@ -138,7 +145,8 @@ extension OrderSegmentView:UITableViewDelegate,UITableViewDataSource{
 	}
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		let orderData:NSArray = self.allData.object(at: indexPath.row) as! NSArray
+		let orderdic:NSDictionary = self.allData.object(at: indexPath.row) as! NSDictionary
+		let orderData:NSArray = orderdic.object(forKey: "dataitem") as! NSArray
 		let count:Int = orderData.count
 		let state:Bool = (self.stateData.object(at: indexPath.row) as! Bool)
 		if state {

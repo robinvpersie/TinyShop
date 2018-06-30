@@ -4169,6 +4169,76 @@
 	
 }
 
+/**
+ 获取我的商铺主页信息
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestSaleOrderAmountwithUri:(NSString*)uri
+ 							  success:(void (^)(id response))success
+ 							  failure:(void (^)(NSError *err))failure{
+	
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
+	NSString * lang_type = @"kor";
+	custom_code = MystoreTestCustom_Code;
+	token = MystoreTestToken;
+	
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,custom_code,token).mutableCopy;
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+}
+
+
+
+/**
+ 获取我的商铺商品订单管理
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestNewOrderListwithUri:(NSString*)uri
+ 					   withDivcode:(NSString*)div_code
+ 							withpg:(NSString*)pg
+ 					  withPagesize:(NSString*)pagesize
+ 						   success:(void (^)(id response))success
+ 						   failure:(void (^)(NSError *err))failure{
+	
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
+	NSString * lang_type = @"kor";
+	custom_code = MystoreTestCustom_Code;
+	token = MystoreTestToken;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,pg, pagesize ,custom_code,token).mutableCopy;
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+	
+	
+}
 
 @end
 

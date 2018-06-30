@@ -11,8 +11,8 @@ import UIKit
 class DataStatisticCellHeadView: UIView {
 	var collectView:UICollectionView?
 	var iconArray:NSArray = ["icon_turnover_data","icon_order_data","icon_refund_data","icon_refund_order_data"]
-	var titleArray:NSArray = ["营业额(元)","总订单(单)","退款额(元)","退款订单(单)"]
-	var data:NSArray = ["今日","本周","本月","自定义"]
+	var titleArray:NSArray = ["营业额(元)".localized,"总订单(单)".localized,"退款额(元)".localized,"退款订单(单)".localized]
+	var data:NSArray = ["今日".localized,"本周".localized,"本月".localized,"自定义".localized]
 
 	let mapCollectionview = { (selfDelegate:UIView) -> UICollectionView in
 		
@@ -60,7 +60,7 @@ class DataStatisticCellHeadView: UIView {
 		}
 
 		let title:UILabel = UILabel()
-		title.text = text + "数据"
+		title.text = text + "数据".localized
 		title.font = UIFont.systemFont(ofSize: 18.0, weight: UIFont.Weight(rawValue: 0.4))
 		bgview.addSubview(title)
 		title.snp.makeConstraints { (make) in

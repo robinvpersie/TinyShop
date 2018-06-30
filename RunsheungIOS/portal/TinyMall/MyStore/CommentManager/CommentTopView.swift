@@ -68,7 +68,7 @@ extension CommentTopView {
 		let commentCount:UILabel = UILabel()
 		commentCount.textColor = UIColor(red: 160, green: 160, blue: 160)
 		commentCount.font = UIFont.systemFont(ofSize: 15.0)
-		commentCount.text = "共384条"
+		commentCount.text = "共".localized+"384"+"条".localized
 		self.leftView.addSubview(commentCount)
 		commentCount.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview()
@@ -117,7 +117,7 @@ extension CommentTopView {
 		})
 		
 		let starValue:UILabel = UILabel()
-		starValue.text =  star + "星"
+		starValue.text =  star + "星".localized
 		starValue.textColor = UIColor(red: 160, green: 160, blue: 160)
 		starValue.font = UIFont.systemFont(ofSize: 15.0)
 		bar.addSubview(starValue)

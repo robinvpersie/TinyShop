@@ -45,7 +45,7 @@ override func viewWillDisappear(_ animated: Bool) {
 }
 override func setNavi() {
 	super.setNavi()
-	self.navigationItem.title = "商品管理"
+	self.navigationItem.title = "商品管理".localized
 	
 	rightbtn = GMcatagoryButton(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
 	let status:CGRect = UIApplication.shared.statusBarFrame
@@ -63,7 +63,7 @@ override func setNavi() {
 private func initUI() {
 	
 	self.dataHead = DataStatisticsHeadView()
-	self.dataHead?.getTitles(array:["销售中","已下架"])
+	self.dataHead?.getTitles(array:["销售中".localized,"已下架".localized])
 	self.dataHead?.clickHeadIndexMap = {[weak self](index:Int)->Void in
 		
 		let indexPath = IndexPath(row: index, section: 0)

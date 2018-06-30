@@ -36,8 +36,8 @@ class MyNewEditViewController: MyStoreBaseViewController {
 	override func setNavi() {
 		super.setNavi()
 		self.view.backgroundColor = UIColor(red: 242, green: 242, blue: 242)
-		self.navigationItem.title = "重新编辑"
-		let cancel:UIBarButtonItem = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelEdit))
+		self.navigationItem.title = "重新编辑".localized
+		let cancel:UIBarButtonItem = UIBarButtonItem(title: "取消".localized, style: .plain, target: self, action: #selector(cancelEdit))
 		self.navigationItem.rightBarButtonItem = cancel
 		
 	}
@@ -45,9 +45,9 @@ class MyNewEditViewController: MyStoreBaseViewController {
 
 	@objc private func cancelEdit(){
 		self.baseInfoView.choiceView?.choicebtn.hiddenPopView()
- 		let alerController:UIAlertController = UIAlertController(title: "", message: "取消编辑并退出？", preferredStyle: .alert)
-		let cancel:UIAlertAction = UIAlertAction(title: "继续编辑", style: .cancel) { (alert) in }
-		let ok:UIAlertAction = UIAlertAction(title: "确定", style: .default) { (alert) in
+ 		let alerController:UIAlertController = UIAlertController(title: "", message: "取消编辑并退出？".localized, preferredStyle: .alert)
+		let cancel:UIAlertAction = UIAlertAction(title: "继续编辑".localized, style: .cancel) { (alert) in }
+		let ok:UIAlertAction = UIAlertAction(title: "确定".localized, style: .default) { (alert) in
 			self.navigationController?.popViewController(animated: true)
 		}
 		alerController.addAction(cancel)

@@ -38,8 +38,8 @@ class CommentRetTableCell: UITableViewCell {
 		
 		self.merReturn = CommentMerReturnView(frame: CGRect(x: 15, y: 110, width: screenWidth - 30, height: 100.0))
 		self.contentView.addSubview(self.merReturn!)
-		self.returnBtn.setTitle("修改", for: .normal)
-		self.returnBtn.setTitle("完成", for: .selected)
+		self.returnBtn.setTitle("修改".localized, for: .normal)
+		self.returnBtn.setTitle("完成".localized, for: .selected)
  	}
 
 	

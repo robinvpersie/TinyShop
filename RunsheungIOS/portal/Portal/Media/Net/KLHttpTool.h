@@ -944,4 +944,27 @@
 								withFlavor:(NSArray*)Flavor
 								   success:(void (^)(id response))success
 								   failure:(void (^)(NSError *err))failure;
+
+/**
+ 获取我的商铺主页信息
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestSaleOrderAmountwithUri:(NSString*)uri
+							  success:(void (^)(id response))success
+							  failure:(void (^)(NSError *err))failure;
+/**
+ 获取我的商铺商品订单管理
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestNewOrderListwithUri:(NSString*)uri
+					   withDivcode:(NSString*)div_code
+							withpg:(NSString*)pg
+					  withPagesize:(NSString*)pagesize
+						   success:(void (^)(id response))success
+						   failure:(void (^)(NSError *err))failure;
 @end

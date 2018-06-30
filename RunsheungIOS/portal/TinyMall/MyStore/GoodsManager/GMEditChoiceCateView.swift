@@ -68,7 +68,7 @@ extension GMEditChoiceCateView{
 		self.layer.borderWidth = 1
 		
 		let title:UILabel = UILabel()
-		title.text = "商品分类:"
+		title.text = "商品分类:".localized
 		self.addSubview(title)
 		title.snp.makeConstraints { (make) in
 			make.top.equalTo(10)

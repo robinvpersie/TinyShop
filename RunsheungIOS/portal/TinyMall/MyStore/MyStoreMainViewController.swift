@@ -16,6 +16,7 @@ class MyStoreMainViewController: UITableViewController {
 	var tadayCount:UILabel = UILabel()
 	var orderManagerBadage:UILabel?
 	var orderbackBadage:UILabel?
+	var requestDic:NSDictionary?
 
 	let badageCircle:(String) -> UILabel = {(text:String) -> UILabel in
 		let badage:UILabel = UILabel()
@@ -58,8 +59,25 @@ class MyStoreMainViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		addTableHeadView()
- 
+ 		requestData()
     }
+	
+	private func requestData(){
+		KLHttpTool.requestSaleOrderAmountwithUri("/api/AppSM/requestSaleOrderAmount", success: { (response) in
+			self.requestDic = (response as? NSDictionary)!
+			let status:String = self.requestDic!.object(forKey: "status") as! String
+			if status == "1" {
+				self.headavator?.setImageWith(NSURL(string: self.requestDic?.object(forKey: "shop_thumnail_image") as! String)! as URL)
+				self.shopname?.text = self.requestDic?.object(forKey: "custom_name") as? String
+				self.todayPay.text = self.requestDic?.object(forKey: "sale_amount") as? String
+				self.tadayCount.text = self.requestDic?.object(forKey: "order_amount") as? String
+
+				UserDefaults.standard.set(self.requestDic, forKey: "mystoreinfo")
+			}
+		}) { (error) in
+			
+		}
+	}
 }
 
 extension MyStoreMainViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
@@ -262,7 +280,7 @@ extension MyStoreMainViewController {
 			
 			self.stateBtn = BusinessStateView()
 			
-			self.stateBtn?.getTitlesArray(titles: [["level_name":"营业中","id":"1"],["level_name":"打烊中","id":"1"]])
+			self.stateBtn?.getTitlesArray(titles: [["level_name":"营业中".localized,"id":"1"],["level_name":"打烊中".localized,"id":"1"]])
 			self.stateBtn?.setTitleColor(UIColor.black, for: .normal)
 			self.stateBtn?.backgroundColor = UIColor.white
 			self.stateBtn?.layer.cornerRadius = 5

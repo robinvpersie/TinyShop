@@ -12,8 +12,9 @@ import SnapKit
 class OrderCellTableView: UIView {
 	var tabview:UITableView = UITableView()
 	var data:NSArray = NSArray()
+	var dic:NSDictionary?
 	var openState:Bool = false
-	
+	var acceptPopView:OrderAcceptPopView?
 
 	@objc public var clickStateMap:(Bool)->Void = { (openState:Bool) in }
 	
@@ -83,9 +84,21 @@ class OrderCellTableView: UIView {
 		self.tabview.reloadSections(indexset as IndexSet, with: .none)
 		
 	}
-	@objc public func getData(array:NSArray){
-		self.data = array
+	@objc public func getData(dic:NSDictionary){
+		self.dic = dic
+		self.data = dic.object(forKey: "dataitem") as! NSArray
 		self.tabview.reloadData()
+	}
+	@objc private func acceptAction(sender:UIButton){
+		sender.isSelected = !sender.isSelected
+		self.acceptPopView = OrderAcceptPopView()
+		UIApplication.shared.delegate?.window??.addSubview(self.acceptPopView!)
+
+		self.acceptPopView?.snp.makeConstraints({ (make) in
+			make.center.equalToSuperview()
+			make.width.equalTo(screenWidth - 60)
+			make.height.equalTo(screenHeight/4)
+		})
 	}
 	
 }
@@ -118,7 +131,7 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 		switch indexPath.section {
 		case 0:
 			do {
-				let namelabel:UILabel = self.label(16.0,UIColor.black,"冷先生")
+				let namelabel:UILabel = self.label(16.0,UIColor.black,self.dic?.object(forKey: "delivery_name") as! String)
 				cell.contentView.addSubview(namelabel)
 				namelabel.snp.makeConstraints { (make) in
 					make.left.equalToSuperview().offset(10)
@@ -128,7 +141,7 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 
 				}
 				
-				let phonelabel:UILabel = self.label(15.0,UIColor(red: 33, green: 192, blue: 67),"13142276655")
+				let phonelabel:UILabel = self.label(15.0,UIColor(red: 33, green: 192, blue: 67),self.dic?.object(forKey: "mobilepho") as! String)
 				cell.contentView.addSubview(phonelabel)
 				phonelabel.snp.makeConstraints { (make) in
 					make.left.equalTo(namelabel.snp.right).offset(5)
@@ -137,7 +150,7 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 					
 				}
 
-				let orderlabel:UILabel = self.label(22.0,UIColor(red: 33, green: 192, blue: 67),"#88")
+				let orderlabel:UILabel = self.label(22.0,UIColor(red: 33, green: 192, blue: 67),self.dic?.object(forKey: "order_seq") as! String)
 				orderlabel.textAlignment = .right
 				cell.contentView.addSubview(orderlabel)
 				orderlabel.snp.makeConstraints { (make) in
@@ -147,7 +160,7 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 					
 				}
 
-				let addresslabel:UILabel = self.label(16.0,UIColor.black,"龙跃国际2栋1903")
+				let addresslabel:UILabel = self.label(16.0,UIColor.black,self.dic?.object(forKey: "to_address") as! String)
 				cell.contentView.addSubview(addresslabel)
 				addresslabel.snp.makeConstraints { (make) in
 					make.left.equalToSuperview().offset(10)
@@ -161,7 +174,8 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 			break
 		case 1:
 			do {
-				let namelabel:UILabel = self.label(15.0,UIColor(red: 160, green: 160, blue: 160),"Chizza考烧鸡")
+				let rowdic:NSDictionary = self.data.object(at: indexPath.row) as! NSDictionary
+				let namelabel:UILabel = self.label(15.0,UIColor(red: 160, green: 160, blue: 160),rowdic.object(forKey: "item_name") as! String)
 				cell.contentView.addSubview(namelabel)
 				namelabel.snp.makeConstraints { (make) in
 					make.left.equalToSuperview().offset(10)
@@ -169,8 +183,8 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 					make.height.equalTo(20)
 					
 				}
-				
-				let orderCount:UILabel = self.label(15.0,UIColor(red: 160, green: 160, blue: 160),"x1")
+				let account:String = rowdic.object(forKey: "order_q") as! String
+				let orderCount:UILabel = self.label(15.0,UIColor(red: 160, green: 160, blue: 160),"x"+account)
 				cell.contentView.addSubview(orderCount)
 				orderCount.snp.makeConstraints { (make) in
 					make.centerX.equalToSuperview()
@@ -178,8 +192,8 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 					make.height.equalTo(20)
 					
 				}
-				
-				let pricelabel:UILabel = self.label(16.0,UIColor(red: 160, green: 160, blue: 160),"￥ 10")
+				let price:String = rowdic.object(forKey: "order_o") as! String
+ 				let pricelabel:UILabel = self.label(16.0,UIColor(red: 160, green: 160, blue: 160),"￥"+price)
 				pricelabel.textAlignment = .right
 				cell.contentView.addSubview(pricelabel)
 				pricelabel.snp.makeConstraints { (make) in
@@ -193,7 +207,7 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 
 		case 2:
 			do {
-				let totallabel:UILabel = self.label(15.0,UIColor.black,"总计")
+				let totallabel:UILabel = self.label(15.0,UIColor.black,"总计".localized)
 				cell.contentView.addSubview(totallabel)
 				totallabel.snp.makeConstraints { (make) in
 					make.left.equalToSuperview().offset(10)
@@ -202,17 +216,17 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 					make.width.equalTo(40)
 					
 				}
-				
-				let titlePlabel:UILabel = self.label(15.0,UIColor(red: 160, green: 160, blue: 160),"(含配送费 ￥2.00)")
+				let delivery:String = self.dic?.object(forKey: "delivery_o") as! String
+				let titlePlabel:UILabel = self.label(15.0,UIColor(red: 160, green: 160, blue: 160),"(含配送费 ￥".localized + delivery + ")")
 				cell.contentView.addSubview(titlePlabel)
 				titlePlabel.snp.makeConstraints { (make) in
-					make.left.equalTo(totallabel.snp.right).offset(5)
+					make.left.equalTo(totallabel.snp.right)
 					make.top.equalTo(totallabel.snp.top)
 					make.height.equalTo(20)
 					
 				}
-				
-				let pricelabel:UILabel = self.label(16.0,UIColor(red: 33, green: 192, blue: 67),"￥ 107")
+				let totalmoney:String = self.dic?.object(forKey: "tot_amt") as! String
+ 				let pricelabel:UILabel = self.label(16.0,UIColor(red: 33, green: 192, blue: 67),"￥ " + totalmoney)
 				pricelabel.textAlignment = .right
 				cell.contentView.addSubview(pricelabel)
 				pricelabel.snp.makeConstraints { (make) in
@@ -226,7 +240,8 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 			break
 		case 3:
 			do {
-				let orderNolabel:UILabel = self.label(12.0,UIColor(red: 160, green: 160, blue: 160),"订单号：032445563243445")
+				let orderNo:String = self.dic?.object(forKey: "order_num") as! String
+ 				let orderNolabel:UILabel = self.label(12.0,UIColor(red: 160, green: 160, blue: 160),"订单号：".localized + orderNo)
 				cell.contentView.addSubview(orderNolabel)
 				orderNolabel.snp.makeConstraints { (make) in
 					make.left.equalToSuperview().offset(10)
@@ -234,7 +249,8 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 					make.height.equalTo(15)
 				}
 				
-				let orderTimelabel:UILabel = self.label(12.0,UIColor(red: 160, green: 160, blue: 160),"订单时间：06-16 10:30:34")
+				let orderTime:String = self.dic?.object(forKey: "create_date") as! String
+ 				let orderTimelabel:UILabel = self.label(12.0,UIColor(red: 160, green: 160, blue: 160),"订单时间: ".localized + orderTime)
 				cell.contentView.addSubview(orderTimelabel)
 				orderTimelabel.snp.makeConstraints { (make) in
 					make.left.equalToSuperview().offset(10)
@@ -243,7 +259,7 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 					
 				}
 				
-				let cancelBtn:UIButton = self.button(15.0,UIColor(red: 160, green: 160, blue: 160),"取消订单",UIColor(red: 242, green: 242, blue: 242))
+				let cancelBtn:UIButton = self.button(15.0,UIColor(red: 160, green: 160, blue: 160),"取消订单".localized,UIColor(red: 242, green: 242, blue: 242))
 				cell.contentView.addSubview(cancelBtn)
 				cancelBtn.snp.makeConstraints { (make) in
 					make.left.equalTo(15)
@@ -251,8 +267,11 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 					make.height.equalTo(50)
 					make.right.equalTo(cell.contentView.snp.centerX).offset(-5)
 				}
+				let onlineorderstatus:String = self.dic?.object(forKey: "online_order_status") as! String
 
-				let alreadyBtn:UIButton = self.button(15.0,UIColor.white,"已接单",UIColor(red: 33, green: 192, blue: 67))
+				let alreadyBtn:UIButton = self.button(15.0,UIColor.white,"接单".localized,UIColor(red: 33, green: 192, blue: 67))
+				alreadyBtn.setTitle("已接单".localized, for: .selected)
+				alreadyBtn.addTarget(self, action: #selector(acceptAction), for: .touchUpInside)
 				cell.contentView.addSubview(alreadyBtn)
 				alreadyBtn.snp.makeConstraints { (make) in
 					make.right.equalTo(-15)
@@ -332,8 +351,8 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 			arrowtitle.isUserInteractionEnabled = false
 			arrowtitle.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
 			arrowtitle.setTitleColor(UIColor(red: 33, green: 192, blue: 67), for: .normal)
-			arrowtitle.setTitle("打开",for: .normal)
-			arrowtitle.setTitle("收起",for: .selected)
+			arrowtitle.setTitle("打开".localized,for: .normal)
+			arrowtitle.setTitle("收起".localized,for: .selected)
 			arrowBtn.addSubview(arrowtitle)
 			arrowtitle.snp.makeConstraints { (make) in
 				make.right.equalTo(arrow.snp.left).offset(5)

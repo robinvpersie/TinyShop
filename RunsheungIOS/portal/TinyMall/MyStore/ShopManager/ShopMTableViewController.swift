@@ -9,12 +9,22 @@
 import UIKit
 
 class ShopMTableViewController: UITableViewController {
-	var data:NSArray = ["店铺头像","店铺名称","客服电话","店铺地址"]
-	var contents:NSArray = ["","KFC(九龙城店)","66666-99999","威海市经济开发区大庆路"]
+	var data:NSArray = ["店铺头像".localized,"店铺名称".localized,"客服电话".localized,"店铺地址".localized]
+	var contents:NSArray = [""," "," "," "]
+	var infoDic:NSDictionary?
+	
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		setNavi()
+		
+		self.infoDic = UserDefaults.standard.object(forKey: "mystoreinfo") as? NSDictionary
+		let avatarurl:String = self.infoDic?.object(forKey: "shop_thumnail_image") as! String
+		let name:String = self.infoDic?.object(forKey: "custom_name") as! String
+ 		let phone:String = self.infoDic?.object(forKey: "telephon") as! String
+		let address:String = self.infoDic?.object(forKey: "address") as! String
+ 		self.contents = [avatarurl,name,phone,address]
+		self.tableView.reloadData()
+ 		setNavi()
     }
 	
 	public func setNavi(){
@@ -22,7 +32,7 @@ class ShopMTableViewController: UITableViewController {
 		self.tableView.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
 		self.tableView.contentInset = UIEdgeInsetsMake(10, 0, -10, 0)
 		self.tableView.tableFooterView = UIView()
-		self.title = "店铺管理"
+		self.title = "店铺管理".localized
 		let backItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_back"), style: .plain, target: self, action: #selector(back))
 		self.navigationItem.leftBarButtonItem = backItem
 		self.navigationController?.navigationBar.barTintColor = UIColor.white
@@ -57,7 +67,10 @@ extension ShopMTableViewController{
 		case 0:
 			do {
 				
-				let avator:UIImageView = UIImageView(image: UIImage(named: "img_product_circle01"))
+				let avator:UIImageView = UIImageView()
+				avator.layer.cornerRadius = 5
+				avator.layer.masksToBounds = true
+				avator.setImageWith(NSURL(string: self.contents.firstObject as! String)! as URL)
 				cell.contentView.addSubview(avator)
 				avator.snp.makeConstraints { (make) in
 					make.width.height.equalTo(80)

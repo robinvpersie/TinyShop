@@ -46,9 +46,9 @@ class GMEditSizeCollectView: UIView {
 	}
 	
 	@objc private func longPressDele(longpressGuesture:UILongPressGestureRecognizer){
-		let alerController:UIAlertController = UIAlertController(title: "", message: "确定删除？", preferredStyle: .alert)
-		let cancel:UIAlertAction = UIAlertAction(title: "取消", style: .cancel) { (alert) in }
-		let ok:UIAlertAction = UIAlertAction(title: "确定", style: .default) { [weak self](alert) in
+		let alerController:UIAlertController = UIAlertController(title: "", message: "确定删除？".localized, preferredStyle: .alert)
+		let cancel:UIAlertAction = UIAlertAction(title: "取消".localized, style: .cancel) { (alert) in }
+		let ok:UIAlertAction = UIAlertAction(title: "确定".localized, style: .default) { [weak self](alert) in
 
 			var delefunc:String = "product/DelFlavor"
 			var selftag:Int32 = 102
@@ -119,7 +119,7 @@ extension GMEditSizeCollectView: UICollectionViewDelegate,UICollectionViewDataSo
 				let specname:String = (dic.object(forKey: "specName") as! String)
 				let specPrice:String = (dic.object(forKey: "specPrice") as! String)
  				let size:UILabel = UILabel()
-				size.text = specname + "份"
+				size.text = specname + "份".localized
 				size.textAlignment = .center
 				bgView.addSubview(size)
 				size.snp.makeConstraints { (make) in

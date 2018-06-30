@@ -39,14 +39,14 @@ class GMEditByInfoView: UIView {
 extension GMEditByInfoView{
 	private func createSuvs(array1:NSMutableArray,array2:NSMutableArray){
 		self.backgroundColor = UIColor.white
-		let basetitle:UILabel = self.titleLabel("附加信息",1.0)
+		let basetitle:UILabel = self.titleLabel("附加信息".localized,1.0)
 		self.addSubview(basetitle)
 		basetitle.snp.makeConstraints { (make) in
 			make.left.top.equalTo(20)
 			make.height.equalTo(30)
 		}
 		
-		let sizelabel:UILabel = self.titleLabel("规格：",0.6)
+		let sizelabel:UILabel = self.titleLabel("规格：".localized,0.6)
 		sizelabel.font = UIFont.systemFont(ofSize: 15)
 		self.addSubview(sizelabel)
 		sizelabel.snp.makeConstraints { (make) in
@@ -70,7 +70,7 @@ extension GMEditByInfoView{
 		}
 		
 		
-		let kwlabel:UILabel = self.titleLabel("口味：",0.6)
+		let kwlabel:UILabel = self.titleLabel("口味：".localized,0.6)
 		kwlabel.font = UIFont.systemFont(ofSize: 15)
 		self.addSubview(kwlabel)
 		kwlabel.snp.makeConstraints { (make) in
@@ -100,7 +100,7 @@ extension GMEditByInfoView{
 
 		
 		let submit:UIButton = UIButton()
-		submit.setTitle("保存上架", for: .normal)
+		submit.setTitle("保存上架".localized, for: .normal)
 		submit.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
 		submit.setTitleColor(UIColor.white, for: .normal)
 		submit.addTarget(self, action: #selector(submitaction), for: .touchUpInside)

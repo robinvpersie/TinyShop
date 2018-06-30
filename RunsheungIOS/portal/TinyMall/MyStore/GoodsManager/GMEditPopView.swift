@@ -59,7 +59,7 @@ class GMEditPopView: UIView {
 		}
 		
 		let okbtn:UIButton = UIButton()
-		okbtn.setTitle("确定", for: .normal)
+		okbtn.setTitle("确定".localized, for: .normal)
 		okbtn.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
 		okbtn.setTitleColor(UIColor.white, for: .normal)
 		okbtn.layer.cornerRadius = 5
@@ -75,7 +75,7 @@ class GMEditPopView: UIView {
 		
 
 		self.addSubview(self.inputfieldName)
-		self.inputfieldName.placeholder = "规格名称"
+		self.inputfieldName.placeholder = "规格名称".localized
 		self.inputfieldName.layer.cornerRadius = 5
 		self.inputfieldName.layer.masksToBounds = true
 		self.inputfieldName.textColor = UIColor(red: 160, green: 160, blue: 160)
@@ -89,7 +89,7 @@ class GMEditPopView: UIView {
 		}
 		
 		self.addSubview(self.inputfieldPrice)
-		self.inputfieldPrice.placeholder = "规格价格"
+		self.inputfieldPrice.placeholder = "规格价格".localized
 		self.inputfieldPrice.layer.cornerRadius = 5
 		self.inputfieldPrice.layer.masksToBounds = true
 		self.inputfieldPrice.textColor = UIColor(red: 160, green: 160, blue: 160)
@@ -103,12 +103,12 @@ class GMEditPopView: UIView {
 		}
 
 		if self.tag == 101 {
-			title.text = "新增规格"
-			self.inputfieldName.placeholder = "规格名称"
+			title.text = "新增规格".localized
+			self.inputfieldName.placeholder = "规格名称".localized
 
 		}else{
-			title.text = "新增口味"
-			self.inputfieldName.placeholder = "口味名称"
+			title.text = "新增口味".localized
+			self.inputfieldName.placeholder = "口味名称".localized
 			self.inputfieldPrice.isHidden = true
 
 		}
@@ -142,8 +142,7 @@ extension GMEditPopView{
 	
 	@objc private func cancelAction(){
 		self.hidden()
-		
-	}
+ 	}
 	
 	private func hidden(){
 		self.maskview.removeFromSuperview()

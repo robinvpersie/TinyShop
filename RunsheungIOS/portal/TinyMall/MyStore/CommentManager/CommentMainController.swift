@@ -18,7 +18,7 @@ class CommentMainController: MyStoreBaseViewController {
 	}
     override func viewDidLoad() {
         super.viewDidLoad()
-		self.navigationItem.title = "评价管理"
+		self.navigationItem.title = "评价管理".localized
 		createSuvs()
 
 	}
@@ -30,7 +30,7 @@ class CommentMainController: MyStoreBaseViewController {
 		}
 	
 		self.dataHead = DataStatisticsHeadView()
- 		self.dataHead?.getTitles(array:["全部(234)","差评(13)","未读(23)"])
+ 		self.dataHead?.getTitles(array:["全部(".localized+"234"+")","差评(".localized+"13"+")","未读(".localized+"23"+")"])
 		self.dataHead?.clickHeadIndexMap = {[weak self](index:Int)->Void in
 			
 			let indexPath = IndexPath(row: index, section: 0)

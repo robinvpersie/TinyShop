@@ -859,6 +859,7 @@
 		D5D23BD920E31D8F00BEF1E6 /* CommentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D23BD720E31D8E00BEF1E6 /* CommentTableCell.swift */; };
 		D5D23BDA20E31D8F00BEF1E6 /* CommentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D23BD820E31D8E00BEF1E6 /* CommentTableCell.xib */; };
 		D5D5BB04207F523000A27ABF /* LGwebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D5BB03207F523000A27ABF /* LGwebViewController.swift */; };
+		D5E0945E20E634C900BA8A18 /* OrderAcceptPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E0945D20E634C900BA8A18 /* OrderAcceptPopView.swift */; };
 		D5F6333B20C13A6E00F67742 /* MyShopWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6333A20C13A6E00F67742 /* MyShopWebViewController.swift */; };
 		D5FC6D5420DCF77F00A35EE5 /* RefundHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FC6D4F20DCF77F00A35EE5 /* RefundHeaderCell.swift */; };
 		D5FC6D5520DCF77F00A35EE5 /* RefundInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FC6D5020DCF77F00A35EE5 /* RefundInfoCell.xib */; };
@@ -2382,6 +2383,7 @@
 		D5D23BD720E31D8E00BEF1E6 /* CommentTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableCell.swift; sourceTree = "<group>"; };
 		D5D23BD820E31D8E00BEF1E6 /* CommentTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableCell.xib; sourceTree = "<group>"; };
 		D5D5BB03207F523000A27ABF /* LGwebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LGwebViewController.swift; sourceTree = "<group>"; };
+		D5E0945D20E634C900BA8A18 /* OrderAcceptPopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderAcceptPopView.swift; sourceTree = "<group>"; };
 		D5F6333A20C13A6E00F67742 /* MyShopWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShopWebViewController.swift; sourceTree = "<group>"; };
 		D5FC6D4F20DCF77F00A35EE5 /* RefundHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefundHeaderCell.swift; sourceTree = "<group>"; };
 		D5FC6D5020DCF77F00A35EE5 /* RefundInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefundInfoCell.xib; sourceTree = "<group>"; };
@@ -5829,6 +5831,7 @@
 				D5B7A6A120D8FCCB0014F7D2 /* OrderManagerViewController.swift */,
 				D5B7A6A320D8FF760014F7D2 /* OrderSegmentView.swift */,
 				D5B7A6A520D901CD0014F7D2 /* OrderCellTableView.swift */,
+				D5E0945D20E634C900BA8A18 /* OrderAcceptPopView.swift */,
 			);
 			path = OrderManager;
 			sourceTree = "<group>";
@@ -7027,6 +7030,7 @@
 				5B9CBDDD1DE7DBB70071A3B5 /* YCGCDTimer.swift in Sources */,
 				1BC8767A1E973AA300BB38D7 /* openssl_wrapper.m in Sources */,
 				5BEF65A61F208C0500817141 /* CosmosLayers.swift in Sources */,
+				D5E0945E20E634C900BA8A18 /* OrderAcceptPopView.swift in Sources */,
 				1B392D4B1E28D0E500F70981 /* UIButton+Badge.m in Sources */,
 				1BC876751E973AA300BB38D7 /* base64.m in Sources */,
 				5BEF65B11F208C0500817141 /* StarFillMode.swift in Sources */,

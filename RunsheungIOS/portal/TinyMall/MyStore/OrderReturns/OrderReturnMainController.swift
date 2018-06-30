@@ -33,10 +33,10 @@ class OrderReturnMainController: MyStoreBaseViewController {
 	
 	private func initUI(){
 		self.view.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
-		self.navigationItem.title = "退款订单"
+		self.navigationItem.title = "退款订单".localized
 		
 		self.dataHead = DataStatisticsHeadView()
-		self.dataHead?.getTitles(array:["待退货","已处理"])
+		self.dataHead?.getTitles(array:["待退货".localized,"已处理".localized])
 		self.dataHead?.clickHeadIndexMap = {[weak self](index:Int)->Void in
 		
 			let indexPath = IndexPath(row: index, section: 0)

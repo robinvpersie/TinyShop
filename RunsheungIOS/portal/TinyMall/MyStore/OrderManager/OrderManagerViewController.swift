@@ -40,10 +40,10 @@ class OrderManagerViewController: MyStoreBaseViewController {
 	
 	
 	private func initUI() {
-		self.navigationItem.title = "订单管理"
+		self.navigationItem.title = "订单管理".localized
 
 		self.dataHead = DataStatisticsHeadView()
-		self.dataHead?.getTitles(array:["新订单","已完成"])
+		self.dataHead?.getTitles(array:["新订单".localized,"已接单".localized,"已完成".localized])
 		self.dataHead?.clickHeadIndexMap = {[weak self](index:Int)->Void in
 			
 			let indexPath = IndexPath(row: index, section: 0)
@@ -68,7 +68,7 @@ class OrderManagerViewController: MyStoreBaseViewController {
 extension OrderManagerViewController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 2
+		return 3
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

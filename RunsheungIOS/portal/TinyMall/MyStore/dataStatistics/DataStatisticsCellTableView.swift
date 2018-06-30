@@ -11,7 +11,7 @@ import UIKit
 class DataStatisticsCellTableView: UIView {
 	
 	var tableview:UITableView = UITableView()
-	var data:NSArray = ["今日","本周","本月","期间"]
+	var data:NSArray = ["今日".localized,"本周".localized,"本月".localized,"期间".localized]
 	var requesData:NSMutableArray = NSMutableArray()
 	var tableHeadView:DataStatisticCellHeadView?
 

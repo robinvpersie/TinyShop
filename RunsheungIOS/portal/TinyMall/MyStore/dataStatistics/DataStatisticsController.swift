@@ -42,7 +42,7 @@ class DataStatisticsController: MyStoreBaseViewController {
 		self.navigationItem.title = "数据统计"
 
 		self.dataHead = DataStatisticsHeadView()
-		self.dataHead?.getTitles(array:["今日","本周","本月","自定"])
+		self.dataHead?.getTitles(array:["今日".localized,"本周".localized,"本月".localized,"自定".localized])
 		self.dataHead?.clickHeadIndexMap = {[weak self](index:Int)->Void in
 			
 			if index == 3 {

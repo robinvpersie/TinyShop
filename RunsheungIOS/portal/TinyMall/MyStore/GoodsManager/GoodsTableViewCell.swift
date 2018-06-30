@@ -56,10 +56,10 @@ class GoodsTableViewCell: UITableViewCell {
     }
 	@IBAction func downProductFunc(_ sender: UIButton) {
 		
-		let alerController:UIAlertController = UIAlertController(title: "", message:(selftag == 0 ? "确定下架此商品？":"确定上架此商品？"), preferredStyle: .alert)
-		let cancel:UIAlertAction = UIAlertAction(title: "取消", style: .cancel) { (alert) in }
+		let alerController:UIAlertController = UIAlertController(title: "", message:(selftag == 0 ? "确定下架此商品？".localized:"确定上架此商品？".localized), preferredStyle: .alert)
+		let cancel:UIAlertAction = UIAlertAction(title: "取消".localized, style: .cancel) { (alert) in }
 		
-		let ok:UIAlertAction = UIAlertAction(title: "确定", style: .default) { (alert) in
+		let ok:UIAlertAction = UIAlertAction(title: "确定".localized, style: .default) { (alert) in
 			let groupid:String = self.dic?.object(forKey: "GroupId") as! String
 			
 			KLHttpTool.setGoodManagerDelFlavorwithUri("product/setProductsellstate", withselling: String(self.selftag ), withgroupid: groupid, success: { (response) in

@@ -50,7 +50,7 @@ class CommentPopReturnView: UIView {
 		}
 		
 		let title:UILabel = UILabel()
-		title.text = "回复评论"
+		title.text = "回复评论".localized
 		title.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight(rawValue: 0.4))
 		self.addSubview(title)
 		title.snp.makeConstraints { (make) in
@@ -59,7 +59,7 @@ class CommentPopReturnView: UIView {
 		}
 
 		let okbtn:UIButton = UIButton()
-		okbtn.setTitle("确定", for: .normal)
+		okbtn.setTitle("确定".localized, for: .normal)
 		okbtn.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
 		okbtn.setTitleColor(UIColor.white, for: .normal)
 		okbtn.layer.cornerRadius = 5
@@ -80,7 +80,7 @@ class CommentPopReturnView: UIView {
 		self.inputText?.textColor = UIColor(red: 160, green: 160, blue: 160)
 		self.inputText?.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
 		self.inputText?.tintColor = UIColor(red: 160, green: 160, blue: 160)
-		self.inputText?.text = "感谢您的支持与喜欢！我们会努力做到更好！"
+		self.inputText?.text = "感谢您的支持与喜欢！我们会努力做到更好！".localized
 		self.addSubview(self.inputText!)
 		self.inputText?.snp.makeConstraints({ (make) in
 			make.left.equalToSuperview().offset(30)

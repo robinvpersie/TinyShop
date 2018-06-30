@@ -188,7 +188,7 @@ extension GMcatagoryButton:UITableViewDelegate,UITableViewDataSource{
 			break
 		}
 		if addOneState && (indexPath.row == (self.data.count)){
-			editfield.placeholder = "输入分类名称"
+			editfield.placeholder = "输入分类名称".localized
 			editfield.isHidden = false
 			sumbit.isHidden = false
 		}else{
