@@ -22,8 +22,11 @@ class CommentMainController: MyStoreBaseViewController {
 		createSuvs()
 
 	}
-	private func createSuvs(){
+	
+ 	private func createSuvs(){
 		self.view.addSubview(self.commentTop)
+		
+		
 		self.commentTop.snp.makeConstraints { (make) in
 			make.top.left.right.equalToSuperview()
 			make.height.equalTo( screenWidth / 2)
@@ -83,6 +86,10 @@ extension CommentMainController: UICollectionViewDelegate,UICollectionViewDataSo
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ID", for: indexPath)
 		let dataCell:CommentCellTableView = CommentCellTableView()
+		dataCell.requestFinishMap = {(dic:NSDictionary ) in
+			self.commentTop.getDic(dic: dic )
+		}
+		dataCell.getSection(section:indexPath.row)
 		dataCell.tag = indexPath.row
 		cell.contentView.addSubview(dataCell)
 		dataCell.snp.makeConstraints { (make) in

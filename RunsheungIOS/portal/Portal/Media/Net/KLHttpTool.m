@@ -4240,6 +4240,79 @@
 	
 }
 
+
+/**
+ 获取我的商铺评论列表
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestAssessListwithUri:(NSString*)uri
+					 withDivcode:(NSString*)div_code
+ 					   withview_gbn:(NSString*)view_gbn
+							withpg:(NSString*)pg
+					  withPagesize:(NSString*)pagesize
+						   success:(void (^)(id response))success
+						   failure:(void (^)(NSError *err))failure{
+	
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
+	NSString * lang_type = @"kor";
+	custom_code = @"010530117822fbe4";
+	token = @"186731755546ed9ed281940b-600e-4847-88a2-e932935674a5";
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,pg, pagesize,view_gbn,div_code ,custom_code,token).mutableCopy;
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+	
+	
+}
+
+/**
+ 获取我的商铺修改评论
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestSaleAssessUpdInswithUri:(NSString*)uri
+					  withsale_content:(NSString*)sale_content
+						 withassess_id:(NSString*)assess_id
+ 						 success:(void (^)(id response))success
+						 failure:(void (^)(NSError *err))failure{
+	
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
+	NSString * lang_type = @"kor";
+	custom_code = @"010530117822fbe4";
+	token = @"186731755546ed9ed281940b-600e-4847-88a2-e932935674a5";
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,sale_content,assess_id,custom_code,token).mutableCopy;
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+	
+	
+}
+
 @end
 
 

@@ -967,4 +967,29 @@
 					  withPagesize:(NSString*)pagesize
 						   success:(void (^)(id response))success
 						   failure:(void (^)(NSError *err))failure;
+
+/**
+ 获取我的商铺评论列表
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestAssessListwithUri:(NSString*)uri
+					 withDivcode:(NSString*)div_code
+ 					withview_gbn:(NSString*)view_gbn
+						  withpg:(NSString*)pg
+					withPagesize:(NSString*)pagesize
+						 success:(void (^)(id response))success
+						 failure:(void (^)(NSError *err))failure;
+/**
+ 获取我的商铺修改评论
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestSaleAssessUpdInswithUri:(NSString*)uri
+						   withsale_content:(NSString*)sale_content
+						  withassess_id:(NSString*)assess_id
+							   success:(void (^)(id response))success
+							   failure:(void (^)(NSError *err))failure;
 @end

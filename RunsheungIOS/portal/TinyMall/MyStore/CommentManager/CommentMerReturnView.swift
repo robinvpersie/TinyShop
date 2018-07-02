@@ -10,6 +10,8 @@ import UIKit
 
 class CommentMerReturnView: UIView {
 	var clickChangeMap:(Bool)->Void = {(state:Bool)->Void in}
+	var returnFinishChnageMap:(String)->Void = {(changeContent:String)->Void in}
+
 	@objc public var comment:UITextView = UITextView()
 	
 	override init(frame: CGRect) {
@@ -84,6 +86,7 @@ extension CommentMerReturnView{
 
 			}else{
 				self.comment.resignFirstResponder()
+				self.returnFinishChnageMap(self.comment.text)
 			}
 			
 			self.comment.isUserInteractionEnabled = state

@@ -14,10 +14,10 @@ class OrderSegmentView: UIView {
 	var tableview:UITableView = UITableView()
 	var index:Int = 0
 	var tableviewTag:Int = 0
-
+	var pg:Int = 1
+	var isFetching:Bool = false
 	var tabview:UITableView = UITableView()
-
-	var allData:NSArray = []
+ 	var allData:NSArray = []
 	var stateData:NSMutableArray = [false,false,false]
 	var openCloseState:Bool = false
 	
@@ -46,6 +46,8 @@ class OrderSegmentView: UIView {
 		tableview.tableFooterView = UIView()
 		tableview.estimatedSectionFooterHeight = 0
 		tableview.estimatedSectionHeaderHeight = 0
+		
+
 		
 		return tableview
 	}
@@ -99,6 +101,18 @@ extension OrderSegmentView:UITableViewDelegate,UITableViewDataSource{
 		self.tabview .tableFooterView = UIView()
 		self.tabview .estimatedSectionFooterHeight = 0
 		self.tabview .estimatedSectionHeaderHeight = 0
+		self.tabview.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
+//			self.resquestData(refreshtype: RefreshType.topfresh,categoryId:self.categoryid, complete: {
+//				self.tableview.mj_header.endRefreshing()
+//				self.tableview.mj_footer.resetNoMoreData()
+//
+//			})
+		})
+		self.tabview.mj_footer = MJRefreshAutoFooter.init(refreshingBlock: {
+//			self.resquestData(refreshtype: RefreshType.loadmore,categoryId:self.categoryid, complete: {
+//				self.tableview.mj_footer.endRefreshing()
+//			})
+		})
 		self.addSubview(self.tabview)
 		self.tabview.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()

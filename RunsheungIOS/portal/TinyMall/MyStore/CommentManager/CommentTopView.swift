@@ -11,17 +11,22 @@ import UIKit
 class CommentTopView: UIView {
 	var leftView:UIView = UIView()
 	var rightView:UIView = UIView()
-
+	var dic:NSDictionary?
 	
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		self.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
-		initUI()
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+	
+	@objc public func getDic(dic:NSDictionary){
+		self.dic = dic
+		initUI()
+
 	}
 
 }
@@ -44,8 +49,10 @@ extension CommentTopView {
 			make.width.equalTo(screenWidth/3)
 		}
 		
+		
 		let showStarValue:UILabel = UILabel()
-		showStarValue.text = "4.5"
+ 		let stars:String = self.dic?.object(forKey:"assess_avg") as! String
+		showStarValue.text = stars
 		showStarValue.textColor = UIColor(red: 255, green: 190, blue: 14)
 		showStarValue.font = UIFont.systemFont(ofSize: 36, weight: UIFont.Weight(rawValue: 0.4))
 		self.leftView.addSubview(showStarValue)
@@ -68,7 +75,8 @@ extension CommentTopView {
 		let commentCount:UILabel = UILabel()
 		commentCount.textColor = UIColor(red: 160, green: 160, blue: 160)
 		commentCount.font = UIFont.systemFont(ofSize: 15.0)
-		commentCount.text = "共".localized+"384"+"条".localized
+		let num1:String = self.dic?.object(forKey: "assess_cnt") as! String
+		commentCount.text = "共".localized+num1+"条".localized
 		self.leftView.addSubview(commentCount)
 		commentCount.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview()
@@ -76,9 +84,12 @@ extension CommentTopView {
 			make.height.equalTo(20)
 		}
 		
-		let starView:CommentStarView = CommentStarView()
-		starView.getStarValue(value: 2.6, h: 14.0)
-		self.leftView.addSubview(starView)
+		
+   		let starView:CommentStarView = CommentStarView()
+//		let starInt:CGFloat = CGFloat(stars)
+		starView.getStarValue(value:3.5, h: 14.0)
+
+  		self.leftView.addSubview(starView)
 		starView.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview()
 			make.width.equalTo(90)
@@ -96,11 +107,35 @@ extension CommentTopView {
 			make.bottom.equalToSuperview().offset(-15)
 			make.right.equalToSuperview()
 		}
+		let allcount:String = self.dic?.object(forKey: "assess_cnt") as! String
+		let allcountInt:Int = Int(allcount)!
+
+		let starStr1:String = self.dic?.object(forKey: "rating1") as! String
+		let starInt1:Int = Int(starStr1)!
+		let starvalue1:CGFloat = CGFloat(starInt1)/CGFloat(allcountInt)
+		
+		let starStr2:String = self.dic?.object(forKey: "rating2") as! String
+		let starInt2:Int = Int(starStr2)!
+		let starvalue2:CGFloat = CGFloat(starInt2)/CGFloat(allcountInt)
+		
+		let starStr3:String = self.dic?.object(forKey: "rating3") as! String
+		let starInt3:Int = Int(starStr3)!
+		let starvalue3:CGFloat = CGFloat(starInt3)/CGFloat(allcountInt)
+		
+		let starStr4:String = self.dic?.object(forKey: "rating4") as! String
+		let starInt4:Int = Int(starStr4)!
+		let starvalue4:CGFloat = CGFloat(starInt4)/CGFloat(allcountInt)
+		
+		let starStr5:String = self.dic?.object(forKey: "rating5") as! String
+		let starInt5:Int = Int(starStr5)!
+		let starvalue5:CGFloat = CGFloat(starInt5)/CGFloat(allcountInt)
+		let stararray:NSArray = [starvalue1,starvalue2,starvalue3,starvalue4,starvalue5]
+		let starstrarray:NSArray = [starStr1,starStr2,starStr3,starStr4,starStr5]
+
+ 
 		for i in (0...4) {
 			
-			let count:Int = Int((arc4random() % 1000) + 1)
-			let star:CGFloat = CGFloat(count)/1000.0
-			self.createBarView(Value: star, star: String(5-i), count: String(count), orderBy: CGFloat(i), superview: rightView)
+			self.createBarView(Value: stararray[4-i] as! CGFloat, star: String(5-i), count: starstrarray[4-i] as! String, orderBy: CGFloat(i), superview: rightView)
 		}
 	}
 	
