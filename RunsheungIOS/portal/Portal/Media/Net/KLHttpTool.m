@@ -51,8 +51,8 @@
     #define GetTokenUrl @"http://member.gigawon.co.kr:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
     #define MallBaseUrl @"http://mall.gigawon.co.kr:8800"
    #define MystoreUrl @"http://gigaMerchantManager.gigawon.co.kr:8825/"
-    #define MystoreTestCustom_Code @"01071390009abcde"
-    #define MystoreTestToken @"01071390009abcde64715017-0c81-4ef9-8b21-5e48c64cb455"
+    #define MystoreTestCustom_Code @"01071390103abcde"
+    #define MystoreTestToken @"186743935020f829f883e9fe-c8cf-4f60-9ed2-bd645cb1c118"
 
 
 #endif
@@ -4211,7 +4211,8 @@
  @param failure 失败回调
  */
 + (void)requestNewOrderListwithUri:(NSString*)uri
- 					   withDivcode:(NSString*)div_code
+				 withOrderclassify:(NSString*)orderclassify
+  					   withDivcode:(NSString*)div_code
  							withpg:(NSString*)pg
  					  withPagesize:(NSString*)pagesize
  						   success:(void (^)(id response))success
@@ -4225,7 +4226,7 @@
 	NSString * lang_type = @"kor";
 	custom_code = MystoreTestCustom_Code;
 	token = MystoreTestToken;
-	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,pg, pagesize ,custom_code,token).mutableCopy;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,pg, pagesize,orderclassify ,custom_code,token).mutableCopy;
 	
 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
 		NSLog(@"%@",response);
@@ -4285,6 +4286,7 @@
  @param failure 失败回调
  */
 + (void)requestSaleAssessUpdInswithUri:(NSString*)uri
+
 					  withsale_content:(NSString*)sale_content
 						 withassess_id:(NSString*)assess_id
  						 success:(void (^)(id response))success
@@ -4312,6 +4314,44 @@
 	
 	
 }
+
+
+/**
+ 点击订单管理上的相关按钮按钮触发
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestOrderTakewithUri:(NSString*)uri
+ 					  withorder_num:(NSString*)order_num
+						 withstatus:(NSString*)status
+							   success:(void (^)(id response))success
+							   failure:(void (^)(NSError *err))failure{
+	
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
+	NSString * lang_type = @"kor";
+	custom_code = MystoreTestCustom_Code;
+	token = MystoreTestToken;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,order_num,status,custom_code,token).mutableCopy;
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+	
+	
+}
+
+
 
 @end
 

@@ -10,17 +10,22 @@
 import UIKit
 import SnapKit
 class OrderSegmentView: UIView {
-	
+	enum RefreshType: Int {
+		case topfresh
+		case loadmore
+	}
+
 	var tableview:UITableView = UITableView()
 	var index:Int = 0
 	var tableviewTag:Int = 0
 	var pg:Int = 1
 	var isFetching:Bool = false
 	var tabview:UITableView = UITableView()
- 	var allData:NSArray = []
-	var stateData:NSMutableArray = [false,false,false]
+ 	var allData:NSMutableArray = []
+	var stateData:NSMutableArray = []
 	var openCloseState:Bool = false
-	
+	var submitAcceptSuccessMap1:(Int)->Void = {(index:Int)->Void in}
+
 	let badageCircle:(String) -> UILabel = {(text:String) -> UILabel in
 		
 		let badage:UILabel = UILabel()
@@ -67,27 +72,64 @@ class OrderSegmentView: UIView {
 
 	}
 	
-	@objc public func getTag(tag:Int){
-		self.tableviewTag = tag
-		ceateTableView()
-
-		KLHttpTool.requestNewOrderListwithUri("/api/AppSM/requestNewOrderList", withDivcode: "2", withpg: "1", withPagesize: "3", success: { (response) in
-			let res:NSDictionary = (response as? NSDictionary)!
-			let status:String = (res.object(forKey: "status") as! String)
-			if status == "1" {
-				self.allData = res.object(forKey: "data") as! NSArray
-				self.tabview.reloadData()
-			}
-			
-		}) { (error) in
-			
-		}
-
-	}
-	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+
+	@objc public func getTag(tag:Int){
+		self.tableviewTag = tag
+		ceateTableView()
+		self.tabview.mj_header.beginRefreshing()
+ 	}
+	
+
+	private func resquestData(refreshtype:RefreshType,complete:@escaping ()->Void){
+		self.openCloseState = false
+		if (self.isFetching) {
+			complete()
+			return
+		}
+
+		if refreshtype == RefreshType.topfresh {
+			self.pg = 1
+
+		}else{
+			self.pg += 1
+
+		}
+
+		KLHttpTool.requestNewOrderListwithUri("/api/AppSM/requestNewOrderList", withOrderclassify:String(self.tableviewTag + 1),withDivcode: "2", withpg:String(self.pg), withPagesize: "3", success: { (response) in
+			let res:NSDictionary = (response as? NSDictionary)!
+			
+			let status:String = (res.object(forKey: "status") as! String)
+			self.isFetching = false
+
+			if status == "1" {
+				let tempdata:NSArray = res.object(forKey: "data") as! NSArray
+				if refreshtype == RefreshType.topfresh{
+
+					self.allData = NSMutableArray(array:tempdata)
+				}else{
+					
+ 					self.allData.addObjects(from: tempdata as! [Any])
+				}
+				for _ in self.allData {
+					self.stateData.add(false)
+				}
+				self.tabview.reloadData()
+
+			}
+			complete()
+
+
+		}) { (err) in
+			complete()
+
+		}
+
+	}
+
+	
 	
 }
 extension OrderSegmentView:UITableViewDelegate,UITableViewDataSource{
@@ -102,16 +144,16 @@ extension OrderSegmentView:UITableViewDelegate,UITableViewDataSource{
 		self.tabview .estimatedSectionFooterHeight = 0
 		self.tabview .estimatedSectionHeaderHeight = 0
 		self.tabview.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
-//			self.resquestData(refreshtype: RefreshType.topfresh,categoryId:self.categoryid, complete: {
-//				self.tableview.mj_header.endRefreshing()
-//				self.tableview.mj_footer.resetNoMoreData()
-//
-//			})
+			self.resquestData(refreshtype: RefreshType.topfresh , complete: {
+				self.tabview.mj_header.endRefreshing()
+				self.tabview.mj_footer.resetNoMoreData()
+
+			})
 		})
 		self.tabview.mj_footer = MJRefreshAutoFooter.init(refreshingBlock: {
-//			self.resquestData(refreshtype: RefreshType.loadmore,categoryId:self.categoryid, complete: {
-//				self.tableview.mj_footer.endRefreshing()
-//			})
+			self.resquestData(refreshtype: RefreshType.loadmore, complete: {
+				self.tabview.mj_footer.endRefreshing()
+			})
 		})
 		self.addSubview(self.tabview)
 		self.tabview.snp.makeConstraints { (make) in
@@ -135,7 +177,16 @@ extension OrderSegmentView:UITableViewDelegate,UITableViewDataSource{
 			self.stateData.replaceObject(at: indexPath.row, with: openState)
 			tableView.reloadRows(at: [indexPath], with: .none)
  		}
-		orderView.getData(dic:(self.allData.object(at: indexPath.row) as! NSDictionary))
+		orderView.acceptPopView.submitAcceptSuccessMap = {[weak self](index:Int)->Void in
+//			self?.resquestData(refreshtype: RefreshType.topfresh, complete: {
+//				self?.tabview.mj_header.endRefreshing()
+//				self?.tabview.mj_footer.resetNoMoreData()
+//
+//			})
+			self?.submitAcceptSuccessMap1(index)
+			
+		}
+		orderView.getData(dic:(self.allData.object(at: indexPath.row) as! NSDictionary) ,index:self.tableviewTag)
 		orderView.getState(state:self.openCloseState)
  		cell.contentView.addSubview(orderView)
 		orderView.snp.makeConstraints { (make) in
@@ -144,17 +195,7 @@ extension OrderSegmentView:UITableViewDelegate,UITableViewDataSource{
 			make.bottom.equalToSuperview()
 
 		}
-		
-		if indexPath.row == 2 {
-			
-			let yinImg:UIImageView = UIImageView(image: UIImage(named: "img_cancle_order"))
-			orderView.addSubview(yinImg)
-			yinImg.snp.makeConstraints { (make) in
-				make.right.equalToSuperview().offset(-10)
-				make.top.equalToSuperview().offset(5)
-				make.width.height.equalTo(90)
-			}
-		}
+ 
 		return cell
 	}
 	
@@ -164,10 +205,10 @@ extension OrderSegmentView:UITableViewDelegate,UITableViewDataSource{
 		let count:Int = orderData.count
 		let state:Bool = (self.stateData.object(at: indexPath.row) as! Bool)
 		if state {
-			return (CGFloat(290 + count*40))
+			return (CGFloat(((self.tableviewTag == 2) ? 230 : 290) + count*40))
 		}else{
 			
-			return 290
+			return (self.tableviewTag == 2) ? 230 : 290
 		}
 	}
 	

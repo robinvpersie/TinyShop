@@ -43,7 +43,7 @@ class OrderManagerViewController: MyStoreBaseViewController {
 		self.navigationItem.title = "订单管理".localized
 
 		self.dataHead = DataStatisticsHeadView()
-		self.dataHead?.getTitles(array:["新订单".localized,"已接单".localized,"已完成".localized])
+		self.dataHead?.getTitles(array:["新订单".localized,"已接单".localized,"已处理".localized])
 		self.dataHead?.clickHeadIndexMap = {[weak self](index:Int)->Void in
 			
 			let indexPath = IndexPath(row: index, section: 0)
@@ -74,8 +74,14 @@ extension OrderManagerViewController: UICollectionViewDelegate,UICollectionViewD
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "parcelviewcell", for: indexPath)
 		let dataCell:OrderSegmentView = OrderSegmentView()
-		dataCell.getTag(tag: indexPath.section)
-		cell.contentView.addSubview(dataCell)
+		dataCell.getTag(tag: indexPath.row)
+		dataCell.submitAcceptSuccessMap1 = {(index:Int)->Void in
+			self.dataHead?.transferIndex(index: index+1)
+ 			let indexPath = IndexPath(row: index+1, section: 0)
+			self.bottomCollectView?.scrollToItem(at: indexPath, at: .left, animated: false)
+ 
+		}
+ 		cell.contentView.addSubview(dataCell)
 		dataCell.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()
 		}

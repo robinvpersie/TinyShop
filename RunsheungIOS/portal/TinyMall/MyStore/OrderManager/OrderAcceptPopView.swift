@@ -11,16 +11,23 @@ import UIKit
 
 class OrderAcceptPopView: UIView {
 	var maskview:UIImageView = UIImageView()
+	var index:Int = 0
+	
+	var submitAcceptSuccessMap:(Int)->Void = {(index:Int)->Void in}
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		createSuv()
 
 	}
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	@objc public func getTag(tag:Int){
+		self.index = tag
+		createSuv()
+
+	}
 	private func createSuv(){
 		self.backgroundColor = UIColor.white
 		self.layer.cornerRadius = 5
@@ -51,7 +58,6 @@ class OrderAcceptPopView: UIView {
 		}
 		
 		let titlsState:UILabel = UILabel()
-		titlsState.text = "接单成功!".localized
 		showState.addSubview(titlsState)
 		titlsState.snp.makeConstraints { (make) in
 			make.top.equalTo(icon.snp.bottom)
@@ -59,6 +65,24 @@ class OrderAcceptPopView: UIView {
 			make.centerX.equalTo(showState.snp.centerX)
 		}
 		
+		switch self.index {
+		case 0:
+			do{
+				titlsState.text = "接单成功!".localized
+				icon.image = #imageLiteral(resourceName: "icon_succeeds_order")
+
+			}
+			break
+		case 1:
+			do{
+				titlsState.text = "商品已全部打包开始派送！".localized
+ 				icon.image = #imageLiteral(resourceName: "img_delivery_success")
+			}
+			break
+
+		default:
+			break
+		}
 		
 		let okbtn:UIButton = UIButton()
 		okbtn.setTitle("确定".localized, for: .normal)
@@ -78,8 +102,9 @@ class OrderAcceptPopView: UIView {
 extension OrderAcceptPopView{
 	
  	@objc private func sumbit(tag:Int){
+		self.submitAcceptSuccessMap(self.index)
 		self.hidden()
- 
+
 	}
 	@objc private func cancelAction(){
 		self.hidden()

@@ -962,7 +962,8 @@
  @param failure 失败回调
  */
 + (void)requestNewOrderListwithUri:(NSString*)uri
-					   withDivcode:(NSString*)div_code
+				 withOrderclassify:(NSString*)orderclassify
+ 					   withDivcode:(NSString*)div_code
 							withpg:(NSString*)pg
 					  withPagesize:(NSString*)pagesize
 						   success:(void (^)(id response))success
@@ -992,4 +993,16 @@
 						  withassess_id:(NSString*)assess_id
 							   success:(void (^)(id response))success
 							   failure:(void (^)(NSError *err))failure;
+
+/**
+ 点击订单管理上的相关按钮按钮触发
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestOrderTakewithUri:(NSString*)uri
+				  withorder_num:(NSString*)order_num
+					 withstatus:(NSString*)status
+						success:(void (^)(id response))success
+						failure:(void (^)(NSError *err))failure;
 @end

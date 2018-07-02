@@ -148,8 +148,7 @@ extension DataStatisticsHeadView: UICollectionViewDelegate,UICollectionViewDataS
 			self.bottomline?.transform = CGAffineTransform(translationX:CGFloat(singleWidth), y: 0)
 			
 		}
-//		self.clickHeadIndexMap(sender.tag)
-		
+ 
 	}
 
 	

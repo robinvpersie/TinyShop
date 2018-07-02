@@ -14,10 +14,10 @@ class OrderCellTableView: UIView {
 	var data:NSArray = NSArray()
 	var dic:NSDictionary?
 	var openState:Bool = false
-	var acceptPopView:OrderAcceptPopView?
-
-	@objc public var clickStateMap:(Bool)->Void = { (openState:Bool) in }
-	
+	var acceptPopView:OrderAcceptPopView = OrderAcceptPopView()
+	var index:Int = 0
+ 	@objc public var clickStateMap:(Bool)->Void = { (openState:Bool) in }
+ 
 	var label:(CGFloat,UIColor,String)->UILabel = {(fontSize:CGFloat,textColor:UIColor,textContent:String)->UILabel in
 		let labels:UILabel = UILabel()
 		labels.font = UIFont.systemFont(ofSize: fontSize)
@@ -84,21 +84,46 @@ class OrderCellTableView: UIView {
 		self.tabview.reloadSections(indexset as IndexSet, with: .none)
 		
 	}
-	@objc public func getData(dic:NSDictionary){
+	@objc public func getData(dic:NSDictionary,index:Int){
 		self.dic = dic
+		self.index = index
 		self.data = dic.object(forKey: "dataitem") as! NSArray
 		self.tabview.reloadData()
 	}
 	@objc private func acceptAction(sender:UIButton){
-		sender.isSelected = !sender.isSelected
-		self.acceptPopView = OrderAcceptPopView()
-		UIApplication.shared.delegate?.window??.addSubview(self.acceptPopView!)
+		
+		var status:String = "0"
+		switch sender.tag {
+		case 0:
+ 			status = "3"
+  			break
+		case 101:
+			status = "4"
+			break
+		case 1:
+			status = "31"
+			break
+ 		default:
+			break
+		}
+ 
+		KLHttpTool.requestOrderTakewithUri("/api/AppSM/requestOrderTake", withorder_num: self.dic?.object(forKey: "order_num") as! String, withstatus:status, success: { (response) in
+			let res:NSDictionary = (response as? NSDictionary)!
+			let status:String = (res.object(forKey: "status") as! String)
+			if status == "1" {
+		
+				self.acceptPopView.getTag(tag: sender.tag)
+				UIApplication.shared.delegate?.window??.addSubview(self.acceptPopView)
+				self.acceptPopView.snp.makeConstraints({ (make) in
+							make.center.equalToSuperview()
+							make.width.equalTo(screenWidth - 60)
+							make.height.equalTo(screenHeight/4)
+						})
+					}
 
-		self.acceptPopView?.snp.makeConstraints({ (make) in
-			make.center.equalToSuperview()
-			make.width.equalTo(screenWidth - 60)
-			make.height.equalTo(screenHeight/4)
-		})
+		}) { (error) in
+
+		}
 	}
 	
 }
@@ -166,7 +191,8 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 					make.left.equalToSuperview().offset(10)
 					make.top.equalTo(namelabel.snp.bottom).offset(10)
 					make.height.equalTo(20)
-					
+					make.right.equalToSuperview().offset(-10)
+
 				}
 
 				
@@ -259,29 +285,58 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 					
 				}
 				
-				let cancelBtn:UIButton = self.button(15.0,UIColor(red: 160, green: 160, blue: 160),"取消订单".localized,UIColor(red: 242, green: 242, blue: 242))
-				cell.contentView.addSubview(cancelBtn)
-				cancelBtn.snp.makeConstraints { (make) in
-					make.left.equalTo(15)
-					make.top.equalTo(orderTimelabel.snp.bottom).offset(10)
-					make.height.equalTo(50)
-					make.right.equalTo(cell.contentView.snp.centerX).offset(-5)
-				}
-				let onlineorderstatus:String = self.dic?.object(forKey: "online_order_status") as! String
+				if self.index == 0 {
+					let cancelBtn:UIButton = self.button(15.0,UIColor(red: 160, green: 160, blue: 160),"取消订单".localized,UIColor(red: 242, green: 242, blue: 242))
+					cancelBtn.tag = 101
+ 					cancelBtn.addTarget(self, action: #selector(acceptAction), for: .touchUpInside)
+ 					cell.contentView.addSubview(cancelBtn)
+					cancelBtn.snp.makeConstraints { (make) in
+						make.left.equalTo(15)
+						make.top.equalTo(orderTimelabel.snp.bottom).offset(10)
+						make.height.equalTo(50)
+						make.right.equalTo(cell.contentView.snp.centerX).offset(-5)
+					}
+					
+					let alreadyBtn:UIButton = self.button(15.0,UIColor.white,"接单".localized,UIColor(red: 33, green: 192, blue: 67))
+					alreadyBtn.setTitle("已接单".localized, for: .selected)
+					alreadyBtn.tag = self.index
+ 					alreadyBtn.addTarget(self, action: #selector(acceptAction), for: .touchUpInside)
+					cell.contentView.addSubview(alreadyBtn)
+					alreadyBtn.snp.makeConstraints { (make) in
+						make.right.equalTo(-15)
+						make.top.equalTo(cancelBtn.snp.top)
+						make.height.equalTo(50)
+						make.left.equalTo(cell.contentView.snp.centerX).offset(5)
+					}
 
-				let alreadyBtn:UIButton = self.button(15.0,UIColor.white,"接单".localized,UIColor(red: 33, green: 192, blue: 67))
-				alreadyBtn.setTitle("已接单".localized, for: .selected)
-				alreadyBtn.addTarget(self, action: #selector(acceptAction), for: .touchUpInside)
-				cell.contentView.addSubview(alreadyBtn)
-				alreadyBtn.snp.makeConstraints { (make) in
-					make.right.equalTo(-15)
-					make.top.equalTo(cancelBtn.snp.top)
-					make.height.equalTo(50)
-					make.left.equalTo(cell.contentView.snp.centerX).offset(5)
-				}
+				}else if self.index == 1 {
+					let okBtn:UIButton = self.button(15.0,UIColor.white,"确定发货".localized,UIColor(red: 33, green: 192, blue: 67))
+					okBtn.addTarget(self, action: #selector(acceptAction), for: .touchUpInside)
+ 					okBtn.tag = self.index
+					cell.contentView.addSubview(okBtn)
+					okBtn.snp.makeConstraints { (make) in
+						make.left.equalTo(15)
+						make.top.equalTo(orderTimelabel.snp.bottom).offset(10)
+						make.height.equalTo(50)
+						make.right.equalToSuperview().offset(-15)
+					}
 
-				
-			}
+				}else if self.index == 2 {
+ 					let statusBtn:UILabel = self.label(12.0,UIColor(red: 190, green: 190, blue: 190),"已处理".localized)
+					statusBtn.textAlignment = .center
+					statusBtn.layer.cornerRadius = 3
+					statusBtn.layer.masksToBounds = true
+					statusBtn.layer.borderColor = UIColor(red: 190, green: 190, blue: 190).cgColor
+					statusBtn.layer.borderWidth = 1
+					cell.contentView.addSubview(statusBtn)
+					statusBtn.snp.makeConstraints { (make) in
+						make.right.equalToSuperview().offset(-10)
+						make.centerY.equalTo(orderTimelabel.snp.centerY)
+ 						make.height.equalTo(20)
+						make.width.equalTo(50)
+					}
+				}
+ 			}
 			break
 
 		default:
@@ -296,9 +351,8 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 		case 0:
 			return 80
 		case 3:
-			return 120
-
-		default:
+			return ((self.index == 2) ? 60 : 120)
+ 		default:
 			return 40
 		}
 	}
