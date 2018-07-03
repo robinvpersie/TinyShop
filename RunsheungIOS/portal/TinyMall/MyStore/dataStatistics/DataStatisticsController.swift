@@ -13,6 +13,7 @@ class DataStatisticsController: MyStoreBaseViewController {
 	var dataHead:DataStatisticsHeadView?
 	var bottomCollectView:UICollectionView?
 	var datepicker:DataStatisticsDatePicker?
+	var forthCellTableview:DataStatisticsCellTableView?
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.initUI()
@@ -62,8 +63,7 @@ class DataStatisticsController: MyStoreBaseViewController {
 		})
 		
 		self.bottomCollectView = self.mapCollectionview(self, self.dataHead!)
-//		self.view.addSubview(self.bottomCollectView!)
-		
+ 
 	}
     
 	
@@ -71,7 +71,9 @@ class DataStatisticsController: MyStoreBaseViewController {
 		
 		self.datepicker = DataStatisticsDatePicker()
 		self.datepicker?.choicePickerMap = { (picker1Value:String,picker2Value:String)->Void in
-		    let indexPath = IndexPath(row: index, section: 0)
+			
+			self.forthCellTableview?.forthCellTableViewMap(picker1Value as NSString,picker2Value as NSString)
+ 		    let indexPath = IndexPath(row: index, section: 0)
 		    self.bottomCollectView?.scrollToItem(at: indexPath, at: .left, animated: false)
 			print(picker1Value,picker2Value)
 		
@@ -110,8 +112,9 @@ extension DataStatisticsController: UICollectionViewDelegate,UICollectionViewDat
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "parcelviewcell", for: indexPath)
 		let dataCell:DataStatisticsCellTableView = DataStatisticsCellTableView()
+		self.forthCellTableview = dataCell
 		dataCell.tag = indexPath.row
-		dataCell.getData(type:indexPath.row)
+ 		dataCell.getData(type:indexPath.row)
 		cell.contentView.addSubview(dataCell)
 		dataCell.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()

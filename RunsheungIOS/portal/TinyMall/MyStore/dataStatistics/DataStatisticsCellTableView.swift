@@ -9,12 +9,17 @@
 import UIKit
 
 class DataStatisticsCellTableView: UIView {
-	
-	var tableview:UITableView = UITableView()
+	enum RefreshType: Int {
+		case topfresh
+		case loadmore
+	}
+	var pg:Int = 1
+	var isFetching:Bool = false
+ 	var tableview:UITableView = UITableView()
 	var data:NSArray = ["今日".localized,"本周".localized,"本月".localized,"期间".localized]
 	var requesData:NSMutableArray = NSMutableArray()
 	var tableHeadView:DataStatisticCellHeadView?
-
+	var forthCellTableViewMap:(NSString,NSString)->Void = {(fromday:NSString,endday:NSString) in }
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		createSuv()
@@ -26,46 +31,93 @@ class DataStatisticsCellTableView: UIView {
 	
 	private func createSuv(){
 		createTableView()
-		
-	}
+		self.forthCellTableViewMap = {(fromday:NSString,endday:NSString) in
+			self.tableview.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
+				self.resquestData(refreshtype: RefreshType.topfresh,type:4,startDay:fromday,endDay:endday , complete: {
+					self.tableview.mj_header.endRefreshing()
+					self.tableview.mj_footer.resetNoMoreData()
+					
+				})
+			})
+			self.tableview.mj_footer = MJRefreshAutoFooter.init(refreshingBlock: {
+				self.resquestData(refreshtype: RefreshType.loadmore,type:4,startDay:fromday,endDay:endday , complete: {
+					self.tableview.mj_footer.endRefreshing()
+				})
+			})
+			self.tableview.mj_header.beginRefreshing()
+
+			self.tableview.mj_header.beginRefreshing()
+ 		}
+ 	}
 	
 	@objc public func getData(type:Int){
-		switch type {
-		case 0:
-			do {
-			
-				KLHttpTool.getGoodManagerSalesDailyListwithUri("sales/querySalesDailyList", withsDate: "2017-01-26", witheDate: "2018-05-26", withpage: "1", success: { (response) in
-					let res:NSDictionary = (response as? NSDictionary)!
-					let status:Int = (res.object(forKey: "status") as! Int)
-					if status == 1 {
-						self.requesData = NSMutableArray(array: res.object(forKey: "data") as! NSArray)
-						self.tableview.reloadData()
-					}
-				}) { (error) in
+ 		if type < 3 {
  
-				}
- 			}
-		case 1:
-			do {
-				KLHttpTool.getGoodManagerSalesMonthListwithUri("sales/querySalesMonthList", withiYear: "2017", withpage: "1", success: { (response) in
-					let res:NSDictionary = (response as? NSDictionary)!
-					let status:Int = (res.object(forKey: "status") as! Int)
-					if status == 1 {
-						self.requesData = NSMutableArray(array: res.object(forKey: "data") as! NSArray)
-						self.tableview.reloadData()
-					}
-
-				}) { (error) in
+			self.tableview.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
+				self.resquestData(refreshtype: RefreshType.topfresh,type:type + 1,startDay:"",endDay:"" , complete: {
+					self.tableview.mj_header.endRefreshing()
+					self.tableview.mj_footer.resetNoMoreData()
 					
+				})
+			})
+			self.tableview.mj_footer = MJRefreshAutoFooter.init(refreshingBlock: {
+				self.resquestData(refreshtype: RefreshType.loadmore,type:type + 1,startDay:"",endDay:"" , complete: {
+					self.tableview.mj_footer.endRefreshing()
+				})
+			})
+			self.tableview.mj_header.beginRefreshing()
+
+  		}
+	
+ 
+	}
+	
+	
+	
+	private func resquestData(refreshtype:RefreshType,type:Int,startDay:NSString,endDay:NSString,complete:@escaping ()->Void){
+ 
+		if (self.isFetching) {
+			complete()
+			return
+		}
+ 
+		if refreshtype == RefreshType.topfresh {
+			self.pg = 1
+			
+		}else{
+			self.pg += 1
+			
+		}
+		
+		KLHttpTool.requestOrderSalesReportwithUri("/api/AppSM/requestOrderSalesReport", withpg: "1", withPeriodclassify: String(type), witheFromday: startDay as String?, withToday: endDay as String?, withPagesize: "5", success: { (response) in
+			let res:NSDictionary = (response as? NSDictionary)!
+ 			let status:String = (res.object(forKey: "status") as! String)
+			self.isFetching = false
+ 			if status == "1" {
+				self.tableHeadView?.showData(dic: res)
+				let tempdata:NSArray = res.object(forKey: "data") as! NSArray
+				if refreshtype == RefreshType.topfresh{
+					
+					self.requesData = NSMutableArray(array:tempdata)
+				}else{
+					
+					self.requesData.addObjects(from: tempdata as! [Any])
 				}
+ 				self.tableview.reloadData()
+				
 			}
-
-
-		default:
-			break
+			complete()
+			
+			
+		}) { (err) in
+			complete()
+			
 		}
 		
 	}
+
+	
+
 	private func createTableView(){
 		
 		self.tableview.dataSource = self
@@ -77,9 +129,11 @@ class DataStatisticsCellTableView: UIView {
 		self.tableview.separatorColor = UIColor.white
 		self.tableview.register(UINib(nibName: "DataSingleOrderCell", bundle: nil), forCellReuseIdentifier: "cell_id")
 		self.addSubview(self.tableview)
+ 
 		self.tableview.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()
 		}
+		
 		self.tableHeadView = DataStatisticCellHeadView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenWidth/4.0 + 70))
 		self.tableview.tableHeaderView = self.tableHeadView
 		

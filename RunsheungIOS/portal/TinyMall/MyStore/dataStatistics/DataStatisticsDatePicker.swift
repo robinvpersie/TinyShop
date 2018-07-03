@@ -119,26 +119,21 @@ class DataStatisticsDatePicker: UIView {
 
 		return datepicker
 	}
-	
-
-}
-extension DataStatisticsDatePicker:UIPickerViewDelegate{
-
-}
+ }
 
 extension DataStatisticsDatePicker{
 	@objc func dateChanged(datePicker : UIDatePicker){
 	}
 	
 	@objc private func sumbit(){
-		self.hidden()
 		
 		let formatter = DateFormatter()
-		formatter.dateFormat = "yyyy年MM月dd日"
+		formatter.dateFormat = "yyyyMMdd"
 		let picker1time:String = (formatter.string(from: (self.datePicker1?.date)!))
 		let picker2time:String = (formatter.string(from: (self.datePicker2?.date)!))
+ 		self.choicePickerMap(picker1time, picker2time)
+		self.hidden()
 
-		self.choicePickerMap(picker1time, picker2time)
 	}
 	@objc private func cancelAction(){
 		self.hidden()

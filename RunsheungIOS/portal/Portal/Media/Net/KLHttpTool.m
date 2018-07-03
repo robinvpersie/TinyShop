@@ -4005,82 +4005,6 @@
 }
 
 
-
-/**
- 获取数据统计按日查询
- 
- @param uri url
- @param success 成功回调
- @param failure 失败回调
- */
-+ (void)getGoodManagerSalesDailyListwithUri:(NSString*)uri
-							  withsDate:(NSString*)sDate
-							  witheDate:(NSString*)eDate
-							  withpage:(NSString*)page
-								 success:(void (^)(id response))success
-								 failure:(void (^)(NSError *err))failure{
-	
-	
-	YCAccountModel *account = [YCAccountModel getAccount];
-	NSString* custom_code = account.customCode.length?account.customCode:@"";
-	NSString* token = account.combineToken.length?account.combineToken:@"";
-	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
-	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
-	NSString *pageSize = @"7";
-	
-	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,sDate,pageSize,eDate,page,custom_code,token).mutableCopy;
-	
-	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-		NSLog(@"%@",response);
-		if (success) {
-			success(response);
-		}
-	} failure:^(NSError *err) {
-		NSLog(@"%@",err);
-		failure(err);
-	}];
-}
-
-/**
- 获取数据统计按月查询
- 
- @param uri url
- @param success 成功回调
- @param failure 失败回调
- */
-+ (void)getGoodManagerSalesMonthListwithUri:(NSString*)uri
-								  withiYear:(NSString*)iYear
-								   withpage:(NSString*)page
-									success:(void (^)(id response))success
-									failure:(void (^)(NSError *err))failure{
-	
-	
-	YCAccountModel *account = [YCAccountModel getAccount];
-	NSString* custom_code = account.customCode.length?account.customCode:@"";
-	NSString* token = account.combineToken.length?account.combineToken:@"";
-	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
-	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
-	NSString *pageSize = @"7";
-	
-	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,pageSize,iYear,page,custom_code,token).mutableCopy;
-	
-	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
-		NSLog(@"%@",response);
-		if (success) {
-			success(response);
-		}
-	} failure:^(NSError *err) {
-		NSLog(@"%@",err);
-		failure(err);
-	}];
-}
-
-
-
 /**
  上传商品的logo图片
 
@@ -4351,6 +4275,43 @@
 	
 }
 
+/**
+ 获取数据统查询
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestOrderSalesReportwithUri:(NSString*)uri
+							 withpg:(NSString *)pg
+				 withPeriodclassify:(NSString*)periodclassify
+					   witheFromday:(NSString*)fromday
+						  withToday:(NSString*)today
+					   withPagesize:(NSString*)pagesize
+							success:(void (^)(id response))success
+							failure:(void (^)(NSError *err))failure{
+
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
+	NSString * lang_type = @"kor";
+	custom_code = MystoreTestCustom_Code;
+	token = MystoreTestToken;
+	
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,fromday,periodclassify,pg,today,pagesize,custom_code,token).mutableCopy;
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+}
 
 
 @end

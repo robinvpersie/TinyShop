@@ -884,33 +884,8 @@
 							withgroupID:(NSString*)groupid
 								success:(void (^)(id response))success
 								failure:(void (^)(NSError *err))failure;
-/**
- 获取数据统计按日查询
- 
- @param uri url
- @param success 成功回调
- @param failure 失败回调
- */
-+ (void)getGoodManagerSalesDailyListwithUri:(NSString*)uri
-								  withsDate:(NSString*)sDate
-								  witheDate:(NSString*)eDate
-								   withpage:(NSString*)page
-									success:(void (^)(id response))success
-									failure:(void (^)(NSError *err))failure;
 
-/**
- 获取数据统计按月查询
- 
- @param uri url
- @param success 成功回调
- @param failure 失败回调
- */
-+ (void)getGoodManagerSalesMonthListwithUri:(NSString*)uri
-								  withiYear:(NSString*)iYear
- 								   withpage:(NSString*)page
-									success:(void (^)(id response))success
-									failure:(void (^)(NSError *err))failure;
-/**
+ /**
  上传商品的logo图片
  
  @param url url
@@ -1005,4 +980,20 @@
 					 withstatus:(NSString*)status
 						success:(void (^)(id response))success
 						failure:(void (^)(NSError *err))failure;
+
+/**
+ 获取数据统查询
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestOrderSalesReportwithUri:(NSString*)uri
+							 withpg:(NSString *)pg
+				 withPeriodclassify:(NSString*)periodclassify
+					   witheFromday:(NSString*)fromday
+						  withToday:(NSString*)today
+					   withPagesize:(NSString*)pagesize
+							success:(void (^)(id response))success
+							failure:(void (^)(NSError *err))failure;
 @end

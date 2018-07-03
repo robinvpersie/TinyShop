@@ -30,12 +30,20 @@ class DataSingleOrderCell: UITableViewCell {
 
 	@objc public func getDic(dic:NSDictionary){
 		
-//		let num:String = dic.object(forKey: "A_NUM") as! String
-//		let itemP:String = dic.object(forKey: "tot_itemP") as! String
-//		let time:String = dic.object(forKey: "sale_date") as! String
-//		self.orderMoney.text = "订单金额：￥" + itemP
-//		self.orderNOmark.text = "#" + num
-//		self.orderTime.text = "下单时间：" + time
+		let num:String = dic.object(forKey: "list_num") as! String
+		let itemP:String = dic.object(forKey: "tot_amt") as! String
+		let time:String = dic.object(forKey: "create_date") as! String
+		let ordernum:String = dic.object(forKey: "order_num") as! String
+		let mobilep:String = dic.object(forKey: "mobilepho") as! String
+		let orderstatus:String = dic.object(forKey: "order_status") as! String
+
+		self.orderMoney.text = "订单金额：￥" + itemP
+		self.orderNOmark.text = "#" + num
+		self.orderTime.text = "下单时间：" + time
+		self.orderNO.text = "订单号：" + ordernum
+		self.orderPhone.text = "手机号码：" + mobilep
+		self.orderState.text = "订单状态：" + orderstatus
+
 		
 
 	}

@@ -13,7 +13,7 @@ class DataStatisticCellHeadView: UIView {
 	var iconArray:NSArray = ["icon_turnover_data","icon_order_data","icon_refund_data","icon_refund_order_data"]
 	var titleArray:NSArray = ["营业额(元)".localized,"总订单(单)".localized,"退款额(元)".localized,"退款订单(单)".localized]
 	var data:NSArray = ["今日".localized,"本周".localized,"本月".localized,"自定义".localized]
-
+	var showValues:NSMutableArray = NSMutableArray()
 	let mapCollectionview = { (selfDelegate:UIView) -> UICollectionView in
 		
 		let layout = UICollectionViewFlowLayout();
@@ -47,7 +47,15 @@ class DataStatisticCellHeadView: UIView {
 	@objc public func getTitle(text:String){
 		createSuv(text: text)
 	}
-	
+	@objc public func showData(dic:NSDictionary){
+		let str1:String = dic.object(forKey: "sale_order_o") as! String
+		let str2:String = dic.object(forKey: "tot_cnt") as! String
+		let str3:String = dic.object(forKey: "return_order_o") as! String
+		let str4:String = dic.object(forKey: "return_cnt") as! String
+ 		self.showValues.addObjects(from: [str1,str2,str3,str4])
+ 		self.collectView?.reloadData()
+	}
+
 	private func createSuv(text:String){
 		
 		let bgview:UIView = UIView()
@@ -81,7 +89,7 @@ class DataStatisticCellHeadView: UIView {
 extension DataStatisticCellHeadView: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 4
+		return self.showValues.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -95,7 +103,8 @@ extension DataStatisticCellHeadView: UICollectionViewDelegate,UICollectionViewDa
 			make.centerX.equalToSuperview()
 		}
 		
-		let money:UILabel = self.label(18.0,UIColor.black,"34")
+		let str:String = self.showValues[indexPath.row] as! String
+		let money:UILabel = self.label(18.0,UIColor.black,str)
 		money.textAlignment = .center
 		cell.contentView.addSubview(money)
 		money.snp.makeConstraints { (make) in
