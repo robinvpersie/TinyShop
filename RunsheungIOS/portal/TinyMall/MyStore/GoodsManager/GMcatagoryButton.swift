@@ -200,13 +200,17 @@ extension GMcatagoryButton:UITableViewDelegate,UITableViewDataSource{
 		
 	}
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if indexPath.row != 0 {
+		
+		if (self.addOneState && (indexPath.row == self.data.count)) || (indexPath.row == 0) {
+			
+		} else {
+			
 			let dic:NSDictionary = self.data[indexPath.row - 1] as! NSDictionary
 			self.clickOneClassMap(dic)
 			hidePopTableView()
-
-		}
+  		}
 	}
+	
 	@objc private func cellAction(sender:UIButton){
 		if sender.tag != 0 {//修改分类
 			let okbar:UIButton = self.popView?.viewWithTag(sender.tag+100) as! UIButton

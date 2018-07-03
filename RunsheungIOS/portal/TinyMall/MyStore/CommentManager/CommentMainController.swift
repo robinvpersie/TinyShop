@@ -25,15 +25,12 @@ class CommentMainController: MyStoreBaseViewController {
 	
  	private func createSuvs(){
 		self.view.addSubview(self.commentTop)
-		
-		
-		self.commentTop.snp.makeConstraints { (make) in
+ 		self.commentTop.snp.makeConstraints { (make) in
 			make.top.left.right.equalToSuperview()
 			make.height.equalTo( screenWidth / 2)
 		}
 	
 		self.dataHead = DataStatisticsHeadView()
- 		self.dataHead?.getTitles(array:["全部(".localized+"234"+")","差评(".localized+"13"+")","未读(".localized+"23"+")"])
 		self.dataHead?.clickHeadIndexMap = {[weak self](index:Int)->Void in
 			
 			let indexPath = IndexPath(row: index, section: 0)
@@ -46,8 +43,7 @@ class CommentMainController: MyStoreBaseViewController {
 			make.top.equalTo(self.commentTop.snp.bottom)
 			make.height.equalTo(50)
 		})
-		
-		self.createCollectionView()
+ 		self.createCollectionView()
 
 	}
 	
@@ -86,9 +82,21 @@ extension CommentMainController: UICollectionViewDelegate,UICollectionViewDataSo
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ID", for: indexPath)
 		let dataCell:CommentCellTableView = CommentCellTableView()
-		dataCell.requestFinishMap = {(dic:NSDictionary ) in
-			self.commentTop.getDic(dic: dic )
+		if indexPath.row == 0 {
+			dataCell.requestFinishMap = {(dic:NSDictionary ) in
+				self.commentTop.getDic(dic: dic )
+				
+				let allcount:String = dic.object(forKey: "assess_cnt") as! String
+				let notRead:String = dic.object(forKey: "not_conf") as! String
+ 				let starStr1:String = dic.object(forKey: "rating1") as! String
+				let starInt1:Int = Int(starStr1)!
+				let starStr2:String = dic.object(forKey: "rating2") as! String
+				let starInt2:Int = Int(starStr2)!
+				let badstr:String = String(starInt1 + starInt2)
+  				self.dataHead?.getTitles(array:["全部(".localized+allcount+")","差评(".localized+badstr+")","未读(".localized+notRead+")"])
+ 			}
 		}
+		
 		dataCell.getSection(section:indexPath.row)
 		dataCell.tag = indexPath.row
 		cell.contentView.addSubview(dataCell)

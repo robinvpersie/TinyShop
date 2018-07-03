@@ -46,8 +46,7 @@ class DataStatisticsCellTableView: UIView {
 			})
 			self.tableview.mj_header.beginRefreshing()
 
-			self.tableview.mj_header.beginRefreshing()
- 		}
+  		}
  	}
 	
 	@objc public func getData(type:Int){
@@ -73,8 +72,7 @@ class DataStatisticsCellTableView: UIView {
 	}
 	
 	
-	
-	private func resquestData(refreshtype:RefreshType,type:Int,startDay:NSString,endDay:NSString,complete:@escaping ()->Void){
+ 	private func resquestData(refreshtype:RefreshType,type:Int,startDay:NSString,endDay:NSString,complete:@escaping ()->Void){
  
 		if (self.isFetching) {
 			complete()

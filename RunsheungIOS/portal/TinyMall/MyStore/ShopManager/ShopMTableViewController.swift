@@ -12,7 +12,8 @@ class ShopMTableViewController: UITableViewController {
 	var data:NSArray = ["店铺头像".localized,"店铺名称".localized,"客服电话".localized,"店铺地址".localized]
 	var contents:NSArray = [""," "," "," "]
 	var infoDic:NSDictionary?
-	
+	let avator:UIImageView = UIImageView()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +51,7 @@ class ShopMTableViewController: UITableViewController {
 	}
  }
 
-extension ShopMTableViewController{
+extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerControllerDelegate{
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return self.data.count
@@ -67,8 +68,7 @@ extension ShopMTableViewController{
 		case 0:
 			do {
 				
-				let avator:UIImageView = UIImageView()
-				avator.layer.cornerRadius = 5
+ 				avator.layer.cornerRadius = 5
 				avator.layer.masksToBounds = true
 				avator.setImageWith(NSURL(string: self.contents.firstObject as! String)! as URL)
 				cell.contentView.addSubview(avator)
@@ -107,6 +107,67 @@ extension ShopMTableViewController{
 	
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		if indexPath.row == 0 {
+			let alert:UIAlertController = UIAlertController(title: "", message: "选择图片来源".localized, preferredStyle: .actionSheet)
+			let action = UIAlertAction(title:"相册".localized, style: .default) {[weak self](action)in
+				self?.openAlbumCamera()
+			}
+			let action1 = UIAlertAction(title:"照相".localized, style: .default) { [weak self](action)in
+				self?.openAlbumCamera()
+			}
+			let action2 = UIAlertAction(title:"取消".localized, style: .cancel, handler:nil)
+			alert.addAction(action)
+			alert.addAction(action1)
+			alert.addAction(action2)
+			self.present(alert, animated:true, completion: nil)
+		}
+	}
+	
+	private func openAlbumCamera(){
+		
+		if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+			
+			let picker = UIImagePickerController()
+			picker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
+			picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+			picker.allowsEditing = true
+			
+			self.present(picker, animated:true, completion: {() -> Void in
+				
+			})
+		}
+		
+		if UIImagePickerController.isSourceTypeAvailable(.camera){
+			
+			let picker = UIImagePickerController()
+			picker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
+			picker.sourceType = UIImagePickerControllerSourceType.camera
+			picker.allowsEditing = true
+			self.present(picker, animated:true, completion: { () -> Void in })
+			
+		}
+	}
+	
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+		let image = info[UIImagePickerControllerEditedImage] as! UIImage
+		picker.dismiss(animated: true, completion: { () -> Void in
+			self.avator.image = image
+			KLHttpTool.sendGoodLogoPicture(withUrl: "fileUp/postFile", with: image, success: { (response) in
+				let res:NSDictionary = (response as? NSDictionary)!
+				let status:Int = (res.object(forKey: "status") as! Int)
+				if status == 1 {
+//					let imageurls:NSArray = res.object(forKey: "data") as! NSArray
+//					self.imageurl = "http://gigaMerchantManager.gigawon.co.kr:8825/" + (imageurls.firstObject as! String)
+//					self.finishBaseData(self.imageurl!,(self.inputNameField?.text)!,(self.choiceView?.choicebtn.level_id)!)
+					
+				}
+				
+			}, failure: { (error) in
+				
+			})
+			
+			
+		})
 		
 	}
 

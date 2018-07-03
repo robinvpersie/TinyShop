@@ -74,7 +74,9 @@ class CommentRetTableCell: UITableViewCell {
 			}
 
 		}
-		self.merReturn?.getContent(s: salecontent)
+		
+		let regdate:String = self.dic?.object(forKey: "sale_reg_date") as! String
+		self.merReturn?.getContent(s: salecontent,date:regdate)
 		self.contentView.addSubview(self.merReturn!)
 		
 		let imageurl:String = self.dic?.object(forKey: "img_path") as! String

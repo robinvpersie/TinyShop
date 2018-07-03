@@ -59,7 +59,7 @@ class MyNewEditViewController: MyStoreBaseViewController {
 	@objc public func getData(dic:NSDictionary){
 		self.dic = dic
 		self.imageURL = self.dic!.object(forKey: "image_url") as? String
-		self.level = self.dic!.object(forKey: "level_name") as? String
+		self.level = self.dic!.object(forKey: "ITEM_LEVEL1") as? String
 		self.classname = self.dic!.object(forKey: "item_name") as? String
 		self.groupid =  self.dic!.object(forKey: "GroupId") as? String
 		
@@ -100,7 +100,7 @@ extension MyNewEditViewController{
 
 		self.byInfoView.finishData = {(da1:NSMutableArray,da2:NSMutableArray)->Void in
  
-			KLHttpTool.getGoodManagerAppendproductwithUri("product/updateproduct", withGroupid:self.groupid, withimageURL:self.imageURL, withcustom_item_code: self.dic?.object(forKey: "item_code") as! String, withcustom_item_name: self.classname , withcustom_item_spec: "1", withdom: "1", withitem_name: self.classname, withitem_level1: self.level, withprice:self.dic?.object(forKey: "item_p") as! String, withspec: da1 as! [Any], withFlavor: da2 as! [Any], success: { (response) in
+			KLHttpTool.getGoodManagerAppendproductwithUri("product/updateproduct", withGroupid:self.groupid, withimageURL:self.imageURL, withcustom_item_code: self.dic?.object(forKey: "item_code") as! String, withcustom_item_name: self.classname , withcustom_item_spec: "1", withdom: "1", withitem_name: self.classname, withitem_level1:"1", withprice:self.dic?.object(forKey: "item_p") as! String, withspec: da1 as! [Any], withFlavor: da2 as! [Any], success: { (response) in
 				
 				let res:NSDictionary = (response as? NSDictionary)!
 				let status:Int = (res.object(forKey: "status") as! Int)

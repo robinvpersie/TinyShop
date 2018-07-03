@@ -13,7 +13,7 @@ class CommentMerReturnView: UIView {
 	var returnFinishChnageMap:(String)->Void = {(changeContent:String)->Void in}
 
 	@objc public var comment:UITextView = UITextView()
-	
+	var time:UILabel = UILabel()
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		createSUV()
@@ -22,8 +22,9 @@ class CommentMerReturnView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	@objc public func getContent(s:String){
+	@objc public func getContent(s:String,date:String){
 		self.comment.text = s
+		self.time.text = date
 	}
 
 }
@@ -43,10 +44,8 @@ extension CommentMerReturnView{
 			make.height.equalTo(30)
 		}
 		
-		let time:UILabel = UILabel()
-		time.textColor = UIColor(red: 160, green: 160, blue: 160)
-		time.text = "2018-06-10 10:34"
-		time.font = UIFont.systemFont(ofSize: 14)
+ 		time.textColor = UIColor(red: 160, green: 160, blue: 160)
+ 		time.font = UIFont.systemFont(ofSize: 14)
 		self.addSubview(time)
 		time.snp.makeConstraints { (make) in
 			make.top.equalTo(10)

@@ -86,10 +86,9 @@ extension CommentTopView {
 		
 		
    		let starView:CommentStarView = CommentStarView()
-//		let starInt:CGFloat = CGFloat(stars)
-		starView.getStarValue(value:3.5, h: 14.0)
-
-  		self.leftView.addSubview(starView)
+		let starDouble:Double = Double(stars)!
+		starView.getStarValue(value:CGFloat(starDouble), h: 14.0)
+   		self.leftView.addSubview(starView)
 		starView.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview()
 			make.width.equalTo(90)

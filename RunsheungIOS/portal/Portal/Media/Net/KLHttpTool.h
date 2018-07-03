@@ -771,6 +771,17 @@
 
 #pragma mark -----------------------------------------------------我的商店--------------------------------------------------------------
 /**
+ 设置店铺状态
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestUpdateSalesStatuswithUri:(NSString*)uri
+							 withStatus:(NSString *)status
+								success:(void (^)(id response))success
+								failure:(void (^)(NSError *err))failure;
+/**
  获取我的商铺商品管理列表
  
  @param uri url
@@ -996,4 +1007,17 @@
 					   withPagesize:(NSString*)pagesize
 							success:(void (^)(id response))success
 							failure:(void (^)(NSError *err))failure;
+
+/**
+ 取消订单按钮触发
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestOrderCancelwithUri:(NSString*)uri
+					 withOrderNum:(NSString *)order_num
+				 withCustomerCode:(NSString *)customer_code
+						  success:(void (^)(id response))success
+						  failure:(void (^)(NSError *err))failure;
 @end

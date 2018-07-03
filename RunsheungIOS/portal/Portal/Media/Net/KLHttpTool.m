@@ -3654,6 +3654,40 @@
 
 #pragma mark -----------------------------------------------------我的商店--------------------------------------------------------------
 /**
+ 设置店铺状态
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestUpdateSalesStatuswithUri:(NSString*)uri
+							 withStatus:(NSString *)status
+								success:(void (^)(id response))success
+								failure:(void (^)(NSError *err))failure{
+	
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
+	NSString * lang_type = @"kor";
+	custom_code = MystoreTestCustom_Code;
+	token = MystoreTestToken;
+	
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,status,custom_code,token).mutableCopy;
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+}
+
+/**
  获取我的商铺商品管理列表
  
  @param uri url
@@ -4053,7 +4087,7 @@
  @param failure 失败回调
  */
 + (void)getGoodManagerAppendproductwithUri:(NSString*)uri
-							   withGroupid:(NSString*)groupid
+							   withGroupid:(NSString*)groupId
 							  withimageURL:(NSString*)Image_url
  					  withcustom_item_code:(NSString*)custom_item_code
 					  withcustom_item_name:(NSString*)custom_item_name
@@ -4073,13 +4107,13 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
-	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,Image_url,custom_item_code,groupid,custom_item_name,custom_item_spec,item_name,item_level1,price,dom,custom_code,token).mutableCopy;
-	[params setObject:spec forKey:@"spec"];
+	custom_code = @"01071390009abcde";
+	token = @"01071390009abcde64715017-0c81-4ef9-8b21-5e48c64cb455";
+	
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,Image_url,custom_item_code,groupId,custom_item_name,custom_item_spec,item_name,item_level1,price,dom,custom_code,token).mutableCopy;
+   	[params setObject:spec forKey:@"spec"];
 	[params setObject:Flavor forKey:@"Flavor"];
-	
-	
+ 
 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
 		NSLog(@"%@",response);
 		if (success) {
@@ -4312,6 +4346,39 @@
 		failure(err);
 	}];
 }
+
+/**
+ 取消订单按钮触发
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestOrderCancelwithUri:(NSString*)uri
+ 					 withOrderNum:(NSString *)order_num
+ 				 withCustomerCode:(NSString *)customer_code
+ 						  success:(void (^)(id response))success
+ 						  failure:(void (^)(NSError *err))failure{
+	
+ 	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
+	NSString * lang_type = @"kor";
+	custom_code = MystoreTestCustom_Code;
+	token = MystoreTestToken;
+ 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,order_num,customer_code,custom_code,token).mutableCopy;
+ 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+}
+
 
 
 @end

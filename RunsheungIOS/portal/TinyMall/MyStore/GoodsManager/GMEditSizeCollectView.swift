@@ -49,19 +49,24 @@ class GMEditSizeCollectView: UIView {
 		let alerController:UIAlertController = UIAlertController(title: "", message: "确定删除？".localized, preferredStyle: .alert)
 		let cancel:UIAlertAction = UIAlertAction(title: "取消".localized, style: .cancel) { (alert) in }
 		let ok:UIAlertAction = UIAlertAction(title: "确定".localized, style: .default) { [weak self](alert) in
-
-			var delefunc:String = "product/DelFlavor"
-			var selftag:Int32 = 102
+			
 			let dic:NSDictionary = self?.data.object(at: Int(longpressGuesture.allowableMovement)) as! NSDictionary
-			var str:String = dic.object(forKey: "flavorName") as! String
+ 			var delefunc:String?
+			var selftag:Int32?
+			var str:String?
 			if self?.tag == 101 {
 				delefunc = "product/DelSpce"
 				selftag = 101
-				str = dic.object(forKey: "item_code") as! String
+				str = dic.object(forKey: "item_code") as? String
 
- 			}
+			}else{
+				delefunc = "product/DelFlavor"
+				selftag = 102
+				str = dic.object(forKey: "flavorName") as? String
+
+			}
 			
-			KLHttpTool.deleGoodManagerDelSpcePricewithUri(delefunc, withgroupid: dic.object(forKey: "groupid") as! String, withdeleTag:selftag, withspecNamePrice: str , success: { (response) in
+			KLHttpTool.deleGoodManagerDelSpcePricewithUri(delefunc, withgroupid: dic.object(forKey: "groupid") as! String, withdeleTag:selftag!, withspecNamePrice: str , success: { (response) in
 				let res:NSDictionary = (response as? NSDictionary)!
 				let msg:String = res.object(forKey: "message") as! String
 				
@@ -129,7 +134,7 @@ extension GMEditSizeCollectView: UICollectionViewDelegate,UICollectionViewDataSo
 				}
 				
 				let price:UILabel = UILabel()
-				price.text = "$" + specPrice
+				price.text = "￥" + specPrice
 				price.textAlignment = .center
 				bgView.addSubview(price)
 				price.snp.makeConstraints { (make) in

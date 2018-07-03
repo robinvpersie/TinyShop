@@ -51,7 +51,7 @@ class DataStatisticsDatePicker: UIView {
 		}
 		
 		let title:UILabel = UILabel()
-		title.text = "自定查询区间"
+		title.text = "自定查询区间".localized
 		title.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight(rawValue: 0.4))
 		self.addSubview(title)
 		title.snp.makeConstraints { (make) in
@@ -60,7 +60,7 @@ class DataStatisticsDatePicker: UIView {
 		}
 		
 		let startlabel:UILabel = UILabel()
-		startlabel.text = "从"
+		startlabel.text = "从".localized
 		startlabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight(rawValue: 0.2))
 		self.addSubview(startlabel)
 		startlabel.snp.makeConstraints { (make) in
@@ -77,7 +77,7 @@ class DataStatisticsDatePicker: UIView {
 		})
 		
 		let endlabel:UILabel = UILabel()
-		endlabel.text = "至"
+		endlabel.text = "至".localized
 		endlabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight(rawValue: 0.2))
 		self.addSubview(endlabel)
 		endlabel.snp.makeConstraints { (make) in
@@ -93,7 +93,7 @@ class DataStatisticsDatePicker: UIView {
 		})
 		
 		let okbtn:UIButton = UIButton()
-		okbtn.setTitle("确定", for: .normal)
+		okbtn.setTitle("确定".localized, for: .normal)
 		okbtn.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
 		okbtn.setTitleColor(UIColor.white, for: .normal)
 		okbtn.layer.cornerRadius = 5

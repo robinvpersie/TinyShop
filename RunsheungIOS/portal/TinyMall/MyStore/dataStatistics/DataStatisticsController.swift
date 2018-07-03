@@ -14,6 +14,9 @@ class DataStatisticsController: MyStoreBaseViewController {
 	var bottomCollectView:UICollectionView?
 	var datepicker:DataStatisticsDatePicker?
 	var forthCellTableview:DataStatisticsCellTableView?
+	var pickertime1:NSString = ""
+	var pickertime2:NSString = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.initUI()
@@ -71,10 +74,12 @@ class DataStatisticsController: MyStoreBaseViewController {
 		
 		self.datepicker = DataStatisticsDatePicker()
 		self.datepicker?.choicePickerMap = { (picker1Value:String,picker2Value:String)->Void in
-			
+			self.pickertime1 = picker1Value as NSString
+			self.pickertime2 = picker2Value as NSString
+			let indexPath = IndexPath(row: index, section: 0)
+			self.bottomCollectView?.scrollToItem(at: indexPath, at: .left, animated: false)
 			self.forthCellTableview?.forthCellTableViewMap(picker1Value as NSString,picker2Value as NSString)
- 		    let indexPath = IndexPath(row: index, section: 0)
-		    self.bottomCollectView?.scrollToItem(at: indexPath, at: .left, animated: false)
+
 			print(picker1Value,picker2Value)
 		
 		}
@@ -112,9 +117,13 @@ extension DataStatisticsController: UICollectionViewDelegate,UICollectionViewDat
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "parcelviewcell", for: indexPath)
 		let dataCell:DataStatisticsCellTableView = DataStatisticsCellTableView()
-		self.forthCellTableview = dataCell
-		dataCell.tag = indexPath.row
- 		dataCell.getData(type:indexPath.row)
+		if indexPath.row == 3 {
+			self.forthCellTableview = dataCell
+			dataCell.forthCellTableViewMap(self.pickertime1,self.pickertime2)
+		}else{
+			dataCell.getData(type:indexPath.row)
+ 		}
+ 		dataCell.tag = indexPath.row
 		cell.contentView.addSubview(dataCell)
 		dataCell.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()
@@ -123,8 +132,6 @@ extension DataStatisticsController: UICollectionViewDelegate,UICollectionViewDat
 
 		return cell
 	}
-	
-	
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 	}

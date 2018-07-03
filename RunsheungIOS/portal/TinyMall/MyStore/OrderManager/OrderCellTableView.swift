@@ -92,39 +92,53 @@ class OrderCellTableView: UIView {
 	}
 	@objc private func acceptAction(sender:UIButton){
 		
-		var status:String = "0"
-		switch sender.tag {
-		case 0:
- 			status = "3"
-  			break
-		case 101:
-			status = "4"
-			break
-		case 1:
-			status = "31"
-			break
- 		default:
-			break
+		if sender.tag == 101 {
+			let num:String = self.dic?.object(forKey: "order_num") as! String
+			let customer:String  = self.dic?.object(forKey: "custom_code") as! String
+			
+			KLHttpTool.requestOrderCancelwithUri("/api/AppSM/requestOrderCancel", withOrderNum:num, withCustomerCode:customer, success: { (response) in
+				let res:NSDictionary = (response as? NSDictionary)!
+				let status:String = (res.object(forKey: "status") as! String)
+				if status == "1" {
+					
+ 				}
+			}) { (error) in
+				
+			}
+		} else {
+			
+			var status:String = "0"
+			switch sender.tag {
+			case 0:
+				status = "3"
+				break
+			case 1:
+				status = "31"
+				break
+			default:
+				break
+			}
+			
+			KLHttpTool.requestOrderTakewithUri("/api/AppSM/requestOrderTake", withorder_num: self.dic?.object(forKey: "order_num") as! String, withstatus:status, success: { (response) in
+				let res:NSDictionary = (response as? NSDictionary)!
+				let status:String = (res.object(forKey: "status") as! String)
+				if status == "1" {
+					
+					self.acceptPopView.getTag(tag: sender.tag)
+					UIApplication.shared.delegate?.window??.addSubview(self.acceptPopView)
+					self.acceptPopView.snp.makeConstraints({ (make) in
+						make.center.equalToSuperview()
+						make.width.equalTo(screenWidth - 60)
+						make.height.equalTo(screenHeight/4)
+					})
+				}
+				
+			}) { (error) in
+				
+			}
 		}
- 
-		KLHttpTool.requestOrderTakewithUri("/api/AppSM/requestOrderTake", withorder_num: self.dic?.object(forKey: "order_num") as! String, withstatus:status, success: { (response) in
-			let res:NSDictionary = (response as? NSDictionary)!
-			let status:String = (res.object(forKey: "status") as! String)
-			if status == "1" {
+		}
 		
-				self.acceptPopView.getTag(tag: sender.tag)
-				UIApplication.shared.delegate?.window??.addSubview(self.acceptPopView)
-				self.acceptPopView.snp.makeConstraints({ (make) in
-							make.center.equalToSuperview()
-							make.width.equalTo(screenWidth - 60)
-							make.height.equalTo(screenHeight/4)
-						})
-					}
-
-		}) { (error) in
-
-		}
-	}
 	
 }
 extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
@@ -286,6 +300,7 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 				}
 				
 				if self.index == 0 {
+					
 					let cancelBtn:UIButton = self.button(15.0,UIColor(red: 160, green: 160, blue: 160),"取消订单".localized,UIColor(red: 242, green: 242, blue: 242))
 					cancelBtn.tag = 101
  					cancelBtn.addTarget(self, action: #selector(acceptAction), for: .touchUpInside)
@@ -322,14 +337,21 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 					}
 
 				}else if self.index == 2 {
- 					let statusBtn:UILabel = self.label(12.0,UIColor(red: 190, green: 190, blue: 190),"已处理".localized)
-					statusBtn.textAlignment = .center
-					statusBtn.layer.cornerRadius = 3
-					statusBtn.layer.masksToBounds = true
-					statusBtn.layer.borderColor = UIColor(red: 190, green: 190, blue: 190).cgColor
-					statusBtn.layer.borderWidth = 1
-					cell.contentView.addSubview(statusBtn)
-					statusBtn.snp.makeConstraints { (make) in
+				
+					let orderStatus:String = self.dic?.object(forKey: "online_order_status") as! String
+ 					let statusBtn:UILabel?
+					if orderStatus == "4"{
+						statusBtn = self.label(12.0,UIColor(red: 190, green: 190, blue: 190),"已拒单".localized)
+					}else{
+						statusBtn = self.label(12.0,UIColor(red: 190, green: 190, blue: 190),"已发货".localized)
+ 					}
+					statusBtn?.textAlignment = .center
+					statusBtn?.layer.cornerRadius = 3
+					statusBtn?.layer.masksToBounds = true
+					statusBtn?.layer.borderColor = UIColor(red: 190, green: 190, blue: 190).cgColor
+					statusBtn?.layer.borderWidth = 1
+					cell.contentView.addSubview(statusBtn!)
+					statusBtn?.snp.makeConstraints { (make) in
 						make.right.equalToSuperview().offset(-10)
 						make.centerY.equalTo(orderTimelabel.snp.centerY)
  						make.height.equalTo(20)

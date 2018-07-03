@@ -238,6 +238,7 @@ extension MyStoreMainViewController {
 		
 	}
 	@objc private func pop(){
+		
 		self.stateBtn?.hiddenPopView()
 		self.navigationController?.popViewController(animated: true)
 	}
@@ -279,7 +280,25 @@ extension MyStoreMainViewController {
 			
 			
 			self.stateBtn = BusinessStateView()
-			
+			self.stateBtn?.choiceMap = {(_:NSDictionary,_:Int,index:Int) in
+				var status = "Y"
+				switch index {
+				case 1:
+					status = "N"
+					break
+				default:
+					break
+				}
+				KLHttpTool.requestUpdateSalesStatuswithUri("/api/AppSM/requestUpdateSalesStatus", withStatus: status, success: { (response) in
+					let res:NSDictionary = (response as? NSDictionary)!
+					let status:String = (res.object(forKey: "status") as! String)
+					if status == "1" {
+ 
+					}
+ 				}, failure: { (error) in
+					
+				})
+			}
 			self.stateBtn?.getTitlesArray(titles: [["level_name":"营业中".localized,"id":"1"],["level_name":"打烊中".localized,"id":"1"]])
 			self.stateBtn?.setTitleColor(UIColor.black, for: .normal)
 			self.stateBtn?.backgroundColor = UIColor.white
