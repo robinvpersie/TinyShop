@@ -163,7 +163,7 @@ extension DataStatisticsCellTableView:UITableViewDelegate,UITableViewDataSource{
 		
 		let content:String = self.data.object(at: self.tag) as! String
 		let label:UILabel = UILabel()
-		label.text = content + "订单"
+		label.text = content + "订单".localized
 		label.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight(rawValue: 0.4))
 		view.addSubview(label)
 		label.snp.makeConstraints { (make) in

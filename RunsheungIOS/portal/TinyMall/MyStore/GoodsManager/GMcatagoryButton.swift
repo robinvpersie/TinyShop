@@ -36,7 +36,7 @@ class GMcatagoryButton: UIView {
 		btn.layer.masksToBounds = true
 		btn.tag = (tag+100)
 		btn.isHidden = true
-		btn.setTitle("确定", for: .normal)
+		btn.setTitle("确定".localized, for: .normal)
 		btn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
 		btn.setTitleColor(UIColor(red: 136, green: 160, blue: 170), for: .normal)
 		
@@ -81,7 +81,7 @@ extension GMcatagoryButton:UITableViewDelegate,UITableViewDataSource{
 			make.right.equalTo(-5)
 		}
 		let btn:UIButton  = UIButton(type: .custom)
-		btn.setTitle("全部分类", for: .normal)
+		btn.setTitle("全部分类".localized, for: .normal)
 		btn.setTitleColor(UIColor.black, for: .normal)
 		btn.addTarget(self, action: #selector(showPopTableView), for: .touchUpInside)
 		btn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
@@ -174,7 +174,7 @@ extension GMcatagoryButton:UITableViewDelegate,UITableViewDataSource{
 		
 		switch indexPath.row {
 		case 0:
-			cell.textLabel?.text = "全部分类"
+			cell.textLabel?.text = "全部分类".localized
 			gesImg.setImage(#imageLiteral(resourceName: "icon_add_category"), for: .normal)
 		
 		default:

@@ -25,7 +25,7 @@ class GoodsTableViewCell: UITableViewCell {
 		self.dic = dic
 		self.selftag = tag
 		if selftag == 0 {
-			self.downProduct.setTitle("产品上架", for: .normal)
+			self.downProduct.setTitle("产品上架".localized, for: .normal)
 			selftag = 1
 		}else{
 			selftag = 0
@@ -34,7 +34,7 @@ class GoodsTableViewCell: UITableViewCell {
 		self.productName.text = self.dic?.object(forKey: "item_name") as? String
 		let salecount:String = (self.dic?.object(forKey: "MonthSaleCount") as? String)!
 		let itemprice:String = (self.dic?.object(forKey: "item_p") as? String)!
- 		self.saleCount.text = "月售 " + salecount
+ 		self.saleCount.text = "月售 ".localized + salecount
 		self.price.text = "￥" + itemprice
 	
 	}

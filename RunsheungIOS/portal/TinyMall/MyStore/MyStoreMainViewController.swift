@@ -95,7 +95,7 @@ extension MyStoreMainViewController:UICollectionViewDelegate,UICollectionViewDat
 			make.center.equalToSuperview()
 			make.width.height.equalTo(cell.frame.width/3)
 		}
-		let icontitles:NSArray = ["订单管理","商品管理","评价管理","退款订单","数据统计","店铺信息"]
+		let icontitles:NSArray = ["订单管理".localized,"商品管理".localized,"评价管理".localized,"退款订单".localized,"数据统计".localized,"店铺信息".localized]
 		
 		let icontitle:UILabel = UILabel()
 		icontitle.text = icontitles.object(at: indexPath.row) as? String

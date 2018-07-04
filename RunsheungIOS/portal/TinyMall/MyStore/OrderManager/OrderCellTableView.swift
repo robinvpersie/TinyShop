@@ -199,18 +199,17 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 					
 				}
 
-				let addresslabel:UILabel = self.label(16.0,UIColor.black,self.dic?.object(forKey: "to_address") as! String)
+				let addresslabel:UILabel = self.label(15.0,UIColor.black,self.dic?.object(forKey: "to_address") as! String)
+				addresslabel.numberOfLines = 0
 				cell.contentView.addSubview(addresslabel)
 				addresslabel.snp.makeConstraints { (make) in
 					make.left.equalToSuperview().offset(10)
-					make.top.equalTo(namelabel.snp.bottom).offset(10)
-					make.height.equalTo(20)
+					make.top.equalTo(namelabel.snp.bottom).offset(5)
+					make.bottom.equalToSuperview()
 					make.right.equalToSuperview().offset(-10)
 
 				}
-
-				
-			}
+ 			}
 			break
 		case 1:
 			do {
@@ -392,7 +391,7 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 				make.width.height.equalTo(15)
 			}
 			
-			let title:UILabel = self.label(14.0,UIColor(red: 160, green: 160, blue: 160),"订单商品")
+			let title:UILabel = self.label(14.0,UIColor(red: 160, green: 160, blue: 160),"订单商品".localized)
 			headView.addSubview(title)
 			title.snp.makeConstraints { (make) in
 				make.left.equalTo(icon.snp.right).offset(5)

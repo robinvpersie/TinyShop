@@ -37,7 +37,7 @@ extension CommentMerReturnView{
 		
 		let titlelabel:UILabel = UILabel()
 		titlelabel.textColor = UIColor(red: 33, green: 192, blue: 67)
-		titlelabel.text = "商家回复："
+		titlelabel.text = "商家回复：".localized
 		self.addSubview(titlelabel)
 		titlelabel.snp.makeConstraints { (make) in
 			make.left.top.equalTo(10)

@@ -43,7 +43,7 @@ class DataStatisticsController: MyStoreBaseViewController {
 
 	private func initUI(){
 		self.view.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
-		self.navigationItem.title = "数据统计"
+		self.navigationItem.title = "数据统计".localized
 
 		self.dataHead = DataStatisticsHeadView()
 		self.dataHead?.getTitles(array:["今日".localized,"本周".localized,"本月".localized,"自定".localized])

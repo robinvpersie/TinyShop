@@ -33,7 +33,7 @@ class ShopMTableViewController: UITableViewController {
 		self.tableView.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
 		self.tableView.contentInset = UIEdgeInsetsMake(10, 0, -10, 0)
 		self.tableView.tableFooterView = UIView()
-		self.title = "店铺管理".localized
+		self.title = "店铺信息".localized
 		let backItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_back"), style: .plain, target: self, action: #selector(back))
 		self.navigationItem.leftBarButtonItem = backItem
 		self.navigationController?.navigationBar.barTintColor = UIColor.white
@@ -83,12 +83,13 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 			do {
 				let content:UILabel = UILabel()
 				content.textAlignment = .right
-				content.text = self.contents.object(at: indexPath.row) as? String
+				content.font = UIFont.systemFont(ofSize: 14.0)
+ 				content.text = self.contents.object(at: indexPath.row) as? String
 				cell.contentView.addSubview(content)
 				content.snp.makeConstraints { (make) in
 					make.bottom.top.equalToSuperview()
 					make.right.equalToSuperview().offset(-5)
-					make.left.equalToSuperview().offset(80)
+					make.left.equalToSuperview().offset(120)
 				}
 			}
 		}
@@ -132,9 +133,7 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 			picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
 			picker.allowsEditing = true
 			
-			self.present(picker, animated:true, completion: {() -> Void in
-				
-			})
+			self.present(picker, animated:true, completion: {() -> Void in })
 		}
 		
 		if UIImagePickerController.isSourceTypeAvailable(.camera){
@@ -170,5 +169,4 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 		})
 		
 	}
-
-}
+ }

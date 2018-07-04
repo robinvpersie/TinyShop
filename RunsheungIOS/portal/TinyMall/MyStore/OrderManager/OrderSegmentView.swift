@@ -178,14 +178,8 @@ extension OrderSegmentView:UITableViewDelegate,UITableViewDataSource{
 			tableView.reloadRows(at: [indexPath], with: .none)
  		}
 		orderView.acceptPopView.submitAcceptSuccessMap = {[weak self](index:Int)->Void in
-//			self?.resquestData(refreshtype: RefreshType.topfresh, complete: {
-//				self?.tabview.mj_header.endRefreshing()
-//				self?.tabview.mj_footer.resetNoMoreData()
-//
-//			})
-			self?.submitAcceptSuccessMap1(index)
-			
-		}
+ 			self?.submitAcceptSuccessMap1(index)
+ 		}
 		orderView.getData(dic:(self.allData.object(at: indexPath.row) as! NSDictionary) ,index:self.tableviewTag)
 		orderView.getState(state:self.openCloseState)
  		cell.contentView.addSubview(orderView)

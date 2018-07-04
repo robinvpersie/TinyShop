@@ -37,12 +37,12 @@ class DataSingleOrderCell: UITableViewCell {
 		let mobilep:String = dic.object(forKey: "mobilepho") as! String
 		let orderstatus:String = dic.object(forKey: "order_status") as! String
 
-		self.orderMoney.text = "订单金额：￥" + itemP
+		self.orderMoney.text = "订单金额：￥".localized + itemP
 		self.orderNOmark.text = "#" + num
-		self.orderTime.text = "下单时间：" + time
-		self.orderNO.text = "订单号：" + ordernum
-		self.orderPhone.text = "手机号码：" + mobilep
-		self.orderState.text = "订单状态：" + orderstatus
+		self.orderTime.text = "订单时间: ".localized + time
+		self.orderNO.text = "订单号：".localized + ordernum
+		self.orderPhone.text = "手机号码：".localized + mobilep
+		self.orderState.text = "订单状态：".localized + orderstatus
 
 		
 
