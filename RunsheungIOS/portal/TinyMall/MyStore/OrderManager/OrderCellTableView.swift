@@ -17,7 +17,8 @@ class OrderCellTableView: UIView {
 	var acceptPopView:OrderAcceptPopView = OrderAcceptPopView()
 	var index:Int = 0
  	@objc public var clickStateMap:(Bool)->Void = { (openState:Bool) in }
- 
+	var enterNextPageMap:(Int)->Void = {(page:Int)->Void in }
+	
 	var label:(CGFloat,UIColor,String)->UILabel = {(fontSize:CGFloat,textColor:UIColor,textContent:String)->UILabel in
 		let labels:UILabel = UILabel()
 		labels.font = UIFont.systemFont(ofSize: fontSize)
@@ -91,20 +92,43 @@ class OrderCellTableView: UIView {
 		self.tabview.reloadData()
 	}
 	@objc private func acceptAction(sender:UIButton){
+		let num:String = self.dic?.object(forKey: "order_num") as! String
+		let customer:String  = self.dic?.object(forKey: "custom_code") as! String
 		
 		if sender.tag == 101 {
-			let num:String = self.dic?.object(forKey: "order_num") as! String
-			let customer:String  = self.dic?.object(forKey: "custom_code") as! String
-			
+		
 			KLHttpTool.requestOrderCancelwithUri("/api/AppSM/requestOrderCancel", withOrderNum:num, withCustomerCode:customer, success: { (response) in
 				let res:NSDictionary = (response as? NSDictionary)!
 				let status:String = (res.object(forKey: "status") as! String)
 				if status == "1" {
-					
+					self.enterNextPageMap(1)
+//					self.tabview.reloadData()
+
  				}
 			}) { (error) in
 				
 			}
+		}else if sender.tag == 102 {
+			let alerController:UIAlertController = UIAlertController(title: "确定取消此订单发货？", message: "取消订单发货后订单将作为退款订单处理".localized, preferredStyle: .alert)
+			let cancel:UIAlertAction = UIAlertAction(title: "取消".localized, style: .cancel) { (alert) in }
+			let ok:UIAlertAction = UIAlertAction(title: "确定".localized, style: .default) { (alert) in
+				
+				KLHttpTool.requestOrderCancelwithUri("/api/AppSM/requestOrderCancel", withOrderNum:num, withCustomerCode:customer, success: { (response) in
+					let res:NSDictionary = (response as? NSDictionary)!
+					let status:String = (res.object(forKey: "status") as! String)
+					if status == "1" {
+						self.enterNextPageMap(1)
+//						self.tabview.reloadData()
+
+ 					}
+				}) { (error) in
+					
+				}
+
+			}
+			alerController.addAction(cancel)
+			alerController.addAction(ok)
+			self.viewController().present(alerController, animated: true, completion: nil)
 		} else {
 			
 			var status:String = "0"
@@ -123,8 +147,8 @@ class OrderCellTableView: UIView {
 				let res:NSDictionary = (response as? NSDictionary)!
 				let status:String = (res.object(forKey: "status") as! String)
 				if status == "1" {
-					
-					self.acceptPopView.getTag(tag: sender.tag)
+//					self.tabview.reloadData()
+ 					self.acceptPopView.getTag(tag: sender.tag)
 					UIApplication.shared.delegate?.window??.addSubview(self.acceptPopView)
 					self.acceptPopView.snp.makeConstraints({ (make) in
 						make.center.equalToSuperview()
@@ -298,7 +322,7 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 					
 				}
 				
-				if self.index == 0 {
+				if (self.index == 0 || self.index == 1) {
 					
 					let cancelBtn:UIButton = self.button(15.0,UIColor(red: 160, green: 160, blue: 160),"取消订单".localized,UIColor(red: 242, green: 242, blue: 242))
 					cancelBtn.tag = 101
@@ -322,20 +346,32 @@ extension OrderCellTableView:UITableViewDelegate,UITableViewDataSource{
 						make.height.equalTo(50)
 						make.left.equalTo(cell.contentView.snp.centerX).offset(5)
 					}
+					switch self.index {
+					case 1:
+						cancelBtn.setTitle("取消发货".localized, for: .normal)
+						cancelBtn.tag = 102
+						alreadyBtn.setTitle("确认发货".localized, for: .normal)
 
-				}else if self.index == 1 {
-					let okBtn:UIButton = self.button(15.0,UIColor.white,"确定发货".localized,UIColor(red: 33, green: 192, blue: 67))
-					okBtn.addTarget(self, action: #selector(acceptAction), for: .touchUpInside)
- 					okBtn.tag = self.index
-					cell.contentView.addSubview(okBtn)
-					okBtn.snp.makeConstraints { (make) in
-						make.left.equalTo(15)
-						make.top.equalTo(orderTimelabel.snp.bottom).offset(10)
-						make.height.equalTo(50)
-						make.right.equalToSuperview().offset(-15)
+						break
+					default:
+						break
 					}
-
-				}else if self.index == 2 {
+				
+				}
+//				else if self.index == 1 {
+//					let okBtn:UIButton = self.button(15.0,UIColor.white,"确定发货".localized,UIColor(red: 33, green: 192, blue: 67))
+//					okBtn.addTarget(self, action: #selector(acceptAction), for: .touchUpInside)
+// 					okBtn.tag = self.index
+//					cell.contentView.addSubview(okBtn)
+//					okBtn.snp.makeConstraints { (make) in
+//						make.left.equalTo(15)
+//						make.top.equalTo(orderTimelabel.snp.bottom).offset(10)
+//						make.height.equalTo(50)
+//						make.right.equalToSuperview().offset(-15)
+//					}
+//
+//				}
+				else if self.index == 2 {
 				
 					let orderStatus:String = self.dic?.object(forKey: "online_order_status") as! String
  					let statusBtn:UILabel?

@@ -177,8 +177,14 @@ extension OrderSegmentView:UITableViewDelegate,UITableViewDataSource{
 			self.stateData.replaceObject(at: indexPath.row, with: openState)
 			tableView.reloadRows(at: [indexPath], with: .none)
  		}
-		orderView.acceptPopView.submitAcceptSuccessMap = {[weak self](index:Int)->Void in
- 			self?.submitAcceptSuccessMap1(index)
+		orderView.acceptPopView.submitAcceptSuccessMap = { (index:Int)->Void in
+ 			self.submitAcceptSuccessMap1(index)
+			self.tabview.mj_header.beginRefreshing()
+ 
+ 		}
+		orderView.enterNextPageMap = {(page:Int)->Void in
+			self.submitAcceptSuccessMap1(page)
+			self.tabview.mj_header.beginRefreshing()
  		}
 		orderView.getData(dic:(self.allData.object(at: indexPath.row) as! NSDictionary) ,index:self.tableviewTag)
 		orderView.getState(state:self.openCloseState)
