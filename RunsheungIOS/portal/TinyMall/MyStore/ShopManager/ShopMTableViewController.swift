@@ -36,7 +36,7 @@ class ShopMTableViewController: UITableViewController {
 				self.mallName = res.object(forKey: "custom_name") as? String
 				self.mallPhone = res.object(forKey: "telephon") as? String
 				self.mallAddress = res.object(forKey: "address") as? String
-				self.contents = [self.mallAvator,self.mallName,self.mallPhone,self.mallAddress]
+				self.contents = [self.mallAvator  ,self.mallName  ,self.mallPhone ,self.mallAddress  ]
 				self.tableView.reloadData()
 			}
 		}) { (error) in
@@ -155,17 +155,15 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
  		var inputText:UITextField = UITextField();
 		let msgAlertCtr = UIAlertController.init(title:nil, message: type, preferredStyle: .alert)
 		let ok = UIAlertAction.init(title: "确定".localized, style:.default) { (action:UIAlertAction) ->() in
-			
-			KLHttpTool.requestStoreImageUpdatewithUri("/api/AppSM/requestStoreImageUpdate", withStoreImageurl: self.mallAvator, withCustomName: self.mallName, withTelephon: self.mallPhone, withZipcode: "12344", withKoraddr: "鸟你妈了个逼闭包", withkoraddrDetail: "鸟你妈了个逼闭包", success: { (response) in
+			self.mallAddress = type
+			KLHttpTool.requestStoreImageUpdatewithUri("/api/AppSM/requestStoreImageUpdate", withStoreImageurl: self.mallAvator, withCustomName: self.mallName, withTelephon: self.mallPhone, withZipcode: "12344", withKoraddr: self.mallAddress, withkoraddrDetail: "fuck your sister", success: { (response) in
 					let res:NSDictionary = (response as? NSDictionary)!
 					let status:String = (res.object(forKey: "status") as! String)
 					if status == "1" {
 						self.changeHeadAvatorMap(self.mallAvator!)
 					}
-					
-				}, failure: { (error) in
-					
-				})
+ 				}, failure: { (error) in
+ 				})
 		}
 		
 		let cancel = UIAlertAction.init(title: "取消".localized, style:.cancel) { (action:UIAlertAction) -> ()in
@@ -223,7 +221,7 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 				if status == 1 {
 					let imageurls:NSArray = res.object(forKey: "data") as! NSArray
 					self.mallAvator = "http://gigaMerchantManager.gigawon.co.kr:8825/" + (imageurls.firstObject as! String)
-					KLHttpTool.requestStoreImageUpdatewithUri("/api/AppSM/requestStoreImageUpdate", withStoreImageurl: self.mallAvator, withCustomName: self.mallName, withTelephon: self.mallPhone, withZipcode: "12344", withKoraddr: "鸟你妈了个逼闭包", withkoraddrDetail: "鸟你妈了个逼闭包", success: { (response) in
+					KLHttpTool.requestStoreImageUpdatewithUri("/api/AppSM/requestStoreImageUpdate", withStoreImageurl: self.mallAvator, withCustomName: self.mallName, withTelephon: self.mallPhone, withZipcode: "12344", withKoraddr: self.mallAddress, withkoraddrDetail: " ", success: { (response) in
 						let res:NSDictionary = (response as? NSDictionary)!
 						let status:String = (res.object(forKey: "status") as! String)
 						if status == "1" {
