@@ -42,13 +42,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35N-4M-95E">
-                        <rect key="frame" x="313" y="72.5" width="44" height="17"/>
+                        <rect key="frame" x="313" y="73" width="44" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="S2j-9a-R41"/>
                             <constraint firstAttribute="width" constant="44" id="buw-1G-Wr9"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                        <state key="normal" title="重新编辑">
+                        <state key="normal" title="다시편집">
                             <color key="titleColor" red="0.62745098039215685" green="0.62745098039215685" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
@@ -56,12 +56,12 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScB-YS-S5A">
-                        <rect key="frame" x="264" y="72.5" width="44" height="17"/>
+                        <rect key="frame" x="264" y="73" width="44" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="COa-EQ-rr5"/>
                         </constraints>
                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="10"/>
-                        <state key="normal" title="下架商品">
+                        <state key="normal" title="판매중지">
                             <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>

@@ -36,6 +36,9 @@
     #define MallBaseUrl @"http://mall.gigawon.co.kr:8800"
     #define TinyMemberShopBaseURL @"http://member.gigawon.co.kr:8808/api/"
     #define TinyMallShopBaseURL @"http://mall.gigawon.co.kr:8800/api/"
+    #define MallBaseUrl @"http://mall.gigawon.co.kr:8800"
+    #define MystoreUrl @"http://gigaMerchantManager.gigawon.co.kr:8825/"
+
 #else
     #define TinyMemberShopBaseURL @"http://member.gigawon.co.kr:8808/api/"
     #define TinyMallShopBaseURL @"http://mall.gigawon.co.kr:8800/api/"
@@ -50,9 +53,9 @@
     #define GetZipcodeUrl @"http://api1.gigawon.co.kr:82/api/ycZipCode/getZipCode"
     #define GetTokenUrl @"http://member.gigawon.co.kr:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
     #define MallBaseUrl @"http://mall.gigawon.co.kr:8800"
-   #define MystoreUrl @"http://gigaMerchantManager.gigawon.co.kr:8825/"
-    #define MystoreTestCustom_Code @"01071390103abcde"
-    #define MystoreTestToken @"186743935020f829f883e9fe-c8cf-4f60-9ed2-bd645cb1c118"
+    #define MystoreUrl @"http://gigaMerchantManager.gigawon.co.kr:8825/"
+//    #define MystoreTestCustom_Code @"01071390103abcde"
+//    #define MystoreTestToken @"186743935020f829f883e9fe-c8cf-4f60-9ed2-bd645cb1c118"
 
 
 #endif
