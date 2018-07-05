@@ -16,7 +16,7 @@ class RefundManagerController: MyStoreBaseViewController {
         case refundDetail
         
         init(indexPath: IndexPath) {
-            self.init(rawValue: indexPath.row)!
+            self.init(rawValue: indexPath.section)!
         }
         
         init(section: Int) {
@@ -25,23 +25,25 @@ class RefundManagerController: MyStoreBaseViewController {
     }
     
     var tableView: UITableView!
-
+    var model: OrderReturnModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "退款详情"
-        view.backgroundColor = UIColor(hex: 0xf2f4f6)
+        title = "환불정보"
+        //        view.backgroundColor = UIColor(hex: 0xf2f4f6)
         
-        tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.tableHeaderView = UIView()
-        tableView.tableFooterView = footerView()
-        tableView.sectionFooterHeight = 10
-        tableView.sectionHeaderHeight = 0
+        tableView = UITableView(frame: .zero, style: .plain)
+        tableView.tableFooterView = UIView()
+        tableView.backgroundView?.backgroundColor = UIColor(hex: 0xf2f4f6)
+        tableView.backgroundColor = UIColor(hex: 0xf2f4f6)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerClassOf(RefundHeaderCell.self)
         tableView.registerClassOf(RefundOrderMenuCell.self)
-        tableView.registerNibOf(RefundInfoCell.self)
+        //        tableView.register(UINib(nibName: "RefundInfoCell", bundle: nil), forCellReuseIdentifier: "RefundInfoCell")
+        tableView.registerClassOf(RefundInfoTableViewCell.self)
+        tableView.regisiterHeaderFooterClassOf(UITableViewHeaderFooterView.self)
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(view)
@@ -51,7 +53,7 @@ class RefundManagerController: MyStoreBaseViewController {
     func footerView() -> UIView? {
         
         let footer = UIView()
-        footer.backgroundColor = UIColor.clear
+        footer.backgroundColor = UIColor(hex: 0xf2f4f6)
         footer.frame = CGRect(x: 0, y: 0, width: Constant.screenWidth, height: 100)
         
         let agreenBtn = UIButton(type: .custom)
@@ -65,6 +67,7 @@ class RefundManagerController: MyStoreBaseViewController {
             make.width.equalTo(footer).multipliedBy(0.85)
             make.height.equalTo(45)
             make.top.equalTo(footer).offset(25)
+            make.centerX.equalTo(footer)
         }
         
         return footer
@@ -95,18 +98,34 @@ extension RefundManagerController: UITableViewDelegate {
         case .profile:
             return RefundHeaderCell.getHeight()
         case .orderMenu:
-            return RefundOrderMenuCell.getHeight()
+            return RefundOrderMenuCell.getHeightWithModel(model)
         case .refundDetail:
             return RefundInfoCell.getHeight()
         }
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return nil
+        let footer = tableView.dequeueReusableHeaderFooter()
+        //        footer.backgroundColor = UIColor(hex: 0xf2f4f6)
+        return footer
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        let section = Section(section: section)
+        switch section {
+        case .profile, .orderMenu:
+            return 10
+        case .refundDetail:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
     }
 }
 
@@ -121,15 +140,18 @@ extension RefundManagerController: UITableViewDataSource {
         switch section {
         case .profile:
             let cell: RefundHeaderCell = tableView.dequeueReusableCell()
+            cell.configureWithModel(model)
             return cell
         case .orderMenu:
             let cell: RefundOrderMenuCell = tableView.dequeueReusableCell()
+            cell.configureWithModel(model)
             return cell
         case .refundDetail:
-            let cell: RefundInfoCell = tableView.dequeueReusableCell()
+            let cell: RefundInfoTableViewCell = tableView.dequeueReusableCell()
+            cell.configureWithModel(model)
             return cell
         }
-      
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

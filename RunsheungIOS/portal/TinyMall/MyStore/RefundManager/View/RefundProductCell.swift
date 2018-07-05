@@ -14,6 +14,7 @@ class RefundOrderMenuCell: UITableViewCell {
     private var tableView: UITableView!
     private var titlelb: UILabel!
     private var tableHeightConstraint: Constraint?
+    private var model: OrderReturnModel?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,7 +29,7 @@ class RefundOrderMenuCell: UITableViewCell {
         titlelb = UILabel()
         titlelb.textColor = UIColor.darkText
         titlelb.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        titlelb.text = "订单商品"
+        titlelb.text = "주문상품"
         contentView.addSubview(titlelb)
         
         tableView = UITableView(frame: .zero, style: .plain)
@@ -39,7 +40,8 @@ class RefundOrderMenuCell: UITableViewCell {
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
-        tableView.isScrollEnabled = false 
+        tableView.isScrollEnabled = false
+        tableView.registerClassOf(RefundProductCell.self)
         contentView.addSubview(tableView)
     }
     
@@ -55,15 +57,20 @@ class RefundOrderMenuCell: UITableViewCell {
             make.top.equalTo(titlelb.snp.bottom).offset(20)
             make.left.equalTo(titlelb)
             make.right.equalTo(contentView).offset(-15)
-            tableHeightConstraint = make.height.equalTo(RefundProductCell.getHeight() * 2.0).constraint
+            tableHeightConstraint = make.height.equalTo(0).constraint
         }
-        
-        
     }
     
-    class func getHeight() -> CGFloat {
+    func configureWithModel(_ model: OrderReturnModel) {
+        self.model = model
+        let height = CGFloat(model.dataitem.count) * RefundProductCell.getHeight()
+        tableHeightConstraint?.update(offset: height)
+        self.tableView.reloadData()
+    }
+    
+    class func getHeightWithModel(_ model: OrderReturnModel) -> CGFloat {
         let fontHeight: CGFloat = UIFont.systemFont(ofSize: 18, weight: .bold).lineHeight
-        let tableHeight: CGFloat = RefundProductCell.getHeight() * 2.0
+        let tableHeight: CGFloat = RefundProductCell.getHeight() * CGFloat(model.dataitem.count)
         return fontHeight + tableHeight + 55
     }
     
@@ -75,13 +82,13 @@ class RefundOrderMenuCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }
 
 extension RefundOrderMenuCell: UITableViewDelegate {
@@ -96,6 +103,9 @@ extension RefundOrderMenuCell: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: RefundProductCell = tableView.dequeueReusableCell()
+        if let item = model?.dataitem {
+            cell.configureWithModel(item[indexPath.row])
+        }
         return cell
     }
     
@@ -104,7 +114,7 @@ extension RefundOrderMenuCell: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return model?.dataitem.count ?? 0
     }
     
 }
@@ -133,7 +143,6 @@ fileprivate class RefundProductCell: UITableViewCell {
         namelb = UILabel()
         namelb.textColor = UIColor.darkText
         namelb.font = UIFont.systemFont(ofSize: 14)
-        namelb.text = "Chizza烤堡薯条餐"
         contentView.addSubview(namelb)
         namelb.snp.makeConstraints { make in
             make.left.equalTo(avatarView.snp.right).offset(15)
@@ -144,13 +153,11 @@ fileprivate class RefundProductCell: UITableViewCell {
         numlb = UILabel()
         numlb.textColor = UIColor(hex: 0x999999)
         numlb.font = UIFont.systemFont(ofSize: 14)
-        numlb.text = "x 1"
         contentView.addSubview(numlb)
         
         pricelb = UILabel()
         pricelb.textColor = UIColor(hex: 0x999999)
         pricelb.font = UIFont.systemFont(ofSize: 14)
-        pricelb.text = "￥10"
         contentView.addSubview(pricelb)
         
         numlb.snp.makeConstraints { make in
@@ -166,6 +173,13 @@ fileprivate class RefundProductCell: UITableViewCell {
         
     }
     
+    func configureWithModel(_ model: DataItem) {
+        avatarView.kf.setImage(with: URL(string: model.item_image_url))
+        namelb.text = model.item_name
+        numlb.text = "x" + model.order_q
+        pricelb.text = "￥" + model.order_o
+    }
+    
     class func getHeight() -> CGFloat {
         return 70
     }
@@ -174,3 +188,4 @@ fileprivate class RefundProductCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+

@@ -30,19 +30,16 @@ class RefundHeaderCell: UITableViewCell {
         namelb = UILabel()
         namelb.textColor = UIColor.darkText
         namelb.font = UIFont.systemFont(ofSize: 14)
-        namelb.text = "林先生"
         contentView.addSubview(namelb)
         
         phonelb = UILabel()
         phonelb.textColor = UIColor.darkText
         phonelb.font = UIFont.systemFont(ofSize: 14)
-        phonelb.text = "18874097957"
         contentView.addSubview(phonelb)
         
         addresslb = UILabel()
         addresslb.textColor = UIColor.darkText
         addresslb.font = UIFont.systemFont(ofSize: 14)
-        addresslb.text = "龙跃国际2栋2121"
         contentView.addSubview(addresslb)
         
         telBtn = UIButton(type: .custom)
@@ -84,6 +81,12 @@ class RefundHeaderCell: UITableViewCell {
         
     }
     
+    func configureWithModel(_ model: OrderReturnModel) {
+        namelb.text = model.custom_name
+        phonelb.text = model.mobilepho
+        addresslb.text = model.to_address
+    }
+    
     class func getHeight() -> CGFloat {
         return 45 + UIFont.systemFont(ofSize: 14).lineHeight * 2
     }
@@ -100,11 +103,11 @@ class RefundHeaderCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }
