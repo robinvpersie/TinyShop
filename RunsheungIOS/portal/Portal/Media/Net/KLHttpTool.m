@@ -24,7 +24,7 @@
 //#define PaymentUrl @"https://api.dxbhtm.com/wPayment/api/wPayment"
 //#define PointListUrl @"https://api.dxbhtm.com/pl_Point/api/PointGetListAndBalance"
 
-#if !DEBUG // 判断是否在测试环境下
+#if DEBUG // 判断是否在测试环境下
     #define BaseUrl  @"http://192.168.2.230:81/"
     #define ShopBaseUrl @"http://192.168.2.179:96/"
     #define PaymentBaseURL @"http://192.168.2.230:8088/"
@@ -42,21 +42,16 @@
 #else
     #define TinyMemberShopBaseURL @"http://member.gigawon.co.kr:8808/api/"
     #define TinyMallShopBaseURL @"http://mall.gigawon.co.kr:8800/api/"
-
-    #define BaseUrl  @"http://pay.gigawon.co.kr:81/"
+     #define BaseUrl  @"http://pay.gigawon.co.kr:81/"
     #define PaymentBaseURL @"http://pay.gigawon.co.kr:8088/"
     #define ShopBaseUrl @"http://api1.gigawon.co.kr:96/"
     #define PaymentUrl @"http://api.gigawon.co.kr:8083/wpayment/api/wPayment"
-
-    #define PointListUrl @"https://api.gigawon.co.kr:8444/pl_Point/api/PointGetListAndBalance"
+     #define PointListUrl @"https://api.gigawon.co.kr:8444/pl_Point/api/PointGetListAndBalance"
     #define CheckTokenUrl @"https://api.gigawon.co.kr:8444/appapi/userapi"
     #define GetZipcodeUrl @"http://api1.gigawon.co.kr:82/api/ycZipCode/getZipCode"
     #define GetTokenUrl @"http://member.gigawon.co.kr:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
     #define MallBaseUrl @"http://mall.gigawon.co.kr:8800"
     #define MystoreUrl @"http://gigaMerchantManager.gigawon.co.kr:8825/"
-//    #define MystoreTestCustom_Code @"01071390103abcde"
-//    #define MystoreTestToken @"186743935020f829f883e9fe-c8cf-4f60-9ed2-bd645cb1c118"
-
 
 #endif
 

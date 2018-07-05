@@ -137,17 +137,18 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 			alert.addAction(action1)
 			alert.addAction(action2)
 			self.present(alert, animated:true, completion: nil)
-		}else{
-			if indexPath.row == 1 {
-				clickInputBtn(type: "修改名字",flag:indexPath.row)
- 			}else if indexPath.row == 2 {
-				clickInputBtn(type: "修改联系方式",flag:indexPath.row)
-			}else{
-				let vc:ShopNameChangeController = ShopNameChangeController()
-				vc.title = self.contents.object(at: indexPath.row) as? String
-				self.navigationController?.pushViewController(vc, animated: true)
-			}
 		}
+//		else{
+//			if indexPath.row == 1 {
+//				clickInputBtn(type: "修改名字",flag:indexPath.row)
+// 			}else if indexPath.row == 2 {
+//				clickInputBtn(type: "修改联系方式",flag:indexPath.row)
+//			}else{
+//				let vc:ShopNameChangeController = ShopNameChangeController()
+//				vc.title = self.contents.object(at: indexPath.row) as? String
+//				self.navigationController?.pushViewController(vc, animated: true)
+//			}
+//		}
 	}
 	
 	//弹出带有输入框的提示框
