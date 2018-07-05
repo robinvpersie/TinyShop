@@ -43,12 +43,10 @@ class MyStoreMainViewController: UITableViewController {
 
 		return collectionview
 	}
-
-	
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		setNaviBar()
+ 		setNaviBar()
 
 	}
 	override func viewWillDisappear(_ animated: Bool) {
@@ -72,7 +70,6 @@ class MyStoreMainViewController: UITableViewController {
 				self.todayPay.text = self.requestDic?.object(forKey: "sale_amount") as? String
 				self.tadayCount.text = self.requestDic?.object(forKey: "order_amount") as? String
 
-				UserDefaults.standard.set(self.requestDic, forKey: "mystoreinfo")
 			}
 		}) { (error) in
 			
@@ -166,6 +163,10 @@ extension MyStoreMainViewController:UICollectionViewDelegate,UICollectionViewDat
 
 		case 5:
 			let shopmanager:ShopMTableViewController = ShopMTableViewController()
+			shopmanager.changeHeadAvatorMap = {(imageurl:String)->Void in
+				self.headavator?.setImageWith(NSURL(string:imageurl )! as URL)
+
+			}
 			self.navigationController?.pushViewController(shopmanager, animated: true)
 			break
 
@@ -257,7 +258,7 @@ extension MyStoreMainViewController {
 				make.height.equalTo(130)
 			})
 			
-			self.headavator = UIImageView(image: UIImage(named: "img_menu01"))
+			self.headavator = UIImageView()
 			self.headavator?.layer.cornerRadius = 5
 			self.headavator?.layer.masksToBounds = true
 			greenview.addSubview(self.headavator!)
@@ -268,8 +269,7 @@ extension MyStoreMainViewController {
 			})
 			
 			self.shopname = UILabel()
-			self.shopname?.text = "KFC(九龙城店)"
-			self.shopname?.textColor = UIColor.white
+ 			self.shopname?.textColor = UIColor.white
 			self.shopname?.font = UIFont.systemFont(ofSize: 20)
 			greenview.addSubview(self.shopname!)
 			self.shopname?.snp.makeConstraints({ (make) in
@@ -392,6 +392,6 @@ extension MyStoreMainViewController {
 		}
 		self.tableView.tableHeaderView = headView()
 		
-		
+ 
 	}
 }

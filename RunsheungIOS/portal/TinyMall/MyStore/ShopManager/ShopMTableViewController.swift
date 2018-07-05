@@ -13,21 +13,37 @@ class ShopMTableViewController: UITableViewController {
 	var contents:NSArray = [""," "," "," "]
 	var infoDic:NSDictionary?
 	let avator:UIImageView = UIImageView()
+	var changeHeadAvatorMap:(String)->Void = {(imageurl:String)->Void in}
 
+	var mallAvator:String?
+	var mallName:String?
+	var mallPhone:String?
+	var mallAddress:String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		
-		self.infoDic = UserDefaults.standard.object(forKey: "mystoreinfo") as? NSDictionary
-		let avatarurl:String = self.infoDic?.object(forKey: "shop_thumnail_image") as! String
-		let name:String = self.infoDic?.object(forKey: "custom_name") as! String
- 		let phone:String = self.infoDic?.object(forKey: "telephon") as! String
-		let address:String = self.infoDic?.object(forKey: "address") as! String
- 		self.contents = [avatarurl,name,phone,address]
-		self.tableView.reloadData()
+ 		requestData()
  		setNavi()
     }
 	
+	private func requestData(){
+		KLHttpTool.requestSaleOrderAmountwithUri("/api/AppSM/requestSaleOrderAmount", success: { (response) in
+			let res:NSDictionary = (response as? NSDictionary)!
+			let status:String = res.object(forKey: "status") as! String
+			if status == "1" {
+				
+				self.mallAvator = res.object(forKey: "shop_thumnail_image") as? String
+				self.mallName = res.object(forKey: "custom_name") as? String
+				self.mallPhone = res.object(forKey: "telephon") as? String
+				self.mallAddress = res.object(forKey: "address") as? String
+				self.contents = [self.mallAvator,self.mallName,self.mallPhone,self.mallAddress]
+				self.tableView.reloadData()
+			}
+		}) { (error) in
+			
+		}
+	}
+
 	public func setNavi(){
 		
 		self.tableView.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
@@ -89,7 +105,7 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 				content.snp.makeConstraints { (make) in
 					make.bottom.top.equalToSuperview()
 					make.right.equalToSuperview().offset(-5)
-					make.left.equalToSuperview().offset(120)
+					make.left.equalToSuperview().offset(100)
 				}
 			}
 		}
@@ -121,9 +137,59 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 			alert.addAction(action1)
 			alert.addAction(action2)
 			self.present(alert, animated:true, completion: nil)
+		}else{
+			if indexPath.row == 1 {
+				clickInputBtn(type: "修改名字",flag:indexPath.row)
+ 			}else if indexPath.row == 2 {
+				clickInputBtn(type: "修改联系方式",flag:indexPath.row)
+			}else{
+				let vc:ShopNameChangeController = ShopNameChangeController()
+				vc.title = self.contents.object(at: indexPath.row) as? String
+				self.navigationController?.pushViewController(vc, animated: true)
+			}
 		}
 	}
 	
+	//弹出带有输入框的提示框
+	private func clickInputBtn(type:String,flag:Int) {
+ 		var inputText:UITextField = UITextField();
+		let msgAlertCtr = UIAlertController.init(title:nil, message: type, preferredStyle: .alert)
+		let ok = UIAlertAction.init(title: "确定".localized, style:.default) { (action:UIAlertAction) ->() in
+			
+			KLHttpTool.requestStoreImageUpdatewithUri("/api/AppSM/requestStoreImageUpdate", withStoreImageurl: self.mallAvator, withCustomName: self.mallName, withTelephon: self.mallPhone, withZipcode: "12344", withKoraddr: "鸟你妈了个逼闭包", withkoraddrDetail: "鸟你妈了个逼闭包", success: { (response) in
+					let res:NSDictionary = (response as? NSDictionary)!
+					let status:String = (res.object(forKey: "status") as! String)
+					if status == "1" {
+						self.changeHeadAvatorMap(self.mallAvator!)
+					}
+					
+				}, failure: { (error) in
+					
+				})
+		}
+		
+		let cancel = UIAlertAction.init(title: "取消".localized, style:.cancel) { (action:UIAlertAction) -> ()in
+			print("取消输入")
+		}
+		
+		msgAlertCtr.addAction(ok)
+		msgAlertCtr.addAction(cancel)
+ 		msgAlertCtr.addTextField { (textField) in
+ 			inputText = textField
+			if flag == 1{
+				self.mallName = inputText.text
+				inputText.placeholder = "输入商铺名称"
+
+			}else {
+				self.mallPhone = inputText.text
+				inputText.placeholder = "输入商铺电话"
+			}
+		}
+ 		self.present(msgAlertCtr, animated: true, completion: nil)
+	}
+	
+	
+
 	private func openAlbumCamera(){
 		
 		if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
@@ -155,10 +221,28 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 				let res:NSDictionary = (response as? NSDictionary)!
 				let status:Int = (res.object(forKey: "status") as! Int)
 				if status == 1 {
-//					let imageurls:NSArray = res.object(forKey: "data") as! NSArray
-//					self.imageurl = "http://gigaMerchantManager.gigawon.co.kr:8825/" + (imageurls.firstObject as! String)
-//					self.finishBaseData(self.imageurl!,(self.inputNameField?.text)!,(self.choiceView?.choicebtn.level_id)!)
+					let imageurls:NSArray = res.object(forKey: "data") as! NSArray
+					self.mallAvator = "http://gigaMerchantManager.gigawon.co.kr:8825/" + (imageurls.firstObject as! String)
+					KLHttpTool.requestStoreImageUpdatewithUri("/api/AppSM/requestStoreImageUpdate", withStoreImageurl: self.mallAvator, withCustomName: self.mallName, withTelephon: self.mallPhone, withZipcode: "12344", withKoraddr: "鸟你妈了个逼闭包", withkoraddrDetail: "鸟你妈了个逼闭包", success: { (response) in
+						let res:NSDictionary = (response as? NSDictionary)!
+						let status:String = (res.object(forKey: "status") as! String)
+						if status == "1" {
+							self.changeHeadAvatorMap(self.mallAvator!)
+						}
+
+					}, failure: { (error) in
+						
+					})
 					
+//					KLHttpTool.requestStoreImageUpdatewithUri("/api/AppSM/requestStoreImageUpdate", withStoreImageurl: imagestr, success: { (response) in
+//						let res:NSDictionary = (response as? NSDictionary)!
+//						let status:String = (res.object(forKey: "status") as! String)
+//						if status == "1" {
+//							self.changeHeadAvatorMap(imagestr)
+// 						}
+//					}, failure: { (error) in
+					
+//					})
 				}
 				
 			}, failure: { (error) in

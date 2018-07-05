@@ -140,12 +140,12 @@
     self.selectNavi = (UINavigationController *)tabBarController.viewControllers[self.selectedIndex];
     NSInteger index = [self.viewControllers indexOfObject:viewController];
     if (index == 2 || index == 3) {
-//        if ([YCAccountModel islogin]){
-//            return YES;
-//        }else {
-//            [tabBarController.selectedViewController goToLogin:^{}];
-//            return NO;
-//        }
+        if ([YCAccountModel islogin]){
+            return YES;
+        }else {
+            [tabBarController.selectedViewController goToLogin:^{}];
+            return NO;
+        }
     }
     return YES;
 }

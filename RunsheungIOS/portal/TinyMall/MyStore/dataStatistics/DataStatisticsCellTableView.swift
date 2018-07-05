@@ -19,7 +19,8 @@ class DataStatisticsCellTableView: UIView {
 	var data:NSArray = ["今日".localized,"本周".localized,"本月".localized,"期间".localized]
 	var requesData:NSMutableArray = NSMutableArray()
 	var tableHeadView:DataStatisticCellHeadView?
-	var forthCellTableViewMap:(NSString,NSString)->Void = {(fromday:NSString,endday:NSString) in }
+	let showNoneData:UILabel = UILabel()
+ 	var forthCellTableViewMap:(NSString,NSString)->Void = {(fromday:NSString,endday:NSString) in }
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		createSuv()
@@ -36,6 +37,7 @@ class DataStatisticsCellTableView: UIView {
 				self.resquestData(refreshtype: RefreshType.topfresh,type:4,startDay:fromday,endDay:endday , complete: {
 					self.tableview.mj_header.endRefreshing()
 					self.tableview.mj_footer.resetNoMoreData()
+					self.showNoneData.isHidden = false
 					
 				})
 			})
@@ -56,7 +58,8 @@ class DataStatisticsCellTableView: UIView {
 				self.resquestData(refreshtype: RefreshType.topfresh,type:type + 1,startDay:"",endDay:"" , complete: {
 					self.tableview.mj_header.endRefreshing()
 					self.tableview.mj_footer.resetNoMoreData()
-					
+					self.showNoneData.isHidden = false
+ 
 				})
 			})
 			self.tableview.mj_footer = MJRefreshAutoFooter.init(refreshingBlock: {
@@ -92,7 +95,8 @@ class DataStatisticsCellTableView: UIView {
  			let status:String = (res.object(forKey: "status") as! String)
 			self.isFetching = false
  			if status == "1" {
-				self.tableHeadView?.showData(dic: res)
+				self.tableview.isHidden = false
+ 				self.tableHeadView?.showData(dic: res)
 				let tempdata:NSArray = res.object(forKey: "data") as! NSArray
 				if refreshtype == RefreshType.topfresh{
 					
@@ -118,6 +122,22 @@ class DataStatisticsCellTableView: UIView {
 
 	private func createTableView(){
 		
+		showNoneData.isHidden = true
+		showNoneData.layer.cornerRadius = 5
+		showNoneData.layer.masksToBounds = true
+		showNoneData.text = "暂无数据"
+		showNoneData.textAlignment = .center
+		showNoneData.textColor = UIColor.white
+		showNoneData.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
+		self.addSubview(showNoneData)
+		showNoneData.snp.makeConstraints { (make) in
+			make.centerX.equalToSuperview()
+			make.top.equalTo(200)
+			make.width.equalTo(80)
+			make.height.equalTo(40)
+		}
+
+		self.tableview.isHidden = true
 		self.tableview.dataSource = self
 		self.tableview.delegate = self
 		self.tableview.estimatedRowHeight = 0

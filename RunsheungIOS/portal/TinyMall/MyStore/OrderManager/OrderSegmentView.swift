@@ -25,6 +25,7 @@ class OrderSegmentView: UIView {
 	var stateData:NSMutableArray = []
 	var openCloseState:Bool = false
 	var submitAcceptSuccessMap1:(Int)->Void = {(index:Int)->Void in}
+	let showNoneData:UILabel = UILabel()
 
 	let badageCircle:(String) -> UILabel = {(text:String) -> UILabel in
 		
@@ -78,8 +79,24 @@ class OrderSegmentView: UIView {
 
 	@objc public func getTag(tag:Int){
 		self.tableviewTag = tag
+		
+		showNoneData.isHidden = true
+		showNoneData.layer.cornerRadius = 5
+		showNoneData.layer.masksToBounds = true
+		showNoneData.text = "暂无数据"
+		showNoneData.textAlignment = .center
+		showNoneData.textColor = UIColor.white
+		showNoneData.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
+		self.addSubview(showNoneData)
+		showNoneData.snp.makeConstraints { (make) in
+			make.centerX.equalToSuperview()
+			make.top.equalTo(200)
+ 			make.width.equalTo(80)
+			make.height.equalTo(40)
+		}
+		
 		ceateTableView()
-		self.tabview.mj_header.beginRefreshing()
+ 		self.tabview.mj_header.beginRefreshing()
  	}
 	
 
@@ -105,6 +122,7 @@ class OrderSegmentView: UIView {
 			self.isFetching = false
 
 			if status == "1" {
+				self.tabview.isHidden = false
 				let tempdata:NSArray = res.object(forKey: "data") as! NSArray
 				if refreshtype == RefreshType.topfresh{
 
@@ -135,19 +153,20 @@ class OrderSegmentView: UIView {
 extension OrderSegmentView:UITableViewDelegate,UITableViewDataSource{
 	private func ceateTableView(){
 		
-		self.tabview  = UITableView()
-		self.tabview .separatorColor = UIColor(red: 232, green: 234, blue: 236)
-		self.tabview .dataSource = self
-		self.tabview .delegate = self
-		self.tabview .estimatedRowHeight = 0
-		self.tabview .tableFooterView = UIView()
-		self.tabview .estimatedSectionFooterHeight = 0
-		self.tabview .estimatedSectionHeaderHeight = 0
+		self.tabview = UITableView()
+		self.tabview.isHidden = true
+		self.tabview.separatorColor = UIColor(red: 232, green: 234, blue: 236)
+		self.tabview.dataSource = self
+		self.tabview.delegate = self
+		self.tabview.estimatedRowHeight = 0
+		self.tabview.tableFooterView = UIView()
+		self.tabview.estimatedSectionFooterHeight = 0
+		self.tabview.estimatedSectionHeaderHeight = 0
 		self.tabview.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
 			self.resquestData(refreshtype: RefreshType.topfresh , complete: {
 				self.tabview.mj_header.endRefreshing()
 				self.tabview.mj_footer.resetNoMoreData()
-
+				self.showNoneData.isHidden = false
 			})
 		})
 		self.tabview.mj_footer = MJRefreshAutoFooter.init(refreshingBlock: {

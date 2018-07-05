@@ -9,12 +9,19 @@
 import UIKit
 
 class CommentCellTableView: UIView {
+	enum RefreshType: Int {
+		case topfresh
+		case loadmore
+	}
+	let showNoneData:UILabel = UILabel()
+	var pg:Int = 1
+	var isFetching:Bool = false
 	var tableview:UITableView = UITableView()
 	var veiw_bgn:Int = 1
 	var refreshIndexPath:IndexPath?
 	var data:NSMutableArray = [true,false]
 	var requestFinishMap:(NSDictionary) -> Void = {(dic:NSDictionary) in}
- 	var requestData:NSArray = NSArray()
+ 	var requestData:NSMutableArray = NSMutableArray()
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -26,13 +33,29 @@ class CommentCellTableView: UIView {
 	}
 	
 	private func createSuv(){
+		self.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
+
+		showNoneData.isHidden = true
+		showNoneData.layer.cornerRadius = 5
+		showNoneData.layer.masksToBounds = true
+		showNoneData.text = "暂无数据"
+		showNoneData.textAlignment = .center
+		showNoneData.textColor = UIColor.white
+		showNoneData.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
+ 		self.addSubview(showNoneData)
+		showNoneData.snp.makeConstraints { (make) in
+			make.centerX.equalToSuperview()
+			make.top.equalToSuperview()
+			make.width.equalTo(80)
+			make.height.equalTo(40)
+		}
 		createTableView()
-		
+
 	}
 	
 	private func createTableView(){
-		
-		self.tableview.dataSource = self
+		self.tableview.isHidden = true
+ 		self.tableview.dataSource = self
 		self.tableview.delegate = self
 		self.tableview.tableFooterView = UIView()
 		self.tableview.estimatedRowHeight = 0
@@ -42,6 +65,18 @@ class CommentCellTableView: UIView {
 		self.tableview.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
 		self.tableview.register(UINib(nibName: "CommentRetTableCell", bundle: nil), forCellReuseIdentifier: "CommentRetTableCell_ID")
 		self.tableview.register(UINib(nibName: "CommentTableCell", bundle: nil), forCellReuseIdentifier: "CommentTableCell_ID")
+		self.tableview.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
+			self.resquestData(refreshtype: RefreshType.topfresh,view_gbn:self.veiw_bgn, complete: {
+				self.tableview.mj_header.endRefreshing()
+				self.tableview.mj_footer.resetNoMoreData()
+				self.showNoneData.isHidden = false
+			})
+		})
+		self.tableview.mj_footer = MJRefreshAutoFooter.init(refreshingBlock: {
+			self.resquestData(refreshtype: RefreshType.loadmore,view_gbn:self.veiw_bgn, complete: {
+				self.tableview.mj_footer.endRefreshing()
+			})
+		})
  		self.addSubview(self.tableview)
 		self.tableview.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()
@@ -51,23 +86,54 @@ class CommentCellTableView: UIView {
 	
 	@objc public func getSection(section:Int){
 		self.veiw_bgn = section + 1
-		self.resquestAssessList(view_gbn: self.veiw_bgn)
-	}
+		self.tableview.mj_header.beginRefreshing()
+ 	}
 	
-	private func resquestAssessList(view_gbn:Int){
-		KLHttpTool.requestAssessListwithUri("/api/AppSM/requestAssessList", withDivcode:"2", withview_gbn: String(view_gbn), withpg: "1", withPagesize: "5", success: { (response) in
-			let res:NSDictionary = (response as? NSDictionary)!
-			let status:String = (res.object(forKey: "status") as! String)
-			if status == "1" {
-				self.requestData = res.object(forKey: "ShopAssessData") as! NSArray
-				self.requestFinishMap(res)
-				self.tableview.reloadData()
-			}
-		}) { (error) in
+	
+	private func resquestData(refreshtype:RefreshType,view_gbn:Int, complete:@escaping ()->Void){
+		
+		if (self.isFetching) {
+			complete()
+			return
+		}
+		
+		if refreshtype == RefreshType.topfresh {
+			self.pg = 1
+			
+		}else{
+			self.pg += 1
 			
 		}
+		
+		KLHttpTool.requestAssessListwithUri("/api/AppSM/requestAssessList", withDivcode:"2", withview_gbn: String(view_gbn), withpg: String(self.pg), withPagesize: "5", success: { (response) in
+			let res:NSDictionary = (response as? NSDictionary)!
+			let status:String = (res.object(forKey: "status") as! String)
+			self.isFetching = false
+			if status == "1" {
+ 				let tempdata:NSArray = res.object(forKey: "ShopAssessData") as! NSArray
+				if refreshtype == RefreshType.topfresh{
+					self.tableview.isHidden = false
+  					self.requestData = NSMutableArray(array:tempdata)
+					self.requestFinishMap(res)
 
+				}else{
+					
+					self.requestData.addObjects(from: tempdata as! [Any])
+				}
+				self.tableview.reloadData()
+				
+			}
+			complete()
+			
+			
+		}) { (err) in
+			complete()
+			
+		}
+		
 	}
+	
+
 }
 
 extension CommentCellTableView:UITableViewDelegate,UITableViewDataSource{
@@ -89,16 +155,26 @@ extension CommentCellTableView:UITableViewDelegate,UITableViewDataSource{
 			let cell:CommentRetTableCell = tableview.dequeueReusableCell(withIdentifier: "CommentRetTableCell_ID", for: indexPath) as! CommentRetTableCell
 			cell.getdic(dic: dic)
 			cell.returnSaleSuccessMap = { ()->Void in
-				self.resquestAssessList(view_gbn: self.veiw_bgn)
- 			}
+				self.resquestData(refreshtype: RefreshType.topfresh,view_gbn:self.veiw_bgn, complete: {
+					self.tableview.mj_header.endRefreshing()
+					self.tableview.mj_footer.resetNoMoreData()
+					
+				})
+
+  			}
  			return cell
 
 		}else{
 			let cell:CommentTableCell = tableview.dequeueReusableCell(withIdentifier: "CommentTableCell_ID", for: indexPath) as! CommentTableCell
 			cell.getdic(dic: dic)
  			cell.returnSaleSuccessMap = { ()->Void in
-				self.resquestAssessList(view_gbn: self.veiw_bgn)
- 			}
+				self.resquestData(refreshtype: RefreshType.topfresh,view_gbn:self.veiw_bgn, complete: {
+					self.tableview.mj_header.endRefreshing()
+					self.tableview.mj_footer.resetNoMoreData()
+					
+				})
+
+  			}
  			return cell
 
 		}

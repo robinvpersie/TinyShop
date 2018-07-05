@@ -16,7 +16,7 @@ class OrderCellTableView: UIView {
 	var openState:Bool = false
 	var acceptPopView:OrderAcceptPopView = OrderAcceptPopView()
 	var index:Int = 0
- 	@objc public var clickStateMap:(Bool)->Void = { (openState:Bool) in }
+  	@objc public var clickStateMap:(Bool)->Void = { (openState:Bool) in }
 	var enterNextPageMap:(Int)->Void = {(page:Int)->Void in }
 	
 	var label:(CGFloat,UIColor,String)->UILabel = {(fontSize:CGFloat,textColor:UIColor,textContent:String)->UILabel in
@@ -63,8 +63,8 @@ class OrderCellTableView: UIView {
 		self.layer.masksToBounds = true
 		self.layer.borderColor = UIColor(red: 221, green: 221, blue: 221).cgColor
 		self.layer.borderWidth = 1.0
-		ceateTableView()
-		
+ 		ceateTableView()
+ 
 	}
 	
 	required init?(coder aDecoder: NSCoder) {

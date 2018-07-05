@@ -1020,4 +1020,26 @@
 				 withCustomerCode:(NSString *)customer_code
 						  success:(void (^)(id response))success
 						  failure:(void (^)(NSError *err))failure;
+
+/**
+ 修改我的商家图片
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestStoreImageUpdatewithUri:(NSString*)uri
+					 withStoreImageurl:(NSString *)store_image_url
+							   success:(void (^)(id response))success
+							   failure:(void (^)(NSError *err))failure;
+
++ (void)requestStoreImageUpdatewithUri:(NSString*)uri
+					 withStoreImageurl:(NSString *)store_image_url
+						withCustomName:(NSString *)custom_name
+						  withTelephon:(NSString *)telephon
+						   withZipcode:(NSString *)zip_code
+						   withKoraddr:(NSString *)kor_addr
+					 withkoraddrDetail:(NSString *)kor_addr_detail
+							   success:(void (^)(id response))success
+							   failure:(void (^)(NSError *err))failure;
 @end

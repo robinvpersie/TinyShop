@@ -3671,8 +3671,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
 	
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,status,custom_code,token).mutableCopy;
 	
@@ -3708,8 +3708,8 @@
 	NSString *pageSize = @"10";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,CategoryId,page,selling,pageSize,custom_code,token).mutableCopy;
 	
 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
@@ -3744,8 +3744,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,groupid,selling,custom_code,token).mutableCopy;
 	
 	
@@ -3780,8 +3780,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,groupid,custom_code,token).mutableCopy;
 	
 	
@@ -3818,8 +3818,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
 	if (deletag == 101) {
 		NSString* item_code = specnameprice;
 		NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,groupid, item_code,custom_code,token).mutableCopy;
@@ -3870,8 +3870,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,CatergoryID,custom_code,token).mutableCopy;
 	
 	
@@ -3907,8 +3907,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
 	NSString *cateid = dic[@"id"];
 	NSString *image_url = dic[@"image_url"];
 	NSString *rank = dic[@"rank"];
@@ -3953,8 +3953,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
 	
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,rid,pid,image_url,rank,level_name,custom_code,token).mutableCopy;
 	
@@ -3987,8 +3987,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
 	
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,custom_code,token).mutableCopy;
 	[params setObject:cateid forKey:@"id"];
@@ -4022,8 +4022,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
 	
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,custom_code,groupid,token).mutableCopy;
  
@@ -4051,6 +4051,7 @@
 						 withImage:(UIImage*)image
  						   success:(void (^)(id response))success
  						   failure:(void (^)(NSError *err))failure {
+	
 	NSString *uri =[NSString stringWithFormat:@"%@%@",MystoreUrl,url];
 
 	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -4107,8 +4108,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
 	
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,Image_url,custom_item_code,groupId,custom_item_name,custom_item_spec,item_name,item_level1,price,dom,custom_code,token).mutableCopy;
    	[params setObject:spec forKey:@"spec"];
@@ -4144,8 +4145,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
 	
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,custom_code,token).mutableCopy;
 	
@@ -4182,8 +4183,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,pg, pagesize,orderclassify ,custom_code,token).mutableCopy;
 	
 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
@@ -4220,8 +4221,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = @"010530117822fbe4";
-	token = @"186731755546ed9ed281940b-600e-4847-88a2-e932935674a5";
+//	custom_code = @"010530117822fbe4";
+//	token = @"186731755546ed9ed281940b-600e-4847-88a2-e932935674a5";
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,pg, pagesize,view_gbn,div_code ,custom_code,token).mutableCopy;
 	
 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
@@ -4256,8 +4257,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = @"010530117822fbe4";
-	token = @"186731755546ed9ed281940b-600e-4847-88a2-e932935674a5";
+//	custom_code = @"010530117822fbe4";
+//	token = @"186731755546ed9ed281940b-600e-4847-88a2-e932935674a5";
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,sale_content,assess_id,custom_code,token).mutableCopy;
 	
 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
@@ -4292,8 +4293,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,order_num,status,custom_code,token).mutableCopy;
 	
 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
@@ -4331,8 +4332,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
 	
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,fromday,periodclassify,pg,today,pagesize,custom_code,token).mutableCopy;
 	
@@ -4365,8 +4366,8 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
 	NSString * lang_type = @"kor";
-	custom_code = MystoreTestCustom_Code;
-	token = MystoreTestToken;
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
  	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,order_num,customer_code,custom_code,token).mutableCopy;
  	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
 		NSLog(@"%@",response);
@@ -4380,6 +4381,66 @@
 }
 
 
+/**
+ 修改我的商家图片
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestStoreImageUpdatewithUri:(NSString*)uri
+					 withStoreImageurl:(NSString *)store_image_url
+							   success:(void (^)(id response))success
+							   failure:(void (^)(NSError *err))failure{
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
+	NSString * lang_type = @"kor";
+//	custom_code = MystoreTestCustom_Code;
+//	token = MystoreTestToken;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,store_image_url,custom_code,token).mutableCopy;
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+}
+
+
++ (void)requestStoreImageUpdatewithUri:(NSString*)uri
+					 withStoreImageurl:(NSString *)store_image_url
+						withCustomName:(NSString *)custom_name
+						  withTelephon:(NSString *)telephon
+						   withZipcode:(NSString *)zip_code
+						   withKoraddr:(NSString *)kor_addr
+					 withkoraddrDetail:(NSString *)kor_addr_detail
+							   success:(void (^)(id response))success
+							   failure:(void (^)(NSError *err))failure{
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
+	NSString * lang_type = @"kor";
+	//	custom_code = MystoreTestCustom_Code;
+	//	token = MystoreTestToken;
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,store_image_url,kor_addr_detail,custom_name,telephon,zip_code,kor_addr,custom_code,token).mutableCopy;
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+}
 
 @end
 

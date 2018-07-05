@@ -24,6 +24,8 @@ class CommentMainController: MyStoreBaseViewController {
 	}
 	
  	private func createSuvs(){
+		self.view.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
+		self.commentTop.isHidden = true
 		self.view.addSubview(self.commentTop)
  		self.commentTop.snp.makeConstraints { (make) in
 			make.top.left.right.equalToSuperview()
@@ -31,6 +33,7 @@ class CommentMainController: MyStoreBaseViewController {
 		}
 	
 		self.dataHead = DataStatisticsHeadView()
+		self.dataHead?.isHidden = true
 		self.dataHead?.clickHeadIndexMap = {[weak self](index:Int)->Void in
 			
 			let indexPath = IndexPath(row: index, section: 0)
@@ -85,7 +88,8 @@ extension CommentMainController: UICollectionViewDelegate,UICollectionViewDataSo
 		if indexPath.row == 0 {
 			dataCell.requestFinishMap = {(dic:NSDictionary ) in
 				self.commentTop.getDic(dic: dic )
-				
+				self.commentTop.isHidden = false
+				self.dataHead?.isHidden = false
 				let allcount:String = dic.object(forKey: "assess_cnt") as! String
 				let notRead:String = dic.object(forKey: "not_conf") as! String
  				let starStr1:String = dic.object(forKey: "rating1") as! String
