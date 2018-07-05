@@ -41,6 +41,9 @@ class ShopNameChangeController: MyStoreBaseViewController {
 }
 
 extension ShopNameChangeController:UITableViewDelegate,UITableViewDataSource{
+	func numberOfSections(in tableView: UITableView) -> Int {
+		return 2
+	}
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return 1
 	}
@@ -49,5 +52,8 @@ extension ShopNameChangeController:UITableViewDelegate,UITableViewDataSource{
 		return UITableViewCell()
 	}
 	
+	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		return 5
+	}
 	
 }
