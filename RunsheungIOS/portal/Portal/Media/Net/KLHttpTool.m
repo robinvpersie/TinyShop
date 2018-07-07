@@ -24,7 +24,7 @@
 //#define PaymentUrl @"https://api.dxbhtm.com/wPayment/api/wPayment"
 //#define PointListUrl @"https://api.dxbhtm.com/pl_Point/api/PointGetListAndBalance"
 
-#if DEBUG // 判断是否在测试环境下
+#if !DEBUG // 判断是否在测试环境下
     #define BaseUrl  @"http://192.168.2.230:81/"
     #define ShopBaseUrl @"http://192.168.2.179:96/"
     #define PaymentBaseURL @"http://192.168.2.230:8088/"
@@ -4426,9 +4426,7 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
 	NSString * lang_type = @"kor";
-	//	custom_code = MystoreTestCustom_Code;
-	//	token = MystoreTestToken;
-	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,store_image_url,kor_addr_detail,custom_name,telephon,zip_code,kor_addr,custom_code,token).mutableCopy;
+ 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,store_image_url,kor_addr_detail,custom_name,telephon,zip_code,kor_addr,custom_code,token).mutableCopy;
 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
 		NSLog(@"%@",response);
 		if (success) {

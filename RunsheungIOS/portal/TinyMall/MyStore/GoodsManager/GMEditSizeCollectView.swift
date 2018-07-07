@@ -125,6 +125,7 @@ extension GMEditSizeCollectView: UICollectionViewDelegate,UICollectionViewDataSo
 				let specPrice:String = (dic.object(forKey: "specPrice") as! String)
  				let size:UILabel = UILabel()
 				size.text = specname + "份".localized
+				size.font = UIFont.systemFont(ofSize: 13)
 				size.textAlignment = .center
 				bgView.addSubview(size)
 				size.snp.makeConstraints { (make) in
@@ -135,7 +136,8 @@ extension GMEditSizeCollectView: UICollectionViewDelegate,UICollectionViewDataSo
 				
 				let price:UILabel = UILabel()
 				price.text = "￥" + specPrice
-				price.textAlignment = .center
+				price.font = UIFont.systemFont(ofSize: 13)
+ 				price.textAlignment = .center
 				bgView.addSubview(price)
 				price.snp.makeConstraints { (make) in
 					make.bottom.equalTo(-5)
@@ -201,8 +203,9 @@ extension GMEditSizeCollectView: UICollectionViewDelegate,UICollectionViewDataSo
 			}
 			UIApplication.shared.delegate?.window??.addSubview(self.popEditView!)
 			self.popEditView?.snp.makeConstraints({ (make) in
-				make.center.equalToSuperview()
-				make.width.equalTo(screenWidth - 60)
+				make.centerX.equalToSuperview()
+				make.centerY.equalToSuperview().offset(-40)
+ 				make.width.equalTo(screenWidth - 60)
 				make.height.equalTo(screenHeight/3)
 			})
 

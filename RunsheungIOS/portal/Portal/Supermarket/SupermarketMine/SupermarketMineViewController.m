@@ -256,10 +256,8 @@
       [self hideLoading];
        if (indexPath.section == 1) {
             if (indexPath.row == 0) {
-                NSString *loadurl = @"http://www.gigawon.co.kr:1314/80_StoreAdmin/storeMain.aspx";
-                MyStoreMainViewController *rulevc = [MyStoreMainViewController new];
-//                [rulevc loadRulesWebWithLoadurl:loadurl];
-				rulevc.hidesBottomBarWhenPushed = YES;
+                 MyStoreMainViewController *rulevc = [MyStoreMainViewController new];
+ 				rulevc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:rulevc animated:YES];
                 
             } else if (indexPath.row == 1) {
