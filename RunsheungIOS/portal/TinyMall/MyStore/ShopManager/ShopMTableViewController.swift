@@ -134,6 +134,7 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 					picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
 					picker.allowsEditing = true
 					self?.present(picker, animated:true, completion: {() -> Void in })
+					
 				}
 			}
 			let action1 = UIAlertAction(title:"照相".localized, style: .default) { [weak self](action)in
@@ -181,7 +182,7 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 				self.tableView.reloadData()
   			}
 		
- 			KLHttpTool.requestStoreImageUpdatewithUri("/api/AppSM/requestStoreImageUpdate", withStoreImageurl: self.mallAvator, withCustomName: self.mallName, withTelephon: self.mallPhone, withZipcode: "12344", withKoraddr: self.mallAddress, withkoraddrDetail: "fuck your sister", success: { (response) in
+ 			KLHttpTool.requestStoreImageUpdatewithUri("/api/AppSM/requestStoreImageUpdate", withStoreImageurl: self.mallAvator, withCustomName: self.mallName, withTelephon: self.mallPhone, withZipcode: "12344", withKoraddr: self.mallAddress, withkoraddrDetail: self.mallAddress, success: { (response) in
 					let res:NSDictionary = (response as? NSDictionary)!
 					let status:String = (res.object(forKey: "status") as! String)
 					if status == "1" {
@@ -219,7 +220,7 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 				if status == 1 {
 					let imageurls:NSArray = res.object(forKey: "data") as! NSArray
 					self.mallAvator = "http://gigaMerchantManager.gigawon.co.kr:8825/" + (imageurls.firstObject as! String)
-					KLHttpTool.requestStoreImageUpdatewithUri("/api/AppSM/requestStoreImageUpdate", withStoreImageurl: self.mallAvator, withCustomName: self.mallName, withTelephon: self.mallPhone, withZipcode: "12344", withKoraddr: self.mallAddress, withkoraddrDetail: " ", success: { (response) in
+					KLHttpTool.requestStoreImageUpdatewithUri("/api/AppSM/requestStoreImageUpdate", withStoreImageurl: self.mallAvator, withCustomName: self.mallName, withTelephon: self.mallPhone, withZipcode: "12344", withKoraddr: self.mallAddress, withkoraddrDetail: self.mallAddress, success: { (response) in
 						let res:NSDictionary = (response as? NSDictionary)!
 						let status:String = (res.object(forKey: "status") as! String)
 						if status == "1" {

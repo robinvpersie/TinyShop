@@ -98,6 +98,8 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 		self.avator.isUserInteractionEnabled = true
 		self.avator.layer.cornerRadius = 5
 		self.avator.layer.masksToBounds = true
+		self.avator.layer.borderWidth = 1
+		self.avator.layer.borderColor = UIColor(red: 221, green: 221, blue: 221).cgColor
 		let changAvator:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(changAvatorFunc))
 		self.avator.addGestureRecognizer(changAvator)
 		self.avator.snp.makeConstraints { (make) in

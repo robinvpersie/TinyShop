@@ -52,7 +52,8 @@ class GoodsTableViewCell: UITableViewCell {
 		
 		self.headavator.layer.cornerRadius = 5
 		self.headavator.layer.masksToBounds = true
-
+        self.headavator.layer.borderColor = UIColor(red: 221, green: 221, blue: 221).cgColor
+		self.headavator.layer.borderWidth = 1.0
     }
 	@IBAction func downProductFunc(_ sender: UIButton) {
 		

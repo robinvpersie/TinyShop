@@ -12,6 +12,8 @@ class ShopNameChangeController: MyStoreBaseViewController {
 	var tableview:UITableView = UITableView()
 	var titles:NSArray = ["邮编","地址"]
 	var textView:UITextView = UITextView()
+	var showCode:UILabel = UILabel()
+	
     override func viewDidLoad() {
         super.viewDidLoad()
  		self.view.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
@@ -39,6 +41,10 @@ class ShopNameChangeController: MyStoreBaseViewController {
 		}
 	}
 	
+	@objc private func choiceAction(){
+		
+	}
+	
 }
 
 extension ShopNameChangeController:UITableViewDelegate,UITableViewDataSource{
@@ -56,9 +62,19 @@ extension ShopNameChangeController:UITableViewDelegate,UITableViewDataSource{
 		let cell:UITableViewCell = UITableViewCell()
 		cell.textLabel?.textColor = UIColor(red: 160, green: 160, blue: 160)
 		if indexPath.section == 0 {
- 			cell.textLabel?.text = self.titles.object(at: indexPath.row) as? String
+ 
+			cell.textLabel?.text = self.titles.object(at: indexPath.row) as? String
+			cell.selectionStyle = .none
+			
+			cell.contentView.addSubview(self.showCode)
+  			self.showCode.snp.makeConstraints { (make) in
+				make.bottom.top.equalToSuperview()
+				make.width.equalTo(150)
+				make.left.equalTo(80)
+			}
 			
 			if indexPath.row == 0 {
+				
  				let choiceBtn:UIButton = UIButton()
 				choiceBtn.setTitle("选择", for: .normal)
 				choiceBtn.layer.cornerRadius = 3
@@ -66,6 +82,7 @@ extension ShopNameChangeController:UITableViewDelegate,UITableViewDataSource{
 				choiceBtn.layer.borderColor = UIColor(red: 201, green: 201, blue: 201).cgColor
 				choiceBtn.setTitleColor(UIColor(red: 180, green: 180, blue: 180), for: .normal)
 				choiceBtn.layer.borderWidth = 1
+				choiceBtn.addTarget(self, action: #selector(choiceAction), for: .touchUpInside)
 				cell.contentView.addSubview(choiceBtn)
 				choiceBtn.snp.makeConstraints { (make) in
 					make.width.equalTo(60)
@@ -73,6 +90,8 @@ extension ShopNameChangeController:UITableViewDelegate,UITableViewDataSource{
 					make.right.equalToSuperview().offset(-15)
 					make.centerY.equalToSuperview()
 				}
+				
+				
 			}
  		}else{
 			textView.text = "请输入详细地址"
