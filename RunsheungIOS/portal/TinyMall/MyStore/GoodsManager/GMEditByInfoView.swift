@@ -68,8 +68,7 @@ extension GMEditByInfoView{
 			self.sizeCollectview?.frame = rect
 			
 		}
-		
-		
+ 
 		let kwlabel:UILabel = self.titleLabel("口味：".localized,0.6)
 		kwlabel.font = UIFont.systemFont(ofSize: 15)
 		self.addSubview(kwlabel)

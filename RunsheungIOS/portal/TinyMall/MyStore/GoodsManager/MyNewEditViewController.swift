@@ -16,7 +16,9 @@ class MyNewEditViewController: MyStoreBaseViewController {
 	var level:String?
 	var classname:String?
 	var groupid:String?
-	var editfinshRefreshMap:( )->Void = {( )->Void in }
+	var sizeData:NSMutableArray = NSMutableArray()
+	var sweetData:NSMutableArray = NSMutableArray()
+ 	var editfinshRefreshMap:( )->Void = {( )->Void in }
 
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
@@ -42,8 +44,7 @@ class MyNewEditViewController: MyStoreBaseViewController {
 		
 	}
 	
-
-	@objc private func cancelEdit(){
+ 	@objc private func cancelEdit(){
 		self.baseInfoView.choiceView?.choicebtn.hiddenPopView()
  		let alerController:UIAlertController = UIAlertController(title: "", message: "取消编辑并退出？".localized, preferredStyle: .alert)
 		let cancel:UIAlertAction = UIAlertAction(title: "继续编辑".localized, style: .cancel) { (alert) in }
@@ -70,10 +71,10 @@ class MyNewEditViewController: MyStoreBaseViewController {
 				
 				let dataDit:NSDictionary = res.object(forKey: "data") as! NSDictionary
 				let dic:NSDictionary = dataDit.object(forKey: "item") as! NSDictionary
-				self.baseInfoView.getBaseData(dic: dic, currentLevelDic:NSArray(array: [self.dic ?? " "] ))
-				let spec:NSMutableArray = NSMutableArray(array: dataDit.object(forKey: "spec") as! NSArray )
-				let Flavor:NSMutableArray = NSMutableArray(array: dataDit.object(forKey: "Flavor") as! NSArray )
- 				self.byInfoView.getData(array1: spec,array2: Flavor)
+  				self.baseInfoView.getBaseData(dic: dic, currentLevelDic:NSArray(array: [self.dic ?? " "] ))
+				self.sizeData = NSMutableArray(array: dataDit.object(forKey: "spec") as! NSArray )
+				self.sweetData = NSMutableArray(array: dataDit.object(forKey: "Flavor") as! NSArray )
+ 				self.byInfoView.getData(array1: self.sizeData,array2: self.sweetData)
 				
 			}
 		}) { (error) in
@@ -99,8 +100,13 @@ extension MyNewEditViewController{
 		}
 
 		self.byInfoView.finishData = {(da1:NSMutableArray,da2:NSMutableArray)->Void in
- 
-			KLHttpTool.getGoodManagerAppendproductwithUri("product/updateproduct", withGroupid:self.groupid, withimageURL:self.imageURL, withcustom_item_code: self.dic?.object(forKey: "item_code") as! String, withcustom_item_name: self.classname , withcustom_item_spec: "1", withdom: "1", withitem_name: self.classname, withitem_level1:"1", withprice:self.dic?.object(forKey: "item_p") as! String, withspec: da1 as! [Any], withFlavor: da2 as! [Any], success: { (response) in
+			if da1.count == 0 {
+				da1.addObjects(from: self.sizeData as! [Any])
+ 			}
+			if da2.count == 0 {
+				da2.addObjects(from: self.sweetData as! [Any])
+ 			}
+ 			KLHttpTool.getGoodManagerAppendproductwithUri("product/updateproduct", withGroupid:self.groupid, withimageURL:self.imageURL, withcustom_item_code: self.dic?.object(forKey: "item_code") as! String, withcustom_item_name: self.classname , withcustom_item_spec: "1", withdom: "1", withitem_name: self.classname, withitem_level1:"1", withprice:self.dic?.object(forKey: "item_p") as! String, withspec: da1 as! [Any], withFlavor: da2 as! [Any], success: { (response) in
 				
 				let res:NSDictionary = (response as? NSDictionary)!
 				let status:Int = (res.object(forKey: "status") as! Int)

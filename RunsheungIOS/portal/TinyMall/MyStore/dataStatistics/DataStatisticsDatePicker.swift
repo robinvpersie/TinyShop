@@ -37,6 +37,7 @@ class DataStatisticsDatePicker: UIView {
 		self.maskview.addGestureRecognizer(tap)
 		UIApplication.shared.delegate?.window??.addSubview(self.maskview)
 		self.maskview.snp.makeConstraints { (make) in
+			
 			make.edges.equalToSuperview()
 		}
 		

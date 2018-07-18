@@ -9,7 +9,7 @@
 import UIKit
 
 class GMEditBaseInfoView: UIView {
-	let avator:UIImageView = UIImageView(image: UIImage(named: "256252.jpg") )
+	let avator:UIImageView = UIImageView()
 	var inputNameField:UITextField?
 	var choiceView:GMEditChoiceCateView?
 	var imageurl:String?
@@ -50,10 +50,25 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 	@objc private func changAvatorFunc(){
 		let alert:UIAlertController = UIAlertController(title: "", message: "修改头像图片".localized, preferredStyle: .actionSheet)
 		let action = UIAlertAction(title:"相册".localized, style: .default) {[weak self](action)in
-			self?.openAlbumCamera()
+			if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+				
+				let picker = UIImagePickerController()
+				picker.delegate = self
+				picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+				picker.allowsEditing = true
+				self?.viewController().present(picker, animated:true, completion: {() -> Void in })
+			}
 		}
 		let action1 = UIAlertAction(title:"照相".localized, style: .default) { [weak self](action)in
-			self?.openAlbumCamera()
+			if UIImagePickerController.isSourceTypeAvailable(.camera){
+				
+				let picker = UIImagePickerController()
+				picker.delegate = self
+				picker.sourceType = UIImagePickerControllerSourceType.camera
+				picker.allowsEditing = true
+				self?.viewController().present(picker, animated:true, completion: { () -> Void in })
+				
+			}
 		}
 		let action2 = UIAlertAction(title:"取消".localized, style: .cancel, handler:nil)
 		alert.addAction(action)
@@ -83,6 +98,8 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 		self.avator.isUserInteractionEnabled = true
 		self.avator.layer.cornerRadius = 5
 		self.avator.layer.masksToBounds = true
+		self.avator.layer.borderWidth = 1
+		self.avator.layer.borderColor = UIColor(red: 221, green: 221, blue: 221).cgColor
 		let changAvator:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(changAvatorFunc))
 		self.avator.addGestureRecognizer(changAvator)
 		self.avator.snp.makeConstraints { (make) in
@@ -129,30 +146,6 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 		
 		
 	}
-  	private func openAlbumCamera(){
-		
-		if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-			
-			let picker = UIImagePickerController()
-			picker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
-			picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
-			picker.allowsEditing = true
-
-			self.viewController().present(picker, animated:true, completion: {() -> Void in
-				
-			})
- 		}
-		
-		if UIImagePickerController.isSourceTypeAvailable(.camera){
-			
-			let picker = UIImagePickerController()
-			picker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
-			picker.sourceType = UIImagePickerControllerSourceType.camera
-			picker.allowsEditing = true
-			self.viewController().present(picker, animated:true, completion: { () -> Void in })
-			
-		}
- 	}
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 		let image = info[UIImagePickerControllerEditedImage] as! UIImage

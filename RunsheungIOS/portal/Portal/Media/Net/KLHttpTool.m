@@ -36,24 +36,22 @@
     #define MallBaseUrl @"http://mall.gigawon.co.kr:8800"
     #define TinyMemberShopBaseURL @"http://member.gigawon.co.kr:8808/api/"
     #define TinyMallShopBaseURL @"http://mall.gigawon.co.kr:8800/api/"
+    #define MallBaseUrl @"http://mall.gigawon.co.kr:8800"
+    #define MystoreUrl @"http://gigaMerchantManager.gigawon.co.kr:8825/"
+
 #else
     #define TinyMemberShopBaseURL @"http://member.gigawon.co.kr:8808/api/"
     #define TinyMallShopBaseURL @"http://mall.gigawon.co.kr:8800/api/"
-
-    #define BaseUrl  @"http://pay.gigawon.co.kr:81/"
+     #define BaseUrl  @"http://pay.gigawon.co.kr:81/"
     #define PaymentBaseURL @"http://pay.gigawon.co.kr:8088/"
     #define ShopBaseUrl @"http://api1.gigawon.co.kr:96/"
     #define PaymentUrl @"http://api.gigawon.co.kr:8083/wpayment/api/wPayment"
-
-    #define PointListUrl @"https://api.gigawon.co.kr:8444/pl_Point/api/PointGetListAndBalance"
+     #define PointListUrl @"https://api.gigawon.co.kr:8444/pl_Point/api/PointGetListAndBalance"
     #define CheckTokenUrl @"https://api.gigawon.co.kr:8444/appapi/userapi"
     #define GetZipcodeUrl @"http://api1.gigawon.co.kr:82/api/ycZipCode/getZipCode"
     #define GetTokenUrl @"http://member.gigawon.co.kr:89/ws2016/srvJoinModule/10_Login/checkLogin_0911"
     #define MallBaseUrl @"http://mall.gigawon.co.kr:8800"
-   #define MystoreUrl @"http://gigaMerchantManager.gigawon.co.kr:8825/"
-    #define MystoreTestCustom_Code @"01071390103abcde"
-    #define MystoreTestToken @"186743935020f829f883e9fe-c8cf-4f60-9ed2-bd645cb1c118"
-
+    #define MystoreUrl @"http://gigaMerchantManager.gigawon.co.kr:8825/"
 
 #endif
 
@@ -4428,9 +4426,39 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
 	NSString * lang_type = @"kor";
-	//	custom_code = MystoreTestCustom_Code;
-	//	token = MystoreTestToken;
-	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,store_image_url,kor_addr_detail,custom_name,telephon,zip_code,kor_addr,custom_code,token).mutableCopy;
+ 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,store_image_url,kor_addr_detail,custom_name,telephon,zip_code,kor_addr,custom_code,token).mutableCopy;
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+}
+
+
+/**
+ 根据地址获取韩国邮编
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)GetKorAddresswithUri:(NSString*)uri
+ 					  withPg:(NSString *)pg
+ 				withPageSize:(NSString *)psize
+ 					 withKey:(NSString *)key
+ 					 success:(void (^)(id response))success
+ 					 failure:(void (^)(NSError *err))failure{
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
+	
+ 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(pg,psize,key,custom_code,token).mutableCopy;
 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
 		NSLog(@"%@",response);
 		if (success) {

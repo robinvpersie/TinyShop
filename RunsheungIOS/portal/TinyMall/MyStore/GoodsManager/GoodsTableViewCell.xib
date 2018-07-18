@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,13 +43,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35N-4M-95E">
-                        <rect key="frame" x="313" y="72.5" width="44" height="17"/>
+                        <rect key="frame" x="313" y="73" width="44" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="S2j-9a-R41"/>
                             <constraint firstAttribute="width" constant="44" id="buw-1G-Wr9"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                        <state key="normal" title="重新编辑">
+                        <state key="normal" title="다시편집">
                             <color key="titleColor" red="0.62745098039215685" green="0.62745098039215685" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
@@ -56,12 +57,12 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScB-YS-S5A">
-                        <rect key="frame" x="264" y="72.5" width="44" height="17"/>
+                        <rect key="frame" x="264" y="73" width="44" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="COa-EQ-rr5"/>
                         </constraints>
                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="10"/>
-                        <state key="normal" title="下架商品">
+                        <state key="normal" title="판매중지">
                             <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -81,19 +82,19 @@
                 <constraints>
                     <constraint firstItem="zql-pH-bgB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="7lV-R7-ANu"/>
                     <constraint firstItem="ulZ-fk-h9o" firstAttribute="leading" secondItem="8Z8-Rq-tMt" secondAttribute="leading" id="9cA-2s-Cpw"/>
+                    <constraint firstItem="35N-4M-95E" firstAttribute="bottom" secondItem="HCI-6w-irZ" secondAttribute="bottom" id="EHE-hO-CK3"/>
                     <constraint firstItem="HCI-6w-irZ" firstAttribute="leading" secondItem="8Z8-Rq-tMt" secondAttribute="leading" id="J3x-Lz-wZl"/>
                     <constraint firstItem="zql-pH-bgB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="YME-FW-DA0"/>
+                    <constraint firstItem="35N-4M-95E" firstAttribute="baseline" secondItem="ScB-YS-S5A" secondAttribute="firstBaseline" id="YmJ-0x-s1Q"/>
                     <constraint firstItem="35N-4M-95E" firstAttribute="leading" secondItem="ScB-YS-S5A" secondAttribute="trailing" constant="5" id="cvV-y3-hnD"/>
                     <constraint firstItem="8Z8-Rq-tMt" firstAttribute="leading" secondItem="zql-pH-bgB" secondAttribute="trailing" constant="4" id="d3e-sM-te8"/>
+                    <constraint firstItem="35N-4M-95E" firstAttribute="firstBaseline" secondItem="ScB-YS-S5A" secondAttribute="baseline" id="eKm-ms-iCx"/>
                     <constraint firstAttribute="trailing" secondItem="35N-4M-95E" secondAttribute="trailing" constant="8" id="ecp-u9-Uve"/>
-                    <constraint firstItem="35N-4M-95E" firstAttribute="top" secondItem="ScB-YS-S5A" secondAttribute="top" id="glc-aJ-kwz"/>
+                    <constraint firstItem="35N-4M-95E" firstAttribute="top" secondItem="ScB-YS-S5A" secondAttribute="top" id="f3T-tT-TZp"/>
                     <constraint firstItem="ulZ-fk-h9o" firstAttribute="centerY" secondItem="zql-pH-bgB" secondAttribute="centerY" id="jOW-m9-ay0"/>
-                    <constraint firstItem="35N-4M-95E" firstAttribute="centerY" secondItem="HCI-6w-irZ" secondAttribute="centerY" id="khH-Yw-xvb"/>
                     <constraint firstItem="35N-4M-95E" firstAttribute="trailing" secondItem="8Z8-Rq-tMt" secondAttribute="trailing" id="lwi-U5-y9E"/>
                     <constraint firstItem="HCI-6w-irZ" firstAttribute="bottom" secondItem="zql-pH-bgB" secondAttribute="bottom" id="m4n-XI-7qd"/>
-                    <constraint firstItem="35N-4M-95E" firstAttribute="bottom" secondItem="ScB-YS-S5A" secondAttribute="bottom" id="oRJ-RN-5FZ"/>
                     <constraint firstItem="8Z8-Rq-tMt" firstAttribute="top" secondItem="zql-pH-bgB" secondAttribute="top" id="qxb-aY-2rT"/>
-                    <constraint firstItem="ScB-YS-S5A" firstAttribute="centerY" secondItem="HCI-6w-irZ" secondAttribute="centerY" id="t8R-XS-U5t"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

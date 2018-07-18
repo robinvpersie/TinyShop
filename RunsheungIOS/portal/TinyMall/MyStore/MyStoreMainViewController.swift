@@ -263,8 +263,7 @@ extension MyStoreMainViewController {
 			
 			let view:UIView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 260))
 			view.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
-			
-			let greenview:UIView = UIView()
+ 			let greenview:UIView = UIView()
 			greenview.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
 			view.addSubview(greenview)
 			greenview.snp.makeConstraints({ (make) in
@@ -289,10 +288,10 @@ extension MyStoreMainViewController {
 			self.shopname?.snp.makeConstraints({ (make) in
 				make.top.equalTo((self.headavator?.snp.top)!)
 				make.left.equalTo((self.headavator?.snp.right)!).offset(10)
-				make.bottom.equalTo((self.headavator?.snp.centerY)!)
+				make.right.equalTo(-10)
+ 				make.bottom.equalTo((self.headavator?.snp.centerY)!)
 			})
-			
-			
+ 
 			self.stateBtn = BusinessStateView()
 			self.stateBtn?.choiceMap = {(_:NSDictionary,_:Int,index:Int) in
 				var status = "Y"
@@ -300,10 +299,11 @@ extension MyStoreMainViewController {
 				case 1:
 					status = "N"
 					break
-				default:
+ 				default:
 					break
 				}
-				KLHttpTool.requestUpdateSalesStatuswithUri("/api/AppSM/requestUpdateSalesStatus", withStatus: status, success: { (response) in
+ 
+			KLHttpTool.requestUpdateSalesStatuswithUri("/api/AppSM/requestUpdateSalesStatus", withStatus: status, success: { (response) in
 					let res:NSDictionary = (response as? NSDictionary)!
 					let status:String = (res.object(forKey: "status") as! String)
 					if status == "1" {

@@ -125,7 +125,7 @@ class DataStatisticsCellTableView: UIView {
 		showNoneData.isHidden = true
 		showNoneData.layer.cornerRadius = 5
 		showNoneData.layer.masksToBounds = true
-		showNoneData.text = "暂无数据"
+		showNoneData.text = "暂无数据".localized
 		showNoneData.textAlignment = .center
 		showNoneData.textColor = UIColor.white
 		showNoneData.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
@@ -133,8 +133,8 @@ class DataStatisticsCellTableView: UIView {
 		showNoneData.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview()
 			make.top.equalTo(200)
-			make.width.equalTo(80)
-			make.height.equalTo(40)
+			make.width.equalTo(150)
+			make.height.equalTo(50)
 		}
 
 		self.tableview.isHidden = true
