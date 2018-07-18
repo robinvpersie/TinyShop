@@ -34,7 +34,7 @@ class ShopAddrSearResultCell: UITableViewCell {
 		let choiceBtn:UIButton = UIButton()
 		choiceBtn.backgroundColor = UIColor(red: 176, green: 204, blue: 230)
 		choiceBtn.setTitleColor(UIColor.white, for: .normal)
-		choiceBtn.setTitle("选择", for: .normal)
+		choiceBtn.setTitle("选择".localized, for: .normal)
 		choiceBtn.layer.cornerRadius = 15
 		choiceBtn.layer.masksToBounds = true
  		choiceBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
@@ -87,8 +87,8 @@ class ShopAddrSearResultCell: UITableViewCell {
  		let pst:String = pstdic.object(forKey: "cdatasection") as! String
  		let addrsec:String = addrsecdic.object(forKey: "cdatasection") as! String
 		
-  		self.pstcode.text = "邮编：" + pst
-		self.address.text = "地址：" + addrsec 
+  		self.pstcode.text = "邮编：".localized + pst
+		self.address.text = "地址：".localized + addrsec
 		
 	}
 
