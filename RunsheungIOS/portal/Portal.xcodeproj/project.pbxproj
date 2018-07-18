@@ -16,6 +16,7 @@
 		01099A10205D4A9A00FCC6B6 /* ApiGatewayMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01099A0D205D49B700FCC6B6 /* ApiGatewayMac.framework */; };
 		01099A11205D4A9A00FCC6B6 /* ApiGatewayMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01099A0D205D49B700FCC6B6 /* ApiGatewayMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		01099A16205D4BCE00FCC6B6 /* NMapViewerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01099A15205D4BCE00FCC6B6 /* NMapViewerSDK.framework */; };
+		0110934120FED8F000A61DE6 /* StoreAssessList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0110934020FED8F000A61DE6 /* StoreAssessList.swift */; };
 		0116DFE220C13E3C000C4802 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116DFE120C13E3C000C4802 /* BadgeView.swift */; };
 		0116DFE420C53114000C4802 /* StoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116DFE320C53113000C4802 /* StoreInfo.swift */; };
 		0116DFE620CA2C94000C4802 /* MenuDetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116DFE520CA2C93000C4802 /* MenuDetailInfoView.swift */; };
@@ -920,6 +921,7 @@
 		01099A06205D0F9100FCC6B6 /* ShopInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopInfoView.swift; sourceTree = "<group>"; };
 		01099A0D205D49B700FCC6B6 /* ApiGatewayMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ApiGatewayMac.framework; sourceTree = "<group>"; };
 		01099A15205D4BCE00FCC6B6 /* NMapViewerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMapViewerSDK.framework; sourceTree = "<group>"; };
+		0110934020FED8F000A61DE6 /* StoreAssessList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAssessList.swift; sourceTree = "<group>"; };
 		0116DFE120C13E3C000C4802 /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		0116DFE320C53113000C4802 /* StoreInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInfo.swift; sourceTree = "<group>"; };
 		0116DFE520CA2C93000C4802 /* MenuDetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetailInfoView.swift; sourceTree = "<group>"; };
@@ -2531,6 +2533,7 @@
 				01CA194C20B9CDAC00E40F7D /* CeateOrderTarget.swift */,
 				0125AC6B20C128540021B358 /* AddGood.swift */,
 				0116DFE320C53113000C4802 /* StoreInfo.swift */,
+				0110934020FED8F000A61DE6 /* StoreAssessList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6521,6 +6524,7 @@
 				1B392D8E1E28D0E500F70981 /* NSAttributedString+YYText.m in Sources */,
 				1B1971AF1E20803300E54D95 /* KLBuyingTicketViewController.m in Sources */,
 				D5D01F4820610C0A002263CC /* TinyShopDetailedView.m in Sources */,
+				0110934120FED8F000A61DE6 /* StoreAssessList.swift in Sources */,
 				1B392D521E28D0E500F70981 /* CFLabelOnLeftButton.m in Sources */,
 				1BC876A01E9885C700BB38D7 /* YCHotelHomeController.m in Sources */,
 				D5B7A69220D751F30014F7D2 /* GMcatagoryButton.swift in Sources */,

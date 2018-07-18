@@ -23,7 +23,7 @@ class OrderReturnMainController: MyStoreBaseViewController {
 	}
 	let mapCollectionview = { (selfDelegate:UIViewController) -> UICollectionView in
 		
-		let layout = UICollectionViewFlowLayout();
+		let layout = UICollectionViewFlowLayout()
 		layout.scrollDirection = .horizontal
 		let collectionview = UICollectionView(frame:CGRect(x:0,y:60,width: screenWidth,height:screenHeight - 60), collectionViewLayout: layout)
 		collectionview.isPagingEnabled = true

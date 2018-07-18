@@ -9,14 +9,14 @@
 import UIKit
 
 class MyStoreMainViewController: UITableViewController {
-	var headavator:UIImageView?
-	var shopname:UILabel?
-	var stateBtn:BusinessStateView?
-	var todayPay:UILabel = UILabel()
-	var tadayCount:UILabel = UILabel()
-	var orderManagerBadage:UILabel?
-	var orderbackBadage:UILabel?
-	var requestDic:NSDictionary?
+	var headavator: UIImageView?
+	var shopname: UILabel?
+	var stateBtn: BusinessStateView?
+	var todayPay: UILabel = UILabel()
+	var tadayCount: UILabel = UILabel()
+	var orderManagerBadage: UILabel?
+	var orderbackBadage: UILabel?
+	var requestDic: NSDictionary?
 
 	let badageCircle:(String) -> UILabel = {(text:String) -> UILabel in
 		let badage:UILabel = UILabel()
@@ -35,7 +35,7 @@ class MyStoreMainViewController: UITableViewController {
 		
 		let layout = UICollectionViewFlowLayout();
 		layout.scrollDirection = .vertical;
-		let collectionview = UICollectionView(frame:CGRect(x:0,y:0,width: screenWidth ,height:2*screenWidth/3), collectionViewLayout: layout)
+		let collectionview = UICollectionView(frame:CGRect(x: 0,y: 0, width: screenWidth ,height: 2 * screenWidth / 3), collectionViewLayout: layout)
 		collectionview.layer.backgroundColor = UIColor(red: 242, green: 244, blue: 246).cgColor
 		collectionview.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "collectionviewcell")
 		collectionview.delegate = viewController as? UICollectionViewDelegate
@@ -77,7 +77,8 @@ class MyStoreMainViewController: UITableViewController {
 	}
 }
 
-extension MyStoreMainViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+extension MyStoreMainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return 6
 	}
@@ -85,14 +86,28 @@ extension MyStoreMainViewController:UICollectionViewDelegate,UICollectionViewDat
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionviewcell", for: indexPath)
 		cell.contentView.backgroundColor = UIColor.white
-		let iconarray:NSArray = ["icon_store_order","icon_store_goods","icon_store_comments","icon_store_aftersale","icon_store_data","icon_store_info"]
-		let icon:UIImageView = UIImageView(image: UIImage(named: iconarray.object(at: indexPath.row) as! String))
+		let iconarray: NSArray = [
+            "icon_store_order",
+            "icon_store_goods",
+            "icon_store_comments",
+            "icon_store_aftersale",
+            "icon_store_data",
+            "icon_store_info"
+        ]
+		let icon: UIImageView = UIImageView(image: UIImage(named: iconarray.object(at: indexPath.row) as! String))
 		cell.contentView.addSubview(icon)
 		icon.snp.makeConstraints { (make) in
 			make.center.equalToSuperview()
 			make.width.height.equalTo(cell.frame.width/3)
 		}
-		let icontitles:NSArray = ["订单管理".localized,"商品管理".localized,"评价管理".localized,"退款订单".localized,"数据统计".localized,"店铺信息".localized]
+		let icontitles: NSArray = [
+            "订单管理".localized,
+            "商品管理".localized,
+            "评价管理".localized,
+            "退款订单".localized,
+            "数据统计".localized,
+            "店铺信息".localized
+        ]
 		
 		let icontitle:UILabel = UILabel()
 		icontitle.text = icontitles.object(at: indexPath.row) as? String
@@ -173,9 +188,8 @@ extension MyStoreMainViewController:UICollectionViewDelegate,UICollectionViewDat
 		default:
 			break
 		}
-		
-		
-	}
+    }
+    
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		let width:CGFloat = (screenWidth-2)/3
 		return CGSize(width: width, height: width)

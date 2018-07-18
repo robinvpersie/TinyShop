@@ -10,7 +10,9 @@
 import UIKit
 
 class OrderReturnCellTableView: UIView {
-	var tableview:UITableView = UITableView()
+    
+	var tableview: UITableView = UITableView()
+    
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		createSuv()
@@ -44,7 +46,7 @@ class OrderReturnCellTableView: UIView {
 	}
 }
 
-extension OrderReturnCellTableView:UITableViewDelegate,UITableViewDataSource{
+extension OrderReturnCellTableView: UITableViewDelegate, UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if tableView.tag == 1 {
