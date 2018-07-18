@@ -139,8 +139,7 @@
             NSString *nickname = dic[@"nickName"];
             NSString *phone = (dic[@"memberID"] == [NSNull null]) ? @"": dic[@"memberID"];
             NSString *avatarUrl = dic[@"imagePath"];
-            
-            [headerView refreshUIWithPhone:phone nickName:nickname avatarUrlString:avatarUrl];
+             [headerView refreshUIWithPhone:phone nickName:nickname avatarUrlString:avatarUrl];
         }
     } failure:^(NSError *err) {
 

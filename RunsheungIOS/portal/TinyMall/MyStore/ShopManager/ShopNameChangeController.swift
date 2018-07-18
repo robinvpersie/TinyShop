@@ -9,13 +9,17 @@
 import UIKit
 
 class ShopNameChangeController: MyStoreBaseViewController {
+	
 	var tableview:UITableView = UITableView()
 	var titles:NSArray = ["邮编","地址"]
-	var textView:UITextView = UITextView()
-	var showCode:UILabel = UILabel()
+ 	var dic:NSDictionary?
+	var addsec:String = ""
+	var pstcode:String = "010237"
+
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		addNavgationItem()
  		self.view.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
 		addTableView()
      }
@@ -41,11 +45,7 @@ class ShopNameChangeController: MyStoreBaseViewController {
 		}
 	}
 	
-	@objc private func choiceAction(){
-		
-	}
-	
-}
+ }
 
 extension ShopNameChangeController:UITableViewDelegate,UITableViewDataSource{
 
@@ -60,59 +60,90 @@ extension ShopNameChangeController:UITableViewDelegate,UITableViewDataSource{
 	}
  	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell:UITableViewCell = UITableViewCell()
-		cell.textLabel?.textColor = UIColor(red: 160, green: 160, blue: 160)
-		if indexPath.section == 0 {
+		cell.selectionStyle = .none
+
+		let title:UILabel = UILabel()
+ 		cell.contentView.addSubview(title)
+ 		title.snp.makeConstraints { (make) in
+			make.left.equalTo(15)
+			make.width.equalTo(80)
+			make.top.equalTo(10)
+			make.height.equalTo(30)
+		}
+		
+		
+ 		title.text = (indexPath.section == 1 ) ? "详细地址" : (self.titles.object(at: indexPath.row) as? String)
  
-			cell.textLabel?.text = self.titles.object(at: indexPath.row) as? String
-			cell.selectionStyle = .none
-			
-			cell.contentView.addSubview(self.showCode)
-  			self.showCode.snp.makeConstraints { (make) in
-				make.bottom.top.equalToSuperview()
-				make.width.equalTo(150)
-				make.left.equalTo(80)
+ 		if indexPath.section == 0 {
+			let showContent:UILabel = UILabel()
+			showContent.numberOfLines = 0
+			showContent.font = UIFont.systemFont(ofSize: 15)
+			showContent.textColor = UIColor(red: 180, green: 180, blue: 180)
+			cell.contentView.addSubview(showContent)
+			showContent.snp.makeConstraints { (make) in
+				make.bottom.equalToSuperview().offset(-10)
+				make.top.equalToSuperview().offset(10)
+				make.right.equalToSuperview().offset(-15)
+				make.left.equalTo(title.snp.right).offset(10)
 			}
-			
-			if indexPath.row == 0 {
-				
- 				let choiceBtn:UIButton = UIButton()
-				choiceBtn.setTitle("选择", for: .normal)
-				choiceBtn.layer.cornerRadius = 3
-				choiceBtn.layer.masksToBounds = true
-				choiceBtn.layer.borderColor = UIColor(red: 201, green: 201, blue: 201).cgColor
-				choiceBtn.setTitleColor(UIColor(red: 180, green: 180, blue: 180), for: .normal)
-				choiceBtn.layer.borderWidth = 1
-				choiceBtn.addTarget(self, action: #selector(choiceAction), for: .touchUpInside)
-				cell.contentView.addSubview(choiceBtn)
-				choiceBtn.snp.makeConstraints { (make) in
-					make.width.equalTo(60)
-					make.height.equalTo(30)
-					make.right.equalToSuperview().offset(-15)
-					make.centerY.equalToSuperview()
-				}
-				
-				
-			}
- 		}else{
-			textView.text = "请输入详细地址"
-			textView.textColor = UIColor(red: 211, green: 211, blue: 211)
+  			showContent.text = (indexPath.row == 1) ? self.addsec : self.pstcode
+   		}else{
+			let textView:UITextView = UITextView()
+ 			textView.font = UIFont.systemFont(ofSize: 15)
+			textView.textColor = UIColor(red: 180, green: 180, blue: 180)
 			cell.contentView.addSubview(textView)
 			textView.snp.makeConstraints { (make) in
-				make.left.top.equalTo(5)
-				make.right.bottom.equalTo(-5)
- 			}
- 		}
- 
-		return cell
+				make.bottom.equalToSuperview().offset(-10)
+				make.top.equalToSuperview().offset(10)
+				make.right.equalToSuperview().offset(-15)
+				make.left.equalTo(title.snp.right).offset(10)
+			}
+			textView.text = "首尔特别行政区江岸区城东189COEXmalll首尔特别行政区江岸区城东189COEXmalll"
+   		}
+		
+  		return cell
 	}
  	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		if indexPath.section == 1 {
-			return 120
+			
+			return 100
 		}
-		return 50
+ 		return 50
 	}
  	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		return 10
 	}
+	
+	private func addNavgationItem(){
+		let right:UIBarButtonItem = UIBarButtonItem(title: "编辑修改", style: .plain, target: self, action: #selector(editaction))
+ 		self.navigationItem.rightBarButtonItem = right
+	}
+	
+	@objc private func editaction(){
+		let picker:ShopAddressPicker = ShopAddressPicker()
+		picker.pickerMap = {(dict:NSDictionary)->Void in
+			self.dic = dict
+			guard self.dic != nil else {return ;}
+ 			let pstdic:NSDictionary = self.dic?.object(forKey: "postcd") as! NSDictionary
+			let addrsecdic:NSDictionary = self.dic?.object(forKey: "addrjibun") as! NSDictionary
+			self.pstcode = pstdic.object(forKey: "cdatasection") as! String
+			self.addsec = addrsecdic.object(forKey: "cdatasection") as! String
+			
+			self.tableview.reloadData()
+		}
+		UIApplication.shared.delegate?.window??.addSubview(picker)
+		picker.snp.makeConstraints { (make) in
+			make.left.right.equalToSuperview()
+			make.bottom.equalToSuperview().offset(10)
+			make.top.equalToSuperview().offset(150)
+		}
+		
+	}
+	
+	private func textSize(text : String , font : UIFont , maxSize : CGSize) -> CGSize{
+ 		return text.boundingRect(with: maxSize, options: [.usesLineFragmentOrigin], attributes: [kCTFontAttributeName as NSAttributedStringKey : font], context: nil).size
+	
+	}
+	
 	
 }

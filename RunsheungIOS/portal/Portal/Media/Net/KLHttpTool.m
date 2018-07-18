@@ -4438,6 +4438,38 @@
 	}];
 }
 
+
+/**
+ 根据地址获取韩国邮编
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)GetKorAddresswithUri:(NSString*)uri
+ 					  withPg:(NSString *)pg
+ 				withPageSize:(NSString *)psize
+ 					 withKey:(NSString *)key
+ 					 success:(void (^)(id response))success
+ 					 failure:(void (^)(NSError *err))failure{
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
+	
+ 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(pg,psize,key,custom_code,token).mutableCopy;
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+}
+
 @end
 
 

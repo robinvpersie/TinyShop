@@ -1042,4 +1042,17 @@
 					 withkoraddrDetail:(NSString *)kor_addr_detail
 							   success:(void (^)(id response))success
 							   failure:(void (^)(NSError *err))failure;
+/**
+ 根据地址获取韩国邮编
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)GetKorAddresswithUri:(NSString*)uri
+					  withPg:(NSString *)pg
+				withPageSize:(NSString *)psize
+					 withKey:(NSString *)key
+					 success:(void (^)(id response))success
+					 failure:(void (^)(NSError *err))failure;
 @end

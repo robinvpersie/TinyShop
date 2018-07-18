@@ -800,6 +800,9 @@
 		D53093CE205E520C00427350 /* ProtectItemsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093CD205E520C00427350 /* ProtectItemsController.m */; };
 		D53093D1205E683D00427350 /* StepOneMemEnrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53093D0205E683D00427350 /* StepOneMemEnrollController.m */; };
 		D5359DBC20848748008A62A9 /* WebRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5359DBB20848748008A62A9 /* WebRulesViewController.swift */; };
+		D536DC8820FD8F0000032382 /* ShopAddressPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D536DC8720FD8EFF00032382 /* ShopAddressPicker.swift */; };
+		D536DC8B20FDECA900032382 /* ShopAddrSearResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D536DC8920FDECA900032382 /* ShopAddrSearResultCell.swift */; };
+		D536DC8C20FDECA900032382 /* ShopAddrSearResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D536DC8A20FDECA900032382 /* ShopAddrSearResultCell.xib */; };
 		D56D5BB920B8430C00B657BF /* SearchIfView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BB820B8430C00B657BF /* SearchIfView.m */; };
 		D56D5BBC20B8FAB900B657BF /* arrowBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BBB20B8FAB900B657BF /* arrowBtn.m */; };
 		D56D5BBF20B94F1000B657BF /* FavCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D5BBE20B94F1000B657BF /* FavCollectionView.m */; };
@@ -2309,6 +2312,9 @@
 		D53093CF205E683D00427350 /* StepOneMemEnrollController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StepOneMemEnrollController.h; sourceTree = "<group>"; };
 		D53093D0205E683D00427350 /* StepOneMemEnrollController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StepOneMemEnrollController.m; sourceTree = "<group>"; };
 		D5359DBB20848748008A62A9 /* WebRulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRulesViewController.swift; sourceTree = "<group>"; };
+		D536DC8720FD8EFF00032382 /* ShopAddressPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopAddressPicker.swift; sourceTree = "<group>"; };
+		D536DC8920FDECA900032382 /* ShopAddrSearResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAddrSearResultCell.swift; sourceTree = "<group>"; };
+		D536DC8A20FDECA900032382 /* ShopAddrSearResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopAddrSearResultCell.xib; sourceTree = "<group>"; };
 		D56D5BB720B8430C00B657BF /* SearchIfView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchIfView.h; sourceTree = "<group>"; };
 		D56D5BB820B8430C00B657BF /* SearchIfView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchIfView.m; sourceTree = "<group>"; };
 		D56D5BBA20B8FAB900B657BF /* arrowBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = arrowBtn.h; sourceTree = "<group>"; };
@@ -5829,6 +5835,9 @@
 			children = (
 				D5B7A69E20D8F2940014F7D2 /* ShopMTableViewController.swift */,
 				D5F67C3E20EE14A700D1D30B /* ShopNameChangeController.swift */,
+				D536DC8720FD8EFF00032382 /* ShopAddressPicker.swift */,
+				D536DC8920FDECA900032382 /* ShopAddrSearResultCell.swift */,
+				D536DC8A20FDECA900032382 /* ShopAddrSearResultCell.xib */,
 			);
 			path = ShopManager;
 			sourceTree = "<group>";
@@ -6086,6 +6095,7 @@
 				267DAAA11EA214CC00299E74 /* HotelDetailedTraficCell.xib in Resources */,
 				1BEF694D1E94847300CE3434 /* hotel.jpg in Resources */,
 				1B392D5B1E28D0E500F70981 /* area.plist in Resources */,
+				D536DC8C20FDECA900032382 /* ShopAddrSearResultCell.xib in Resources */,
 				5BF0A9DE1E0B7B050035B517 /* PersonalCollectionCell.xib in Resources */,
 				D53093C0205E445400427350 /* ChoiceTableViewCell.xib in Resources */,
 				1B392F0B1E28D14E00F70981 /* SupermarketOnSaleCell.xib in Resources */,
@@ -6504,6 +6514,7 @@
 				011B5234205A0B5400B7E4D7 /* OrderLocationController.swift in Sources */,
 				1B392F381E28D14E00F70981 /* SupermarketEditAddressController.m in Sources */,
 				1B1971BF1E20803300E54D95 /* VoteData.m in Sources */,
+				D536DC8820FD8F0000032382 /* ShopAddressPicker.swift in Sources */,
 				1BEF693E1E8F7DC000CE3434 /* HotelSearchCollectionViewCell.m in Sources */,
 				1B5B6BC21E9B583A009D5C75 /* HotelAllOrderController.m in Sources */,
 				D59D3A2F205BF1030074F0E8 /* TSBaseViewController.m in Sources */,
@@ -7101,6 +7112,7 @@
 				1B392F5A1E28D14E00F70981 /* UIViewExt.m in Sources */,
 				62C417D02005FE29005571D4 /* SuperMarketProfileController.swift in Sources */,
 				1BB2ABF91E34570C000B75FC /* YCUploadAttachmentOperation.swift in Sources */,
+				D536DC8B20FDECA900032382 /* ShopAddrSearResultCell.swift in Sources */,
 				5BAD6AA91E0D072900E43EAE /* PersonalStarHeaderView.swift in Sources */,
 				1B52E4711E7BD8D3008B0B75 /* RefundDetailTableViewCell.m in Sources */,
 				1B392D771E28D0E500F70981 /* TZImagePickerController.m in Sources */,
