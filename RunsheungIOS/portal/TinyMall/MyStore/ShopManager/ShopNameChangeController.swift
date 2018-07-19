@@ -11,7 +11,7 @@ import UIKit
 class ShopNameChangeController: MyStoreBaseViewController {
 	let textView:UITextView = UITextView()
  	var tableview:UITableView = UITableView()
-	var titles:NSArray = ["邮编","地址"]
+	var titles:NSArray = ["邮编".localized,"地址".localized]
  	var dic:NSDictionary?
 	var addsec:String = ""
 	var pstcode:String = "010237"
@@ -43,17 +43,18 @@ class ShopNameChangeController: MyStoreBaseViewController {
  		self.view.addSubview(self.tableview)
 		
 		self.tableview.snp.makeConstraints { (make) in
-			make.edges.equalToSuperview()
+			make.top.left.right.equalToSuperview()
+			make.height.equalTo(250)
 		}
 		
 		let save:UIButton = UIButton()
 		save.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
-		save.setTitle("保存", for: .normal)
+		save.setTitle("确定".localized, for: .normal)
 		save.addTarget(self, action: #selector(saveBtn), for: .touchUpInside)
 		self.view.addSubview(save)
 		save.snp.makeConstraints { (make) in
 			make.bottom.left.right.equalToSuperview()
-			make.height.equalTo(50)
+ 			make.height.equalTo(50)
 		}
 	}
 	
@@ -148,7 +149,7 @@ extension ShopNameChangeController:UITableViewDelegate,UITableViewDataSource{
 	private func addNavgationItem(){
 		
 		let right:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 30))
-		right.setTitle("编辑修改", for: .normal)
+		right.setTitle("编辑修改".localized, for: .normal)
   		right.titleLabel?.font = UIFont.systemFont(ofSize: 14)
 		right.setTitleColor(UIColor(red: 45, green: 45, blue: 45), for: .normal)
 		right.addTarget(self, action: #selector(editaction), for: .touchUpInside)
@@ -156,6 +157,7 @@ extension ShopNameChangeController:UITableViewDelegate,UITableViewDataSource{
 	}
 	
 	@objc private func editaction(){
+		self.textView.resignFirstResponder()
 		let picker:ShopAddressPicker = ShopAddressPicker()
 		picker.pickerMap = {(dict:NSDictionary)->Void in
 			self.dic = dict
@@ -184,8 +186,13 @@ extension ShopNameChangeController:UITableViewDelegate,UITableViewDataSource{
 	
 	private func textSize(text : String , font : UIFont , maxSize : CGSize) -> CGSize{
  		return text.boundingRect(with: maxSize, options: [.usesLineFragmentOrigin], attributes: [kCTFontAttributeName as NSAttributedStringKey : font], context: nil).size
+ 	}
 	
-	}
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesBegan(touches, with: event)
+		
+		self.textView.resignFirstResponder()
+ 	}
 	
 	
 }

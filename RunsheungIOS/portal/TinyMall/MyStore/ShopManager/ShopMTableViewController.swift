@@ -103,8 +103,7 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 		default:
 			do {
 				let content:UILabel = UILabel()
-				content.textAlignment = .right
-				content.numberOfLines = 0
+ 				content.numberOfLines = 0
 				content.font = UIFont.systemFont(ofSize: 14.0)
  				content.text = self.contents.object(at: indexPath.row) as? String
 				cell.contentView.addSubview(content)

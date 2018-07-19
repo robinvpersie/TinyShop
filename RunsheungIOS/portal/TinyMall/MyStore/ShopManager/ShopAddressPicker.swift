@@ -130,7 +130,7 @@ extension ShopAddressPicker{
 		self.addSubview(self.noneDataView)
 		self.noneDataView.snp.makeConstraints { (make) in
 			make.center.equalToSuperview()
-			make.width.equalTo(80)
+			make.width.equalTo(120)
 			make.height.equalTo(110)
 			
 		}
@@ -138,8 +138,10 @@ extension ShopAddressPicker{
 		let noneIcon:UIImageView = UIImageView(image: UIImage(named: "icon_nocontent"))
 		self.noneDataView.addSubview(noneIcon)
 		noneIcon.snp.makeConstraints { (make) in
-			make.top.left.right.equalToSuperview()
-			make.bottom.equalTo(-30)
+			make.top.equalToSuperview()
+			make.width.height.equalTo(80)
+			make.centerX.equalToSuperview()
+ 			make.bottom.equalTo(-30)
 		}
 		
 		let label:UILabel = UILabel()
@@ -208,7 +210,7 @@ extension ShopAddressPicker{
 			make.top.equalTo(60)
 		}
 		
- 		self.inputSearch.placeholder = "  搜索地址".localized
+ 		self.inputSearch.placeholder = "搜索关键字".localized
 		self.inputSearch.layer.borderWidth = 1
 		self.inputSearch.layer.borderColor = UIColor(red: 212, green: 212, blue: 212).cgColor
  		self.inputSearch.layer.cornerRadius = 3

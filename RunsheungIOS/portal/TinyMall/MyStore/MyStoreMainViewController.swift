@@ -268,7 +268,7 @@ extension MyStoreMainViewController {
 			})
 			
 			self.shopname = UILabel()
- 			self.shopname?.textColor = UIColor.white
+  			self.shopname?.textColor = UIColor.white
 			self.shopname?.font = UIFont.systemFont(ofSize: 20)
 			greenview.addSubview(self.shopname!)
 			self.shopname?.snp.makeConstraints({ (make) in
@@ -335,8 +335,7 @@ extension MyStoreMainViewController {
 				make.top.equalToSuperview().offset(5)
 			})
 			
-			self.todayPay.text = "3524.5"
-			self.todayPay.textAlignment = .center
+  			self.todayPay.textAlignment = .center
 			self.todayPay.font = UIFont.systemFont(ofSize: 24)
 			restView.addSubview(self.todayPay)
 			self.todayPay.snp.makeConstraints({ (make) in
@@ -360,9 +359,7 @@ extension MyStoreMainViewController {
 
 			})
 			
-			
-			self.tadayCount.text = "284"
-			self.tadayCount.textAlignment = .center
+   			self.tadayCount.textAlignment = .center
 			self.tadayCount.font = UIFont.systemFont(ofSize: 24)
 			restView.addSubview(self.tadayCount)
 			self.tadayCount.snp.makeConstraints({ (make) in
