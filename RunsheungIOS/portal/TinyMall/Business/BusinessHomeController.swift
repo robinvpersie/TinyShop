@@ -51,6 +51,13 @@ class BusinessHomeController: BaseController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        makeUI()
+        requestData()
+    
+    }
+    
+    func makeUI() {
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "leftArrow")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(didback))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon-_collection_n"), style: .plain, target: self, action: #selector(star))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
@@ -70,8 +77,6 @@ class BusinessHomeController: BaseController {
         addChildViewController(pageView)
         view.addSubview(pageView.view)
         
-        requestData()
-    
     }
     
     override func viewDidLayoutSubviews() {

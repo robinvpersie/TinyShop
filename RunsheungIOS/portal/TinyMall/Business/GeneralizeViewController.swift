@@ -17,6 +17,12 @@ class GeneralizeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        makeUI()
+        requestData()
+        // Do any additional setup after loading the view.
+    }
+    
+    func makeUI() {
         tableView = UITableView(frame: .zero, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self
@@ -28,9 +34,6 @@ class GeneralizeViewController: UIViewController {
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
         }
-
-        requestData()
-        // Do any additional setup after loading the view.
     }
     
     func requestData() {
