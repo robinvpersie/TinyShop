@@ -302,7 +302,9 @@ public extension UIImage {
     static var dropDown: UIImage {
        return UIImage(named:"icon_dropdown")!
     }
-    
+	static var backBlack: UIImage{
+		return UIImage(named: "icon_back")!
+	}
     static var My: UIImage{
        return UIImage(named: "My")!
     }

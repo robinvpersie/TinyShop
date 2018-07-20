@@ -143,7 +143,7 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
         
         title = "设置".localized
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.leftarrow?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(popBack))
+		navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.backBlack.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(popBack))
         
         view.backgroundColor = UIColor.BaseControllerBackgroundColor
         
