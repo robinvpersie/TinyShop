@@ -24,7 +24,6 @@ class CommentCell: UITableViewCell {
         starView.settings.fillMode = .precise
         starView.settings.starMargin = 1
         starView.settings.starSize = 15
-        starView.rating = 4.0
         starView.settings.updateOnTouch = false
         contentView.addSubview(starView)
         starView.snp.makeConstraints { make in
@@ -42,7 +41,6 @@ class CommentCell: UITableViewCell {
         textView.isEditable = false
         textView.isScrollEnabled = false
         textView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
-        textView.text = "这是一个橘子这是一个橘子这是一个橘子这是一个橘子这是一个橘子这是一个橘子这是一个橘子这是一个橘子这是一个橘子这是一个橘子这是一个橘子这是一个橘子这是一个橘子这是一个橘子"
         contentView.addSubview(textView)
         textView.snp.makeConstraints { (make) in
             make.left.equalTo(contentView).offset(15)
@@ -52,6 +50,11 @@ class CommentCell: UITableViewCell {
         }
         
         
+    }
+    
+    func configureWithData(_ data: ShopAssessData) {
+        textView.text = data.rep_content
+        starView.rating = Double(data.score) ?? 0
     }
     
     required init?(coder aDecoder: NSCoder) {
