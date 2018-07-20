@@ -19,6 +19,9 @@ class ShopMTableViewController: UITableViewController {
 	var mallName:String?
 	var mallPhone:String?
 	var mallAddress:String?
+	var mallAddressDetial:String?
+	var mallZipCode:String?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,15 +31,17 @@ class ShopMTableViewController: UITableViewController {
 	
 	private func requestData(){
 		KLHttpTool.requestSaleOrderAmountwithUri("/api/AppSM/requestSaleOrderAmount", success: { (response) in
-			let res:NSDictionary = (response as? NSDictionary)!
-			let status:String = res.object(forKey: "status") as! String
+			self.infoDic = (response as? NSDictionary)!
+			let status:String = self.infoDic?.object(forKey: "status") as! String
 			if status == "1" {
 				
-				self.mallAvator = res.object(forKey: "shop_thumnail_image") as? String
-				self.mallName = res.object(forKey: "custom_name") as? String
-				self.mallPhone = res.object(forKey: "telephon") as? String
-				self.mallAddress = res.object(forKey: "address") as? String
-				self.contents = [self.mallAvator ,self.mallName ,self.mallPhone ,self.mallAddress]
+				self.mallAvator = self.infoDic?.object(forKey: "shop_thumnail_image") as? String
+				self.mallName = self.infoDic?.object(forKey: "custom_name") as? String
+				self.mallPhone = self.infoDic?.object(forKey: "telephon") as? String
+				self.mallAddress = self.infoDic?.object(forKey: "kor_addr") as? String
+				self.mallZipCode = self.infoDic?.object(forKey: "zip_code") as? String
+				self.mallAddressDetial = self.infoDic?.object(forKey: "kor_addr_detail") as? String
+				self.contents = [self.mallAvator ,self.mallName ,self.mallPhone ,self.mallAddress! + self.mallAddressDetial!]
 				self.tableView.reloadData()
 			}
 		}) { (error) in
@@ -98,7 +103,7 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 		default:
 			do {
 				let content:UILabel = UILabel()
-				content.textAlignment = .right
+ 				content.numberOfLines = 0
 				content.font = UIFont.systemFont(ofSize: 14.0)
  				content.text = self.contents.object(at: indexPath.row) as? String
 				cell.contentView.addSubview(content)
@@ -116,6 +121,9 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 		switch indexPath.row {
 		case 0:
 			return 100.0
+		case 3:
+			return 60.0
+
 		default:
 			return 44.0
 		}
@@ -160,6 +168,10 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 				clickInputBtn(type: "修改联系方式".localized,flag:indexPath.row)
 			}else{
 				let vc:ShopNameChangeController = ShopNameChangeController()
+				vc.preDic(dic: self.infoDic!)
+				vc.editFinish = {()->Void in
+					self.requestData()
+ 				}
 				vc.title = self.data.object(at: indexPath.row) as? String
 				self.navigationController?.pushViewController(vc, animated: true)
 			}
@@ -182,7 +194,7 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 				self.tableView.reloadData()
   			}
 		
- 			KLHttpTool.requestStoreImageUpdatewithUri("/api/AppSM/requestStoreImageUpdate", withStoreImageurl: self.mallAvator, withCustomName: self.mallName, withTelephon: self.mallPhone, withZipcode: "12344", withKoraddr: self.mallAddress, withkoraddrDetail: self.mallAddress, success: { (response) in
+ 			KLHttpTool.requestStoreImageUpdatewithUri("/api/AppSM/requestStoreImageUpdate", withStoreImageurl: self.mallAvator, withCustomName: self.mallName, withTelephon: self.mallPhone, withZipcode: self.mallZipCode, withKoraddr: self.mallAddress, withkoraddrDetail: self.mallAddressDetial, success: { (response) in
 					let res:NSDictionary = (response as? NSDictionary)!
 					let status:String = (res.object(forKey: "status") as! String)
 					if status == "1" {
@@ -192,7 +204,7 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
  				})
 		}
 		
-		let cancel = UIAlertAction.init(title: "取消".localized, style:.cancel) { (action:UIAlertAction) -> ()in
+ 		let cancel = UIAlertAction.init(title: "取消".localized, style:.cancel) { (action:UIAlertAction) -> ()in
 			print("取消输入")
 		}
 		
@@ -226,21 +238,11 @@ extension ShopMTableViewController:UINavigationControllerDelegate,UIImagePickerC
 						if status == "1" {
 							self.changeHeadAvatorMap(self.mallAvator!)
 						}
-
-					}, failure: { (error) in
+						
+ 					}, failure: { (error) in
 						
 					})
-					
-//					KLHttpTool.requestStoreImageUpdatewithUri("/api/AppSM/requestStoreImageUpdate", withStoreImageurl: imagestr, success: { (response) in
-//						let res:NSDictionary = (response as? NSDictionary)!
-//						let status:String = (res.object(forKey: "status") as! String)
-//						if status == "1" {
-//							self.changeHeadAvatorMap(imagestr)
-// 						}
-//					}, failure: { (error) in
-					
-//					})
-				}
+  				}
 				
 			}, failure: { (error) in
 				

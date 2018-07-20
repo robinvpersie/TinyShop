@@ -15,6 +15,7 @@ class ShopAddressPicker: UIView {
 	var tableview:UITableView = UITableView()
 	var data:NSMutableArray = NSMutableArray()
 	var lbl:UILabel = UILabel()
+	var noneDataView:UIView = UIView()
 	var pickerMap:(NSDictionary)->Void = {(dict:NSDictionary)->Void in}
  	enum RefreshType: Int {
 		case topfresh
@@ -28,6 +29,7 @@ class ShopAddressPicker: UIView {
 		self.backgroundColor = UIColor.white
  		addSuvs()
 		addTableView()
+		addNoneView()
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
@@ -81,8 +83,7 @@ extension ShopAddressPicker:UITableViewDelegate,UITableViewDataSource{
 			self.resquestData(refreshtype: RefreshType.topfresh, complete: {
 				self.tableview.mj_header.endRefreshing()
 				self.tableview.mj_header.removeFromSuperview()
-				self.tableview.mj_footer.resetNoMoreData()
- 			})
+  			})
 		})
 		self.tableview.mj_footer = MJRefreshAutoFooter.init(refreshingBlock: {
 			self.resquestData(refreshtype: RefreshType.loadmore, complete: {
@@ -110,10 +111,8 @@ extension ShopAddressPicker:UITableViewDelegate,UITableViewDataSource{
 			make.left.equalToSuperview().offset(20)
 			make.right.equalToSuperview().offset(-20)
 		}
-		let numberStr:String = String(self.data.count)
-  		let attrbut:NSMutableAttributedString = NSMutableAttributedString.init(string: " 共搜索出 " + numberStr + " 条")
-  		attrbut.addAttribute(kCTForegroundColorAttributeName as NSAttributedStringKey, value:UIColor(red: 33, green: 192, blue: 67), range: NSMakeRange(1,3))
- 		lbl.attributedText = attrbut
+		
+ 		lbl.text = " 搜索结果".localized
 		tableheadview.addSubview(lbl)
 		lbl.snp.makeConstraints { (make) in
 			make.left.equalToSuperview().offset(15)
@@ -127,6 +126,35 @@ extension ShopAddressPicker:UITableViewDelegate,UITableViewDataSource{
 }
 
 extension ShopAddressPicker{
+	private func addNoneView(){
+		self.addSubview(self.noneDataView)
+		self.noneDataView.snp.makeConstraints { (make) in
+			make.center.equalToSuperview()
+			make.width.equalTo(120)
+			make.height.equalTo(110)
+			
+		}
+
+		let noneIcon:UIImageView = UIImageView(image: UIImage(named: "icon_nocontent"))
+		self.noneDataView.addSubview(noneIcon)
+		noneIcon.snp.makeConstraints { (make) in
+			make.top.equalToSuperview()
+			make.width.height.equalTo(80)
+			make.centerX.equalToSuperview()
+ 			make.bottom.equalTo(-30)
+		}
+		
+		let label:UILabel = UILabel()
+		label.text = "暂无内容".localized
+		label.textAlignment = .center
+		label.textColor = UIColor(red: 180, green: 180, blue: 180)
+		self.noneDataView.addSubview(label)
+		label.snp.makeConstraints { (make) in
+			make.top.equalTo(noneIcon.snp.bottom)
+			make.bottom.right.left.equalToSuperview()
+		}
+		
+	}
 	private func addSuvs(){
 
 		self.layer.cornerRadius = 10
@@ -144,7 +172,7 @@ extension ShopAddressPicker{
 		
 		let title:UILabel = UILabel()
 		title.textAlignment = .center
-		title.text = "选择地址"
+		title.text = "选择地址".localized
 		self.addSubview(title)
 		title.snp.makeConstraints { (make) in
 			make.top.equalToSuperview().offset(15)
@@ -169,7 +197,7 @@ extension ShopAddressPicker{
 		
 		
 		self.btnSearch.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
-		self.btnSearch.setTitle("搜索", for: .normal)
+		self.btnSearch.setTitle("搜索".localized, for: .normal)
 		self.btnSearch.setTitleColor(UIColor.white, for: .normal)
 		self.btnSearch.titleLabel?.font = UIFont.systemFont(ofSize: 15)
 		self.btnSearch.layer.cornerRadius = 5
@@ -182,7 +210,7 @@ extension ShopAddressPicker{
 			make.top.equalTo(60)
 		}
 		
- 		self.inputSearch.placeholder = "  搜索地址"
+ 		self.inputSearch.placeholder = "搜索关键字".localized
 		self.inputSearch.layer.borderWidth = 1
 		self.inputSearch.layer.borderColor = UIColor(red: 212, green: 212, blue: 212).cgColor
  		self.inputSearch.layer.cornerRadius = 3
@@ -199,8 +227,10 @@ extension ShopAddressPicker{
 	}
 
 	@objc private func searchBtn(sender:UIButton){
-		self.tableview.mj_header.beginRefreshing()
-
+		if self.inputSearch.text?.count != 0 {
+			self.tableview.mj_header.beginRefreshing()
+ 		}
+ 
 	}
 	
 	private func resquestData(refreshtype:RefreshType,complete:@escaping ()->Void){
@@ -217,27 +247,29 @@ extension ShopAddressPicker{
 			self.pg += 1
 			
 		}
- 
-		KLHttpTool.getKorAddresswithUri("common/GetKorAddressList", withPg: String(self.pg), withPageSize: "3", withKey: "정보화길", success: { (response) in
+ 		KLHttpTool.getKorAddresswithUri("common/GetKorAddressList", withPg: String(self.pg), withPageSize: "3", withKey: self.inputSearch.text, success: { (response) in
 			
 			let res:NSDictionary = response as! NSDictionary
 			let status:Int = res.object(forKey: "status") as! Int
 			self.isFetching = false
 			if status == 1 {
 				if (res.object(forKey: "data") is NSDictionary) {
-					
 					let dit:NSDictionary = res.object(forKey: "data") as! NSDictionary
 					let dit1:NSDictionary = dit.object(forKey: "post") as! NSDictionary
 					let dit2:NSDictionary = dit1.object(forKey: "itemlist") as! NSDictionary
 					let tempdata:NSArray = dit2.object(forKey: "item") as! NSArray
 					
 					if refreshtype == RefreshType.topfresh{
-						self.data.addObjects(from: tempdata as! [Any])
+						self.noneDataView.isHidden = true
+ 						self.data.addObjects(from: tempdata as! [Any])
+ 					}else{
 						
-					}else{
 						self.data.addObjects(from: tempdata as! [Any])
 					}
-					self.lbl.text = " 共搜索出 " + String(self.data.count) + " 条"
+					let numberStr:String = String(self.data.count)
+					let attrbut:NSMutableAttributedString = NSMutableAttributedString.init(string: " 共搜索出 ".localized + numberStr + " 条".localized)
+					attrbut.addAttribute(kCTForegroundColorAttributeName as NSAttributedStringKey, value:UIColor(red: 33, green: 192, blue: 67), range: NSMakeRange(1,3))
+					self.lbl.attributedText = attrbut
 					self.tableview.reloadData()
 
 				}
