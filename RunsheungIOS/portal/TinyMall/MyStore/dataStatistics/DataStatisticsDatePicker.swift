@@ -113,7 +113,7 @@ class DataStatisticsDatePicker: UIView {
 	private func createDatePicker()->UIDatePicker{
 
 		let datepicker:UIDatePicker = UIDatePicker()
-		datepicker.locale = Locale(identifier: "zh_CN")
+		datepicker.locale = Locale(identifier: "语种".localized)
 		datepicker.datePickerMode = .date
 		datepicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
 		self.addSubview(datepicker)

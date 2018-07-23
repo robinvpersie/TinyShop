@@ -13,7 +13,7 @@ class CommentCellTableView: UIView {
 		case topfresh
 		case loadmore
 	}
-	let showNoneData:UILabel = UILabel()
+	let showNoneImg:UIImageView = UIImageView()
 	var pg:Int = 1
 	var isFetching:Bool = false
 	var tableview:UITableView = UITableView()
@@ -35,19 +35,14 @@ class CommentCellTableView: UIView {
 	private func createSuv(){
 		self.backgroundColor = UIColor(red: 242, green: 244, blue: 246)
 
-		showNoneData.isHidden = true
-		showNoneData.layer.cornerRadius = 5
-		showNoneData.layer.masksToBounds = true
-		showNoneData.text = "暂无数据".localized
- 		showNoneData.textAlignment = .center
-		showNoneData.textColor = UIColor.white
-		showNoneData.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
- 		self.addSubview(showNoneData)
-		showNoneData.snp.makeConstraints { (make) in
+		showNoneImg.isHidden = true
+ 		showNoneImg.image = #imageLiteral(resourceName: "img_nocomment")
+ 		self.addSubview(showNoneImg)
+		showNoneImg.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview()
 			make.top.equalToSuperview()
-			make.width.equalTo(150)
-			make.height.equalTo(50)
+  			make.width.equalTo(80)
+			make.height.equalTo(80)
 		}
 		createTableView()
 
@@ -69,7 +64,7 @@ class CommentCellTableView: UIView {
 			self.resquestData(refreshtype: RefreshType.topfresh,view_gbn:self.veiw_bgn, complete: {
 				self.tableview.mj_header.endRefreshing()
 				self.tableview.mj_footer.resetNoMoreData()
-				self.showNoneData.isHidden = false
+				self.showNoneImg.isHidden = false
 			})
 		})
 		self.tableview.mj_footer = MJRefreshAutoFooter.init(refreshingBlock: {
