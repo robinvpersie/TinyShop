@@ -130,7 +130,7 @@
 	NSString *value = [NSString stringWithFormat:@"%@%@",textField.text,string];
 	NSLog(@"tag:%d--text:%@--string:%@",(int)textField.tag,value,string);
 
-	if (value.length > 2) {
+	if (value.length > 3) {
 		if ((int)textField.tag < 4) {
 			UITextField *field = self.fieldDatas[(int)textField.tag +1];
 			[field becomeFirstResponder];
