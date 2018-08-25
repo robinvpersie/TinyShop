@@ -148,12 +148,13 @@ extension ShopNameChangeController:UITableViewDelegate,UITableViewDataSource{
 	
 	private func addNavgationItem(){
 		
-		let right:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 30))
+		let right:UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 70, height: 30))
 		right.setTitle("编辑修改".localized, for: .normal)
   		right.titleLabel?.font = UIFont.systemFont(ofSize: 14)
 		right.setTitleColor(UIColor(red: 45, green: 45, blue: 45), for: .normal)
 		right.addTarget(self, action: #selector(editaction), for: .touchUpInside)
   		self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: right)
+		
 	}
 	
 	@objc private func editaction(){

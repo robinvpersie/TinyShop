@@ -64,9 +64,7 @@
                 if (success) {
                     NSString *result = [[NSString alloc] initWithData:responseObject  encoding:NSUTF8StringEncoding];
                     NSError *error = nil;
-                    
-                    
-                    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: [result dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &error];
+ 					NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: [result dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &error];
                     success(dic);
                     
                     

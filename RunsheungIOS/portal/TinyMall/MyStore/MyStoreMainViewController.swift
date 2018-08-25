@@ -120,31 +120,31 @@ extension MyStoreMainViewController: UICollectionViewDelegate, UICollectionViewD
 			make.top.equalTo(icon.snp.bottom).offset(5)
 		}
 		
-		switch indexPath.row {
-		case 0:
-          do{
-			self.orderManagerBadage = self.badageCircle("2")
-			cell.contentView.addSubview(self.orderManagerBadage! )
-			self.orderManagerBadage?.snp.makeConstraints { (make) in
-					make.width.height.equalTo(14)
-					make.left.equalTo(icontitle.snp.centerX).offset(25)
-					make.top.equalTo(icon.snp.bottom).offset(-5)
-			}
-			}
-		case 3:
-			do{
-				self.orderbackBadage = self.badageCircle("1")
-				cell.contentView.addSubview(self.orderbackBadage! )
-				self.orderbackBadage?.snp.makeConstraints { (make) in
-					make.width.height.equalTo(14)
-					make.left.equalTo(icontitle.snp.centerX).offset(25)
-					make.top.equalTo(icon.snp.bottom).offset(-5)
-				}
-			}
-
-		default:
-			break
-		}
+//		switch indexPath.row {
+//		case 0:
+//          do{
+//			self.orderManagerBadage = self.badageCircle("2")
+//			cell.contentView.addSubview(self.orderManagerBadage! )
+//			self.orderManagerBadage?.snp.makeConstraints { (make) in
+//					make.width.height.equalTo(14)
+//					make.left.equalTo(icontitle.snp.centerX).offset(25)
+//					make.top.equalTo(icon.snp.bottom).offset(-5)
+//			}
+//			}
+//		case 3:
+//			do{
+//				self.orderbackBadage = self.badageCircle("1")
+//				cell.contentView.addSubview(self.orderbackBadage! )
+//				self.orderbackBadage?.snp.makeConstraints { (make) in
+//					make.width.height.equalTo(14)
+//					make.left.equalTo(icontitle.snp.centerX).offset(25)
+//					make.top.equalTo(icon.snp.bottom).offset(-5)
+//				}
+//			}
+//
+//		default:
+//			break
+//		}
 		return cell
 	}
 	

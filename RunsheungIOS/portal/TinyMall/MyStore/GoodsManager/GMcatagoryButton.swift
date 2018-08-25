@@ -167,7 +167,7 @@ extension GMcatagoryButton:UITableViewDelegate,UITableViewDataSource{
 		cell.contentView.addSubview(editfield)
 		editfield.snp.makeConstraints { (make) in
 			make.left.equalTo(15)
-			make.width.equalTo(150)
+			make.width.equalTo(200)
 			make.top.equalTo(10)
 			make.bottom.equalTo(-10)
 		}

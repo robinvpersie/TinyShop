@@ -19,7 +19,7 @@ class DataStatisticsCellTableView: UIView {
 	var data:NSArray = ["今日".localized,"本周".localized,"本月".localized,"期间".localized]
 	var requesData:NSMutableArray = NSMutableArray()
 	var tableHeadView:DataStatisticCellHeadView?
-	let showNoneData:UILabel = UILabel()
+	let showNoneImg:UIImageView = UIImageView()
  	var forthCellTableViewMap:(NSString,NSString)->Void = {(fromday:NSString,endday:NSString) in }
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -37,7 +37,7 @@ class DataStatisticsCellTableView: UIView {
 				self.resquestData(refreshtype: RefreshType.topfresh,type:4,startDay:fromday,endDay:endday , complete: {
 					self.tableview.mj_header.endRefreshing()
 					self.tableview.mj_footer.resetNoMoreData()
-					self.showNoneData.isHidden = false
+					self.showNoneImg.isHidden = false
 					
 				})
 			})
@@ -58,7 +58,7 @@ class DataStatisticsCellTableView: UIView {
 				self.resquestData(refreshtype: RefreshType.topfresh,type:type + 1,startDay:"",endDay:"" , complete: {
 					self.tableview.mj_header.endRefreshing()
 					self.tableview.mj_footer.resetNoMoreData()
-					self.showNoneData.isHidden = false
+					self.showNoneImg.isHidden = false
  
 				})
 			})
@@ -109,32 +109,24 @@ class DataStatisticsCellTableView: UIView {
 				
 			}
 			complete()
-			
-			
+ 
 		}) { (err) in
 			complete()
 			
 		}
-		
-	}
+ 	}
 
 	
 
 	private func createTableView(){
 		
-		showNoneData.isHidden = true
-		showNoneData.layer.cornerRadius = 5
-		showNoneData.layer.masksToBounds = true
-		showNoneData.text = "暂无数据".localized
-		showNoneData.textAlignment = .center
-		showNoneData.textColor = UIColor.white
-		showNoneData.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
-		self.addSubview(showNoneData)
-		showNoneData.snp.makeConstraints { (make) in
-			make.centerX.equalToSuperview()
-			make.top.equalTo(200)
-			make.width.equalTo(150)
-			make.height.equalTo(50)
+		showNoneImg.isHidden = true
+		showNoneImg.image = #imageLiteral(resourceName: "no_order")
+ 		self.addSubview(showNoneImg)
+		showNoneImg.snp.makeConstraints { (make) in
+			make.center.equalToSuperview()
+ 			make.width.equalTo(70)
+			make.height.equalTo(70)
 		}
 
 		self.tableview.isHidden = true
