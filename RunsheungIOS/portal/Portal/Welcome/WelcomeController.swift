@@ -12,11 +12,11 @@ import SnapKit
 class WelcomeViewController: UIPageViewController {
     
     var pushToMain: ((dataModel?) -> Void)?
-    var model:dataModel?
+    var model: dataModel?
     fileprivate var ControllerArray = [UIViewController]()
-    private var skipBtn:UIButton!
-    private var timer:Timer?
-    private var totaltime:Int = 5
+    private var skipBtn: UIButton!
+    private var timer: Timer?
+    private var totaltime: Int = 5
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class WelcomeViewController: UIPageViewController {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
     }
     
-    func countDown(){
+    @objc  func countDown(){
         totaltime -= 1
         if totaltime <= 0 {
            timer?.invalidate()
@@ -53,7 +53,7 @@ class WelcomeViewController: UIPageViewController {
         skipBtn.setTitle("跳过\(totaltime)", for: .normal)
     }
     
-    func push(){
+    @objc func push(){
        timer?.invalidate()
        self.pushToMain?(self.model)
     }

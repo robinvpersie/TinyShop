@@ -111,7 +111,7 @@ public func tryUploadAttachment(parameters: [String:Any]? = nil, uploadAttachmen
     
     Alamofire.upload(multipartFormData: { MultipartFormData in
         switch uploadAttachment.source {
-        case .data(let data):
+        case let .data(data):
             switch uploadAttachment.AttType {
             case .avatar:
                 MultipartFormData.append(data, withName: name, fileName: fileName, mimeType: mineType)
@@ -119,12 +119,12 @@ public func tryUploadAttachment(parameters: [String:Any]? = nil, uploadAttachmen
                 let imageName = Date().string(custom: "YYYY-MM-dd-hh-mm-ss") + ".jpg"
                 MultipartFormData.append(data, withName: "file", fileName: imageName, mimeType: mineType)
             }
-        case .filePath(let filePath):
+        case let .filePath(filePath):
             MultipartFormData.append( URL(fileURLWithPath: filePath), withName: name, fileName: fileName, mimeType: mineType)
         }
     }, to: uploadAttachment.AttType.BaseUrl) { encodingResult in
         switch encodingResult {
-        case .success(request: let upload, streamingFromDisk: _, streamFileURL: _):
+        case let .success(request: upload, streamingFromDisk: _, streamFileURL: _):
             upload.responseJSON(completionHandler: { response in
                 let value = response.result
                 switch value {

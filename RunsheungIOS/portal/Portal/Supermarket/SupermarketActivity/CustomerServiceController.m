@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSURL *url = [NSURL URLWithString:@"http://ssadmin.shelongwang.com:8090/20_CM/cmList.aspx"];
+    NSURL *url = [NSURL URLWithString:@"http://ssadmin.gigaosung.com:8090/20_CM/cmList.aspx"];
     webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     
     webView.backgroundColor = [UIColor whiteColor];

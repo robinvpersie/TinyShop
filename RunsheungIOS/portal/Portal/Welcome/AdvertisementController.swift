@@ -13,7 +13,7 @@ class AdvertisementController: UIViewController {
     
     var ClickImageView:(() -> Void)?
     
-    lazy var imageView:UIImageView = {
+    lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         imageView.isUserInteractionEnabled = true
@@ -23,21 +23,24 @@ class AdvertisementController: UIViewController {
         return imageView
     }()
     
-    var dataModel:Bannerdatss?{
+    var dataModel: Bannerdatss? {
         didSet{
            self.dataSource = dataModel?.imgUrl
         }
     }
     
-    var dataSource:String?{
+    var dataSource: String?{
         didSet{
-            guard let urlstr = dataSource,let url = URL(string:urlstr) else { return }
+            guard let urlstr = dataSource,
+                let url = URL(string:urlstr) else {
+                    return
+                }
             let options: [KingfisherOptionsInfoItem] = [.transition(.fade(0.6))]
             self.imageView.kf.setImage(with:url, options: options)
         }
     }
     
-    func tapImageView(tap:UITapGestureRecognizer) -> Void {
+    func tapImageView(tap: UITapGestureRecognizer) -> Void {
         if let _ = self.dataModel{
             self.ClickImageView!()
         }
