@@ -212,12 +212,7 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
             
         } else if sectiontype == .sexAndNickName {
             let cell: PersonalSexCell = tableView.dequeueReusableCell()
-//            if indexPath.row == 0 {
-//                cell.sex.text = "性别".localized
-//                cell.detail.text = sex
-//            }else
-//                if indexPath.row == 1 {
-                cell.sex.text = "昵称".localized
+ 			    cell.sex.text = "昵称".localized
                 cell.detail.text = nickName
             
             return cell
@@ -237,15 +232,7 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
             })
             return cell
         }
-//        else if sectiontype == .changeLanguage {
-//            let cell: UITableViewCell = tableView.dequeueReusableCell()
-//            cell.textLabel?.textColor = UIColor.darkcolor
-//            cell.textLabel?.text = "언어변경".localized
-//            cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
-//            cell.textLabel?.textAlignment = .left
-//            return cell
-//        }
-        else {
+         else {
             let cell: UITableViewCell = tableView.dequeueReusableCell()
             cell.textLabel?.textColor = UIColor.navigationbarColor
             cell.textLabel?.text = "退出账号".localized
@@ -402,8 +389,9 @@ class PersinalSetController: UITableViewController, UIImagePickerControllerDeleg
             let status = json["status"].string
             if status == "1" {
 				DispatchQueue.main.async(execute: {
-					YCUserDefaults.accountModel.value = nil
-					let notificationName = Notification.Name(rawValue: "YCAccountIsLogin")
+//					YCUserDefaults.accountModel.value = nil
+					YCUserDefaults.defaults?.set(nil, forKey: "accountModel")
+ 					let notificationName = Notification.Name(rawValue: "YCAccountIsLogin")
 					NotificationCenter.default.post(name: notificationName, object: nil, userInfo: nil)
 					self?.popBack()
 				})

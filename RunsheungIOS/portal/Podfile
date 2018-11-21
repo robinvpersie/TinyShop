@@ -6,7 +6,8 @@ target 'Portal' do
   use_frameworks!
 
   # Pods for Portal
-  pod 'Kingfisher'
+
+   pod 'Kingfisher'
   pod 'SnapKit'
   pod 'SwiftyJSON'
   pod 'MBProgressHUD'
@@ -27,6 +28,7 @@ target 'Portal' do
   pod 'MJRefresh'
   pod 'TPKeyboardAvoiding'
   pod 'PromiseKit/CorePromise'
+
 
   
 

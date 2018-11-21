@@ -192,7 +192,7 @@ extension GMEditSizeCollectView: UICollectionViewDelegate,UICollectionViewDataSo
 
 			}else{
 				
-				self.popEditView?.finishCompleteMap1 = {(name:String)->Void in
+            self.popEditView?.finishCompleteMap1 = {(name:String)->Void in
 					self.sumbitMap1(name)
 					var rect:CGRect = (self.sizeCollectView?.frame)!
 					let sections:Int = Int(ceil(CGFloat(self.data.count + 1)/4.0))

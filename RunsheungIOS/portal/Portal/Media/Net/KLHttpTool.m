@@ -4106,9 +4106,7 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
 	NSString * lang_type = @"kor";
-//	custom_code = MystoreTestCustom_Code;
-//	token = MystoreTestToken;
-	
+	custom_item_code = account.customCode;
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,Image_url,custom_item_code,groupId,custom_item_name,custom_item_spec,item_name,item_level1,price,dom,custom_code,token).mutableCopy;
    	[params setObject:spec forKey:@"spec"];
 	[params setObject:Flavor forKey:@"Flavor"];
@@ -4143,8 +4141,6 @@
 	NSString* token = account.combineToken.length?account.combineToken:@"";
 	NSString *url =[NSString stringWithFormat:@"%@%@",MallBaseUrl,uri];
 	NSString * lang_type = @"kor";
-//	custom_code = MystoreTestCustom_Code;
-//	token = MystoreTestToken;
 	
 	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,custom_code,token).mutableCopy;
 	
@@ -4159,6 +4155,74 @@
 	}];
 }
 
+/**
+ 获取我的店铺超级详细信息
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestMyStoreDetailedAmountwithUri:(NSString*)uri
+									 level1:(NSString*)level1
+							  success:(void (^)(id response))success
+							  failure:(void (^)(NSError *err))failure{
+	
+	
+	YCAccountModel *account = [YCAccountModel getAccount];
+	NSString* custom_code = account.customCode.length?account.customCode:@"";
+	NSString* token = account.combineToken.length?account.combineToken:@"";
+	NSString *url =[NSString stringWithFormat:@"%@%@",MystoreUrl,uri];
+	NSString * lang_type = @"kor";
+	NSString *Page = @"1";
+	NSString *PageSize = @"12";
+	NSMutableDictionary *params = NSDictionaryOfVariableBindings(lang_type,custom_code,token,Page,PageSize).mutableCopy;
+
+	if ([uri isEqualToString:@"merchantinfo/QueryExpresslist"]) {
+		params = NSDictionaryOfVariableBindings(lang_type).mutableCopy;
+
+	}else if ([uri isEqualToString:@"merchantinfo/requestCate1DepthList"]){
+		params = NSDictionaryOfVariableBindings(lang_type,custom_code,token).mutableCopy;
+
+	}else if ([uri isEqualToString:@"merchantinfo/requestCate2DepthList"]){
+		params = NSDictionaryOfVariableBindings(lang_type,custom_code,token,level1).mutableCopy;
+		
+	}
+	
+	
+	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:url params:params success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+}
+
+/**
+ 修改供应商基本信息
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)merchantinfoUpdateInfoAmountwithParam:(NSDictionary*)param
+									  withUri:(NSString*)url
+ 									  success:(void (^)(id response))success
+ 									  failure:(void (^)(NSError *err))failure{
+	
+	NSString *uri =[NSString stringWithFormat:@"%@%@",MystoreUrl,url];
+
+ 	[[KLRequestManager shareManager] RYRequestWihtMethod2:KLRequestMethodTypePost url:uri params:param success:^(id response) {
+		NSLog(@"%@",response);
+		if (success) {
+			success(response);
+		}
+	} failure:^(NSError *err) {
+		NSLog(@"%@",err);
+		failure(err);
+	}];
+}
 
 
 /**

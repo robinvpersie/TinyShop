@@ -61,7 +61,9 @@ class GMEditCellTableView: UIView {
  
   		self.addSubview(self.tableview)
 		self.tableview.snp.makeConstraints { (make) in
-			make.edges.equalToSuperview()
+			make.left.top.right.equalToSuperview()
+			make.bottom.equalToSuperview().offset(-50)
+			
 		}
 		
 		self.clickOneTabelViewMap = {(dic:NSDictionary)->Void in
@@ -73,7 +75,34 @@ class GMEditCellTableView: UIView {
 
 			})
 		}
+		
+		let submit:UIButton = UIButton()
+		submit.setTitle("上传商品".localized, for: .normal)
+		submit.backgroundColor = UIColor(red: 33, green: 192, blue: 67)
+		submit.setTitleColor(UIColor.white, for: .normal)
+		submit.addTarget(self, action: #selector(submitactions), for: .touchUpInside)
+		self.addSubview(submit)
+		submit.snp.makeConstraints { (make) in
+			make.bottom.left.right.equalToSuperview()
+			make.height.equalTo(50)
+		}
+		
 	}
+	
+	@objc private func submitactions(){
+		let addGood:MyNewEditViewController = MyNewEditViewController()
+		addGood.getData(dic: nil)
+		addGood.editfinshRefreshMap = {()->Void in
+			self.resquestData(refreshtype: RefreshType.topfresh, categoryId: self.categoryid, complete: {
+				self.tableview.mj_header.endRefreshing()
+				self.tableview.mj_footer.resetNoMoreData()
+				
+			})
+		}
+		self.viewController().navigationController?.pushViewController(addGood, animated: true)
+		
+	}
+
 }
 
 extension GMEditCellTableView {

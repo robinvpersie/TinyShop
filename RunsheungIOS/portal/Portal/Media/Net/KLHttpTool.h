@@ -941,6 +941,18 @@
 + (void)requestSaleOrderAmountwithUri:(NSString*)uri
 							  success:(void (^)(id response))success
 							  failure:(void (^)(NSError *err))failure;
+
+/**
+ 获取我的店铺超级详细信息
+ 
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)requestMyStoreDetailedAmountwithUri:(NSString*)uri
+									 level1:(NSString*)level1
+ 									success:(void (^)(id response))success
+									failure:(void (^)(NSError *err))failure;
 /**
  获取我的商铺商品订单管理
  @param uri url
@@ -954,7 +966,16 @@
 					  withPagesize:(NSString*)pagesize
 						   success:(void (^)(id response))success
 						   failure:(void (^)(NSError *err))failure;
-
+/**
+ 修改供应商基本信息
+ @param uri url
+ @param success 成功回调
+ @param failure 失败回调
+ */
++ (void)merchantinfoUpdateInfoAmountwithParam:(NSDictionary*)param
+									  withUri:(NSString*)url
+									  success:(void (^)(id response))success
+									  failure:(void (^)(NSError *err))failure;
 /**
  获取我的商铺评论列表
  @param uri url

@@ -49,6 +49,7 @@
     UIButton *_waitCommet;
 
     SupermarketMineData *mineData;
+	int cellCount;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -69,7 +70,7 @@
     
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.hidden = NO;
-    
+	
 }
 
 
@@ -79,38 +80,61 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	_imageNames = @[@"icon_mystore",
+	cellCount = 6;
+//	YCAccountModel *acount = YCAccountModel.getAccount;
+// 	cellCount = ([acount.business_type isEqualToString:@"5"] ? 6 : 5);
+ 	_imageNames = @[@"icon_mystore",
 					@"icon_myaddress",
-                    @"icon_coupon",
-                    @"icon_notice",
-                    @"icon_collection2",
-                    @"icon_setting2"
-                    ];
-    
-	_titles = @[
-                NSLocalizedString(@"SupermarketMyOrderWaitPay", nil),
-            NSLocalizedString(@"SupermarketMyOrderWaitReceive", nil),
-            NSLocalizedString(@"SupermarketMyOrderWaitComment", nil)
-                ];
+					@"icon_coupon",
+					@"icon_notice",
+					@"icon_collection2",
+					@"icon_setting2"
+					];
+
+	
+ 	_titles = @[
+ 				NSLocalizedString(@"SupermarketMyOrderWaitPay", nil),
+ 				NSLocalizedString(@"SupermarketMyOrderWaitReceive", nil),
+ 				NSLocalizedString(@"SupermarketMyOrderWaitComment", nil)
+ 				];
     
 	_footerImageNames = @[@"Icon_stay", @"Iocn_sh", @"Iocn_evaluate"];
-	
+
 	[self createSubViews];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkLogStatus) name:SupermarketSelectTabBar object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUIWithNotLogin) name:TokenWrong object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logInNotification:) name:@"YCAccountIsLogin" object:nil];
-    
-//    self.navigationItem.title = @"我的";
-    self.view.backgroundColor = [UIColor redColor];
-    
-   // [self requestData];
+ 	self.view.backgroundColor = [UIColor redColor];
+	
 }
 
 - (void)logInNotification:(NSNotification *)notification {
 	BOOL isLogin = [YCAccountModel islogin];
+	YCAccountModel *acount = YCAccountModel.getAccount;
+	cellCount = ([acount.business_type isEqualToString:@"1"] ? 6 : 5);
+ 	if (cellCount != 6) {
+		_imageNames = @[
+						@"icon_myaddress",
+						@"icon_coupon",
+						@"icon_notice",
+						@"icon_collection2",
+						@"icon_setting2"
+						];
+	}else {
+		_imageNames = @[@"icon_mystore",
+						@"icon_myaddress",
+						@"icon_coupon",
+						@"icon_notice",
+						@"icon_collection2",
+						@"icon_setting2"
+						];
+
+	}
     if (isLogin) {
+		
         [self requestData];
+		[_tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     } else {
         [headerView refreshUIWithPhone:nil nickName:nil avatarUrlString:nil];
     }
@@ -139,7 +163,8 @@
             NSString *nickname = dic[@"nickName"];
             NSString *phone = (dic[@"memberID"] == [NSNull null]) ? @"": dic[@"memberID"];
             NSString *avatarUrl = dic[@"imagePath"];
-             [headerView refreshUIWithPhone:phone nickName:nickname avatarUrlString:avatarUrl];
+ 			[headerView refreshUIWithPhone:phone nickName:nickname avatarUrlString:avatarUrl];
+ 
         }
     } failure:^(NSError *err) {
 
@@ -181,7 +206,7 @@
     if (section == 0) {
         return 1;
     }
-    return 6;
+    return cellCount;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -222,19 +247,19 @@
         [icon drawInRect:imageRect];
         cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        
+	
 		if (indexPath.row == 0) {
-			cell.textLabel.text = @"나의 상가";
+			cell.textLabel.text =  NSLocalizedString( (cellCount == 6 ? @"我的商家" : @"我的地址"), nil);
 		} else if (indexPath.row == 1) {
-            cell.textLabel.text = @"주소관리";
+            cell.textLabel.text =  NSLocalizedString((cellCount == 6 ? @"我的地址" : @"公告"), nil);
         } else if (indexPath.row == 2) {
-            cell.textLabel.text = @"공지사항";
+            cell.textLabel.text =  NSLocalizedString((cellCount == 6 ? @"公告" : @"我的消息"), nil);
         } else if (indexPath.row == 3) {
-            cell.textLabel.text = @"리뷰관리";
+            cell.textLabel.text =  NSLocalizedString((cellCount == 6 ? @"我的消息" : @"我的收藏"), nil);
         } else if (indexPath.row == 4) {
-             cell.textLabel.text = @"찜하기";
+             cell.textLabel.text =  NSLocalizedString((cellCount == 6 ? @"我的收藏" : @"设置"), nil);
         } else {
-             cell.textLabel.text = @"환경설정";
+             cell.textLabel.text =  NSLocalizedString(@"设置", nil);
         }
     }
     return cell;
@@ -250,57 +275,71 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self showLoading];
-    [KLHttpTool getToken:^(id token) {
-      [self hideLoading];
-       if (indexPath.section == 1) {
-            if (indexPath.row == 0) {
-                 MyStoreMainViewController *rulevc = [MyStoreMainViewController new];
- 				rulevc.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:rulevc animated:YES];
-                
-            } else if (indexPath.row == 1) {
-                SupermarketMyAddressViewController *vc = [[SupermarketMyAddressViewController alloc] init];
-                vc.hidesBottomBarWhenPushed = YES;
-                vc.isPageView = NO;
-                [self.navigationController pushViewController:vc animated:YES];
-                
-            } else if (indexPath.row == 2) {
-                
-                YCWebViewController *web = [[YCWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://www.gigawon.co.kr:1314/QnA/sub_01"]];
-                web.title = @"공고";
-                web.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:web animated:YES];
-                
-            } else if (indexPath.row == 3) {
-                
-                SupermarketMyCommentController *myComment = [[SupermarketMyCommentController alloc] init];
-                myComment.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:myComment animated:YES];
-                
-            } else if (indexPath.row == 4) {
-                
-                SupermarketMyCollectionViewController *mycollection = [[SupermarketMyCollectionViewController alloc] init];
-                mycollection.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:mycollection animated:YES];
-                
-            } else {
-                
-                PersinalSetController *personal = [[PersinalSetController alloc] init];
-                personal.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:personal animated:YES];
-                
-                
-            }
-        } else {
-            SupermarketMyOrderController *vc = [[SupermarketMyOrderController alloc] init];
-            vc.hidesBottomBarWhenPushed = YES;
-            vc.controllerType = self.controllerType;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-    } failure:^(NSError *errToken) {
+//	[self showLoading];
+// 	[KLHttpTool getToken:^(id token) {
+//		[self hideLoading];
+	
+		if ([YCAccountModel islogin]){
+			if (indexPath.section == 1) {
+				if (indexPath.row == (cellCount == 6 ? 1 : 0)) {
+					SupermarketMyAddressViewController *vc = [[SupermarketMyAddressViewController alloc] init];
+					vc.hidesBottomBarWhenPushed = YES;
+					vc.isPageView = NO;
+					[self.navigationController pushViewController:vc animated:YES];
+					
+				} else if (indexPath.row == (cellCount == 6 ? 2 : 1)) {
+					
+					YCWebViewController *web = [[YCWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://www.gigawon.co.kr:1314/QnA/sub_01"]];
+					web.title = @"공고";
+					web.hidesBottomBarWhenPushed = YES;
+					[self.navigationController pushViewController:web animated:YES];
+					
+				} else if (indexPath.row == (cellCount == 6 ? 3 : 2)) {
+					
+					SupermarketMyCommentController *myComment = [[SupermarketMyCommentController alloc] init];
+					myComment.hidesBottomBarWhenPushed = YES;
+					[self.navigationController pushViewController:myComment animated:YES];
+					
+				} else if (indexPath.row == (cellCount == 6 ? 4 : 3)) {
+					
+					SupermarketMyCollectionViewController *mycollection = [[SupermarketMyCollectionViewController alloc] init];
+					mycollection.hidesBottomBarWhenPushed = YES;
+					[self.navigationController pushViewController:mycollection animated:YES];
+					
+				} else if(indexPath.row == (cellCount == 6 ? 5 : 4)){
+					
+					PersinalSetController *personal = [[PersinalSetController alloc] init];
+					personal.hidesBottomBarWhenPushed = YES;
+					[self.navigationController pushViewController:personal animated:YES];
+					
+					
+				}
+				
+				if (cellCount == 6) {
+					
+					if (indexPath.row == 0) {
+						MyStoreMainViewController *rulevc = [MyStoreMainViewController new];
+						rulevc.hidesBottomBarWhenPushed = YES;
+						[self.navigationController pushViewController:rulevc animated:YES];
+						
+					}
+				}
+				
+			} else {
+				SupermarketMyOrderController *vc = [[SupermarketMyOrderController alloc] init];
+				vc.hidesBottomBarWhenPushed = YES;
+				vc.controllerType = self.controllerType;
+				[self.navigationController pushViewController:vc animated:YES];
+			}
 
-    }];
+		}else {
+			[self goToLogin:^{}];
+		}
+
+	
+//    } failure:^(NSError *errToken) {
+//
+//    }];
 }
 
 

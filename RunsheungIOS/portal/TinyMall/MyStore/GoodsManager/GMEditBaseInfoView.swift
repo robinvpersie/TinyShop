@@ -24,6 +24,7 @@ class GMEditBaseInfoView: UIView {
 
 	let inputName:(String) -> UITextField = {(text:String) -> UITextField in
 		let input:UITextField = UITextField()
+		input.returnKeyType = .done
 		input.text = text
 		input.textColor = UIColor(red: 141, green: 141, blue: 141)
 		input.borderStyle = .roundedRect
@@ -43,9 +44,17 @@ class GMEditBaseInfoView: UIView {
 extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate{
 
 	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-		self.finishBaseData(self.imageurl!,(self.inputNameField?.text)!,(self.choiceView?.choicebtn.level_id)!)
+		self.finishBaseData(self.imageurl ?? "",textField.text ?? "",(self.choiceView?.choicebtn.level_id)!)
 		return true
 	}
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		self.finishBaseData(self.imageurl ?? "",textField.text ?? "",(self.choiceView?.choicebtn.level_id)!)
+		self.inputNameField?.resignFirstResponder()
+		return true
+	}
+	
+	
 	
 	@objc private func changAvatorFunc(){
 		let alert:UIAlertController = UIAlertController(title: "", message: "修改头像图片".localized, preferredStyle: .actionSheet)
@@ -77,10 +86,13 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 		self.viewController().present(alert, animated:true, completion: nil)
 	}
 	
-	@objc public func getBaseData(dic:NSDictionary,currentLevelDic:NSArray){
-		self.imageurl =  dic.object(forKey: "Image_url") as? String
-  		self.avator.setImageWith(NSURL(string: dic.object(forKey: "Image_url") as! String)! as URL)
-		self.inputNameField?.text = dic.object(forKey: "ITEM_NAME") as? String
+	@objc public func getBaseData(dic:NSDictionary?,currentLevelDic:NSArray){
+		guard dic != nil else {
+			return
+		}
+		self.imageurl =  dic?.object(forKey: "Image_url") as? String
+		self.avator.setImageWith(NSURL(string: dic?.object(forKey: "Image_url") as! String)! as URL)
+		self.inputNameField?.text = dic?.object(forKey: "ITEM_NAME") as? String
  		self.choiceView?.getData(data:currentLevelDic)
 	}
 
@@ -121,7 +133,7 @@ extension GMEditBaseInfoView:UIImagePickerControllerDelegate,UINavigationControl
 			make.height.equalTo(25)
 		}
 		
-		self.inputNameField = self.inputName("Chizza烤薯条餐S")
+		self.inputNameField = self.inputName("")
 		self.inputNameField?.delegate = self as UITextFieldDelegate
 		self.addSubview(self.inputNameField!)
 		self.inputNameField?.snp.makeConstraints({ (make) in

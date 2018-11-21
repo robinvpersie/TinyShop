@@ -38,7 +38,7 @@ public class YCAccountModel: NSObject, NSCoding {
     @objc var parentId: String?
     @objc var customlev: String?
     @objc var combineToken: String?
-    
+	@objc var business_type:String?
     public override init() {
         super.init()
     }
@@ -60,6 +60,8 @@ public class YCAccountModel: NSObject, NSCoding {
         aCoder.encode(parentId, forKey: "parentId")
         aCoder.encode(customlev, forKey: "customlev")
         aCoder.encode(combineToken, forKey: "combinetoken")
+		aCoder.encode(business_type, forKey: "business_type")
+
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -80,7 +82,8 @@ public class YCAccountModel: NSObject, NSCoding {
         parentId = aDecoder.decodeObject(forKey: "parentId") as? String
         customlev = aDecoder.decodeObject(forKey: "customlev") as? String
         combineToken = aDecoder.decodeObject(forKey: "combinetoken") as? String
-        
+		business_type = aDecoder.decodeObject(forKey: "business_type") as? String
+
     }
     
     
@@ -97,7 +100,7 @@ public class YCAccountModel: NSObject, NSCoding {
     
     @objc (getAccount)
     class func getAccount() -> YCAccountModel? {
-        let accountData:Data? = UserDefaults.standard.object(forKey: "accountModel") as? Data
+		let accountData:Data? = YCUserDefaults.defaults?.object(forKey: "accountModel") as? Data
         if let data = accountData {
           let loaded = NSKeyedUnarchiver.unarchiveObject(with: data) as? YCAccountModel
           return loaded ?? nil
@@ -116,7 +119,10 @@ public class YCAccountModel: NSObject, NSCoding {
         accountModel.customCode = json["custom_code"].stringValue
         accountModel.ssoId = json["ssoId"].string
         accountModel.pointCardNo = json["point_card_no"].string
+		accountModel.business_type = json["business_type"].string
+
         let objectTodata = NSKeyedArchiver.archivedData(withRootObject: accountModel)
+		
         YCUserDefaults.accountModel.value = objectTodata
     }
     
@@ -143,6 +149,7 @@ public class YCAccountModel: NSObject, NSCoding {
             accountModel.userName = userName
             accountModel.usersex = checkGender()
             accountModel.memid = memberId
+			
             let objectTodata = NSKeyedArchiver.archivedData(withRootObject: accountModel)
             YCUserDefaults.accountModel.value = objectTodata
         }else {

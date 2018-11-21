@@ -57,8 +57,18 @@ class MyNewEditViewController: MyStoreBaseViewController {
 
 	}
 	
-	@objc public func getData(dic:NSDictionary){
+	@objc public func getData(dic:NSDictionary?){
 		self.dic = dic
+		guard self.dic != nil else {
+			self.view.addSubview(self.baseInfoView)
+			self.baseInfoView.snp.makeConstraints { (make) in
+				make.left.right.equalToSuperview()
+				make.top.equalTo(10)
+				make.height.equalTo(210)
+			}
+ 			self.byInfoView.getData(array1: self.sizeData,array2: self.sweetData)
+ 			return
+		}
 		self.imageURL = self.dic!.object(forKey: "image_url") as? String
 		self.level = self.dic!.object(forKey: "ITEM_LEVEL1") as? String
 		self.classname = self.dic!.object(forKey: "item_name") as? String
@@ -106,11 +116,12 @@ extension MyNewEditViewController{
 			if da2.count == 0 {
 				da2.addObjects(from: self.sweetData as! [Any])
  			}
- 			KLHttpTool.getGoodManagerAppendproductwithUri("product/updateproduct", withGroupid:self.groupid, withimageURL:self.imageURL, withcustom_item_code: self.dic?.object(forKey: "item_code") as! String, withcustom_item_name: self.classname , withcustom_item_spec: "1", withdom: "1", withitem_name: self.classname, withitem_level1:"1", withprice:self.dic?.object(forKey: "item_p") as! String, withspec: da1 as! [Any], withFlavor: da2 as! [Any], success: { (response) in
+			KLHttpTool.getGoodManagerAppendproductwithUri( self.dic == nil ? "product/appendproductEx" : "product/updateproduct", withGroupid:(self.groupid == nil ? " " : self.groupid) , withimageURL:(self.imageURL == nil ? " " : self.imageURL), withcustom_item_code: self.dic?.object(forKey: "item_code") as? String, withcustom_item_name: self.classname , withcustom_item_spec: "1", withdom: "1", withitem_name: self.classname, withitem_level1:"1", withprice:(self.dic == nil ? "1" : self.dic?.object(forKey: "item_p") as? String), withspec: da1 as? [Any], withFlavor: da2 as? [Any], success: { (response) in
 				
 				let res:NSDictionary = (response as? NSDictionary)!
 				let status:Int = (res.object(forKey: "status") as! Int)
 				if status == 1 {
+					
 					self.editfinshRefreshMap()
  					self.navigationController?.popViewController(animated: true)
 				}

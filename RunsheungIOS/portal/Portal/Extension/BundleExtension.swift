@@ -40,7 +40,7 @@ public class languageTool: NSObject {
 //        let languageType: String? = YCUserDefaults.language.value
 //        self.language = languageType
 //        if let lan = languageType {
-            self.path = Bundle.main.path(forResource: "ko", ofType: "lproj")
+            self.path = Bundle.main.path(forResource: "zh-Hans", ofType: "lproj")
             self.bundle = Bundle(path: self.path!)
 //        }
     }

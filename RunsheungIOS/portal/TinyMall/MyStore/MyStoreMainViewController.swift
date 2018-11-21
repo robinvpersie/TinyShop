@@ -65,7 +65,7 @@ class MyStoreMainViewController: UITableViewController {
 			self.requestDic = (response as? NSDictionary)!
 			let status:String = self.requestDic!.object(forKey: "status") as! String
 			if status == "1" {
-				self.headavator?.setImageWith(NSURL(string: self.requestDic?.object(forKey: "shop_thumnail_image") as! String)! as URL)
+				self.headavator?.setImageWith(NSURL(string: self.requestDic?.object(forKey: "shop_thumnail_image") as! String )! as URL)
 				self.shopname?.text = self.requestDic?.object(forKey: "custom_name") as? String
 				self.todayPay.text = self.requestDic?.object(forKey: "sale_amount") as? String
 				self.tadayCount.text = self.requestDic?.object(forKey: "order_amount") as? String

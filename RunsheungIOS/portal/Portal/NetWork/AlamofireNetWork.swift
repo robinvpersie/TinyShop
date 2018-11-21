@@ -10,7 +10,6 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-
 public enum Router: URLRequestConvertible {
     
     case playVideo(videoId: String, kind: Int ,userId: String?)

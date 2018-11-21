@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "553760660.0941451"
+            timestampString = "563448191.7856899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "498"
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "553760660.102717"
+            timestampString = "563448191.785985"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1852"
@@ -233,13 +233,13 @@
                   symbolName = "-[SupermarketOnSaleCollectionView addtoShoppingCart:]"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Supermarket/SupermarketHome/SupermarketOnSaleCollectionView.m"
-                  timestampString = "554347533.034222"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Supermarket/SupermarketHome/SupermarketOnSaleCollectionView.m"
+                  timestampString = "563448193.1659451"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "112"
                   endingLineNumber = "112"
-                  offsetFromSymbolStart = "471">
+                  offsetFromSymbolStart = "484">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -248,8 +248,8 @@
                   symbolName = "__53-[SupermarketOnSaleCollectionView addtoShoppingCart:]_block_invoke"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Supermarket/SupermarketHome/SupermarketOnSaleCollectionView.m"
-                  timestampString = "554347533.038047"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Supermarket/SupermarketHome/SupermarketOnSaleCollectionView.m"
+                  timestampString = "563448193.168777"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "113"
@@ -281,8 +281,8 @@
                   symbolName = "__48-[SupermarketConfirmOrderController createOrder]_block_invoke_3.552"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Supermarket/SupermarketGoods/SupermarketConfirmOrderController.m"
-                  timestampString = "554347533.0461119"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Supermarket/SupermarketGoods/SupermarketConfirmOrderController.m"
+                  timestampString = "563448193.177925"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "559"
@@ -296,8 +296,8 @@
                   symbolName = "__48-[SupermarketConfirmOrderController createOrder]_block_invoke_4"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Supermarket/SupermarketGoods/SupermarketConfirmOrderController.m"
-                  timestampString = "554347533.049273"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Supermarket/SupermarketGoods/SupermarketConfirmOrderController.m"
+                  timestampString = "563448193.182327"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "560"
@@ -311,8 +311,8 @@
                   symbolName = "__destroy_helper_block_.566"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Supermarket/SupermarketGoods/SupermarketConfirmOrderController.m"
-                  timestampString = "554347533.052519"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Supermarket/SupermarketGoods/SupermarketConfirmOrderController.m"
+                  timestampString = "563448193.187425"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "559"
@@ -344,13 +344,13 @@
                   symbolName = "__51-[SupermarketMyCollectionViewController movetoCart]_block_invoke"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketMyCollection/SupermarketMyCollectionViewController.m"
-                  timestampString = "554347533.062199"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketMyCollection/SupermarketMyCollectionViewController.m"
+                  timestampString = "563448193.197937"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "607"
                   endingLineNumber = "607"
-                  offsetFromSymbolStart = "274">
+                  offsetFromSymbolStart = "280">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -359,8 +359,8 @@
                   symbolName = "__51-[SupermarketMyCollectionViewController movetoCart]_block_invoke_2"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketMyCollection/SupermarketMyCollectionViewController.m"
-                  timestampString = "554347533.065823"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketMyCollection/SupermarketMyCollectionViewController.m"
+                  timestampString = "563448193.201256"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "608"
@@ -374,8 +374,8 @@
                   symbolName = "__destroy_helper_block_.275"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketMyCollection/SupermarketMyCollectionViewController.m"
-                  timestampString = "554347533.069697"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketMyCollection/SupermarketMyCollectionViewController.m"
+                  timestampString = "563448193.204672"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "607"
@@ -408,7 +408,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "553760660.103896"
+            timestampString = "563448191.786534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "930"
@@ -631,8 +631,8 @@
                   symbolName = "-[SupermarketMyCommentController requetDaata]"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketMyCommentController.m"
-                  timestampString = "554347533.162428"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketMyCommentController.m"
+                  timestampString = "563448193.3121459"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "66"
@@ -646,8 +646,8 @@
                   symbolName = "__45-[SupermarketMyCommentController requetDaata]_block_invoke"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketMyCommentController.m"
-                  timestampString = "554347533.165933"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketMyCommentController.m"
+                  timestampString = "563448193.315066"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "67"
@@ -661,8 +661,8 @@
                   symbolName = "__destroy_helper_block_.92"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketMyCommentController.m"
-                  timestampString = "554347533.168671"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketMyCommentController.m"
+                  timestampString = "563448193.317803"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "66"
@@ -759,7 +759,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "553760660.105283"
+            timestampString = "563448191.787505"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "3380"
@@ -775,7 +775,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "553760660.105705"
+            timestampString = "563448191.787737"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "3382"
@@ -839,7 +839,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "553760660.1062911"
+            timestampString = "563448191.78802"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "3386"
@@ -855,7 +855,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "553760660.1067179"
+            timestampString = "563448191.788148"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1765"
@@ -871,7 +871,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "553760660.10712"
+            timestampString = "563448191.78826"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1768"
@@ -935,7 +935,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "553760660.1077189"
+            timestampString = "563448191.788546"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "3448"
@@ -950,13 +950,13 @@
                   symbolName = "+[KLHttpTool TinySMSloginWithPhone:Success:failure:]"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
-                  timestampString = "554347533.279197"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
+                  timestampString = "563448193.435918"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "3448"
                   endingLineNumber = "3448"
-                  offsetFromSymbolStart = "818">
+                  offsetFromSymbolStart = "807">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -965,8 +965,8 @@
                   symbolName = "__52+[KLHttpTool TinySMSloginWithPhone:Success:failure:]_block_invoke"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
-                  timestampString = "554347533.2826639"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
+                  timestampString = "563448193.439569"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "3448"
@@ -980,8 +980,8 @@
                   symbolName = "__destroy_helper_block_.1472"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
-                  timestampString = "554347533.2858371"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
+                  timestampString = "563448193.446579"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "3448"
@@ -1062,7 +1062,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "553760660.1083961"
+            timestampString = "563448191.7888809"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1847"
@@ -1077,8 +1077,8 @@
                   symbolName = "__116+[KLHttpTool supermarketPayWithUserID:orderNumber:orderMoney:actualMoney:point:couponCode:password:success:failure:]_block_invoke_2"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
-                  timestampString = "554347533.316516"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
+                  timestampString = "563448193.515376"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1847"
@@ -1092,8 +1092,8 @@
                   symbolName = "__copy_helper_block_.900"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
-                  timestampString = "554347533.319425"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
+                  timestampString = "563448193.521607"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1845"
@@ -1107,8 +1107,8 @@
                   symbolName = "__116+[KLHttpTool supermarketPayWithUserID:orderNumber:orderMoney:actualMoney:point:couponCode:password:success:failure:]_block_invoke.903"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
-                  timestampString = "554347533.321766"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
+                  timestampString = "563448193.5272681"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1848"
@@ -1156,8 +1156,8 @@
                   symbolName = "__52-[SupermarketOrderWaitPayDetailController payAction]_block_invoke"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketOrderWaitPayDetailController.m"
-                  timestampString = "554347533.336866"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketOrderWaitPayDetailController.m"
+                  timestampString = "563448193.557832"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "186"
@@ -1171,8 +1171,8 @@
                   symbolName = "__52-[SupermarketOrderWaitPayDetailController payAction]_block_invoke_2"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketOrderWaitPayDetailController.m"
-                  timestampString = "554347533.3397"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketOrderWaitPayDetailController.m"
+                  timestampString = "563448193.560894"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "187"
@@ -1186,8 +1186,8 @@
                   symbolName = "__destroy_helper_block_.279"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketOrderWaitPayDetailController.m"
-                  timestampString = "554347533.342706"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Supermarket/SupermarketMine/SupermarketOrderWaitPayDetailController.m"
+                  timestampString = "563448193.564926"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "186"
@@ -1220,7 +1220,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "553760660.1090111"
+            timestampString = "563448191.789206"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "3450"
@@ -1252,7 +1252,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "553760660.109426"
+            timestampString = "563448191.789372"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "3390"
@@ -1267,71 +1267,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TinyMall/Main/TinyMainViewController.m"
-            timestampString = "551440311.172341"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "449"
-            endingLineNumber = "449"
-            landmarkName = "-loadInputDomain:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[TinyMainViewController loadInputDomain:]"
-                  moduleName = "Portal"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/TinyMall/Main/TinyMainViewController.m"
-                  timestampString = "554347533.646319"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "449"
-                  endingLineNumber = "449"
-                  offsetFromSymbolStart = "267">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__42-[TinyMainViewController loadInputDomain:]_block_invoke"
-                  moduleName = "Portal"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/TinyMall/Main/TinyMainViewController.m"
-                  timestampString = "554347533.649618"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "450"
-                  endingLineNumber = "450"
-                  offsetFromSymbolStart = "51">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.506"
-                  moduleName = "Portal"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/TinyMall/Main/TinyMainViewController.m"
-                  timestampString = "554347533.6528471"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "449"
-                  endingLineNumber = "449"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "553760660.10984"
+            timestampString = "563448191.789479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "3750"
@@ -1346,13 +1283,13 @@
                   symbolName = "+[KLHttpTool setGoodManagerDelFlavorwithUri:withselling:withgroupid:success:failure:]"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
-                  timestampString = "554347533.7515531"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
+                  timestampString = "563448193.607406"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "3750"
                   endingLineNumber = "3750"
-                  offsetFromSymbolStart = "862">
+                  offsetFromSymbolStart = "879">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1361,8 +1298,8 @@
                   symbolName = "__85+[KLHttpTool setGoodManagerDelFlavorwithUri:withselling:withgroupid:success:failure:]_block_invoke"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
-                  timestampString = "554347533.755464"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
+                  timestampString = "563448193.611189"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "3750"
@@ -1376,8 +1313,8 @@
                   symbolName = "__destroy_helper_block_.1564"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
-                  timestampString = "554347533.759156"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
+                  timestampString = "563448193.614278"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "3750"
@@ -1394,7 +1331,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "553760660.110226"
+            timestampString = "563448191.789623"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "3753"
@@ -1425,61 +1362,222 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Portal/Media/Net/KLHttpTool.m"
-            timestampString = "553760660.110633"
+            filePath = "TinyMall/Main/BMianViewController.swift"
+            timestampString = "562129533.191733"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4430"
-            endingLineNumber = "4430"
-            landmarkName = "+requestStoreImageUpdatewithUri:withStoreImageurl:withCustomName:withTelephon:withZipcode:withKoraddr:withkoraddrDetail:success:failure:"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "setNavigation()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TinyMall/MyStore/GoodsManager/AddNewGoodViewController.swift"
+            timestampString = "562212151.975383"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "getData(dic:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TinyMall/MyStore/GoodsManager/MyNewEditViewController.swift"
+            timestampString = "562297596.274215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "getData(dic:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Portal/Login/YCLoginViewController.swift"
+            timestampString = "563178601.991524"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "loginWithPhoneNumber(_:_:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "+[KLHttpTool requestStoreImageUpdatewithUri:withStoreImageurl:withCustomName:withTelephon:withZipcode:withKoraddr:withkoraddrDetail:success:failure:]"
+                  symbolName = "Portal.YCLoginViewController.(loginWithPhoneNumber in _14798C44E6A8ACB3D9F037FA3342557D)(Swift.String, Swift.String) -&gt; ()"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
-                  timestampString = "554347534.323408"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Login/YCLoginViewController.swift"
+                  timestampString = "563448193.648261"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "4430"
-                  endingLineNumber = "4430"
-                  offsetFromSymbolStart = "1112">
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "113">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__149+[KLHttpTool requestStoreImageUpdatewithUri:withStoreImageurl:withCustomName:withTelephon:withZipcode:withKoraddr:withkoraddrDetail:success:failure:]_block_invoke"
+                  symbolName = "closure #1 (Portal.NetWorkResult&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;) -&gt; () in Portal.YCLoginViewController.(loginWithPhoneNumber in _14798C44E6A8ACB3D9F037FA3342557D)(Swift.String, Swift.String) -&gt; ()"
                   moduleName = "Portal"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
-                  timestampString = "554347534.3267649"
+                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop_chn%202/RunsheungIOS/portal/Portal/Login/YCLoginViewController.swift"
+                  timestampString = "563448193.651069"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "4430"
-                  endingLineNumber = "4430"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.1746"
-                  moduleName = "Portal"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzoon/Desktop/%E5%B0%8F%E5%95%86%E8%81%94%E7%9B%9F/TinyShop/RunsheungIOS/portal/Portal/Media/Net/KLHttpTool.m"
-                  timestampString = "554347534.330021"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "4430"
-                  endingLineNumber = "4430"
-                  offsetFromSymbolStart = "16">
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "158">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Portal/Login/YCLoginViewController.swift"
+            timestampString = "563178670.069025"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "clickLogin()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Portal/Login/YCLoginViewController.swift"
+            timestampString = "563178714.6968549"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Portal/Login/RSLoginContainerController.m"
+            timestampString = "563178744.680222"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Portal/Login/YCNewMemberController.swift"
+            timestampString = "563178769.408558"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Portal/Login/RSLoginContainerController.m"
+            timestampString = "563178786.397079"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "-viewWillAppear:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Portal/Supermarket/SupermarketMine/SupermarketMineViewController.m"
+            timestampString = "563364386.275872"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "-logInNotification:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Portal/Supermarket/SupermarketMine/SupermarketMineViewController.m"
+            timestampString = "563364386.276256"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "-logInNotification:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TinyMall/MemberEnroll/MemberEnrollController.m"
+            timestampString = "563364386.2766171"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "-loginMember"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

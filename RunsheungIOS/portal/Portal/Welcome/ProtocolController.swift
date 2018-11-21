@@ -85,43 +85,7 @@ class ProtocolController: UIViewController {
             make.leading.equalTo(scrollView).offset(30)
             make.trailing.equalTo(scrollView).offset(-30)
         }
-        
-//        let layoutGuide = UILayoutGuide()
-//        scrollView.addLayoutGuide(layoutGuide)
-        
-//        let chooseAlllb = UILabel()
-//        chooseAlllb.text = "전체동의"
-//        chooseAlllb.textColor = UIColor(hex: 0x999999)
-//        chooseAlllb.font = UIFont.systemFont(ofSize: 18)
-//        scrollView.addSubview(chooseAlllb)
-        
-//        chooseAllBtn = UIButton(type: .custom)
-//        chooseAllBtn.setImage(UIImage(named: "icon_select"), for: .normal)
-//        chooseAllBtn.setImage(UIImage(named: "icon_selected2"), for: .selected)
-//        chooseAllBtn.addTarget(self, action: #selector(didChoose), for: .touchUpInside)
-//        chooseAllBtn.tag = chooseType.all.rawValue
-//        scrollView.addSubview(chooseAllBtn)
-        
-//        chooseAlllb.snp.makeConstraints { (make) in
-//            make.trailing.equalTo(chooseAllBtn.snp.leading).offset(-5)
-//            make.leading.top.bottom.equalTo(layoutGuide)
-//        }
-        
-//        chooseAllBtn.snp.makeConstraints { (make) in
-//            make.width.equalTo(30)
-//            make.height.equalTo(30)
-//            make.leading.equalTo(chooseAlllb.snp.trailing).offset(5)
-//            make.centerY.equalTo(layoutGuide)
-//        }
-        
-//        layoutGuide.snp.makeConstraints { (make) in
-//            make.centerX.equalTo(scrollView)
-//            make.top.equalTo(agreenlb.snp.bottom).offset(25)
-//            make.trailing.equalTo(chooseAllBtn)
-//            make.leading.equalTo(chooseAlllb)
-//        }
-        
-        
+ 
         locationProtocolTV = UITextView()
         let locationRichText = NSMutableAttributedString()
         let locationFirstText = NSAttributedString(string: "위치 기반 서비스 약관 동의")
@@ -172,88 +136,7 @@ class ProtocolController: UIViewController {
             make.height.equalTo(0.8)
         }
         
-//        let lieveProtocollb = UITextView()
-//        let liveRichText = NSMutableAttributedString()
-//        let liveFirstText = NSAttributedString(string: "위치기반서비스 동의 약관")
-//        liveRichText.append(liveFirstText)
-//        let liveLastText = NSAttributedString(string: "(필수)", attributes: [NSAttributedStringKey.foregroundColor: UIColor(hex: 0x999999)])
-//        liveRichText.append(liveLastText)
-//        liveRichText.addAttribute(NSAttributedStringKey.link, value: "live://", range: NSRange(location:0, length: liveFirstText.length))
-//        lieveProtocollb.linkTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue : UIColor.YClightBlueColor]
-//        lieveProtocollb.attributedText = liveRichText
-//        lieveProtocollb.font = UIFont.systemFont(ofSize: 13)
-//        lieveProtocollb.delegate = self
-//        lieveProtocollb.isEditable = false
-//        lieveProtocollb.isScrollEnabled = false
-//        lieveProtocollb.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
-//        lieveProtocollb.textContainer.lineFragmentPadding = 0
-//        scrollView.addSubview(lieveProtocollb)
-//
-//        liveChooseBtn = UIButton(type: .custom)
-//        liveChooseBtn.addTarget(self, action: #selector(didChoose(sender:)), for: .touchUpInside)
-//        liveChooseBtn.setImage(UIImage(named: "icon_select"), for: .normal)
-//        liveChooseBtn.setImage(UIImage(named: "icon_selected2"), for: .selected)
-//        liveChooseBtn.tag = chooseType.live.rawValue
-//        scrollView.addSubview(liveChooseBtn)
-//
-//        let line2 = UIView()
-//        line2.backgroundColor = UIColor(hex: 0xe6e6e6)
-//        scrollView.addSubview(line2)
-//
-//        lieveProtocollb.snp.makeConstraints { (make) in
-//            make.leading.equalTo(locationProtocolTV)
-//            make.top.equalTo(line1.snp.bottom).offset(15)
-//            make.height.equalTo(lieveProtocollb.font!.lineHeight)
-//            make.trailing.equalTo(liveChooseBtn.snp.leading).offset(-5)
-//        }
-//
-//        liveChooseBtn.snp.makeConstraints { (make) in
-//            make.trailing.width.height.equalTo(locationChooseBtn)
-//            make.centerY.equalTo(lieveProtocollb)
-//        }
-//
-//        line2.snp.makeConstraints { (make) in
-//            make.top.equalTo(lieveProtocollb.snp.bottom).offset(15)
-//            make.leading.trailing.height.equalTo(line1)
-//        }
-        
-//        let notiProtocollb = UITextView()
-//        let notiRichText = NSMutableAttributedString()
-//        let notiFirstText = NSAttributedString(string: "마케팅 정보 앱 푸시 알림 수신 동의")
-//        notiRichText.append(notiFirstText)
-//        let notiLastText = NSAttributedString(string: "(선택)", attributes: [NSAttributedStringKey.foregroundColor: UIColor(hex: 0x999999)])
-//        notiRichText.addAttribute(NSAttributedStringKey.link, value: "noti://", range: NSRange(location: 0, length: notiRichText.length))
-//        notiRichText.append(notiLastText)
-//        notiProtocollb.linkTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue : UIColor.YClightBlueColor]
-//        notiProtocollb.attributedText = notiRichText
-//        notiProtocollb.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
-//        notiProtocollb.delegate = self
-//        notiProtocollb.textContainer.lineFragmentPadding = 0
-//        notiProtocollb.isEditable = false
-//        notiProtocollb.isScrollEnabled = false
-//        notiProtocollb.font = UIFont.systemFont(ofSize: 13)
-//        scrollView.addSubview(notiProtocollb)
-        
-//        notificationChooseBtn = UIButton(type: .custom)
-//        notificationChooseBtn.tag = chooseType.notification.rawValue
-//        notificationChooseBtn.addTarget(self, action: #selector(didChoose(sender:)), for: .touchUpInside)
-//        notificationChooseBtn.setImage(UIImage(named: "icon_select"), for: .normal)
-//        notificationChooseBtn.setImage(UIImage(named: "icon_selected2"), for: .selected)
-//        scrollView.addSubview(notificationChooseBtn)
-        
-     
-//        notiProtocollb.snp.makeConstraints { (make) in
-//            make.leading.equalTo(locationProtocolTV)
-//            make.top.equalTo(line2.snp.bottom).offset(15)
-//            make.trailing.equalTo(notificationChooseBtn.snp.leading).offset(-5)
-//            make.height.equalTo(notiProtocollb.font!.lineHeight)
-//        }
-//
-//        notificationChooseBtn.snp.makeConstraints { (make) in
-//            make.centerY.equalTo(notiProtocollb)
-//            make.trailing.width.height.equalTo(locationChooseBtn)
-//        }
-        
+ 
         let startBtn = UIButton(type: .custom)
         startBtn.addTarget(self, action: #selector(didStart), for: .touchUpInside)
         startBtn.setTitle("시작하기", for: .normal)

@@ -25,14 +25,19 @@ class GMEditByInfoView: UIView {
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
+ 
 	}
+	
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+
 	
 	@objc public func getData(array1:NSMutableArray,array2:NSMutableArray){
-		createSuvs(array1:array1,array2:array2)
+ 		self.data1 = array1
+		self.data2 = array2
+		createSuvs(array1:self.data1,array2:self.data2)
 
 	}
 }
@@ -111,6 +116,7 @@ extension GMEditByInfoView{
 	}
 	
 	@objc private func submitaction(){
+		
 		self.finishData(self.data1,self.data2)
 		
 		

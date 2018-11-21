@@ -142,10 +142,10 @@ class MatchManageController: UIViewController {
     
     @objc func didMatch(){
         switch status {
-        case .match:
+		case .match?:
             let info = RecommendInfoController()
             navigationController?.pushViewController(info, animated: true)
-        case .unmatch:
+		case .unmatch?:
             let recommendMatch = RecommendMatchController()
             recommendMatch.status = status
             navigationController?.pushViewController(recommendMatch, animated: true)

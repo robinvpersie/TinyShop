@@ -63,5 +63,6 @@
 #import "TSCategoryController.h"
 #import "UIView+ViewController.h"
 #import <MJRefresh/MJRefresh.h>
-
+#import "ChoiceHeadView.h"
+#import "ShowLocationView.h"
 #endif /* Portal_Bridging_Header_h */

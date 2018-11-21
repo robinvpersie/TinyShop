@@ -39,5 +39,6 @@ struct Constant {
     
     static let screenHeight = UIScreen.main.bounds.size.height
     static let screenWidth = UIScreen.main.bounds.size.width
+	static let swiftMallBaseUrl = "http://mall.gigawon.co.kr:8800/api/"
     
 }

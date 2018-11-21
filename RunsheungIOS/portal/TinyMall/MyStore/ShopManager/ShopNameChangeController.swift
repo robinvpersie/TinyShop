@@ -17,7 +17,7 @@ class ShopNameChangeController: MyStoreBaseViewController {
 	var pstcode:String = "010237"
 	var addDetail:String = "请填写详细地址"
 	var dit:NSDictionary?
-	var editFinish:()->Void = {()->Void in}
+	var editFinish:(String,String)->Void = {(mainaddr:String,detailaddr:String)->Void in}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,22 +59,23 @@ class ShopNameChangeController: MyStoreBaseViewController {
 	}
 	
 	@objc private func saveBtn(){
-		let imageurl:String = self.dit?.object(forKey: "shop_thumnail_image") as! String
-		let name:String = self.dit?.object(forKey: "custom_name") as! String
-		let tel:String = self.dit?.object(forKey: "telephon") as! String
+//		let imageurl:String = self.dit?.object(forKey: "shop_thumnail_image") as! String
+//		let name:String = self.dit?.object(forKey: "custom_name") as! String
+//		let tel:String = self.dit?.object(forKey: "telephon") as! String
 		self.addDetail = self.textView.text
-  		KLHttpTool.requestStoreImageUpdatewithUri("/api/AppSM/requestStoreImageUpdate", withStoreImageurl: imageurl, withCustomName: name, withTelephon: tel, withZipcode: self.pstcode, withKoraddr: self.addsec, withkoraddrDetail: self.addDetail, success: { (response) in
-			let res:NSDictionary = (response as? NSDictionary)!
-			let status:String = (res.object(forKey: "status") as! String)
-			if status == "1" {
-				self.editFinish()
-				self.navigationController?.popViewController(animated: true)
-				
- 			}
-			
-		}, failure: { (error) in
-			
-		})
+		self.editFinish(self.addsec,self.addDetail)
+		self.navigationController?.popViewController(animated: true)
+		
+
+//  		KLHttpTool.requestStoreImageUpdatewithUri("/api/AppSM/requestStoreImageUpdate", withStoreImageurl: imageurl, withCustomName: name, withTelephon: tel, withZipcode: self.pstcode, withKoraddr: self.addsec, withkoraddrDetail: self.addDetail, success: { (response) in
+//			let res:NSDictionary = (response as? NSDictionary)!
+//			let status:String = (res.object(forKey: "status") as! String)
+//			if status == "1" {
+//				 			}
+//
+//		}, failure: { (error) in
+//
+//		})
 
 	}
  }

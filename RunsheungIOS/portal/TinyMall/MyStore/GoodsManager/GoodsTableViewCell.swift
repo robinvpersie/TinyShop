@@ -30,12 +30,16 @@ class GoodsTableViewCell: UITableViewCell {
 		}else{
 			selftag = 0
 		}
+	
 		self.headavator.setImageWith(NSURL.init(string: self.dic?.object(forKey: "image_url") as! String)! as URL)
 		self.productName.text = self.dic?.object(forKey: "item_name") as? String
 		let salecount:String = (self.dic?.object(forKey: "MonthSaleCount") as? String)!
 		let itemprice:String = (self.dic?.object(forKey: "item_p") as? String)!
  		self.saleCount.text = "月售 ".localized + salecount
 		self.price.text = "￥" + itemprice
+		self.reEidt.setTitle("重新编辑".localized, for: .normal)
+		self.downProduct.setTitle("下架商品".localized, for: .normal)
+
 	
 	}
 	override func awakeFromNib() {

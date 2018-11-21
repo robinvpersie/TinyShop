@@ -101,11 +101,12 @@
 				accountModel.password = pwd.text;
 				accountModel.avatarPath = response[@"profile_img"];
 				accountModel.userName = response[@"nick_name"];
+				accountModel.business_type = response[@"business_type"];
                 NSString *finalToken = [NSString stringWithFormat:@"%@|%@|%@", accountModel.token, accountModel.ssoId, accountModel.customCode];
                 accountModel.combineToken = finalToken;
 				NSData *objectTodata = [NSKeyedArchiver archivedDataWithRootObject:accountModel];
-				
-				[[NSUserDefaults standardUserDefaults] setObject:objectTodata forKey:@"accountModel"];
+				NSUserDefaults *ycUserDefault = [[NSUserDefaults alloc]initWithSuiteName:@"YCSheLongWang"];
+ 				[ycUserDefault setObject:objectTodata forKey:@"accountModel"];
 				[[NSNotificationCenter defaultCenter]postNotificationName:@"YCAccountIsLogin" object:nil];
                 [weakself dismissViewControllerAnimated:true completion:nil];
 				
